@@ -1,0 +1,60 @@
+{
+ "C001WindLoadOnPedBridgeSuperstructure": [
+  {
+   "input": "z_clear",
+   "owner": "BridgeGeometry_2Beam.Wind_clearHeight",
+   "journal_value": 227.477528536945,
+   "case_value": 227.47752853695,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Wind_clearHeight (in)"
+  },
+  {
+   "input": "Z",
+   "owner": "BridgeGeometry_2Beam.Wind_exposureHeight",
+   "journal_value": 428.790028536945,
+   "case_value": 428.79002853695,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Wind_exposureHeight (in)"
+  },
+  {
+   "input": "d_super",
+   "owner": "BridgeGeometry_2Beam.Depth_SuperStr",
+   "journal_value": 85.0,
+   "case_value": 85.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Depth_SuperStr (in)"
+  },
+  {
+   "input": "Span_1",
+   "owner": "BridgeGeometry_2Beam.Span_1",
+   "journal_value": 107.35,
+   "case_value": 107.35,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_1 (ft)"
+  },
+  {
+   "input": "Span_2",
+   "owner": "BridgeGeometry_2Beam.Span_2",
+   "journal_value": 104.9,
+   "case_value": 104.9,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_2 (ft)"
+  },
+  {
+   "input": "w_deck",
+   "owner": "BridgeGeometry_2Beam.Deck_out2out",
+   "journal_value": 163.0,
+   "case_value": 163.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Deck_out2out (in)"
+  },
+  {
+   "input": "Beam_count",
+   "owner": "BridgeGeometry_2Beam.Beam_count",
+   "journal_value": 2.0,
+   "case_value": 2.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Beam_count (no unit)"
+  }
+ ]
+}

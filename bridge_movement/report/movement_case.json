@@ -1,0 +1,50 @@
+{
+ "format": "d2mpdb-bridge-movement",
+ "schema_version": 1,
+ "name": "C003 - Bridge Temperature Movement (journal values, feb1bb316d08)",
+ "inputs": {
+  "L_left": 107.35,
+  "L_right": 104.9,
+  "T_mean": 70.0,
+  "T_high": 105.0,
+  "T_low": 35.0,
+  "γ_TU": 1.2
+ },
+ "units": {
+  "L_left": "ft",
+  "L_right": "ft",
+  "T_mean": null,
+  "T_high": null,
+  "T_low": null,
+  "γ_TU": null
+ },
+ "sources": {
+  "L_left": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_1",
+   "status": "journal"
+  },
+  "L_right": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_2",
+   "status": "journal"
+  },
+  "T_mean": {
+   "source": "SDG Table 2.7.1-1",
+   "status": "code"
+  },
+  "T_high": {
+   "source": "SDG Table 2.7.1-1",
+   "status": "code"
+  },
+  "T_low": {
+   "source": "SDG Table 2.7.1-1",
+   "status": "code"
+  },
+  "γ_TU": {
+   "source": "SDG 2.7.1.D; SDG 6.3",
+   "status": "code"
+  }
+ },
+ "confirmations": {},
+ "receipts": {},
+ "reviews": {}
+}

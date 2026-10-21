@@ -1,0 +1,59 @@
+[
+ {
+  "name": "MovementSummary",
+  "title": "Movement Summary",
+  "headers": [
+   "Item",
+   "Begin Bridge",
+   "End Bridge"
+  ],
+  "rows": [
+   [
+    "Movement length",
+    {
+     "v": "L_left"
+    },
+    {
+     "v": "L_right"
+    }
+   ],
+   [
+    "Unfactored temperature rise",
+    {
+     "v": "δ_left"
+    },
+    {
+     "v": "δ_right"
+    }
+   ],
+   [
+    "Unfactored temperature fall",
+    {
+     "v": "δ_left"
+    },
+    {
+     "v": "δ_right"
+    }
+   ],
+   [
+    "Factored TU rise/fall",
+    {
+     "v": "δ_left_TU"
+    },
+    {
+     "v": "δ_right_TU"
+    }
+   ],
+   [
+    "Direction for temperature rise",
+    "Toward Begin Bridge",
+    "Toward End Bridge"
+   ],
+   [
+    "Direction for temperature fall",
+    "Toward Pier",
+    "Toward Pier"
+   ]
+  ]
+ }
+]

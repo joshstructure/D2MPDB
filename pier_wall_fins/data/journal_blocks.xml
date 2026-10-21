@@ -1,0 +1,483 @@
+<blocks>
+  <block id="p0" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Wall reinforcement • selected fin layout • plate resistance • weld-interface actions</paragraph>
+  </block>
+  <block id="C006Box0" kind="prose">
+    <table name="C006Box0" capture="False" colwidths="1:650">
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box0R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">OBJECTIVE / INPUTS / OUTPUT</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box0R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Objective — Size the fin plates for wall gravity and designated hairpin yield force; check distributed wall reinforcement.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box0R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Inputs — Existing wall quantities, pile geometry, concrete/reinforcing properties, and direct-wall wind pressure. Plate layout and local detailing are selected here.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box0R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Output — Selected plate and hairpin arrangement; wall checks; concurrent forces/moments at each fin root for a separate weld calculation.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p2" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#A64A20">No weld size, weld throat, electrode, weld resistance, or weld pass/fail is calculated. Local pipe-shell resistance and the atypical hairpin/saddle node require separate completion; a passing plate result does not close those items.</paragraph>
+  </block>
+  <block id="p3" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Import the source wall and pile geometry; define the six-fin upper-row arrangement and local axes.</paragraph>
+  </block>
+  <block id="p4" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Resolve wall gravity at the actual fin-group centers using a symmetric six-support elastic distribution; check equilibrium.</paragraph>
+  </block>
+  <block id="p5" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Check two #5 hairpins per fin, unequal local sharing, full nominal yield target, bends, and available straight development.</paragraph>
+  </block>
+  <block id="p6" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Check rectangular-bar flexure, lateral-torsional buckling, shear, and an elastic combined-stress screen. No concrete bracing credit.</paragraph>
+  </block>
+  <block id="p7" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Check a one-foot-high horizontal strip for wind flexure, shear, and service behavior; take reactions into pile contact regions.</paragraph>
+  </block>
+  <block id="p8" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Check shrinkage/temperature, applicable strut-region minimum grids, cover, spacing, development, joints, and mass-concrete screen.</paragraph>
+  </block>
+  <block id="p9" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Export complete concurrent root force/moment sets, distinguish actual load combinations from the hairpin-yield target, and state open interface checks.</paragraph>
+  </block>
+  <block id="p10" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Collect live checks and selected dimensions; keep unresolved local mechanisms separate from completed checks.</paragraph>
+  </block>
+  <block id="C006Box2" kind="prose">
+    <table name="C006Box2" capture="False" colwidths="1:650">
+                <stylerule range="A1:A6" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box2R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">DESIGN BASIS QUICK REFERENCE</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box2R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">RFQ IV.B.2 controls the adopted edition. Basis retained for this module: LRFD 10th Edition (2024), FDOT Structures Manual (January 2026), and project amendments. No newer ACI edition is substituted.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box2R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">LRFD 5.6.3, 5.6.7, 5.7, 5.10.2, 5.10.3, 5.10.6 and 5.10.8: distributed RC wall checks. FDOT SDG 1.4.2, 1.4.4 and 3.10 modify the cover, durability and service-detailing basis.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box2R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">LRFD 5.8.2.4 and 5.13: hanger/anchorage basis. The fully embedded fin is not treated as a prequalified ACI base-plate shear lug. The adopted hanger reduction factor is conservatively lower than the verified LRFD reinforced-concrete STM tie factor.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box2R4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">LRFD 6.5.4.2, 6.12.2.2.7 and 6.13.5.3: rectangular fin-plate resistance. The additional elastic combined-stress limit is a deliberately conservative project screen, not a quoted LRFD interaction equation.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box2R5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Fin geometry, one-row layout, elastic reaction model, nominal-yield development target, and tolerances are declared design assumptions. Approval of the complete local hanger/concrete/saddle/pipe mechanism remains a release condition.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="C006Box3" kind="prose">
+    <table name="C006Box3" capture="False" colwidths="1:650">
+                <stylerule range="A1:A6" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box3R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">LOAD PATH AND SCOPE</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box3R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Bridge gravity is not assigned to this wall. Wall gravity passes through its reinforced collection regions, hairpins and bearing saddles into the fin plates and piles. No bond or friction between the pipe and wall is credited for vertical resistance.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box3R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Out-of-plane wind is assigned to concrete-to-pipe contact distributed over the wall height, not concentrated at the upper fin row. Fin out-of-plane loading from forced compatibility is not silently included as zero measured demand.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box3R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The source wall is conservatively weighed gross, without subtracting pipe volumes. The source weight, cap dimensions, pile layout, existing FBMP loads and unrelated calculations are not changed.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box3R4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The six-support solution is an elastic demand-distribution model, not proof of gravity load collection in the deep wall. Local strut/node design, hanger-to-wall load collection and imposed pile movement remain explicit completion items.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box3R5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Fin plates are checked for their actual factored reaction and the full nominal yield of their designated two-hairpin group. Nominal yield is not multiplied by the DC load factor and is not claimed to represent actual simultaneous yielding in all fins.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="C006FinPlan" kind="canvas">
+    <canvas name="C006FinPlan" title="Selected plan arrangement and force points" unit="in" size="6.5 in; 3.0 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <planecontainer origin="0.15,2.78,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>SELECTED PLAN ARRANGEMENT AND FORCE POINTS</textvalue></planecontainer>
+                <planecontainer origin="0.15,0.07,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#65717A"><textvalue>NOT TO SCALE — force signs follow the defined local axes.</textvalue></planecontainer>
+                <lines pts="0.4,0.6,0; 6.1,0.6,0; 6.1,1.7,0; 0.4,1.7,0; 0.4,0.6,0" linecolor="#29333D" linethickness="0.8"/>
+                <circle center="1.0,1.15,0" normal="0,0,1" radius="0.3" linecolor="#29333D" linethickness="0.8"/>
+                <planecontainer origin="0.6,1.92,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>P1</textvalue></planecontainer>
+                <lines pts="1.3,1.15,0; 1.6600000000000001,1.15,0" linecolor="#1766A0" linethickness="3"/>
+                <circle center="2.45,1.15,0" normal="0,0,1" radius="0.3" linecolor="#29333D" linethickness="0.8"/>
+                <planecontainer origin="2.0500000000000003,1.92,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>P2</textvalue></planecontainer>
+                <lines pts="2.1500000000000004,1.15,0; 1.79,1.15,0" linecolor="#1766A0" linethickness="3"/>
+                <lines pts="2.75,1.15,0; 3.1100000000000003,1.15,0" linecolor="#1766A0" linethickness="3"/>
+                <circle center="3.9,1.15,0" normal="0,0,1" radius="0.3" linecolor="#29333D" linethickness="0.8"/>
+                <planecontainer origin="3.5,1.92,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>P3</textvalue></planecontainer>
+                <lines pts="3.6,1.15,0; 3.2399999999999998,1.15,0" linecolor="#1766A0" linethickness="3"/>
+                <lines pts="4.2,1.15,0; 4.56,1.15,0" linecolor="#1766A0" linethickness="3"/>
+                <circle center="5.35,1.15,0" normal="0,0,1" radius="0.3" linecolor="#29333D" linethickness="0.8"/>
+                <planecontainer origin="4.949999999999999,1.92,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>P4</textvalue></planecontainer>
+                <lines pts="5.05,1.15,0; 4.6899999999999995,1.15,0" linecolor="#1766A0" linethickness="3"/>
+                <planecontainer origin="1.4,0.33,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>F1</textvalue></planecontainer>
+                <planecontainer origin="1.89,0.33,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>F2</textvalue></planecontainer>
+                <planecontainer origin="2.85,0.33,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>F3</textvalue></planecontainer>
+                <planecontainer origin="3.34,0.33,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>F4</textvalue></planecontainer>
+                <planecontainer origin="4.3,0.33,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>F5</textvalue></planecontainer>
+                <planecontainer origin="4.79,0.33,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>F6</textvalue></planecontainer>
+                <planecontainer origin="0.52,2.45,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>End fins face inward; interior fins are opposed.</textvalue></planecontainer>
+                <lineardim startpoint="1.0,1.45,0" endpoint="2.45,1.45,0" pointondimline="1.725,2.15,0" formula="PierWallFins.S_p to ft in" linecolor="#1766A0" textcolor="#1766A0" fontsize="9" linethickness=".6"><num>5 ft 0 in</num></lineardim>
+            </canvas>
+  </block>
+  <block id="C006Box50" kind="prose">
+    <table name="C006Box50" capture="False" colwidths="1:650">
+                <stylerule range="A1:A5" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box50R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">GEOMETRY QUALIFICATIONS</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box50R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">All six fins are in one upper row. There is no equal-sharing assumption between multiple vertical rows. Additional rows require a new distribution model.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box50R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Outside fins are omitted at the end piles because the source wall has a short end extension. The two hairpins lie in planes normal to the fin blade and wrap over a round bearing saddle; no rebar is welded.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box50R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The computed wall-bottom offset from terrain is retained and shown above. It is not silently repaired by changing the source wall height. Confirm whether the intended wall extends to or below grade.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box50R4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The selected round saddle is additional steel, not the fin plate itself. Its positive bearing fit, lateral restraint, local contact behavior and any attachment weld are required details to be completed separately.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="C006Box66" kind="prose">
+    <table name="C006Box66" capture="False" colwidths="1:650">
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box66R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">REACTION MODEL — DERIVED EQUILIBRIUM</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box66R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The force points are F1 to F6 from left to right. The five spans alternate La, Lb, La, Lb, La. Both overhangs have length ao. Source geometry must remain symmetric with four piles.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box66R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Actual gravity resultants use the selected adverse split consistently in the support stations and root moments. Uniform gravity and constant effective in-plane stiffness are used only to obtain a rational reaction set. Support settlements, nonuniform cracked stiffness and coupled pile-wall restraint are not represented. The model does not certify the deep-wall load-collection mechanism.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box66R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The three-moment equations below are derived mechanics, not code resistance equations. A separate matrix-beam solution is used to audit the supplied numerical results.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="C006Hairpin" kind="canvas">
+    <canvas name="C006Hairpin" title="Hairpin section normal to fin" unit="in" size="6.5 in; 3.2 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <planecontainer origin="0.15,2.98,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>HAIRPIN SECTION NORMAL TO FIN</textvalue></planecontainer>
+                <planecontainer origin="0.15,0.07,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#65717A"><textvalue>NOT TO SCALE — force signs follow the defined local axes.</textvalue></planecontainer>
+                <lines pts="2.7,0.7,0; 3.45,0.7,0; 3.45,1.55,0; 2.7,1.55,0; 2.7,0.7,0" linecolor="#29333D" linethickness="1.5"/>
+                <circle center="3.075,1.95,0" normal="0,0,1" radius="0.4" linecolor="#1766A0" linethickness="1.5"/>
+                <lines pts="3.545,0.45,0; 3.545,1.95,0; 3.545,1.95,0; 3.543475934823079,1.9878192872968612,0; 3.5389136234398193,2.025393302003147,0; 3.5313426541902446,2.062478362215152,0; 3.5208121277151587,2.098833957086692,0; 3.5073903385196474,2.134224306634235,0; 3.491164332057009,2.168419890860571,0; 3.472239340205584,2.2011989382800663,0; 3.4507380987996457,2.23234886419185,0; 3.426800051640418,2.2616676493731735,0; 3.4005804461495117,2.2889651502515926,0; 3.3722493265298277,2.3140643320589978,0; 3.3419904309636435,2.3368024169700186,0; 3.31,2.357031939778686,0; 3.2764855038594356,2.37462170426688,0; 3.241664296909992,2.3894576340621447,0; 3.205762208040733,2.401443512466745,0; 3.169012076074741,2.410501606459866,0; 3.131652239720002,2.4165731708260854,0; 3.0939249918514253,2.4196188291406378,0; 3.056075008148575,2.4196188291406378,0; 3.0183477602799984,2.4165731708260854,0; 2.9809879239252592,2.410501606459866,0; 2.9442377919592677,2.401443512466745,0; 2.9083357030900086,2.3894576340621447,0; 2.8735144961405648,2.37462170426688,0; 2.8400000000000003,2.357031939778686,0; 2.808009569036357,2.3368024169700186,0; 2.777750673470173,2.3140643320589978,0; 2.7494195538504886,2.2889651502515926,0; 2.723199948359583,2.261667649373174,0; 2.6992619012003547,2.23234886419185,0; 2.6777606597944166,2.2011989382800667,0; 2.6588356679429914,2.168419890860571,0; 2.642609661480353,2.1342243066342355,0; 2.6291878722848416,2.098833957086692,0; 2.6186573458097557,2.062478362215152,0; 2.611086376560181,2.0253933020031476,0; 2.6065240651769215,1.9878192872968612,0; 2.6050000000000004,1.95,0; 2.605,0.45,0" linecolor="#B5443C" linethickness="1.8"/>
+                <planecontainer origin="0.2,2.72,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>View through one hairpin plane.</textvalue></planecontainer>
+                <planecontainer origin="0.2,2.34,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Round saddle required:</textvalue></planecontainer>
+                <lineardim startpoint="2.675,1.95,0" endpoint="3.475,1.95,0" pointondimline="3.075,2.65,0" formula="PierWallFins.D_s to in" linecolor="#1766A0" textcolor="#1766A0" fontsize="9" linethickness=".6"><num>3.75 in</num></lineardim>
+                <planecontainer origin="0.2,1.65,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Fin plate beneath the saddle</textvalue></planecontainer>
+                <lines pts="2.0,1.65,0; 2.7,1.25,0" linecolor="#29333D" linethickness="0.6"/>
+                <planecontainer origin="4.05,2.0,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Curved contact</textvalue></planecontainer>
+                <lines pts="4.0,1.94,0; 3.45,2.1,0" linecolor="#29333D" linethickness="0.6"/>
+                <planecontainer origin="4.05,1.35,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Both legs extend</textvalue></planecontainer>
+                <planecontainer origin="4.05,1.15,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>into the wall.</textvalue></planecontainer>
+                <arrowlines pts="2.605,1.05,0; 2.605,0.55,0" linecolor="#B5443C" linethickness="1" endarrow="5; 2.5"/>
+                <arrowlines pts="3.545,1.05,0; 3.545,0.55,0" linecolor="#B5443C" linethickness="1" endarrow="5; 2.5"/>
+            </canvas>
+  </block>
+  <block id="C006Box116" kind="prose">
+    <table name="C006Box116" capture="False" colwidths="1:650">
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box116R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">REQUIRED LOCAL DETAIL — NOT A SHARP-EDGE HANGER</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box116R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Two inverted-U #5 hairpins wrap a round steel bearing saddle above each fin. Hairpins are normal to the fin plane; the fin lies between their legs. Use a fitted bearing seat and positive saddle retention. Do not weld the reinforcing bars.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box116R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The tail-length and steel-area checks above are completed. The local saddle bearing/contact, concrete load collection into those tails and local strut/node confinement must still establish the assumed load path; they are not certified by the area-times-yield calculation.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box116R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">General face-grid bars are not included in the designated hairpin yield target. Additional connected bars that can impose force on the fin require updating the interface demand.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="C006Root" kind="canvas">
+    <canvas name="C006Root" title="Fin-root free body for external weld calculation" unit="in" size="6.5 in; 3.1 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <planecontainer origin="0.15,2.88,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>FIN-ROOT FREE BODY FOR EXTERNAL WELD CALCULATION</textvalue></planecontainer>
+                <planecontainer origin="0.15,0.07,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#65717A"><textvalue>NOT TO SCALE — force signs follow the defined local axes.</textvalue></planecontainer>
+                <lines pts="1.0,0.55,0; 1.0,2.45,0" linecolor="#29333D" linethickness="3"/>
+                <lines pts="1.0,0.7,0; 4.3,0.7,0; 4.3,2.15,0; 1.0,2.15,0" linecolor="#29333D" linethickness="1"/>
+                <circle center="1.0,1.425,0" normal="0,0,1" radius="0.035" linecolor="#B5443C" linethickness="0.8"/>
+                <arrowlines pts="2.45,2.65,0; 2.45,2.15,0" linecolor="#B5443C" linethickness="1.3" endarrow="5; 2.5"/>
+                <planecontainer origin="2.58,2.49,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Vertical hairpin-group force</textvalue></planecontainer>
+                <arrowlines pts="1.0,1.425,0; 1.75,1.425,0" linecolor="#1766A0" linethickness="0.7" endarrow="5; 2.5"/>
+                <planecontainer origin="1.45,1.57,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#1766A0"><textvalue>+x outward</textvalue></planecontainer>
+                <arrowlines pts="1.0,1.425,0; 1.0,0.95,0" linecolor="#1766A0" linethickness="0.7" endarrow="5; 2.5"/>
+                <planecontainer origin="0.2,0.85,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#1766A0"><textvalue>+z down</textvalue></planecontainer>
+                <lineardim startpoint="1,0.7,0" endpoint="4.3,0.7,0" pointondimline="2.65,0.32,0" formula="PierWallFins.a_p to in" linecolor="#1766A0" textcolor="#1766A0" fontsize="9" linethickness=".6"><num>8 in</num></lineardim>
+                <lineardim startpoint="4.3,0.7,0" endpoint="4.3,2.15,0" pointondimline="4.65,1.425,0" formula="PierWallFins.h_p to in" linecolor="#1766A0" textcolor="#1766A0" fontsize="9" linethickness=".6"><num>12 in</num></lineardim>
+                <planecontainer origin="4.95,2.35,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Root origin O</textvalue></planecontainer>
+                <planecontainer origin="4.95,2.13,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>at midheight.</textvalue></planecontainer>
+                <planecontainer origin="4.95,1.6,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Fz positive</textvalue></planecontainer>
+                <planecontainer origin="4.95,1.38,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>My negative</textvalue></planecontainer>
+            </canvas>
+  </block>
+  <block id="p19" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#A64A20">No root copes, holes, slots, or unverified effective-width reductions are allowed within the checked root section. Plate-to-pipe local punching/tearing and the weld-adjacent base-metal paths are completion checks at the interface, not included in this isolated plate result.</paragraph>
+  </block>
+  <block id="C006WindStrip" kind="canvas">
+    <canvas name="C006WindStrip" title="One-foot horizontal wind strip in plan" unit="in" size="6.5 in; 3.0 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <planecontainer origin="0.15,2.78,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>ONE-FOOT HORIZONTAL WIND STRIP IN PLAN</textvalue></planecontainer>
+                <planecontainer origin="0.15,0.07,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#65717A"><textvalue>NOT TO SCALE — force signs follow the defined local axes.</textvalue></planecontainer>
+                <lines pts="1.0,0.85,0; 5.2,0.85,0; 5.2,1.65,0; 1.0,1.65,0; 1.0,0.85,0" linecolor="#29333D" linethickness="1"/>
+                <circle center="1.0,1.25,0" normal="0,0,1" radius="0.34" linecolor="#29333D" linethickness="0.8"/>
+                <circle center="5.2,1.25,0" normal="0,0,1" radius="0.34" linecolor="#29333D" linethickness="0.8"/>
+                <arrowlines pts="1.65,2.15,0; 1.65,1.7,0" linecolor="#B5443C" linethickness="1" endarrow="5; 2.5"/>
+                <arrowlines pts="2.35,2.15,0; 2.35,1.7,0" linecolor="#B5443C" linethickness="1" endarrow="5; 2.5"/>
+                <arrowlines pts="3.05,2.15,0; 3.05,1.7,0" linecolor="#B5443C" linethickness="1" endarrow="5; 2.5"/>
+                <arrowlines pts="3.75,2.15,0; 3.75,1.7,0" linecolor="#B5443C" linethickness="1" endarrow="5; 2.5"/>
+                <arrowlines pts="4.45,2.15,0; 4.45,1.7,0" linecolor="#B5443C" linethickness="1" endarrow="5; 2.5"/>
+                <planecontainer origin="1.7,2.35,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Uniform wind; also check the reversed direction.</textvalue></planecontainer>
+                <lineardim startpoint="1.0,0.9,0" endpoint="5.2,0.9,0" pointondimline="3.1,0.47,0" formula="PierWallFins.L_strip to ft in" linecolor="#1766A0" textcolor="#1766A0" fontsize="9" linethickness=".6"><num>5 ft 0 in</num></lineardim>
+                <planecontainer origin="0.3,0.2,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>Pile contact</textvalue></planecontainer>
+                <planecontainer origin="4.85,0.2,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>Pile contact</textvalue></planecontainer>
+                <planecontainer origin="1.9,1.05,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>Wall strip height = one foot (out of this view)</textvalue></planecontainer>
+            </canvas>
+  </block>
+  <block id="C006Box211" kind="prose">
+    <table name="C006Box211" capture="False" colwidths="1:650">
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box211R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">WALL-STRIP BOUNDARY</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box211R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The horizontal #6 bars are outermost at each broad face, followed by vertical #6 bars. Through-thickness #4 cross-ties must positively engage the face grids; ordinary in-plane vertical bars do not count as through-thickness shear reinforcement.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box211R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The checked solid strip applies between the pile disturbed regions. Do not apply its gross-section resistance through the pipe opening. Local pipe-contact concrete bearing/splitting and bar routing around the pile are separate release checks.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box211R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">The adopted wind moment is checked with bars at either face. Compatibility with pile movement and the global wall/cap interface is not demonstrated by these load-only strip calculations.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p22" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#A64A20">The additional d/4 spacing condition in LRFD 5.8.2.6 must be checked against the actual local strut-and-tie model. The twelve-inch ceiling and area ratio above do not alone close that local model.</paragraph>
+  </block>
+  <block id="C006Box238" kind="prose">
+    <table name="C006Box238" capture="False" colwidths="1:650">
+                <stylerule range="A1:A7" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box238R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">REINFORCEMENT AND CONSTRUCTION NOTES</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box238R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Provide the selected face grid in both directions at each broad face, with horizontal bars outermost. Continue the face grids around ends and edges using developed returns or compatible laps; do not cut bars off merely because they meet a pipe.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box238R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Provide the selected through-thickness cross-ties at the spacing shown above, positively engaging the outer horizontal bars at both faces with compliant hooks. Verify the actual tie configuration under LRFD 5.10.8.2.6.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box238R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Provide two designated #5 hairpins at every fin; no credit from the distributed grid is included in the fin-development target. Additional local concrete splitting/strut reinforcement is subject to the local node design.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box238R4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Drive and survey piles before fabricating/installing final fins and reinforcement. The selected wall fit requires the position envelope shown above, including the transverse direction; the current cap tolerance cannot be substituted unchecked.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box238R5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Forms/falsework carry wet concrete until the concrete and anchorage have the required strength. The completed embedded bearing mechanism is not assumed available in fresh concrete.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box238R6" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">No collision or seismic exemption is newly certified here. Retain the established project applicability decisions only after confirming the governing geometry and classification. Construction, fatigue, and differential-pile-movement effects outside the assigned loads remain coordination items.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="C006Box240" kind="prose">
+    <table name="C006Box240" capture="False" colwidths="1:650">
+                <stylerule range="A1:A6" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box240R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">LOCAL WELD HANDOFF AXES AND REFERENCE</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box240R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">O is the midheight of the nominal full-height fin root at the pipe tangent plane. Local +x points outward along that fin, +z points downward, and +y is chosen so x cross y = z (right-handed).</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box240R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Fz is positive downward. A downward load at positive x creates negative My. A positive transverse offset creates positive Mx. Reversing the transverse offset reverses Mx; the paired rows below are complete concurrent cases.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box240R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">For opposite-facing fins, the local axes rotate with the fin. Transform each complete case to the weld program axes. If the actual weld-group centroid differs from O, relocate once using Mnew = Mold + r cross F.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box240R4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Fx, Fy and Mz are zero in the assigned vertical hanger model, not measured zero compatibility actions. Wall-wind reactions enter the piles through the separate distributed contact path. Any force assigned to the fin by a revised model must be added as a complete load case.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box240R5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Actual Service I and Strength I/III rows are load demands. HY+ and HY- are nominal-hairpin-yield development targets and must not be multiplied by the DC or wind factors again. They are not asserted to occur simultaneously at every fin.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p25" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">For the paired negative-offset case at every row: Fx, Fy, Fz, My and Mz are unchanged; Mx changes sign. Do not combine independently enveloped components from unrelated cases.</paragraph>
+  </block>
+  <block id="p26" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#A64A20">Mirror pile moments reverse sign across the wall center. Add these actions only when they replace the existing equivalent wall-load application; do not add the same wall weight twice in FBMP. Local pipe-shell checks require the concurrent bridge axial/bending state and the effective pipe thickness shown in Step 1.</paragraph>
+  </block>
+  <block id="C006Box290" kind="prose">
+    <table name="C006Box290" capture="False" colwidths="1:650">
+                <stylerule range="A1:A6" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box290R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">EXPLICIT COMPLETION ITEMS — NOT INCLUDED IN AN OVERALL PASS</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box290R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">1. Local node and wall gravity collection: substantiate the reserved transfer zone, actual struts/nodes, splitting confinement, bar development beyond the relevant separation surfaces, and the round saddle contact/retention detail.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box290R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">2. Receiving pipe: check localized shell yielding/plastification, punching/tearing and interaction with the actual concurrent pile stress state at the fin elevation. Use the effective pipe wall, not the nominal 5/8-inch wall. No pipe local-resistance pass is claimed here.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box290R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">3. Geometry: confirm source wall-bottom elevation, environmental cover and the tighter wall-region position tolerance. The old source wall quantity has not been silently changed.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box290R4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">4. Weld: use the exported root cases in the separate weld calculation, including relocation to the actual weld centroid and adjacent base-metal failure paths. No weld design is contained in C006.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box290R5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">5. Preserve external applicability decisions for collision, seismic, construction and fatigue; resolve differential pile movement/cap-wall restraint consistently with the full substructure model. The one-foot wind strip is not a coupled pier model.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="C006Box291" kind="prose">
+    <table name="C006Box291" capture="False" colwidths="1:650">
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="C006Box291R0" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" fontweight="bold">SELECTED TRIAL DETAIL</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box291R1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">One upper row; six inward/opposed fin plates total. Two designated #5 hairpins over a round bearing saddle at each fin. Fin and hairpin dimensions remain live in the tables.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box291R2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Fin-root actions are exported in local right-handed axes with +z downward. Each HY row is a separate connection-development target, not a global bridge load combination.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="C006Box291R3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5">Drawings must identify the selected one-row arrangement, the fin/root reference, the designated hairpins, the fitted saddle and the retained source geometry. Local checks listed above must be completed before release.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+</blocks>

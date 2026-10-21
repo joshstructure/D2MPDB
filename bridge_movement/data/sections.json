@@ -1,0 +1,136 @@
+[
+ {
+  "key": "introduction",
+  "level": 0,
+  "title": "Introduction",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0028",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p1",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "MovementScopeBox",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphc003packetnav",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "1_design_basis_and_assumptions",
+  "level": 0,
+  "title": "1. Design basis and assumptions",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p4",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p5",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p6",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphc003factorrefs",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p8",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "2_1_bridge_geometry",
+  "level": 1,
+  "title": "2.1 Bridge geometry",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "2_2_temperature_parameters",
+  "level": 1,
+  "title": "2.2 Temperature parameters",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "3_temperature_change",
+  "level": 0,
+  "title": "3. Temperature change",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "4_thermal_movement",
+  "level": 0,
+  "title": "4. Thermal movement",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p9",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphc003equationref",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "4_1_unfactored_joint_bearing_detailing_m",
+  "level": 1,
+  "title": "4.1 Unfactored joint and bearing detailing movement",
+  "text": [
+   "Thermal movement δ = α·ΔT·L from the center of movement at the intermediate pier to each end of the bridge, for the concrete-only temperature range."
+  ],
+  "blocks": []
+ },
+ {
+  "key": "4_2_factored_tu_movement_envelope",
+  "level": 1,
+  "title": "4.2 Factored TU movement envelope",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "5_result_summary",
+  "level": 0,
+  "title": "5. Result summary",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "MovementSummary",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p11",
+    "at": "start"
+   }
+  ]
+ }
+]

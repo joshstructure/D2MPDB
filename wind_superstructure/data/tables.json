@@ -1,0 +1,108 @@
+[
+ {
+  "name": "WindSpeedTable",
+  "title": "Design Wind Speed by Load Combination",
+  "headers": [
+   "Load Combination",
+   "Design 3-Second Gust Wind Speed, V (mph)"
+  ],
+  "rows": [
+   [
+    "Strength III",
+    {
+     "v": "V_III"
+    }
+   ],
+   [
+    "Strength V",
+    {
+     "v": "V_V"
+    }
+   ],
+   [
+    "Service I",
+    {
+     "v": "V_SI"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "WindSummaryTable",
+  "title": "Wind Load Summary",
+  "headers": [
+   "Wind Load Parameter",
+   "Strength III"
+  ],
+  "rows": [
+   [
+    "Design Wind Speed V (mph)",
+    {
+     "v": "V_III"
+    }
+   ],
+   [
+    "K_Z (Strength III uses K_Z_gov; other retained speeds use 1.0)",
+    {
+     "v": "K_Z_gov"
+    }
+   ],
+   [
+    "P_Z — Design Wind Pressure (ksf) [Eq. 3.8.1.2.1-1]",
+    {
+     "v": "P_Z_III"
+    }
+   ],
+   [
+    "Transverse Wind Line Load on Superstructure (klf)",
+    {
+     "v": "w_T_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "C001VerticalResults",
+  "title": "",
+  "headers": [
+   "Limit state",
+   "Upward line load",
+   "Eccentricity",
+   "Concrete horizontal"
+  ],
+  "rows": [
+   [
+    "Strength III",
+    {
+     "v": "w_V_III"
+    },
+    {
+     "v": "e_V"
+    },
+    {
+     "v": "w_T0_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "C001VerticalReferenceLive",
+  "title": "",
+  "headers": [
+   "Limit state",
+   "Upward line load",
+   "Windward eccentricity"
+  ],
+  "rows": [
+   [
+    "Strength III",
+    {
+     "v": "w_V_III"
+    },
+    {
+     "v": "e_V"
+    }
+   ]
+  ]
+ }
+]

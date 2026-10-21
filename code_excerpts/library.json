@@ -11,7 +11,14 @@
     {"references": "end_bent_walls/data/references.json"},
     {"references": "pile_design/data/references.json"},
     {"scan": ["pier_cap/*.py"]},
-    {"scan": ["ring_wall/*.py"]}
+    {"scan": ["ring_wall/*.py"]},
+    {"references": "wind_superstructure/data/references.json"},
+    {"references": "fence_wind/data/references.json"},
+    {"references": "bridge_movement/data/references.json"},
+    {"references": "superstructure_uplift/data/references.json"},
+    {"references": "pier_wall_fins/data/references.json"},
+    {"references": "mse_wall_exclusion/data/references.json"},
+    {"references": "bearing_design/data/references.json"}
   ],
   "journal_references": "journal/References"
 }

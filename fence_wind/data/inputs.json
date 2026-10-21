@@ -1,0 +1,263 @@
+[
+ {
+  "name": "h_f",
+  "value": 116.3125,
+  "unit": "in",
+  "kind": "number",
+  "group": "Fence geometry and tributary length",
+  "caption": "Vertical height from the fence base to the top of the hoop (gross wind height)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_ht",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Fence_ht"
+ },
+ {
+  "name": "R_f",
+  "value": 76.0,
+  "unit": "in",
+  "kind": "number",
+  "group": "Fence geometry and tributary length",
+  "caption": "Radius of the semicircular hoop to the post centerline",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_radius",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Fence_radius"
+ },
+ {
+  "name": "z_base",
+  "value": 111.5625,
+  "unit": "in",
+  "kind": "number",
+  "group": "Fence geometry and tributary length",
+  "caption": "Height of the fence base above the cap reference",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_base_CapCG",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Fence_base_CapCG"
+ },
+ {
+  "name": "h_tan",
+  "value": 38.5625,
+  "unit": "in",
+  "kind": "number",
+  "group": "Fence geometry and tributary length",
+  "caption": "Height of each straight vertical fence leg",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_straight_ht",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Fence_straight_ht"
+ },
+ {
+  "name": "z_spring",
+  "value": 150.125,
+  "unit": "in",
+  "kind": "number",
+  "group": "Fence geometry and tributary length",
+  "caption": "Height of the hoop springline above the cap reference",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_spring_CapCG",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Fence_spring_CapCG"
+ },
+ {
+  "name": "z_mid",
+  "value": 169.71875,
+  "unit": "in",
+  "kind": "number",
+  "group": "Fence geometry and tributary length",
+  "caption": "Centroid of the gross projected fence outline above the cap reference",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_CG_CapCG",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Fence_CG_CapCG"
+ },
+ {
+  "name": "Span_1",
+  "value": 107.35,
+  "unit": "ft",
+  "kind": "number",
+  "group": "Superstructure wind",
+  "caption": "Span 1 length",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_1",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Span_1"
+ },
+ {
+  "name": "Span_2",
+  "value": 104.9,
+  "unit": "ft",
+  "kind": "number",
+  "group": "Superstructure wind",
+  "caption": "Span 2 length",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_2",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Span_2"
+ },
+ {
+  "name": "L_trib",
+  "value": 1273.5,
+  "unit": "in",
+  "kind": "number",
+  "group": "Fence geometry and tributary length",
+  "caption": "Pier tributary length (half the sum of the two spans)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pier_tributaryLength",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Pier_tributaryLength"
+ },
+ {
+  "name": "p_fence",
+  "value": 0.015,
+  "unit": "ksf",
+  "kind": "number",
+  "group": "Fence load",
+  "caption": "Prescribed normal pressure on the metal-fabric fence surface (LRFD 13.8.2)",
+  "source": "LRFD 13.8.2",
+  "status": "code"
+ },
+ {
+  "name": "P_Z_III",
+  "value": 0.0487493466,
+  "unit": "ksf",
+  "kind": "number",
+  "group": "Superstructure wind",
+  "caption": "Strength III wind pressure on the concrete superstructure (C001)",
+  "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.P_Z_III",
+  "status": "journal",
+  "journal": "C001WindLoadOnPedBridgeSuperstructure.P_Z_III"
+ },
+ {
+  "name": "Depth_SuperStr",
+  "value": 85.0,
+  "unit": "in",
+  "kind": "number",
+  "group": "Superstructure wind",
+  "caption": "Depth of the superstructure exposed to wind",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Depth_SuperStr",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Depth_SuperStr"
+ },
+ {
+  "name": "Dist_windSuperCG_CapCG",
+  "value": 69.0625,
+  "unit": "in",
+  "kind": "number",
+  "group": "Superstructure wind",
+  "caption": "Superstructure wind centroid above the cap reference",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Dist_windSuperCG_CapCG",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Dist_windSuperCG_CapCG"
+ },
+ {
+  "name": "P_Z_SI",
+  "value": 0.01386112,
+  "unit": "ksf",
+  "kind": "number",
+  "group": "Superstructure wind",
+  "caption": "Service I wind pressure on the concrete superstructure (C001)",
+  "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.P_Z_SI",
+  "status": "journal",
+  "journal": "C001WindLoadOnPedBridgeSuperstructure.P_Z_SI"
+ },
+ {
+  "name": "H_bridge",
+  "value": 312.47752853695,
+  "unit": "in",
+  "kind": "number",
+  "group": "Superstructure wind",
+  "caption": "Top of the concrete superstructure above low ground (simplified-method height limit)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Concrete_top_aboveGround",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Concrete_top_aboveGround"
+ },
+ {
+  "name": "V_III",
+  "value": 130.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Strength III wind speed (mph, C001)",
+  "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.V_III",
+  "status": "journal",
+  "journal": "C001WindLoadOnPedBridgeSuperstructure.V_III"
+ },
+ {
+  "name": "V_SI",
+  "value": 70.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Service I wind speed (mph, C001)",
+  "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.V_SI",
+  "status": "journal",
+  "journal": "C001WindLoadOnPedBridgeSuperstructure.V_SI"
+ },
+ {
+  "name": "K_Z_III",
+  "value": 1.01971744991174,
+  "unit": null,
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Strength III exposure-and-height coefficient (C001 K_Z_gov)",
+  "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.K_Z_gov",
+  "status": "journal",
+  "journal": "C001WindLoadOnPedBridgeSuperstructure.K_Z_gov"
+ },
+ {
+  "name": "K_Z_SI",
+  "value": 1.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Service I exposure-and-height coefficient",
+  "source": "LRFD 3.8.1.2.1; SDG 2.4.1.B; LRFD Eq. 3.8.1.2.1-3; LRFD 3.8.1.2.1-4",
+  "status": "code"
+ },
+ {
+  "name": "G_f",
+  "value": 0.85,
+  "unit": null,
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Gust-effect factor (C001)",
+  "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.G_fac",
+  "status": "journal",
+  "journal": "C001WindLoadOnPedBridgeSuperstructure.G_fac"
+ },
+ {
+  "name": "C_sub",
+  "value": 1.6,
+  "unit": null,
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Drag coefficient for wind directly on the substructure",
+  "source": "LRFD Table 3.8.1.2.1-2; LRFD 13.8.2",
+  "status": "code"
+ },
+ {
+  "name": "PierCap_ht_toTop",
+  "value": 218.91502853695,
+  "unit": "in",
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Pier wall and cap height to the cap top (transverse face)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PierCap_ht_toTop",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.PierCap_ht_toTop"
+ },
+ {
+  "name": "PierCap_width",
+  "value": 48.0,
+  "unit": "in",
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Pier cap width (transverse face)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PierCap_width",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.PierCap_width"
+ },
+ {
+  "name": "Pier_wall_area",
+  "value": 349.6559483576,
+  "unit": "ft^2",
+  "kind": "number",
+  "group": "Direct pier wind",
+  "caption": "Broad pier-wall face area",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pier_wall_area",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Pier_wall_area"
+ }
+]

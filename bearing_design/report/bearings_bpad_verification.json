@@ -1,0 +1,14 @@
+[
+ {
+  "bpad_sha256": "21de35c56ec9b90e4f18ed0b8fb9bb2321017f810aef20fa7231e7a979e1c705",
+  "case_sha256": "f33297a3c17719bf173817cf18ded0cd9ad2b45c5849650d8adead8b8a17fab3",
+  "cells_and_labels": 249,
+  "definitions": 136,
+  "functions": 0,
+  "mathcad_values_compared": null,
+  "package_revision": "f5358e8e5b67",
+  "report_name": "BearingDesign",
+  "status": "✓ All Checks Pass",
+  "tool_comparisons": 135
+ }
+]

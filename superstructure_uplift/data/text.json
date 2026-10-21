@@ -1,0 +1,203 @@
+{
+ "report_name": "SuperstructureUplift",
+ "cnumber": "C004",
+ "title": "Superstructure Uplift and Bearing Reactions",
+ "prefix": "uplift",
+ "bpad_file": "Superstructure Uplift.bpad",
+ "notebook": "Superstructure_Uplift.ipynb",
+ "tool_prefix": "uplift-tool-",
+ "case_name": "C004 - Superstructure Uplift and Bearing Reactions (journal values, feb1bb316d08)",
+ "intro": [
+  "**What it does.** Global superstructure uplift, bearing reactions and the pier load transfer for Strength III: the C001 vertical wind and perpendicular concrete wind, the C002 fence wind and the minimum factored permanent load are resolved into windward and leeward beam-line reactions, individual bearing reactions, contact and overturning checks, the required hold-down demand, and the signed pier-node loads and residual moments for FB-MultiPier."
+ ],
+ "overview": [
+  "Strength III uplift and bearing reactions at the pier. The minimum factored permanent load above the bearings (γ_DC = 0.90, γ_DW = 0.65) stabilizes the superstructure against the concurrent upward wind at the windward quarter point and the transverse wind on the concrete and fence (LRFD 3.8.2, Table 3.4.1-1 and 3.4.1-2).",
+  "Transverse beam-line equilibrium gives the windward and leeward line reactions; each span end multiplies them by its tributary length into physical bearing reactions, from which the contact, overturning and hold-down checks follow. The reactions are then collected to the paired pier nodes with the residual roll, pitch and yaw moments that preserve equilibrium, and coherence checks compare the totals with C002 and the bridge geometry."
+ ],
+ "outside": "bearing-pad and anchorage capacities (FDOT SDG 6.5), the physical node assignment and axis mapping in the FB-MultiPier model, and other limit states.",
+ "flow": [
+  "Geometry",
+  "Gravity classification",
+  "Load factors",
+  "Concurrent line loads",
+  "Beam-line equilibrium",
+  "Bearing reactions",
+  "Pier transfer",
+  "Checks"
+ ],
+ "key_results": [
+  {
+   "label": "Minimum bearing compression",
+   "name": "R_min_III"
+  },
+  {
+   "label": "Hold-down demand per bearing",
+   "name": "T_req_III"
+  },
+  {
+   "label": "Overturning ratio",
+   "name": "DC_OT_III"
+  },
+  {
+   "label": "Node load at B−, +T wind",
+   "name": "N_minus_III"
+  },
+  {
+   "label": "Node load at B+, +T wind",
+   "name": "N_plus_III"
+  },
+  {
+   "label": "Release condition",
+   "name": "Status_transfer"
+  }
+ ],
+ "summary_tables": [
+  "UpliftSummary",
+  "UpliftPierForces"
+ ],
+ "published": [
+  "R_L1_III",
+  "R_L2_III",
+  "R_W1_III",
+  "R_W2_III",
+  "γ_DC_III",
+  "γ_DW_III",
+  "γ_WS_III",
+  "η_bearing"
+ ],
+ "anchors": {
+  "step_1_model_sign_convention_and_live_in": "headingSuperstructureUplift1",
+  "step_2_gravity_classification_and_load_c": "headingSuperstructureUplift2",
+  "step_3_concurrent_wind_and_bearing_equil": "headingSuperstructureUplift3",
+  "step_4_individual_bearing_reactions_and_": "headingSuperstructureUplift4",
+  "step_5_pier_load_transfer_for_fb_multipi": "headingSuperstructureUplift5",
+  "step_6_coherence_equilibrium_and_release": "headingSuperstructureUplift6"
+ },
+ "notes": {
+  "b": [
+   "Outside deck width; source C001 and central geometry."
+  ],
+  "s": [
+   "Transverse distance between the two beam-bearing lines."
+  ],
+  "L_1": [
+   "Project span used by the source gravity and wind model; confirm bearing-to-bearing interpretation in final analysis."
+  ],
+  "L_2": [
+   "Second source-model span."
+  ],
+  "l_1": [
+   "Tributary length at either end of the first simple span."
+  ],
+  "l_2": [
+   "Tributary length at either end of the second simple span."
+  ],
+  "l_P": [
+   "Combined pier tributary length; each physical bearing is still checked separately."
+  ],
+  "e": [
+   "Vertical-wind lever arm from the centerline toward the windward quarter point."
+  ],
+  "h_c": [
+   "Concrete horizontal wind lever above the bearing plane; derived from the adopted rectangular wind envelope."
+  ],
+  "h_f": [
+   "Fence resultant lever above the same bearing plane."
+  ],
+  "z_b": [
+   "Bearing reaction plane above the C002 cap-reference datum."
+  ],
+  "k": [
+   "Longitudinal distance of each physical pier bearing row from the pier centerline."
+  ],
+  "w_DC": [
+   "Only above-bearing permanent structural weight enters the contact check."
+  ],
+  "w_DW": [
+   "Assured wearing-surface and utility weight credited for uplift. Its only input is in the weights module; the initial value gives no stabilizing credit."
+  ],
+  "DC_sub": [
+   "Cheek-wall and pedestal load enters only the pier-node transfer, consistent with the source gravity sheet."
+  ],
+  "γ_DC_III": [
+   "Minimum permanent structural-load factor, LRFD Table 3.4.1-2."
+  ],
+  "γ_DW_III": [
+   "Minimum DW factor, LRFD Table 3.4.1-2."
+  ],
+  "γ_WS_III": [
+   "Wind factor, LRFD Table 3.4.1-1."
+  ],
+  "η_bearing": [
+   "Bearing-reaction modifier: FDOT SDG 2.10.A.1 excludes girder redundancy amplification from bearing/substructure reactions; SDG 2.10.B and RFQ operational importance provide the other adopted modifiers."
+  ],
+  "w_c_III": [
+   "Concrete horizontal wind line load for the same limit state."
+  ],
+  "w_f_III": [
+   "The prescribed fence load is retained at both limit states, consistent with C002; no wind-speed rescaling is introduced."
+  ],
+  "w_H_III": [
+   "Concurrent factored transverse line load; derived equilibrium."
+  ],
+  "w_U_III": [
+   "Factored upward line load from C001."
+  ],
+  "w_D_III": [
+   "Minimum factored stabilizing line load."
+  ],
+  "m_H_III": [
+   "Horizontal-wind overturning moment per bridge length at the bearing plane, excluding direct pier wind."
+  ],
+  "m_U_III": [
+   "Vertical-wind overturning moment per bridge length. For perpendicular wind, this adds to the horizontal-wind moment."
+  ],
+  "m_OT_III": [
+   "Combined overturning moment per length; derived equilibrium."
+  ],
+  "r_W_III": [
+   "Windward compression reaction per tributary length. First divide net gravity equally, then subtract the overturning redistribution."
+  ],
+  "r_L_III": [
+   "Concurrent leeward compression reaction per tributary length. The two reactions remain one simultaneous set."
+  ],
+  "m_stab_III": [
+   "Minimum gravity moment about the leeward bearing line, per bridge length."
+  ],
+  "m_destab_III": [
+   "Horizontal wind plus upward wind moment about the same leeward line."
+  ],
+  "DC_OT_III": [
+   "Overturning ratio. Strictly less than unity retains compression at the windward line."
+  ],
+  "N_minus_III": [
+   "Collected B− pier load for +T wind: both physical bearing reactions plus the source cheek-wall/pedestal share. These substructure attachments do not stabilize bearing contact."
+  ],
+  "N_plus_III": [
+   "Concurrent collected B+ pier load for +T wind."
+  ],
+  "M_L_res_III": [
+   "Residual roll moment between bearing plane and cap datum. Full cap moment minus the moment already carried by unequal vertical node loads."
+  ],
+  "M_T_res_III": [
+   "Residual pitch from collapsing the two physical bearing rows to pier centerline; gravity and upward wind are simultaneous."
+  ],
+  "M_V_res_III": [
+   "Residual yaw from collapsing the horizontal forces of the unequal span contributions to pier centerline."
+  ]
+ },
+ "working_notes": [
+  "The calculation was ported from the journal module SuperstructureUplift (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+ ],
+ "pending": [],
+ "symbols": {},
+ "accepted_wording": [
+  "Task Work Order"
+ ],
+ "visible_rules": [],
+ "unused_inputs": [],
+ "confirmations": {},
+ "skipped_journal_definitions": [
+  "Checks_model = [Chk_config,Chk_tributary,Chk_gravity,Chk_horizontal,Chk_force,Chk_roll,Chk_transfer]"
+ ]
+}

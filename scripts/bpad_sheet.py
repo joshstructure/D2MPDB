@@ -288,14 +288,17 @@ NULL = _Null()
 NODIM = (0., 0., 0.)
 UNIT_Q = {'in': Q(1, (1, 0, 0)), 'ft': Q(12, (1, 0, 0)), 'kip': Q(1, (0, 1, 0)), 'ksi': Q(1, (-2, 1, 0)),
           'ksf': Q(1 / 144, (-2, 1, 0)), 'klf': Q(1 / 12, (-1, 1, 0)), 'psf': Q(0.001 / 144, (-2, 1, 0)),
-          'psi': Q(0.001, (-2, 1, 0)), 'lbf': Q(0.001, (0, 1, 0)), 'deg': Q(math.pi / 180, (0, 0, 1))}
-TOKEN = re.compile(r'\s*("(?:[^"\\]|\\.)*"|(?:\d+(?:\.\d*)?|\.\d+)|[A-Za-z_Ͱ-Ͽ][A-Za-z_0-9.Ͱ-Ͽ]*'
+          'psi': Q(0.001, (-2, 1, 0)), 'lbf': Q(0.001, (0, 1, 0)), 'deg': Q(math.pi / 180, (0, 0, 1)),
+          'pcf': Q(0.001 / 1728, (-3, 1, 0)), 'kcf': Q(1 / 1728, (-3, 1, 0)), 'rad': Q(1, (0, 0, 1)),
+          'lb': Q(0.001, (0, 1, 0))}
+CONSTANT_Q = {'pi': Q(math.pi)}                  # Blockpad's built-in constants read by the journal calculations
+TOKEN = re.compile(r'\s*("(?:[^"\\]|\\.)*"|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|[A-Za-z_Ͱ-Ͽ][A-Za-z_0-9.Ͱ-Ͽ]*'
                    r'|<=|>=|==|!=|[()+\-*/^,<>\[\]])')
-NUMBER = re.compile(r'(?:\d+(?:\.\d*)?|\.\d+)$')
+NUMBER = re.compile(r'(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$')
 PRECEDENCE = {'==': 5, '!=': 5, '<': 5, '>': 5, '<=': 5, '>=': 5, '+': 10, '-': 10, '*': 20, '/': 20, '^': 30}
 TO_SUFFIX = re.compile(r'\s+to\s+([A-Za-z][A-Za-z0-9^*/ ()]*)\s*$')
 KNOWN_FUNCTIONS = {'If', 'And', 'Or', 'Not', 'Min', 'Max', 'Sqrt', 'Abs', 'Round', 'Floor', 'Tan', 'Sin', 'Cos',
-                   'Atan', 'Asin'}
+                   'Atan', 'Asin', 'Acos', 'Ln', 'Exp'}
 
 
 def tokenize(s):
@@ -310,9 +313,47 @@ def tokenize(s):
     return tokens
 
 
+FT_IN = re.compile(r'(?<![\w.])(\d+(?:\.\d+)?)\s+ft\s+(\d+(?:\.\d+)?)(?:\s+(\d+)/(\d+))?\s+in(?![\w^])')
+FT_IN_MARKS = re.compile(r'(?<![\w.])(\d+(?:\.\d+)?)\'\s*(?:(\d+(?:\.\d+)?)(?:\s+(\d+)/(\d+))?\s*")?')
+IN_MARK = re.compile(r'(?<![\w.])(\d+(?:\.\d+)?)"')
+MIXED = re.compile(r'(?<![\w.])(\d+)\s+(\d+)/(\d+)\s+(in|ft|deg)(?![\w^])')
+
+
+STRING_TOKEN = re.compile(r'"(?:[^"\\]|\\.)*"')
+
+
+def normalise_literals(s):
+    """Blockpad's feet-inches and mixed-fraction literals ('8 ft 7 in', '35 ft 8 51/64 in', '1 3/4 in', 7'1") as plain arithmetic.
+
+    String literals are left untouched (a "0" option value is not an inch mark)."""
+    strings = []
+
+    def stash(m):
+        strings.append(m.group(0))
+        return f'\x00{len(strings) - 1}\x00'
+    s = STRING_TOKEN.sub(stash, s)
+
+    def ft_in(m):
+        inches = m.group(2) if not m.group(3) else f'({m.group(2)} + {m.group(3)}/{m.group(4)})'
+        return f'({m.group(1)} ft + {inches} in)'
+
+    def marks(m):
+        if m.group(2) is None:
+            return f'({m.group(1)} ft)'
+        inches = m.group(2) if not m.group(3) else f'({m.group(2)} + {m.group(3)}/{m.group(4)})'
+        return f'({m.group(1)} ft + {inches} in)'
+    s = FT_IN.sub(ft_in, s)
+    if "'" in s:
+        s = FT_IN_MARKS.sub(marks, s)
+    if '"' in s:
+        s = IN_MARK.sub(lambda m: f'({m.group(1)} in)', s)
+    s = MIXED.sub(lambda m: f'({m.group(1)} + {m.group(2)}/{m.group(3)}) {m.group(4)}', s)
+    return re.sub(r'\x00(\d+)\x00', lambda m: strings[int(m.group(1))], s)
+
+
 def parse(s):
     """Parse a Blockpad expression (no leading 'name =' and no 'to <unit>' suffix)."""
-    ts = tokenize(s)
+    ts = tokenize(normalise_literals(s))
     if not ts:
         raise BpError('empty expression')
     idx = 0
@@ -435,7 +476,7 @@ class BpEngine:
             name = lhs
             if name in self.defs or name in self.functions:
                 raise BpError(f'{name} is defined twice')
-            if name in UNIT_Q or name in ('true', 'false', 'null'):
+            if name in UNIT_Q or name in CONSTANT_Q or name in ('true', 'false', 'null'):
                 raise BpError(f'{name} is a reserved name')
             self.defs[name] = tree
             literal = re.match(r'^-?[0-9.]+\s+([A-Za-z][A-Za-z0-9^*/]*)$', expression.strip())
@@ -476,6 +517,8 @@ class BpEngine:
             return self.cache[name]
         if name in UNIT_Q:
             return UNIT_Q[name]
+        if name in CONSTANT_Q:
+            return CONSTANT_Q[name]
         if name in ('true', 'false'):
             return name == 'true'
         if name == 'null':
@@ -593,10 +636,14 @@ class BpEngine:
             if values[0].d != (0., 0., 1.):
                 raise BpError(f'{name} needs an angle')
             return Q(getattr(math, name.lower())(values[0].v))
-        if name in ('Atan', 'Asin'):
+        if name in ('Atan', 'Asin', 'Acos'):
             if values[0].d != NODIM:
                 raise BpError(f'{name} needs a plain number')
             return Q(getattr(math, name.lower())(values[0].v), (0., 0., 1.))
+        if name in ('Ln', 'Exp'):
+            if values[0].d != NODIM:
+                raise BpError(f'{name} needs a plain number')
+            return Q(math.log(values[0].v) if name == 'Ln' else math.exp(values[0].v))
         raise BpError(f'unknown function {name}')
 
     @staticmethod
@@ -717,8 +764,59 @@ class JournalLinks:
             name = rep.get('name')
             if name and name not in self.reports:
                 self.reports[name] = rep
+        self.spreadsheets = {}
+        for sheet in root.iterfind('spreadsheet'):
+            name = sheet.get('name')
+            if name and name not in self.spreadsheets:
+                self.spreadsheets[name] = sheet
         self._definitions, self._engines, self.overrides = {}, {}, {}
+        self._cells = {}
         self.basis = None
+
+    # -- spreadsheet owners (the gravity-load sheet PedBridgeWeights_2Beams): cached values, never recalculated
+    CACHE_NUMBER = re.compile(r'^\s*(-?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)\s*([A-Za-z][A-Za-z0-9^*/ ()]*)?\s*$')
+
+    def cells(self, owner):
+        """{name or A1 address: (cached text, formula)} of a spreadsheet; blank `cell` placeholders count as columns."""
+        if owner not in self._cells:
+            sheet = self.spreadsheets.get(owner)
+            if sheet is None:
+                raise JournalError(f'spreadsheet {owner} is not in the journal')
+            found = {}
+            for r, row in enumerate(sheet.findall('row'), 1):
+                for c, cell in enumerate((x for x in row if x.tag in ('c', 'cell')), 1):
+                    if cell.tag != 'c':
+                        continue
+                    cache = cell.find('num')
+                    text = cell.find('textvalue')
+                    value = (cache.text if cache is not None else text.text if text is not None else None)
+                    entry = (value, cell.get('formula'))
+                    col = ''
+                    i = c
+                    while i:
+                        i, rem = divmod(i - 1, 26)
+                        col = chr(65 + rem) + col
+                    found[col + str(r)] = entry
+                    if cell.get('name'):
+                        found[cell.get('name')] = entry
+            self._cells[owner] = found
+        return self._cells[owner]
+
+    def spreadsheet_value(self, owner, name):
+        """The cached value of a spreadsheet cell as the evaluator's `Q` (or text): the sheet's own saved result."""
+        entry = self.cells(owner).get(name)
+        if entry is None or entry[0] is None:
+            raise JournalError(f'{owner}.{name} has no cached value in the journal spreadsheet')
+        text = entry[0].strip()
+        if not self.CACHE_NUMBER.match(text) and not FT_IN.match(text):
+            return text
+        try:
+            return self._engine(owner).evaluate(text)
+        except BpError as e:
+            raise JournalError(f'{owner}.{name}: cached value {text!r}: {e}') from None
+
+    def owner_kind(self, owner):
+        return 'report' if owner in self.reports else 'spreadsheet' if owner in self.spreadsheets else None
 
     @classmethod
     def load(cls, path):
@@ -743,6 +841,14 @@ class JournalLinks:
                     options = found.setdefault(m.group(1), [])
                     if m.group(2) not in options:
                         options.append(m.group(2))
+            for field in rep.iter('valuefield'):             # a native option/value field (C001 selectors): its text is the value
+                name = field.get('name')
+                text = field.findtext('textvalue')
+                if name and text is not None:
+                    rhs = '"' + text.replace('"', '') + '"' if not self.CACHE_NUMBER.match(text) else text
+                    options = found.setdefault(name, [])
+                    if rhs not in options:
+                        options.append(rhs)
             self._definitions[owner] = found
         return self._definitions[owner]
 
@@ -770,7 +876,7 @@ class JournalLinks:
             if call not in KNOWN_FUNCTIONS:
                 raise JournalError(f'{owner}.{name} calls {call}(), which the evaluator does not read')
         for dep in sorted(names):
-            if dep in UNIT_Q or dep in ('true', 'false', 'null'):
+            if dep in UNIT_Q or dep in CONSTANT_Q or dep in ('true', 'false', 'null'):
                 continue
             if '.' in dep:                                       # another report inside the chain
                 eng.add_external(dep, self.value(dep))
@@ -784,6 +890,8 @@ class JournalLinks:
         owner, dot, name = qualified.partition('.')
         if not dot or not name:
             raise JournalError(f'{qualified!r} is not a qualified journal name')
+        if owner not in self.reports and owner in self.spreadsheets:
+            return self.spreadsheet_value(owner, name)
         self._load(owner, name)
         try:
             return self._engine(owner).get(name)

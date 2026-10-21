@@ -1,0 +1,378 @@
+[
+ {
+  "name": "ResultSummary",
+  "title": "",
+  "headers": [
+   "Geometry output",
+   "Live value"
+  ],
+  "rows": [
+   [
+    "Front wall: calculated minimum pile-face clear",
+    {
+     "v": "MinClear",
+     "unit": "in"
+    }
+   ],
+   [
+    "Front wall: adopted clear, rounded UP",
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    }
+   ],
+   [
+    "Side walls: specified minimum pile-face clear",
+    {
+     "v": "SideClear",
+     "unit": "in"
+    }
+   ],
+   [
+    "Selected front strap skew",
+    {
+     "v": "α",
+     "unit": "deg"
+    }
+   ],
+   [
+    "Trial strap width",
+    {
+     "v": "Width",
+     "unit": "in"
+    }
+   ],
+   [
+    "Geometry input validity",
+    {
+     "v": "InputStatus"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "Bent1Offsets",
+  "title": "",
+  "headers": [
+   "Pile",
+   "Front face gap",
+   "Front required",
+   "Front shortfall"
+  ],
+  "rows": [
+   [
+    "P1",
+    {
+     "v": "Bent1Wall1Pile1Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1Wall1Pile1Extra",
+     "unit": "in"
+    }
+   ],
+   [
+    "P2",
+    {
+     "v": "Bent1Wall1Pile2Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1Wall1Pile2Extra",
+     "unit": "in"
+    }
+   ],
+   [
+    "P3",
+    {
+     "v": "Bent1Wall1Pile3Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1Wall1Pile3Extra",
+     "unit": "in"
+    }
+   ],
+   [
+    "P4",
+    {
+     "v": "Bent1Wall1Pile4Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1Wall1Pile4Extra",
+     "unit": "in"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "Bent1Walls",
+  "title": "",
+  "headers": [
+   "Wall / basis",
+   "Required",
+   "Current gap",
+   "Extra setback",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Front / strap",
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W1Gap",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W1Extra",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W1Status"
+    }
+   ],
+   [
+    "Left / specified",
+    {
+     "v": "SideClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W2Gap",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W2Extra",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W2Status"
+    }
+   ],
+   [
+    "Right / specified",
+    {
+     "v": "SideClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W3Gap",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W3Extra",
+     "unit": "in"
+    },
+    {
+     "v": "Bent1W3Status"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "Bent2Offsets",
+  "title": "",
+  "headers": [
+   "Pile",
+   "Front face gap",
+   "Front required",
+   "Front shortfall"
+  ],
+  "rows": [
+   [
+    "P1",
+    {
+     "v": "Bent2Wall1Pile1Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2Wall1Pile1Extra",
+     "unit": "in"
+    }
+   ],
+   [
+    "P2",
+    {
+     "v": "Bent2Wall1Pile2Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2Wall1Pile2Extra",
+     "unit": "in"
+    }
+   ],
+   [
+    "P3",
+    {
+     "v": "Bent2Wall1Pile3Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2Wall1Pile3Extra",
+     "unit": "in"
+    }
+   ],
+   [
+    "P4",
+    {
+     "v": "Bent2Wall1Pile4Face",
+     "unit": "in"
+    },
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2Wall1Pile4Extra",
+     "unit": "in"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "Bent2Walls",
+  "title": "",
+  "headers": [
+   "Wall / basis",
+   "Required",
+   "Current gap",
+   "Extra setback",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Front / strap",
+    {
+     "v": "LayoutClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W1Gap",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W1Extra",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W1Status"
+    }
+   ],
+   [
+    "Left / specified",
+    {
+     "v": "SideClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W2Gap",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W2Extra",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W2Status"
+    }
+   ],
+   [
+    "Right / specified",
+    {
+     "v": "SideClear",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W3Gap",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W3Extra",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2W3Status"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "CapSetback",
+  "title": "",
+  "headers": [
+   "Separate front-cap check",
+   "End Bent 1",
+   "End Bent 2"
+  ],
+  "rows": [
+   [
+    "Front cap face to back of front facing",
+    {
+     "v": "Bent1CapGap",
+     "unit": "in"
+    },
+    {
+     "v": "Bent2CapGap",
+     "unit": "in"
+    }
+   ],
+   [
+    "SDG 3.13.2.N.2.i: 24 in minimum",
+    {
+     "v": "Bent1CapStatus"
+    },
+    {
+     "v": "Bent2CapStatus"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "SkewBasis",
+  "title": "",
+  "headers": [
+   "Front skew basis",
+   "Live result"
+  ],
+  "rows": [
+   [
+    "SDG 3.13.2.K.8 ordinary plan skew",
+    {
+     "v": "SkewStatus"
+    }
+   ]
+  ]
+ }
+]

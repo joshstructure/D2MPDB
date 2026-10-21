@@ -1,0 +1,428 @@
+{
+ "format": "d2mpdb-bearing-design",
+ "schema_version": 1,
+ "name": "C016 - Bearings and Support Details (journal values, feb1bb316d08)",
+ "inputs": {
+  "BearingPad_length": 10.0,
+  "Cap_cover": 3.0,
+  "Fig_12_5_1_DimB": 1.0,
+  "Fig_12_5_1_DimD": 4.0,
+  "Fig_12_5_1_DimF": 1.5,
+  "Pedestal_ht": 6.0,
+  "Pedestal_width": 42.0,
+  "Pedestal_length_pier": 4.0,
+  "Pedestal_chamfer": 0.75,
+  "Pier_beamEndGap": 3.0,
+  "Bearing_pad_skew": 0.0,
+  "CapTop_aboveTerrain": 218.91502853695,
+  "PedN_L1": 107.35,
+  "PedN_L2": 104.9,
+  "PedN_S": 0.0,
+  "PierCL_beamEnd": 1.5,
+  "PL_B1": 28.9845,
+  "PL_B2": 28.9845,
+  "PL_B3": 28.323,
+  "PL_B4": 28.323,
+  "DC_super_B1": 92.47319447949,
+  "DW_B1": 0.0,
+  "DC_super_B2": 92.47319447949,
+  "DW_B2": 0.0,
+  "DC_super_B3": 89.58894588729,
+  "DW_B3": 0.0,
+  "DC_super_B4": 89.58894588729,
+  "DW_B4": 0.0,
+  "Bearing_pad_type": "F",
+  "Bearing_pad_width": 32.0,
+  "Bearing_pad_thickness": 2.5625,
+  "Bearing_pad_G": 110.0,
+  "Bearing_pad_shearLimit": 1.0,
+  "Bearing_supportBuildup": 6.0,
+  "Bearing_pad_count": 8.0,
+  "Bearing_pad_totalVolume": 3.796296296296,
+  "BP_static_limit": 0.0125,
+  "BP_cyclic_limit": 0.004,
+  "BP_transverse_slope": 0.0,
+  "BP_release_1": 0.327912117066,
+  "BP_day120_1": 0.755596762893,
+  "BP_day240_1": 0.811126879367,
+  "BP_nc_1": -0.358244712019,
+  "BP_comp_1": -0.110055732495,
+  "BP_live_1": -0.14152390757,
+  "BP_bottom120_1": -1.95657130115,
+  "BP_bottom240_1": -2.10158750147,
+  "BP_release_2": 0.342285032291,
+  "BP_day120_2": 0.781002038931,
+  "BP_day240_2": 0.83796458532,
+  "BP_nc_2": -0.333870123387,
+  "BP_comp_2": -0.102567683622,
+  "BP_live_2": -0.131889864116,
+  "BP_bottom120_2": -1.93660451845,
+  "BP_bottom240_2": -2.07987798987,
+  "PGL_pier_elev": 48.197625,
+  "PGL_start_elev": 47.661,
+  "PGL_end_elev": 47.673,
+  "α_T": 6e-06,
+  "T_high": 105.0,
+  "T_low": 35.0,
+  "TotalSpan": 2547.0,
+  "BP_all_seat_scope": "Six pedestals and eight pads: both end bents and the pier",
+  "BP_all_seat_longitudinal_slope": 0.0,
+  "BP_all_seat_transverse_slope": 0.0,
+  "BP_EB1_level_seat_elevation": 43.7457811125,
+  "BP_pier_level_seat_elevation": 44.2668632006,
+  "BP_EB2_level_seat_elevation": 43.7599465229,
+  "BP_all_seat_pad_thickness": 2.5625
+ },
+ "units": {
+  "BearingPad_length": "in",
+  "Cap_cover": "in",
+  "Fig_12_5_1_DimB": "in",
+  "Fig_12_5_1_DimD": "in",
+  "Fig_12_5_1_DimF": "in",
+  "Pedestal_ht": "in",
+  "Pedestal_width": "in",
+  "Pedestal_length_pier": "ft",
+  "Pedestal_chamfer": "in",
+  "Pier_beamEndGap": "in",
+  "Bearing_pad_skew": "deg",
+  "CapTop_aboveTerrain": "in",
+  "PedN_L1": "ft",
+  "PedN_L2": "ft",
+  "PedN_S": "deg",
+  "PierCL_beamEnd": "in",
+  "PL_B1": "kip",
+  "PL_B2": "kip",
+  "PL_B3": "kip",
+  "PL_B4": "kip",
+  "DC_super_B1": "kip",
+  "DW_B1": "kip",
+  "DC_super_B2": "kip",
+  "DW_B2": "kip",
+  "DC_super_B3": "kip",
+  "DW_B3": "kip",
+  "DC_super_B4": "kip",
+  "DW_B4": "kip",
+  "Bearing_pad_type": null,
+  "Bearing_pad_width": "in",
+  "Bearing_pad_thickness": "in",
+  "Bearing_pad_G": "psi",
+  "Bearing_pad_shearLimit": "in",
+  "Bearing_supportBuildup": "in",
+  "Bearing_pad_count": null,
+  "Bearing_pad_totalVolume": "ft^3",
+  "BP_static_limit": "rad",
+  "BP_cyclic_limit": "rad",
+  "BP_transverse_slope": null,
+  "BP_release_1": "deg",
+  "BP_day120_1": "deg",
+  "BP_day240_1": "deg",
+  "BP_nc_1": "deg",
+  "BP_comp_1": "deg",
+  "BP_live_1": "deg",
+  "BP_bottom120_1": "in",
+  "BP_bottom240_1": "in",
+  "BP_release_2": "deg",
+  "BP_day120_2": "deg",
+  "BP_day240_2": "deg",
+  "BP_nc_2": "deg",
+  "BP_comp_2": "deg",
+  "BP_live_2": "deg",
+  "BP_bottom120_2": "in",
+  "BP_bottom240_2": "in",
+  "PGL_pier_elev": "ft",
+  "PGL_start_elev": "ft",
+  "PGL_end_elev": "ft",
+  "α_T": null,
+  "T_high": null,
+  "T_low": null,
+  "TotalSpan": "in",
+  "BP_all_seat_scope": null,
+  "BP_all_seat_longitudinal_slope": null,
+  "BP_all_seat_transverse_slope": null,
+  "BP_EB1_level_seat_elevation": "ft",
+  "BP_pier_level_seat_elevation": "ft",
+  "BP_EB2_level_seat_elevation": "ft",
+  "BP_all_seat_pad_thickness": "in"
+ },
+ "sources": {
+  "BearingPad_length": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_length",
+   "status": "journal"
+  },
+  "Cap_cover": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "Fig_12_5_1_DimB": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "Fig_12_5_1_DimD": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "Fig_12_5_1_DimF": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "Pedestal_ht": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pedestal_ht",
+   "status": "journal"
+  },
+  "Pedestal_width": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pedestal_width",
+   "status": "journal"
+  },
+  "Pedestal_length_pier": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pedestal_length_pier",
+   "status": "journal"
+  },
+  "Pedestal_chamfer": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pedestal_chamfer",
+   "status": "journal"
+  },
+  "Pier_beamEndGap": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pier_beamEndGap",
+   "status": "journal"
+  },
+  "Bearing_pad_skew": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_skew",
+   "status": "journal"
+  },
+  "CapTop_aboveTerrain": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.CapTop_aboveTerrain",
+   "status": "journal"
+  },
+  "PedN_L1": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_1",
+   "status": "journal"
+  },
+  "PedN_L2": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_2",
+   "status": "journal"
+  },
+  "PedN_S": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_skew",
+   "status": "journal"
+  },
+  "PierCL_beamEnd": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PierCL_beamEnd",
+   "status": "journal"
+  },
+  "PL_B1": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.PL_B1",
+   "status": "journal"
+  },
+  "PL_B2": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.PL_B2",
+   "status": "journal"
+  },
+  "PL_B3": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.PL_B3",
+   "status": "journal"
+  },
+  "PL_B4": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.PL_B4",
+   "status": "journal"
+  },
+  "DC_super_B1": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DC_super_B1",
+   "status": "journal"
+  },
+  "DW_B1": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DW_B1",
+   "status": "journal"
+  },
+  "DC_super_B2": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DC_super_B2",
+   "status": "journal"
+  },
+  "DW_B2": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DW_B2",
+   "status": "journal"
+  },
+  "DC_super_B3": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DC_super_B3",
+   "status": "journal"
+  },
+  "DW_B3": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DW_B3",
+   "status": "journal"
+  },
+  "DC_super_B4": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DC_super_B4",
+   "status": "journal"
+  },
+  "DW_B4": {
+   "source": "Loads - Gravity - 2 Beam · PedBridgeWeights_2Beams.DW_B4",
+   "status": "journal"
+  },
+  "Bearing_pad_type": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_type",
+   "status": "journal"
+  },
+  "Bearing_pad_width": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_width",
+   "status": "journal"
+  },
+  "Bearing_pad_thickness": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_thickness",
+   "status": "journal"
+  },
+  "Bearing_pad_G": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_G",
+   "status": "journal"
+  },
+  "Bearing_pad_shearLimit": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_shearLimit",
+   "status": "journal"
+  },
+  "Bearing_supportBuildup": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_supportBuildup",
+   "status": "journal"
+  },
+  "Bearing_pad_count": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_count",
+   "status": "journal"
+  },
+  "Bearing_pad_totalVolume": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Bearing_pad_totalVolume",
+   "status": "journal"
+  },
+  "BP_static_limit": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_cyclic_limit": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_transverse_slope": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_release_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_day120_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_day240_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_nc_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_comp_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_live_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_bottom120_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_bottom240_1": {
+   "source": "Span 1 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_release_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_day120_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_day240_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_nc_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_comp_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_live_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_bottom120_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "BP_bottom240_2": {
+   "source": "Span 2 Mathcad beam worksheet (PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd), saved result",
+   "status": "project source"
+  },
+  "PGL_pier_elev": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PGL_pier_elev",
+   "status": "journal"
+  },
+  "PGL_start_elev": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PGL_start_elev",
+   "status": "journal"
+  },
+  "PGL_end_elev": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PGL_end_elev",
+   "status": "journal"
+  },
+  "α_T": {
+   "source": "C003 - Temperature Movement · BridgeMovement.α_T",
+   "status": "journal"
+  },
+  "T_high": {
+   "source": "C003 - Temperature Movement · BridgeMovement.T_high",
+   "status": "journal"
+  },
+  "T_low": {
+   "source": "C003 - Temperature Movement · BridgeMovement.T_low",
+   "status": "journal"
+  },
+  "TotalSpan": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.TotalSpan",
+   "status": "journal"
+  },
+  "BP_all_seat_scope": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_all_seat_longitudinal_slope": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_all_seat_transverse_slope": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_EB1_level_seat_elevation": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_pier_level_seat_elevation": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_EB2_level_seat_elevation": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  },
+  "BP_all_seat_pad_thickness": {
+   "source": "C016 - Bearings and Support Details (journal value)",
+   "status": "journal"
+  }
+ },
+ "confirmations": {},
+ "receipts": {},
+ "reviews": {}
+}

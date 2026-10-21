@@ -1,0 +1,118 @@
+{
+ "report_name": "BridgeMovement",
+ "cnumber": "C003",
+ "title": "Bridge Temperature Movement",
+ "prefix": "movement",
+ "bpad_file": "Bridge Temperature Movement.bpad",
+ "notebook": "Bridge_Temperature_Movement.ipynb",
+ "tool_prefix": "movement-tool-",
+ "case_name": "C003 - Bridge Temperature Movement (journal values, feb1bb316d08)",
+ "intro": [
+  "**What it does.** Longitudinal thermal movement of the two-span FIB 36 pedestrian bridge for joint and bearing detailing: the two simple spans are treated as one continuous deck unit with the center of movement at the intermediate pier, the FDOT concrete-only temperature range (SDG Table 2.7.1-1) about a 70 °F mean, and the 120 % TU factor of SDG 2.7.1.D as a separate envelope."
+ ],
+ "overview": [
+  "Longitudinal thermal movement of the two-span FIB 36 pedestrian bridge for joint and bearing detailing. The two simple spans are treated as one continuous deck unit with the center of movement at the intermediate pier; each end movement uses the adjacent span length.",
+  "The concrete-only superstructure temperature range of FDOT SDG Table 2.7.1-1 (70 °F mean, 105 °F high, 35 °F low) and the LRFD 5.4.2.2 coefficient of thermal expansion give the unfactored joint and bearing detailing movement; the FDOT SDG 2.7.1.D factor of 1.20 gives the factored TU envelope."
+ ],
+ "outside": "creep, shrinkage, skew resolution and the final expansion-joint or bearing capacity checks.",
+ "flow": [
+  "Span lengths",
+  "Temperature range",
+  "Temperature change",
+  "End movements",
+  "Factored TU envelope"
+ ],
+ "key_results": [
+  {
+   "label": "Governing unfactored end movement",
+   "name": "δ_end_max"
+  },
+  {
+   "label": "Governing factored TU end movement",
+   "name": "δ_end_max_TU"
+  },
+  {
+   "label": "Total end-to-end change",
+   "name": "δ_end_to_end"
+  }
+ ],
+ "summary_tables": [
+  "MovementSummary"
+ ],
+ "published": [
+  "T_high",
+  "T_low",
+  "α_T"
+ ],
+ "anchors": {
+  "1_design_basis_and_assumptions": "paragraphrefreturn0029",
+  "2_2_temperature_parameters": "paragraphrefreturn0030",
+  "4_thermal_movement": "paragraphrefreturn0031",
+  "4_2_factored_tu_movement_envelope": "paragraphrefreturn0032"
+ },
+ "notes": {
+  "L_left": [
+   "The center of movement is assumed at the intermediate pier. Under this assumption, the left end movement is based on Span 1 rather than the full bridge length."
+  ],
+  "L_right": [
+   "The center of movement is assumed at the intermediate pier. Under this assumption, the right end movement is based on Span 2."
+  ],
+  "L_unit": [
+   "Sum the two live span lengths from Bridge Geometry_2 Beam. This total is reported for context; individual end movements are calculated from the center of movement to each end."
+  ],
+  "T_mean": [
+   "The FDOT concrete-only temperature table uses a 70°F mean. Temperature values are entered numerically in degrees Fahrenheit so the thermal coefficient and temperature difference are paired consistently."
+  ],
+  "T_high": [
+   "FDOT SDG Table 2.7.1-1 gives 105°F as the high temperature for a concrete-only superstructure."
+  ],
+  "T_low": [
+   "FDOT SDG Table 2.7.1-1 gives 35°F as the low temperature for a concrete-only superstructure."
+  ],
+  "α_T": [
+   "Use the LRFD normal-weight concrete coefficient of 6.0×10⁻⁶ per degree Fahrenheit. It is entered numerically because the temperature inputs in this module are numerical Fahrenheit values."
+  ],
+  "γ_TU": [
+   "FDOT SDG 2.7.1.D directs temperature rise and fall load effects to be based on 120% of the maximum value from the temperature table. This factor is shown separately from the unfactored SDG 6.3 joint/bearing detailing movement."
+  ],
+  "ΔT_rise": [
+   "Subtract the FDOT mean construction temperature from the concrete-only high temperature."
+  ],
+  "ΔT_fall": [
+   "Subtract the concrete-only low temperature from the FDOT mean construction temperature."
+  ],
+  "δ_left": [
+   "Multiply the concrete thermal coefficient by the FDOT temperature change and the live left-side movement length. The result is the magnitude of longitudinal movement at Begin Bridge."
+  ],
+  "δ_right": [
+   "Multiply the concrete thermal coefficient by the FDOT temperature change and the live right-side movement length. The result is the magnitude of longitudinal movement at End Bridge."
+  ],
+  "δ_end_max": [
+   "The longer Span 1 governs because the movement center is at the pier and thermal movement is proportional to movement length."
+  ],
+  "δ_end_to_end": [
+   "Add the magnitudes at the two ends to obtain the total end-to-end change in bridge length. This is not the movement demand at a single end joint."
+  ],
+  "δ_left_TU": [
+   "Apply the 1.20 temperature factor to the unfactored Begin Bridge thermal movement. This is a load-effect envelope and is kept distinct from the SDG 6.3 unfactored joint/bearing detailing movement."
+  ],
+  "δ_right_TU": [
+   "Apply the 1.20 temperature factor to the unfactored End Bridge thermal movement."
+  ],
+  "δ_end_max_TU": [
+   "The Begin Bridge side governs because Span 1 is slightly longer than Span 2."
+  ]
+ },
+ "working_notes": [
+  "The calculation was ported from the journal module BridgeMovement (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+ ],
+ "pending": [],
+ "symbols": {},
+ "accepted_wording": [
+  "Task Work Order"
+ ],
+ "visible_rules": [],
+ "unused_inputs": [],
+ "confirmations": {},
+ "skipped_journal_definitions": []
+}

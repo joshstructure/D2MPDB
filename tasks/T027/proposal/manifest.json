@@ -1,0 +1,42 @@
+{
+  "task": "T027",
+  "base_sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "1861fb0beb02d8ebfcfa39690c0ed8f0565c229342be8c7eb889ea914ee7ecf5"
+    },
+    "report:C001WindLoadOnPedBridgeSuperstructure": {
+      "file": "001.xml",
+      "sha256": "b7d7a26913f6eafd555e9560814fedea09e0e046068974a22897063e4f01ddfe"
+    },
+    "report:FenceWind": {
+      "file": "002.xml",
+      "sha256": "c70f6fa87da24e478289a1105116a854db215eeb42a9ef38c643cb89322289c4"
+    },
+    "report:BridgeMovement": {
+      "file": "003.xml",
+      "sha256": "1135d2f449ff3de31471ecd8e634aa059c89583b4310c14700587763a8c16f9a"
+    },
+    "report:SuperstructureUplift": {
+      "file": "004.xml",
+      "sha256": "f2b6a29d3974d936056ef79f687e2d874044cfddd2ede5b24e84ceb72f792c3e"
+    },
+    "report:PierWallFins": {
+      "file": "005.xml",
+      "sha256": "43a600076d720d55f70a8bec69b079b6155eb39f66122d31b374426c7679a5ac"
+    },
+    "report:MSEWallExclusion": {
+      "file": "006.xml",
+      "sha256": "5726db79ee204f9d3d2e5f1d226079716a4effb4ecaf610d6937c5abb06131cc"
+    },
+    "report:BearingDesign": {
+      "file": "007.xml",
+      "sha256": "c957d3f6558e384dd36bcacd67a63f55c0e12b3bad7be41d97d9dae9731ba270"
+    },
+    "report:DecisionLog": {
+      "file": "008.xml",
+      "sha256": "8531be44aecc0d86cb34d609c6f314fd064833610cc36b4d0f7725a3cc5c59d8"
+    }
+  }
+}

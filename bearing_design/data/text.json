@@ -1,0 +1,92 @@
+{
+ "report_name": "BearingDesign",
+ "cnumber": "C016",
+ "title": "Bearings and Support Details",
+ "prefix": "bearings",
+ "bpad_file": "Bearings and Support Details.bpad",
+ "notebook": "Bearings_Support_Details.ipynb",
+ "tool_prefix": "bearings-tool-",
+ "case_name": "C016 - Bearings and Support Details (journal values, feb1bb316d08)",
+ "intro": [
+  "**What it does.** The bearing and support details of the pedestrian bridge: the end-bent cap dimension chain of SDM Fig. 12.5-1, the minimum support length N of LRFD 4.7.4.4 at the pier pedestal, the Type F bearing-pad service-gravity screening of each pier bearing, the level pier bearing-seat rotation and movement screen against the SPI 400-510 limits using the saved beam-worksheet rotations, and the adopted level as-cast seat elevations."
+ ],
+ "overview": [
+  "Support details at the pier and end bents. The cap width chain assembles the cover, bar inset, pad length and beam-end dimensions of SDM Fig. 12.5-1. The empirical minimum support length of LRFD Eq. 4.7.4.4-1 is compared with the support length the full-length pier pedestal provides.",
+  "Each pier bearing is screened against the standard Type F pad service limits for the adopted skew; the level pier seats are screened for static and cyclic rotation from the profile grade and the saved camber and dead-load rotations of the span worksheets, for the cyclic direction, and for longitudinal thermal plus creep movement against the pad shear-deflection limit. The adopted level as-cast seat elevations at all three supports are recorded."
+ ],
+ "outside": "the final bearing setting and grinding, the pad design itself and the superstructure camber analysis.",
+ "flow": [
+  "Cap chain",
+  "Support length N",
+  "Type F screening",
+  "Pier rotations",
+  "Movement screen",
+  "Disposition",
+  "Level seats"
+ ],
+ "key_results": [
+  {
+   "label": "Required support length N",
+   "name": "PedN_Nreq"
+  },
+  {
+   "label": "Provided support length",
+   "name": "PedN_Nprov"
+  },
+  {
+   "label": "Static rotation ratio",
+   "name": "BP_static_ratio"
+  },
+  {
+   "label": "Cyclic rotation ratio",
+   "name": "BP_cyclic_ratio"
+  },
+  {
+   "label": "Movement ratio",
+   "name": "BP_movement_ratio"
+  },
+  {
+   "label": "Level-seat disposition",
+   "name": "BP_level_seat_result"
+  }
+ ],
+ "summary_tables": [
+  "PedestalNSummary",
+  "TypeFServiceReactions",
+  "BPCheckSummary"
+ ],
+ "published": [],
+ "anchors": {},
+ "notes": {
+  "BearingPad_length": [
+   "This is dimension C in the embedded Figure 12.5-1. Measure the pad in the direction of the illustrated cap-width calculation. It occupies the part of the chain where the beam bears on the pad."
+  ],
+  "Cap_cover": [
+   "This is dimension A in the embedded cap-width figure. It reserves concrete between the exposed cap edge and the reinforcement. The separate B dimension then moves the bearing pad farther inside the reinforcement."
+  ],
+  "Fig_12_5_1_DimB": [
+   "This is dimension B in the embedded Figure 12.5-1. It moves the pad inward beyond the steel location, after the concrete cover has already been counted. It is not additional pad length."
+  ],
+  "Fig_12_5_1_DimD": [
+   "This is dimension D in the embedded Figure 12.5-1. The entered value follows the figure’s no-diaphragm option. This distance is added after the bearing-pad length to reserve the shown space near the beam end."
+  ],
+  "Fig_12_5_1_DimF": [
+   "The displayed expression divides the 3 in separation by 2. It therefore contributes half that separation to this one-sided calculation. In the embedded double-bearing figure, F labels the separation between the opposing end details; the journal uses a half-share here for the stated end-bent adaptation."
+  ],
+  "Cap_width_min": [
+   "The result is the sum of this one-sided chain for the end-bent adaptation noted above. The displayed expression does not double the chain or include the diaphragm-extension dimension E from the embedded double-bearing figure; it should not be read as that figure’s full two-bearing formula."
+  ]
+ },
+ "working_notes": [
+  "The calculation was ported from the journal module BearingDesign (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+ ],
+ "pending": [],
+ "symbols": {},
+ "accepted_wording": [
+  "Task Work Order"
+ ],
+ "visible_rules": [],
+ "unused_inputs": [],
+ "confirmations": {},
+ "skipped_journal_definitions": []
+}

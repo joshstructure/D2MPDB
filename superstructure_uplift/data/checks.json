@@ -1,0 +1,178 @@
+[
+ {
+  "key": "contact",
+  "group": "Bearings",
+  "label": "Contact retained at every bearing (Strength III)",
+  "kind": "flag",
+  "flag": "Chk_contact_III",
+  "demand": "R_min_III",
+  "capacity": "> 0 kip",
+  "basis": "Minimum bearing compression positive",
+  "refs": [],
+  "names": [
+   "R_min_III",
+   "Chk_contact_III"
+  ],
+  "note": ""
+ },
+ {
+  "key": "uplift",
+  "group": "Bearings",
+  "label": "Net vertical compression (upward / downward intensity)",
+  "kind": "ratio",
+  "num": "w_U_III",
+  "den": "w_D_III",
+  "demand": "w_U_III",
+  "capacity": "w_D_III",
+  "basis": "w_U / w_D",
+  "refs": [],
+  "names": [
+   "w_U_III",
+   "w_D_III",
+   "DC_uplift_III"
+  ],
+  "note": "",
+  "flag": "Chk_uplift_III",
+  "ratio_name": "DC_uplift_III"
+ },
+ {
+  "key": "overturning",
+  "group": "Bearings",
+  "label": "Transverse overturning (destabilizing / stabilizing moment)",
+  "kind": "ratio",
+  "num": "m_destab_III",
+  "den": "m_stab_III",
+  "demand": "m_destab_III",
+  "capacity": "m_stab_III",
+  "basis": "m_destab / m_stab",
+  "refs": [],
+  "names": [
+   "m_stab_III",
+   "m_destab_III",
+   "DC_OT_III"
+  ],
+  "note": "",
+  "flag": "Chk_OT_III",
+  "ratio_name": "DC_OT_III"
+ },
+ {
+  "key": "config",
+  "group": "Coherence",
+  "label": "Supported beam and node configuration",
+  "kind": "flag",
+  "flag": "Chk_config",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_config"
+  ],
+  "note": ""
+ },
+ {
+  "key": "tributary",
+  "group": "Coherence",
+  "label": "Source tributary length",
+  "kind": "flag",
+  "flag": "Chk_tributary",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_tributary"
+  ],
+  "note": ""
+ },
+ {
+  "key": "gravity",
+  "group": "Coherence",
+  "label": "Weight classification reconciles to the gravity total",
+  "kind": "flag",
+  "flag": "Chk_gravity",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_gravity"
+  ],
+  "note": ""
+ },
+ {
+  "key": "horizontal",
+  "group": "Coherence",
+  "label": "Strength III horizontal set agrees with C002",
+  "kind": "flag",
+  "flag": "Chk_horizontal",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_horizontal"
+  ],
+  "note": ""
+ },
+ {
+  "key": "force",
+  "group": "Coherence",
+  "label": "Physical-bearing vertical equilibrium",
+  "kind": "flag",
+  "flag": "Chk_force",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_force"
+  ],
+  "note": ""
+ },
+ {
+  "key": "roll",
+  "group": "Coherence",
+  "label": "Physical-bearing roll equilibrium",
+  "kind": "flag",
+  "flag": "Chk_roll",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_roll"
+  ],
+  "note": ""
+ },
+ {
+  "key": "transfer",
+  "group": "Coherence",
+  "label": "Collected-node roll plus residual equals the applied moment",
+  "kind": "flag",
+  "flag": "Chk_transfer",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_transfer"
+  ],
+  "note": ""
+ },
+ {
+  "key": "datum",
+  "group": "Coherence",
+  "label": "Derived bearing plane at or above the cap top",
+  "kind": "flag",
+  "flag": "Chk_datum",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_datum"
+  ],
+  "note": ""
+ }
+]

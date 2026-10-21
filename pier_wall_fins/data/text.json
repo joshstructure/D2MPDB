@@ -1,0 +1,130 @@
+{
+ "report_name": "PierWallFins",
+ "cnumber": "C006",
+ "title": "Pier Wall, Hairpins and Fin Plates",
+ "prefix": "fins",
+ "bpad_file": "Pier Wall Fins.bpad",
+ "notebook": "Pier_Wall_Fins.ipynb",
+ "tool_prefix": "fins-tool-",
+ "case_name": "C006 - Pier Wall, Hairpins and Fin Plates (journal values, feb1bb316d08)",
+ "intro": [
+  "**What it does.** Sizes the fin plates and designated hairpins that hang the pier wall on the four pipe piles for the wall gravity, checks the fin plate, the hairpin development, the out-of-plane wall strip for direct wind, the distributed reinforcement and detailing limits, and exports the fin-root actions for the separate weld calculation and the receiving-pile interface."
+ ],
+ "overview": [
+  "Pier wall gravity path: the gross wall weight is distributed to six fin plates in one upper row (one inward fin at each end pile, two opposed fins at each interior pile) by an elastic three-moment solution of the symmetric four-pile system. Each fin carries its reaction through two #5 inverted-U hairpins wrapped over a round bearing saddle; the hairpins develop straight tails below a reserved transfer region.",
+  "The fin plate is checked for biaxial first-yield and lateral-torsional buckling, root shear yielding and rupture and a conservative combined-stress screen for both the full-yield development target and the actual factored reaction. A one-foot horizontal wall strip is checked for the direct Strength III wind, with the Service I cracked-section check, shrinkage and temperature steel, spacing, lap and fit limits. The fin-root actions are exported in local axes for the separate weld calculation; the local node, pipe-shell and geometry confirmations remain open and keep the module status provisional."
+ ],
+ "outside": "the weld calculation, the local hanger and concrete load-transfer substantiation, the pipe-shell check, collision and seismic applicability and the bridge background state on the piles.",
+ "flow": [
+  "Geometry",
+  "Wall reactions",
+  "Hairpins",
+  "Fin plate",
+  "Wind strip",
+  "Detailing",
+  "Weld actions",
+  "Status"
+ ],
+ "key_results": [
+  {
+   "label": "Fin thickness",
+   "name": "t_p"
+  },
+  {
+   "label": "Largest plate utilization",
+   "name": "DC_plate"
+  },
+  {
+   "label": "Governing actual fin shear",
+   "name": "V_actual"
+  },
+  {
+   "label": "Full-yield target shear",
+   "name": "V_target"
+  },
+  {
+   "label": "Numerical checks",
+   "name": "Status_numeric"
+  },
+  {
+   "label": "Module status",
+   "name": "Status_C006"
+  }
+ ],
+ "summary_tables": [
+  "C006Table292"
+ ],
+ "published": [],
+ "anchors": {
+  "step_1_geometry_and_materials": "c006work01",
+  "step_2_gravity_reactions_and_plate_spaci": "c006work02",
+  "step_3_hairpins_and_development": "c006work03",
+  "step_4_fin_plate_resistance": "c006work04",
+  "step_5_out_of_plane_wall_strip": "c006work05",
+  "step_6_distributed_reinforcement_and_det": "c006work06",
+  "step_7_weld_and_pile_interface_actions": "c006work07",
+  "step_8_design_summary_and_verification_b": "c006work08",
+  "strategy": "c006strategy01"
+ },
+ "notes": {
+  "c_w": [
+   "Confirm environmental classification and surface category before release; cast-against-earth or water-contact surfaces may require larger cover."
+  ],
+  "D_s": [
+   "A machined/formed round bearing saddle is required to match the inside hairpin bend. It is a required local detail, not a verified standard detail. Its local bearing and attachment need the separate connection completion identified in Step 7."
+  ],
+  "Ω_h": [
+   "Default 1.0 develops specified nominal yield. It does not prove an expected-strength or ultimate failure hierarchy. Increase only with a documented criterion."
+  ],
+  "T_pos": [
+   "This is tighter than the three-inch tolerance used by the current cap calculation. Retain as a construction constraint, not as a claim that ordinary pile tolerances automatically satisfy this wall detail."
+  ],
+  "φ_h": [
+   "This is a selected conservative factor for the rational hanger check. It is not represented as automatic ACI approval of a fin/saddle detail. LRFD 5.13 invokes ACI 318-19 for applicable anchor types, but local applicability and the complete transfer mechanism remain release conditions."
+  ],
+  "l_zone": [
+   "The assumed boundary must be confirmed by the local hanger/strut-and-tie design. Geometric length alone does not certify that the bar extends beyond every relevant separation surface."
+  ],
+  "L_buck": [
+   "Twice the radial projection is a conservative project effective-length choice; it is not quoted as a prescribed LRFD cantilever factor."
+  ],
+  "DC_biax": [
+   "This project screening equation deliberately uses the sum of absolute bending stresses. It is additional to the separate LRFD nominal-resistance checks."
+  ],
+  "σ_VM": [
+   "Combining the maximum bending stress with the maximum rectangular shear stress overestimates the actual elastic von Mises stress because those maxima occur at different depths."
+  ],
+  "M_u_strip": [
+   "Use this magnitude on both faces. For the source four equally spaced pile supports and short end overhangs, qL²/8 envelopes the uniform-load elastic positive and negative moments. Differential pile movements are outside this load-only envelope."
+  ],
+  "M_cr": [
+   "No prestress and no composite staged-load term. The factor selected is specific to ASTM A615 Grade 60; revise for another reinforcing material."
+  ],
+  "A_face": [
+   "The displayed area is for a one-foot strip. It corresponds numerically to in²/ft in the reinforcement schedule."
+  ],
+  "A_ST_raw": [
+   "H_w and t_w are actual component-section dimensions. The artificial twelve-inch wind strip is not substituted as the component height. The empirical coefficient uses inches and ksi; output is area per foot."
+  ],
+  "A_ST": [
+   "The 0.60 in²/ft cap applies to the minimum requirement, not to the maximum amount of reinforcement that may be provided."
+  ],
+  "l_lap": [
+   "Use straight continuous bars where possible. Locate and stagger any lap splices to suit actual force regions; this length is not permission to place all splices at the same section."
+  ]
+ },
+ "working_notes": [
+  "The calculation was ported from the journal module PierWallFins (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+ ],
+ "pending": [],
+ "symbols": {},
+ "accepted_wording": [
+  "Task Work Order"
+ ],
+ "visible_rules": [],
+ "unused_inputs": [],
+ "confirmations": {},
+ "skipped_journal_definitions": [
+  "C006_Checks = [Chk_reactions, Chk_model, Chk_saddle, Chk_hairpin, Chk_development, Chk_bend, Chk_plate_flex, Chk_plate_shear, Chk_plate_VM, Chk_root, Chk_strip_flex, Chk_strip_shear, Chk_service, Chk_ST, Chk_STMgrid, Chk_spacing, Chk_fit, Chk_joints]"
+ ]
+}

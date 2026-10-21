@@ -4,7 +4,22 @@ How a calculation package in this repository is built so that its report, portab
 notebook, Mathcad and Blockpad editions and project-record entries match the existing
 ones (backwall `end_bent_walls/`, piles `pile_design/`, cap `pier_cap/`, pier wall
 `ring_wall/`). Follow this list; the tests named at the end enforce most of it.
-Last revised 2026-10-21 (report definition and citation cards, D-068).
+Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; report definition and citation cards, D-068).
+
+## 0. Two ways to build a calculation
+
+- **Hand-written package** (backwall, piles, cap, pier wall): `model.py` holds the definition list in code; the report, exports,
+  widgets, Mathcad and Blockpad builders are written for that calculation. Follow sections 1–7.
+- **Data-driven package on `calc_common/`** (the journal calculations C001–C004, C006, C015, C016): the package is its
+  `data/` folder (`inputs.json`, `definitions.json`, `checks.json`, `tables.json`, `sections.json`, `text.json`,
+  `references.json`, `sources.json`, `journal_blocks.xml`) plus thin modules that bind `calc_common` (the modules
+  `scripts/build_journal_calc_data.py` writes). The shared framework supplies the engine, MathML, report, exports, Colab UI,
+  Blockpad editions (standalone and journal, with the same verification steps as the backwall builder) and the portable
+  notebook. A calculation that starts as a journal module is imported with `scripts/import_journal_calc.py`, drafted with
+  `scripts/build_journal_calc_data.py`, then authored (titles, overview, captions of referenced values, check ratios, key
+  results). Rebuild chain: `build_journal_calc_notebooks.py` → `build_journal_calc_bpads.py` (→ `--journal`) →
+  `export_journal_calc_reports.py`; `tests/test_journal_calc_packages.py` enforces currency and the journal fidelity
+  (every former journal definition reproduced to 1e-9). These packages have no Mathcad edition.
 
 ## 1. Package layout
 

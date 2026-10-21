@@ -1,0 +1,15 @@
+[
+ {
+  "bpad_file": "wind_superstructure/Superstructure Wind.bpad",
+  "bpad_sha256": "94223f0908e26b963958941b130dcf7ece69cfb36b5f9db28c25c78749e17e5b",
+  "case_sha256": "53e431373c8afb3f337dbaee695664d47f7220f3d505f3057bee366bce5241b5",
+  "cells_and_labels": 48,
+  "definitions": 36,
+  "functions": 0,
+  "mathcad_values_compared": null,
+  "package_revision": "531186af576e6b84022b8f2e527d5d2cf04341683151f2741cb0d92d5840b560",
+  "report_name": "C001WindLoadOnPedBridgeSuperstructure",
+  "status": "✓ All Checks Pass",
+  "tool_comparisons": 35
+ }
+]

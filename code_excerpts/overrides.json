@@ -5,7 +5,9 @@
   },
   "journal": {
     "SDG 2.4.1, Table 2.4.1-1": ["SDG 2.4.1.A.pdf", "SDG Table 2.4.1-1.pdf"],
-    "SDG 2.7.1, Table 2.7.1-1": ["SDG 2.7.1 - Table 2.7.1-1.pdf"]
+    "SDG 2.7.1, Table 2.7.1-1": ["SDG 2.7.1 - Table 2.7.1-1.pdf"],
+    "SDG Table 2.4.1-1": ["SDG Table 2.4.1-1.pdf"],
+    "LRFD Table 3.8.1.2.3a-1": ["LRFD 3.8.1.2.3a-b - Table 3.8.1.2.3a-1.pdf"]
   },
   "skip": {
     "MCAD-S1 q_PL": "Project Mathcad sheet (template input), not a code provision."

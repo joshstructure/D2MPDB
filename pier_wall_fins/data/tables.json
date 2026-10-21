@@ -1,0 +1,686 @@
+[
+ {
+  "name": "C006Table292",
+  "title": "RESULTS PREVIEW — selected geometry and governing demand family",
+  "headers": [
+   "Item",
+   "Live result"
+  ],
+  "rows": [
+   [
+    "Fin thickness",
+    {
+     "v": "t_p",
+     "unit": "in"
+    }
+   ],
+   [
+    "Fin height",
+    {
+     "v": "h_p",
+     "unit": "in"
+    }
+   ],
+   [
+    "Fin radial projection",
+    {
+     "v": "a_p",
+     "unit": "in"
+    }
+   ],
+   [
+    "Fin count",
+    {
+     "v": "n_fin"
+    }
+   ],
+   [
+    "Hairpins per fin",
+    {
+     "v": "n_h"
+    }
+   ],
+   [
+    "Hairpin inside bend",
+    {
+     "v": "D_s",
+     "unit": "in"
+    }
+   ],
+   [
+    "Row seat above wall bottom",
+    {
+     "v": "z_seat",
+     "unit": "ft"
+    }
+   ],
+   [
+    "Between-bay fin-force spacing",
+    {
+     "v": "L_a",
+     "unit": "in"
+    }
+   ],
+   [
+    "Across-pile fin-force spacing",
+    {
+     "v": "L_b",
+     "unit": "in"
+    }
+   ],
+   [
+    "Wall end to first force point",
+    {
+     "v": "a_o",
+     "unit": "in"
+    }
+   ],
+   [
+    "Largest plate utilization",
+    {
+     "v": "DC_plate"
+    }
+   ],
+   [
+    "Governing actual fin shear",
+    {
+     "v": "V_actual",
+     "unit": "kip"
+    }
+   ],
+   [
+    "Full-yield target shear",
+    {
+     "v": "V_target",
+     "unit": "kip"
+    }
+   ],
+   [
+    "Full-yield target My magnitude",
+    {
+     "v": "M_y_target",
+     "unit": "kip*ft"
+    }
+   ],
+   [
+    "Numerical checks",
+    {
+     "v": "Status_numeric"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "C006Table90",
+  "title": "Six-fin reaction schedule",
+  "headers": [
+   "Fin",
+   "Pile / direction",
+   "Wall station",
+   "DC wall",
+   "Strength I / III wall"
+  ],
+  "rows": [
+   [
+    "F1",
+    "P1 inward +X",
+    {
+     "v": "x_F1",
+     "unit": "in"
+    },
+    {
+     "v": "R_1",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*R_1",
+     "unit": "kip"
+    }
+   ],
+   [
+    "F2",
+    "P2 toward -X",
+    {
+     "v": "x_F2",
+     "unit": "in"
+    },
+    {
+     "v": "R_2",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*R_2",
+     "unit": "kip"
+    }
+   ],
+   [
+    "F3",
+    "P2 toward +X",
+    {
+     "v": "x_F3",
+     "unit": "in"
+    },
+    {
+     "v": "R_3",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*R_3",
+     "unit": "kip"
+    }
+   ],
+   [
+    "F4",
+    "P3 toward -X",
+    {
+     "v": "x_F4",
+     "unit": "in"
+    },
+    {
+     "v": "R_3",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*R_3",
+     "unit": "kip"
+    }
+   ],
+   [
+    "F5",
+    "P3 toward +X",
+    {
+     "v": "x_F5",
+     "unit": "in"
+    },
+    {
+     "v": "R_2",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*R_2",
+     "unit": "kip"
+    }
+   ],
+   [
+    "F6",
+    "P4 inward -X",
+    {
+     "v": "x_F6",
+     "unit": "in"
+    },
+    {
+     "v": "R_1",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*R_1",
+     "unit": "kip"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "C006Table277",
+  "title": "Actual concurrent weld actions — positive transverse offset",
+  "headers": [
+   "Fin",
+   "Case",
+   "Fx kip",
+   "Fy kip",
+   "Fz kip",
+   "Mx kip-ft",
+   "My kip-ft",
+   "Mz kip-ft"
+  ],
+  "rows": [
+   [
+    "F1",
+    "Service I",
+    "0",
+    "0",
+    {
+     "v": "Fz_SI_F1",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_SI_F1",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_SI_F1",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F1",
+    "Strength I / III",
+    "0",
+    "0",
+    {
+     "v": "Fz_U_F1",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_U_F1",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_U_F1",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F2",
+    "Service I",
+    "0",
+    "0",
+    {
+     "v": "Fz_SI_F2",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_SI_F2",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_SI_F2",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F2",
+    "Strength I / III",
+    "0",
+    "0",
+    {
+     "v": "Fz_U_F2",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_U_F2",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_U_F2",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F3",
+    "Service I",
+    "0",
+    "0",
+    {
+     "v": "Fz_SI_F3",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_SI_F3",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_SI_F3",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F3",
+    "Strength I / III",
+    "0",
+    "0",
+    {
+     "v": "Fz_U_F3",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_U_F3",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_U_F3",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F4",
+    "Service I",
+    "0",
+    "0",
+    {
+     "v": "Fz_SI_F4",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_SI_F4",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_SI_F4",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F4",
+    "Strength I / III",
+    "0",
+    "0",
+    {
+     "v": "Fz_U_F4",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_U_F4",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_U_F4",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F5",
+    "Service I",
+    "0",
+    "0",
+    {
+     "v": "Fz_SI_F5",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_SI_F5",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_SI_F5",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F5",
+    "Strength I / III",
+    "0",
+    "0",
+    {
+     "v": "Fz_U_F5",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_U_F5",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_U_F5",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F6",
+    "Service I",
+    "0",
+    "0",
+    {
+     "v": "Fz_SI_F6",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_SI_F6",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_SI_F6",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "F6",
+    "Strength I / III",
+    "0",
+    "0",
+    {
+     "v": "Fz_U_F6",
+     "unit": "kip"
+    },
+    {
+     "v": "Mx_U_F6",
+     "unit": "kip*ft"
+    },
+    {
+     "v": "My_U_F6",
+     "unit": "kip*ft"
+    },
+    "0"
+   ]
+  ]
+ },
+ {
+  "name": "C006Table278",
+  "title": "Hairpin development target — every selected fin must be checked for each row",
+  "headers": [
+   "Case",
+   "Fx kip",
+   "Fy kip",
+   "Fz kip",
+   "Mx kip-ft",
+   "My kip-ft",
+   "Mz kip-ft"
+  ],
+  "rows": [
+   [
+    "HY+",
+    "0",
+    "0",
+    {
+     "v": "V_target",
+     "unit": "kip"
+    },
+    {
+     "v": "M_x_target",
+     "unit": "kip*ft"
+    },
+    {
+     "f": "-M_y_target",
+     "unit": "kip*ft"
+    },
+    "0"
+   ],
+   [
+    "HY-",
+    "0",
+    "0",
+    {
+     "v": "V_target",
+     "unit": "kip"
+    },
+    {
+     "f": "-M_x_target",
+     "unit": "kip*ft"
+    },
+    {
+     "f": "-M_y_target",
+     "unit": "kip*ft"
+    },
+    "0"
+   ]
+  ]
+ },
+ {
+  "name": "C006Table283",
+  "title": "Receiving pile interface — actual wall loads, excluding the bridge background state",
+  "headers": [
+   "Location",
+   "Service vertical",
+   "Service moment magnitude",
+   "Strength vertical",
+   "Strength moment magnitude"
+  ],
+  "rows": [
+   [
+    "P1 / P4",
+    {
+     "v": "P_pile_end",
+     "unit": "kip"
+    },
+    {
+     "v": "M_pile_end",
+     "unit": "kip*ft"
+    },
+    {
+     "f": "γ_DC*P_pile_end",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*M_pile_end",
+     "unit": "kip*ft"
+    }
+   ],
+   [
+    "P2 / P3",
+    {
+     "v": "P_pile_int",
+     "unit": "kip"
+    },
+    {
+     "v": "M_pile_int",
+     "unit": "kip*ft"
+    },
+    {
+     "f": "γ_DC*P_pile_int",
+     "unit": "kip"
+    },
+    {
+     "f": "γ_DC*M_pile_int",
+     "unit": "kip*ft"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "C006Table289",
+  "title": "Implemented numerical checks",
+  "headers": [
+   "Check",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Six wall reactions reproduce the gross wall weight.",
+    {
+     "v": "Chk_reactions"
+    }
+   ],
+   [
+    "Validity of the symmetric four-pile/six-fin reaction model.",
+    {
+     "v": "Chk_model"
+    }
+   ],
+   [
+    "Selected saddle and hairpin force points fit on the fin projection.",
+    {
+     "v": "Chk_saddle"
+    }
+   ],
+   [
+    "Hairpin tensile resistance under assigned actual gravity loads.",
+    {
+     "v": "Chk_hairpin"
+    }
+   ],
+   [
+    "Available straight-tail length exceeds the full-yield requirement.",
+    {
+     "v": "Chk_development"
+    }
+   ],
+   [
+    "Hairpin inside bend diameter satisfies the general #5 bar minimum.",
+    {
+     "v": "Chk_bend"
+    }
+   ],
+   [
+    "Selected fin satisfies adopted biaxial elastic/LTB resistance.",
+    {
+     "v": "Chk_plate_flex"
+    }
+   ],
+   [
+    "Selected fin satisfies root shear yielding and rupture.",
+    {
+     "v": "Chk_plate_shear"
+    }
+   ],
+   [
+    "Selected fin passes additional conservative combined-stress screen.",
+    {
+     "v": "Chk_plate_VM"
+    }
+   ],
+   [
+    "Plate geometry remains valid and inside the source wall.",
+    {
+     "v": "Chk_root"
+    }
+   ],
+   [
+    "Wind-strip flexure and minimum flexural reinforcement.",
+    {
+     "v": "Chk_strip_flex"
+    }
+   ],
+   [
+    "Wind-strip shear and transverse reinforcement area/spacing.",
+    {
+     "v": "Chk_strip_shear"
+    }
+   ],
+   [
+    "Supplementary Service I cracked-section check with FDOT amendment.",
+    {
+     "v": "Chk_service"
+    }
+   ],
+   [
+    "Shrinkage/temperature steel and maximum spacing, both directions and faces.",
+    {
+     "v": "Chk_ST"
+    }
+   ],
+   [
+    "Adopted disturbed-region grid area and twelve-inch ceiling.",
+    {
+     "v": "Chk_STMgrid"
+    }
+   ],
+   [
+    "General grid clear spacing and selected cross-tie spacing.",
+    {
+     "v": "Chk_spacing"
+    }
+   ],
+   [
+    "Selected trial layout fits only within the specified pile-position envelope.",
+    {
+     "v": "Chk_fit"
+    }
+   ],
+   [
+    "Wall length does not require an intermediate joint under the 30-foot screen.",
+    {
+     "v": "Chk_joints"
+    }
+   ]
+  ]
+ }
+]

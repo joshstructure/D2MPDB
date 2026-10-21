@@ -1,0 +1,140 @@
+{
+ "PierWallFins": [
+  {
+   "input": "L_w",
+   "owner": "PedBridgeWeights_2Beams.E42",
+   "journal_value": 17.75,
+   "case_value": 17.75,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.E42 (ft)"
+  },
+  {
+   "input": "t_w",
+   "owner": "PedBridgeWeights_2Beams.F42",
+   "journal_value": 36.0,
+   "case_value": 36.0,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.F42 (in)"
+  },
+  {
+   "input": "H_w",
+   "owner": "PedBridgeWeights_2Beams.G42",
+   "journal_value": 14.364583333333,
+   "case_value": 14.364583333333,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.G42 (ft)"
+  },
+  {
+   "input": "γ_c",
+   "owner": "PedBridgeWeights_2Beams.I42",
+   "journal_value": 150.0,
+   "case_value": 150.0,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.I42 (pcf)"
+  },
+  {
+   "input": "N_p",
+   "owner": "BridgeGeometry_2Beam.Pier_pile_count",
+   "journal_value": 4.0,
+   "case_value": 4.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pier_pile_count (no unit)"
+  },
+  {
+   "input": "S_p",
+   "owner": "BridgeGeometry_2Beam.Pile_spacing",
+   "journal_value": 5.0,
+   "case_value": 5.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pile_spacing (ft)"
+  },
+  {
+   "input": "D_p",
+   "owner": "BridgeGeometry_2Beam.Pier_pile_diameter",
+   "journal_value": 20.0,
+   "case_value": 20.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pier_pile_diameter (in)"
+  },
+  {
+   "input": "t_pipe",
+   "owner": "PileProperties.t_eff",
+   "journal_value": 0.475,
+   "case_value": 0.475,
+   "status": "reference",
+   "note": "shared value — PileProperties.t_eff (in)"
+  },
+  {
+   "input": "f_c",
+   "owner": "Materials.Substructure_fc",
+   "journal_value": 5.5,
+   "case_value": 5.5,
+   "status": "reference",
+   "note": "shared value — Materials.Substructure_fc (ksi)"
+  },
+  {
+   "input": "f_y",
+   "owner": "Materials.Rebar_fy",
+   "journal_value": 60.0,
+   "case_value": 60.0,
+   "status": "reference",
+   "note": "shared value — Materials.Rebar_fy (ksi)"
+  },
+  {
+   "input": "E_s",
+   "owner": "Materials.Rebar_Es",
+   "journal_value": 29000.0,
+   "case_value": 29000.0,
+   "status": "reference",
+   "note": "shared value — Materials.Rebar_Es (ksi)"
+  },
+  {
+   "input": "c_w",
+   "owner": "BridgeGeometry_2Beam.PierCap_coverSide",
+   "journal_value": 3.0,
+   "case_value": 3.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_coverSide (in)"
+  },
+  {
+   "input": "γ_s",
+   "owner": "PileProperties.gamma_steel",
+   "journal_value": 490.0,
+   "case_value": 490.0,
+   "status": "reference",
+   "note": "shared value — PileProperties.gamma_steel (pcf)"
+  },
+  {
+   "input": "z_wall_top",
+   "owner": "BridgeGeometry_2Beam.CapBottom_elev",
+   "journal_value": 40.769319044745,
+   "case_value": 40.769319044745,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.CapBottom_elev (ft)"
+  },
+  {
+   "input": "Terrain_elev",
+   "owner": "BridgeGeometry_2Beam.Terrain_elev",
+   "journal_value": 25.5264,
+   "case_value": 25.5264,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Terrain_elev (ft)"
+  },
+  {
+   "input": "p_III",
+   "owner": "FenceWind.p_sub_III",
+   "journal_value": 0.059999195824,
+   "case_value": 0.05999919582,
+   "status": "reference",
+   "note": "shared value — FenceWind.p_sub_III (ksf)"
+  },
+  {
+   "input": "p_I",
+   "owner": "FenceWind.p_sub_SI",
+   "journal_value": 0.01705984,
+   "case_value": 0.01705984,
+   "status": "reference",
+   "note": "shared value — FenceWind.p_sub_SI (ksf)"
+  }
+ ]
+}

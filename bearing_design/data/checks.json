@@ -1,0 +1,273 @@
+[
+ {
+  "key": "pedn",
+  "group": "Support length",
+  "label": "Minimum support length N at the pier pedestal",
+  "kind": "ratio",
+  "num": "PedN_Nreq",
+  "den": "PedN_Nprov",
+  "demand": "PedN_Nreq",
+  "capacity": "PedN_Nprov",
+  "basis": "N_required / N_provided",
+  "refs": [
+   "lrfd_eq_4_7_4_4_1"
+  ],
+  "names": [
+   "PedN_N1",
+   "PedN_N2",
+   "PedN_Nreq",
+   "PedN_Nprov",
+   "DC_PedN"
+  ],
+  "note": "",
+  "flag": "Check_PedN",
+  "ratio_name": "DC_PedN"
+ },
+ {
+  "key": "typef_skew",
+  "group": "Type F pads",
+  "label": "Standard Type F skew range",
+  "kind": "flag",
+  "flag": "Check_TypeF_skew",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Check_TypeF_skew"
+  ],
+  "note": ""
+ },
+ {
+  "key": "typef_b1",
+  "group": "Type F pads",
+  "label": "Bearing B1 service-gravity screening",
+  "kind": "ratio",
+  "num": "Type_F_DL_B1",
+  "den": "Type_F_DLallow_B1",
+  "demand": "Type_F_DL_B1",
+  "capacity": "Type_F_DLallow_B1",
+  "basis": "service DL / allowance (also PL ≤ LL limit and skew range)",
+  "refs": [],
+  "names": [
+   "Type_F_DL_B1",
+   "Type_F_DLallow_B1",
+   "DC_TypeF_B1",
+   "Check_TypeF_B1"
+  ],
+  "note": "",
+  "flag": "Check_TypeF_B1",
+  "ratio_name": "DC_TypeF_B1"
+ },
+ {
+  "key": "typef_b2",
+  "group": "Type F pads",
+  "label": "Bearing B2 service-gravity screening",
+  "kind": "ratio",
+  "num": "Type_F_DL_B2",
+  "den": "Type_F_DLallow_B2",
+  "demand": "Type_F_DL_B2",
+  "capacity": "Type_F_DLallow_B2",
+  "basis": "service DL / allowance (also PL ≤ LL limit and skew range)",
+  "refs": [],
+  "names": [
+   "Type_F_DL_B2",
+   "Type_F_DLallow_B2",
+   "DC_TypeF_B2",
+   "Check_TypeF_B2"
+  ],
+  "note": "",
+  "flag": "Check_TypeF_B2",
+  "ratio_name": "DC_TypeF_B2"
+ },
+ {
+  "key": "typef_b3",
+  "group": "Type F pads",
+  "label": "Bearing B3 service-gravity screening",
+  "kind": "ratio",
+  "num": "Type_F_DL_B3",
+  "den": "Type_F_DLallow_B3",
+  "demand": "Type_F_DL_B3",
+  "capacity": "Type_F_DLallow_B3",
+  "basis": "service DL / allowance (also PL ≤ LL limit and skew range)",
+  "refs": [],
+  "names": [
+   "Type_F_DL_B3",
+   "Type_F_DLallow_B3",
+   "DC_TypeF_B3",
+   "Check_TypeF_B3"
+  ],
+  "note": "",
+  "flag": "Check_TypeF_B3",
+  "ratio_name": "DC_TypeF_B3"
+ },
+ {
+  "key": "typef_b4",
+  "group": "Type F pads",
+  "label": "Bearing B4 service-gravity screening",
+  "kind": "ratio",
+  "num": "Type_F_DL_B4",
+  "den": "Type_F_DLallow_B4",
+  "demand": "Type_F_DL_B4",
+  "capacity": "Type_F_DLallow_B4",
+  "basis": "service DL / allowance (also PL ≤ LL limit and skew range)",
+  "refs": [],
+  "names": [
+   "Type_F_DL_B4",
+   "Type_F_DLallow_B4",
+   "DC_TypeF_B4",
+   "Check_TypeF_B4"
+  ],
+  "note": "",
+  "flag": "Check_TypeF_B4",
+  "ratio_name": "DC_TypeF_B4"
+ },
+ {
+  "key": "static",
+  "group": "Level seats",
+  "label": "Static rotation of the pads",
+  "kind": "ratio",
+  "num": "BP_static_max",
+  "den": "BP_static_limit",
+  "demand": "BP_static_max",
+  "capacity": "BP_static_limit",
+  "basis": "static rotation / SPI limit",
+  "refs": [],
+  "names": [
+   "BP_static_max",
+   "BP_static_ratio"
+  ],
+  "note": "",
+  "ratio_name": "BP_static_ratio"
+ },
+ {
+  "key": "cyclic",
+  "group": "Level seats",
+  "label": "Cyclic rotation of the pads",
+  "kind": "ratio",
+  "num": "BP_cyclic_max",
+  "den": "BP_cyclic_limit",
+  "demand": "BP_cyclic_max",
+  "capacity": "BP_cyclic_limit",
+  "basis": "cyclic rotation / SPI limit",
+  "refs": [],
+  "names": [
+   "BP_cyclic_max",
+   "BP_cyclic_ratio"
+  ],
+  "note": "",
+  "ratio_name": "BP_cyclic_ratio"
+ },
+ {
+  "key": "opposite_1",
+  "group": "Level seats",
+  "label": "Span 1 cyclic rotation opposite the static rotation",
+  "kind": "flag",
+  "flag": "BP_opposite_1",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "BP_opposite_1"
+  ],
+  "note": "",
+  "fail_values": [
+   "REVIEW DIRECTION"
+  ],
+  "pass_values": [
+   "PASS"
+  ]
+ },
+ {
+  "key": "opposite_2",
+  "group": "Level seats",
+  "label": "Span 2 cyclic rotation opposite the static rotation",
+  "kind": "flag",
+  "flag": "BP_opposite_2",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "BP_opposite_2"
+  ],
+  "note": "",
+  "fail_values": [
+   "REVIEW DIRECTION"
+  ],
+  "pass_values": [
+   "PASS"
+  ]
+ },
+ {
+  "key": "rotation",
+  "group": "Level seats",
+  "label": "Pier level-seat rotation screen (SPI 400-510)",
+  "kind": "flag",
+  "flag": "BP_rotation_check",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "BP_transverse_difference",
+   "BP_rotation_check"
+  ],
+  "note": "",
+  "fail_values": [
+   "REVIEW"
+  ],
+  "pass_values": [
+   "PASS"
+  ]
+ },
+ {
+  "key": "movement",
+  "group": "Level seats",
+  "label": "Thermal plus creep movement against the pad shear limit",
+  "kind": "ratio",
+  "num": "BP_movement",
+  "den": "Bearing_pad_shearLimit",
+  "demand": "BP_movement",
+  "capacity": "Bearing_pad_shearLimit",
+  "basis": "movement / shear-deflection limit",
+  "refs": [],
+  "names": [
+   "BP_thermal",
+   "BP_creep",
+   "BP_movement",
+   "BP_movement_ratio"
+  ],
+  "note": "",
+  "flag": "BP_movement_check",
+  "ratio_name": "BP_movement_ratio",
+  "fail_values": [
+   "FAIL"
+  ],
+  "pass_values": [
+   "PASS"
+  ]
+ },
+ {
+  "key": "pad_type",
+  "group": "Level seats",
+  "label": "Pad selection and orientation used by the screen",
+  "kind": "flag",
+  "flag": "BP_type_check",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "BP_type_check"
+  ],
+  "note": "",
+  "fail_values": [
+   "REVIEW PAD"
+  ],
+  "pass_values": [
+   "PASS"
+  ]
+ }
+]

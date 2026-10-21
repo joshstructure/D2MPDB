@@ -1,0 +1,129 @@
+<blocks>
+  <block id="p0" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" background="#FFF8E9" fontweight="bold">GEOMETRY BASIS — Cap and wind datums derive from the selected Type F pad, 6-in pedestal and 36-in cap. Individual seat grades, separate plates, the retained wind envelope, terrain reference and gross pier-face width require final-detail confirmation.</paragraph>
+  </block>
+  <block id="p1" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            Structure type for drag coefficient selection (
+            <link address="#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001">LRFD Table 3.8.1.2.1-2</link>
+            )
+        </paragraph>
+  </block>
+  <block id="p2" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            Per
+            <link address="#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001">LRFD Table 3.8.1.1.2-1</link>
+            , the design 3-second gust wind speed for each load combination is as follows:
+        </paragraph>
+  </block>
+  <block id="p3" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+            Reference:
+            <link address="#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001">LRFD Table 3.8.1.1.2-1</link>
+        </paragraph>
+  </block>
+  <block id="p4" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            K_Z is determined for Strength III using logarithmic wind profile equations in the active pier load sets. For Strength V and Service I, K_Z = 1.0. The structure height Z used shall not be taken less than 33.0 ft (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Art. 3.8.1.2.1</link>
+            ).
+        </paragraph>
+  </block>
+  <block id="p5" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            The wind pressure is determined by
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Eq. 3.8.1.2.1-1</link>
+            :
+        </paragraph>
+  </block>
+  <block id="p6" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            P_Z = 2.56 × 10⁻⁶ × V² × K_Z × G × C_D   (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD Eq. 3.8.1.2.1-1</link>
+            )
+        </paragraph>
+  </block>
+  <block id="p7" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For Service I and Strength V, K_Z = 1.0 (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD 3.8.1.2.1</link>
+            ) and G = 0.85 (
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.C</link>
+            ).
+        </paragraph>
+  </block>
+  <block id="p8" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For Service I and Strength V, K_Z = 1.0 (
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">LRFD 3.8.1.2.1</link>
+            ) and G = 0.85 (
+            <link address="#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001">FDOT SDG 2.4.1.C</link>
+            ).
+        </paragraph>
+  </block>
+  <block id="p9" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" leftindent="0" background="#F1F5FA">Service IV is not used in the current nonprestressed pier / steel-pile load set. No Service IV pressure, uplift, or FBMP entry case is produced. Strength III deck uplift remains included.</paragraph>
+  </block>
+  <block id="p10" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For girder bridges, wind load components on the substructure are determined as the product of skew coefficients (
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+            ), the wind pressure from
+            <link address="#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001">Eq. 3.8.1.2.1-1</link>
+            , and the depth of the bridge as seen in elevation perpendicular to the longitudinal axis. Both transverse and longitudinal components are applied simultaneously at mid-depth of the superstructure (
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Art. 3.8.1.2.3a</link>
+            ).
+        </paragraph>
+  </block>
+  <block id="p11" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="8">
+            For usual girder and slab bridges with individual span length not more than 150 ft and maximum height not more than 33.0 ft above low ground or water level, simplified wind load components may be used per
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Art. 3.8.1.2.3a</link>
+            : Transverse = 100% of perpendicular load; Longitudinal = 25% of transverse load.
+        </paragraph>
+  </block>
+  <block id="p12" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="4">
+            Transverse skew coefficient for girders — from
+            <link address="#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001">LRFD Table 3.8.1.2.3a-1</link>
+            based on selected skew angle:
+        </paragraph>
+  </block>
+  <block id="C001VerticalScope" kind="prose">
+    <table name="C001VerticalScope" capture="False" colwidths="1:520">
+                <stylerule range="A1:A3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1:A1" background="#DCE7F3" fontweight="bold" horzalign="Center"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">VERTICAL WIND LOAD GENERATION</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="C001VerticalScope2" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Generate the upward line loads and windward eccentricity from the current outside deck width; C004 performs the bearing and stability checks.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="C001VerticalScope3" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• These cases use wind perpendicular to the bridge. Both transverse signs are evaluated with the matching horizontal load. The selected skew-angle cases elsewhere in C001 remain separate.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p14" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+            Reference:
+            <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">LRFD 3.8.2; 10th Edition (2024)</link>
+        </paragraph>
+  </block>
+  <block id="p15" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The load-generation table precedes combination factors. Apply the matching factors once in C004. Vertical wind is excluded from other limit states and from skew-wind cases.</paragraph>
+  </block>
+  <block id="p16" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                Reference:
+                <link address="#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001">Primary code excerpt: LRFD 3.8.2, 10th Edition (2024)</link>
+            </paragraph>
+  </block>
+  <block id="p17" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">C001 generates the vertical line loads and windward eccentricity. C004 combines them with gravity and perpendicular horizontal wind for the bearing-contact and overturning checks.</paragraph>
+  </block>
+</blocks>

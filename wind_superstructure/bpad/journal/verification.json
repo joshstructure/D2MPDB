@@ -1,0 +1,40 @@
+[
+ {
+  "case_sha256": "53e431373c8afb3f337dbaee695664d47f7220f3d505f3057bee366bce5241b5",
+  "cells_and_labels": 56,
+  "definitions": 44,
+  "fragment": "wind_superstructure/bpad/journal/C001WindLoadOnPedBridgeSuperstructure.xml",
+  "fragment_sha256": "b7d7a26913f6eafd555e9560814fedea09e0e046068974a22897063e4f01ddfe",
+  "functions": 0,
+  "journal_file": "journal/D2_I95_Project_Journal.bpad",
+  "journal_references": 7,
+  "literals_kept": [],
+  "mathcad_values_compared": null,
+  "package_revision": "531186af576e6b84022b8f2e527d5d2cf04341683151f2741cb0d92d5840b560",
+  "project_stamp": {
+   "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "CheckDate": "",
+   "CheckedBy": "MIK",
+   "DesignDate": "10/17/2026",
+   "DesignedBy": "JAT",
+   "Firm": "Parsons Transportation Group Inc",
+   "JobNo": "",
+   "Project": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "owner": "ProjectInfo"
+  },
+  "references": [
+   "BridgeGeometry_2Beam.Beam_count",
+   "BridgeGeometry_2Beam.Deck_out2out",
+   "BridgeGeometry_2Beam.Depth_SuperStr",
+   "BridgeGeometry_2Beam.Span_1",
+   "BridgeGeometry_2Beam.Span_2",
+   "BridgeGeometry_2Beam.Wind_clearHeight",
+   "BridgeGeometry_2Beam.Wind_exposureHeight"
+  ],
+  "report_name": "C001WindLoadOnPedBridgeSuperstructure",
+  "review_document": "wind_superstructure/bpad/journal/Wind Load on Ped Bridge Superstructure - Journal Edition (review).bpad",
+  "review_sha256": "7dac8d49cd8cbbd39bf57b76c0fd3495b612dd6e5ace27907dbeb7d8290c0d4d",
+  "status": "✓ All Checks Pass",
+  "tool_comparisons": 35
+ }
+]

@@ -1,0 +1,22 @@
+{
+ "lrfd_table_3_4_1_2": {
+  "code": "LRFD",
+  "article": "Table 3.4.1-2",
+  "governs": "Strength III minimum structural dead-load factor."
+ },
+ "lrfd_table_3_4_1_1": {
+  "code": "LRFD",
+  "article": "Table 3.4.1-1",
+  "governs": "Strength III wind-load factor."
+ },
+ "sdg_2_10_a_1": {
+  "code": "SDG",
+  "article": "2.10.A.1",
+  "governs": "Modifier for bearing and substructure reactions."
+ },
+ "sdg_2_10_b": {
+  "code": "SDG",
+  "article": "2.10.B",
+  "governs": "Modifier for bearing and substructure reactions."
+ }
+}

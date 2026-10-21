@@ -1,0 +1,606 @@
+[
+ {
+  "key": "overview_journal",
+  "level": 0,
+  "title": "Overview and scope",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0021",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p1",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p2",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWOverviewIntro",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "FWReviewFlow",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox19",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "FWReviewSummary",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p6",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p7",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p8",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "strategy",
+  "level": 0,
+  "title": "Design basis and calculation strategy",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p9",
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyStep01",
+    "ids": [
+     "paragraphfwstrategy01",
+     "paragraphrefreturn0022",
+     "p12"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyStep02",
+    "ids": [
+     "paragraphfwstrategy02",
+     "p14",
+     "p15"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyStep03",
+    "ids": [
+     "paragraphfwstrategy03",
+     "p17",
+     "p18"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyStep04",
+    "ids": [
+     "paragraphfwstrategy04",
+     "p20",
+     "p21"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyStep05",
+    "ids": [
+     "paragraphfwstrategy05",
+     "p23",
+     "p24"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyStep06",
+    "ids": [
+     "paragraphfwstrategy06",
+     "p26",
+     "p27"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyStep07",
+    "ids": [
+     "paragraphfwstrategy07",
+     "p29",
+     "p30"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "FWCodeBasis",
+    "ids": [
+     "paragraphfwcodec01",
+     "paragraphfwcodec02",
+     "paragraphfwcodec03",
+     "paragraphfwcodec04",
+     "paragraphfwcodec05",
+     "paragraphfwcodec06",
+     "paragraphfwcodec07",
+     "paragraphfwcodec08",
+     "paragraphfwcodec09",
+     "paragraphfwcodec10",
+     "paragraphfwcodec11",
+     "paragraphfwcodec12",
+     "paragraphfwcodec13",
+     "paragraphfwcodec14",
+     "paragraphfwcodec15",
+     "paragraphfwcodec16"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox1",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_1_code_basis_reference_point_and_di",
+  "level": 0,
+  "title": "Step 1. Code basis, reference point and directions",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyWork01",
+    "ids": [
+     "p48",
+     "p49"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWSectionIntro1",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p51",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p52",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p53",
+    "at": "start"
+   }
+  ],
+  "native_section": "FWStrategyWork01"
+ },
+ {
+  "key": "step_2_fence_geometry_and_tributary_leng",
+  "level": 0,
+  "title": "Step 2. Fence geometry and tributary length",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyWork02",
+    "ids": [
+     "p54",
+     "p55"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWSectionIntro2",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "FWGeometrySketch",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox2",
+    "at": "start"
+   }
+  ],
+  "native_section": "FWStrategyWork02"
+ },
+ {
+  "key": "fence_dimensions_and_reference_heights",
+  "level": 1,
+  "title": "Fence dimensions and reference heights",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "tributary_length_delivered_to_this_pier",
+  "level": 1,
+  "title": "Tributary length delivered to this pier",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "canvas",
+    "id": "FWTributarySketch",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox9",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox20",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "FWGeometryInputs",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "level": 0,
+  "title": "Step 3. Prescribed LRFD 13.8.2 fence load",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyWork03",
+    "ids": [
+     "p62",
+     "p63"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWSectionIntro3",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "FWPressureSketch",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox6",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWFenceResultBox",
+    "at": "F_V_fence"
+   }
+  ],
+  "native_section": "FWStrategyWork03"
+ },
+ {
+  "key": "step_4_simplified_superstructure_wind_co",
+  "level": 0,
+  "title": "Step 4. Simplified superstructure wind components",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyWork04",
+    "ids": [
+     "p68",
+     "p69"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWSectionIntro4",
+    "at": "start"
+   }
+  ],
+  "native_section": "FWStrategyWork04"
+ },
+ {
+  "key": "concrete_and_combined_perpendicular_wind",
+  "level": 1,
+  "title": "Concrete and combined perpendicular wind, Strength III",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0023",
+    "at": "M_c_III"
+   },
+   {
+    "kind": "prose",
+    "id": "p72",
+    "at": "M_cap_L_III"
+   }
+  ]
+ },
+ {
+  "key": "concrete_and_combined_perpendicular_wind_2",
+  "level": 1,
+  "title": "Concrete and combined perpendicular wind, Service I; simplified-method qualification",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "FWContentBox14",
+    "at": "M_cap_L_SI"
+   },
+   {
+    "kind": "table",
+    "name": "FWSimplifiedCriteria",
+    "at": "Check_simplified"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox16",
+    "at": "Check_simplified"
+   },
+   {
+    "kind": "prose",
+    "id": "FWConcurrentRules",
+    "at": "M_cap_T_SI"
+   },
+   {
+    "kind": "table",
+    "name": "FWCapIII",
+    "at": "M_cap_T_SI"
+   },
+   {
+    "kind": "table",
+    "name": "FWCapSI",
+    "at": "M_cap_T_SI"
+   }
+  ]
+ },
+ {
+  "key": "step_5_wind_acting_directly_on_the_pier",
+  "level": 0,
+  "title": "Step 5. Wind acting directly on the pier",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyWork05",
+    "ids": [
+     "p76",
+     "p77"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWSectionIntro5",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0024",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0025",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p81",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p82",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p83",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p84",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p85",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p86",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "FWWindInputs",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0026",
+    "at": "q_SI"
+   },
+   {
+    "kind": "table",
+    "name": "FWDirectPressureResults",
+    "at": "p_sub_SI"
+   },
+   {
+    "kind": "prose",
+    "id": "FWDirectPressureNotes",
+    "at": "p_sub_SI"
+   },
+   {
+    "kind": "prose",
+    "id": "p89",
+    "at": "F_wall_L_SI"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox27",
+    "at": "F_wall_L_SI"
+   },
+   {
+    "kind": "table",
+    "name": "FWWall",
+    "at": "F_wall_L_SI"
+   },
+   {
+    "kind": "prose",
+    "id": "FWDirectWallRules",
+    "at": "F_wall_L_SI"
+   }
+  ],
+  "native_section": "FWStrategyWork05"
+ },
+ {
+  "key": "step_6_prepare_the_transfer_to_analysis_",
+  "level": 0,
+  "title": "Step 6. Transfer to the analysis nodes",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyWork06",
+    "ids": [
+     "p92",
+     "p93"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "FWLoadTransferSketch",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox13",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p96",
+    "at": "start"
+   }
+  ],
+  "native_section": "FWStrategyWork06"
+ },
+ {
+  "key": "totals_at_the_cap_reference",
+  "level": 1,
+  "title": "Totals at the cap reference",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "FWContentBox15",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p98",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox17",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_7_check_the_simplified_method_and_c",
+  "level": 0,
+  "title": "Step 7. Checks and design handoff",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "FWStrategyWork07",
+    "ids": [
+     "p100",
+     "p101"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "FWSectionIntro6",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0027",
+    "at": "Check_geometry"
+   },
+   {
+    "kind": "table",
+    "name": "FWChecksTable",
+    "at": "Check_balance"
+   },
+   {
+    "kind": "table",
+    "name": "FWTransferChecks",
+    "at": "Check_balance"
+   },
+   {
+    "kind": "prose",
+    "id": "FWContentBox18",
+    "at": "Check_balance"
+   },
+   {
+    "kind": "prose",
+    "id": "p105",
+    "at": "Check_balance"
+   },
+   {
+    "kind": "prose",
+    "id": "p106",
+    "at": "Check_balance"
+   }
+  ],
+  "native_section": "FWStrategyWork07"
+ }
+]

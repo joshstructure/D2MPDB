@@ -1,0 +1,12 @@
+{
+ "note": "Inputs are the values the project journal holds for C003 - Bridge Temperature Movement; the journal-owned values are live references in the journal edition.",
+ "sources": {
+  "JOURNAL": {
+   "label": "Project journal",
+   "path": "journal/D2_I95_Project_Journal.bpad",
+   "sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+  }
+ },
+ "decisions": [],
+ "editions": "AASHTO LRFD Bridge Design Specifications, 10th edition (2024); AASHTO LRFD Guide Specifications for the Design of Pedestrian Bridges; FDOT Structures Manual January 2026 (SDG Volume 1, SDM Volume 2)"
+}

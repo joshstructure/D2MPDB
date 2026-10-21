@@ -1,0 +1,14 @@
+[
+ {
+  "bpad_sha256": "c89d6584bed8aaeb8370fb9f1021662b8deac84f9d0ead3edcca13f618f0716b",
+  "case_sha256": "ae9e7cf9d7763246f1144b754af484348c0155d5ecece4a15ff632fd80a277dd",
+  "cells_and_labels": 289,
+  "definitions": 184,
+  "functions": 0,
+  "mathcad_values_compared": null,
+  "package_revision": "64d3fa431983",
+  "report_name": "MSEWallExclusion",
+  "status": "⊗ There are FAILURES",
+  "tool_comparisons": 183
+ }
+]

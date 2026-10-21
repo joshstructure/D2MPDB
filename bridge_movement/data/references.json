@@ -1,0 +1,22 @@
+{
+ "sdg_table_2_7_1_1": {
+  "code": "SDG",
+  "article": "Table 2.7.1-1",
+  "governs": "Mean construction temperature, °F — FDOT SDG Table 2.7.1-1."
+ },
+ "lrfd_5_4_2_2": {
+  "code": "LRFD",
+  "article": "5.4.2.2",
+  "governs": "Coefficient of thermal expansion, 1/°F — normal-weight concrete per LRFD 5.4.2.2."
+ },
+ "sdg_2_7_1_d": {
+  "code": "SDG",
+  "article": "2.7.1.D",
+  "governs": "Temperature load factor used for the factored TU movement envelope — FDOT SDG 2.7.1.D."
+ },
+ "sdg_6_3": {
+  "code": "SDG",
+  "article": "6.3",
+  "governs": "Temperature load factor used for the factored TU movement envelope — FDOT SDG 2.7.1.D."
+ }
+}

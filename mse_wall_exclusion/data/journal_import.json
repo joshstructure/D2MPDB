@@ -1,0 +1,5637 @@
+{
+ "journal": "journal/D2_I95_Project_Journal.bpad",
+ "journal_sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a",
+ "report": "MSEWallExclusion",
+ "title": "C015 - MSE Wall Exclusion - Both End Bents",
+ "items": [
+  {
+   "kind": "table",
+   "name": "ProjectStamp",
+   "title": null,
+   "colwidths": "1:95, 2:165, 3:95, 4:165",
+   "rows": [
+    [
+     {
+      "text": "Firm",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Firm = ProjectInfo.Firm⟩",
+      "dyn": [
+       "Stamp_Firm = ProjectInfo.Firm"
+      ]
+     },
+     {
+      "text": "Project",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Project = ProjectInfo.Project⟩",
+      "dyn": [
+       "Stamp_Project = ProjectInfo.Project"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Address",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Address = ProjectInfo.Address⟩",
+      "dyn": [
+       "Stamp_Address = ProjectInfo.Address"
+      ]
+     },
+     {
+      "text": "Job no.",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_JobNo = ProjectInfo.JobNo⟩",
+      "dyn": [
+       "Stamp_JobNo = ProjectInfo.JobNo"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Designed by",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_DesignedBy = ProjectInfo.DesignedBy⟩",
+      "dyn": [
+       "Stamp_DesignedBy = ProjectInfo.DesignedBy"
+      ]
+     },
+     {
+      "text": "Date",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_DesignDate = ProjectInfo.DesignDate⟩",
+      "dyn": [
+       "Stamp_DesignDate = ProjectInfo.DesignDate"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Checked by",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_CheckedBy = ProjectInfo.CheckedBy⟩",
+      "dyn": [
+       "Stamp_CheckedBy = ProjectInfo.CheckedBy"
+      ]
+     },
+     {
+      "text": "Date",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_CheckDate = ProjectInfo.CheckDate⟩",
+      "dyn": [
+       "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ]
+     }
+    ]
+   ],
+   "formulas": false,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"ProjectStamp\" capture=\"False\" colwidths=\"1:95, 2:165, 3:95, 4:165\">\n                <stylerule range=\"A1:D4\" fontfamily=\"Times New Roman\" fontsize=\"9\" vertalign=\"Center\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Firm</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Firm = ProjectInfo.Firm\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Firm = ProjectInfo.Firm</expbody><expresult>Parsons Transportation Group Inc</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Project</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Project = ProjectInfo.Project\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Project = ProjectInfo.Project</expbody><expresult>I-95 Capacity Improvements from South of SR 152 to South of SR 126</expresult></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Address</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Address = ProjectInfo.Address\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Address = ProjectInfo.Address</expbody><expresult>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Job no.</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_JobNo = ProjectInfo.JobNo\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_JobNo = ProjectInfo.JobNo</expbody><expresult/></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Designed by</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_DesignedBy = ProjectInfo.DesignedBy\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_DesignedBy = ProjectInfo.DesignedBy</expbody><expresult>JAT</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Date</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_DesignDate = ProjectInfo.DesignDate\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_DesignDate = ProjectInfo.DesignDate</expbody><expresult>10/17/2026</expresult></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Checked by</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_CheckedBy = ProjectInfo.CheckedBy\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_CheckedBy = ProjectInfo.CheckedBy</expbody><expresult>MIK</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Date</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_CheckDate = ProjectInfo.CheckDate\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_CheckDate = ProjectInfo.CheckDate</expbody><expresult/></dynexp></paragraph></textcell>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "D2 I-95 PEDESTRIAN BRIDGE",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "16",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"16\" spacingafter=\"6\" fontweight=\"bold\">D2 I-95 PEDESTRIAN BRIDGE</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "MSE WALL CLEARANCE — FRONT AND SIDES",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "16",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"16\" spacingafter=\"6\" fontweight=\"bold\">MSE WALL CLEARANCE — FRONT AND SIDES</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Both end bents | 19 October 2026 (first issued 13 October 2026) | Front strap check; specified side offsets",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\">Both end bents | 19 October 2026 (first issued 13 October 2026) | Front strap check; specified side offsets</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Evaluate a straight strap from the FRONT wall on the normal through a nominal pile center. Use the selected alpha in either skew direction. The SIDE walls use a separate specified 24-inch minimum; their strap routing is not evaluated.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": "#F1F5FA",
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\" background=\"#F1F5FA\">Evaluate a straight strap from the FRONT wall on the normal through a nominal pile center. Use the selected alpha in either skew direction. The SIDE walls use a separate specified 24-inch minimum; their strap routing is not evaluated.</paragraph>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "ResultSummary",
+   "title": null,
+   "colwidths": "1:370, 2:160",
+   "rows": [
+    [
+     {
+      "text": "Geometry output",
+      "dyn": []
+     },
+     {
+      "text": "Live value",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Front wall: calculated minimum pile-face clear",
+      "dyn": []
+     },
+     {
+      "formula": "MinClear to in",
+      "cache": "37.452160573276174 in"
+     }
+    ],
+    [
+     {
+      "text": "Front wall: adopted clear, rounded UP",
+      "dyn": []
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     }
+    ],
+    [
+     {
+      "text": "Side walls: specified minimum pile-face clear",
+      "dyn": []
+     },
+     {
+      "formula": "SideClear to in",
+      "cache": "24 in"
+     }
+    ],
+    [
+     {
+      "text": "Selected front strap skew",
+      "dyn": []
+     },
+     {
+      "formula": "α to deg",
+      "cache": "15 deg"
+     }
+    ],
+    [
+     {
+      "text": "Trial strap width",
+      "dyn": []
+     },
+     {
+      "formula": "Width to in",
+      "cache": "2 in"
+     }
+    ],
+    [
+     {
+      "text": "Geometry input validity",
+      "dyn": []
+     },
+     {
+      "formula": "InputStatus",
+      "cache": "VALID"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"ResultSummary\" capture=\"False\" colwidths=\"1:370, 2:160\">\n                <stylerule range=\"A1:B7\" fontfamily=\"Times New Roman\" fontsize=\"10\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Geometry output</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Live value</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Front wall: calculated minimum pile-face clear</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"MinClear to in\"><num>37.452160573276174 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Front wall: adopted clear, rounded UP</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Side walls: specified minimum pile-face clear</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"SideClear to in\"><num>24 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Selected front strap skew</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"α to deg\"><num>15 deg</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Trial strap width</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Width to in\"><num>2 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Geometry input validity</paragraph></textcell>\n                    <c capture=\"False\" formula=\"InputStatus\"><textvalue>VALID</textvalue></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Measure to the BACK OF FACING. Pile placement tolerance is excluded by the selected nominal-geometry basis. Reversing skew is permitted for this screen; actual pile locations and the complete strap route require separate coordination.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\">Measure to the BACK OF FACING. Pile placement tolerance is excluded by the selected nominal-geometry basis. Reversing skew is permitted for this screen; actual pile locations and the complete strap route require separate coordination.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "1. TYPICAL PILE — FRONT AND SIDE LIMITS",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "14",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"14\" spacingafter=\"6\" fontweight=\"bold\" textcolor=\"#1766A0\" spacingbefore=\"8\" keepwithnext=\"True\">1. TYPICAL PILE — FRONT AND SIDE LIMITS</paragraph>\n        "
+  },
+  {
+   "kind": "canvas",
+   "name": "TypicalBox",
+   "title": null,
+   "size": "6.5 in; 3.3 in; scaletofit",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "qualified": [
+    "MSEWallExclusion.LayoutClear",
+    "MSEWallExclusion.SideClear"
+   ],
+   "xml": "<canvas name=\"TypicalBox\" unit=\"in\" size=\"6.5 in; 3.3 in; scaletofit\">\n                <include target=\"Library.Geometry\"/>\n                <plot formula=\"PlotLines([3.1+(-MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(MSEWallExclusion.DrawTop)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(MSEWallExclusion.DrawTop)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#B44840\" linethickness=\"2\"/>\n                <plot formula=\"PlotLines([3.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#246B7B\" linethickness=\"2\"/>\n                <plot formula=\"PlotLines([3.1+(-1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(-1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(-1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(-1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(1*MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(1*MSEWallExclusion.SideExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(0 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.1+(-0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale),3.1+(0.15 ft)/(1 ft)*(MSEWallExclusion.TypicalScale)],[2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale),2.1+(-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.TypicalScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <planecontainer origin=\"0.15,3.06,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"10\" textcolor=\"#9F332B\"><textvalue>RED: MINIMUM BACK-OF-FACING LIMITS</textvalue></planecontainer>\n                <planecontainer origin=\"1.86,2.19,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"3.63,2.19,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"3.23,1.02,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.LayoutClear to in\"><num>37.5 in</num></planecontainer>\n                <planecontainer origin=\"2.87,2.06,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#246B7B\"><textvalue>PILE</textvalue></planecontainer>\n                <planecontainer origin=\"1.92,2.79,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>OPEN — no rear-wall criterion</textvalue></planecontainer>\n                <planecontainer origin=\"0.15,0.16,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>FRONT: calculated | SIDES: specified | pile tolerance excluded</textvalue></planecontainer>\n            </canvas>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "2. INPUTS AND FRONT-WALL MINIMUM",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "14",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"14\" spacingafter=\"6\" fontweight=\"bold\" textcolor=\"#1766A0\" spacingbefore=\"8\" keepwithnext=\"True\" pagebreakbefore=\"break\">2. INPUTS AND FRONT-WALL MINIMUM</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Shared pile size, spacing and cap dimensions are read from Bridge Geometry (235-in cap). Use nominal pile width only, without a placement envelope. Wall positions are the wall lines of the CAD model of 19 October 2026; the 8-in cheek webs outside the cap ends are not part of this screen. In that model the side walls stand 114 in from the pile row, at the 24-in criterion within 0.0002 in: the side-wall rows below read MEETS CLEAR or SHORTFALL only by the last digits of the model coordinates.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": "#FFF8E9",
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\" background=\"#FFF8E9\">Shared pile size, spacing and cap dimensions are read from Bridge Geometry (235-in cap). Use nominal pile width only, without a placement envelope. Wall positions are the wall lines of the CAD model of 19 October 2026; the 8-in cheek webs outside the cap ends are not part of this screen. In that model the side walls stand 114 in from the pile row, at the 24-in criterion within 0.0002 in: the side-wall rows below read MEETS CLEAR or SHORTFALL only by the last digits of the model coordinates.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Shared pile size, spacing and cap dimensions are live journal references (235-in cap since 19 October 2026, D-036). Use nominal pile width only, without a placement envelope. Wall positions are the saved CAD snapshot of 19 October 2026 (D-055 model); the 8-in cheek webs outside the cap ends are not part of this screen. In that model the side walls stand 114 in from the pile row, at the 24-in criterion within 0.0002 in: the side-wall rows below read MEETS CLEAR or SHORTFALL only by the last digits of the saved coordinates.",
+   "hidden": true,
+   "section": "WorkingNotesInputs",
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": "#FFF8E9",
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\" background=\"#FFF8E9\">Shared pile size, spacing and cap dimensions are live journal references (235-in cap since 19 October 2026, D-036). Use nominal pile width only, without a placement envelope. Wall positions are the saved CAD snapshot of 19 October 2026 (D-055 model); the 8-in cheek webs outside the cap ends are not part of this screen. In that model the side walls stand 114 in from the pile row, at the 24-in criterion within 0.0002 in: the side-wall rows below read MEETS CLEAR or SHORTFALL only by the last digits of the saved coordinates.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "PileSize",
+   "rhs": "BridgeGeometry_2Beam.EndBent_pileWidth",
+   "formula": "PileSize = BridgeGeometry_2Beam.EndBent_pileWidth",
+   "cache": "= 18 in",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 18.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Nominal square pile width.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Nominal square pile width.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "PileSpacing",
+   "rhs": "BridgeGeometry_2Beam.EndBent_pileSpacing",
+   "formula": "PileSpacing = BridgeGeometry_2Beam.EndBent_pileSpacing",
+   "cache": "= 54 in",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 54.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Pile spacing along the row.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Pile spacing along the row.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "Width",
+   "rhs": "2 in",
+   "formula": "Width = 2 in",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": "Required Input",
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 2.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Trial front-wall strap width; use vendor dimension.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Trial front-wall strap width; use vendor dimension.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "Clear",
+   "rhs": "0 in",
+   "formula": "Clear = 0 in",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": "Required Input",
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Additional strap-edge gap; zero is tangency.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Additional strap-edge gap; zero is tangency.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "α",
+   "rhs": "15 deg",
+   "formula": "α = 15 deg",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": "Required Input",
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.2617993877991494,
+    "dims": [
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "unit": "deg"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Selected front-wall plan skew, to either side of the wall normal.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Selected front-wall plan skew, to either side of the wall normal.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "SideClear",
+   "rhs": "24 in",
+   "formula": "SideClear = 24 in",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 24.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Specified side pile-face to back-of-facing minimum; no side strap check.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Specified side pile-face to back-of-facing minimum; no side strap check.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "RoundStep",
+   "rhs": "0.25 in",
+   "formula": "RoundStep = 0.25 in",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": "Required Input",
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.25,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Round the computed front setback upward by this increment.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Round the computed front setback upward by this increment.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "Half",
+   "rhs": "PileSize/2",
+   "formula": "Half = PileSize/2",
+   "cache": "= 9 in",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 9.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Nominal pile half-width; no placement allowance.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Nominal pile half-width; no placement allowance.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "MinClear",
+   "rhs": "(Half*Cos(α)+Width/2+Clear)/Sin(α) to in",
+   "formula": "MinClear = (Half*Cos(α)+Width/2+Clear)/Sin(α) to in",
+   "cache": "= 37.452 in",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.452160573276174,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Front wall: minimum clear from nominal pile face to back of facing.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Front wall: minimum clear from nominal pile face to back of facing.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "LayoutClear",
+   "rhs": "-Floor(-MinClear/Max(RoundStep,0.001 in),1)*Max(RoundStep,0.001 in) to in",
+   "formula": "LayoutClear = -Floor(-MinClear/Max(RoundStep,0.001 in),1)*Max(RoundStep,0.001 in) to in",
+   "cache": "= 37.5 in",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.5,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Front wall: adopted clear rounded UP.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Front wall: adopted clear rounded UP.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "FrontExtent",
+   "rhs": "Half+LayoutClear",
+   "formula": "FrontExtent = Half+LayoutClear",
+   "cache": "= 46.5 in",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 46.5,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Pile center to front-wall limit.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Pile center to front-wall limit.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "SideExtent",
+   "rhs": "Half+SideClear",
+   "formula": "SideExtent = Half+SideClear",
+   "cache": "= 33 in",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 33.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Pile center to either side-wall limit.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"5\">Pile center to either side-wall limit.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "DERIVATION: S sin alpha - h cos alpha = w/2 + c. Solve for S using h = nominal pile width / 2. The centered nominal geometry is symmetric for positive or negative skew. No pile placement term enters this expression.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": "#F1F5FA",
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\" background=\"#F1F5FA\">DERIVATION: S sin alpha - h cos alpha = w/2 + c. Solve for S using h = nominal pile width / 2. The centered nominal geometry is symmetric for positive or negative skew. No pile placement term enters this expression.</paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "FrameAngle",
+   "rhs": "-89.9988175443184 deg",
+   "formula": "FrameAngle = -89.9988175443184 deg",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -1.5707756890499938,
+    "dims": [
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "unit": "deg"
+  },
+  {
+   "kind": "def",
+   "name": "PileCount",
+   "rhs": "BridgeGeometry_2Beam.EndBent_pileCount",
+   "formula": "PileCount = BridgeGeometry_2Beam.EndBent_pileCount",
+   "cache": "= 4",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 4.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "CapLength",
+   "rhs": "BridgeGeometry_2Beam.EndBentCap_length",
+   "formula": "CapLength = BridgeGeometry_2Beam.EndBentCap_length",
+   "cache": "= 19 ft 7 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 235.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "CapWidth",
+   "rhs": "BridgeGeometry_2Beam.EndBentCap_width",
+   "formula": "CapWidth = BridgeGeometry_2Beam.EndBentCap_width",
+   "cache": "= 42 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 42.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "CapX",
+   "rhs": "(CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2",
+   "formula": "CapX = (CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2",
+   "cache": "= 9 ft 9.5 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 117.50043336762035,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "CapY",
+   "rhs": "(CapWidth*Abs(Sin(FrameAngle))+CapLength*Abs(Cos(FrameAngle)))/2",
+   "formula": "CapY = (CapWidth*Abs(Sin(FrameAngle))+CapLength*Abs(Cos(FrameAngle)))/2",
+   "cache": "= 1 ft 9.002 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 21.00242493055379,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "InputsValid",
+   "rhs": "And(PileSize > 0 in,PileSpacing > PileSize,PileCount == 4,Width >= 0 in,Clear >= 0 in,α > 0 deg,α < 90 deg,SideClear >= 24 in,RoundStep > 0 in)",
+   "formula": "InputsValid = And(PileSize > 0 in,PileSpacing > PileSize,PileCount == 4,Width >= 0 in,Clear >= 0 in,α > 0 deg,α < 90 deg,SideClear >= 24 in,RoundStep > 0 in)",
+   "cache": "= True",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "bool": true
+   }
+  },
+  {
+   "kind": "def",
+   "name": "InputStatus",
+   "rhs": "If(InputsValid,\"VALID\",\"INVALID - DO NOT USE\")",
+   "formula": "InputStatus = If(InputsValid,\"VALID\",\"INVALID - DO NOT USE\")",
+   "cache": "= VALID",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "VALID"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "SkewStatus",
+   "rhs": "If(And(α > 0 deg,α <= 15 deg),\"Within ordinary 15 deg limit\",\"Above ordinary 15 deg limit\")",
+   "formula": "SkewStatus = If(And(α > 0 deg,α <= 15 deg),\"Within ordinary 15 deg limit\",\"Above ordinary 15 deg limit\")",
+   "cache": "= Within ordinary 15 deg limit",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "Within ordinary 15 deg limit"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "DrawTop",
+   "rhs": "Half+1 ft",
+   "formula": "DrawTop = Half+1 ft",
+   "cache": "= 1 ft 9 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 21.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "TypicalScale",
+   "rhs": "2.25/((DrawTop+FrontExtent)/(1 ft))",
+   "formula": "TypicalScale = 2.25/((DrawTop+FrontExtent)/(1 ft))",
+   "cache": "= 0.4",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.4,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "PlotScale",
+   "rhs": "Min(6/((3*PileSpacing+2*SideExtent)/(1 ft)),2.5/((FrontExtent+DrawTop+2 ft)/(1 ft)))",
+   "formula": "PlotScale = Min(6/((3*PileSpacing+2*SideExtent)/(1 ft)),2.5/((FrontExtent+DrawTop+2 ft)/(1 ft)))",
+   "cache": "= 0.316",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.3157894736842105,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "PanelThickness",
+   "rhs": "0.458333333333333 ft",
+   "formula": "PanelThickness = 0.458333333333333 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 5.499999999999996,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P1x",
+   "rhs": "-1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent1P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= -81.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -80.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P1y",
+   "rhs": "-1.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent1P1y = -1.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= -0.00167 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0016716573370127818,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P2x",
+   "rhs": "-0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent1P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= -27.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -26.99999999425013,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P2y",
+   "rhs": "-0.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent1P2y = -0.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= -0.000557 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0005572191123375939,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P3x",
+   "rhs": "0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent1P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= 27.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 26.99999999425013,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P3y",
+   "rhs": "0.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent1P3y = 0.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= 0.000557 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0005572191123375939,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P4x",
+   "rhs": "1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent1P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= 81.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 80.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1P4y",
+   "rhs": "1.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent1P4y = 1.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= 0.00167 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0016716573370127818,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Left",
+   "rhs": "Bent1P1x-SideExtent",
+   "formula": "Bent1Left = Bent1P1x-SideExtent",
+   "cache": "= -114.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -113.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Right",
+   "rhs": "Bent1P4x+SideExtent",
+   "formula": "Bent1Right = Bent1P4x+SideExtent",
+   "cache": "= 114.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 113.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Bottom",
+   "rhs": "Min(Bent1P1y,Bent1P4y)-FrontExtent",
+   "formula": "Bent1Bottom = Min(Bent1P1y,Bent1P4y)-FrontExtent",
+   "cache": "= -46.502 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -46.50167165733701,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Top",
+   "rhs": "Max(Bent1P1y,Bent1P4y)+DrawTop",
+   "formula": "Bent1Top = Max(Bent1P1y,Bent1P4y)+DrawTop",
+   "cache": "= 1 ft 9.002 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 21.001671657337013,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1TotalX",
+   "rhs": "Bent1Right-Bent1Left",
+   "formula": "Bent1TotalX = Bent1Right-Bent1Left",
+   "cache": "= 228.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 227.99999996550076,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1x",
+   "rhs": "-9.95834880941483 ft",
+   "formula": "Bent1W1x = -9.95834880941483 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -119.50018571297795,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1y",
+   "rhs": "-3.87515478292704 ft",
+   "formula": "Bent1W1y = -3.87515478292704 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -46.501857395124475,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1len",
+   "rhs": "19.9166666622123 ft",
+   "formula": "Bent1W1len = 19.9166666622123 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 238.9999999465476,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1tx",
+   "rhs": "1.0",
+   "formula": "Bent1W1tx = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1ty",
+   "rhs": "0.0",
+   "formula": "Bent1W1ty = 0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1nx",
+   "rhs": "-0.0",
+   "formula": "Bent1W1nx = -0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1ny",
+   "rhs": "1.0",
+   "formula": "Bent1W1ny = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1xend",
+   "rhs": "Bent1W1x+Bent1W1tx*Bent1W1len",
+   "formula": "Bent1W1xend = Bent1W1x+Bent1W1tx*Bent1W1len",
+   "cache": "= 9.958 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 119.49981423356965,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1yend",
+   "rhs": "Bent1W1y+Bent1W1ty*Bent1W1len",
+   "formula": "Bent1W1yend = Bent1W1y+Bent1W1ty*Bent1W1len",
+   "cache": "= -3.875 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -46.501857395124475,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile1Face",
+   "rhs": "(Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half",
+   "formula": "Bent1Wall1Pile1Face = (Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half",
+   "cache": "= 3 ft 1.5 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.50018573778746,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile1Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent1Wall1Pile1Face)",
+   "formula": "Bent1Wall1Pile1Extra = Max(0 in,LayoutClear-Bent1Wall1Pile1Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile2Face",
+   "rhs": "(Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half",
+   "formula": "Bent1Wall1Pile2Face = (Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half",
+   "cache": "= 3 ft 1.501 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.50130017601214,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile2Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent1Wall1Pile2Face)",
+   "formula": "Bent1Wall1Pile2Extra = Max(0 in,LayoutClear-Bent1Wall1Pile2Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile3Face",
+   "rhs": "(Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half",
+   "formula": "Bent1Wall1Pile3Face = (Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half",
+   "cache": "= 3 ft 1.502 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.50241461423681,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile3Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent1Wall1Pile3Face)",
+   "formula": "Bent1Wall1Pile3Extra = Max(0 in,LayoutClear-Bent1Wall1Pile3Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile4Face",
+   "rhs": "(Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half",
+   "formula": "Bent1Wall1Pile4Face = (Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half",
+   "cache": "= 3 ft 1.504 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.50352905246149,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall1Pile4Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent1Wall1Pile4Face)",
+   "formula": "Bent1Wall1Pile4Extra = Max(0 in,LayoutClear-Bent1Wall1Pile4Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1Gap",
+   "rhs": "Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)",
+   "formula": "Bent1W1Gap = Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)",
+   "cache": "= 3 ft 1.5 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.50018573778746,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent1W1Gap)",
+   "formula": "Bent1W1Extra = Max(0 in,LayoutClear-Bent1W1Gap)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W1Status",
+   "rhs": "If(InputsValid,If(Bent1W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "formula": "Bent1W1Status = If(InputsValid,If(Bent1W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "cache": "= MEETS CLEAR",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "MEETS CLEAR"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2x",
+   "rhs": "-9.5000154760815 ft",
+   "formula": "Bent1W2x = -9.5000154760815 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -114.00018571297801,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2y",
+   "rhs": "-4.33348811626037 ft",
+   "formula": "Bent1W2y = -4.33348811626037 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -52.001857395124446,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2len",
+   "rhs": "23.1098329385179 ft",
+   "formula": "Bent1W2len = 23.1098329385179 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 277.3179952622148,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2tx",
+   "rhs": "0.0",
+   "formula": "Bent1W2tx = 0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2ty",
+   "rhs": "1.0",
+   "formula": "Bent1W2ty = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2nx",
+   "rhs": "1.0",
+   "formula": "Bent1W2nx = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2ny",
+   "rhs": "-0.0",
+   "formula": "Bent1W2ny = -0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2xend",
+   "rhs": "Bent1W2x+Bent1W2tx*Bent1W2len",
+   "formula": "Bent1W2xend = Bent1W2x+Bent1W2tx*Bent1W2len",
+   "cache": "= -9.500 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -114.00018571297801,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2yend",
+   "rhs": "Bent1W2y+Bent1W2ty*Bent1W2len",
+   "formula": "Bent1W2yend = Bent1W2y+Bent1W2ty*Bent1W2len",
+   "cache": "= 18.776 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 225.3161378670904,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile1Face",
+   "rhs": "(Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half",
+   "formula": "Bent1Wall2Pile1Face = (Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 24.000185730227628,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile1Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall2Pile1Face)",
+   "formula": "Bent1Wall2Pile1Extra = Max(0 in,SideClear-Bent1Wall2Pile1Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile2Face",
+   "rhs": "(Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half",
+   "formula": "Bent1Wall2Pile2Face = (Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half",
+   "cache": "= 6 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 78.00018571872788,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile2Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall2Pile2Face)",
+   "formula": "Bent1Wall2Pile2Extra = Max(0 in,SideClear-Bent1Wall2Pile2Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile3Face",
+   "rhs": "(Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half",
+   "formula": "Bent1Wall2Pile3Face = (Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half",
+   "cache": "= 11 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 132.00018570722813,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile3Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall2Pile3Face)",
+   "formula": "Bent1Wall2Pile3Extra = Max(0 in,SideClear-Bent1Wall2Pile3Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile4Face",
+   "rhs": "(Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half",
+   "formula": "Bent1Wall2Pile4Face = (Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half",
+   "cache": "= 15 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 186.0001856957284,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall2Pile4Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall2Pile4Face)",
+   "formula": "Bent1Wall2Pile4Extra = Max(0 in,SideClear-Bent1Wall2Pile4Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2Gap",
+   "rhs": "Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)",
+   "formula": "Bent1W2Gap = Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 24.000185730227628,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2Extra",
+   "rhs": "Max(0 in,SideClear-Bent1W2Gap)",
+   "formula": "Bent1W2Extra = Max(0 in,SideClear-Bent1W2Gap)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W2Status",
+   "rhs": "If(InputsValid,If(Bent1W2Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "formula": "Bent1W2Status = If(InputsValid,If(Bent1W2Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "cache": "= MEETS CLEAR",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "MEETS CLEAR"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3x",
+   "rhs": "9.49998451946412 ft",
+   "formula": "Bent1W3x = 9.49998451946412 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 113.99981423356942,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3y",
+   "rhs": "-4.33348811626037 ft",
+   "formula": "Bent1W3y = -4.33348811626037 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -52.001857395124446,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3len",
+   "rhs": "10.1515001933395 ft",
+   "formula": "Bent1W3len = 10.1515001933395 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 121.81800232007399,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3tx",
+   "rhs": "0.0",
+   "formula": "Bent1W3tx = 0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3ty",
+   "rhs": "1.0",
+   "formula": "Bent1W3ty = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3nx",
+   "rhs": "-1.0",
+   "formula": "Bent1W3nx = -1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3ny",
+   "rhs": "-0.0",
+   "formula": "Bent1W3ny = -0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3xend",
+   "rhs": "Bent1W3x+Bent1W3tx*Bent1W3len",
+   "formula": "Bent1W3xend = Bent1W3x+Bent1W3tx*Bent1W3len",
+   "cache": "= 9.500 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 113.99981423356942,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3yend",
+   "rhs": "Bent1W3y+Bent1W3ty*Bent1W3len",
+   "formula": "Bent1W3yend = Bent1W3y+Bent1W3ty*Bent1W3len",
+   "cache": "= 5.818 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 69.81614492494954,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile1Face",
+   "rhs": "(Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half",
+   "formula": "Bent1Wall3Pile1Face = (Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half",
+   "cache": "= 15 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 185.9998142163198,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile1Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall3Pile1Face)",
+   "formula": "Bent1Wall3Pile1Extra = Max(0 in,SideClear-Bent1Wall3Pile1Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile2Face",
+   "rhs": "(Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half",
+   "formula": "Bent1Wall3Pile2Face = (Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half",
+   "cache": "= 11 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 131.99981422781954,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile2Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall3Pile2Face)",
+   "formula": "Bent1Wall3Pile2Extra = Max(0 in,SideClear-Bent1Wall3Pile2Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile3Face",
+   "rhs": "(Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half",
+   "formula": "Bent1Wall3Pile3Face = (Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half",
+   "cache": "= 6 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 77.99981423931929,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile3Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall3Pile3Face)",
+   "formula": "Bent1Wall3Pile3Extra = Max(0 in,SideClear-Bent1Wall3Pile3Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile4Face",
+   "rhs": "(Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half",
+   "formula": "Bent1Wall3Pile4Face = (Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 23.999814250819043,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1Wall3Pile4Extra",
+   "rhs": "Max(0 in,SideClear-Bent1Wall3Pile4Face)",
+   "formula": "Bent1Wall3Pile4Extra = Max(0 in,SideClear-Bent1Wall3Pile4Face)",
+   "cache": "= 0 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.00018574918095737303,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3Gap",
+   "rhs": "Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)",
+   "formula": "Bent1W3Gap = Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 23.999814250819043,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3Extra",
+   "rhs": "Max(0 in,SideClear-Bent1W3Gap)",
+   "formula": "Bent1W3Extra = Max(0 in,SideClear-Bent1W3Gap)",
+   "cache": "= 0 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.00018574918095737303,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1W3Status",
+   "rhs": "If(InputsValid,If(Bent1W3Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "formula": "Bent1W3Status = If(InputsValid,If(Bent1W3Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "cache": "= SHORTFALL",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "SHORTFALL"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1CapGap",
+   "rhs": "-Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)",
+   "formula": "Bent1CapGap = -Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)",
+   "cache": "= 2 ft 1.499 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 25.499432464570685,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent1CapStatus",
+   "rhs": "If(Bent1CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")",
+   "formula": "Bent1CapStatus = If(Bent1CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")",
+   "cache": "= ✓ PASS",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "✓ PASS"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P1x",
+   "rhs": "-1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent2P1x = -1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= -81.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -80.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P1y",
+   "rhs": "1.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent2P1y = 1.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= 0.00167 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0016716573370127818,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P2x",
+   "rhs": "-0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent2P2x = -0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= -27.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -26.99999999425013,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P2y",
+   "rhs": "0.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent2P2y = 0.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= 0.000557 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0005572191123375939,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P3x",
+   "rhs": "0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent2P3x = 0.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= 27.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 26.99999999425013,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P3y",
+   "rhs": "-0.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent2P3y = -0.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= -0.000557 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0005572191123375939,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P4x",
+   "rhs": "1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "formula": "Bent2P4x = 1.5*PileSpacing*Abs(Sin(FrameAngle))",
+   "cache": "= 81.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 80.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2P4y",
+   "rhs": "-1.5*PileSpacing*Cos(FrameAngle)",
+   "formula": "Bent2P4y = -1.5*PileSpacing*Cos(FrameAngle)",
+   "cache": "= -0.00167 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0016716573370127818,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Left",
+   "rhs": "Bent2P1x-SideExtent",
+   "formula": "Bent2Left = Bent2P1x-SideExtent",
+   "cache": "= -114.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -113.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Right",
+   "rhs": "Bent2P4x+SideExtent",
+   "formula": "Bent2Right = Bent2P4x+SideExtent",
+   "cache": "= 114.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 113.99999998275038,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Bottom",
+   "rhs": "Min(Bent2P1y,Bent2P4y)-FrontExtent",
+   "formula": "Bent2Bottom = Min(Bent2P1y,Bent2P4y)-FrontExtent",
+   "cache": "= -46.502 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -46.50167165733701,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Top",
+   "rhs": "Max(Bent2P1y,Bent2P4y)+DrawTop",
+   "formula": "Bent2Top = Max(Bent2P1y,Bent2P4y)+DrawTop",
+   "cache": "= 1 ft 9.002 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 21.001671657337013,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2TotalX",
+   "rhs": "Bent2Right-Bent2Left",
+   "formula": "Bent2TotalX = Bent2Right-Bent2Left",
+   "cache": "= 228.000 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 227.99999996550076,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1x",
+   "rhs": "-9.95831785279752 ft",
+   "formula": "Bent2W1x = -9.95831785279752 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -119.49981423357025,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1y",
+   "rhs": "-3.87515478292698 ft",
+   "formula": "Bent2W1y = -3.87515478292698 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -46.50185739512376,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1len",
+   "rhs": "19.9166666622123 ft",
+   "formula": "Bent2W1len = 19.9166666622123 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 238.9999999465476,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1tx",
+   "rhs": "1.0",
+   "formula": "Bent2W1tx = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1ty",
+   "rhs": "-0.0",
+   "formula": "Bent2W1ty = -0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1nx",
+   "rhs": "-0.0",
+   "formula": "Bent2W1nx = -0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1ny",
+   "rhs": "1.0",
+   "formula": "Bent2W1ny = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1xend",
+   "rhs": "Bent2W1x+Bent2W1tx*Bent2W1len",
+   "formula": "Bent2W1xend = Bent2W1x+Bent2W1tx*Bent2W1len",
+   "cache": "= 9.958 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 119.50018571297736,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1yend",
+   "rhs": "Bent2W1y+Bent2W1ty*Bent2W1len",
+   "formula": "Bent2W1yend = Bent2W1y+Bent2W1ty*Bent2W1len",
+   "cache": "= -3.875 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -46.50185739512376,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile1Face",
+   "rhs": "(Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half",
+   "formula": "Bent2Wall1Pile1Face = (Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half",
+   "cache": "= 3 ft 1.504 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.50352905246077,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile1Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent2Wall1Pile1Face)",
+   "formula": "Bent2Wall1Pile1Extra = Max(0 in,LayoutClear-Bent2Wall1Pile1Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile2Face",
+   "rhs": "(Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half",
+   "formula": "Bent2Wall1Pile2Face = (Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half",
+   "cache": "= 3 ft 1.502 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.502414614236095,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile2Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent2Wall1Pile2Face)",
+   "formula": "Bent2Wall1Pile2Extra = Max(0 in,LayoutClear-Bent2Wall1Pile2Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile3Face",
+   "rhs": "(Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half",
+   "formula": "Bent2Wall1Pile3Face = (Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half",
+   "cache": "= 3 ft 1.501 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.50130017601142,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile3Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent2Wall1Pile3Face)",
+   "formula": "Bent2Wall1Pile3Extra = Max(0 in,LayoutClear-Bent2Wall1Pile3Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile4Face",
+   "rhs": "(Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half",
+   "formula": "Bent2Wall1Pile4Face = (Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half",
+   "cache": "= 3 ft 1.5 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.500185737786744,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall1Pile4Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent2Wall1Pile4Face)",
+   "formula": "Bent2Wall1Pile4Extra = Max(0 in,LayoutClear-Bent2Wall1Pile4Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1Gap",
+   "rhs": "Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)",
+   "formula": "Bent2W1Gap = Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)",
+   "cache": "= 3 ft 1.5 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 37.500185737786744,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1Extra",
+   "rhs": "Max(0 in,LayoutClear-Bent2W1Gap)",
+   "formula": "Bent2W1Extra = Max(0 in,LayoutClear-Bent2W1Gap)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W1Status",
+   "rhs": "If(InputsValid,If(Bent2W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "formula": "Bent2W1Status = If(InputsValid,If(Bent2W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "cache": "= MEETS CLEAR",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "MEETS CLEAR"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2x",
+   "rhs": "-9.49998451946418 ft",
+   "formula": "Bent2W2x = -9.49998451946418 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -113.99981423357016,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2y",
+   "rhs": "41.0730339531239 ft",
+   "formula": "Bent2W2y = 41.0730339531239 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 492.87640743748676,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2len",
+   "rhs": "45.4065220693842 ft",
+   "formula": "Bent2W2len = 45.4065220693842 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 544.8782648326104,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2tx",
+   "rhs": "0.0",
+   "formula": "Bent2W2tx = 0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2ty",
+   "rhs": "-1.0",
+   "formula": "Bent2W2ty = -1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2nx",
+   "rhs": "1.0",
+   "formula": "Bent2W2nx = 1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2ny",
+   "rhs": "0.0",
+   "formula": "Bent2W2ny = 0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2xend",
+   "rhs": "Bent2W2x+Bent2W2tx*Bent2W2len",
+   "formula": "Bent2W2xend = Bent2W2x+Bent2W2tx*Bent2W2len",
+   "cache": "= -9.500 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -113.99981423357016,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2yend",
+   "rhs": "Bent2W2y+Bent2W2ty*Bent2W2len",
+   "formula": "Bent2W2yend = Bent2W2y+Bent2W2ty*Bent2W2len",
+   "cache": "= -4.333 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -52.001857395123636,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile1Face",
+   "rhs": "(Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half",
+   "formula": "Bent2Wall2Pile1Face = (Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 23.99981425081978,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile1Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall2Pile1Face)",
+   "formula": "Bent2Wall2Pile1Extra = Max(0 in,SideClear-Bent2Wall2Pile1Face)",
+   "cache": "= 0 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.00018574918021840858,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile2Face",
+   "rhs": "(Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half",
+   "formula": "Bent2Wall2Pile2Face = (Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half",
+   "cache": "= 6 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 77.99981423932003,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile2Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall2Pile2Face)",
+   "formula": "Bent2Wall2Pile2Extra = Max(0 in,SideClear-Bent2Wall2Pile2Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile3Face",
+   "rhs": "(Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half",
+   "formula": "Bent2Wall2Pile3Face = (Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half",
+   "cache": "= 11 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 131.99981422782028,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile3Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall2Pile3Face)",
+   "formula": "Bent2Wall2Pile3Extra = Max(0 in,SideClear-Bent2Wall2Pile3Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile4Face",
+   "rhs": "(Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half",
+   "formula": "Bent2Wall2Pile4Face = (Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half",
+   "cache": "= 15 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 185.99981421632054,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall2Pile4Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall2Pile4Face)",
+   "formula": "Bent2Wall2Pile4Extra = Max(0 in,SideClear-Bent2Wall2Pile4Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2Gap",
+   "rhs": "Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)",
+   "formula": "Bent2W2Gap = Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 23.99981425081978,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2Extra",
+   "rhs": "Max(0 in,SideClear-Bent2W2Gap)",
+   "formula": "Bent2W2Extra = Max(0 in,SideClear-Bent2W2Gap)",
+   "cache": "= 0 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.00018574918021840858,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W2Status",
+   "rhs": "If(InputsValid,If(Bent2W2Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "formula": "Bent2W2Status = If(InputsValid,If(Bent2W2Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "cache": "= SHORTFALL",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "SHORTFALL"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3x",
+   "rhs": "9.50001547608143 ft",
+   "formula": "Bent2W3x = 9.50001547608143 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 114.00018571297716,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3y",
+   "rhs": "2.19841103276201 ft",
+   "formula": "Bent2W3y = 2.19841103276201 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 26.38093239314412,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3len",
+   "rhs": "6.53189914902233 ft",
+   "formula": "Bent2W3len = 6.53189914902233 ft",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 78.38278978826796,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "ft"
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3tx",
+   "rhs": "0.0",
+   "formula": "Bent2W3tx = 0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3ty",
+   "rhs": "-1.0",
+   "formula": "Bent2W3ty = -1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3nx",
+   "rhs": "-1.0",
+   "formula": "Bent2W3nx = -1.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3ny",
+   "rhs": "0.0",
+   "formula": "Bent2W3ny = 0.0",
+   "cache": "",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3xend",
+   "rhs": "Bent2W3x+Bent2W3tx*Bent2W3len",
+   "formula": "Bent2W3xend = Bent2W3x+Bent2W3tx*Bent2W3len",
+   "cache": "= 9.500 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 114.00018571297716,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3yend",
+   "rhs": "Bent2W3y+Bent2W3ty*Bent2W3len",
+   "formula": "Bent2W3yend = Bent2W3y+Bent2W3ty*Bent2W3len",
+   "cache": "= -4.333 ft",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": -52.001857395123835,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile1Face",
+   "rhs": "(Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half",
+   "formula": "Bent2Wall3Pile1Face = (Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half",
+   "cache": "= 15 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 186.00018569572754,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile1Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall3Pile1Face)",
+   "formula": "Bent2Wall3Pile1Extra = Max(0 in,SideClear-Bent2Wall3Pile1Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile2Face",
+   "rhs": "(Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half",
+   "formula": "Bent2Wall3Pile2Face = (Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half",
+   "cache": "= 11 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 132.00018570722727,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile2Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall3Pile2Face)",
+   "formula": "Bent2Wall3Pile2Extra = Max(0 in,SideClear-Bent2Wall3Pile2Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile3Face",
+   "rhs": "(Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half",
+   "formula": "Bent2Wall3Pile3Face = (Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half",
+   "cache": "= 6 ft 6 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 78.00018571872702,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile3Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall3Pile3Face)",
+   "formula": "Bent2Wall3Pile3Extra = Max(0 in,SideClear-Bent2Wall3Pile3Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile4Face",
+   "rhs": "(Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half",
+   "formula": "Bent2Wall3Pile4Face = (Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 24.000185730226775,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2Wall3Pile4Extra",
+   "rhs": "Max(0 in,SideClear-Bent2Wall3Pile4Face)",
+   "formula": "Bent2Wall3Pile4Extra = Max(0 in,SideClear-Bent2Wall3Pile4Face)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3Gap",
+   "rhs": "Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)",
+   "formula": "Bent2W3Gap = Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)",
+   "cache": "= 2 ft 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 24.000185730226775,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3Extra",
+   "rhs": "Max(0 in,SideClear-Bent2W3Gap)",
+   "formula": "Bent2W3Extra = Max(0 in,SideClear-Bent2W3Gap)",
+   "cache": "= 0 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2W3Status",
+   "rhs": "If(InputsValid,If(Bent2W3Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "formula": "Bent2W3Status = If(InputsValid,If(Bent2W3Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+   "cache": "= MEETS CLEAR",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "MEETS CLEAR"
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2CapGap",
+   "rhs": "-Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)",
+   "formula": "Bent2CapGap = -Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)",
+   "cache": "= 2 ft 1.499 in",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 25.499432464569967,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "def",
+   "name": "Bent2CapStatus",
+   "rhs": "If(Bent2CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")",
+   "formula": "Bent2CapStatus = If(Bent2CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")",
+   "cache": "= ✓ PASS",
+   "hidden": true,
+   "section": "GeometryAndChecks",
+   "heading": "",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "3. END BENT 1 — FRONT AND SIDE PLAN",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "✓ PASS"
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "3. END BENT 1 — FRONT AND SIDE PLAN",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "14",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"14\" spacingafter=\"6\" fontweight=\"bold\" textcolor=\"#1766A0\" spacingbefore=\"8\" keepwithnext=\"True\" pagebreakbefore=\"break\">3. END BENT 1 — FRONT AND SIDE PLAN</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Red open boundary shows computed front and specified side offsets. There is no rear-wall criterion. Gray is the cap; black is the current back of facing. Local x runs across the piles and +y into the approach.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\">Red open boundary shows computed front and specified side offsets. There is no rear-wall criterion. Gray is the cap; black is the current back of facing. Local x runs across the piles and +y into the approach.</paragraph>\n        "
+  },
+  {
+   "kind": "canvas",
+   "name": "Bent1Plan",
+   "title": null,
+   "size": "6.5 in; 4.0 in; scaletofit",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "qualified": [
+    "MSEWallExclusion.Bent1TotalX",
+    "MSEWallExclusion.LayoutClear",
+    "MSEWallExclusion.SideClear"
+   ],
+   "xml": "<canvas name=\"Bent1Plan\" unit=\"in\" size=\"6.5 in; 4.0 in; scaletofit\">\n                <include target=\"Library.Geometry\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Top)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Top)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#B44840\" linethickness=\"2.2\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"1.745,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P1</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((1.8250000000000002-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"2.695,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P2</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((2.775-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"3.645,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P3</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((3.725-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"4.595,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P4</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P4x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((4.675-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#87949C\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1W1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1W1xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W1y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W1yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#263F49\" linethickness=\"1.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1W2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1W2xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W2y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W2yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#263F49\" linethickness=\"1.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1W3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1W3xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W3y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent1Top+0.5 ft,Max(MSEWallExclusion.Bent1Bottom-0.5 ft,MSEWallExclusion.Bent1W3yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#263F49\" linethickness=\"1.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"0.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"0.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P1y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P1y)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P4y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P4y)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent1P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent1P2x)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent1P2y-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <planecontainer origin=\"0.12,3.69,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"10\" textcolor=\"#9F332B\"><textvalue>FRONT: STRAP CHECK | SIDES: SPECIFIED MINIMUM</textvalue></planecontainer>\n                <planecontainer origin=\"0.12,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>Front clear:</textvalue></planecontainer>\n                <planecontainer origin=\"1.04,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.LayoutClear to in\"><num>37.5 in</num></planecontainer>\n                <planecontainer origin=\"3.4,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>Side clear:</textvalue></planecontainer>\n                <planecontainer origin=\"4.35,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"2.76,0.39,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.Bent1TotalX to in\"><num>227.99999996550076 in</num></planecontainer>\n                <planecontainer origin=\"1.97,1.23,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.LayoutClear to in\"><num>37.5 in</num></planecontainer>\n                <planecontainer origin=\"0.43,2.35,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"5.3,2.35,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"0.13,0.09,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>No rear limit | current walls are not relocated | tolerance excluded</textvalue></planecontainer>\n                <planecontainer origin=\"0.22,2.95,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"8\" textcolor=\"#263F49\"><textvalue>A6 / left</textvalue></planecontainer>\n                <planecontainer origin=\"4.87,2.95,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"8\" textcolor=\"#263F49\"><textvalue>A7 / right</textvalue></planecontainer>\n                <planecontainer origin=\"2.72,0.8,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"8\" textcolor=\"#263F49\"><textvalue>A5 / front</textvalue></planecontainer>\n            </canvas>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "Bent1Offsets",
+   "title": null,
+   "colwidths": "1:55, 2:155, 3:155, 4:165",
+   "rows": [
+    [
+     {
+      "text": "Pile",
+      "dyn": []
+     },
+     {
+      "text": "Front face gap",
+      "dyn": []
+     },
+     {
+      "text": "Front required",
+      "dyn": []
+     },
+     {
+      "text": "Front shortfall",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "P1",
+      "dyn": []
+     },
+     {
+      "formula": "Bent1Wall1Pile1Face to in",
+      "cache": "37.50018573778746 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent1Wall1Pile1Extra to in",
+      "cache": "0 in"
+     }
+    ],
+    [
+     {
+      "text": "P2",
+      "dyn": []
+     },
+     {
+      "formula": "Bent1Wall1Pile2Face to in",
+      "cache": "37.50130017601214 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent1Wall1Pile2Extra to in",
+      "cache": "0 in"
+     }
+    ],
+    [
+     {
+      "text": "P3",
+      "dyn": []
+     },
+     {
+      "formula": "Bent1Wall1Pile3Face to in",
+      "cache": "37.50241461423681 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent1Wall1Pile3Extra to in",
+      "cache": "0 in"
+     }
+    ],
+    [
+     {
+      "text": "P4",
+      "dyn": []
+     },
+     {
+      "formula": "Bent1Wall1Pile4Face to in",
+      "cache": "37.50352905246149 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent1Wall1Pile4Extra to in",
+      "cache": "0 in"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"Bent1Offsets\" capture=\"False\" colwidths=\"1:55, 2:155, 3:155, 4:165\">\n                <stylerule range=\"A1:D5\" fontfamily=\"Times New Roman\" fontsize=\"10\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Pile</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Front face gap</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Front required</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Front shortfall</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P1</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile1Face to in\"><num>37.50018573778746 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile1Extra to in\"><num>0 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P2</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile2Face to in\"><num>37.50130017601214 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile2Extra to in\"><num>0 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P3</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile3Face to in\"><num>37.50241461423681 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile3Extra to in\"><num>0 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P4</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile4Face to in\"><num>37.50352905246149 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1Wall1Pile4Extra to in\"><num>0 in</num></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "Bent1Walls",
+   "title": null,
+   "colwidths": "1:130, 2:85, 3:100, 4:100, 5:115",
+   "rows": [
+    [
+     {
+      "text": "Wall / basis",
+      "dyn": []
+     },
+     {
+      "text": "Required",
+      "dyn": []
+     },
+     {
+      "text": "Current gap",
+      "dyn": []
+     },
+     {
+      "text": "Extra setback",
+      "dyn": []
+     },
+     {
+      "text": "Result",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Front / strap",
+      "dyn": []
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent1W1Gap to in",
+      "cache": "37.50018573778746 in"
+     },
+     {
+      "formula": "Bent1W1Extra to in",
+      "cache": "0 in"
+     },
+     {
+      "formula": "Bent1W1Status",
+      "cache": "MEETS CLEAR"
+     }
+    ],
+    [
+     {
+      "text": "Left / specified",
+      "dyn": []
+     },
+     {
+      "formula": "SideClear to in",
+      "cache": "24 in"
+     },
+     {
+      "formula": "Bent1W2Gap to in",
+      "cache": "24.000185730227628 in"
+     },
+     {
+      "formula": "Bent1W2Extra to in",
+      "cache": "0 in"
+     },
+     {
+      "formula": "Bent1W2Status",
+      "cache": "MEETS CLEAR"
+     }
+    ],
+    [
+     {
+      "text": "Right / specified",
+      "dyn": []
+     },
+     {
+      "formula": "SideClear to in",
+      "cache": "24 in"
+     },
+     {
+      "formula": "Bent1W3Gap to in",
+      "cache": "23.999814250819043 in"
+     },
+     {
+      "formula": "Bent1W3Extra to in",
+      "cache": "0.00018574918095737303 in"
+     },
+     {
+      "formula": "Bent1W3Status",
+      "cache": "SHORTFALL"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"Bent1Walls\" capture=\"False\" colwidths=\"1:130, 2:85, 3:100, 4:100, 5:115\">\n                <stylerule range=\"A1:E4\" fontfamily=\"Times New Roman\" fontsize=\"10\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Wall / basis</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Required</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Current gap</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Extra setback</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Result</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Front / strap</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1W1Gap to in\"><num>37.50018573778746 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1W1Extra to in\"><num>0 in</num></c>\n                    <c capture=\"False\" formula=\"Bent1W1Status\"><textvalue>MEETS CLEAR</textvalue></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Left / specified</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"SideClear to in\"><num>24 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1W2Gap to in\"><num>24.000185730227628 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1W2Extra to in\"><num>0 in</num></c>\n                    <c capture=\"False\" formula=\"Bent1W2Status\"><textvalue>MEETS CLEAR</textvalue></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Right / specified</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"SideClear to in\"><num>24 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1W3Gap to in\"><num>23.999814250819043 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1W3Extra to in\"><num>0.00018574918095737303 in</num></c>\n                    <c capture=\"False\" formula=\"Bent1W3Status\"><textvalue>SHORTFALL</textvalue></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Positive extra setback is the outward parallel-move shortfall. Side rows compare only the specified 24-inch clearance; they are not strap feasibility results.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\">Positive extra setback is the outward parallel-move shortfall. Side rows compare only the specified 24-inch clearance; they are not strap feasibility results.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "4. END BENT 2 — FRONT AND SIDE PLAN",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "14",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"14\" spacingafter=\"6\" fontweight=\"bold\" textcolor=\"#1766A0\" spacingbefore=\"8\" keepwithnext=\"True\" pagebreakbefore=\"break\">4. END BENT 2 — FRONT AND SIDE PLAN</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Red open boundary shows computed front and specified side offsets. There is no rear-wall criterion. Gray is the cap; black is the current back of facing. Local x runs across the piles and +y into the approach.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\">Red open boundary shows computed front and specified side offsets. There is no rear-wall criterion. Gray is the cap; black is the current back of facing. Local x runs across the piles and +y into the approach.</paragraph>\n        "
+  },
+  {
+   "kind": "canvas",
+   "name": "Bent2Plan",
+   "title": null,
+   "size": "6.5 in; 4.0 in; scaletofit",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "qualified": [
+    "MSEWallExclusion.Bent2TotalX",
+    "MSEWallExclusion.LayoutClear",
+    "MSEWallExclusion.SideClear"
+   ],
+   "xml": "<canvas name=\"Bent2Plan\" unit=\"in\" size=\"6.5 in; 4.0 in; scaletofit\">\n                <include target=\"Library.Geometry\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Top)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Top)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#B44840\" linethickness=\"2.2\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"1.745,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P1</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((1.8250000000000002-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P1y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"2.695,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P2</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((2.775-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P3x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"3.645,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P3</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((3.725-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P3y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P4x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"1.7\"/>\n                <planecontainer origin=\"4.595,1.82,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>P4</textvalue></planecontainer>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P4x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+((4.675-3.25)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P4y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+((1.98-2.23)/MSEWallExclusion.PlotScale*1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#246B7B\" linethickness=\"0.65\"/>\n                <plot formula=\"PlotLines([3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(-MSEWallExclusion.CapX)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(-MSEWallExclusion.CapY)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#87949C\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2W1x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2W1xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W1y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W1yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#263F49\" linethickness=\"1.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2W2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2W2xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W2y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W2yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#263F49\" linethickness=\"1.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2W3x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2W3xend)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W3y)))/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(Min(MSEWallExclusion.Bent2Top+0.5 ft,Max(MSEWallExclusion.Bent2Bottom-0.5 ft,MSEWallExclusion.Bent2W3yend)))/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#263F49\" linethickness=\"1.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom-0.8 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"0.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2Bottom)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2Bottom-1 ft)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"0.7\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P1x-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Left)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P1y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P1y)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P4x+MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2Right)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P4y)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P4y)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <plot formula=\"PlotLines([3.25+(MSEWallExclusion.Bent2P2x)/(1 ft)*(MSEWallExclusion.PlotScale),3.25+(MSEWallExclusion.Bent2P2x)/(1 ft)*(MSEWallExclusion.PlotScale)],[2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.Half)/(1 ft)*(MSEWallExclusion.PlotScale),2.23+(MSEWallExclusion.Bent2P2y-MSEWallExclusion.FrontExtent)/(1 ft)*(MSEWallExclusion.PlotScale)])\" linecolor=\"#1766A0\" linethickness=\"1\"/>\n                <planecontainer origin=\"0.12,3.69,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"10\" textcolor=\"#9F332B\"><textvalue>FRONT: STRAP CHECK | SIDES: SPECIFIED MINIMUM</textvalue></planecontainer>\n                <planecontainer origin=\"0.12,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>Front clear:</textvalue></planecontainer>\n                <planecontainer origin=\"1.04,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.LayoutClear to in\"><num>37.5 in</num></planecontainer>\n                <planecontainer origin=\"3.4,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>Side clear:</textvalue></planecontainer>\n                <planecontainer origin=\"4.35,3.41,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"2.76,0.39,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.Bent2TotalX to in\"><num>227.99999996550076 in</num></planecontainer>\n                <planecontainer origin=\"1.97,1.23,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.LayoutClear to in\"><num>37.5 in</num></planecontainer>\n                <planecontainer origin=\"0.43,2.35,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"5.3,2.35,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#1766A0\" formula=\"MSEWallExclusion.SideClear to in\"><num>24 in</num></planecontainer>\n                <planecontainer origin=\"0.13,0.09,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"9\" textcolor=\"#263F49\"><textvalue>No rear limit | current walls are not relocated | tolerance excluded</textvalue></planecontainer>\n                <planecontainer origin=\"0.22,2.95,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"8\" textcolor=\"#263F49\"><textvalue>B6 / left</textvalue></planecontainer>\n                <planecontainer origin=\"4.87,2.95,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"8\" textcolor=\"#263F49\"><textvalue>B7 / right</textvalue></planecontainer>\n                <planecontainer origin=\"2.72,0.8,0\" dir=\"1,0,0\" normal=\"0,0,1\" fontfamily=\"Times New Roman\" fontsize=\"8\" textcolor=\"#263F49\"><textvalue>B1 / front</textvalue></planecontainer>\n            </canvas>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "Bent2Offsets",
+   "title": null,
+   "colwidths": "1:55, 2:155, 3:155, 4:165",
+   "rows": [
+    [
+     {
+      "text": "Pile",
+      "dyn": []
+     },
+     {
+      "text": "Front face gap",
+      "dyn": []
+     },
+     {
+      "text": "Front required",
+      "dyn": []
+     },
+     {
+      "text": "Front shortfall",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "P1",
+      "dyn": []
+     },
+     {
+      "formula": "Bent2Wall1Pile1Face to in",
+      "cache": "37.50352905246077 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent2Wall1Pile1Extra to in",
+      "cache": "0 in"
+     }
+    ],
+    [
+     {
+      "text": "P2",
+      "dyn": []
+     },
+     {
+      "formula": "Bent2Wall1Pile2Face to in",
+      "cache": "37.502414614236095 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent2Wall1Pile2Extra to in",
+      "cache": "0 in"
+     }
+    ],
+    [
+     {
+      "text": "P3",
+      "dyn": []
+     },
+     {
+      "formula": "Bent2Wall1Pile3Face to in",
+      "cache": "37.50130017601142 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent2Wall1Pile3Extra to in",
+      "cache": "0 in"
+     }
+    ],
+    [
+     {
+      "text": "P4",
+      "dyn": []
+     },
+     {
+      "formula": "Bent2Wall1Pile4Face to in",
+      "cache": "37.500185737786744 in"
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent2Wall1Pile4Extra to in",
+      "cache": "0 in"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"Bent2Offsets\" capture=\"False\" colwidths=\"1:55, 2:155, 3:155, 4:165\">\n                <stylerule range=\"A1:D5\" fontfamily=\"Times New Roman\" fontsize=\"10\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Pile</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Front face gap</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Front required</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Front shortfall</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P1</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile1Face to in\"><num>37.50352905246077 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile1Extra to in\"><num>0 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P2</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile2Face to in\"><num>37.502414614236095 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile2Extra to in\"><num>0 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P3</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile3Face to in\"><num>37.50130017601142 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile3Extra to in\"><num>0 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P4</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile4Face to in\"><num>37.500185737786744 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2Wall1Pile4Extra to in\"><num>0 in</num></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "Bent2Walls",
+   "title": null,
+   "colwidths": "1:130, 2:85, 3:100, 4:100, 5:115",
+   "rows": [
+    [
+     {
+      "text": "Wall / basis",
+      "dyn": []
+     },
+     {
+      "text": "Required",
+      "dyn": []
+     },
+     {
+      "text": "Current gap",
+      "dyn": []
+     },
+     {
+      "text": "Extra setback",
+      "dyn": []
+     },
+     {
+      "text": "Result",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Front / strap",
+      "dyn": []
+     },
+     {
+      "formula": "LayoutClear to in",
+      "cache": "37.5 in"
+     },
+     {
+      "formula": "Bent2W1Gap to in",
+      "cache": "37.500185737786744 in"
+     },
+     {
+      "formula": "Bent2W1Extra to in",
+      "cache": "0 in"
+     },
+     {
+      "formula": "Bent2W1Status",
+      "cache": "MEETS CLEAR"
+     }
+    ],
+    [
+     {
+      "text": "Left / specified",
+      "dyn": []
+     },
+     {
+      "formula": "SideClear to in",
+      "cache": "24 in"
+     },
+     {
+      "formula": "Bent2W2Gap to in",
+      "cache": "23.99981425081978 in"
+     },
+     {
+      "formula": "Bent2W2Extra to in",
+      "cache": "0.00018574918021840858 in"
+     },
+     {
+      "formula": "Bent2W2Status",
+      "cache": "SHORTFALL"
+     }
+    ],
+    [
+     {
+      "text": "Right / specified",
+      "dyn": []
+     },
+     {
+      "formula": "SideClear to in",
+      "cache": "24 in"
+     },
+     {
+      "formula": "Bent2W3Gap to in",
+      "cache": "24.000185730226775 in"
+     },
+     {
+      "formula": "Bent2W3Extra to in",
+      "cache": "0 in"
+     },
+     {
+      "formula": "Bent2W3Status",
+      "cache": "MEETS CLEAR"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"Bent2Walls\" capture=\"False\" colwidths=\"1:130, 2:85, 3:100, 4:100, 5:115\">\n                <stylerule range=\"A1:E4\" fontfamily=\"Times New Roman\" fontsize=\"10\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Wall / basis</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Required</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Current gap</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Extra setback</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Result</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Front / strap</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"LayoutClear to in\"><num>37.5 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2W1Gap to in\"><num>37.500185737786744 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2W1Extra to in\"><num>0 in</num></c>\n                    <c capture=\"False\" formula=\"Bent2W1Status\"><textvalue>MEETS CLEAR</textvalue></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Left / specified</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"SideClear to in\"><num>24 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2W2Gap to in\"><num>23.99981425081978 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2W2Extra to in\"><num>0.00018574918021840858 in</num></c>\n                    <c capture=\"False\" formula=\"Bent2W2Status\"><textvalue>SHORTFALL</textvalue></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Right / specified</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"SideClear to in\"><num>24 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2W3Gap to in\"><num>24.000185730226775 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2W3Extra to in\"><num>0 in</num></c>\n                    <c capture=\"False\" formula=\"Bent2W3Status\"><textvalue>MEETS CLEAR</textvalue></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Positive extra setback is the outward parallel-move shortfall. Side rows compare only the specified 24-inch clearance; they are not strap feasibility results.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\">Positive extra setback is the outward parallel-move shortfall. Side rows compare only the specified 24-inch clearance; they are not strap feasibility results.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "5. SEPARATE REQUIREMENTS AND USE",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "14",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"14\" spacingafter=\"6\" fontweight=\"bold\" textcolor=\"#1766A0\" spacingbefore=\"8\" keepwithnext=\"True\" pagebreakbefore=\"break\">5. SEPARATE REQUIREMENTS AND USE</paragraph>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "CapSetback",
+   "title": null,
+   "colwidths": "1:290, 2:120, 3:120",
+   "rows": [
+    [
+     {
+      "text": "Separate front-cap check",
+      "dyn": []
+     },
+     {
+      "text": "End Bent 1",
+      "dyn": []
+     },
+     {
+      "text": "End Bent 2",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Front cap face to back of front facing",
+      "dyn": []
+     },
+     {
+      "formula": "Bent1CapGap to in",
+      "cache": "25.499432464570685 in"
+     },
+     {
+      "formula": "Bent2CapGap to in",
+      "cache": "25.499432464569967 in"
+     }
+    ],
+    [
+     {
+      "text": "SDG 3.13.2.N.2.i: 24 in minimum",
+      "dyn": []
+     },
+     {
+      "formula": "Bent1CapStatus",
+      "cache": "✓ PASS"
+     },
+     {
+      "formula": "Bent2CapStatus",
+      "cache": "✓ PASS"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"CapSetback\" capture=\"False\" colwidths=\"1:290, 2:120, 3:120\">\n                <stylerule range=\"A1:C3\" fontfamily=\"Times New Roman\" fontsize=\"10\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Separate front-cap check</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">End Bent 1</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">End Bent 2</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Front cap face to back of front facing</paragraph></textcell>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent1CapGap to in\"><num>25.499432464570685 in</num></c>\n                    <c capture=\"False\" background=\"#EFF7F1\" formula=\"Bent2CapGap to in\"><num>25.499432464569967 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">SDG 3.13.2.N.2.i: 24 in minimum</paragraph></textcell>\n                    <c capture=\"False\" formula=\"Bent1CapStatus\"><textvalue>✓ PASS</textvalue></c>\n                    <c capture=\"False\" formula=\"Bent2CapStatus\"><textvalue>✓ PASS</textvalue></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "SkewBasis",
+   "title": null,
+   "colwidths": "1:290, 2:240",
+   "rows": [
+    [
+     {
+      "text": "Front skew basis",
+      "dyn": []
+     },
+     {
+      "text": "Live result",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "SDG 3.13.2.K.8 ordinary plan skew",
+      "dyn": []
+     },
+     {
+      "formula": "SkewStatus",
+      "cache": "Within ordinary 15 deg limit"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"SkewBasis\" capture=\"False\" colwidths=\"1:290, 2:240\">\n                <stylerule range=\"A1:B2\" fontfamily=\"Times New Roman\" fontsize=\"10\" valueformat=\"RoundedNumber(3, 3, {PriorityUnits: []})\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#A7B9C6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CBD5DD&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Front skew basis</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#DCE7F3\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Live result</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">SDG 3.13.2.K.8 ordinary plan skew</paragraph></textcell>\n                    <c capture=\"False\" formula=\"SkewStatus\"><textvalue>Within ordinary 15 deg limit</textvalue></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Front strap clearance and cap-to-facing clearance are separate measurements. Keep the front face of the cap at least 24 inches from the back of facing. The cap is shown in plan for coordination; no elevation strap/cap clearance is solved here.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\">Front strap clearance and cap-to-facing clearance are separate measurements. Keep the front face of the cap at least 24 inches from the back of facing. The cap is shown in plan for coordination; no elevation strap/cap clearance is solved here.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The side-wall 24-inch pile-face offset is the specified layout criterion for this check. SDG 3.13.2.N.2.i applies 24 inches to cap/front-facing clearance; N.2.ii applies it to battered pile/leveling-pad clearance. Those provisions are not a side-wall strap-clearance calculation.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\">The side-wall 24-inch pile-face offset is the specified layout criterion for this check. SDG 3.13.2.N.2.i applies 24 inches to cap/front-facing clearance; N.2.ii applies it to battered pile/leveling-pad clearance. Those provisions are not a side-wall strap-clearance calculation.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Pile placement tolerance is excluded as requested. Skew may be reversed around the nominal pile, but this does not demonstrate clearance for all possible as-built positions or the full reinforcement route. Coordinate actual pile positions and adjacent obstructions separately.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\">Pile placement tolerance is excluded as requested. Skew may be reversed around the nominal pile, but this does not demonstrate clearance for all possible as-built positions or the full reinforcement route. Coordinate actual pile positions and adjacent obstructions separately.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Only the front wall is checked for nominal centered-strap geometry. Side reinforcement, rear walls, elevation routing, reinforcement length, connection/development and wall stability are outside this module. No side or overall wall-design pass is implied.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\">Only the front wall is checked for nominal centered-strap geometry. Side reinforcement, rear walls, elevation routing, reinforcement length, connection/development and wall stability are outside this module. No side or overall wall-design pass is implied.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The plan assumes wall faces parallel to these axes. Nominal pile width defines the clearance; the tiny saved frame rotation is retained for pile centers and the cap outline. The open boundary has no rear edge or rear-wall requirement.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\">The plan assumes wall faces parallel to these axes. Nominal pile width defines the clearance; the tiny saved frame rotation is retained for pile centers and the cap outline. The open boundary has no rear edge or rear-wall requirement.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "SOURCE AND PROVENANCE",
+   "hidden": true,
+   "section": "WorkingNotesSources",
+   "heading": "",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"6\" fontweight=\"bold\">SOURCE AND PROVENANCE</paragraph>\n            "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Shared pile and cap dimensions: BridgeGeometry_2Beam. Current MSE wall back-face lines: saved FreeCAD model, project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd. Facing thickness projects outward from the profile.",
+   "hidden": true,
+   "section": "WorkingNotesSources",
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\">Shared pile and cap dimensions: BridgeGeometry_2Beam. Current MSE wall back-face lines: saved FreeCAD model, project_current\\geometry\\freecad\\B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd. Facing thickness projects outward from the profile.</paragraph>\n            "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Saved model SHA-256: d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df (19 October 2026, D-055). Wall lines re-extracted from the saved WallProfile properties on 19 October 2026 (journal task T016, tasks/T016/mse_layout_20261019.json); the 13 October 2026 lines came from model 7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676 and were superseded when the walls moved with the 235-in caps and cheek webs (D-026/D-036).",
+   "hidden": true,
+   "section": "WorkingNotesSources",
+   "heading": "",
+   "bold": false,
+   "fontsize": "9",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"6\">Saved model SHA-256: d0f053d5104498b984a7bf32cbcda6c594af65e0bd0aee9b29d36f828a7a81df (19 October 2026, D-055). Wall lines re-extracted from the saved WallProfile properties on 19 October 2026 (journal task T016, tasks/T016/mse_layout_20261019.json); the 13 October 2026 lines came from model 7368774487c1456238df13c80e33ddf3871907982ff91938e1ae1b4eebf52676 and were superseded when the walls moved with the 235-in caps and cheek webs (D-026/D-036).</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "FDOT Structures Manual, January 2026 — SDG 3.13.2.K.8 and N.2.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"6\">\n            <link address=\"https://www.fdot.gov/Structures/StructuresManual/CurrentRelease\">FDOT Structures Manual, January 2026 — SDG 3.13.2.K.8 and N.2.</link>\n        </paragraph>\n    "
+  }
+ ],
+ "externals": {
+  "BridgeGeometry_2Beam.EndBent_pileWidth": {
+   "kind": "report",
+   "v": 18.0,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "EndBent_pileWidth = 18 in"
+  },
+  "BridgeGeometry_2Beam.EndBent_pileSpacing": {
+   "kind": "report",
+   "v": 54.0,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "EndBent_pileSpacing = 54 in"
+  },
+  "BridgeGeometry_2Beam.EndBent_pileCount": {
+   "kind": "report",
+   "v": 4.0,
+   "dims": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "EndBent_pileCount = 4"
+  },
+  "BridgeGeometry_2Beam.EndBentCap_length": {
+   "kind": "report",
+   "v": 235.0,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "EndBentCap_length = (EndBent_pileCount-1)*EndBent_pileSpacing+2*EndBent_endCenter to ft in"
+  },
+  "BridgeGeometry_2Beam.EndBentCap_width": {
+   "kind": "report",
+   "v": 42.0,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "EndBentCap_width = 42 in to in"
+  },
+  "ProjectInfo.Firm": {
+   "kind": "report",
+   "text": "Parsons Transportation Group Inc",
+   "journal_formula": "Firm = \"Parsons Transportation Group Inc\""
+  },
+  "ProjectInfo.Project": {
+   "kind": "report",
+   "text": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "journal_formula": "Project = \"I-95 Capacity Improvements from South of SR 152 to South of SR 126\""
+  },
+  "ProjectInfo.Address": {
+   "kind": "report",
+   "text": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "journal_formula": "Address = \"1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301\""
+  },
+  "ProjectInfo.JobNo": {
+   "kind": "report",
+   "text": "",
+   "journal_formula": "JobNo = \"\""
+  },
+  "ProjectInfo.DesignedBy": {
+   "kind": "report",
+   "text": "JAT",
+   "journal_formula": "DesignedBy = \"JAT\""
+  },
+  "ProjectInfo.DesignDate": {
+   "kind": "report",
+   "text": "10/17/2026",
+   "journal_formula": "DesignDate = \"10/17/2026\""
+  },
+  "ProjectInfo.CheckedBy": {
+   "kind": "report",
+   "text": "MIK",
+   "journal_formula": "CheckedBy = \"MIK\""
+  },
+  "ProjectInfo.CheckDate": {
+   "kind": "report",
+   "text": "",
+   "journal_formula": "CheckDate = \"\""
+  }
+ },
+ "skipped": [],
+ "inbound_names": {},
+ "inbound_links": {
+  "#MSEWallExclusion": [
+   "report:PedBridge"
+  ]
+ },
+ "internal_links": [],
+ "anchors": []
+}

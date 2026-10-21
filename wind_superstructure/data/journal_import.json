@@ -1,0 +1,3499 @@
+{
+ "journal": "journal/D2_I95_Project_Journal.bpad",
+ "journal_sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a",
+ "report": "C001WindLoadOnPedBridgeSuperstructure",
+ "title": "C001 - Wind Load on Ped Bridge Superstructure",
+ "items": [
+  {
+   "kind": "table",
+   "name": "ProjectStamp",
+   "title": null,
+   "colwidths": "1:95, 2:165, 3:95, 4:165",
+   "rows": [
+    [
+     {
+      "text": "Firm",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Firm = ProjectInfo.Firm⟩",
+      "dyn": [
+       "Stamp_Firm = ProjectInfo.Firm"
+      ]
+     },
+     {
+      "text": "Project",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Project = ProjectInfo.Project⟩",
+      "dyn": [
+       "Stamp_Project = ProjectInfo.Project"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Address",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Address = ProjectInfo.Address⟩",
+      "dyn": [
+       "Stamp_Address = ProjectInfo.Address"
+      ]
+     },
+     {
+      "text": "Job no.",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_JobNo = ProjectInfo.JobNo⟩",
+      "dyn": [
+       "Stamp_JobNo = ProjectInfo.JobNo"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Designed by",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_DesignedBy = ProjectInfo.DesignedBy⟩",
+      "dyn": [
+       "Stamp_DesignedBy = ProjectInfo.DesignedBy"
+      ]
+     },
+     {
+      "text": "Date",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_DesignDate = ProjectInfo.DesignDate⟩",
+      "dyn": [
+       "Stamp_DesignDate = ProjectInfo.DesignDate"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Checked by",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_CheckedBy = ProjectInfo.CheckedBy⟩",
+      "dyn": [
+       "Stamp_CheckedBy = ProjectInfo.CheckedBy"
+      ]
+     },
+     {
+      "text": "Date",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_CheckDate = ProjectInfo.CheckDate⟩",
+      "dyn": [
+       "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ]
+     }
+    ]
+   ],
+   "formulas": false,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"ProjectStamp\" capture=\"False\" colwidths=\"1:95, 2:165, 3:95, 4:165\">\n                <stylerule range=\"A1:D4\" fontfamily=\"Times New Roman\" fontsize=\"9\" vertalign=\"Center\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Firm</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Firm = ProjectInfo.Firm\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Firm = ProjectInfo.Firm</expbody><expresult>Parsons Transportation Group Inc</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Project</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Project = ProjectInfo.Project\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Project = ProjectInfo.Project</expbody><expresult>I-95 Capacity Improvements from South of SR 152 to South of SR 126</expresult></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Address</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Address = ProjectInfo.Address\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Address = ProjectInfo.Address</expbody><expresult>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Job no.</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_JobNo = ProjectInfo.JobNo\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_JobNo = ProjectInfo.JobNo</expbody><expresult/></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Designed by</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_DesignedBy = ProjectInfo.DesignedBy\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_DesignedBy = ProjectInfo.DesignedBy</expbody><expresult>JAT</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Date</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_DesignDate = ProjectInfo.DesignDate\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_DesignDate = ProjectInfo.DesignDate</expbody><expresult>10/17/2026</expresult></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Checked by</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_CheckedBy = ProjectInfo.CheckedBy\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_CheckedBy = ProjectInfo.CheckedBy</expbody><expresult>MIK</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Date</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_CheckDate = ProjectInfo.CheckDate\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_CheckDate = ProjectInfo.CheckDate</expbody><expresult/></dynexp></paragraph></textcell>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Code references and calculation backlinks",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"7\">\n            <link address=\"#CodeReferencesGeneral;paragraphreferenceindex\">Code references and calculation backlinks</link>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "PROJECT INFORMATION:",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": null,
+   "background": null,
+   "xml": "<paragraph fontweight=\"bold\" textdecoration=\"underline\" spacingafter=\"4\">PROJECT INFORMATION:</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Project Name : D2 MPDB",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            <span fontweight=\"bold\">Project Name</span>\n            : D2 MPDB\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "GEOMETRY BASIS — Cap and wind datums derive from the selected Type F pad, 6-in pedestal and 36-in cap. Individual seat grades, separate plates, the retained wind envelope, terrain reference and gross pier-face width require final-detail confirmation.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "11",
+   "background": "#FFF8E9",
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\" background=\"#FFF8E9\" fontweight=\"bold\">GEOMETRY BASIS — Cap and wind datums derive from the selected Type F pad, 6-in pedestal and 36-in cap. Individual seat grades, separate plates, the retained wind envelope, terrain reference and gross pier-face width require final-detail confirmation.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Project Number:",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            <span fontweight=\"bold\">Project Number:</span>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Designed By: JAT Date:",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            <span fontweight=\"bold\">Designed By:</span>\n             JAT\n            <break type=\"tab\"/>\n            <span fontweight=\"bold\">Date:</span>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Checked By: Date:",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            <span fontweight=\"bold\">Checked By:</span>\n            <break type=\"tab\"/>\n            <span fontweight=\"bold\">Date:</span>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\"/>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "1. INPUTS",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading>\n            <paragraphlabel numbergroup=\"heading\">1.</paragraphlabel>\n            INPUTS\n        </heading>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "1.1. Bridge Geometry",
+   "id": "paragraphrefreturn0004",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" spacingafter=\"4\" id=\"paragraphrefreturn0004\">\n            <paragraphlabel numbergroup=\"heading\">1.1.</paragraphlabel>\n            Bridge Geometry\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "z_clear",
+   "rhs": "BridgeGeometry_2Beam.Wind_clearHeight",
+   "formula": "z_clear = BridgeGeometry_2Beam.Wind_clearHeight",
+   "cache": "= 18 ft 11.478 in",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Vertical distance from low ground to the bottom of the concrete superstructure.",
+   "notes": [
+    "Reference the low-ground-to-soffit clearance in Bridge Geometry_2 Beam. The previous 19 ft assumption is centralized there and requires confirmation from a complete pier section."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 227.47752853694504,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Vertical distance from low ground to the bottom of the concrete superstructure.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Vertical distance from low ground to the bottom of the concrete superstructure.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference the low-ground-to-soffit clearance in Bridge Geometry_2 Beam. The previous 19 ft assumption is centralized there and requires confirmation from a complete pier section.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_001_z_clear",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Reference the low-ground-to-soffit clearance in Bridge Geometry_2 Beam. The previous 19 ft assumption is centralized there and requires confirmation from a complete pier section.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "Z",
+   "rhs": "BridgeGeometry_2Beam.Wind_exposureHeight",
+   "formula": "Z = BridgeGeometry_2Beam.Wind_exposureHeight",
+   "cache": "= 35 ft 8 51/64 in",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Height of the fence crown above low ground, used as the common wind exposure height.",
+   "notes": [
+    "Reference the common crown exposure height in Bridge Geometry_2 Beam. The existing exposure-height model and code equations are retained."
+   ],
+   "refs": [
+    "LRFD 3.8.1.2.1"
+   ],
+   "evaluated": {
+    "v": 428.79002853694504,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Height of the fence crown above low ground, used as the common wind exposure height.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Height of the fence crown above low ground, used as the common wind exposure height.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference the common crown exposure height in Bridge Geometry_2 Beam. The existing exposure-height model and code equations are retained.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_002_Z",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Reference the common crown exposure height in Bridge Geometry_2 Beam. The existing exposure-height model and code equations are retained.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Art. 3.8.1.2.1 ; Art. 3.8.1.2.1",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Art. 3.8.1.2.1</link>\n            ; \n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">Art. 3.8.1.2.1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "Z_calc",
+   "rhs": "Max(Z, 33 ft)",
+   "formula": "Z_calc = Max(Z, 33 ft)",
+   "cache": "= 35 ft 8 51/64 in",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Height actually inserted into the exposure equations.",
+   "notes": [],
+   "refs": [
+    "LRFD 3.8.1.2.1"
+   ],
+   "evaluated": {
+    "v": 428.79002853694504,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Height actually inserted into the exposure equations.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Height actually inserted into the exposure equations.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Z",
+   "formula": "Z",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_003_Z_calc",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Max compares  , the adopted physical wind exposure height, with 33 ft and keeps the larger. Thus a shorter structure is treated as 33 ft high for these equations, while a taller structure keeps its adopted height. This changes the pressure calculation, not the actual geometry or force application point."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Art. 3.8.1.2.1",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001\">LRFD Art. 3.8.1.2.1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "d_super",
+   "rhs": "BridgeGeometry_2Beam.Depth_SuperStr",
+   "formula": "d_super=BridgeGeometry_2Beam.Depth_SuperStr",
+   "cache": "= 7 ft 1 in",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Vertical depth of concrete bridge surface exposed to horizontal wind.",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "v": 85.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Vertical depth of concrete bridge surface exposed to horizontal wind.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Vertical depth of concrete bridge surface exposed to horizontal wind.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "BridgeGeometry_2Beam.Depth_SuperStr",
+   "formula": "BridgeGeometry_2Beam.Depth_SuperStr",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_004_d_super",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Copy  from the Ped Bridge module. This is the side-view height of the concrete superstructure included in the wind model. Pressure times this depth gives horizontal force for each foot of bridge length; the fence is handled separately."
+  },
+  {
+   "kind": "def",
+   "name": "L_span",
+   "rhs": "Max(BridgeGeometry_2Beam.Span_1, BridgeGeometry_2Beam.Span_2)",
+   "formula": "L_span=Max(BridgeGeometry_2Beam.Span_1, BridgeGeometry_2Beam.Span_2)",
+   "cache": "= 107.35 ft",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Longer of the two individual bridge spans.",
+   "notes": [
+    "It is not the sum of the two spans or the intermediate pier’s tributary length; those are separate quantities."
+   ],
+   "refs": [
+    "LRFD 3.8.1.2.3"
+   ],
+   "evaluated": {
+    "v": 1288.199999999999,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Longer of the two individual bridge spans.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Longer of the two individual bridge spans.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "BridgeGeometry_2Beam.Span_1",
+   "formula": "BridgeGeometry_2Beam.Span_1",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_005_L_span",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Max compares  and ⟨BridgeGeometry_2Beam.Span_2⟩ and keeps the larger span length. This is used when considering provisions based on an individual span and in the repair-frame force expression."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "BridgeGeometry_2Beam.Span_2",
+   "formula": "BridgeGeometry_2Beam.Span_2",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_005_L_span",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Max compares ⟨BridgeGeometry_2Beam.Span_1⟩ and  and keeps the larger span length. This is used when considering provisions based on an individual span and in the repair-frame force expression."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "It is not the sum of the two spans or the intermediate pier’s tributary length; those are separate quantities.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_005_L_span",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">It is not the sum of the two spans or the intermediate pier’s tributary length; those are separate quantities.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Art. 3.8.1.2.3a",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Art. 3.8.1.2.3a</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "w_deck",
+   "rhs": "BridgeGeometry_2Beam.Deck_out2out",
+   "formula": "w_deck=BridgeGeometry_2Beam.Deck_out2out",
+   "cache": "= 13 ft 7 in",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Full outside-to-outside width of the concrete deck.",
+   "notes": [],
+   "refs": [
+    "LRFD 3.8.2"
+   ],
+   "evaluated": {
+    "v": 163.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Full outside-to-outside width of the concrete deck.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Full outside-to-outside width of the concrete deck.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "BridgeGeometry_2Beam.Deck_out2out",
+   "formula": "BridgeGeometry_2Beam.Deck_out2out",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_006_w_deck",
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Copy  , which includes the clear space, parapets, and the deck projections outside them. This width represents the deck area exposed to vertical wind for each foot of bridge length when that separate vertical-wind calculation is used."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Art. 3.8.2",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001\">LRFD Art. 3.8.2</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "Skew_deg_str",
+   "rhs": "\"0\"",
+   "formula": "Skew_deg_str = \"0\"",
+   "cache": "0",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "options": [
+    "0",
+    "15",
+    "30",
+    "45",
+    "60"
+   ],
+   "inline": "Skew angle of wind attack (measured from perpendicular to longitudinal axis of bridge): 0 degrees ( LRFD Table 3.8.1.2.3a-1 )",
+   "valuefield": true,
+   "caption": "",
+   "notes": [],
+   "refs": [
+    "LRFD Table 3.8.1.2.3"
+   ],
+   "evaluated": {
+    "text": "0"
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Skew angle of wind attack (measured from perpendicular to longitudinal axis of bridge): 0 degrees ( LRFD Table 3.8.1.2.3a-1 )",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\">\n            Skew angle of wind attack (measured from perpendicular to longitudinal axis of bridge): \n            <valuefield valuedef=\"FromOptionsOrValue(null, [&quot;0&quot;, &quot;15&quot;, &quot;30&quot;, &quot;45&quot;, &quot;60&quot;])\" name=\"Skew_deg_str\"><textvalue>0</textvalue></valuefield>\n             degrees (\n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Table 3.8.1.2.3a-1</link>\n            )\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "1.2. Wind Speed and Exposure",
+   "id": "paragraphrefreturn0005",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0005\">\n            <paragraphlabel numbergroup=\"heading\">1.2.</paragraphlabel>\n            Wind Speed and Exposure\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "V_III",
+   "rhs": "130",
+   "formula": "V_III = 130",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Design gust wind speed entered for Strength III ( FDOT SDG Table 2.4.1-1 ).",
+   "notes": [
+    "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure."
+   ],
+   "refs": [
+    "SDG Table 2.4.1-1"
+   ],
+   "evaluated": {
+    "v": 130.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Design gust wind speed entered for Strength III ( FDOT SDG Table 2.4.1-1 ).",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">\n            Design gust wind speed entered for Strength III (\n            <link address=\"#CodeReferencesC001.CodePage04;paragraphprojectcoderef04C001\">FDOT SDG Table 2.4.1-1</link>\n            ).\n        </paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_007_V_III",
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "V_V",
+   "rhs": "80",
+   "formula": "V_V = 80",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Design gust wind speed entered for Strength V.",
+   "notes": [
+    "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure."
+   ],
+   "refs": [
+    "LRFD Table 3.8.1.1.2-1"
+   ],
+   "evaluated": {
+    "v": 80.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Design gust wind speed entered for Strength V.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Design gust wind speed entered for Strength V.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_008_V_V",
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Table 3.8.1.1.2-1",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001\">LRFD Table 3.8.1.1.2-1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "V_SI",
+   "rhs": "70",
+   "formula": "V_SI = 70",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Design gust wind speed entered for Service I.",
+   "notes": [
+    "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure."
+   ],
+   "refs": [
+    "LRFD Table 3.8.1.1.2-1"
+   ],
+   "evaluated": {
+    "v": 70.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Design gust wind speed entered for Service I.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Design gust wind speed entered for Service I.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_009_V_SI",
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Table 3.8.1.1.2-1",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001\">LRFD Table 3.8.1.1.2-1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "Exp_Cat",
+   "rhs": "\"C\"",
+   "formula": "Exp_Cat = \"C\"",
+   "cache": "C",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "options": [
+    "C",
+    "D"
+   ],
+   "inline": "Wind exposure category: C ( FDOT SDG 2.4.1.B : Category C unless D applies.)",
+   "valuefield": true,
+   "caption": "",
+   "notes": [],
+   "refs": [
+    "SDG 2.4.1.B"
+   ],
+   "evaluated": {
+    "text": "C"
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Wind exposure category: C ( FDOT SDG 2.4.1.B : Category C unless D applies.)",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.2. Wind Speed and Exposure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\">\n            Wind exposure category: \n            <valuefield valuedef=\"FromOptionsOrValue(null, [&quot;C&quot;, &quot;D&quot;])\" name=\"Exp_Cat\"><textvalue>C</textvalue></valuefield>\n            (\n            <link address=\"#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001\">FDOT SDG 2.4.1.B</link>\n            : Category C unless D applies.)\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "1.3. Structure Type and Coefficients",
+   "id": "paragraphrefreturn0006",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0006\">\n            <paragraphlabel numbergroup=\"heading\">1.3.</paragraphlabel>\n            Structure Type and Coefficients\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "Struct_Type",
+   "rhs": "\"I-Girder or Box-Girder Superstructure\"",
+   "formula": "Struct_Type = \"I-Girder or Box-Girder Superstructure\"",
+   "cache": "I-Girder or Box-Girder Superstructure",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "options": [
+    "I-Girder or Box-Girder Superstructure",
+    "Bridge Substructure",
+    "Truss/Column/Arch - Sharp-Edged",
+    "Truss/Column/Arch - Round",
+    "Sound Barrier"
+   ],
+   "inline": "Structure type: I-Girder or Box-Girder Superstructure",
+   "valuefield": true,
+   "caption": "",
+   "notes": [],
+   "refs": [],
+   "evaluated": {
+    "text": "I-Girder or Box-Girder Superstructure"
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Structure type: I-Girder or Box-Girder Superstructure",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            Structure type: \n            <valuefield valuedef=\"FromOptionsOrValue(null, [&quot;I-Girder or Box-Girder Superstructure&quot;, &quot;Bridge Substructure&quot;, &quot;Truss/Column/Arch - Sharp-Edged&quot;, &quot;Truss/Column/Arch - Round&quot;, &quot;Sound Barrier&quot;])\" name=\"Struct_Type\" width=\"240\"><textvalue>I-Girder or Box-Girder Superstructure</textvalue></valuefield>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Structure type for drag coefficient selection ( LRFD Table 3.8.1.2.1-2 )",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            Structure type for drag coefficient selection (\n            <link address=\"#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001\">LRFD Table 3.8.1.2.1-2</link>\n            )\n        </paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "C_D",
+   "rhs": "If(Struct_Type==\"I-Girder or Box-Girder Superstructure\", 1.3, If(Struct_Type==\"Bridge Substructure\", 1.6, If(Struct_Type==\"Truss/Column/Arch - Sharp-Edged\", 2, If(Struct_Type==\"Truss/Column/Arch - Round\", 1, 1.2))))",
+   "formula": "C_D = If(Struct_Type==\"I-Girder or Box-Girder Superstructure\", 1.3, If(Struct_Type==\"Bridge Substructure\", 1.6, If(Struct_Type==\"Truss/Column/Arch - Sharp-Edged\", 2, If(Struct_Type==\"Truss/Column/Arch - Round\", 1, 1.2))))",
+   "cache": "= 1.3",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "Shape-dependent wind drag multiplier selected from the structure type.",
+   "notes": [
+    "The selected number has no units and multiplies the wind-pressure term. It represents the shape’s drag in the stated model; it is not the structure’s area or a load-combination factor."
+   ],
+   "refs": [
+    "LRFD Table 3.8.1.2.1-2"
+   ],
+   "evaluated": {
+    "v": 1.3,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Shape-dependent wind drag multiplier selected from the structure type.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Shape-dependent wind drag multiplier selected from the structure type.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Struct_Type",
+   "formula": "Struct_Type",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_011_C_D",
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "is the selected structure description. The nested If expressions check it in order: girder superstructure gives 1.3; bridge substructure gives 1.6; sharp-edged truss, column, or arch gives 2; the round-member option gives 1. The final fallback branch gives 1.2."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The selected number has no units and multiplies the wind-pressure term. It represents the shape’s drag in the stated model; it is not the structure’s area or a load-combination factor.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_011_C_D",
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">The selected number has no units and multiplies the wind-pressure term. It represents the shape’s drag in the stated model; it is not the structure’s area or a load-combination factor.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Table 3.8.1.2.1-2",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001\">LRFD Table 3.8.1.2.1-2</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "G_fac",
+   "rhs": "0.85",
+   "formula": "G_fac = 0.85",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "Gust-effect multiplier entered for the wind calculation.",
+   "notes": [
+    "This dimensionless input adjusts the pressure term for the adopted gust-effect treatment. It affects only expressions that actually contain this variable. Reading a value here does not automatically apply it to other equations that use a fixed multiplier instead."
+   ],
+   "refs": [
+    "SDG 2.4.1.C"
+   ],
+   "evaluated": {
+    "v": 0.85,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Gust-effect multiplier entered for the wind calculation.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Gust-effect multiplier entered for the wind calculation.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "This dimensionless input adjusts the pressure term for the adopted gust-effect treatment. It affects only expressions that actually contain this variable. Reading a value here does not automatically apply it to other equations that use a fixed multiplier instead.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_012_G_fac",
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">This dimensionless input adjusts the pressure term for the adopted gust-effect treatment. It affects only expressions that actually contain this variable. Reading a value here does not automatically apply it to other equations that use a fixed multiplier instead.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: FDOT SDG 2.4.1.C",
+   "hidden": false,
+   "section": null,
+   "heading": "1. INPUTS / 1.3. Structure Type and Coefficients",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference:\n            <link address=\"#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001\">FDOT SDG 2.4.1.C</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "2. WIND SPEED BY LOAD COMBINATION ( LRFD Art. 3.8.1.1.2 )",
+   "id": "paragraphrefreturn0007",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading id=\"paragraphrefreturn0007\">\n            <paragraphlabel numbergroup=\"heading\">2.</paragraphlabel>\n            WIND SPEED BY LOAD COMBINATION (\n            <link address=\"#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001\">LRFD Art. 3.8.1.1.2</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Per LRFD Table 3.8.1.1.2-1 , the design 3-second gust wind speed for each load combination is as follows:",
+   "hidden": false,
+   "section": null,
+   "heading": "2. WIND SPEED BY LOAD COMBINATION ( LRFD Art. 3.8.1.1.2 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"8\">\n            Per\n            <link address=\"#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001\">LRFD Table 3.8.1.1.2-1</link>\n            , the design 3-second gust wind speed for each load combination is as follows:\n        </paragraph>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "WindSpeedTable",
+   "title": "Design Wind Speed by Load Combination",
+   "colwidths": "1:220, 2:300",
+   "rows": [
+    [
+     {
+      "text": "Load Combination",
+      "dyn": []
+     },
+     {
+      "text": "Design 3-Second Gust Wind Speed, V (mph)",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Strength III",
+      "dyn": []
+     },
+     {
+      "formula": "V_III",
+      "cache": "130"
+     }
+    ],
+    [
+     {
+      "text": "Strength V",
+      "dyn": []
+     },
+     {
+      "formula": "V_V",
+      "cache": "80"
+     }
+    ],
+    [
+     {
+      "text": "Service I",
+      "dyn": []
+     },
+     {
+      "formula": "V_SI",
+      "cache": "70"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "2. WIND SPEED BY LOAD COMBINATION ( LRFD Art. 3.8.1.1.2 )",
+   "xml": "<table title=\"Design Wind Speed by Load Combination\" name=\"WindSpeedTable\" capture=\"False\" colwidths=\"1:220, 2:300\">\n                <stylerule range=\"A1:B4\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);\"/>\n                <stylerule range=\"A1:B1\" horzalign=\"Center\" vertalign=\"Center\" fontweight=\"bold\" background=\"#D4D4D4\"/>\n                <stylerule range=\"A2:B4\" horzalign=\"Center\" vertalign=\"Center\"/>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Load Combination</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Design 3-Second Gust Wind Speed, V (mph)</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Strength III</paragraph></textcell>\n                    <c capture=\"False\" formula=\"V_III\"><num>130</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Strength V</paragraph></textcell>\n                    <c capture=\"False\" formula=\"V_V\"><num>80</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Service I</paragraph></textcell>\n                    <c capture=\"False\" formula=\"V_SI\"><num>70</num></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Table 3.8.1.1.2-1",
+   "hidden": false,
+   "section": null,
+   "heading": "2. WIND SPEED BY LOAD COMBINATION ( LRFD Art. 3.8.1.1.2 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\">\n            Reference:\n            <link address=\"#CodeReferencesC001.CodePage06;paragraphprojectcoderef06C001\">LRFD Table 3.8.1.1.2-1</link>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 )",
+   "id": "paragraphrefreturn0008",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading id=\"paragraphrefreturn0008\">\n            <paragraphlabel numbergroup=\"heading\">3.</paragraphlabel>\n            PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z (\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD Art. 3.8.1.2.1</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "K_Z is determined for Strength III using logarithmic wind profile equations in the active pier load sets. For Strength V and Service I, K_Z = 1.0. The structure height Z used shall not be taken less than 33.0 ft ( LRFD Art. 3.8.1.2.1 ).",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"8\">\n            K_Z is determined for Strength III using logarithmic wind profile equations in the active pier load sets. For Strength V and Service I, K_Z = 1.0. The structure height Z used shall not be taken less than 33.0 ft (\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD Art. 3.8.1.2.1</link>\n            ).\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "3.1. K_Z for Wind Exposure Category B ( LRFD Eq. 3.8.1.2.1-2 )",
+   "id": "paragraphrefreturn0009",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0009\">\n            <paragraphlabel numbergroup=\"heading\">3.1.</paragraphlabel>\n            K_Z for Wind Exposure Category B (\n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Eq. 3.8.1.2.1-2</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "K_Z_B",
+   "rhs": "(2.5*Ln(Z_calc/(0.9834 ft)) + 6.87)^2/345.6",
+   "formula": "K_Z_B = (2.5*Ln(Z_calc/(0.9834 ft)) + 6.87)^2/345.6",
+   "cache": "= 0.727",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.1. K_Z for Wind Exposure Category B ( LRFD Eq. 3.8.1.2.1-2 )",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Pressure multiplier for height and Exposure Category B.",
+   "notes": [
+    "Multiply that logarithm by 2.5, then add 6.87. Square the whole quantity in parentheses and divide by 345.6. These constants define the Category B profile used in the displayed equation.",
+    "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream."
+   ],
+   "refs": [
+    "LRFD Eq. 3.8.1.2.1-2"
+   ],
+   "evaluated": {
+    "v": 0.7271004233995682,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Pressure multiplier for height and Exposure Category B.",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.1. K_Z for Wind Exposure Category B ( LRFD Eq. 3.8.1.2.1-2 )",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Pressure multiplier for height and Exposure Category B.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Z_calc",
+   "formula": "Z_calc",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_013_K_Z_B",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.1. K_Z for Wind Exposure Category B ( LRFD Eq. 3.8.1.2.1-2 )",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Divide  , the effective height, by 0.9834 ft. The feet cancel so the quantity inside Ln has no units. Ln is the natural logarithm; in this expression it describes how the wind profile changes with height."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Multiply that logarithm by 2.5, then add 6.87. Square the whole quantity in parentheses and divide by 345.6. These constants define the Category B profile used in the displayed equation.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_013_K_Z_B",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.1. K_Z for Wind Exposure Category B ( LRFD Eq. 3.8.1.2.1-2 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"5\" level=\"1\">Multiply that logarithm by 2.5, then add 6.87. Square the whole quantity in parentheses and divide by 345.6. These constants define the Category B profile used in the displayed equation.</paragraph>\n            ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_013_K_Z_B",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.1. K_Z for Wind Exposure Category B ( LRFD Eq. 3.8.1.2.1-2 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Eq. 3.8.1.2.1-2",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.1. K_Z for Wind Exposure Category B ( LRFD Eq. 3.8.1.2.1-2 )",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Eq. 3.8.1.2.1-2</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "3.2. K_Z for Wind Exposure Category C ( LRFD Eq. 3.8.1.2.1-3 )",
+   "id": "paragraphrefreturn0010",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0010\">\n            <paragraphlabel numbergroup=\"heading\">3.2.</paragraphlabel>\n            K_Z for Wind Exposure Category C (\n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Eq. 3.8.1.2.1-3</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "K_Z_C",
+   "rhs": "(2.5*Ln(Z_calc/(0.0984 ft)) + 7.35)^2/478.4",
+   "formula": "K_Z_C = (2.5*Ln(Z_calc/(0.0984 ft)) + 7.35)^2/478.4",
+   "cache": "= 1.020",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.2. K_Z for Wind Exposure Category C ( LRFD Eq. 3.8.1.2.1-3 )",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Pressure multiplier for height and Exposure Category C.",
+   "notes": [
+    "Multiply that logarithm by 2.5, then add 7.35. Square the whole quantity in parentheses and divide by 478.4. These constants define the Category C profile used in the displayed equation.",
+    "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream."
+   ],
+   "refs": [
+    "LRFD Eq. 3.8.1.2.1-3"
+   ],
+   "evaluated": {
+    "v": 1.01971744991174,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Pressure multiplier for height and Exposure Category C.",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.2. K_Z for Wind Exposure Category C ( LRFD Eq. 3.8.1.2.1-3 )",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Pressure multiplier for height and Exposure Category C.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Z_calc",
+   "formula": "Z_calc",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_014_K_Z_C",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.2. K_Z for Wind Exposure Category C ( LRFD Eq. 3.8.1.2.1-3 )",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Divide  , the effective height, by 0.0984 ft. The feet cancel so the quantity inside Ln has no units. Ln is the natural logarithm; in this expression it describes how the wind profile changes with height."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Multiply that logarithm by 2.5, then add 7.35. Square the whole quantity in parentheses and divide by 478.4. These constants define the Category C profile used in the displayed equation.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_014_K_Z_C",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.2. K_Z for Wind Exposure Category C ( LRFD Eq. 3.8.1.2.1-3 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"5\" level=\"1\">Multiply that logarithm by 2.5, then add 7.35. Square the whole quantity in parentheses and divide by 478.4. These constants define the Category C profile used in the displayed equation.</paragraph>\n            ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_014_K_Z_C",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.2. K_Z for Wind Exposure Category C ( LRFD Eq. 3.8.1.2.1-3 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Eq. 3.8.1.2.1-3",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.2. K_Z for Wind Exposure Category C ( LRFD Eq. 3.8.1.2.1-3 )",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Eq. 3.8.1.2.1-3</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "3.3. K_Z for Wind Exposure Category D ( LRFD Eq. 3.8.1.2.1-4 )",
+   "id": "paragraphrefreturn0011",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0011\">\n            <paragraphlabel numbergroup=\"heading\">3.3.</paragraphlabel>\n            K_Z for Wind Exposure Category D (\n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Eq. 3.8.1.2.1-4</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "K_Z_D",
+   "rhs": "(2.5*Ln(Z_calc/(0.0164 ft)) + 7.65)^2/616.1",
+   "formula": "K_Z_D = (2.5*Ln(Z_calc/(0.0164 ft)) + 7.65)^2/616.1",
+   "cache": "= 1.172",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.3. K_Z for Wind Exposure Category D ( LRFD Eq. 3.8.1.2.1-4 )",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Pressure multiplier for height and Exposure Category D.",
+   "notes": [
+    "Multiply that logarithm by 2.5, then add 7.65. Square the whole quantity in parentheses and divide by 616.1. These constants define the Category D profile used in the displayed equation.",
+    "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream."
+   ],
+   "refs": [
+    "LRFD Eq. 3.8.1.2.1-4"
+   ],
+   "evaluated": {
+    "v": 1.1715631286826373,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Pressure multiplier for height and Exposure Category D.",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.3. K_Z for Wind Exposure Category D ( LRFD Eq. 3.8.1.2.1-4 )",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Pressure multiplier for height and Exposure Category D.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Z_calc",
+   "formula": "Z_calc",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_015_K_Z_D",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.3. K_Z for Wind Exposure Category D ( LRFD Eq. 3.8.1.2.1-4 )",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Divide  , the effective height, by 0.0164 ft. The feet cancel so the quantity inside Ln has no units. Ln is the natural logarithm; in this expression it describes how the wind profile changes with height."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Multiply that logarithm by 2.5, then add 7.65. Square the whole quantity in parentheses and divide by 616.1. These constants define the Category D profile used in the displayed equation.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_015_K_Z_D",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.3. K_Z for Wind Exposure Category D ( LRFD Eq. 3.8.1.2.1-4 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"5\" level=\"1\">Multiply that logarithm by 2.5, then add 7.65. Square the whole quantity in parentheses and divide by 616.1. These constants define the Category D profile used in the displayed equation.</paragraph>\n            ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_015_K_Z_D",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.3. K_Z for Wind Exposure Category D ( LRFD Eq. 3.8.1.2.1-4 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Eq. 3.8.1.2.1-4",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.3. K_Z for Wind Exposure Category D ( LRFD Eq. 3.8.1.2.1-4 )",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Eq. 3.8.1.2.1-4</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "3.4. Governing K_Z — Selected by Exposure Category",
+   "id": "paragraphrefreturn0012",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0012\">\n            <paragraphlabel numbergroup=\"heading\">3.4.</paragraphlabel>\n            Governing K_Z — Selected by Exposure Category\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "K_Z_gov",
+   "rhs": "If(Exp_Cat==\"D\", K_Z_D, K_Z_C)",
+   "formula": "K_Z_gov = If(Exp_Cat==\"D\", K_Z_D, K_Z_C)",
+   "cache": "= 1.020",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Exposure multiplier selected by this module’s actual category switch.",
+   "notes": [
+    "The selected result is used for Strength III pressure in the active pier load sets. The word “governing” in the variable name means the selected category here; this formula does not take the largest of all category values."
+   ],
+   "refs": [
+    "LRFD 3.8.1.2.1"
+   ],
+   "evaluated": {
+    "v": 1.01971744991174,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Exposure multiplier selected by this module’s actual category switch.",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Exposure multiplier selected by this module’s actual category switch.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Exp_Cat",
+   "formula": "Exp_Cat",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_016_K_Z_gov",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "If the selected exposure  is D, return ⟨K_Z_D⟩ . For every other selection, return ⟨K_Z_C⟩ . The switch therefore uses only Category C or D in this module; the separately displayed Category B equation is not a branch of this selection."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "K_Z_D",
+   "formula": "K_Z_D",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_016_K_Z_gov",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "If the selected exposure ⟨Exp_Cat⟩ is D, return  . For every other selection, return ⟨K_Z_C⟩ . The switch therefore uses only Category C or D in this module; the separately displayed Category B equation is not a branch of this selection."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "K_Z_C",
+   "formula": "K_Z_C",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_016_K_Z_gov",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "If the selected exposure ⟨Exp_Cat⟩ is D, return ⟨K_Z_D⟩ . For every other selection, return  . The switch therefore uses only Category C or D in this module; the separately displayed Category B equation is not a branch of this selection."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The selected result is used for Strength III pressure in the active pier load sets. The word “governing” in the variable name means the selected category here; this formula does not take the largest of all category values.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_016_K_Z_gov",
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">The selected result is used for Strength III pressure in the active pier load sets. The word “governing” in the variable name means the selected category here; this formula does not take the largest of all category values.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Art. 3.8.1.2.1",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage08;paragraphprojectcoderef08C001\">LRFD Art. 3.8.1.2.1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "",
+   "hidden": false,
+   "section": null,
+   "heading": "3. PRESSURE EXPOSURE AND ELEVATION COEFFICIENT, K_Z ( LRFD Art. 3.8.1.2.1 ) / 3.4. Governing K_Z — Selected by Exposure Category",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\"/>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 )",
+   "id": "paragraphrefreturn0013",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading id=\"paragraphrefreturn0013\">\n            <paragraphlabel numbergroup=\"heading\">4.</paragraphlabel>\n            DESIGN WIND PRESSURE ON STRUCTURES: WS (\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD Art. 3.8.1.2.1</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The wind pressure is determined by LRFD Eq. 3.8.1.2.1-1 :",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"8\">\n            The wind pressure is determined by\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD Eq. 3.8.1.2.1-1</link>\n            :\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "P_Z = 2.56 × 10⁻⁶ × V² × K_Z × G × C_D ( LRFD Eq. 3.8.1.2.1-1 )",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            P_Z = 2.56 × 10⁻⁶ × V² × K_Z × G × C_D   (\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD Eq. 3.8.1.2.1-1</link>\n            )\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "4.1. Strength III Wind Pressure",
+   "id": "paragraphrefreturn0014",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0014\">\n            <paragraphlabel numbergroup=\"heading\">4.1.</paragraphlabel>\n            Strength III Wind Pressure\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "P_Z_III",
+   "rhs": "2.56E-06*V_III^2*K_Z_gov*G_fac*C_D*1 ksf",
+   "formula": "P_Z_III = 2.56E-06*V_III^2*K_Z_gov*G_fac*C_D*1 ksf",
+   "cache": "= 0.0487 ksf",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Strength III horizontal wind pressure on the selected structure type.",
+   "notes": [
+    "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation."
+   ],
+   "refs": [
+    "LRFD Eq. 3.8.1.2.1-1"
+   ],
+   "evaluated": {
+    "v": 0.00033853712921558737,
+    "dims": [
+     -2.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Strength III horizontal wind pressure on the selected structure type.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Strength III horizontal wind pressure on the selected structure type.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "V_III",
+   "formula": "V_III",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_017_P_Z_III",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Square  , the wind speed number in miles per hour. Multiply by 2.56E-06, the conversion constant used with mph and kips per square foot."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "K_Z_gov",
+   "formula": "K_Z_gov",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_017_P_Z_III",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by  , the selected exposure-and-height multiplier, then by ⟨G_fac⟩ , the entered gust-effect multiplier, and by ⟨C_D⟩ , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "G_fac",
+   "formula": "G_fac",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_017_P_Z_III",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by ⟨K_Z_gov⟩ , the selected exposure-and-height multiplier, then by  , the entered gust-effect multiplier, and by ⟨C_D⟩ , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "C_D",
+   "formula": "C_D",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_017_P_Z_III",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by ⟨K_Z_gov⟩ , the selected exposure-and-height multiplier, then by ⟨G_fac⟩ , the entered gust-effect multiplier, and by  , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_017_P_Z_III",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Eq. 3.8.1.2.1-1",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.1. Strength III Wind Pressure",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD Eq. 3.8.1.2.1-1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "4.2. Strength V Wind Pressure",
+   "id": "paragraphrefreturn0015",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0015\">\n            <paragraphlabel numbergroup=\"heading\">4.2.</paragraphlabel>\n            Strength V Wind Pressure\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "For Service I and Strength V, K_Z = 1.0 ( LRFD 3.8.1.2.1 ) and G = 0.85 ( FDOT SDG 2.4.1.C ).",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"8\">\n            For Service I and Strength V, K_Z = 1.0 (\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD 3.8.1.2.1</link>\n            ) and G = 0.85 (\n            <link address=\"#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001\">FDOT SDG 2.4.1.C</link>\n            ).\n        </paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "P_Z_V",
+   "rhs": "2.56E-06*V_V^2*1*G_fac*C_D*1 ksf",
+   "formula": "P_Z_V = 2.56E-06*V_V^2*1*G_fac*C_D*1 ksf",
+   "cache": "= 0.0181 ksf",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Strength V horizontal wind pressure on the selected structure type.",
+   "notes": [
+    "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation."
+   ],
+   "refs": [
+    "LRFD 3.8.1.2.1",
+    "SDG 2.4.1.C"
+   ],
+   "evaluated": {
+    "v": 0.00012572444444444443,
+    "dims": [
+     -2.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Strength V horizontal wind pressure on the selected structure type.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Strength V horizontal wind pressure on the selected structure type.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "V_V",
+   "formula": "V_V",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_018_P_Z_V",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Square  , the wind speed number in miles per hour. Multiply by 2.56E-06, the conversion constant used with mph and kips per square foot."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "G_fac",
+   "formula": "G_fac",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_018_P_Z_V",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by the fixed exposure multiplier 1, which leaves the pressure unchanged for exposure and height in this case, then by  , the entered gust-effect multiplier, and by ⟨C_D⟩ , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "C_D",
+   "formula": "C_D",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_018_P_Z_V",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by the fixed exposure multiplier 1, which leaves the pressure unchanged for exposure and height in this case, then by ⟨G_fac⟩ , the entered gust-effect multiplier, and by  , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_018_P_Z_V",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD 3.8.1.2.1 ; FDOT SDG 2.4.1.C",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.2. Strength V Wind Pressure",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD 3.8.1.2.1</link>\n            ; \n            <link address=\"#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001\">FDOT SDG 2.4.1.C</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "4.3. Service I Wind Pressure",
+   "id": "paragraphrefreturn0016",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0016\">\n            <paragraphlabel numbergroup=\"heading\">4.3.</paragraphlabel>\n            Service I Wind Pressure\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "For Service I and Strength V, K_Z = 1.0 ( LRFD 3.8.1.2.1 ) and G = 0.85 ( FDOT SDG 2.4.1.C ).",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"8\">\n            For Service I and Strength V, K_Z = 1.0 (\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD 3.8.1.2.1</link>\n            ) and G = 0.85 (\n            <link address=\"#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001\">FDOT SDG 2.4.1.C</link>\n            ).\n        </paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "P_Z_SI",
+   "rhs": "2.56E-06*V_SI^2*1*G_fac*C_D*1 ksf",
+   "formula": "P_Z_SI = 2.56E-06*V_SI^2*1*G_fac*C_D*1 ksf",
+   "cache": "= 0.0139 ksf",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Service I horizontal wind pressure on the selected structure type.",
+   "notes": [
+    "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation."
+   ],
+   "refs": [
+    "LRFD 3.8.1.2.1",
+    "SDG 2.4.1.C"
+   ],
+   "evaluated": {
+    "v": 9.625777777777777e-05,
+    "dims": [
+     -2.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Service I horizontal wind pressure on the selected structure type.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Service I horizontal wind pressure on the selected structure type.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "V_SI",
+   "formula": "V_SI",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_019_P_Z_SI",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Square  , the wind speed number in miles per hour. Multiply by 2.56E-06, the conversion constant used with mph and kips per square foot."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "G_fac",
+   "formula": "G_fac",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_019_P_Z_SI",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by the fixed exposure multiplier 1, which leaves the pressure unchanged for exposure and height in this case, then by  , the entered gust-effect multiplier, and by ⟨C_D⟩ , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "C_D",
+   "formula": "C_D",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_019_P_Z_SI",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by the fixed exposure multiplier 1, which leaves the pressure unchanged for exposure and height in this case, then by ⟨G_fac⟩ , the entered gust-effect multiplier, and by  , the shape-dependent drag multiplier. The final “1 ksf” attaches pressure units to the result."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_019_P_Z_SI",
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD 3.8.1.2.1 ; FDOT SDG 2.4.1.C",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.3. Service I Wind Pressure",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">LRFD 3.8.1.2.1</link>\n            ; \n            <link address=\"#CodeReferencesC001.CodePage05;paragraphprojectcoderef05C001\">FDOT SDG 2.4.1.C</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "4.4. Service IV applicability — not used",
+   "id": "paragraphrefreturn0017",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0017\">\n            <paragraphlabel numbergroup=\"heading\">4.4.</paragraphlabel>\n            Service IV applicability — not used\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Service IV is not used in the current nonprestressed pier / steel-pile load set. No Service IV pressure, uplift, or FBMP entry case is produced. Strength III deck uplift remains included.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. DESIGN WIND PRESSURE ON STRUCTURES: WS ( LRFD Art. 3.8.1.2.1 ) / 4.4. Service IV applicability — not used",
+   "bold": false,
+   "fontsize": "10",
+   "background": "#F1F5FA",
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" leftindent=\"0\" background=\"#F1F5FA\">Service IV is not used in the current nonprestressed pier / steel-pile load set. No Service IV pressure, uplift, or FBMP entry case is produced. Strength III deck uplift remains included.</paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a )",
+   "id": "paragraphrefreturn0018",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading id=\"paragraphrefreturn0018\">\n            <paragraphlabel numbergroup=\"heading\">5.</paragraphlabel>\n            WIND LOADS ON SUPERSTRUCTURE (\n            <link address=\"#CodeReferencesC001.CodePage09;paragraphprojectcoderef09C001\">LRFD Art. 3.8.1.2.2</link>\n            AND\n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">3.8.1.2.3a</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "For girder bridges, wind load components on the substructure are determined as the product of skew coefficients ( LRFD Table 3.8.1.2.3a-1 ), the wind pressure from Eq. 3.8.1.2.1-1 , and the depth of the bridge as seen in elevation perpendicular to the longitudinal axis. Both transverse and longitudinal components are applied simultaneously at mid-depth of the superstructure ( LRFD Art. 3.8.1.2.3a ).",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"8\">\n            For girder bridges, wind load components on the substructure are determined as the product of skew coefficients (\n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Table 3.8.1.2.3a-1</link>\n            ), the wind pressure from\n            <link address=\"#CodeReferencesC001.CodePage07;paragraphprojectcoderef07C001\">Eq. 3.8.1.2.1-1</link>\n            , and the depth of the bridge as seen in elevation perpendicular to the longitudinal axis. Both transverse and longitudinal components are applied simultaneously at mid-depth of the superstructure (\n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Art. 3.8.1.2.3a</link>\n            ).\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "For usual girder and slab bridges with individual span length not more than 150 ft and maximum height not more than 33.0 ft above low ground or water level, simplified wind load components may be used per LRFD Art. 3.8.1.2.3a : Transverse = 100% of perpendicular load; Longitudinal = 25% of transverse load.",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"8\">\n            For usual girder and slab bridges with individual span length not more than 150 ft and maximum height not more than 33.0 ft above low ground or water level, simplified wind load components may be used per\n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Art. 3.8.1.2.3a</link>\n            : Transverse = 100% of perpendicular load; Longitudinal = 25% of transverse load.\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "id": "paragraphrefreturn0019",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0019\">\n            <paragraphlabel numbergroup=\"heading\">5.1.</paragraphlabel>\n            Skew Coefficients — Girders (\n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Table 3.8.1.2.3a-1</link>\n            )\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Transverse skew coefficient for girders — from LRFD Table 3.8.1.2.3a-1 based on selected skew angle:",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            Transverse skew coefficient for girders — from\n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Table 3.8.1.2.3a-1</link>\n            based on selected skew angle:\n        </paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "C_T_gir",
+   "rhs": "If(Skew_deg_str==\"0\", 1, If(Skew_deg_str==\"15\", 0.88, If(Skew_deg_str==\"30\", 0.82, If(Skew_deg_str==\"45\", 0.66, 0.34))))",
+   "formula": "C_T_gir = If(Skew_deg_str==\"0\", 1, If(Skew_deg_str==\"15\", 0.88, If(Skew_deg_str==\"30\", 0.82, If(Skew_deg_str==\"45\", 0.66, 0.34))))",
+   "cache": "= 1",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "Girder wind-angle multiplier for the force component across the bridge.",
+   "notes": [
+    "The chosen number scales the perpendicular-wind load into its component across the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases."
+   ],
+   "refs": [
+    "LRFD Table 3.8.1.2.3"
+   ],
+   "evaluated": {
+    "v": 1.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Girder wind-angle multiplier for the force component across the bridge.",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Girder wind-angle multiplier for the force component across the bridge.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Skew_deg_str",
+   "formula": "Skew_deg_str",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_021_C_T_gir",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "is the wind angle selected in plan, measured from straight across the bridge. The nested If expressions select the entered coefficients for 0°, 15°, 30°, and 45°; the last branch supplies the 60° value. In that order, the numbers are 1, 0.88, 0.82, 0.66, and 0.34."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The chosen number scales the perpendicular-wind load into its component across the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_021_C_T_gir",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">The chosen number scales the perpendicular-wind load into its component across the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Table 3.8.1.2.3a-1",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Table 3.8.1.2.3a-1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "C_L_gir",
+   "rhs": "If(Skew_deg_str==\"0\", 0, If(Skew_deg_str==\"15\", 0.12, If(Skew_deg_str==\"30\", 0.24, If(Skew_deg_str==\"45\", 0.32, 0.38))))",
+   "formula": "C_L_gir = If(Skew_deg_str==\"0\", 0, If(Skew_deg_str==\"15\", 0.12, If(Skew_deg_str==\"30\", 0.24, If(Skew_deg_str==\"45\", 0.32, 0.38))))",
+   "cache": "= 0",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "Girder wind-angle multiplier for the force component along the bridge.",
+   "notes": [
+    "The chosen number scales the perpendicular-wind load into its component along the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases."
+   ],
+   "refs": [
+    "LRFD Table 3.8.1.2.3"
+   ],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Girder wind-angle multiplier for the force component along the bridge.",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Girder wind-angle multiplier for the force component along the bridge.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Skew_deg_str",
+   "formula": "Skew_deg_str",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_022_C_L_gir",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "is the wind angle selected in plan, measured from straight across the bridge. The nested If expressions select the entered coefficients for 0°, 15°, 30°, and 45°; the last branch supplies the 60° value. In that order, the numbers are 0, 0.12, 0.24, 0.32, and 0.38."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The chosen number scales the perpendicular-wind load into its component along the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_022_C_L_gir",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"10\" level=\"1\">The chosen number scales the perpendicular-wind load into its component along the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Table 3.8.1.2.3a-1",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.1. Skew Coefficients — Girders ( LRFD Table 3.8.1.2.3a-1 )",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Table 3.8.1.2.3a-1</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "5.2. Strength III — Superstructure Wind Line Loads",
+   "id": "paragraphrefreturn0020",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0020\">\n            <paragraphlabel numbergroup=\"heading\">5.2.</paragraphlabel>\n            Strength III — Superstructure Wind Line Loads\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "w_T_III",
+   "rhs": "P_Z_III*C_T_gir*d_super",
+   "formula": "w_T_III = P_Z_III*C_T_gir*d_super",
+   "cache": "= 0.345 ksf*ft",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Strength III wind force across the bridge for each foot of bridge length.",
+   "notes": [],
+   "refs": [
+    "LRFD 3.8.1.2.3"
+   ],
+   "evaluated": {
+    "v": 0.028775655983324926,
+    "dims": [
+     -1.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Strength III wind force across the bridge for each foot of bridge length.",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Strength III wind force across the bridge for each foot of bridge length.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "P_Z_III",
+   "formula": "P_Z_III",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_023_w_T_III",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "is force per square foot of projected structure area. Multiply by ⟨d_super⟩ , the exposed concrete height, to obtain the perpendicular-wind force per foot of bridge."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "d_super",
+   "formula": "d_super",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_023_w_T_III",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "⟨P_Z_III⟩ is force per square foot of projected structure area. Multiply by  , the exposed concrete height, to obtain the perpendicular-wind force per foot of bridge."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "C_T_gir",
+   "formula": "C_T_gir",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_023_w_T_III",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by  , the selected girder angle multiplier, to obtain the component across the bridge. The result is a line load, not yet a complete support reaction."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Art. 3.8.1.2.3a",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Art. 3.8.1.2.3a</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "def",
+   "name": "w_L_III",
+   "rhs": "P_Z_III*C_L_gir*d_super",
+   "formula": "w_L_III = P_Z_III*C_L_gir*d_super",
+   "cache": "= 0 ksf*ft",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Strength III wind force along the bridge for each foot of bridge length.",
+   "notes": [],
+   "refs": [
+    "LRFD 3.8.1.2.3"
+   ],
+   "evaluated": {
+    "v": 0.0,
+    "dims": [
+     -1.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Strength III wind force along the bridge for each foot of bridge length.",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Strength III wind force along the bridge for each foot of bridge length.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "P_Z_III",
+   "formula": "P_Z_III",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_024_w_L_III",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "is force per square foot of projected structure area. Multiply by ⟨d_super⟩ , the exposed concrete height, to obtain the perpendicular-wind force per foot of bridge."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "d_super",
+   "formula": "d_super",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_024_w_L_III",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "⟨P_Z_III⟩ is force per square foot of projected structure area. Multiply by  , the exposed concrete height, to obtain the perpendicular-wind force per foot of bridge."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "C_L_gir",
+   "formula": "C_L_gir",
+   "cache": "",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_024_w_L_III",
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "style": null,
+   "showresult": "False",
+   "id": null,
+   "inline": "Multiply by  , the selected girder angle multiplier, to obtain the component along the bridge. The result is a line load, not yet a complete support reaction."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD Art. 3.8.1.2.3a",
+   "hidden": false,
+   "section": null,
+   "heading": "5. WIND LOADS ON SUPERSTRUCTURE ( LRFD Art. 3.8.1.2.2 AND 3.8.1.2.3a ) / 5.2. Strength III — Superstructure Wind Line Loads",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"8\" level=\"1\">\n            Reference: \n            <link address=\"#CodeReferencesC001.CodePage10;paragraphprojectcoderef10C001\">LRFD Art. 3.8.1.2.3a</link>\n        </paragraph>\n        ",
+   "role": "reference"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\"/>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "6. SUMMARY OF WIND LOAD RESULTS",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading spacingafter=\"4\">\n            <paragraphlabel numbergroup=\"heading\">6.</paragraphlabel>\n            SUMMARY OF WIND LOAD RESULTS\n        </heading>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "WindSummaryTable",
+   "title": "Wind Load Summary",
+   "colwidths": "1: 363.33333333333326, 2: 80",
+   "rows": [
+    [
+     {
+      "text": "Wind Load Parameter",
+      "dyn": []
+     },
+     {
+      "text": "Strength III",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Design Wind Speed V (mph)",
+      "dyn": []
+     },
+     {
+      "formula": "V_III",
+      "cache": "130"
+     }
+    ],
+    [
+     {
+      "text": "K_Z (Strength III uses K_Z_gov; other retained speeds use 1.0)",
+      "dyn": []
+     },
+     {
+      "formula": "K_Z_gov",
+      "cache": "1.01971744991174"
+     }
+    ],
+    [
+     {
+      "text": "P_Z — Design Wind Pressure (ksf) [Eq. 3.8.1.2.1-1]",
+      "dyn": []
+     },
+     {
+      "formula": "P_Z_III",
+      "cache": "0.04874934660704459 ksf"
+     }
+    ],
+    [
+     {
+      "text": "Transverse Wind Line Load on Superstructure (klf)",
+      "dyn": []
+     },
+     {
+      "formula": "w_T_III",
+      "cache": "0.34530787179989914 ksf*ft"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "6. SUMMARY OF WIND LOAD RESULTS",
+   "xml": "<table title=\"Wind Load Summary\" name=\"WindSummaryTable\" capture=\"False\" colwidths=\"1: 363.33333333333326, 2: 80\">\n                <stylerule range=\"A1:B5\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);                   Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#000000&quot;);\"/>\n                <stylerule range=\"A1:B1\" horzalign=\"Center\" vertalign=\"Center\" fontweight=\"bold\" background=\"#D4D4D4\"/>\n                <stylerule range=\"B2:B5\" horzalign=\"Center\" vertalign=\"Center\"/>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Wind Load Parameter</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Strength III</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Design Wind Speed V (mph)</paragraph></textcell>\n                    <c capture=\"False\" formula=\"V_III\"><num>130</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">K_Z (Strength III uses K_Z_gov; other retained speeds use 1.0)</paragraph></textcell>\n                    <c capture=\"False\" formula=\"K_Z_gov\"><num>1.01971744991174</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">P_Z — Design Wind Pressure (ksf) [Eq. 3.8.1.2.1-1]</paragraph></textcell>\n                    <c capture=\"False\" formula=\"P_Z_III\"><num>0.04874934660704459 ksf</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Transverse Wind Line Load on Superstructure (klf)</paragraph></textcell>\n                    <c capture=\"False\" formula=\"w_T_III\"><num>0.34530787179989914 ksf*ft</num></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "7. WIND APPLIED TO REPAIR FRAME",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading spacingafter=\"4\">\n            <paragraphlabel numbergroup=\"heading\">7.</paragraphlabel>\n            WIND APPLIED TO REPAIR FRAME\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "W_Frame",
+   "rhs": "w_T_III*L_span/2/BridgeGeometry_2Beam.Beam_count",
+   "formula": "W_Frame = w_T_III*L_span/2/BridgeGeometry_2Beam.Beam_count",
+   "cache": "= 9.267 kip",
+   "hidden": false,
+   "section": null,
+   "heading": "7. WIND APPLIED TO REPAIR FRAME",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Wind force allocated to one bearing in the repair-frame load split.",
+   "notes": [
+    "For the retained equal bearing-load allocation, take half the maximum-span line load and divide by the beam count from Bridge Geometry_2 Beam. This is the existing load-distribution assumption."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 9.267200009429784,
+    "dims": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Wind force allocated to one bearing in the repair-frame load split.",
+   "hidden": false,
+   "section": null,
+   "heading": "7. WIND APPLIED TO REPAIR FRAME",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"4\" level=\"1\" fontweight=\"bold\">Wind force allocated to one bearing in the repair-frame load split.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "For the retained equal bearing-load allocation, take half the maximum-span line load and divide by the beam count from Bridge Geometry_2 Beam. This is the existing load-distribution assumption.",
+   "hidden": true,
+   "section": "EqNotes_WindLoadonPedBridgeSuperstructure_025_W_Frame",
+   "heading": "7. WIND APPLIED TO REPAIR FRAME",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">For the retained equal bearing-load allocation, take half the maximum-span line load and divide by the beam count from Bridge Geometry_2 Beam. This is the existing load-distribution assumption.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "",
+   "hidden": false,
+   "section": null,
+   "heading": "7. WIND APPLIED TO REPAIR FRAME",
+   "bold": false,
+   "fontsize": null,
+   "background": null,
+   "xml": "<paragraph spacingafter=\"12\"/>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "id": "headingC001WindLoadOnPedBridgeSuperstructure8",
+   "hidden": false,
+   "section": null,
+   "style": "Uplift Heading 1",
+   "pagebreak": "Break",
+   "xml": "<heading id=\"headingC001WindLoadOnPedBridgeSuperstructure8\" style=\"Uplift Heading 1\" pagebreakbefore=\"Break\">\n            <paragraphlabel numbergroup=\"heading\">8.</paragraphlabel>\n             VERTICAL WIND AND PERPENDICULAR COMPANION LOADS —\n            <link address=\"#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001\">LRFD 3.8.2</link>\n        </heading>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "C001VerticalScope",
+   "title": null,
+   "colwidths": "1:520",
+   "rows": [
+    [
+     {
+      "text": "VERTICAL WIND LOAD GENERATION",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "• Generate the upward line loads and windward eccentricity from the current outside deck width; C004 performs the bearing and stability checks.",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "• These cases use wind perpendicular to the bridge. Both transverse signs are evaluated with the matching horizontal load. The selected skew-angle cases elsewhere in C001 remain separate.",
+      "dyn": []
+     }
+    ]
+   ],
+   "formulas": false,
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "xml": "<table name=\"C001VerticalScope\" capture=\"False\" colwidths=\"1:520\">\n                <stylerule range=\"A1:A3\" fontfamily=\"Times New Roman\" fontsize=\"10\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);\"/>\n                <stylerule range=\"A1:A1\" background=\"#DCE7F3\" fontweight=\"bold\" horzalign=\"Center\"/>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">VERTICAL WIND LOAD GENERATION</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" name=\"C001VerticalScope2\" background=\"#F1F5FA\">\n                        <paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">• Generate the upward line loads and windward eccentricity from the current outside deck width; C004 performs the bearing and stability checks.</paragraph>\n                    </textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" name=\"C001VerticalScope3\" background=\"#F1F5FA\">\n                        <paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">• These cases use wind perpendicular to the bridge. Both transverse signs are evaluated with the matching horizontal load. The selected skew-angle cases elsewhere in C001 remain separate.</paragraph>\n                    </textcell>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: LRFD 3.8.2; 10th Edition (2024)",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n            Reference:\n            <link address=\"#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001\">LRFD 3.8.2; 10th Edition (2024)</link>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "p_V_III",
+   "rhs": "0.020 ksf",
+   "formula": "p_V_III = 0.020 ksf",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "style": "Required Input",
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [
+    "Prescribed Strength III vertical wind pressure; LRFD 3.8.2 ."
+   ],
+   "refs": [
+    "LRFD 3.8.2"
+   ],
+   "evaluated": {
+    "v": 0.0001388888888888889,
+    "dims": [
+     -2.0,
+     1.0,
+     0.0
+    ]
+   },
+   "unit": "ksf"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Prescribed Strength III vertical wind pressure; LRFD 3.8.2 .",
+   "hidden": true,
+   "section": "EqNotes_009_C001WindLoadOnPedBridgeSuperstructure",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                Prescribed Strength III vertical wind pressure;\n                <link address=\"#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001\">LRFD 3.8.2</link>\n                .\n            </paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "α_V",
+   "rhs": "1/4",
+   "formula": "α_V = 1/4",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [
+    "Windward quarter-point distance from deck centerline for the symmetric section; LRFD 3.8.2 ."
+   ],
+   "refs": [
+    "LRFD 3.8.2"
+   ],
+   "evaluated": {
+    "v": 0.25,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Windward quarter-point distance from deck centerline for the symmetric section; LRFD 3.8.2 .",
+   "hidden": true,
+   "section": "EqNotes_011_C001WindLoadOnPedBridgeSuperstructure",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                Windward quarter-point distance from deck centerline for the symmetric section;\n                <link address=\"#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001\">LRFD 3.8.2</link>\n                .\n            </paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "e_V",
+   "rhs": "α_V*w_deck",
+   "formula": "e_V = α_V*w_deck",
+   "cache": "= 3 25/64 ft",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [
+    "Magnitude of the transverse eccentricity from deck centerline. The windward side changes with wind sign."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 40.75,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Magnitude of the transverse eccentricity from deck centerline. The windward side changes with wind sign.",
+   "hidden": true,
+   "section": "EqNotes_012_C001WindLoadOnPedBridgeSuperstructure",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Magnitude of the transverse eccentricity from deck centerline. The windward side changes with wind sign.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "w_V_III",
+   "rhs": "p_V_III*w_deck",
+   "formula": "w_V_III = p_V_III*w_deck",
+   "cache": "= 0.272 ksf*ft",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [
+    "Strength III upward force per bridge length. No horizontal pressure coefficient or speed ratio is applied to this prescribed pressure."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.02263888888888889,
+    "dims": [
+     -1.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Strength III upward force per bridge length. No horizontal pressure coefficient or speed ratio is applied to this prescribed pressure.",
+   "hidden": true,
+   "section": "EqNotes_013_C001WindLoadOnPedBridgeSuperstructure",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Strength III upward force per bridge length. No horizontal pressure coefficient or speed ratio is applied to this prescribed pressure.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "m_V_III",
+   "rhs": "w_V_III*e_V",
+   "formula": "m_V_III = w_V_III*e_V",
+   "cache": "= 0.923 kip",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [
+    "Strength III overturning moment per bridge length from vertical wind; derived equilibrium."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.9225347222222222,
+    "dims": [
+     0.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Strength III overturning moment per bridge length from vertical wind; derived equilibrium.",
+   "hidden": true,
+   "section": "EqNotes_015_C001WindLoadOnPedBridgeSuperstructure",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Strength III overturning moment per bridge length from vertical wind; derived equilibrium.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "w_T0_III",
+   "rhs": "P_Z_III*d_super",
+   "formula": "w_T0_III = P_Z_III*d_super",
+   "cache": "= 0.345 ksf*ft",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "",
+   "caption": "",
+   "notes": [
+    "Concurrent perpendicular concrete wind. Fence wind remains sourced from C002."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.028775655983324926,
+    "dims": [
+     -1.0,
+     1.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Concurrent perpendicular concrete wind. Fence wind remains sourced from C002.",
+   "hidden": true,
+   "section": "EqNotes_017_C001WindLoadOnPedBridgeSuperstructure",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Concurrent perpendicular concrete wind. Fence wind remains sourced from C002.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "table",
+   "name": "C001VerticalResults",
+   "title": null,
+   "colwidths": "1:120, 2:130, 3:120, 4:150",
+   "rows": [
+    [
+     {
+      "text": "Limit state",
+      "dyn": []
+     },
+     {
+      "text": "Upward line load",
+      "dyn": []
+     },
+     {
+      "text": "Eccentricity",
+      "dyn": []
+     },
+     {
+      "text": "Concrete horizontal",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Strength III",
+      "dyn": []
+     },
+     {
+      "formula": "w_V_III",
+      "cache": "0.27166666666666667 ksf*ft"
+     },
+     {
+      "formula": "e_V",
+      "cache": "3 25/64 ft"
+     },
+     {
+      "formula": "w_T0_III",
+      "cache": "0.34530787179989914 ksf*ft"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "xml": "<table name=\"C001VerticalResults\" capture=\"False\" colwidths=\"1:120, 2:130, 3:120, 4:150\">\n                <stylerule range=\"A1:D2\" fontfamily=\"Times New Roman\" fontsize=\"10\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);\"/>\n                <stylerule range=\"A1:D1\" background=\"#DCECE0\" fontweight=\"bold\" horzalign=\"Center\"/>\n                <stylerule range=\"B2:D2\" horzalign=\"Center\" vertalign=\"Center\"/>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Limit state</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Upward line load</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Eccentricity</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Concrete horizontal</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Strength III</paragraph></textcell>\n                    <c capture=\"False\" formula=\"w_V_III\" background=\"#EFF7F1\"><num>0.27166666666666667 ksf*ft</num></c>\n                    <c capture=\"False\" formula=\"e_V\" background=\"#EFF7F1\"><num>3 25/64 ft</num></c>\n                    <c capture=\"False\" formula=\"w_T0_III\" background=\"#EFF7F1\"><num>0.34530787179989914 ksf*ft</num></c>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The load-generation table precedes combination factors. Apply the matching factors once in C004. Vertical wind is excluded from other limit states and from skew-wind cases.",
+   "hidden": false,
+   "section": null,
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">The load-generation table precedes combination factors. Apply the matching factors once in C004. Vertical wind is excluded from other limit states and from skew-wind cases.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": "paragraphc001ref12",
+   "text": "LRFD 3.8.2 — Vertical Wind Load",
+   "hidden": false,
+   "section": "VerticalReferenceSummary",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": true,
+   "fontsize": "16",
+   "background": null,
+   "xml": "<paragraph id=\"paragraphc001ref12\" spacingbefore=\"0\" spacingafter=\"0\" horzalign=\"Center\" pagebreakbefore=\"Break\" fontsize=\"16\" fontweight=\"bold\">\n                <link address=\"#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001\">LRFD 3.8.2</link>\n                — Vertical Wind Load\n            </paragraph>\n            "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Reference: Primary code excerpt: LRFD 3.8.2, 10th Edition (2024)",
+   "hidden": false,
+   "section": "VerticalReferenceSummary",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                Reference:\n                <link address=\"#CodeReferencesC001.CodePage11;paragraphprojectcoderef11C001\">Primary code excerpt: LRFD 3.8.2, 10th Edition (2024)</link>\n            </paragraph>\n            "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "C001 generates the vertical line loads and windward eccentricity. C004 combines them with gravity and perpendicular horizontal wind for the bearing-contact and overturning checks.",
+   "hidden": false,
+   "section": "VerticalReferenceSummary",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">C001 generates the vertical line loads and windward eccentricity. C004 combines them with gravity and perpendicular horizontal wind for the bearing-contact and overturning checks.</paragraph>\n            "
+  },
+  {
+   "kind": "table",
+   "name": "C001VerticalReferenceLive",
+   "title": null,
+   "colwidths": "1:170, 2:175, 3:175",
+   "rows": [
+    [
+     {
+      "text": "Limit state",
+      "dyn": []
+     },
+     {
+      "text": "Upward line load",
+      "dyn": []
+     },
+     {
+      "text": "Windward eccentricity",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Strength III",
+      "dyn": []
+     },
+     {
+      "formula": "C001WindLoadOnPedBridgeSuperstructure.w_V_III",
+      "cache": "0.27166666666666667 ksf*ft"
+     },
+     {
+      "formula": "C001WindLoadOnPedBridgeSuperstructure.e_V",
+      "cache": "3 25/64 ft"
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": "VerticalReferenceSummary",
+   "heading": "8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2",
+   "xml": "<table name=\"C001VerticalReferenceLive\" capture=\"False\" colwidths=\"1:170, 2:175, 3:175\">\n                    <stylerule range=\"A1:C2\" fontfamily=\"Times New Roman\" fontsize=\"10\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);\"/>\n                    <stylerule range=\"A1:C1\" background=\"#DCECE0\" fontweight=\"bold\" horzalign=\"Center\"/>\n                    <stylerule range=\"B2:C2\" horzalign=\"Center\" vertalign=\"Center\"/>\n                    <row>\n                        <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Limit state</paragraph></textcell>\n                        <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Upward line load</paragraph></textcell>\n                        <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Windward eccentricity</paragraph></textcell>\n                    </row>\n                    <row>\n                        <textcell capture=\"False\" background=\"#EFF7F1\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Strength III</paragraph></textcell>\n                        <c capture=\"False\" formula=\"C001WindLoadOnPedBridgeSuperstructure.w_V_III\" background=\"#EFF7F1\"><num>0.27166666666666667 ksf*ft</num></c>\n                        <c capture=\"False\" formula=\"C001WindLoadOnPedBridgeSuperstructure.e_V\" background=\"#EFF7F1\"><num>3 25/64 ft</num></c>\n                    </row>\n                </table>\n            "
+  }
+ ],
+ "externals": {
+  "BridgeGeometry_2Beam.Wind_clearHeight": {
+   "kind": "report",
+   "v": 227.47752853694504,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Wind_clearHeight = CapTop_aboveTerrain + BearingPlane_aboveCap to ft in"
+  },
+  "BridgeGeometry_2Beam.Wind_exposureHeight": {
+   "kind": "report",
+   "v": 428.79002853694504,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Wind_exposureHeight = Wind_clearHeight + Depth_SuperStr + Fence_ht"
+  },
+  "BridgeGeometry_2Beam.Depth_SuperStr": {
+   "kind": "report",
+   "v": 85.0,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Depth_SuperStr = 7'1\""
+  },
+  "BridgeGeometry_2Beam.Span_1": {
+   "kind": "report",
+   "v": 1288.199999999999,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Span_1 = (CLPier_station-BeginBridge_station)*1 ft"
+  },
+  "BridgeGeometry_2Beam.Span_2": {
+   "kind": "report",
+   "v": 1258.800000000001,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Span_2 = (EndBridge_station-CLPier_station)*1 ft"
+  },
+  "BridgeGeometry_2Beam.Deck_out2out": {
+   "kind": "report",
+   "v": 163.0,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Deck_out2out = Dist_outsideParapets+2*Distance_outFaceParapet_deckEdge"
+  },
+  "BridgeGeometry_2Beam.Beam_count": {
+   "kind": "report",
+   "v": 2.0,
+   "dims": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Beam_count = 2"
+  },
+  "ProjectInfo.Firm": {
+   "kind": "report",
+   "text": "Parsons Transportation Group Inc",
+   "journal_formula": "Firm = \"Parsons Transportation Group Inc\""
+  },
+  "ProjectInfo.Project": {
+   "kind": "report",
+   "text": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "journal_formula": "Project = \"I-95 Capacity Improvements from South of SR 152 to South of SR 126\""
+  },
+  "ProjectInfo.Address": {
+   "kind": "report",
+   "text": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "journal_formula": "Address = \"1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301\""
+  },
+  "ProjectInfo.JobNo": {
+   "kind": "report",
+   "text": "",
+   "journal_formula": "JobNo = \"\""
+  },
+  "ProjectInfo.DesignedBy": {
+   "kind": "report",
+   "text": "JAT",
+   "journal_formula": "DesignedBy = \"JAT\""
+  },
+  "ProjectInfo.DesignDate": {
+   "kind": "report",
+   "text": "10/17/2026",
+   "journal_formula": "DesignDate = \"10/17/2026\""
+  },
+  "ProjectInfo.CheckedBy": {
+   "kind": "report",
+   "text": "MIK",
+   "journal_formula": "CheckedBy = \"MIK\""
+  },
+  "ProjectInfo.CheckDate": {
+   "kind": "report",
+   "text": "",
+   "journal_formula": "CheckDate = \"\""
+  }
+ },
+ "skipped": [],
+ "inbound_names": {
+  "G_fac": [
+   "report:FenceWind"
+  ],
+  "K_Z_gov": [
+   "report:FenceWind"
+  ],
+  "P_Z_III": [
+   "report:FenceWind",
+   "report:PedBridgeWind"
+  ],
+  "P_Z_SI": [
+   "report:FBMPEndBent",
+   "report:FBMPPier",
+   "report:FenceWind"
+  ],
+  "V_III": [
+   "report:FenceWind"
+  ],
+  "V_SI": [
+   "report:FenceWind"
+  ],
+  "e_V": [
+   "report:FBMPEndBent",
+   "report:FBMPPier",
+   "report:SuperstructureUplift"
+  ],
+  "w_T0_III": [
+   "report:FBMPEndBent",
+   "report:FBMPPier",
+   "report:SuperstructureUplift"
+  ],
+  "w_V_III": [
+   "report:FBMPEndBent",
+   "report:FBMPPier",
+   "report:SuperstructureUplift"
+  ],
+  "w_deck": [
+   "report:SuperstructureUplift"
+  ]
+ },
+ "inbound_links": {
+  "#C001WindLoadOnPedBridgeSuperstructure": [
+   "report:GeneralLoads",
+   "report:PedBridge",
+   "report:SuperstructureUplift"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;headingC001WindLoadOnPedBridgeSuperstructure8": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004",
+   "report:CodeReferencesGeneral"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0004": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004",
+   "report:CodeReferencesGeneral"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0005": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0006": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0007": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0008": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0009": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0010": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0011": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0012": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0013": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0014": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0015": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0016": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0017": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0018": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004",
+   "report:CodeReferencesGeneral"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0019": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004",
+   "report:CodeReferencesGeneral"
+  ],
+  "#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0020": [
+   "report:CodeReferencesC001",
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC004",
+   "report:CodeReferencesGeneral"
+  ]
+ },
+ "internal_links": [],
+ "anchors": [
+  [
+   "heading",
+   "paragraphrefreturn0004"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0005"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0006"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0007"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0008"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0009"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0010"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0011"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0012"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0013"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0014"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0015"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0016"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0017"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0018"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0019"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0020"
+  ],
+  [
+   "heading",
+   "headingC001WindLoadOnPedBridgeSuperstructure8"
+  ],
+  [
+   "paragraph",
+   "paragraphc001ref12"
+  ]
+ ]
+}

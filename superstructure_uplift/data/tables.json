@@ -1,0 +1,424 @@
+[
+ {
+  "name": "UpliftSummary",
+  "title": "",
+  "headers": [
+   "Result",
+   "Strength III"
+  ],
+  "rows": [
+   [
+    "Minimum physical bearing compression",
+    {
+     "v": "R_min_III"
+    }
+   ],
+   [
+    "Overturning demand / stabilizing moment",
+    {
+     "v": "DC_OT_III"
+    }
+   ],
+   [
+    "Maximum hold-down demand per bearing",
+    {
+     "v": "T_req_III"
+    }
+   ],
+   [
+    "Contact retained",
+    {
+     "v": "Chk_contact_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftGravitySources",
+  "title": "",
+  "headers": [
+   "Component",
+   "Source at pier",
+   "Bearing stabilization"
+  ],
+  "rows": [
+   [
+    "Beams",
+    {
+     "v": "W_beams_pier"
+    },
+    "Included — DC"
+   ],
+   [
+    "Fence",
+    {
+     "v": "W_fence_pier"
+    },
+    "Included — DC"
+   ],
+   [
+    "Parapets",
+    {
+     "v": "W_parapets_pier"
+    },
+    "Included — DC"
+   ],
+   [
+    "Deck",
+    {
+     "v": "W_deck_pier"
+    },
+    "Included — DC"
+   ],
+   [
+    "Haunch",
+    {
+     "v": "W_haunch_pier"
+    },
+    "Included — DC"
+   ],
+   [
+    "Cheek walls + pedestals",
+    {
+     "v": "DC_sub_pier"
+    },
+    "Below bearings; exclude"
+   ],
+   [
+    "Cap + pier wall",
+    {
+     "f": "W_cap+W_wall"
+    },
+    "FBMP self weight; exclude"
+   ]
+  ]
+ },
+ {
+  "name": "UpliftFactors",
+  "title": "",
+  "headers": [
+   "Limit state",
+   "DC",
+   "DW",
+   "WS",
+   "Modifier"
+  ],
+  "rows": [
+   [
+    "Strength III",
+    {
+     "v": "γ_DC_III"
+    },
+    {
+     "v": "γ_DW_III"
+    },
+    {
+     "v": "γ_WS_III"
+    },
+    {
+     "v": "η_bearing"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftLineEffects",
+  "title": "",
+  "headers": [
+   "Limit state",
+   "Downward",
+   "Upward",
+   "Transverse",
+   "Roll / length"
+  ],
+  "rows": [
+   [
+    "Strength III",
+    {
+     "v": "w_D_III"
+    },
+    {
+     "v": "w_U_III"
+    },
+    {
+     "v": "w_H_III"
+    },
+    {
+     "v": "m_OT_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftBearingIII",
+  "title": "",
+  "headers": [
+   "Strength III",
+   "B− compression",
+   "B+ compression",
+   "H / bearing*",
+   "Contact"
+  ],
+  "rows": [
+   [
+    "Span 1 / +T",
+    {
+     "v": "R_W1_III"
+    },
+    {
+     "v": "R_L1_III"
+    },
+    {
+     "v": "H_pad1_III"
+    },
+    {
+     "v": "Chk_contact_III"
+    }
+   ],
+   [
+    "Span 1 / −T",
+    {
+     "v": "R_L1_III"
+    },
+    {
+     "v": "R_W1_III"
+    },
+    {
+     "v": "H_pad1_III"
+    },
+    {
+     "v": "Chk_contact_III"
+    }
+   ],
+   [
+    "Span 2 / +T",
+    {
+     "v": "R_W2_III"
+    },
+    {
+     "v": "R_L2_III"
+    },
+    {
+     "v": "H_pad2_III"
+    },
+    {
+     "v": "Chk_contact_III"
+    }
+   ],
+   [
+    "Span 2 / −T",
+    {
+     "v": "R_L2_III"
+    },
+    {
+     "v": "R_W2_III"
+    },
+    {
+     "v": "H_pad2_III"
+    },
+    {
+     "v": "Chk_contact_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftStability",
+  "title": "",
+  "headers": [
+   "Check",
+   "Strength III"
+  ],
+  "rows": [
+   [
+    "Net vertical compression",
+    {
+     "v": "Chk_uplift_III"
+    }
+   ],
+   [
+    "Transverse overturning",
+    {
+     "v": "Chk_OT_III"
+    }
+   ],
+   [
+    "Contact at every bearing",
+    {
+     "v": "Chk_contact_III"
+    }
+   ],
+   [
+    "Required tensile restraint per bearing",
+    {
+     "v": "T_req_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftPierForces",
+  "title": "",
+  "headers": [
+   "Case",
+   "N at B− ↓",
+   "N at B+ ↓",
+   "F_T →",
+   "F_L"
+  ],
+  "rows": [
+   [
+    "Strength III / +T",
+    {
+     "v": "N_minus_III"
+    },
+    {
+     "v": "N_plus_III"
+    },
+    {
+     "v": "H_P_III"
+    },
+    {
+     "f": "0*H_P_III"
+    }
+   ],
+   [
+    "Strength III / −T",
+    {
+     "v": "N_plus_III"
+    },
+    {
+     "v": "N_minus_III"
+    },
+    {
+     "f": "-H_P_III"
+    },
+    {
+     "f": "0*H_P_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftPierCouples",
+  "title": "",
+  "headers": [
+   "Same case",
+   "M_T residual",
+   "M_L residual",
+   "M_V residual"
+  ],
+  "rows": [
+   [
+    "Strength III / +T",
+    {
+     "v": "M_T_res_III"
+    },
+    {
+     "v": "M_L_res_III"
+    },
+    {
+     "v": "M_V_res_III"
+    }
+   ],
+   [
+    "Strength III / −T",
+    {
+     "v": "M_T_res_III"
+    },
+    {
+     "f": "-M_L_res_III"
+    },
+    {
+     "f": "-M_V_res_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftChecks",
+  "title": "",
+  "headers": [
+   "Check",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Supported beam/node configuration",
+    {
+     "v": "Chk_config"
+    }
+   ],
+   [
+    "Source tributary length",
+    {
+     "v": "Chk_tributary"
+    }
+   ],
+   [
+    "Weight classification reconciles to existing gravity total",
+    {
+     "v": "Chk_gravity"
+    }
+   ],
+   [
+    "Strength III horizontal set agrees with C002",
+    {
+     "v": "Chk_horizontal"
+    }
+   ],
+   [
+    "Physical-bearing vertical equilibrium",
+    {
+     "v": "Chk_force"
+    }
+   ],
+   [
+    "Physical-bearing roll equilibrium",
+    {
+     "v": "Chk_roll"
+    }
+   ],
+   [
+    "Collected-node roll plus residual equals applied moment",
+    {
+     "v": "Chk_transfer"
+    }
+   ],
+   [
+    "Derived bearing plane at or above the cap top",
+    {
+     "v": "Chk_datum"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "UpliftDatum",
+  "title": "",
+  "headers": [
+   "Geometry reconciliation",
+   "Live value"
+  ],
+  "rows": [
+   [
+    "Bearing plane above cap datum",
+    {
+     "v": "z_b"
+    }
+   ],
+   [
+    "Cap top above cap datum",
+    {
+     "f": "PierCap_ht/2"
+    }
+   ],
+   [
+    "Derived bearing plane above cap top",
+    {
+     "v": "BearingPlane_aboveCap"
+    }
+   ]
+  ]
+ }
+]

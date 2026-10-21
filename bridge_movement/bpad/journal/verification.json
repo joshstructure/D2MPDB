@@ -1,0 +1,35 @@
+[
+ {
+  "case_sha256": "82bf12fdf18f734f54521713152937299349cd33341bd660540d00d396e1a8ee",
+  "cells_and_labels": 34,
+  "definitions": 26,
+  "fragment": "bridge_movement/bpad/journal/BridgeMovement.xml",
+  "fragment_sha256": "1135d2f449ff3de31471ecd8e634aa059c89583b4310c14700587763a8c16f9a",
+  "functions": 0,
+  "journal_file": "journal/D2_I95_Project_Journal.bpad",
+  "journal_references": 2,
+  "literals_kept": [],
+  "mathcad_values_compared": null,
+  "package_revision": "6d2bcf1ffc5ac742a6a4c527fc1e41cb94962adb48c9ed543014e062261a6c31",
+  "project_stamp": {
+   "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "CheckDate": "",
+   "CheckedBy": "MIK",
+   "DesignDate": "10/17/2026",
+   "DesignedBy": "JAT",
+   "Firm": "Parsons Transportation Group Inc",
+   "JobNo": "",
+   "Project": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "owner": "ProjectInfo"
+  },
+  "references": [
+   "BridgeGeometry_2Beam.Span_1",
+   "BridgeGeometry_2Beam.Span_2"
+  ],
+  "report_name": "BridgeMovement",
+  "review_document": "bridge_movement/bpad/journal/Bridge Temperature Movement - Journal Edition (review).bpad",
+  "review_sha256": "b32b25be9f0412e7935c8ab994f8d4ca47c07f052968f793cde49de8fed59b4b",
+  "status": "✓ All Checks Pass",
+  "tool_comparisons": 17
+ }
+]

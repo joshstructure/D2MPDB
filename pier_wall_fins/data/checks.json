@@ -1,0 +1,345 @@
+[
+ {
+  "key": "reactions",
+  "group": "Reaction model",
+  "label": "Six wall reactions reproduce the gross wall weight",
+  "kind": "flag",
+  "flag": "Chk_reactions",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "R_1",
+   "R_2",
+   "R_3",
+   "Chk_reactions"
+  ],
+  "note": ""
+ },
+ {
+  "key": "model",
+  "group": "Reaction model",
+  "label": "Validity of the symmetric four-pile / six-fin reaction model",
+  "kind": "flag",
+  "flag": "Chk_model",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_model"
+  ],
+  "note": ""
+ },
+ {
+  "key": "saddle",
+  "group": "Reaction model",
+  "label": "Saddle and hairpin force points fit on the fin projection",
+  "kind": "flag",
+  "flag": "Chk_saddle",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_saddle"
+  ],
+  "note": ""
+ },
+ {
+  "key": "hairpin",
+  "group": "Hairpins",
+  "label": "Individual hairpin utilization (60/40 split)",
+  "kind": "ratio",
+  "num": "P_one_u",
+  "den": "P_r_one",
+  "demand": "P_one_u",
+  "capacity": "P_r_one",
+  "basis": "P_u,one / φ P_n,one",
+  "refs": [
+   "lrfd_5_8_2_4"
+  ],
+  "names": [
+   "P_one_u",
+   "P_r_one",
+   "DC_hairpin",
+   "Chk_hairpin"
+  ],
+  "note": "",
+  "flag": "Chk_hairpin",
+  "ratio_name": "DC_hairpin"
+ },
+ {
+  "key": "development",
+  "group": "Hairpins",
+  "label": "Straight-tail development length",
+  "kind": "ratio",
+  "num": "l_d",
+  "den": "l_av",
+  "demand": "l_d",
+  "capacity": "l_av",
+  "basis": "l_d / l_available",
+  "refs": [],
+  "names": [
+   "l_db",
+   "l_d",
+   "l_av",
+   "DC_development"
+  ],
+  "note": "",
+  "flag": "Chk_development",
+  "ratio_name": "DC_development"
+ },
+ {
+  "key": "bend",
+  "group": "Hairpins",
+  "label": "Hairpin inside bend diameter (#5 minimum)",
+  "kind": "flag",
+  "flag": "Chk_bend",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "D_s",
+   "Chk_bend"
+  ],
+  "note": ""
+ },
+ {
+  "key": "plate_flex",
+  "group": "Fin plate",
+  "label": "Biaxial first-yield / LTB flexure",
+  "kind": "ratio",
+  "num": "M_yd",
+  "den": "M_ry",
+  "demand": "M_yd",
+  "capacity": "M_ry",
+  "basis": "M_yd / M_ry + M_xd / M_rx",
+  "refs": [
+   "lrfd_6_12_2_2_7"
+  ],
+  "names": [
+   "M_yd",
+   "M_ry",
+   "M_xd",
+   "M_rx",
+   "DC_biax"
+  ],
+  "note": "",
+  "flag": "Chk_plate_flex",
+  "ratio_name": "DC_biax"
+ },
+ {
+  "key": "plate_shear",
+  "group": "Fin plate",
+  "label": "Root shear yielding and rupture",
+  "kind": "ratio",
+  "num": "V_d",
+  "den": "R_v",
+  "demand": "V_d",
+  "capacity": "R_v",
+  "basis": "V_d / R_v",
+  "refs": [
+   "lrfd_eq_6_13_5_3_1"
+  ],
+  "names": [
+   "V_d",
+   "R_vy",
+   "R_vu",
+   "R_v",
+   "DC_plate_shear"
+  ],
+  "note": "",
+  "flag": "Chk_plate_shear",
+  "ratio_name": "DC_plate_shear"
+ },
+ {
+  "key": "plate_vm",
+  "group": "Fin plate",
+  "label": "Combined-stress (von Mises) screen",
+  "kind": "ratio",
+  "num": "σ_VM",
+  "den": "F_y",
+  "demand": "σ_VM",
+  "capacity": "F_y",
+  "basis": "σ_VM / F_y",
+  "refs": [],
+  "names": [
+   "σ_b",
+   "τ_max",
+   "σ_VM",
+   "DC_VM"
+  ],
+  "note": "",
+  "flag": "Chk_plate_VM",
+  "ratio_name": "DC_VM"
+ },
+ {
+  "key": "root",
+  "group": "Fin plate",
+  "label": "Plate geometry valid and inside the wall",
+  "kind": "flag",
+  "flag": "Chk_root",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_root"
+  ],
+  "note": ""
+ },
+ {
+  "key": "strip_flex",
+  "group": "Wall strip",
+  "label": "Wind-strip flexure",
+  "kind": "ratio",
+  "num": "M_u_strip",
+  "den": "M_r_strip",
+  "demand": "M_u_strip",
+  "capacity": "M_r_strip",
+  "basis": "M_u / M_r (also ε_t ≥ 0.005 and minimum steel)",
+  "refs": [
+   "lrfd_5_6_3_2"
+  ],
+  "names": [
+   "M_u_strip",
+   "M_r_strip",
+   "M_min",
+   "ε_t",
+   "DC_strip_flex"
+  ],
+  "note": "",
+  "flag": "Chk_strip_flex",
+  "ratio_name": "DC_strip_flex"
+ },
+ {
+  "key": "strip_shear",
+  "group": "Wall strip",
+  "label": "Wind-strip shear and transverse steel",
+  "kind": "ratio",
+  "num": "V_u_strip",
+  "den": "V_r_strip",
+  "demand": "V_u_strip",
+  "capacity": "V_r_strip",
+  "basis": "V_u / V_r (also A_v ≥ A_v,min and s ≤ s_max)",
+  "refs": [],
+  "names": [
+   "V_u_strip",
+   "V_c",
+   "V_s",
+   "V_r_strip",
+   "DC_strip_shear"
+  ],
+  "note": "",
+  "flag": "Chk_strip_shear",
+  "ratio_name": "DC_strip_shear"
+ },
+ {
+  "key": "service",
+  "group": "Wall strip",
+  "label": "Service I cracked-section check with the FDOT amendment",
+  "kind": "flag",
+  "flag": "Chk_service",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "f_ss",
+   "s_crack",
+   "Chk_service"
+  ],
+  "note": ""
+ },
+ {
+  "key": "st",
+  "group": "Detailing",
+  "label": "Shrinkage and temperature steel per face",
+  "kind": "ratio",
+  "num": "A_ST",
+  "den": "A_face",
+  "demand": "A_ST",
+  "capacity": "A_face",
+  "basis": "A_ST / A_face (also spacing limits)",
+  "refs": [
+   "lrfd_eq_5_10_6_1"
+  ],
+  "names": [
+   "A_ST",
+   "A_face",
+   "DC_ST"
+  ],
+  "note": "",
+  "flag": "Chk_ST",
+  "ratio_name": "DC_ST"
+ },
+ {
+  "key": "stm_grid",
+  "group": "Detailing",
+  "label": "Disturbed-region grid ratio and 12-in ceiling",
+  "kind": "flag",
+  "flag": "Chk_STMgrid",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "ρ_grid",
+   "Chk_STMgrid"
+  ],
+  "note": ""
+ },
+ {
+  "key": "spacing",
+  "group": "Detailing",
+  "label": "Grid clear spacing and cross-tie spacing",
+  "kind": "flag",
+  "flag": "Chk_spacing",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "s_clear",
+   "s_clear_req",
+   "Chk_spacing"
+  ],
+  "note": ""
+ },
+ {
+  "key": "fit",
+  "group": "Detailing",
+  "label": "Trial layout fits within the pile-position envelope",
+  "kind": "flag",
+  "flag": "Chk_fit",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "g_pipe",
+   "c_pipe_end",
+   "g_fins",
+   "Chk_fit"
+  ],
+  "note": ""
+ },
+ {
+  "key": "joints",
+  "group": "Detailing",
+  "label": "No intermediate joint required (30 ft screen)",
+  "kind": "flag",
+  "flag": "Chk_joints",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "Chk_joints"
+  ],
+  "note": ""
+ }
+]

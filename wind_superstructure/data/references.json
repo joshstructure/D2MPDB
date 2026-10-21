@@ -1,0 +1,67 @@
+{
+ "lrfd_3_8_1_2_1": {
+  "code": "LRFD",
+  "article": "3.8.1.2.1",
+  "governs": "Height of the fence crown above low ground, used as the common wind exposure height."
+ },
+ "lrfd_3_8_1_2_3": {
+  "code": "LRFD",
+  "article": "3.8.1.2.3a",
+  "governs": "Longer of the two individual bridge spans."
+ },
+ "lrfd_3_8_2": {
+  "code": "LRFD",
+  "article": "3.8.2",
+  "governs": "Full outside-to-outside width of the concrete deck."
+ },
+ "lrfd_table_3_8_1_2_3": {
+  "code": "LRFD",
+  "article": "Table 3.8.1.2.3a-1",
+  "governs": "Skew_deg_str"
+ },
+ "sdg_table_2_4_1_1": {
+  "code": "SDG",
+  "article": "Table 2.4.1-1",
+  "governs": "Design gust wind speed entered for Strength III (FDOT SDG Table 2.4.1-1)."
+ },
+ "lrfd_table_3_8_1_1_2_1": {
+  "code": "LRFD",
+  "article": "Table 3.8.1.1.2-1",
+  "governs": "Design gust wind speed entered for Strength V."
+ },
+ "sdg_2_4_1_b": {
+  "code": "SDG",
+  "article": "2.4.1.B",
+  "governs": "Exp_Cat"
+ },
+ "lrfd_table_3_8_1_2_1_2": {
+  "code": "LRFD",
+  "article": "Table 3.8.1.2.1-2",
+  "governs": "Shape-dependent wind drag multiplier selected from the structure type."
+ },
+ "sdg_2_4_1_c": {
+  "code": "SDG",
+  "article": "2.4.1.C",
+  "governs": "Gust-effect multiplier entered for the wind calculation."
+ },
+ "lrfd_eq_3_8_1_2_1_2": {
+  "code": "LRFD",
+  "article": "Eq. 3.8.1.2.1-2",
+  "governs": "Pressure multiplier for height and Exposure Category B."
+ },
+ "lrfd_eq_3_8_1_2_1_3": {
+  "code": "LRFD",
+  "article": "Eq. 3.8.1.2.1-3",
+  "governs": "Pressure multiplier for height and Exposure Category C."
+ },
+ "lrfd_eq_3_8_1_2_1_4": {
+  "code": "LRFD",
+  "article": "Eq. 3.8.1.2.1-4",
+  "governs": "Pressure multiplier for height and Exposure Category D."
+ },
+ "lrfd_eq_3_8_1_2_1_1": {
+  "code": "LRFD",
+  "article": "Eq. 3.8.1.2.1-1",
+  "governs": "Strength III horizontal wind pressure on the selected structure type."
+ }
+}

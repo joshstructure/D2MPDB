@@ -1,0 +1,279 @@
+[
+ {
+  "key": "intro",
+  "level": 0,
+  "title": "1. Inputs",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p0",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "1_1_bridge_geometry",
+  "level": 1,
+  "title": "1.1 Bridge geometry",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "1_2_wind_speed_and_exposure",
+  "level": 1,
+  "title": "1.2 Wind speed and exposure",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "1_3_structure_type_and_coefficients",
+  "level": 1,
+  "title": "1.3 Structure type and coefficients",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p1",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "2_wind_speed_by_load_combination",
+  "level": 0,
+  "title": "2. Wind speed by load combination (LRFD 3.8.1.1.2)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p2",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "WindSpeedTable",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p3",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "3_pressure_exposure_and_elevation_coeffi",
+  "level": 0,
+  "title": "3. Pressure exposure and elevation coefficient K_Z (LRFD 3.8.1.2.1)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p4",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "3_1_k_z_for_wind_exposure_category_b",
+  "level": 1,
+  "title": "3.1 K_Z for exposure category B (LRFD Eq. 3.8.1.2.1-2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "3_2_k_z_for_wind_exposure_category_c",
+  "level": 1,
+  "title": "3.2 K_Z for exposure category C (LRFD Eq. 3.8.1.2.1-3)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "3_3_k_z_for_wind_exposure_category_d",
+  "level": 1,
+  "title": "3.3 K_Z for exposure category D (LRFD Eq. 3.8.1.2.1-4)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "3_4_governing_k_z_selected_by_exposure_c",
+  "level": 1,
+  "title": "3.4 Governing K_Z, selected by exposure category",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "4_design_wind_pressure_on_structures_ws",
+  "level": 0,
+  "title": "4. Design wind pressure on structures, WS (LRFD 3.8.1.2.1)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p5",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p6",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "4_1_strength_iii_wind_pressure",
+  "level": 1,
+  "title": "4.1 Strength III wind pressure",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "4_2_strength_v_wind_pressure",
+  "level": 1,
+  "title": "4.2 Strength V wind pressure",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p7",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "4_3_service_i_wind_pressure",
+  "level": 1,
+  "title": "4.3 Service I wind pressure",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p8",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "4_4_service_iv_applicability_not_used",
+  "level": 1,
+  "title": "4.4 Service IV applicability (not used)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p9",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "5_wind_loads_on_superstructure",
+  "level": 0,
+  "title": "5. Wind loads on the superstructure (LRFD 3.8.1.2.2 and 3.8.1.2.3a)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p10",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p11",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "5_1_skew_coefficients_girders",
+  "level": 1,
+  "title": "5.1 Skew coefficients, girders (LRFD Table 3.8.1.2.3a-1)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p12",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "5_2_strength_iii_superstructure_wind_lin",
+  "level": 1,
+  "title": "5.2 Strength III superstructure wind line loads",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "6_summary_of_wind_load_results",
+  "level": 0,
+  "title": "6. Summary of wind load results",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "WindSummaryTable",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "7_wind_applied_to_repair_frame",
+  "level": 0,
+  "title": "7. Wind applied to the repair frame",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "8_vertical_wind_and_perpendicular_compan",
+  "level": 0,
+  "title": "8. Vertical wind and perpendicular companion loads (LRFD 3.8.2)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "C001VerticalScope",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p14",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "C001VerticalResults",
+    "at": "w_T0_III"
+   },
+   {
+    "kind": "prose",
+    "id": "p15",
+    "at": "w_T0_III"
+   }
+  ]
+ },
+ {
+  "key": "lrfd_3_8_2_vertical_wind_load",
+  "level": 0,
+  "title": "9. Vertical wind load reference (LRFD 3.8.2)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "VerticalReferenceSummary",
+    "ids": [
+     "p16",
+     "p17"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "C001VerticalReferenceLive",
+    "at": "start"
+   }
+  ],
+  "native_section": "VerticalReferenceSummary"
+ }
+]

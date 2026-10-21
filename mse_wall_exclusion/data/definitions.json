@@ -1,0 +1,1150 @@
+[
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "Half",
+  "expr": "PileSize/2",
+  "unit": "in",
+  "caption": "Half pile width",
+  "refs": []
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "MinClear",
+  "expr": "(Half*Cos(α)+Width/2+Clear)/Sin(α)",
+  "unit": "in",
+  "caption": "Calculated minimum front pile-face clear for the skewed strap",
+  "refs": []
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "LayoutClear",
+  "expr": "-Floor(-MinClear/Max(RoundStep,0.001 in),1)*Max(RoundStep,0.001 in)",
+  "unit": "in",
+  "caption": "Adopted front clear, rounded up",
+  "refs": []
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "FrontExtent",
+  "expr": "Half+LayoutClear",
+  "unit": "in",
+  "caption": "Front exclusion extent from the pile centerline",
+  "refs": []
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "SideExtent",
+  "expr": "Half+SideClear",
+  "unit": "in",
+  "caption": "Side exclusion extent from the pile centerline",
+  "refs": []
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "CapX",
+  "expr": "(CapLength*Abs(Sin(FrameAngle))+CapWidth*Abs(Cos(FrameAngle)))/2",
+  "unit": "in",
+  "caption": "Cap half-extent across the frame x axis",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "CapY",
+  "expr": "(CapWidth*Abs(Sin(FrameAngle))+CapLength*Abs(Cos(FrameAngle)))/2",
+  "unit": "in",
+  "caption": "Cap half-extent across the frame y axis",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "InputsValid",
+  "expr": "And(PileSize > 0 in,PileSpacing > PileSize,PileCount == 4,Width >= 0 in,Clear >= 0 in,α > 0 deg,α < 90 deg,SideClear >= 24 in,RoundStep > 0 in)",
+  "unit": null,
+  "caption": "Geometry inputs within their valid ranges",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "InputStatus",
+  "expr": "If(InputsValid,\"VALID\",\"INVALID - DO NOT USE\")",
+  "unit": null,
+  "caption": "Geometry input validity",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "SkewStatus",
+  "expr": "If(And(α > 0 deg,α <= 15 deg),\"Within ordinary 15 deg limit\",\"Above ordinary 15 deg limit\")",
+  "unit": null,
+  "caption": "Front skew against the ordinary 15° limit",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "DrawTop",
+  "expr": "Half+1 ft",
+  "unit": "in",
+  "caption": "Drawing extent above the pile row",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "TypicalScale",
+  "expr": "2.25/((DrawTop+FrontExtent)/(1 ft))",
+  "unit": null,
+  "caption": "Drawing scale of the typical box",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "2_inputs_and_front_wall_minimum",
+  "name": "PlotScale",
+  "expr": "Min(6/((3*PileSpacing+2*SideExtent)/(1 ft)),2.5/((FrontExtent+DrawTop+2 ft)/(1 ft)))",
+  "unit": null,
+  "caption": "Drawing scale of the plan views",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P1x",
+  "expr": "-1.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 1 pile P1 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P1y",
+  "expr": "-1.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 1 pile P1 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P2x",
+  "expr": "-0.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 1 pile P2 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P2y",
+  "expr": "-0.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 1 pile P2 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P3x",
+  "expr": "0.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 1 pile P3 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P3y",
+  "expr": "0.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 1 pile P3 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P4x",
+  "expr": "1.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 1 pile P4 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1P4y",
+  "expr": "1.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 1 pile P4 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Left",
+  "expr": "Bent1P1x-SideExtent",
+  "unit": "in",
+  "caption": "End Bent 1 exclusion envelope left",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Right",
+  "expr": "Bent1P4x+SideExtent",
+  "unit": "in",
+  "caption": "End Bent 1 exclusion envelope right",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Bottom",
+  "expr": "Min(Bent1P1y,Bent1P4y)-FrontExtent",
+  "unit": "in",
+  "caption": "End Bent 1 exclusion envelope bottom",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Top",
+  "expr": "Max(Bent1P1y,Bent1P4y)+DrawTop",
+  "unit": "in",
+  "caption": "End Bent 1 exclusion envelope top",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1TotalX",
+  "expr": "Bent1Right-Bent1Left",
+  "unit": "in",
+  "caption": "End Bent 1 exclusion envelope totalx",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W1xend",
+  "expr": "Bent1W1x+Bent1W1tx*Bent1W1len",
+  "unit": "ft",
+  "caption": "End Bent 1 front wall: wall end x",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W1yend",
+  "expr": "Bent1W1y+Bent1W1ty*Bent1W1len",
+  "unit": "ft",
+  "caption": "End Bent 1 front wall: wall end y",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile1Face",
+  "expr": "(Bent1P1x-Bent1W1x)*Bent1W1nx+(Bent1P1y-Bent1W1y)*Bent1W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P1: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile1Extra",
+  "expr": "Max(0 in,LayoutClear-Bent1Wall1Pile1Face)",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P1: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile2Face",
+  "expr": "(Bent1P2x-Bent1W1x)*Bent1W1nx+(Bent1P2y-Bent1W1y)*Bent1W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P2: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile2Extra",
+  "expr": "Max(0 in,LayoutClear-Bent1Wall1Pile2Face)",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P2: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile3Face",
+  "expr": "(Bent1P3x-Bent1W1x)*Bent1W1nx+(Bent1P3y-Bent1W1y)*Bent1W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P3: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile3Extra",
+  "expr": "Max(0 in,LayoutClear-Bent1Wall1Pile3Face)",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P3: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile4Face",
+  "expr": "(Bent1P4x-Bent1W1x)*Bent1W1nx+(Bent1P4y-Bent1W1y)*Bent1W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P4: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall1Pile4Extra",
+  "expr": "Max(0 in,LayoutClear-Bent1Wall1Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 1 front wall, pile P4: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W1Gap",
+  "expr": "Min(Bent1Wall1Pile1Face,Bent1Wall1Pile2Face,Bent1Wall1Pile3Face,Bent1Wall1Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 1 front wall: minimum pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W1Extra",
+  "expr": "Max(0 in,LayoutClear-Bent1W1Gap)",
+  "unit": "in",
+  "caption": "End Bent 1 front wall: extra setback required",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W1Status",
+  "expr": "If(InputsValid,If(Bent1W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+  "unit": null,
+  "caption": "End Bent 1 front wall: wall result",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W2xend",
+  "expr": "Bent1W2x+Bent1W2tx*Bent1W2len",
+  "unit": "ft",
+  "caption": "End Bent 1 left side wall: wall end x",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W2yend",
+  "expr": "Bent1W2y+Bent1W2ty*Bent1W2len",
+  "unit": "ft",
+  "caption": "End Bent 1 left side wall: wall end y",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile1Face",
+  "expr": "(Bent1P1x-Bent1W2x)*Bent1W2nx+(Bent1P1y-Bent1W2y)*Bent1W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P1: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile1Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall2Pile1Face)",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P1: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile2Face",
+  "expr": "(Bent1P2x-Bent1W2x)*Bent1W2nx+(Bent1P2y-Bent1W2y)*Bent1W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P2: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile2Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall2Pile2Face)",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P2: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile3Face",
+  "expr": "(Bent1P3x-Bent1W2x)*Bent1W2nx+(Bent1P3y-Bent1W2y)*Bent1W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P3: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile3Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall2Pile3Face)",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P3: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile4Face",
+  "expr": "(Bent1P4x-Bent1W2x)*Bent1W2nx+(Bent1P4y-Bent1W2y)*Bent1W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P4: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall2Pile4Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall2Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall, pile P4: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W2Gap",
+  "expr": "Min(Bent1Wall2Pile1Face,Bent1Wall2Pile2Face,Bent1Wall2Pile3Face,Bent1Wall2Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall: minimum pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W2Extra",
+  "expr": "Max(0 in,SideClear-Bent1W2Gap)",
+  "unit": "in",
+  "caption": "End Bent 1 left side wall: extra setback required",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W2Status",
+  "expr": "If(InputsValid,If(Bent1W2Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+  "unit": null,
+  "caption": "End Bent 1 left side wall: wall result",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W3xend",
+  "expr": "Bent1W3x+Bent1W3tx*Bent1W3len",
+  "unit": "ft",
+  "caption": "End Bent 1 right side wall: wall end x",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W3yend",
+  "expr": "Bent1W3y+Bent1W3ty*Bent1W3len",
+  "unit": "ft",
+  "caption": "End Bent 1 right side wall: wall end y",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile1Face",
+  "expr": "(Bent1P1x-Bent1W3x)*Bent1W3nx+(Bent1P1y-Bent1W3y)*Bent1W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P1: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile1Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall3Pile1Face)",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P1: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile2Face",
+  "expr": "(Bent1P2x-Bent1W3x)*Bent1W3nx+(Bent1P2y-Bent1W3y)*Bent1W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P2: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile2Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall3Pile2Face)",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P2: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile3Face",
+  "expr": "(Bent1P3x-Bent1W3x)*Bent1W3nx+(Bent1P3y-Bent1W3y)*Bent1W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P3: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile3Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall3Pile3Face)",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P3: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile4Face",
+  "expr": "(Bent1P4x-Bent1W3x)*Bent1W3nx+(Bent1P4y-Bent1W3y)*Bent1W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P4: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1Wall3Pile4Extra",
+  "expr": "Max(0 in,SideClear-Bent1Wall3Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall, pile P4: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W3Gap",
+  "expr": "Min(Bent1Wall3Pile1Face,Bent1Wall3Pile2Face,Bent1Wall3Pile3Face,Bent1Wall3Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall: minimum pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W3Extra",
+  "expr": "Max(0 in,SideClear-Bent1W3Gap)",
+  "unit": "in",
+  "caption": "End Bent 1 right side wall: extra setback required",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1W3Status",
+  "expr": "If(InputsValid,If(Bent1W3Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+  "unit": null,
+  "caption": "End Bent 1 right side wall: wall result",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1CapGap",
+  "expr": "-Bent1W1x*Bent1W1nx-Bent1W1y*Bent1W1ny-CapX*Abs(Bent1W1nx)-CapY*Abs(Bent1W1ny)",
+  "unit": "in",
+  "caption": "End Bent 1 front cap face to back of facing",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "Bent1CapStatus",
+  "expr": "If(Bent1CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")",
+  "unit": null,
+  "caption": "End Bent 1 front cap setback (24 in minimum)",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "bent1",
+  "name": "DC_B1_front",
+  "expr": "LayoutClear/Bent1W1Gap",
+  "unit": null,
+  "caption": "End Bent 1 front wall: required clear / minimum gap",
+  "refs": []
+ },
+ {
+  "section": "bent1",
+  "name": "DC_B1_left",
+  "expr": "SideClear/Bent1W2Gap",
+  "unit": null,
+  "caption": "End Bent 1 left wall: required clear / minimum gap",
+  "refs": []
+ },
+ {
+  "section": "bent1",
+  "name": "DC_B1_right",
+  "expr": "SideClear/Bent1W3Gap",
+  "unit": null,
+  "caption": "End Bent 1 right wall: required clear / minimum gap",
+  "refs": []
+ },
+ {
+  "section": "bent1",
+  "name": "DC_B1_cap",
+  "expr": "(24 in)/Bent1CapGap",
+  "unit": null,
+  "caption": "End Bent 1 front cap setback: 24 in / gap",
+  "refs": []
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P1x",
+  "expr": "-1.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 2 pile P1 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P1y",
+  "expr": "1.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 2 pile P1 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P2x",
+  "expr": "-0.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 2 pile P2 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P2y",
+  "expr": "0.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 2 pile P2 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P3x",
+  "expr": "0.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 2 pile P3 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P3y",
+  "expr": "-0.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 2 pile P3 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P4x",
+  "expr": "1.5*PileSpacing*Abs(Sin(FrameAngle))",
+  "unit": "in",
+  "caption": "End Bent 2 pile P4 x coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2P4y",
+  "expr": "-1.5*PileSpacing*Cos(FrameAngle)",
+  "unit": "in",
+  "caption": "End Bent 2 pile P4 y coordinate",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Left",
+  "expr": "Bent2P1x-SideExtent",
+  "unit": "in",
+  "caption": "End Bent 2 exclusion envelope left",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Right",
+  "expr": "Bent2P4x+SideExtent",
+  "unit": "in",
+  "caption": "End Bent 2 exclusion envelope right",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Bottom",
+  "expr": "Min(Bent2P1y,Bent2P4y)-FrontExtent",
+  "unit": "in",
+  "caption": "End Bent 2 exclusion envelope bottom",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Top",
+  "expr": "Max(Bent2P1y,Bent2P4y)+DrawTop",
+  "unit": "in",
+  "caption": "End Bent 2 exclusion envelope top",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2TotalX",
+  "expr": "Bent2Right-Bent2Left",
+  "unit": "in",
+  "caption": "End Bent 2 exclusion envelope totalx",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W1xend",
+  "expr": "Bent2W1x+Bent2W1tx*Bent2W1len",
+  "unit": "ft",
+  "caption": "End Bent 2 front wall: wall end x",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W1yend",
+  "expr": "Bent2W1y+Bent2W1ty*Bent2W1len",
+  "unit": "ft",
+  "caption": "End Bent 2 front wall: wall end y",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile1Face",
+  "expr": "(Bent2P1x-Bent2W1x)*Bent2W1nx+(Bent2P1y-Bent2W1y)*Bent2W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P1: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile1Extra",
+  "expr": "Max(0 in,LayoutClear-Bent2Wall1Pile1Face)",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P1: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile2Face",
+  "expr": "(Bent2P2x-Bent2W1x)*Bent2W1nx+(Bent2P2y-Bent2W1y)*Bent2W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P2: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile2Extra",
+  "expr": "Max(0 in,LayoutClear-Bent2Wall1Pile2Face)",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P2: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile3Face",
+  "expr": "(Bent2P3x-Bent2W1x)*Bent2W1nx+(Bent2P3y-Bent2W1y)*Bent2W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P3: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile3Extra",
+  "expr": "Max(0 in,LayoutClear-Bent2Wall1Pile3Face)",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P3: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile4Face",
+  "expr": "(Bent2P4x-Bent2W1x)*Bent2W1nx+(Bent2P4y-Bent2W1y)*Bent2W1ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P4: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall1Pile4Extra",
+  "expr": "Max(0 in,LayoutClear-Bent2Wall1Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 2 front wall, pile P4: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W1Gap",
+  "expr": "Min(Bent2Wall1Pile1Face,Bent2Wall1Pile2Face,Bent2Wall1Pile3Face,Bent2Wall1Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 2 front wall: minimum pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W1Extra",
+  "expr": "Max(0 in,LayoutClear-Bent2W1Gap)",
+  "unit": "in",
+  "caption": "End Bent 2 front wall: extra setback required",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W1Status",
+  "expr": "If(InputsValid,If(Bent2W1Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+  "unit": null,
+  "caption": "End Bent 2 front wall: wall result",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W2xend",
+  "expr": "Bent2W2x+Bent2W2tx*Bent2W2len",
+  "unit": "ft",
+  "caption": "End Bent 2 left side wall: wall end x",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W2yend",
+  "expr": "Bent2W2y+Bent2W2ty*Bent2W2len",
+  "unit": "ft",
+  "caption": "End Bent 2 left side wall: wall end y",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile1Face",
+  "expr": "(Bent2P1x-Bent2W2x)*Bent2W2nx+(Bent2P1y-Bent2W2y)*Bent2W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P1: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile1Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall2Pile1Face)",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P1: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile2Face",
+  "expr": "(Bent2P2x-Bent2W2x)*Bent2W2nx+(Bent2P2y-Bent2W2y)*Bent2W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P2: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile2Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall2Pile2Face)",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P2: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile3Face",
+  "expr": "(Bent2P3x-Bent2W2x)*Bent2W2nx+(Bent2P3y-Bent2W2y)*Bent2W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P3: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile3Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall2Pile3Face)",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P3: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile4Face",
+  "expr": "(Bent2P4x-Bent2W2x)*Bent2W2nx+(Bent2P4y-Bent2W2y)*Bent2W2ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P4: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall2Pile4Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall2Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall, pile P4: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W2Gap",
+  "expr": "Min(Bent2Wall2Pile1Face,Bent2Wall2Pile2Face,Bent2Wall2Pile3Face,Bent2Wall2Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall: minimum pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W2Extra",
+  "expr": "Max(0 in,SideClear-Bent2W2Gap)",
+  "unit": "in",
+  "caption": "End Bent 2 left side wall: extra setback required",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W2Status",
+  "expr": "If(InputsValid,If(Bent2W2Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+  "unit": null,
+  "caption": "End Bent 2 left side wall: wall result",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W3xend",
+  "expr": "Bent2W3x+Bent2W3tx*Bent2W3len",
+  "unit": "ft",
+  "caption": "End Bent 2 right side wall: wall end x",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W3yend",
+  "expr": "Bent2W3y+Bent2W3ty*Bent2W3len",
+  "unit": "ft",
+  "caption": "End Bent 2 right side wall: wall end y",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile1Face",
+  "expr": "(Bent2P1x-Bent2W3x)*Bent2W3nx+(Bent2P1y-Bent2W3y)*Bent2W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P1: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile1Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall3Pile1Face)",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P1: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile2Face",
+  "expr": "(Bent2P2x-Bent2W3x)*Bent2W3nx+(Bent2P2y-Bent2W3y)*Bent2W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P2: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile2Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall3Pile2Face)",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P2: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile3Face",
+  "expr": "(Bent2P3x-Bent2W3x)*Bent2W3nx+(Bent2P3y-Bent2W3y)*Bent2W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P3: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile3Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall3Pile3Face)",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P3: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile4Face",
+  "expr": "(Bent2P4x-Bent2W3x)*Bent2W3nx+(Bent2P4y-Bent2W3y)*Bent2W3ny-Half",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P4: pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2Wall3Pile4Extra",
+  "expr": "Max(0 in,SideClear-Bent2Wall3Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall, pile P4: shortfall",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W3Gap",
+  "expr": "Min(Bent2Wall3Pile1Face,Bent2Wall3Pile2Face,Bent2Wall3Pile3Face,Bent2Wall3Pile4Face)",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall: minimum pile-face gap",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W3Extra",
+  "expr": "Max(0 in,SideClear-Bent2W3Gap)",
+  "unit": "in",
+  "caption": "End Bent 2 right side wall: extra setback required",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2W3Status",
+  "expr": "If(InputsValid,If(Bent2W3Extra <= 0 in,\"MEETS CLEAR\",\"SHORTFALL\"),\"INVALID\")",
+  "unit": null,
+  "caption": "End Bent 2 right side wall: wall result",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2CapGap",
+  "expr": "-Bent2W1x*Bent2W1nx-Bent2W1y*Bent2W1ny-CapX*Abs(Bent2W1nx)-CapY*Abs(Bent2W1ny)",
+  "unit": "in",
+  "caption": "End Bent 2 front cap face to back of facing",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "Bent2CapStatus",
+  "expr": "If(Bent2CapGap >= 24 in,\"✓ PASS\",\"⊗ FAIL\")",
+  "unit": null,
+  "caption": "End Bent 2 front cap setback (24 in minimum)",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "DC_B2_front",
+  "expr": "LayoutClear/Bent2W1Gap",
+  "unit": null,
+  "caption": "End Bent 2 front wall: required clear / minimum gap",
+  "refs": []
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "DC_B2_left",
+  "expr": "SideClear/Bent2W2Gap",
+  "unit": null,
+  "caption": "End Bent 2 left wall: required clear / minimum gap",
+  "refs": []
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "DC_B2_right",
+  "expr": "SideClear/Bent2W3Gap",
+  "unit": null,
+  "caption": "End Bent 2 right wall: required clear / minimum gap",
+  "refs": []
+ },
+ {
+  "section": "4_end_bent_2_front_and_side_plan",
+  "name": "DC_B2_cap",
+  "expr": "(24 in)/Bent2CapGap",
+  "unit": null,
+  "caption": "End Bent 2 front cap setback: 24 in / gap",
+  "refs": []
+ }
+]

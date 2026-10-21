@@ -1,0 +1,194 @@
+[
+ {
+  "section": "1_1_bridge_geometry",
+  "name": "Z_calc",
+  "expr": "Max(Z, 33 ft)",
+  "unit": "in",
+  "caption": "Height actually inserted into the exposure equations.",
+  "refs": [
+   "lrfd_3_8_1_2_1"
+  ]
+ },
+ {
+  "section": "1_1_bridge_geometry",
+  "name": "L_span",
+  "expr": "Max(Span_1, Span_2)",
+  "unit": "ft",
+  "caption": "Longer of the two individual bridge spans.",
+  "refs": [
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "1_3_structure_type_and_coefficients",
+  "name": "C_D",
+  "expr": "If(Struct_Type==\"I-Girder or Box-Girder Superstructure\", 1.3, If(Struct_Type==\"Bridge Substructure\", 1.6, If(Struct_Type==\"Truss/Column/Arch - Sharp-Edged\", 2, If(Struct_Type==\"Truss/Column/Arch - Round\", 1, 1.2))))",
+  "unit": null,
+  "caption": "Shape-dependent wind drag multiplier selected from the structure type.",
+  "refs": [
+   "lrfd_table_3_8_1_2_1_2"
+  ]
+ },
+ {
+  "section": "3_1_k_z_for_wind_exposure_category_b",
+  "name": "K_Z_B",
+  "expr": "(2.5*Ln(Z_calc/(0.9834 ft)) + 6.87)^2/345.6",
+  "unit": null,
+  "caption": "Pressure multiplier for height and Exposure Category B.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_2"
+  ]
+ },
+ {
+  "section": "3_2_k_z_for_wind_exposure_category_c",
+  "name": "K_Z_C",
+  "expr": "(2.5*Ln(Z_calc/(0.0984 ft)) + 7.35)^2/478.4",
+  "unit": null,
+  "caption": "Pressure multiplier for height and Exposure Category C.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_3"
+  ]
+ },
+ {
+  "section": "3_3_k_z_for_wind_exposure_category_d",
+  "name": "K_Z_D",
+  "expr": "(2.5*Ln(Z_calc/(0.0164 ft)) + 7.65)^2/616.1",
+  "unit": null,
+  "caption": "Pressure multiplier for height and Exposure Category D.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_4"
+  ]
+ },
+ {
+  "section": "3_4_governing_k_z_selected_by_exposure_c",
+  "name": "K_Z_gov",
+  "expr": "If(Exp_Cat==\"D\", K_Z_D, K_Z_C)",
+  "unit": null,
+  "caption": "Exposure multiplier selected by this module’s actual category switch.",
+  "refs": [
+   "lrfd_3_8_1_2_1"
+  ]
+ },
+ {
+  "section": "4_1_strength_iii_wind_pressure",
+  "name": "P_Z_III",
+  "expr": "0.00000256*V_III^2*K_Z_gov*G_fac*C_D*1 ksf",
+  "unit": "ksf",
+  "caption": "Strength III horizontal wind pressure on the selected structure type.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_1"
+  ]
+ },
+ {
+  "section": "4_2_strength_v_wind_pressure",
+  "name": "P_Z_V",
+  "expr": "0.00000256*V_V^2*1*G_fac*C_D*1 ksf",
+  "unit": "ksf",
+  "caption": "Strength V horizontal wind pressure on the selected structure type.",
+  "refs": [
+   "lrfd_3_8_1_2_1",
+   "sdg_2_4_1_c"
+  ]
+ },
+ {
+  "section": "4_3_service_i_wind_pressure",
+  "name": "P_Z_SI",
+  "expr": "0.00000256*V_SI^2*1*G_fac*C_D*1 ksf",
+  "unit": "ksf",
+  "caption": "Service I horizontal wind pressure on the selected structure type.",
+  "refs": [
+   "lrfd_3_8_1_2_1",
+   "sdg_2_4_1_c"
+  ]
+ },
+ {
+  "section": "5_1_skew_coefficients_girders",
+  "name": "C_T_gir",
+  "expr": "If(Skew_deg_str==\"0\", 1, If(Skew_deg_str==\"15\", 0.88, If(Skew_deg_str==\"30\", 0.82, If(Skew_deg_str==\"45\", 0.66, 0.34))))",
+  "unit": null,
+  "caption": "Girder wind-angle multiplier for the force component across the bridge.",
+  "refs": [
+   "lrfd_table_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "5_1_skew_coefficients_girders",
+  "name": "C_L_gir",
+  "expr": "If(Skew_deg_str==\"0\", 0, If(Skew_deg_str==\"15\", 0.12, If(Skew_deg_str==\"30\", 0.24, If(Skew_deg_str==\"45\", 0.32, 0.38))))",
+  "unit": null,
+  "caption": "Girder wind-angle multiplier for the force component along the bridge.",
+  "refs": [
+   "lrfd_table_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "5_2_strength_iii_superstructure_wind_lin",
+  "name": "w_T_III",
+  "expr": "P_Z_III*C_T_gir*d_super",
+  "unit": "kip/ft",
+  "caption": "Strength III wind force across the bridge for each foot of bridge length.",
+  "refs": [
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "5_2_strength_iii_superstructure_wind_lin",
+  "name": "w_L_III",
+  "expr": "P_Z_III*C_L_gir*d_super",
+  "unit": "kip/ft",
+  "caption": "Strength III wind force along the bridge for each foot of bridge length.",
+  "refs": [
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "7_wind_applied_to_repair_frame",
+  "name": "W_Frame",
+  "expr": "w_T_III*L_span/2/Beam_count",
+  "unit": "kip",
+  "caption": "Wind force allocated to one bearing in the repair-frame load split.",
+  "refs": []
+ },
+ {
+  "section": "8_vertical_wind_and_perpendicular_compan",
+  "name": "α_V",
+  "expr": "1/4",
+  "unit": null,
+  "caption": "Windward quarter-point distance from the deck centerline (fraction of the deck width)",
+  "refs": [
+   "lrfd_3_8_2"
+  ]
+ },
+ {
+  "section": "8_vertical_wind_and_perpendicular_compan",
+  "name": "e_V",
+  "expr": "α_V*w_deck",
+  "unit": "ft",
+  "caption": "Transverse eccentricity of the vertical wind resultant from the deck centerline",
+  "refs": []
+ },
+ {
+  "section": "8_vertical_wind_and_perpendicular_compan",
+  "name": "w_V_III",
+  "expr": "p_V_III*w_deck",
+  "unit": "kip/ft",
+  "caption": "Strength III upward wind line load",
+  "refs": []
+ },
+ {
+  "section": "8_vertical_wind_and_perpendicular_compan",
+  "name": "m_V_III",
+  "expr": "w_V_III*e_V",
+  "unit": "kip",
+  "caption": "Strength III overturning moment per unit bridge length from vertical wind",
+  "refs": []
+ },
+ {
+  "section": "8_vertical_wind_and_perpendicular_compan",
+  "name": "w_T0_III",
+  "expr": "P_Z_III*d_super",
+  "unit": "kip/ft",
+  "caption": "Concurrent perpendicular concrete wind line load",
+  "refs": []
+ }
+]

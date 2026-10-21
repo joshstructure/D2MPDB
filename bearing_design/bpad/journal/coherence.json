@@ -1,0 +1,316 @@
+{
+ "BearingDesign": [
+  {
+   "input": "BearingPad_length",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_length",
+   "journal_value": 10.0,
+   "case_value": 10.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_length (in)"
+  },
+  {
+   "input": "Pedestal_ht",
+   "owner": "BridgeGeometry_2Beam.Pedestal_ht",
+   "journal_value": 6.0,
+   "case_value": 6.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pedestal_ht (in)"
+  },
+  {
+   "input": "Pedestal_width",
+   "owner": "BridgeGeometry_2Beam.Pedestal_width",
+   "journal_value": 42.0,
+   "case_value": 42.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pedestal_width (in)"
+  },
+  {
+   "input": "Pedestal_length_pier",
+   "owner": "BridgeGeometry_2Beam.Pedestal_length_pier",
+   "journal_value": 4.0,
+   "case_value": 4.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pedestal_length_pier (ft)"
+  },
+  {
+   "input": "Pedestal_chamfer",
+   "owner": "BridgeGeometry_2Beam.Pedestal_chamfer",
+   "journal_value": 0.75,
+   "case_value": 0.75,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pedestal_chamfer (in)"
+  },
+  {
+   "input": "Pier_beamEndGap",
+   "owner": "BridgeGeometry_2Beam.Pier_beamEndGap",
+   "journal_value": 3.0,
+   "case_value": 3.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pier_beamEndGap (in)"
+  },
+  {
+   "input": "Bearing_pad_skew",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_skew",
+   "journal_value": 0.0,
+   "case_value": 0.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_skew (deg)"
+  },
+  {
+   "input": "CapTop_aboveTerrain",
+   "owner": "BridgeGeometry_2Beam.CapTop_aboveTerrain",
+   "journal_value": 218.915028536945,
+   "case_value": 218.91502853695,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.CapTop_aboveTerrain (in)"
+  },
+  {
+   "input": "PedN_L1",
+   "owner": "BridgeGeometry_2Beam.Span_1",
+   "journal_value": 107.35,
+   "case_value": 107.35,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_1 (ft)"
+  },
+  {
+   "input": "PedN_L2",
+   "owner": "BridgeGeometry_2Beam.Span_2",
+   "journal_value": 104.9,
+   "case_value": 104.9,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_2 (ft)"
+  },
+  {
+   "input": "PedN_S",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_skew",
+   "journal_value": 0.0,
+   "case_value": 0.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_skew (deg)"
+  },
+  {
+   "input": "PierCL_beamEnd",
+   "owner": "BridgeGeometry_2Beam.PierCL_beamEnd",
+   "journal_value": 1.5,
+   "case_value": 1.5,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.PierCL_beamEnd (in)"
+  },
+  {
+   "input": "PL_B1",
+   "owner": "PedBridgeWeights_2Beams.PL_B1",
+   "journal_value": 28.9845,
+   "case_value": 28.9845,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.PL_B1 (kip)"
+  },
+  {
+   "input": "PL_B2",
+   "owner": "PedBridgeWeights_2Beams.PL_B2",
+   "journal_value": 28.9845,
+   "case_value": 28.9845,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.PL_B2 (kip)"
+  },
+  {
+   "input": "PL_B3",
+   "owner": "PedBridgeWeights_2Beams.PL_B3",
+   "journal_value": 28.323,
+   "case_value": 28.323,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.PL_B3 (kip)"
+  },
+  {
+   "input": "PL_B4",
+   "owner": "PedBridgeWeights_2Beams.PL_B4",
+   "journal_value": 28.323,
+   "case_value": 28.323,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.PL_B4 (kip)"
+  },
+  {
+   "input": "DC_super_B1",
+   "owner": "PedBridgeWeights_2Beams.DC_super_B1",
+   "journal_value": 92.473194479489,
+   "case_value": 92.47319447949,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DC_super_B1 (kip)"
+  },
+  {
+   "input": "DW_B1",
+   "owner": "PedBridgeWeights_2Beams.DW_B1",
+   "journal_value": 0.0,
+   "case_value": 0.0,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DW_B1 (kip)"
+  },
+  {
+   "input": "DC_super_B2",
+   "owner": "PedBridgeWeights_2Beams.DC_super_B2",
+   "journal_value": 92.473194479489,
+   "case_value": 92.47319447949,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DC_super_B2 (kip)"
+  },
+  {
+   "input": "DW_B2",
+   "owner": "PedBridgeWeights_2Beams.DW_B2",
+   "journal_value": 0.0,
+   "case_value": 0.0,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DW_B2 (kip)"
+  },
+  {
+   "input": "DC_super_B3",
+   "owner": "PedBridgeWeights_2Beams.DC_super_B3",
+   "journal_value": 89.588945887287,
+   "case_value": 89.58894588729,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DC_super_B3 (kip)"
+  },
+  {
+   "input": "DW_B3",
+   "owner": "PedBridgeWeights_2Beams.DW_B3",
+   "journal_value": 0.0,
+   "case_value": 0.0,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DW_B3 (kip)"
+  },
+  {
+   "input": "DC_super_B4",
+   "owner": "PedBridgeWeights_2Beams.DC_super_B4",
+   "journal_value": 89.588945887287,
+   "case_value": 89.58894588729,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DC_super_B4 (kip)"
+  },
+  {
+   "input": "DW_B4",
+   "owner": "PedBridgeWeights_2Beams.DW_B4",
+   "journal_value": 0.0,
+   "case_value": 0.0,
+   "status": "reference",
+   "note": "shared value — PedBridgeWeights_2Beams.DW_B4 (kip)"
+  },
+  {
+   "input": "Bearing_pad_type",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_type",
+   "journal_value": "F",
+   "case_value": "F",
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_type (text)"
+  },
+  {
+   "input": "Bearing_pad_width",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_width",
+   "journal_value": 32.0,
+   "case_value": 32.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_width (in)"
+  },
+  {
+   "input": "Bearing_pad_thickness",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_thickness",
+   "journal_value": 2.5625,
+   "case_value": 2.5625,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_thickness (in)"
+  },
+  {
+   "input": "Bearing_pad_G",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_G",
+   "journal_value": 110.0,
+   "case_value": 110.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_G (psi)"
+  },
+  {
+   "input": "Bearing_pad_shearLimit",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_shearLimit",
+   "journal_value": 1.0,
+   "case_value": 1.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_shearLimit (in)"
+  },
+  {
+   "input": "Bearing_supportBuildup",
+   "owner": "BridgeGeometry_2Beam.Bearing_supportBuildup",
+   "journal_value": 6.0,
+   "case_value": 6.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_supportBuildup (in)"
+  },
+  {
+   "input": "Bearing_pad_count",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_count",
+   "journal_value": 8.0,
+   "case_value": 8.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_count (no unit)"
+  },
+  {
+   "input": "Bearing_pad_totalVolume",
+   "owner": "BridgeGeometry_2Beam.Bearing_pad_totalVolume",
+   "journal_value": 3.796296296296,
+   "case_value": 3.796296296296,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Bearing_pad_totalVolume (ft^3)"
+  },
+  {
+   "input": "PGL_pier_elev",
+   "owner": "BridgeGeometry_2Beam.PGL_pier_elev",
+   "journal_value": 48.197625,
+   "case_value": 48.197625,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.PGL_pier_elev (ft)"
+  },
+  {
+   "input": "PGL_start_elev",
+   "owner": "BridgeGeometry_2Beam.PGL_start_elev",
+   "journal_value": 47.661,
+   "case_value": 47.661,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.PGL_start_elev (ft)"
+  },
+  {
+   "input": "PGL_end_elev",
+   "owner": "BridgeGeometry_2Beam.PGL_end_elev",
+   "journal_value": 47.673,
+   "case_value": 47.673,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.PGL_end_elev (ft)"
+  },
+  {
+   "input": "α_T",
+   "owner": "BridgeMovement.α_T",
+   "journal_value": 6e-06,
+   "case_value": 6e-06,
+   "status": "reference",
+   "note": "shared value — BridgeMovement.α_T (no unit)"
+  },
+  {
+   "input": "T_high",
+   "owner": "BridgeMovement.T_high",
+   "journal_value": 105.0,
+   "case_value": 105.0,
+   "status": "reference",
+   "note": "shared value — BridgeMovement.T_high (no unit)"
+  },
+  {
+   "input": "T_low",
+   "owner": "BridgeMovement.T_low",
+   "journal_value": 35.0,
+   "case_value": 35.0,
+   "status": "reference",
+   "note": "shared value — BridgeMovement.T_low (no unit)"
+  },
+  {
+   "input": "TotalSpan",
+   "owner": "BridgeGeometry_2Beam.TotalSpan",
+   "journal_value": 2547.0,
+   "case_value": 2547.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.TotalSpan (in)"
+  }
+ ]
+}

@@ -1,0 +1,493 @@
+[
+ {
+  "name": "PedestalGeometrySummary",
+  "title": "Pedestal Geometry Summary",
+  "headers": [
+   "Parameter",
+   "Current Value",
+   "Use in N Check"
+  ],
+  "rows": [
+   [
+    "Pedestal height",
+    {
+     "v": "Pedestal_ht"
+    },
+    "Included in pier height H"
+   ],
+   [
+    "Pedestal transverse width",
+    {
+     "v": "Pedestal_width"
+    },
+    "Shown for pedestal footprint; does not control longitudinal N"
+   ],
+   [
+    "Pedestal longitudinal length",
+    {
+     "v": "Pedestal_length_pier"
+    },
+    "Defines the available longitudinal seat length"
+   ],
+   [
+    "Pedestal chamfer",
+    {
+     "v": "Pedestal_chamfer"
+    },
+    "Footprint/detailing parameter"
+   ],
+   [
+    "Type F bearing pad length",
+    {
+     "v": "BearingPad_length"
+    },
+    "Longitudinal pad dimension"
+   ],
+   [
+    "Pier beam-end gap",
+    {
+     "v": "Pier_beamEndGap"
+    },
+    "Locates each beam end 1/2 gap from pier centerline"
+   ],
+   [
+    "Support skew",
+    {
+     "v": "Bearing_pad_skew"
+    },
+    "LRFD Eq. 4.7.4.4-1 variable S"
+   ]
+  ]
+ },
+ {
+  "name": "PedestalNSummary",
+  "title": "Pedestal Minimum Support Length Summary",
+  "headers": [
+   "Item",
+   "Span 1 / Value",
+   "Span 2 / Requirement",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Deck length L",
+    {
+     "v": "PedN_L1"
+    },
+    {
+     "v": "PedN_L2"
+    },
+    "—"
+   ],
+   [
+    "Empirical N",
+    {
+     "v": "PedN_N1"
+    },
+    {
+     "v": "PedN_N2"
+    },
+    "Span 1 governs"
+   ],
+   [
+    "Governing required N",
+    {
+     "v": "PedN_Nreq"
+    },
+    "Full empirical N",
+    "—"
+   ],
+   [
+    "Provided support length",
+    {
+     "v": "PedN_Nprov"
+    },
+    {
+     "v": "PedN_margin"
+    },
+    {
+     "v": "Check_PedN"
+    }
+   ],
+   [
+    "Pier height / skew",
+    {
+     "v": "PedN_H"
+    },
+    {
+     "v": "PedN_S"
+    },
+    "—"
+   ]
+  ]
+ },
+ {
+  "name": "TypeFServiceReactions",
+  "title": "",
+  "headers": [
+   "Bearing",
+   "Service PL (kip)",
+   "Service DL (kip)",
+   "DL limit (kip)",
+   "Gravity check"
+  ],
+  "rows": [
+   [
+    "B1",
+    {
+     "v": "PL_B1"
+    },
+    {
+     "v": "Type_F_DL_B1"
+    },
+    {
+     "v": "Type_F_DLallow_B1"
+    },
+    {
+     "v": "Check_TypeF_B1"
+    }
+   ],
+   [
+    "B2",
+    {
+     "v": "PL_B2"
+    },
+    {
+     "v": "Type_F_DL_B2"
+    },
+    {
+     "v": "Type_F_DLallow_B2"
+    },
+    {
+     "v": "Check_TypeF_B2"
+    }
+   ],
+   [
+    "B3",
+    {
+     "v": "PL_B3"
+    },
+    {
+     "v": "Type_F_DL_B3"
+    },
+    {
+     "v": "Type_F_DLallow_B3"
+    },
+    {
+     "v": "Check_TypeF_B3"
+    }
+   ],
+   [
+    "B4",
+    {
+     "v": "PL_B4"
+    },
+    {
+     "v": "Type_F_DL_B4"
+    },
+    {
+     "v": "Type_F_DLallow_B4"
+    },
+    {
+     "v": "Check_TypeF_B4"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "TypeFPropertySummary",
+  "title": "",
+  "headers": [
+   "Property",
+   "Selected value"
+  ],
+  "rows": [
+   [
+    "Pad type",
+    {
+     "v": "Bearing_pad_type"
+    }
+   ],
+   [
+    "Length along beam",
+    {
+     "v": "BearingPad_length",
+     "unit": "in"
+    }
+   ],
+   [
+    "Width transverse",
+    {
+     "v": "Bearing_pad_width",
+     "unit": "in"
+    }
+   ],
+   [
+    "Overall thickness",
+    {
+     "v": "Bearing_pad_thickness",
+     "unit": "in"
+    }
+   ],
+   [
+    "Shear modulus",
+    {
+     "v": "Bearing_pad_G",
+     "unit": "psi"
+    }
+   ],
+   [
+    "Maximum shear deflection",
+    {
+     "v": "Bearing_pad_shearLimit",
+     "unit": "in"
+    }
+   ],
+   [
+    "Required non-pad buildup",
+    {
+     "v": "Bearing_supportBuildup",
+     "unit": "in"
+    }
+   ],
+   [
+    "Project pad count",
+    {
+     "v": "Bearing_pad_count"
+    }
+   ],
+   [
+    "Gross composite volume (ft³)",
+    {
+     "v": "Bearing_pad_totalVolume"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "BPSavedInputs",
+  "title": "",
+  "headers": [
+   "Saved beam result",
+   "Span 1",
+   "Span 2"
+  ],
+  "rows": [
+   [
+    "Release camber slope (deg)",
+    {
+     "v": "BP_release_1",
+     "unit": "deg"
+    },
+    {
+     "v": "BP_release_2",
+     "unit": "deg"
+    }
+   ],
+   [
+    "120-day camber slope (deg)",
+    {
+     "v": "BP_day120_1",
+     "unit": "deg"
+    },
+    {
+     "v": "BP_day120_2",
+     "unit": "deg"
+    }
+   ],
+   [
+    "240-day camber slope (deg)",
+    {
+     "v": "BP_day240_1",
+     "unit": "deg"
+    },
+    {
+     "v": "BP_day240_2",
+     "unit": "deg"
+    }
+   ],
+   [
+    "Noncomposite DL rotation (deg)",
+    {
+     "v": "BP_nc_1",
+     "unit": "deg"
+    },
+    {
+     "v": "BP_nc_2",
+     "unit": "deg"
+    }
+   ],
+   [
+    "Composite DL rotation (deg)",
+    {
+     "v": "BP_comp_1",
+     "unit": "deg"
+    },
+    {
+     "v": "BP_comp_2",
+     "unit": "deg"
+    }
+   ],
+   [
+    "Pedestrian LL rotation (deg)",
+    {
+     "v": "BP_live_1",
+     "unit": "deg"
+    },
+    {
+     "v": "BP_live_2",
+     "unit": "deg"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "BPStageResults",
+  "title": "",
+  "headers": [
+   "Signed rotation (rad)",
+   "Span 1 at pier",
+   "Span 2 at pier"
+  ],
+  "rows": [
+   [
+    "120-day bare beam",
+    {
+     "v": "BP_bare120_1",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_bare120_2",
+     "unit": "rad"
+    }
+   ],
+   [
+    "120-day + noncomposite DL",
+    {
+     "v": "BP_nc120_1",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_nc120_2",
+     "unit": "rad"
+    }
+   ],
+   [
+    "120-day + all static DL",
+    {
+     "v": "BP_full120_1",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_full120_2",
+     "unit": "rad"
+    }
+   ],
+   [
+    "240-day + all static DL",
+    {
+     "v": "BP_full240_1",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_full240_2",
+     "unit": "rad"
+    }
+   ],
+   [
+    "Absolute static envelope",
+    {
+     "v": "BP_static_max_1",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_static_max_2",
+     "unit": "rad"
+    }
+   ],
+   [
+    "Cyclic pedestrian LL",
+    {
+     "v": "BP_live_pier_1",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_live_pier_2",
+     "unit": "rad"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "BPCheckSummary",
+  "title": "",
+  "headers": [
+   "Check",
+   "Demand",
+   "Limit / result"
+  ],
+  "rows": [
+   [
+    "Static rotation (rad)",
+    {
+     "v": "BP_static_max",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_static_limit",
+     "unit": "rad"
+    }
+   ],
+   [
+    "Cyclic rotation (rad)",
+    {
+     "v": "BP_cyclic_max",
+     "unit": "rad"
+    },
+    {
+     "v": "BP_cyclic_limit",
+     "unit": "rad"
+    }
+   ],
+   [
+    "Span 1 cyclic direction",
+    {
+     "v": "BP_opposite_1"
+    },
+    "Opposite static"
+   ],
+   [
+    "Span 2 cyclic direction",
+    {
+     "v": "BP_opposite_2"
+    },
+    "Opposite static"
+   ],
+   [
+    "Thermal + creep (in)",
+    {
+     "v": "BP_movement",
+     "unit": "in"
+    },
+    {
+     "v": "Bearing_pad_shearLimit",
+     "unit": "in"
+    }
+   ],
+   [
+    "Pier seat rotation",
+    {
+     "v": "BP_rotation_check"
+    },
+    "SPI 400-510"
+   ],
+   [
+    "Disposition",
+    {
+     "v": "BP_level_seat_result"
+    },
+    "Conditional screen"
+   ]
+  ]
+ }
+]

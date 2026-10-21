@@ -1,0 +1,101 @@
+<blocks>
+  <block id="paragraphrefreturn0028" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold" textdecoration="underline" spacingafter="4" id="paragraphrefreturn0028">PROJECT INFORMATION:</paragraph>
+  </block>
+  <block id="p1" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">This calculation determines longitudinal thermal movement of the two-span FIB 36 pedestrian bridge for joint and bearing detailing. The two simple spans are treated as one continuous deck unit with the center of movement at the intermediate pier. Geometry is referenced live from Bridge Geometry_2 Beam.</paragraph>
+  </block>
+  <block id="MovementScopeBox" kind="prose">
+    <table name="MovementScopeBox" capture="False" colwidths="1:520">
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="MovementScopeTitle" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" fontweight="bold" spacingafter="7">MOVEMENT MODEL</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MovementScope1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                            • Concrete-only superstructure temperature range is taken from
+                            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG Table 2.7.1-1</link>
+                            .
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MovementScope2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Center of movement is assumed at the intermediate pier; each end movement therefore uses the adjacent span length.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="MovementScope3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• This module calculates thermal movement only. Creep, shrinkage, skew resolution, and final expansion-joint or bearing capacity checks are separate design items.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="paragraphc003packetnav" kind="prose">
+    <paragraph id="paragraphc003packetnav" fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            Reference packet:
+            <link address="#CodeReferencesGeneral;paragraphreferenceindex">C003 highlighted code references</link>
+            . Edition basis:
+            <link address="#CodeReferencesC003.CodePage17;paragraphprojectcoderef17C003">FDOT Structures Manual I.6.B.5</link>
+            .
+        </paragraph>
+  </block>
+  <block id="p4" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">
+            •
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG 2.7.1</link>
+            : Concrete Only temperature range = 70°F mean, 105°F high, 35°F low.
+        </paragraph>
+  </block>
+  <block id="p5" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">
+            •
+            <link address="#CodeReferencesC003.CodePage19;paragraphprojectcoderef19C003">FDOT SDG 6.3</link>
+            : Calculate bridge movement about an assumed 70°F construction mean and base joint/bearing design on the
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">SDG Table 2.7.1-1</link>
+            temperature range.
+        </paragraph>
+  </block>
+  <block id="p6" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">
+            •
+            <link address="#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003">FDOT SDG 2.7.1.D</link>
+            : Temperature rise and fall load effects use 120% of the tabulated maximum temperature change in accordance with
+            <link address="#CodeReferencesC003.CodePage14;paragraphprojectcoderef14C003">LRFD Table 3.4.1-1</link>
+            .
+        </paragraph>
+  </block>
+  <block id="paragraphc003factorrefs" kind="prose">
+    <paragraph id="paragraphc003factorrefs" fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            Related factor provisions:
+            <link address="#CodeReferencesC003.CodePage21;paragraphprojectcoderef21C003">LRFD Table 3.4.1-6</link>
+            and
+            <link address="#CodeReferencesC003.CodePage22;paragraphprojectcoderef22C003">LRFD C3.4.1</link>
+            . See the packet’s QC qualification on the unfactored joint/bearing label.
+        </paragraph>
+  </block>
+  <block id="p8" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="12">
+            •
+            <link address="#CodeReferencesC003.CodePage20;paragraphprojectcoderef20C003">LRFD 5.4.2.2</link>
+            : Normal-weight concrete coefficient of thermal expansion is taken as 6.0×10⁻⁶ /°F.
+        </paragraph>
+  </block>
+  <block id="p9" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" level="1" spacingafter="7">For uniform temperature change, longitudinal movement is calculated from δ = α·ΔT·L. Temperature rise moves each end away from the intermediate pier; temperature fall moves each end toward the pier. For an end joint referenced to the approach, these correspond respectively to joint closing and opening.</paragraph>
+  </block>
+  <block id="paragraphc003equationref" kind="prose">
+    <paragraph id="paragraphc003equationref" fontfamily="Times New Roman" fontsize="10" spacingafter="7">
+            Supplemental equation context:
+            <link address="#CodeReferencesC003.CodePage23;paragraphprojectcoderef23C003">LRFD Eq. 3.12.2.3-1</link>
+            gives the full high-to-low thermal movement range; C003 calculates excursions from the mean.
+        </paragraph>
+  </block>
+  <block id="p11" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">No joint or bearing adequacy conclusion is made in this module because allowable movement depends on the selected joint/bearing system and, for expansion-joint design, the applicable creep, shrinkage, skew, and other movement components.</paragraph>
+  </block>
+</blocks>

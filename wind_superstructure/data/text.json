@@ -1,0 +1,174 @@
+{
+ "report_name": "C001WindLoadOnPedBridgeSuperstructure",
+ "cnumber": "C001",
+ "title": "Wind Load on Ped Bridge Superstructure",
+ "prefix": "wind",
+ "bpad_file": "Superstructure Wind.bpad",
+ "notebook": "Superstructure_Wind.ipynb",
+ "tool_prefix": "wind-tool-",
+ "case_name": "C001 - Wind Load on Ped Bridge Superstructure (journal values, feb1bb316d08)",
+ "intro": [
+  "**What it does.** The design wind pressures of LRFD 3.8.1.2.1 for Strength III, Strength V and Service I on the concrete superstructure, with the FDOT SDG 2.4.1 wind speed, exposure category and gust factor; the superstructure line loads for the skew-angle coefficients of LRFD Table 3.8.1.2.3a-1; the wind force allocated to one bearing of the repair frame; and the LRFD 3.8.2 vertical wind line load and eccentricity that C004 combines with gravity."
+ ],
+ "overview": [
+  "Design wind pressures on the concrete superstructure per LRFD 3.8.1.2.1 with the FDOT SDG 2.4.1 wind speed (130 mph, Duval County), ground surface roughness category C and gust factor 0.85, for Strength III, Strength V and Service I. K_Z follows the logarithmic profile at the common fence-crown exposure height; Strength V and Service I use K_Z = 1.0.",
+  "The Strength III pressure times the exposed superstructure depth gives the transverse and longitudinal line loads for the selected skew angle (LRFD Table 3.8.1.2.3a-1), the bearing share of the repair-frame wind, and, with the prescribed 0.020 ksf vertical pressure of LRFD 3.8.2, the upward line load and windward eccentricity that the uplift calculation (C004) combines with gravity. The fence wind is calculated separately in C002."
+ ],
+ "outside": "the fence wind (C002), the bearing reactions and uplift checks (C004) and the direct wind on the pier (C002).",
+ "flow": [
+  "Geometry",
+  "Wind speeds",
+  "K_Z by exposure",
+  "Pressures P_Z",
+  "Skew coefficients",
+  "Line loads",
+  "Vertical wind"
+ ],
+ "key_results": [
+  {
+   "label": "Strength III wind pressure P_Z",
+   "name": "P_Z_III"
+  },
+  {
+   "label": "Transverse line load w_T (Strength III)",
+   "name": "w_T_III"
+  },
+  {
+   "label": "Upward line load w_V (Strength III)",
+   "name": "w_V_III"
+  },
+  {
+   "label": "Windward eccentricity e_V",
+   "name": "e_V"
+  },
+  {
+   "label": "Repair-frame bearing wind W_Frame",
+   "name": "W_Frame"
+  }
+ ],
+ "summary_tables": [
+  "WindSummaryTable"
+ ],
+ "published": [
+  "G_fac",
+  "K_Z_gov",
+  "P_Z_III",
+  "P_Z_SI",
+  "V_III",
+  "V_SI",
+  "e_V",
+  "w_T0_III",
+  "w_V_III",
+  "w_deck"
+ ],
+ "anchors": {
+  "1_1_bridge_geometry": "paragraphrefreturn0004",
+  "1_2_wind_speed_and_exposure": "paragraphrefreturn0005",
+  "1_3_structure_type_and_coefficients": "paragraphrefreturn0006",
+  "2_wind_speed_by_load_combination": "paragraphrefreturn0007",
+  "3_pressure_exposure_and_elevation_coeffi": "paragraphrefreturn0008",
+  "3_1_k_z_for_wind_exposure_category_b": "paragraphrefreturn0009",
+  "3_2_k_z_for_wind_exposure_category_c": "paragraphrefreturn0010",
+  "3_3_k_z_for_wind_exposure_category_d": "paragraphrefreturn0011",
+  "3_4_governing_k_z_selected_by_exposure_c": "paragraphrefreturn0012",
+  "4_design_wind_pressure_on_structures_ws": "paragraphrefreturn0013",
+  "4_1_strength_iii_wind_pressure": "paragraphrefreturn0014",
+  "4_2_strength_v_wind_pressure": "paragraphrefreturn0015",
+  "4_3_service_i_wind_pressure": "paragraphrefreturn0016",
+  "4_4_service_iv_applicability_not_used": "paragraphrefreturn0017",
+  "5_wind_loads_on_superstructure": "paragraphrefreturn0018",
+  "5_1_skew_coefficients_girders": "paragraphrefreturn0019",
+  "5_2_strength_iii_superstructure_wind_lin": "paragraphrefreturn0020",
+  "8_vertical_wind_and_perpendicular_compan": "headingC001WindLoadOnPedBridgeSuperstructure8",
+  "lrfd_3_8_2_vertical_wind_load": "paragraphc001ref12"
+ },
+ "notes": {
+  "z_clear": [
+   "Reference the low-ground-to-soffit clearance in Bridge Geometry_2 Beam. The previous 19 ft assumption is centralized there and requires confirmation from a complete pier section."
+  ],
+  "Z": [
+   "Reference the common crown exposure height in Bridge Geometry_2 Beam. The existing exposure-height model and code equations are retained."
+  ],
+  "L_span": [
+   "It is not the sum of the two spans or the intermediate pier’s tributary length; those are separate quantities."
+  ],
+  "V_III": [
+   "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure."
+  ],
+  "V_V": [
+   "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure."
+  ],
+  "V_SI": [
+   "Read this numerical input as miles per hour. The pressure formula squares the number, then uses its conversion constant to produce pressure in kips per square foot. This is the speed assigned to the stated limit state, not a factor applied to an already calculated pressure."
+  ],
+  "C_D": [
+   "The selected number has no units and multiplies the wind-pressure term. It represents the shape’s drag in the stated model; it is not the structure’s area or a load-combination factor."
+  ],
+  "G_fac": [
+   "This dimensionless input adjusts the pressure term for the adopted gust-effect treatment. It affects only expressions that actually contain this variable. Reading a value here does not automatically apply it to other equations that use a fixed multiplier instead."
+  ],
+  "K_Z_B": [
+   "Multiply that logarithm by 2.5, then add 6.87. Square the whole quantity in parentheses and divide by 345.6. These constants define the Category B profile used in the displayed equation.",
+   "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream."
+  ],
+  "K_Z_C": [
+   "Multiply that logarithm by 2.5, then add 7.35. Square the whole quantity in parentheses and divide by 478.4. These constants define the Category C profile used in the displayed equation.",
+   "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream."
+  ],
+  "K_Z_D": [
+   "Multiply that logarithm by 2.5, then add 7.65. Square the whole quantity in parentheses and divide by 616.1. These constants define the Category D profile used in the displayed equation.",
+   "The result is a dimensionless multiplier on pressure. This equation calculates the value for one category; the category-selection equation decides which value is used downstream."
+  ],
+  "K_Z_gov": [
+   "The selected result is used for Strength III pressure in the active pier load sets. The word “governing” in the variable name means the selected category here; this formula does not take the largest of all category values."
+  ],
+  "P_Z_III": [
+   "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation."
+  ],
+  "P_Z_V": [
+   "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation."
+  ],
+  "P_Z_SI": [
+   "This is force on one square foot of projected structure area. Multiply it by the appropriate exposed area, or by exposed height for a force per foot, in the next load calculation."
+  ],
+  "C_T_gir": [
+   "The chosen number scales the perpendicular-wind load into its component across the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases."
+  ],
+  "C_L_gir": [
+   "The chosen number scales the perpendicular-wind load into its component along the bridge. Use the across-bridge and along-bridge coefficients for the same angle together; they are not independent load cases."
+  ],
+  "W_Frame": [
+   "For the retained equal bearing-load allocation, take half the maximum-span line load and divide by the beam count from Bridge Geometry_2 Beam. This is the existing load-distribution assumption."
+  ],
+  "p_V_III": [
+   "Prescribed Strength III vertical wind pressure; LRFD 3.8.2."
+  ],
+  "α_V": [
+   "Windward quarter-point distance from deck centerline for the symmetric section; LRFD 3.8.2."
+  ],
+  "e_V": [
+   "Magnitude of the transverse eccentricity from deck centerline. The windward side changes with wind sign."
+  ],
+  "w_V_III": [
+   "Strength III upward force per bridge length. No horizontal pressure coefficient or speed ratio is applied to this prescribed pressure."
+  ],
+  "m_V_III": [
+   "Strength III overturning moment per bridge length from vertical wind; derived equilibrium."
+  ],
+  "w_T0_III": [
+   "Concurrent perpendicular concrete wind. Fence wind remains sourced from C002."
+  ]
+ },
+ "working_notes": [
+  "The calculation was ported from the journal module C001WindLoadOnPedBridgeSuperstructure (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+ ],
+ "pending": [],
+ "symbols": {},
+ "accepted_wording": [
+  "Task Work Order"
+ ],
+ "visible_rules": [],
+ "unused_inputs": [],
+ "confirmations": {},
+ "skipped_journal_definitions": []
+}

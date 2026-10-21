@@ -1,0 +1,104 @@
+{
+ "format": "d2mpdb-wind-superstructure",
+ "schema_version": 1,
+ "name": "C001 - Wind Load on Ped Bridge Superstructure (journal values, feb1bb316d08)",
+ "inputs": {
+  "z_clear": 227.47752853695,
+  "Z": 428.79002853695,
+  "d_super": 85.0,
+  "Span_1": 107.35,
+  "Span_2": 104.9,
+  "w_deck": 163.0,
+  "Skew_deg_str": "0",
+  "V_III": 130.0,
+  "V_V": 80.0,
+  "V_SI": 70.0,
+  "Exp_Cat": "C",
+  "Struct_Type": "I-Girder or Box-Girder Superstructure",
+  "G_fac": 0.85,
+  "Beam_count": 2.0,
+  "p_V_III": 0.02
+ },
+ "units": {
+  "z_clear": "in",
+  "Z": "in",
+  "d_super": "in",
+  "Span_1": "ft",
+  "Span_2": "ft",
+  "w_deck": "in",
+  "Skew_deg_str": null,
+  "V_III": null,
+  "V_V": null,
+  "V_SI": null,
+  "Exp_Cat": null,
+  "Struct_Type": null,
+  "G_fac": null,
+  "Beam_count": null,
+  "p_V_III": "ksf"
+ },
+ "sources": {
+  "z_clear": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Wind_clearHeight",
+   "status": "journal"
+  },
+  "Z": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Wind_exposureHeight",
+   "status": "journal"
+  },
+  "d_super": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Depth_SuperStr",
+   "status": "journal"
+  },
+  "Span_1": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_1",
+   "status": "journal"
+  },
+  "Span_2": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_2",
+   "status": "journal"
+  },
+  "w_deck": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Deck_out2out",
+   "status": "journal"
+  },
+  "Skew_deg_str": {
+   "source": "Selected value",
+   "status": "journal"
+  },
+  "V_III": {
+   "source": "FDOT SDG Table 2.4.1-1 (Duval County)",
+   "status": "code"
+  },
+  "V_V": {
+   "source": "LRFD Table 3.8.1.1.2-1",
+   "status": "code"
+  },
+  "V_SI": {
+   "source": "LRFD Table 3.8.1.1.2-1",
+   "status": "code"
+  },
+  "Exp_Cat": {
+   "source": "Selected value",
+   "status": "journal"
+  },
+  "Struct_Type": {
+   "source": "Selected value",
+   "status": "journal"
+  },
+  "G_fac": {
+   "source": "SDG 2.4.1.C",
+   "status": "code"
+  },
+  "Beam_count": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Beam_count",
+   "status": "journal"
+  },
+  "p_V_III": {
+   "source": "LRFD 3.8.2",
+   "status": "code"
+  }
+ },
+ "confirmations": {},
+ "receipts": {},
+ "reviews": {}
+}

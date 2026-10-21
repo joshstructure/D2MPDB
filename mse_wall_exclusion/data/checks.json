@@ -1,0 +1,223 @@
+[
+ {
+  "key": "inputs",
+  "group": "Inputs",
+  "label": "Geometry input validity",
+  "kind": "flag",
+  "flag": "InputStatus",
+  "demand": "",
+  "capacity": "",
+  "basis": "",
+  "refs": [],
+  "names": [
+   "InputStatus"
+  ],
+  "note": "",
+  "fail_values": [
+   "INVALID - DO NOT USE"
+  ],
+  "pass_values": [
+   "VALID"
+  ]
+ },
+ {
+  "key": "b1w1",
+  "group": "End Bent 1",
+  "label": "Front wall clear (pile face)",
+  "kind": "ratio",
+  "num": "LayoutClear",
+  "den": "Bent1W1Gap",
+  "demand": "LayoutClear",
+  "capacity": "Bent1W1Gap",
+  "basis": "required clear / minimum gap to a pile face",
+  "refs": [],
+  "names": [
+   "Bent1W1Gap",
+   "Bent1W1Extra",
+   "Bent1W1Status"
+  ],
+  "note": "",
+  "flag": "Bent1W1Status",
+  "ratio_name": "DC_B1_front",
+  "fail_values": [
+   "SHORTFALL",
+   "INVALID"
+  ],
+  "pass_values": [
+   "MEETS CLEAR"
+  ]
+ },
+ {
+  "key": "b1w2",
+  "group": "End Bent 1",
+  "label": "Left side wall clear (pile face)",
+  "kind": "ratio",
+  "num": "SideClear",
+  "den": "Bent1W2Gap",
+  "demand": "SideClear",
+  "capacity": "Bent1W2Gap",
+  "basis": "required clear / minimum gap to a pile face",
+  "refs": [],
+  "names": [
+   "Bent1W2Gap",
+   "Bent1W2Extra",
+   "Bent1W2Status"
+  ],
+  "note": "",
+  "flag": "Bent1W2Status",
+  "ratio_name": "DC_B1_left",
+  "fail_values": [
+   "SHORTFALL",
+   "INVALID"
+  ],
+  "pass_values": [
+   "MEETS CLEAR"
+  ]
+ },
+ {
+  "key": "b1w3",
+  "group": "End Bent 1",
+  "label": "Right side wall clear (pile face)",
+  "kind": "ratio",
+  "num": "SideClear",
+  "den": "Bent1W3Gap",
+  "demand": "SideClear",
+  "capacity": "Bent1W3Gap",
+  "basis": "required clear / minimum gap to a pile face",
+  "refs": [],
+  "names": [
+   "Bent1W3Gap",
+   "Bent1W3Extra",
+   "Bent1W3Status"
+  ],
+  "note": "",
+  "flag": "Bent1W3Status",
+  "ratio_name": "DC_B1_right",
+  "fail_values": [
+   "SHORTFALL",
+   "INVALID"
+  ],
+  "pass_values": [
+   "MEETS CLEAR"
+  ]
+ },
+ {
+  "key": "b1cap",
+  "group": "End Bent 1",
+  "label": "Front cap face to back of facing (24 in minimum)",
+  "kind": "ratio",
+  "num": 24.0,
+  "den": "Bent1CapGap",
+  "demand": "24 in",
+  "capacity": "Bent1CapGap",
+  "basis": "24 in / gap",
+  "refs": [],
+  "names": [
+   "Bent1CapGap",
+   "Bent1CapStatus"
+  ],
+  "note": "",
+  "flag": "Bent1CapStatus",
+  "ratio_name": "DC_B1_cap"
+ },
+ {
+  "key": "b2w1",
+  "group": "End Bent 2",
+  "label": "Front wall clear (pile face)",
+  "kind": "ratio",
+  "num": "LayoutClear",
+  "den": "Bent2W1Gap",
+  "demand": "LayoutClear",
+  "capacity": "Bent2W1Gap",
+  "basis": "required clear / minimum gap to a pile face",
+  "refs": [],
+  "names": [
+   "Bent2W1Gap",
+   "Bent2W1Extra",
+   "Bent2W1Status"
+  ],
+  "note": "",
+  "flag": "Bent2W1Status",
+  "ratio_name": "DC_B2_front",
+  "fail_values": [
+   "SHORTFALL",
+   "INVALID"
+  ],
+  "pass_values": [
+   "MEETS CLEAR"
+  ]
+ },
+ {
+  "key": "b2w2",
+  "group": "End Bent 2",
+  "label": "Left side wall clear (pile face)",
+  "kind": "ratio",
+  "num": "SideClear",
+  "den": "Bent2W2Gap",
+  "demand": "SideClear",
+  "capacity": "Bent2W2Gap",
+  "basis": "required clear / minimum gap to a pile face",
+  "refs": [],
+  "names": [
+   "Bent2W2Gap",
+   "Bent2W2Extra",
+   "Bent2W2Status"
+  ],
+  "note": "",
+  "flag": "Bent2W2Status",
+  "ratio_name": "DC_B2_left",
+  "fail_values": [
+   "SHORTFALL",
+   "INVALID"
+  ],
+  "pass_values": [
+   "MEETS CLEAR"
+  ]
+ },
+ {
+  "key": "b2w3",
+  "group": "End Bent 2",
+  "label": "Right side wall clear (pile face)",
+  "kind": "ratio",
+  "num": "SideClear",
+  "den": "Bent2W3Gap",
+  "demand": "SideClear",
+  "capacity": "Bent2W3Gap",
+  "basis": "required clear / minimum gap to a pile face",
+  "refs": [],
+  "names": [
+   "Bent2W3Gap",
+   "Bent2W3Extra",
+   "Bent2W3Status"
+  ],
+  "note": "",
+  "flag": "Bent2W3Status",
+  "ratio_name": "DC_B2_right",
+  "fail_values": [
+   "SHORTFALL",
+   "INVALID"
+  ],
+  "pass_values": [
+   "MEETS CLEAR"
+  ]
+ },
+ {
+  "key": "b2cap",
+  "group": "End Bent 2",
+  "label": "Front cap face to back of facing (24 in minimum)",
+  "kind": "ratio",
+  "num": 24.0,
+  "den": "Bent2CapGap",
+  "demand": "24 in",
+  "capacity": "Bent2CapGap",
+  "basis": "24 in / gap",
+  "refs": [],
+  "names": [
+   "Bent2CapGap",
+   "Bent2CapStatus"
+  ],
+  "note": "",
+  "flag": "Bent2CapStatus",
+  "ratio_name": "DC_B2_cap"
+ }
+]

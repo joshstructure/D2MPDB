@@ -1,0 +1,561 @@
+[
+ {
+  "key": "overview_journal",
+  "level": 0,
+  "title": "Overview and scope",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0034",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0033",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftOverviewContext",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "UpliftReviewFlow",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p4",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p5",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "UpliftSummary",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p6",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "strategy",
+  "level": 0,
+  "title": "Design basis and calculation strategy",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyStep01",
+    "ids": [
+     "paragraphupliftstrategy01",
+     "p8"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyStep02",
+    "ids": [
+     "paragraphupliftstrategy02",
+     "p10"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyStep03",
+    "ids": [
+     "paragraphupliftstrategy03",
+     "p12"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyStep04",
+    "ids": [
+     "paragraphupliftstrategy04",
+     "p14"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyStep05",
+    "ids": [
+     "paragraphupliftstrategy05",
+     "p16"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyStep06",
+    "ids": [
+     "paragraphupliftstrategy06",
+     "p18"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftOverview",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftDesignBasis",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_1_model_sign_convention_and_live_in",
+  "level": 0,
+  "title": "Step 1. Model, sign convention and inputs",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyWork01",
+    "ids": [
+     "p21"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep01Context",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "UpliftTransverseSection",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep01Key",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftAssumptions",
+    "at": "start"
+   }
+  ],
+  "native_section": "UpliftStrategyWork01"
+ },
+ {
+  "key": "deck_and_beam_bearing_geometry",
+  "level": 1,
+  "title": "Deck and beam-bearing geometry",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "spans_and_tributary_lengths",
+  "level": 1,
+  "title": "Spans and tributary lengths",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "wind_eccentricity_and_reference_elevatio",
+  "level": 1,
+  "title": "Wind eccentricity and reference elevations",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "step_2_gravity_classification_and_load_c",
+  "level": 0,
+  "title": "Step 2. Gravity classification and load combinations",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyWork02",
+    "ids": [
+     "p26"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep02Context",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep02Key",
+    "at": "start"
+   }
+  ],
+  "native_section": "UpliftStrategyWork02"
+ },
+ {
+  "key": "permanent_load_sources_at_the_pier",
+  "level": 1,
+  "title": "Permanent-load sources at the pier",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftGravitySources",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "live_permanent_load_classification",
+  "level": 1,
+  "title": "Permanent-load classification",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "load_factors_and_bearing_reaction_modifi",
+  "level": 1,
+  "title": "Load factors and bearing reaction modifier",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "paragraphrefreturn0035",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "load_combination_factors",
+  "level": 1,
+  "title": "Load-combination factors",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftFactors",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p30",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p31",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p32",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p33",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_3_concurrent_wind_and_bearing_equil",
+  "level": 0,
+  "title": "Step 3. Concurrent wind and bearing equilibrium",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyWork03",
+    "ids": [
+     "p34"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep03Context",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep03Key",
+    "at": "start"
+   }
+  ],
+  "native_section": "UpliftStrategyWork03"
+ },
+ {
+  "key": "concurrent_line_loads_strength_iii",
+  "level": 1,
+  "title": "Concurrent line loads, Strength III",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "overturning_moments_at_the_bearing_plane",
+  "level": 1,
+  "title": "Overturning moments at the bearing plane",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "transverse_beam_line_equilibrium",
+  "level": 1,
+  "title": "Transverse beam-line equilibrium",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "factored_concurrent_line_load_results",
+  "level": 1,
+  "title": "Factored concurrent line-load results",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftLineEffects",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftEquilibriumBasis",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_4_individual_bearing_reactions_and_",
+  "level": 0,
+  "title": "Step 4. Individual bearing reactions and restraint",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyWork04",
+    "ids": [
+     "p38"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep04Context",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep04Key",
+    "at": "start"
+   }
+  ],
+  "native_section": "UpliftStrategyWork04",
+  "hidden_title": "Bearing reactions by span end (the rows of the physical-bearing table)."
+ },
+ {
+  "key": "physical_bearing_reactions_strength_iii",
+  "level": 0,
+  "title": "PHYSICAL BEARING REACTIONS — STRENGTH III",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftBearingIII",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p41",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p42",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "global_overturning_equilibrium_strength_",
+  "level": 1,
+  "title": "Global overturning equilibrium, Strength III",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "contact_overturning_and_restraint_checks",
+  "level": 1,
+  "title": "Contact, overturning and restraint checks",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftStability",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftRestraintScope",
+    "at": "Uplift_restraint"
+   }
+  ]
+ },
+ {
+  "key": "step_5_pier_load_transfer_for_fb_multipi",
+  "level": 0,
+  "title": "Step 5. Pier load transfer for FB-MultiPier",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyWork05",
+    "ids": [
+     "p44"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p45",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p46",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep05Context",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "UpliftPierPlan",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep05Key",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftFBMPRules",
+    "at": "start"
+   }
+  ],
+  "native_section": "UpliftStrategyWork05"
+ },
+ {
+  "key": "collect_the_physical_bearing_reactions_s",
+  "level": 1,
+  "title": "Collected physical bearing reactions, Strength III / +T",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "residual_moments_at_the_cap_reference_sa",
+  "level": 1,
+  "title": "Residual moments at the cap reference",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "optional_two_node_condensation_complete_",
+  "level": 1,
+  "title": "Optional two-node condensation",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftPierForces",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "optional_two_node_residuals_do_not_add_t",
+  "level": 1,
+  "title": "Optional two-node residuals",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftPierCouples",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p51",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_6_coherence_equilibrium_and_release",
+  "level": 0,
+  "title": "Step 6. Coherence, equilibrium and release checks",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "UpliftStrategyWork06",
+    "ids": [
+     "p52"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "UpliftStep06Context",
+    "at": "start"
+   }
+  ],
+  "native_section": "UpliftStrategyWork06",
+  "hidden_title": "Coherence and equilibrium checks (the rows of the check table)."
+ },
+ {
+  "key": "live_coherence_and_equilibrium_checks",
+  "level": 0,
+  "title": "LIVE COHERENCE AND EQUILIBRIUM CHECKS",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftChecks",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "bearing_and_cap_datum_reconciliation",
+  "level": 1,
+  "title": "Bearing and cap datum reconciliation",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "UpliftDatum",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p54",
+    "at": "start"
+   }
+  ]
+ }
+]

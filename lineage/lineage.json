@@ -2,7 +2,7 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "05ee2cc7f16293ad16593bad6052c764b8b42d522472bf04185fa56cdf246d60",
+ "fingerprint": "35e38f5df93179d98d0f6ae07989898ec80bb5e41294bad448c3d50ccba0fac0",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
@@ -38,7 +38,7 @@
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "e5c3cdf9b26d25c91a2a6763b7f4728f30bc67a0d1830aa3fb15658204df6216"
+   "sha256": "21c9474cc9a998b98d23190c368f6bf6f87e35db5791b8c256ea54c5a5b1c38f"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -66,30 +66,30 @@
   },
   {
    "path": "scripts/build_lineage_graph.py",
-   "sha256": "f84a07ecc2cd5d5f934bac2d6aac0e1eeb39baf688edc1f704570205bfb34dbd"
+   "sha256": "498799118625da69ee6d9a5a032b314711f301ecc982abfd6920f3478eb85d75"
   }
  ],
  "derived": [
   {
    "id": "formula-trace:EB-CASE",
    "sha256": "ffea4384d1e126d6529fff449e2f1e8206e7b7c6d697e00f9aaad9615031e174",
-   "package_sha256": "37484b8645a941b585490aab7005035837c38e8c433b63bd99355a320598c425"
+   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
   },
   {
    "id": "formula-trace:EB2-CASE",
    "sha256": "91ed8d3683ebe3bbe7230ada3232bfae78ad3436fc43dcf6a278eb9f0910434d",
-   "package_sha256": "37484b8645a941b585490aab7005035837c38e8c433b63bd99355a320598c425"
+   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
   },
   {
    "id": "formula-trace:PIER-CASE",
    "sha256": "3880794cba6bcaabe7b27f81430edd104cdf17f5369a0a0b5cc7c67d1cfef2ed",
-   "package_sha256": "37484b8645a941b585490aab7005035837c38e8c433b63bd99355a320598c425"
+   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
   }
  ],
  "cap_package": {
   "path": "pier_cap",
   "files": 79,
-  "sha256": "37484b8645a941b585490aab7005035837c38e8c433b63bd99355a320598c425"
+  "sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
  },
  "cap_trace": {
   "available": true,
@@ -4201,7 +4201,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "ffea4384d1e126d6529fff449e2f1e8206e7b7c6d697e00f9aaad9615031e174",
-    "package_sha256": "37484b8645a941b585490aab7005035837c38e8c433b63bd99355a320598c425"
+    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
    },
    "open_issues": [
     "COH-023",
@@ -7272,7 +7272,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "91ed8d3683ebe3bbe7230ada3232bfae78ad3436fc43dcf6a278eb9f0910434d",
-    "package_sha256": "37484b8645a941b585490aab7005035837c38e8c433b63bd99355a320598c425"
+    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
    },
    "open_issues": [
     "COH-023",
@@ -7718,7 +7718,8 @@
     "D-064",
     "D-065",
     "D-066",
-    "D-067"
+    "D-067",
+    "D-069"
    ],
    "issues": [
     "COH-001",
@@ -10862,7 +10863,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "3880794cba6bcaabe7b27f81430edd104cdf17f5369a0a0b5cc7c67d1cfef2ed",
-    "package_sha256": "37484b8645a941b585490aab7005035837c38e8c433b63bd99355a320598c425"
+    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
    },
    "open_issues": [
     "COH-019"
@@ -24625,6 +24626,25 @@
     "decisions": [],
     "issues": [],
     "inferred": []
+   }
+  },
+  {
+   "id": "D-069",
+   "date": "2026-10-21",
+   "decision": "Build Colab notebook packages for the seven journal calculations that had none (C001 superstructure wind, C002 fence wind and pier node loads, C003 temperature movement, C004 uplift and bearing reactions, C006 pier wall hairpins and fin plates, C015 MSE wall exclusion, C016 bearings and support details) on the shared `calc_common` framework, run them with the journal input values, and replace the hand-authored journal modules with the notebook-generated journal editions (task T027; the user promotes the candidate `generated/T027-review-01`).",
+   "basis": "User direction. Every definition of the former modules (697) was evaluated independently from the journal file and reproduced by the notebooks to 1 part in 10⁹ (`tests/test_journal_calc_packages.py`); the names other modules read stay as live references through the coherence gate; the native figures, design-basis prose and link anchors are carried over; the equation notes, step navigation and echoed value displays are distilled out (they remain in the notebook reports under `<package>/report/`). C016 omits the superseded D-064/D-065 status strings (its working notes record them); C015 keeps its knife-edge SHORTFALL rows. No engineering value changed; FBMP not rerun; native Blockpad recalculation not performed.",
+   "refs": {
+    "sources": [
+     "JOURNAL"
+    ],
+    "decisions": [
+     "D-064",
+     "D-065"
+    ],
+    "issues": [],
+    "inferred": [
+     "JOURNAL"
+    ]
    }
   }
  ],

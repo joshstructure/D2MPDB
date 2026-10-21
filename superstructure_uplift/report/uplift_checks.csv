@@ -1,0 +1,12 @@
+group,check,status,ratio,demand,capacity,basis,note,review
+Bearings,Contact retained at every bearing (Strength III),PASS,,50.149 kip,> 0 kip,Minimum bearing compression positive,,
+Bearings,Net vertical compression (upward / downward intensity),PASS,0.0880,0.272 klf,3.088 klf,w_U / w_D,,
+Bearings,Transverse overturning (destabilizing / stabilizing moment),PASS,0.3807,5.046 kip,13.253 kip,m_destab / m_stab,,
+Coherence,Supported beam and node configuration,PASS,,,,,,
+Coherence,Source tributary length,PASS,,,,,,
+Coherence,Weight classification reconciles to the gravity total,PASS,,,,,,
+Coherence,Strength III horizontal set agrees with C002,PASS,,,,,,
+Coherence,Physical-bearing vertical equilibrium,PASS,,,,,,
+Coherence,Physical-bearing roll equilibrium,PASS,,,,,,
+Coherence,Collected-node roll plus residual equals the applied moment,PASS,,,,,,
+Coherence,Derived bearing plane at or above the cap top,PASS,,,,,,

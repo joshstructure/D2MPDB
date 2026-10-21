@@ -1,0 +1,88 @@
+[
+ {
+  "key": "span_limit",
+  "group": "Simplified method",
+  "label": "Individual span ≤ 150 ft (LRFD 3.8.1.2.3a)",
+  "kind": "ratio",
+  "num": "L_span_max",
+  "den": 150.0,
+  "demand": "L_span_max",
+  "capacity": "150 ft",
+  "basis": "L_span,max / 150 ft",
+  "refs": [
+   "lrfd_3_8_1_2_3a"
+  ],
+  "names": [
+   "L_span_max",
+   "DC_span"
+  ],
+  "note": "",
+  "ratio_name": "DC_span"
+ },
+ {
+  "key": "height_limit",
+  "group": "Simplified method",
+  "label": "Bridge height ≤ 33 ft above low ground (LRFD 3.8.1.2.3a)",
+  "kind": "ratio",
+  "num": "H_bridge",
+  "den": 33.0,
+  "demand": "H_bridge",
+  "capacity": "33 ft",
+  "basis": "H_bridge / 33 ft",
+  "refs": [
+   "lrfd_3_8_1_2_3a"
+  ],
+  "names": [
+   "DC_height"
+  ],
+  "note": "",
+  "ratio_name": "DC_height"
+ },
+ {
+  "key": "simplified",
+  "group": "Simplified method",
+  "label": "Overall simplified-method qualification (100 % T + 25 % L)",
+  "kind": "flag",
+  "flag": "Check_simplified",
+  "demand": "",
+  "capacity": "",
+  "basis": "Both LRFD 3.8.1.2.3a limits satisfied",
+  "refs": [
+   "lrfd_3_8_1_2_3a"
+  ],
+  "names": [
+   "Check_simplified"
+  ],
+  "note": ""
+ },
+ {
+  "key": "geometry",
+  "group": "Consistency",
+  "label": "Fence and tributary geometry",
+  "kind": "flag",
+  "flag": "Check_geometry",
+  "demand": "",
+  "capacity": "",
+  "basis": "Positive fence dimensions and tributary length",
+  "refs": [],
+  "names": [
+   "Check_geometry"
+  ],
+  "note": ""
+ },
+ {
+  "key": "balance",
+  "group": "Consistency",
+  "label": "Resultant equilibrium of the fence and cap-reference totals",
+  "kind": "flag",
+  "flag": "Check_balance",
+  "demand": "",
+  "capacity": "",
+  "basis": "Fence moment and cap totals reproduce their parts",
+  "refs": [],
+  "names": [
+   "Check_balance"
+  ],
+  "note": ""
+ }
+]

@@ -1,0 +1,174 @@
+<blocks>
+  <block id="paragraph69xuejqa" kind="prose">
+    <paragraph id="paragraph69xuejqa">
+            <image source="Resource26" width="402.16771124246145" height="574.6988743736679"/>
+             Link
+        </paragraph>
+  </block>
+  <block id="p1" kind="prose">
+    <paragraph level="1">Pipe piles </paragraph>
+  </block>
+  <block id="Canvas1" kind="canvas">
+    <canvas title="Canvas 1" name="Canvas1" unit="in" size="6.5 in; 2 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <circle center="3.53, 1.44, 0" normal="0, 0, 1" radius="0.61" fillcolor="#FFFFFF" linethickness="4" linecolor="#B35012"/>
+                <lineardim startpoint="2.920182863569142, 1.4423235019483092, 0" endpoint="4.139817136430858, 1.4423235019483092, 0" pointondimline="3.53, 0.63, 0" name="DimLabel2" linecolor="#034AC8"><num>24 in</num></lineardim>
+                <lineardim startpoint="4.139817136430858, 1.4376764980516925, 0" endpoint="4.65, 1.4423235019483092, 0" pointondimline="4.139817136430858, 0.63, 0" linecolor="#034AC8"><num>3 in</num></lineardim>
+                <lines pts="5.19, 2.17, 0; 5.19, 0.3899999999999997, 0" linepattern="Dashes"/>
+                <lines pts="5.63, 2.14, 0; 5.63, 0.3599999999999999, 0"/>
+                <lineardim startpoint="4.65, 1.38, 0" endpoint="5.19, 1.38, 0" pointondimline="4.92, 0.63, 0" linecolor="#034AC8"><num>1 in</num></lineardim>
+                <lineardim startpoint="5.19, 1.38, 0" endpoint="5.63, 1.38, 0" pointondimline="5.68, 0.63, 0" linecolor="#034AC8"><num>3 in</num></lineardim>
+                <lineardim startpoint="3.53, 1.44, 0" endpoint="5.63, 1.44, 0" pointondimline="4.53, 1.78, 0" formula="(DimLabel2/2)+3 in+1 in+3 in" name="DimLabel1" linecolor="#034AC8"><num>19 in</num></lineardim>
+                <arrowlines pts="4.39116782311555, 0.16, 0; 4.39116782311555, 0.56, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429"/>
+                <arrowlines pts="4.9611678231155505, 0.24, 0; 4.9611678231155505, 0.5499202366602238, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429"/>
+                <arrowlines pts="5.89, 0.89, 0; 5.41, 0.73, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429"/>
+                <lines pts="1.41, 2.12, 0; 1.41, 0.3900000000000001, 0"/>
+                <lines pts="4.66, 2.16, 0; 4.66, 0.3799999999999999, 0" linepattern="Dashes"/>
+                <lineardim startpoint="5.63, 1.44, 0" endpoint="1.41, 1.44, 0" pointondimline="3.52, 2.21, 0" formula="DimLabel1*2 to ft" linecolor="#034AC8"><num>3.1666666666666665 ft</num></lineardim>
+                <arrowlines pts="6.04, 1.31, 0; 5.63, 1.31, 0" endarrow="6; 3" pointsize="2" linecolor="#EF3429"/>
+                <arrowlines pts="3.9608727477963965, 1.8717300538050397, 0; 4.138788695249119, 2.05, 0" endarrow="1; 6" linecolor="#B35012"/>
+                <arrowlines pts="3.099127252203603, 1.00826994619496, 0; 2.9417519010098285, 0.8505814658119276, 0" endarrow="1; 6" linecolor="#B35012"/>
+                <arrowlines pts="3.099127252203603, 1.8717300538050399, 0; 2.9212113047508814, 2.05, 0" endarrow="1; 6" linecolor="#B35012"/>
+                <arrowlines pts="3.960872747796397, 1.00826994619496, 0; 4.138788695249119, 0.8300000000000001, 0" endarrow="1; 6" linecolor="#B35012"/>
+                <planecontainer origin="3.52, 0.23, 0" dir="0.6300000000000003, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Pile Tolerance</textvalue></planecontainer>
+                <planecontainer origin="5.91, 0.97, 0" dir="0.6299999999999999, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Cover</textvalue></planecontainer>
+                <planecontainer origin="4.94, 0.23, 0" dir="0.6299999999999999, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Pile out of tolerance</textvalue></planecontainer>
+                <planecontainer origin="6.05, 1.41, 0" dir="0.6299999999999999, 0, 0" normal="0, 0, 0.3968999999999971" textcolor="#EF3429"><textvalue>Pier Wall Face</textvalue></planecontainer>
+            </canvas>
+  </block>
+  <block id="p3" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+            Pier pedestal geometry is referenced live from
+            <span fontweight="bold">Bridge Geometry_2 Beam</span>
+            ; no duplicate pedestal inputs are introduced here.
+        </paragraph>
+  </block>
+  <block id="PedestalNContext" kind="prose">
+    <table name="PedestalNContext" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Verify the longitudinal support length available at each side of the pier pedestal against LRFD 4.7.4.4.</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Adjacent span lengths, pier height H, support skew S, beam-end gap, and current pedestal length.</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Required empirical support length N, provided overlap, margin, and live PASS/FAIL check.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p5" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">FDOT SDG 2.3.1 exempts simple or continuous span superstructures supported entirely on elastomeric bearings from full seismic design, but still requires the minimum bearing support dimensions of LRFD 4.7.4.4. This check uses the full empirical N, consistent with the FDOT prestressed-beam design example.</paragraph>
+  </block>
+  <block id="p6" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8">
+            <link address="https://www.fdot.gov/structures/StructuresManual/CurrentRelease/PrecastBeamExample.pdf">FDOT Prestressed Beam Example — Composite Neoprene Bearing Pad, Minimum Support Length</link>
+        </paragraph>
+  </block>
+  <block id="p7" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" level="1">No separate top-of-footing datum is defined for this pile-supported pier. If a different structural base datum is established for LRFD H, revise this live definition.</paragraph>
+  </block>
+  <block id="p8" kind="prose">
+    <paragraph>
+            Standard Plan
+            <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/idx/400-510.pdf"> 400-510 </link>
+        </paragraph>
+  </block>
+  <block id="p9" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Selected bearing pad: FDOT Type F for all eight beam ends. Geometry and material properties reference Bridge Geometry_2 Beam. The following checks address the standard service-gravity limits at the four pier bearings.</paragraph>
+  </block>
+  <block id="p10" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/spi/spi-400-510.pdf">FDOT SPI 400-510 — limiting parameters and design assumptions (FY 2026–27)</link>
+            </paragraph>
+  </block>
+  <block id="p11" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Evaluate level tops at the four pier bearings, B1/B2 for Span 1 and B3/B4 for Span 2. This check uses the selected Type F pads and the saved beam-end rotations. It does not change pedestal geometry or approve the end-bent seats.</paragraph>
+  </block>
+  <block id="p12" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                    <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/spi/spi-400-510.pdf">FDOT SPI 400-510, FY 2026–27, pp. 1–2 — Type F limits and level-seat allowance</link>
+                </paragraph>
+  </block>
+  <block id="p13" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                    <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/structures/structuresmanual/currentrelease/2026/2026-fdot-structures-manual.pdf">FDOT Structures Design Guidelines, January 2026, §6.5.1.D — bearing seats and rotations</link>
+                </paragraph>
+  </block>
+  <block id="p14" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">SDG's general detailing rule uses level seats below 0.5% grade and seats parallel to the beam from 0.5% to 2%. SPI 400-510 additionally permits level seats where the combined grade, camber and dead-load rotation remains within its static limit. The specific combined-rotation allowance is evaluated here. No beveled plate is required by the longitudinal grade alone; the standard embedded beam plate remains part of the beam detail.</paragraph>
+  </block>
+  <block id="BPContext" kind="prose">
+    <table name="BPContext" capture="False" colwidths="1:85, 2:435">
+                        <stylerule range="A1:B4" fontfamily="Times New Roman" fontsize="11" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;);"/>
+                        <stylerule range="A1:B1" fontweight="bold" background="#DCE7F3"/>
+                        <row>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Item</paragraph></textcell>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Basis</paragraph></textcell>
+                        </row>
+                        <row>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Objective</paragraph></textcell>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Determine whether the selected pads can accommodate level pier seats.</paragraph></textcell>
+                        </row>
+                        <row>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Inputs</paragraph></textcell>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Live profile/pad/thermal inputs and selected Mathcad saved end rotations.</paragraph></textcell>
+                        </row>
+                        <row>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Output</paragraph></textcell>
+                            <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="0">Pier rotation, direction and longitudinal movement screens; explicit remaining checks.</paragraph></textcell>
+                        </row>
+                    </table>
+  </block>
+  <block id="p16" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Positive beam slope rises with increasing station. Saved Mathcad camber slopes are positive at the left end; downward DL/LL slopes are negative. Reverse their signs at the right end of Span 1 (pier); retain them at the left end of Span 2 (pier). Beam self-weight is already included in the camber result. The 2% deck crossfall is taken in the haunch; transverse beam tilt is assumed zero and must be maintained in detailing.</paragraph>
+  </block>
+  <block id="p17" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The selected 12 October 2026 Span 1/Span 2 Mathcad worksheets supply Slope&amp;Defl, region 202056, in degrees and inches. These are saved external analysis results, not a new native Mathcad run. Refresh these source inputs if either beam analysis changes. Direct end rotations govern; 4 × net midspan camber / span would discard the actual curvature distribution.</paragraph>
+  </block>
+  <block id="p18" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Bare camber increases monotonically in the saved release, 30, 60, 90, 120 and 240-day results. The envelope includes the most adverse corners of that camber range and zero–full superimposed DL, even where the paired stages are not simultaneous construction cases. Service direction checks use the actual full-static combinations at 120 and 240 days.</paragraph>
+  </block>
+  <block id="p19" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Level longitudinal pier seats satisfy the checks when the live disposition above passes. This is conditional on the selected saved beam-design results, level transverse beam bottoms and the existing standard pad construction. Span 1's 120-day static slope is close to zero; confirm the rotation sign after any grade or beam-analysis revision. Native beam-analysis currency and current load reconciliation remain open. Complete combined wind/lateral shear, uplift/contact and final support/plate detailing before final bearing acceptance. The movement screen alone does not establish combined shear adequacy.</paragraph>
+  </block>
+  <block id="p20" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">The same conclusion is not extended to the end bents: the beam grade adds to upward camber there, whereas it partially cancels camber at this pier. Retain separate end-bent checks.</paragraph>
+  </block>
+  <block id="p21" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Design decision (20 October 2026): level as-cast pedestal tops at all supports, each at the maximum elevation of its original top. Maximum means the highest point of each original pedestal top, not the highest support elevation across the bridge. Each pedestal is a solid with one horizontal top face; pads are uniform thickness and level on that face.</paragraph>
+  </block>
+  <block id="p22" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Elevations use the existing model datum and are stored at native precision; both pedestals at a support share the listed value. Caps, beam profile/camber, deck and all other geometry are unchanged. The pad thickness is retained; no taper, compression or beveled plate is invented.</paragraph>
+  </block>
+  <block id="p23" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Reinforcement: retain all 84 pedestal bars at their prior elevations, with their native links and adopted marks. A separate pre-grinding reference prevents later regeneration from lifting the cages into the grinding allowance. Verify cover against the final approved ground surface.</paragraph>
+  </block>
+  <block id="p24" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Independent undeformed CAD fit: every pad has positive-volume interference with its unchanged beam. Maximum sampled vertical differences at pad ends/centers are EB1 0.124029 in, Pier 0.046051 in, and EB2 0.157234 in. These measurements describe the current rigid geometry; they are not specified grinding depths or an elastic bearing response. Final fit remains FAIL until an accepted support detail resolves the interface.</paragraph>
+  </block>
+  <block id="p25" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Construction intent: cast level stock at the listed maximum elevations and establish any required grinding plane and final seat elevation before final pad setting. Recheck remaining pedestal thickness, reinforcement cover, surface flatness, support contact and erection/service conditions. Grinding is not an automatic approval to remove arbitrary depth or to modify a loaded support.</paragraph>
+  </block>
+  <block id="p26" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Bearing basis: the pier level-seat check above (PierLevelSeatCheck) applies with its signed rotations, saved analysis assumptions and limitations. Its conditional pier rotation/movement result does not approve the end bents or close combined shear, uplift/contact, load/source currency, final bearing detailing or construction-stage checks. This is a geometry override, not final bearing acceptance.</paragraph>
+  </block>
+  <block id="p27" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Design scope: the Type F gravity screening does not establish combined wind, shear, movement or rotation adequacy. SPI limits include 0.0125-radian static and 0.004-radian cyclic rotation. Check the adopted seat/plate slope and required movement, including creep and shrinkage and applicable lateral actions. The Bridge Movement module remains a thermal-movement calculation, not a complete bearing shear-deflection check.</paragraph>
+  </block>
+  <block id="p28" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">Seat detailing: the 6-in pedestal and Type F pad place the cap top 8-9/16 in below the adopted beam soffit when no separate plate is present. Cap elevations reference the fixed low-beam soffit. Resolve individual seat grades and any separate plates in the final detail.</paragraph>
+  </block>
+  <block id="p29" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">
+                <link address="https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/design/standardplans/2027/idx/400-510.pdf">FDOT Index 400-510 — Type F construction detail</link>
+            </paragraph>
+  </block>
+</blocks>

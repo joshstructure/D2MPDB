@@ -1,0 +1,1607 @@
+{
+ "journal": "journal/D2_I95_Project_Journal.bpad",
+ "journal_sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a",
+ "report": "BridgeMovement",
+ "title": "C003 - Bridge Temperature Movement",
+ "items": [
+  {
+   "kind": "table",
+   "name": "ProjectStamp",
+   "title": null,
+   "colwidths": "1:95, 2:165, 3:95, 4:165",
+   "rows": [
+    [
+     {
+      "text": "Firm",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Firm = ProjectInfo.Firm⟩",
+      "dyn": [
+       "Stamp_Firm = ProjectInfo.Firm"
+      ]
+     },
+     {
+      "text": "Project",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Project = ProjectInfo.Project⟩",
+      "dyn": [
+       "Stamp_Project = ProjectInfo.Project"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Address",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_Address = ProjectInfo.Address⟩",
+      "dyn": [
+       "Stamp_Address = ProjectInfo.Address"
+      ]
+     },
+     {
+      "text": "Job no.",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_JobNo = ProjectInfo.JobNo⟩",
+      "dyn": [
+       "Stamp_JobNo = ProjectInfo.JobNo"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Designed by",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_DesignedBy = ProjectInfo.DesignedBy⟩",
+      "dyn": [
+       "Stamp_DesignedBy = ProjectInfo.DesignedBy"
+      ]
+     },
+     {
+      "text": "Date",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_DesignDate = ProjectInfo.DesignDate⟩",
+      "dyn": [
+       "Stamp_DesignDate = ProjectInfo.DesignDate"
+      ]
+     }
+    ],
+    [
+     {
+      "text": "Checked by",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_CheckedBy = ProjectInfo.CheckedBy⟩",
+      "dyn": [
+       "Stamp_CheckedBy = ProjectInfo.CheckedBy"
+      ]
+     },
+     {
+      "text": "Date",
+      "dyn": []
+     },
+     {
+      "text": "⟨Stamp_CheckDate = ProjectInfo.CheckDate⟩",
+      "dyn": [
+       "Stamp_CheckDate = ProjectInfo.CheckDate"
+      ]
+     }
+    ]
+   ],
+   "formulas": false,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"ProjectStamp\" capture=\"False\" colwidths=\"1:95, 2:165, 3:95, 4:165\">\n                <stylerule range=\"A1:D4\" fontfamily=\"Times New Roman\" fontsize=\"9\" vertalign=\"Center\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);\"/>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Firm</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Firm = ProjectInfo.Firm\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Firm = ProjectInfo.Firm</expbody><expresult>Parsons Transportation Group Inc</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Project</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Project = ProjectInfo.Project\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Project = ProjectInfo.Project</expbody><expresult>I-95 Capacity Improvements from South of SR 152 to South of SR 126</expresult></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Address</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_Address = ProjectInfo.Address\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_Address = ProjectInfo.Address</expbody><expresult>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Job no.</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_JobNo = ProjectInfo.JobNo\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_JobNo = ProjectInfo.JobNo</expbody><expresult/></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Designed by</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_DesignedBy = ProjectInfo.DesignedBy\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_DesignedBy = ProjectInfo.DesignedBy</expbody><expresult>JAT</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Date</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_DesignDate = ProjectInfo.DesignDate\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_DesignDate = ProjectInfo.DesignDate</expbody><expresult>10/17/2026</expresult></dynexp></paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Checked by</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_CheckedBy = ProjectInfo.CheckedBy\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_CheckedBy = ProjectInfo.CheckedBy</expbody><expresult>MIK</expresult></dynexp></paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\" fontweight=\"bold\" horzalign=\"Center\">Date</paragraph></textcell>\n                    <textcell capture=\"False\" background=\"#F1F5FA\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"9\" spacingafter=\"0\"><dynexp formula=\"Stamp_CheckDate = ProjectInfo.CheckDate\" mathlayout=\"on\" showformula=\"False\" showresult=\"True\" showsteps=\"False\" style=\"Result only\" showidentifier=\"False\"><expbody>Stamp_CheckDate = ProjectInfo.CheckDate</expbody><expresult/></dynexp></paragraph></textcell>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Code references and calculation backlinks",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"7\">\n            <link address=\"#CodeReferencesGeneral;paragraphreferenceindex\">Code references and calculation backlinks</link>\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": "paragraphrefreturn0028",
+   "text": "PROJECT INFORMATION:",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" fontweight=\"bold\" textdecoration=\"underline\" spacingafter=\"4\" id=\"paragraphrefreturn0028\">PROJECT INFORMATION:</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Project Name: D2 MPDB",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\">\n            <span fontweight=\"bold\">Project Name:</span>\n             D2 MPDB\n        </paragraph>\n        "
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "Today()",
+   "formula": "Today()",
+   "cache": "2026-10-19",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "style": "Result only",
+   "showresult": null,
+   "id": null,
+   "inline": "Designed By: JAT Date:"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "This calculation determines longitudinal thermal movement of the two-span FIB 36 pedestrian bridge for joint and bearing detailing. The two simple spans are treated as one continuous deck unit with the center of movement at the intermediate pier. Geometry is referenced live from Bridge Geometry_2 Beam.",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"12\">This calculation determines longitudinal thermal movement of the two-span FIB 36 pedestrian bridge for joint and bearing detailing. The two simple spans are treated as one continuous deck unit with the center of movement at the intermediate pier. Geometry is referenced live from Bridge Geometry_2 Beam.</paragraph>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "MovementScopeBox",
+   "title": null,
+   "colwidths": "1:520",
+   "rows": [
+    [
+     {
+      "text": "MOVEMENT MODEL",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "• Concrete-only superstructure temperature range is taken from FDOT SDG Table 2.7.1-1 .",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "• Center of movement is assumed at the intermediate pier; each end movement therefore uses the adjacent span length.",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "• This module calculates thermal movement only. Creep, shrinkage, skew resolution, and final expansion-joint or bearing capacity checks are separate design items.",
+      "dyn": []
+     }
+    ]
+   ],
+   "formulas": false,
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "xml": "<table name=\"MovementScopeBox\" capture=\"False\" colwidths=\"1:520\">\n                <stylerule range=\"A1:A4\" background=\"#F1F5FA\" fontfamily=\"Times New Roman\" fontsize=\"11\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);\"/>\n                <stylerule range=\"A1\" background=\"#DCE7F3\" fontweight=\"bold\"/>\n                <row>\n                    <textcell name=\"MovementScopeTitle\" capture=\"False\">\n                        <paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" fontweight=\"bold\" spacingafter=\"7\">MOVEMENT MODEL</paragraph>\n                    </textcell>\n                </row>\n                <row>\n                    <textcell name=\"MovementScope1\" capture=\"False\">\n                        <paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                            • Concrete-only superstructure temperature range is taken from\n                            <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG Table 2.7.1-1</link>\n                            .\n                        </paragraph>\n                    </textcell>\n                </row>\n                <row>\n                    <textcell name=\"MovementScope2\" capture=\"False\">\n                        <paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">• Center of movement is assumed at the intermediate pier; each end movement therefore uses the adjacent span length.</paragraph>\n                    </textcell>\n                </row>\n                <row>\n                    <textcell name=\"MovementScope3\" capture=\"False\">\n                        <paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">• This module calculates thermal movement only. Creep, shrinkage, skew resolution, and final expansion-joint or bearing capacity checks are separate design items.</paragraph>\n                    </textcell>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": "paragraphc003packetnav",
+   "text": "Reference packet: C003 highlighted code references . Edition basis: FDOT Structures Manual I.6.B.5 .",
+   "hidden": false,
+   "section": null,
+   "heading": "",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph id=\"paragraphc003packetnav\" fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"7\">\n            Reference packet:\n            <link address=\"#CodeReferencesGeneral;paragraphreferenceindex\">C003 highlighted code references</link>\n            . Edition basis:\n            <link address=\"#CodeReferencesC003.CodePage17;paragraphprojectcoderef17C003\">FDOT Structures Manual I.6.B.5</link>\n            .\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "1. DESIGN BASIS AND ASSUMPTIONS",
+   "id": "paragraphrefreturn0029",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading id=\"paragraphrefreturn0029\">\n            <paragraphlabel numbergroup=\"heading\">1.</paragraphlabel>\n            DESIGN BASIS AND ASSUMPTIONS\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "• FDOT SDG 2.7.1 : Concrete Only temperature range = 70°F mean, 105°F high, 35°F low.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. DESIGN BASIS AND ASSUMPTIONS",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"7\">\n            •\n            <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG 2.7.1</link>\n            : Concrete Only temperature range = 70°F mean, 105°F high, 35°F low.\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "• FDOT SDG 6.3 : Calculate bridge movement about an assumed 70°F construction mean and base joint/bearing design on the SDG Table 2.7.1-1 temperature range.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. DESIGN BASIS AND ASSUMPTIONS",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"7\">\n            •\n            <link address=\"#CodeReferencesC003.CodePage19;paragraphprojectcoderef19C003\">FDOT SDG 6.3</link>\n            : Calculate bridge movement about an assumed 70°F construction mean and base joint/bearing design on the\n            <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">SDG Table 2.7.1-1</link>\n            temperature range.\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "• FDOT SDG 2.7.1.D : Temperature rise and fall load effects use 120% of the tabulated maximum temperature change in accordance with LRFD Table 3.4.1-1 .",
+   "hidden": false,
+   "section": null,
+   "heading": "1. DESIGN BASIS AND ASSUMPTIONS",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"7\">\n            •\n            <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG 2.7.1.D</link>\n            : Temperature rise and fall load effects use 120% of the tabulated maximum temperature change in accordance with\n            <link address=\"#CodeReferencesC003.CodePage14;paragraphprojectcoderef14C003\">LRFD Table 3.4.1-1</link>\n            .\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": "paragraphc003factorrefs",
+   "text": "Related factor provisions: LRFD Table 3.4.1-6 and LRFD C3.4.1 . See the packet’s QC qualification on the unfactored joint/bearing label.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. DESIGN BASIS AND ASSUMPTIONS",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph id=\"paragraphc003factorrefs\" fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"7\">\n            Related factor provisions:\n            <link address=\"#CodeReferencesC003.CodePage21;paragraphprojectcoderef21C003\">LRFD Table 3.4.1-6</link>\n            and\n            <link address=\"#CodeReferencesC003.CodePage22;paragraphprojectcoderef22C003\">LRFD C3.4.1</link>\n            . See the packet’s QC qualification on the unfactored joint/bearing label.\n        </paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "• LRFD 5.4.2.2 : Normal-weight concrete coefficient of thermal expansion is taken as 6.0×10⁻⁶ /°F.",
+   "hidden": false,
+   "section": null,
+   "heading": "1. DESIGN BASIS AND ASSUMPTIONS",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\">\n            •\n            <link address=\"#CodeReferencesC003.CodePage20;paragraphprojectcoderef20C003\">LRFD 5.4.2.2</link>\n            : Normal-weight concrete coefficient of thermal expansion is taken as 6.0×10⁻⁶ /°F.\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "2. INPUTS",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading>\n            <paragraphlabel numbergroup=\"heading\">2.</paragraphlabel>\n            INPUTS\n        </heading>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "2.1. Bridge Geometry",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\">\n            <paragraphlabel numbergroup=\"heading\">2.1.</paragraphlabel>\n            Bridge Geometry\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "L_left",
+   "rhs": "BridgeGeometry_2Beam.Span_1",
+   "formula": "L_left = BridgeGeometry_2Beam.Span_1",
+   "cache": "= 107.35 ft",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Movement length from the intermediate pier to Begin Bridge.",
+   "notes": [
+    "The center of movement is assumed at the intermediate pier. Under this assumption, the left end movement is based on Span 1 rather than the full bridge length."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 1288.199999999999,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Movement length from the intermediate pier to Begin Bridge.",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Movement length from the intermediate pier to Begin Bridge.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The center of movement is assumed at the intermediate pier. Under this assumption, the left end movement is based on Span 1 rather than the full bridge length.",
+   "hidden": true,
+   "section": "EqNotes_Movement_001_L_left",
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">The center of movement is assumed at the intermediate pier. Under this assumption, the left end movement is based on Span 1 rather than the full bridge length.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "L_right",
+   "rhs": "BridgeGeometry_2Beam.Span_2",
+   "formula": "L_right = BridgeGeometry_2Beam.Span_2",
+   "cache": "= 104.9 ft",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Movement length from the intermediate pier to End Bridge.",
+   "notes": [
+    "The center of movement is assumed at the intermediate pier. Under this assumption, the right end movement is based on Span 2."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 1258.800000000001,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Movement length from the intermediate pier to End Bridge.",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Movement length from the intermediate pier to End Bridge.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The center of movement is assumed at the intermediate pier. Under this assumption, the right end movement is based on Span 2.",
+   "hidden": true,
+   "section": "EqNotes_Movement_002_L_right",
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">The center of movement is assumed at the intermediate pier. Under this assumption, the right end movement is based on Span 2.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "L_unit",
+   "rhs": "L_left + L_right",
+   "formula": "L_unit = L_left + L_right",
+   "cache": "= 212.25 ft",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Total continuous deck-unit length.",
+   "notes": [
+    "Sum the two live span lengths from Bridge Geometry_2 Beam. This total is reported for context; individual end movements are calculated from the center of movement to each end."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 2547.0,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Total continuous deck-unit length.",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Total continuous deck-unit length.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Sum the two live span lengths from Bridge Geometry_2 Beam. This total is reported for context; individual end movements are calculated from the center of movement to each end.",
+   "hidden": true,
+   "section": "EqNotes_Movement_003_L_unit",
+   "heading": "2. INPUTS / 2.1. Bridge Geometry",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Sum the two live span lengths from Bridge Geometry_2 Beam. This total is reported for context; individual end movements are calculated from the center of movement to each end.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "2.2. Temperature Parameters",
+   "id": "paragraphrefreturn0030",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0030\">\n            <paragraphlabel numbergroup=\"heading\">2.2.</paragraphlabel>\n            Temperature Parameters\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "T_mean",
+   "rhs": "70",
+   "formula": "T_mean = 70",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "style": "Required Input",
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Mean construction temperature, °F — FDOT SDG Table 2.7.1-1 .",
+   "notes": [
+    "The FDOT concrete-only temperature table uses a 70°F mean. Temperature values are entered numerically in degrees Fahrenheit so the thermal coefficient and temperature difference are paired consistently."
+   ],
+   "refs": [
+    "SDG Table 2.7.1-1"
+   ],
+   "evaluated": {
+    "v": 70.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Mean construction temperature, °F — FDOT SDG Table 2.7.1-1 .",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">\n            Mean construction temperature, °F —\n            <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG Table 2.7.1-1</link>\n            .\n        </paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The FDOT concrete-only temperature table uses a 70°F mean. Temperature values are entered numerically in degrees Fahrenheit so the thermal coefficient and temperature difference are paired consistently.",
+   "hidden": true,
+   "section": "EqNotes_Movement_004_T_mean",
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">The FDOT concrete-only temperature table uses a 70°F mean. Temperature values are entered numerically in degrees Fahrenheit so the thermal coefficient and temperature difference are paired consistently.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "T_high",
+   "rhs": "105",
+   "formula": "T_high = 105",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "style": "Required Input",
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "High design temperature, °F — concrete-only superstructure.",
+   "notes": [
+    "FDOT SDG Table 2.7.1-1 gives 105°F as the high temperature for a concrete-only superstructure."
+   ],
+   "refs": [
+    "SDG Table 2.7.1-1"
+   ],
+   "evaluated": {
+    "v": 105.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "High design temperature, °F — concrete-only superstructure.",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">High design temperature, °F — concrete-only superstructure.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "FDOT SDG Table 2.7.1-1 gives 105°F as the high temperature for a concrete-only superstructure.",
+   "hidden": true,
+   "section": "EqNotes_Movement_005_T_high",
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG Table 2.7.1-1</link>\n                gives 105°F as the high temperature for a concrete-only superstructure.\n            </paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "T_low",
+   "rhs": "35",
+   "formula": "T_low = 35",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "style": "Required Input",
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Low design temperature, °F — concrete-only superstructure.",
+   "notes": [
+    "FDOT SDG Table 2.7.1-1 gives 35°F as the low temperature for a concrete-only superstructure."
+   ],
+   "refs": [
+    "SDG Table 2.7.1-1"
+   ],
+   "evaluated": {
+    "v": 35.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Low design temperature, °F — concrete-only superstructure.",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Low design temperature, °F — concrete-only superstructure.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "FDOT SDG Table 2.7.1-1 gives 35°F as the low temperature for a concrete-only superstructure.",
+   "hidden": true,
+   "section": "EqNotes_Movement_006_T_low",
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG Table 2.7.1-1</link>\n                gives 35°F as the low temperature for a concrete-only superstructure.\n            </paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "α_T",
+   "rhs": "6*10^-6",
+   "formula": "α_T = 6*10^-6",
+   "cache": "= 0.000006",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "style": "Required Input",
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Coefficient of thermal expansion, 1/°F — normal-weight concrete per LRFD 5.4.2.2 .",
+   "notes": [
+    "Use the LRFD normal-weight concrete coefficient of 6.0×10⁻⁶ per degree Fahrenheit. It is entered numerically because the temperature inputs in this module are numerical Fahrenheit values."
+   ],
+   "refs": [
+    "LRFD 5.4.2.2"
+   ],
+   "evaluated": {
+    "v": 6e-06,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Coefficient of thermal expansion, 1/°F — normal-weight concrete per LRFD 5.4.2.2 .",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">\n            Coefficient of thermal expansion, 1/°F — normal-weight concrete per\n            <link address=\"#CodeReferencesC003.CodePage20;paragraphprojectcoderef20C003\">LRFD 5.4.2.2</link>\n            .\n        </paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Use the LRFD normal-weight concrete coefficient of 6.0×10⁻⁶ per degree Fahrenheit. It is entered numerically because the temperature inputs in this module are numerical Fahrenheit values.",
+   "hidden": true,
+   "section": "EqNotes_Movement_007_alpha_T",
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Use the LRFD normal-weight concrete coefficient of 6.0×10⁻⁶ per degree Fahrenheit. It is entered numerically because the temperature inputs in this module are numerical Fahrenheit values.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "γ_TU",
+   "rhs": "1.20",
+   "formula": "γ_TU = 1.20",
+   "cache": "",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "style": "Required Input",
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Temperature load factor used for the factored TU movement envelope — FDOT SDG 2.7.1.D .",
+   "notes": [
+    "FDOT SDG 2.7.1.D directs temperature rise and fall load effects to be based on 120% of the maximum value from the temperature table. This factor is shown separately from the unfactored SDG 6.3 joint/bearing detailing movement."
+   ],
+   "refs": [
+    "SDG 2.7.1.D",
+    "SDG 6.3"
+   ],
+   "evaluated": {
+    "v": 1.2,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Temperature load factor used for the factored TU movement envelope — FDOT SDG 2.7.1.D .",
+   "hidden": false,
+   "section": null,
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\" fontweight=\"bold\">\n            Temperature load factor used for the factored TU movement envelope —\n            <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG 2.7.1.D</link>\n            .\n        </paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "FDOT SDG 2.7.1.D directs temperature rise and fall load effects to be based on 120% of the maximum value from the temperature table. This factor is shown separately from the unfactored SDG 6.3 joint/bearing detailing movement.",
+   "hidden": true,
+   "section": "EqNotes_Movement_008_gamma_TU",
+   "heading": "2. INPUTS / 2.2. Temperature Parameters",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                <link address=\"#CodeReferencesC003.CodePage18;paragraphprojectcoderef18C003\">FDOT SDG 2.7.1.D</link>\n                directs temperature rise and fall load effects to be based on 120% of the maximum value from the temperature table. This factor is shown separately from the unfactored\n                <link address=\"#CodeReferencesC003.CodePage19;paragraphprojectcoderef19C003\">SDG 6.3</link>\n                joint/bearing detailing movement.\n            </paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "3. TEMPERATURE CHANGE",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading>\n            <paragraphlabel numbergroup=\"heading\">3.</paragraphlabel>\n            TEMPERATURE CHANGE\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "ΔT_rise",
+   "rhs": "T_high - T_mean",
+   "formula": "ΔT_rise = T_high - T_mean",
+   "cache": "= 35",
+   "hidden": false,
+   "section": null,
+   "heading": "3. TEMPERATURE CHANGE",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Temperature rise from the 70°F mean, °F.",
+   "notes": [
+    "Subtract the FDOT mean construction temperature from the concrete-only high temperature."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 35.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Temperature rise from the 70°F mean, °F.",
+   "hidden": false,
+   "section": null,
+   "heading": "3. TEMPERATURE CHANGE",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Temperature rise from the 70°F mean, °F.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Subtract the FDOT mean construction temperature from the concrete-only high temperature.",
+   "hidden": true,
+   "section": "EqNotes_Movement_009_dT_rise",
+   "heading": "3. TEMPERATURE CHANGE",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Subtract the FDOT mean construction temperature from the concrete-only high temperature.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "ΔT_fall",
+   "rhs": "T_mean - T_low",
+   "formula": "ΔT_fall = T_mean - T_low",
+   "cache": "= 35",
+   "hidden": false,
+   "section": null,
+   "heading": "3. TEMPERATURE CHANGE",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Temperature fall from the 70°F mean, °F.",
+   "notes": [
+    "Subtract the concrete-only low temperature from the FDOT mean construction temperature."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 35.0,
+    "dims": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Temperature fall from the 70°F mean, °F.",
+   "hidden": false,
+   "section": null,
+   "heading": "3. TEMPERATURE CHANGE",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\" fontweight=\"bold\">Temperature fall from the 70°F mean, °F.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Subtract the concrete-only low temperature from the FDOT mean construction temperature.",
+   "hidden": true,
+   "section": "EqNotes_Movement_010_dT_fall",
+   "heading": "3. TEMPERATURE CHANGE",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Subtract the concrete-only low temperature from the FDOT mean construction temperature.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "4. THERMAL MOVEMENT",
+   "id": "paragraphrefreturn0031",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading id=\"paragraphrefreturn0031\">\n            <paragraphlabel numbergroup=\"heading\">4.</paragraphlabel>\n            THERMAL MOVEMENT\n        </heading>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "For uniform temperature change, longitudinal movement is calculated from δ = α·ΔT·L. Temperature rise moves each end away from the intermediate pier; temperature fall moves each end toward the pier. For an end joint referenced to the approach, these correspond respectively to joint closing and opening.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"7\">For uniform temperature change, longitudinal movement is calculated from δ = α·ΔT·L. Temperature rise moves each end away from the intermediate pier; temperature fall moves each end toward the pier. For an end joint referenced to the approach, these correspond respectively to joint closing and opening.</paragraph>\n        "
+  },
+  {
+   "kind": "prose",
+   "id": "paragraphc003equationref",
+   "text": "Supplemental equation context: LRFD Eq. 3.12.2.3-1 gives the full high-to-low thermal movement range; C003 calculates excursions from the mean.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT",
+   "bold": false,
+   "fontsize": "10",
+   "background": null,
+   "xml": "<paragraph id=\"paragraphc003equationref\" fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"7\">\n            Supplemental equation context:\n            <link address=\"#CodeReferencesC003.CodePage23;paragraphprojectcoderef23C003\">LRFD Eq. 3.12.2.3-1</link>\n            gives the full high-to-low thermal movement range; C003 calculates excursions from the mean.\n        </paragraph>\n        "
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "4.1. Unfactored Joint/Bearing Detailing Movement",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\">\n            <paragraphlabel numbergroup=\"heading\">4.1.</paragraphlabel>\n            Unfactored Joint/Bearing Detailing Movement\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "δ_left",
+   "rhs": "α_T*ΔT_rise*L_left to in",
+   "formula": "δ_left = α_T*ΔT_rise*L_left to in",
+   "cache": "= 0.271 in",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Thermal movement magnitude at Begin Bridge for a 35°F rise or fall.",
+   "notes": [
+    "Multiply the concrete thermal coefficient by the FDOT temperature change and the live left-side movement length. The result is the magnitude of longitudinal movement at Begin Bridge."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.27052199999999976,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Thermal movement magnitude at Begin Bridge for a 35°F rise or fall.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Thermal movement magnitude at Begin Bridge for a 35°F rise or fall.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Multiply the concrete thermal coefficient by the FDOT temperature change and the live left-side movement length. The result is the magnitude of longitudinal movement at Begin Bridge.",
+   "hidden": true,
+   "section": "EqNotes_Movement_011_delta_left",
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Multiply the concrete thermal coefficient by the FDOT temperature change and the live left-side movement length. The result is the magnitude of longitudinal movement at Begin Bridge.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "δ_right",
+   "rhs": "α_T*ΔT_rise*L_right to in",
+   "formula": "δ_right = α_T*ΔT_rise*L_right to in",
+   "cache": "= 0.264 in",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Thermal movement magnitude at End Bridge for a 35°F rise or fall.",
+   "notes": [
+    "Multiply the concrete thermal coefficient by the FDOT temperature change and the live right-side movement length. The result is the magnitude of longitudinal movement at End Bridge."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.26434800000000025,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "in"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Thermal movement magnitude at End Bridge for a 35°F rise or fall.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Thermal movement magnitude at End Bridge for a 35°F rise or fall.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Multiply the concrete thermal coefficient by the FDOT temperature change and the live right-side movement length. The result is the magnitude of longitudinal movement at End Bridge.",
+   "hidden": true,
+   "section": "EqNotes_Movement_012_delta_right",
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Multiply the concrete thermal coefficient by the FDOT temperature change and the live right-side movement length. The result is the magnitude of longitudinal movement at End Bridge.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "δ_end_max",
+   "rhs": "Max(δ_left, δ_right)",
+   "formula": "δ_end_max = Max(δ_left, δ_right)",
+   "cache": "= 0.271 in",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Governing unfactored end movement for joint/bearing detailing.",
+   "notes": [
+    "The longer Span 1 governs because the movement center is at the pier and thermal movement is proportional to movement length."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.27052199999999976,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Governing unfactored end movement for joint/bearing detailing.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Governing unfactored end movement for joint/bearing detailing.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The longer Span 1 governs because the movement center is at the pier and thermal movement is proportional to movement length.",
+   "hidden": true,
+   "section": "EqNotes_Movement_013_delta_end_max",
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">The longer Span 1 governs because the movement center is at the pier and thermal movement is proportional to movement length.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "δ_end_to_end",
+   "rhs": "δ_left + δ_right",
+   "formula": "δ_end_to_end = δ_left + δ_right",
+   "cache": "= 0.535 in",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Total relative thermal change between the two bridge ends.",
+   "notes": [
+    "Add the magnitudes at the two ends to obtain the total end-to-end change in bridge length. This is not the movement demand at a single end joint."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.53487,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Total relative thermal change between the two bridge ends.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\" fontweight=\"bold\">Total relative thermal change between the two bridge ends.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Add the magnitudes at the two ends to obtain the total end-to-end change in bridge length. This is not the movement demand at a single end joint.",
+   "hidden": true,
+   "section": "EqNotes_Movement_014_delta_end_to_end",
+   "heading": "4. THERMAL MOVEMENT / 4.1. Unfactored Joint/Bearing Detailing Movement",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Add the magnitudes at the two ends to obtain the total end-to-end change in bridge length. This is not the movement demand at a single end joint.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "heading",
+   "level": 1,
+   "text": "4.2. Factored TU Movement Envelope",
+   "id": "paragraphrefreturn0032",
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading level=\"1\" id=\"paragraphrefreturn0032\">\n            <paragraphlabel numbergroup=\"heading\">4.2.</paragraphlabel>\n            Factored TU Movement Envelope\n        </heading>\n        "
+  },
+  {
+   "kind": "def",
+   "name": "δ_left_TU",
+   "rhs": "γ_TU*δ_left",
+   "formula": "δ_left_TU = γ_TU*δ_left",
+   "cache": "= 0.325 in",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Factored TU movement magnitude at Begin Bridge.",
+   "notes": [
+    "Apply the 1.20 temperature factor to the unfactored Begin Bridge thermal movement. This is a load-effect envelope and is kept distinct from the SDG 6.3 unfactored joint/bearing detailing movement."
+   ],
+   "refs": [
+    "SDG 6.3"
+   ],
+   "evaluated": {
+    "v": 0.3246263999999997,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Factored TU movement magnitude at Begin Bridge.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Factored TU movement magnitude at Begin Bridge.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Apply the 1.20 temperature factor to the unfactored Begin Bridge thermal movement. This is a load-effect envelope and is kept distinct from the SDG 6.3 unfactored joint/bearing detailing movement.",
+   "hidden": true,
+   "section": "EqNotes_Movement_015_delta_left_TU",
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">\n                Apply the 1.20 temperature factor to the unfactored Begin Bridge thermal movement. This is a load-effect envelope and is kept distinct from the\n                <link address=\"#CodeReferencesC003.CodePage19;paragraphprojectcoderef19C003\">SDG 6.3</link>\n                unfactored joint/bearing detailing movement.\n            </paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "δ_right_TU",
+   "rhs": "γ_TU*δ_right",
+   "formula": "δ_right_TU = γ_TU*δ_right",
+   "cache": "= 0.317 in",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Factored TU movement magnitude at End Bridge.",
+   "notes": [
+    "Apply the 1.20 temperature factor to the unfactored End Bridge thermal movement."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.31721760000000027,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Factored TU movement magnitude at End Bridge.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"4\" fontweight=\"bold\">Factored TU movement magnitude at End Bridge.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Apply the 1.20 temperature factor to the unfactored End Bridge thermal movement.",
+   "hidden": true,
+   "section": "EqNotes_Movement_016_delta_right_TU",
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">Apply the 1.20 temperature factor to the unfactored End Bridge thermal movement.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "def",
+   "name": "δ_end_max_TU",
+   "rhs": "Max(δ_left_TU, δ_right_TU)",
+   "formula": "δ_end_max_TU = Max(δ_left_TU, δ_right_TU)",
+   "cache": "= 0.325 in",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "style": null,
+   "showresult": null,
+   "id": null,
+   "inline": "",
+   "caption": "Governing factored TU end movement envelope.",
+   "notes": [
+    "The Begin Bridge side governs because Span 1 is slightly longer than Span 2."
+   ],
+   "refs": [],
+   "evaluated": {
+    "v": 0.3246263999999997,
+    "dims": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "Governing factored TU end movement envelope.",
+   "hidden": false,
+   "section": null,
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "bold": true,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" level=\"1\" spacingafter=\"12\" fontweight=\"bold\">Governing factored TU end movement envelope.</paragraph>\n        ",
+   "role": "caption"
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "The Begin Bridge side governs because Span 1 is slightly longer than Span 2.",
+   "hidden": true,
+   "section": "EqNotes_Movement_017_delta_end_max_TU",
+   "heading": "4. THERMAL MOVEMENT / 4.2. Factored TU Movement Envelope",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"7\">The Begin Bridge side governs because Span 1 is slightly longer than Span 2.</paragraph>\n        ",
+   "role": "note"
+  },
+  {
+   "kind": "heading",
+   "level": 0,
+   "text": "5. RESULT SUMMARY",
+   "id": null,
+   "hidden": false,
+   "section": null,
+   "style": null,
+   "pagebreak": null,
+   "xml": "<heading>\n            <paragraphlabel numbergroup=\"heading\">5.</paragraphlabel>\n            RESULT SUMMARY\n        </heading>\n        "
+  },
+  {
+   "kind": "table",
+   "name": "MovementSummary",
+   "title": "Movement Summary",
+   "colwidths": "1:230,2:145,3:145",
+   "rows": [
+    [
+     {
+      "text": "Item",
+      "dyn": []
+     },
+     {
+      "text": "Begin Bridge",
+      "dyn": []
+     },
+     {
+      "text": "End Bridge",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Movement length",
+      "dyn": []
+     },
+     {
+      "formula": "L_left",
+      "cache": "107.34999999999991 ft"
+     },
+     {
+      "formula": "L_right",
+      "cache": "104.90000000000009 ft"
+     }
+    ],
+    [
+     {
+      "text": "Unfactored temperature rise",
+      "dyn": []
+     },
+     {
+      "formula": "δ_left",
+      "cache": "0.27052199999999976 in"
+     },
+     {
+      "formula": "δ_right",
+      "cache": "0.26434800000000025 in"
+     }
+    ],
+    [
+     {
+      "text": "Unfactored temperature fall",
+      "dyn": []
+     },
+     {
+      "formula": "δ_left",
+      "cache": "0.27052199999999976 in"
+     },
+     {
+      "formula": "δ_right",
+      "cache": "0.26434800000000025 in"
+     }
+    ],
+    [
+     {
+      "text": "Factored TU rise/fall",
+      "dyn": []
+     },
+     {
+      "formula": "δ_left_TU",
+      "cache": "0.3246263999999997 in"
+     },
+     {
+      "formula": "δ_right_TU",
+      "cache": "0.31721760000000027 in"
+     }
+    ],
+    [
+     {
+      "text": "Direction for temperature rise",
+      "dyn": []
+     },
+     {
+      "text": "Toward Begin Bridge",
+      "dyn": []
+     },
+     {
+      "text": "Toward End Bridge",
+      "dyn": []
+     }
+    ],
+    [
+     {
+      "text": "Direction for temperature fall",
+      "dyn": []
+     },
+     {
+      "text": "Toward Pier",
+      "dyn": []
+     },
+     {
+      "text": "Toward Pier",
+      "dyn": []
+     }
+    ]
+   ],
+   "formulas": true,
+   "hidden": false,
+   "section": null,
+   "heading": "5. RESULT SUMMARY",
+   "xml": "<table title=\"Movement Summary\" name=\"MovementSummary\" capture=\"False\" colwidths=\"1:230,2:145,3:145\">\n                <stylerule range=\"A1:C7\" border=\"Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 1, &quot;#6A9075&quot;);\"/>\n                <stylerule range=\"A1:C1\" background=\"#DCECE0\" fontweight=\"bold\" horzalign=\"Center\"/>\n                <stylerule range=\"A2:C7\" background=\"#EFF7F1\"/>\n                <stylerule range=\"B2:C7\" horzalign=\"Center\"/>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Item</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Begin Bridge</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">End Bridge</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Movement length</paragraph></textcell>\n                    <c capture=\"False\" formula=\"L_left\"><num>107.34999999999991 ft</num></c>\n                    <c capture=\"False\" formula=\"L_right\"><num>104.90000000000009 ft</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Unfactored temperature rise</paragraph></textcell>\n                    <c capture=\"False\" formula=\"δ_left\"><num>0.27052199999999976 in</num></c>\n                    <c capture=\"False\" formula=\"δ_right\"><num>0.26434800000000025 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Unfactored temperature fall</paragraph></textcell>\n                    <c capture=\"False\" formula=\"δ_left\"><num>0.27052199999999976 in</num></c>\n                    <c capture=\"False\" formula=\"δ_right\"><num>0.26434800000000025 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Factored TU rise/fall</paragraph></textcell>\n                    <c capture=\"False\" formula=\"δ_left_TU\"><num>0.3246263999999997 in</num></c>\n                    <c capture=\"False\" formula=\"δ_right_TU\"><num>0.31721760000000027 in</num></c>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Direction for temperature rise</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Toward Begin Bridge</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Toward End Bridge</paragraph></textcell>\n                </row>\n                <row>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Direction for temperature fall</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Toward Pier</paragraph></textcell>\n                    <textcell capture=\"False\"><paragraph fontfamily=\"Times New Roman\" fontsize=\"10\" spacingafter=\"0\">Toward Pier</paragraph></textcell>\n                </row>\n            </table>\n        "
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "δ_end_max",
+   "formula": "δ_end_max",
+   "cache": "0.271 in",
+   "hidden": false,
+   "section": null,
+   "heading": "5. RESULT SUMMARY",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "Governing thermal movement at a single bridge end is  unfactored, or ⟨δ_end_max_TU⟩ for the 120% TU envelope."
+  },
+  {
+   "kind": "show",
+   "name": null,
+   "rhs": "δ_end_max_TU",
+   "formula": "δ_end_max_TU",
+   "cache": "0.325 in",
+   "hidden": false,
+   "section": null,
+   "heading": "5. RESULT SUMMARY",
+   "style": null,
+   "showresult": "True",
+   "id": null,
+   "inline": "Governing thermal movement at a single bridge end is ⟨δ_end_max⟩ unfactored, or  for the 120% TU envelope."
+  },
+  {
+   "kind": "prose",
+   "id": null,
+   "text": "No joint or bearing adequacy conclusion is made in this module because allowable movement depends on the selected joint/bearing system and, for expansion-joint design, the applicable creep, shrinkage, skew, and other movement components.",
+   "hidden": false,
+   "section": null,
+   "heading": "5. RESULT SUMMARY",
+   "bold": false,
+   "fontsize": "11",
+   "background": null,
+   "xml": "<paragraph fontfamily=\"Times New Roman\" fontsize=\"11\" spacingafter=\"12\">No joint or bearing adequacy conclusion is made in this module because allowable movement depends on the selected joint/bearing system and, for expansion-joint design, the applicable creep, shrinkage, skew, and other movement components.</paragraph>\n    "
+  }
+ ],
+ "externals": {
+  "BridgeGeometry_2Beam.Span_1": {
+   "kind": "report",
+   "v": 1288.199999999999,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Span_1 = (CLPier_station-BeginBridge_station)*1 ft"
+  },
+  "BridgeGeometry_2Beam.Span_2": {
+   "kind": "report",
+   "v": 1258.800000000001,
+   "dims": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "journal_formula": "Span_2 = (EndBridge_station-CLPier_station)*1 ft"
+  },
+  "ProjectInfo.Firm": {
+   "kind": "report",
+   "text": "Parsons Transportation Group Inc",
+   "journal_formula": "Firm = \"Parsons Transportation Group Inc\""
+  },
+  "ProjectInfo.Project": {
+   "kind": "report",
+   "text": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "journal_formula": "Project = \"I-95 Capacity Improvements from South of SR 152 to South of SR 126\""
+  },
+  "ProjectInfo.Address": {
+   "kind": "report",
+   "text": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "journal_formula": "Address = \"1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301\""
+  },
+  "ProjectInfo.JobNo": {
+   "kind": "report",
+   "text": "",
+   "journal_formula": "JobNo = \"\""
+  },
+  "ProjectInfo.DesignedBy": {
+   "kind": "report",
+   "text": "JAT",
+   "journal_formula": "DesignedBy = \"JAT\""
+  },
+  "ProjectInfo.DesignDate": {
+   "kind": "report",
+   "text": "10/17/2026",
+   "journal_formula": "DesignDate = \"10/17/2026\""
+  },
+  "ProjectInfo.CheckedBy": {
+   "kind": "report",
+   "text": "MIK",
+   "journal_formula": "CheckedBy = \"MIK\""
+  },
+  "ProjectInfo.CheckDate": {
+   "kind": "report",
+   "text": "",
+   "journal_formula": "CheckDate = \"\""
+  }
+ },
+ "skipped": [],
+ "inbound_names": {
+  "T_high": [
+   "report:BearingDesign"
+  ],
+  "T_low": [
+   "report:BearingDesign"
+  ],
+  "α_T": [
+   "report:BearingDesign"
+  ]
+ },
+ "inbound_links": {
+  "#BridgeMovement": [
+   "report:PedBridge"
+  ],
+  "#BridgeMovement;paragraphc003packetnav": [
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC003",
+   "report:CodeReferencesC004"
+  ],
+  "#BridgeMovement;paragraphrefreturn0028": [
+   "report:CodeReferencesC003"
+  ],
+  "#BridgeMovement;paragraphrefreturn0029": [
+   "report:CodeReferencesC002",
+   "report:CodeReferencesC003",
+   "report:CodeReferencesC004",
+   "report:CodeReferencesGeneral"
+  ],
+  "#BridgeMovement;paragraphrefreturn0030": [
+   "report:CodeReferencesC003"
+  ],
+  "#BridgeMovement;paragraphrefreturn0031": [
+   "report:CodeReferencesC003"
+  ],
+  "#BridgeMovement;paragraphrefreturn0032": [
+   "report:CodeReferencesC003"
+  ]
+ },
+ "internal_links": [],
+ "anchors": [
+  [
+   "paragraph",
+   "paragraphrefreturn0028"
+  ],
+  [
+   "paragraph",
+   "paragraphc003packetnav"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0029"
+  ],
+  [
+   "paragraph",
+   "paragraphc003factorrefs"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0030"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0031"
+  ],
+  [
+   "paragraph",
+   "paragraphc003equationref"
+  ],
+  [
+   "heading",
+   "paragraphrefreturn0032"
+  ]
+ ]
+}

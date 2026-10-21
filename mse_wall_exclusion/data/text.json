@@ -1,0 +1,65 @@
+{
+ "report_name": "MSEWallExclusion",
+ "cnumber": "C015",
+ "title": "MSE Wall Exclusion - Both End Bents",
+ "prefix": "mse",
+ "bpad_file": "MSE Wall Exclusion.bpad",
+ "notebook": "MSE_Wall_Exclusion.ipynb",
+ "tool_prefix": "mse-tool-",
+ "case_name": "C015 - MSE Wall Exclusion - Both End Bents (journal values, feb1bb316d08)",
+ "intro": [
+  "**What it does.** The MSE wall exclusion boxes at both end bents: the minimum front pile-face clear for a skewed strap of the trial width, the specified 24-in side clear, and the gap from every pile face to the front and side wall lines of the CAD model, with the separate 24-in cap-face setback of SDG 3.13.2.N.2."
+ ],
+ "overview": [
+  "Clearance between the end-bent piles and the MSE wall facing so that the soil-reinforcement straps clear the piles. The front wall needs the calculated minimum clear for a strap of the trial width at the selected skew; the side walls need the specified 24-in pile-face clear. Both are compared with the wall lines of the CAD model at each pile of both end bents, using the nominal pile width without a placement envelope.",
+  "In the CAD model the side walls stand at the 24-in criterion within 0.0002 in, so the side-wall rows read MEETS CLEAR or SHORTFALL only by the last digits of the model coordinates. The 24-in setback from the front cap face to the back of the front facing is a separate check."
+ ],
+ "outside": "the strap design itself (Specialty Engineer), the cheek webs outside the cap ends, and the wall facing design.",
+ "flow": [
+  "Pile and strap geometry",
+  "Front minimum clear",
+  "CAD wall lines",
+  "Gap to every pile",
+  "Wall results",
+  "Cap setback"
+ ],
+ "key_results": [
+  {
+   "label": "Calculated minimum front clear",
+   "name": "MinClear"
+  },
+  {
+   "label": "Adopted front clear",
+   "name": "LayoutClear"
+  },
+  {
+   "label": "Specified side clear",
+   "name": "SideClear"
+  },
+  {
+   "label": "Geometry input validity",
+   "name": "InputStatus"
+  }
+ ],
+ "summary_tables": [
+  "ResultSummary",
+  "Bent1Walls",
+  "Bent2Walls",
+  "CapSetback"
+ ],
+ "published": [],
+ "anchors": {},
+ "notes": {},
+ "working_notes": [
+  "The calculation was ported from the journal module MSEWallExclusion (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+ ],
+ "pending": [],
+ "symbols": {},
+ "accepted_wording": [
+  "Task Work Order"
+ ],
+ "visible_rules": [],
+ "unused_inputs": [],
+ "confirmations": {},
+ "skipped_journal_definitions": []
+}

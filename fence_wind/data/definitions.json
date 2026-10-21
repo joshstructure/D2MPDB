@@ -1,0 +1,294 @@
+[
+ {
+  "section": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "name": "a_T_fence",
+  "expr": "h_f",
+  "unit": "in",
+  "caption": "Gross projected fence height for one wind direction.",
+  "refs": []
+ },
+ {
+  "section": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "name": "b_M_fence",
+  "expr": "a_T_fence*z_mid",
+  "unit": "ft^2",
+  "caption": "First moment of the one-face gross projected fence area about the cap reference.",
+  "refs": []
+ },
+ {
+  "section": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "name": "z_eff",
+  "expr": "b_M_fence/a_T_fence",
+  "unit": "ft",
+  "caption": "Equivalent height of the transverse fence resultant above the cap reference.",
+  "refs": []
+ },
+ {
+  "section": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "name": "w_fence",
+  "expr": "p_fence*a_T_fence",
+  "unit": "kip/ft",
+  "caption": "Horizontal fence force per foot of bridge.",
+  "refs": []
+ },
+ {
+  "section": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "name": "F_fence",
+  "expr": "w_fence*L_trib",
+  "unit": "kip",
+  "caption": "Total transverse fence force delivered to the intermediate pier.",
+  "refs": []
+ },
+ {
+  "section": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "name": "M_fence",
+  "expr": "F_fence*z_eff",
+  "unit": "kip*ft",
+  "caption": "Fence moment about the longitudinal axis through the cap reference.",
+  "refs": []
+ },
+ {
+  "section": "step_3_prescribed_lrfd_13_8_2_fence_load",
+  "name": "F_V_fence",
+  "expr": "0*F_fence",
+  "unit": "kip",
+  "caption": "Vertical fence component in the global projected-load model.",
+  "refs": []
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind",
+  "name": "F_c_III",
+  "expr": "P_Z_III*Depth_SuperStr*L_trib",
+  "unit": "kip",
+  "caption": "Total Strength III concrete superstructure force delivered across the bridge to the pier.",
+  "refs": []
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind",
+  "name": "M_c_III",
+  "expr": "F_c_III*Dist_windSuperCG_CapCG",
+  "unit": "kip*ft",
+  "caption": "Strength III moment caused by the concrete superstructure force acting above the cap.",
+  "refs": []
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind",
+  "name": "F_cap_T_III",
+  "expr": "F_c_III + F_fence",
+  "unit": "kip",
+  "caption": "Total across-bridge force at the cap reference: Strength III, LRFD 13.8.2 fence load.",
+  "refs": [
+   "lrfd_13_8_2"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind",
+  "name": "M_cap_L_III",
+  "expr": "M_c_III + M_fence",
+  "unit": "kip*ft",
+  "caption": "Total moment about the longitudinal axis at the cap reference: Strength III, LRFD 13.8.2 fence load.",
+  "refs": [
+   "lrfd_13_8_2"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "F_c_SI",
+  "expr": "P_Z_SI*Depth_SuperStr*L_trib",
+  "unit": "kip",
+  "caption": "Total Service I concrete superstructure force delivered across the bridge to the pier.",
+  "refs": []
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "M_c_SI",
+  "expr": "F_c_SI*Dist_windSuperCG_CapCG",
+  "unit": "kip*ft",
+  "caption": "Service I moment caused by the concrete superstructure force acting above the cap.",
+  "refs": []
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "F_cap_T_SI",
+  "expr": "F_c_SI + F_fence",
+  "unit": "kip",
+  "caption": "Total across-bridge force at the cap reference: Service I, LRFD 13.8.2 fence load.",
+  "refs": [
+   "lrfd_13_8_2"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "M_cap_L_SI",
+  "expr": "M_c_SI + M_fence",
+  "unit": "kip*ft",
+  "caption": "Total moment about the longitudinal axis at the cap reference: Service I, LRFD 13.8.2 fence load.",
+  "refs": [
+   "lrfd_13_8_2"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "L_span_max",
+  "expr": "Max(Span_1, Span_2)",
+  "unit": "ft",
+  "caption": "Maximum individual span used to qualify the LRFD simplified wind method.",
+  "refs": [
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "DC_span",
+  "expr": "L_span_max/(150 ft)",
+  "unit": null,
+  "caption": "Individual span length / 150 ft limit of the simplified method",
+  "refs": [
+   "lrfd_3_8_1_2_3a"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "DC_height",
+  "expr": "H_bridge/(33 ft)",
+  "unit": null,
+  "caption": "Bridge height above low ground / 33 ft limit of the simplified method",
+  "refs": [
+   "lrfd_3_8_1_2_3a"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "Check_simplified",
+  "expr": "If(And(L_span_max <= 150 ft, H_bridge <= 33 ft), \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Live check that the bridge satisfies both LRFD 3.8.1.2.3a limits for the simplified wind components.",
+  "refs": [
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "F_cap_L_III",
+  "expr": "0.25*F_cap_T_III",
+  "unit": "kip",
+  "caption": "Simultaneous longitudinal cap force: Strength III simplified wind case.",
+  "refs": [
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "M_cap_T_III",
+  "expr": "0.25*M_c_III + 0.25*F_fence*z_mid",
+  "unit": "kip*ft",
+  "caption": "Moment about the transverse axis associated with the Strength III longitudinal component.",
+  "refs": []
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "F_cap_L_SI",
+  "expr": "0.25*F_cap_T_SI",
+  "unit": "kip",
+  "caption": "Simultaneous longitudinal cap force: Service I simplified wind case.",
+  "refs": []
+ },
+ {
+  "section": "concrete_and_combined_perpendicular_wind_2",
+  "name": "M_cap_T_SI",
+  "expr": "0.25*M_c_SI + 0.25*F_fence*z_mid",
+  "unit": "kip*ft",
+  "caption": "Moment about the transverse axis associated with the Service I longitudinal component.",
+  "refs": []
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "q_III",
+  "expr": "0.00000256*V_III^2*K_Z_III*G_f*1 ksf",
+  "unit": "ksf",
+  "caption": "Strength III wind-pressure term before the direct-substructure drag multiplier.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_1"
+  ]
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "q_SI",
+  "expr": "0.00000256*V_SI^2*K_Z_SI*G_f*1 ksf",
+  "unit": "ksf",
+  "caption": "Service I wind-pressure term before the direct-substructure drag multiplier.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_1"
+  ]
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "p_sub_III",
+  "expr": "q_III*C_sub",
+  "unit": "ksf",
+  "caption": "Strength III pressure on the pier wall and cap themselves.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_1",
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "p_sub_SI",
+  "expr": "q_SI*C_sub",
+  "unit": "ksf",
+  "caption": "Service I pressure on the pier wall and cap themselves.",
+  "refs": [
+   "lrfd_eq_3_8_1_2_1_1",
+   "lrfd_3_8_1_2_3"
+  ]
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "F_wall_T_III",
+  "expr": "p_sub_III*PierCap_ht_toTop*PierCap_width",
+  "unit": "kip",
+  "caption": "Strength III wind force acting directly on the pier’s transverse projected face.",
+  "refs": []
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "F_wall_L_III",
+  "expr": "p_sub_III*Pier_wall_area",
+  "unit": "kip",
+  "caption": "Strength III wind force acting directly normal to the broad pier-wall face.",
+  "refs": []
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "F_wall_T_SI",
+  "expr": "p_sub_SI*PierCap_ht_toTop*PierCap_width",
+  "unit": "kip",
+  "caption": "Service I wind force acting directly on the pier’s transverse projected face.",
+  "refs": []
+ },
+ {
+  "section": "step_5_wind_acting_directly_on_the_pier",
+  "name": "F_wall_L_SI",
+  "expr": "p_sub_SI*Pier_wall_area",
+  "unit": "kip",
+  "caption": "Service I wind force acting directly normal to the broad pier-wall face.",
+  "refs": []
+ },
+ {
+  "section": "step_7_check_the_simplified_method_and_c",
+  "name": "Check_geometry",
+  "expr": "If(And(h_f > 0 ft, R_f > 0 ft, h_tan >= 0 ft, z_base >= 0 ft, L_trib > 0 ft), \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Check the basic dimensions used by the prescribed fence load model.",
+  "refs": []
+ },
+ {
+  "section": "step_7_check_the_simplified_method_and_c",
+  "name": "Check_balance",
+  "expr": "If(And(Abs(M_fence - F_fence*z_eff) < 0.000001 kip*ft, Abs(F_cap_T_III - F_c_III - F_fence) < 0.000001 kip, Abs(M_cap_L_III - M_c_III - M_fence) < 0.000001 kip*ft, Abs(F_cap_T_SI - F_c_SI - F_fence) < 0.000001 kip, Abs(M_cap_L_SI - M_c_SI - M_fence) < 0.000001 kip*ft), \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Check the fence resultant and cap-reference totals.",
+  "refs": []
+ }
+]

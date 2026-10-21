@@ -25,7 +25,11 @@ class Q:
         return {'<':self.v<o.v,'>':self.v>o.v,'<=':self.v<=o.v,'>=':self.v>=o.v,'==':abs(self.v-o.v)<1e-10,'!=':abs(self.v-o.v)>=1e-10}[op]
 
 UNITS={'in':Q(1,(1,0,0)),'ft':Q(12,(1,0,0)),'kip':Q(1,(0,1,0)),
-       'ksi':Q(1,(-2,1,0)),'psi':Q(.001,(-2,1,0)),'deg':Q(math.pi/180,(0,0,1))}
+       'ksi':Q(1,(-2,1,0)),'psi':Q(.001,(-2,1,0)),'deg':Q(math.pi/180,(0,0,1)),
+       # journal (Blockpad) units used by the C001-C016 calculations
+       'ksf':Q(1/144,(-2,1,0)),'klf':Q(1/12,(-1,1,0)),'psf':Q(.001/144,(-2,1,0)),
+       'pcf':Q(.001/1728,(-3,1,0)),'kcf':Q(1/1728,(-3,1,0)),'lbf':Q(.001,(0,1,0)),'rad':Q(1,(0,0,1))}
+CONSTANTS={'pi':Q(math.pi)}
 TOKEN=re.compile(r'\s*("(?:[^"\\]|\\.)*"|(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|[A-Za-z_\u0370-\u03ff][A-Za-z_0-9.\u0370-\u03ff]*|<=|>=|==|!=|[()+\-*/^,<>])')
 
 def parse(s):
@@ -85,6 +89,7 @@ class Engine:
         if name in self.overrides:return self.overrides[name]
         if name in self.cache:return self.cache[name]
         if name in UNITS:return UNITS[name]
+        if name in CONSTANTS:return CONSTANTS[name]
         if name in ['true','false']:return name=='true'
         assert name not in self.stack,('CYCLE',name,self.stack)
         self.stack.append(name)
@@ -129,6 +134,12 @@ class Engine:
         if name in ['Tan','Sin','Cos']:
             assert v[0].d==(0,0,1)
             return Q(getattr(math,name.lower())(v[0].v))
+        if name in ['Ln','Exp']:
+            assert v[0].d==(0,0,0),('UNITLESS',name)
+            return Q(math.log(v[0].v) if name=='Ln' else math.exp(v[0].v))
+        if name in ['Atan','Asin','Acos']:
+            assert v[0].d==(0,0,0),('UNITLESS',name)
+            return Q(getattr(math,name.lower())(v[0].v),(0,0,1))
         raise ValueError(('FUNCTION',name))
     def all(self):
         for n in self.defs:self.get(n)
@@ -150,6 +161,7 @@ class ScalarEngine(Engine):
     """
     def get(self,name):
         if name in UNITS:return UNITS[name].v
+        if name in CONSTANTS:return CONSTANTS[name].v
         return super().get(name)
 
     def eval(self,a,scope):
@@ -187,4 +199,7 @@ class ScalarEngine(Engine):
         if name=='Or':return any(v)
         if name=='Not':return not v[0]
         if name in ('Tan','Sin','Cos'):return getattr(math,name.lower())(v[0])
+        if name=='Ln':return math.log(v[0])
+        if name=='Exp':return math.exp(v[0])
+        if name in ('Atan','Asin','Acos'):return getattr(math,name.lower())(v[0])
         raise ValueError(('FUNCTION',name))

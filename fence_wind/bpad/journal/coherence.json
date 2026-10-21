@@ -1,0 +1,172 @@
+{
+ "FenceWind": [
+  {
+   "input": "h_f",
+   "owner": "BridgeGeometry_2Beam.Fence_ht",
+   "journal_value": 116.3125,
+   "case_value": 116.3125,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Fence_ht (in)"
+  },
+  {
+   "input": "R_f",
+   "owner": "BridgeGeometry_2Beam.Fence_radius",
+   "journal_value": 76.0,
+   "case_value": 76.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Fence_radius (in)"
+  },
+  {
+   "input": "z_base",
+   "owner": "BridgeGeometry_2Beam.Fence_base_CapCG",
+   "journal_value": 111.5625,
+   "case_value": 111.5625,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Fence_base_CapCG (in)"
+  },
+  {
+   "input": "h_tan",
+   "owner": "BridgeGeometry_2Beam.Fence_straight_ht",
+   "journal_value": 38.5625,
+   "case_value": 38.5625,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Fence_straight_ht (in)"
+  },
+  {
+   "input": "z_spring",
+   "owner": "BridgeGeometry_2Beam.Fence_spring_CapCG",
+   "journal_value": 150.125,
+   "case_value": 150.125,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Fence_spring_CapCG (in)"
+  },
+  {
+   "input": "z_mid",
+   "owner": "BridgeGeometry_2Beam.Fence_CG_CapCG",
+   "journal_value": 169.71875,
+   "case_value": 169.71875,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Fence_CG_CapCG (in)"
+  },
+  {
+   "input": "Span_1",
+   "owner": "BridgeGeometry_2Beam.Span_1",
+   "journal_value": 107.35,
+   "case_value": 107.35,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_1 (ft)"
+  },
+  {
+   "input": "Span_2",
+   "owner": "BridgeGeometry_2Beam.Span_2",
+   "journal_value": 104.9,
+   "case_value": 104.9,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_2 (ft)"
+  },
+  {
+   "input": "L_trib",
+   "owner": "BridgeGeometry_2Beam.Pier_tributaryLength",
+   "journal_value": 1273.5,
+   "case_value": 1273.5,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pier_tributaryLength (in)"
+  },
+  {
+   "input": "P_Z_III",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.P_Z_III",
+   "journal_value": 0.048749346607,
+   "case_value": 0.0487493466,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.P_Z_III (ksf)"
+  },
+  {
+   "input": "Depth_SuperStr",
+   "owner": "BridgeGeometry_2Beam.Depth_SuperStr",
+   "journal_value": 85.0,
+   "case_value": 85.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Depth_SuperStr (in)"
+  },
+  {
+   "input": "Dist_windSuperCG_CapCG",
+   "owner": "BridgeGeometry_2Beam.Dist_windSuperCG_CapCG",
+   "journal_value": 69.0625,
+   "case_value": 69.0625,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Dist_windSuperCG_CapCG (in)"
+  },
+  {
+   "input": "P_Z_SI",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.P_Z_SI",
+   "journal_value": 0.01386112,
+   "case_value": 0.01386112,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.P_Z_SI (ksf)"
+  },
+  {
+   "input": "H_bridge",
+   "owner": "BridgeGeometry_2Beam.Concrete_top_aboveGround",
+   "journal_value": 312.477528536945,
+   "case_value": 312.47752853695,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Concrete_top_aboveGround (in)"
+  },
+  {
+   "input": "V_III",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.V_III",
+   "journal_value": 130.0,
+   "case_value": 130.0,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.V_III (no unit)"
+  },
+  {
+   "input": "V_SI",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.V_SI",
+   "journal_value": 70.0,
+   "case_value": 70.0,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.V_SI (no unit)"
+  },
+  {
+   "input": "K_Z_III",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.K_Z_gov",
+   "journal_value": 1.019717449912,
+   "case_value": 1.019717449912,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.K_Z_gov (no unit)"
+  },
+  {
+   "input": "G_f",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.G_fac",
+   "journal_value": 0.85,
+   "case_value": 0.85,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.G_fac (no unit)"
+  },
+  {
+   "input": "PierCap_ht_toTop",
+   "owner": "BridgeGeometry_2Beam.PierCap_ht_toTop",
+   "journal_value": 218.915028536945,
+   "case_value": 218.91502853695,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_ht_toTop (in)"
+  },
+  {
+   "input": "PierCap_width",
+   "owner": "BridgeGeometry_2Beam.PierCap_width",
+   "journal_value": 48.0,
+   "case_value": 48.0,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.PierCap_width (in)"
+  },
+  {
+   "input": "Pier_wall_area",
+   "owner": "BridgeGeometry_2Beam.Pier_wall_area",
+   "journal_value": 349.655948357621,
+   "case_value": 349.6559483576,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Pier_wall_area (ft^2)"
+  }
+ ]
+}

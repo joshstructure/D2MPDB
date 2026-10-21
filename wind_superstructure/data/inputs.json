@@ -1,0 +1,177 @@
+[
+ {
+  "name": "z_clear",
+  "value": 227.47752853695,
+  "unit": "in",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Vertical distance from low ground to the bottom of the concrete superstructure",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Wind_clearHeight",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Wind_clearHeight"
+ },
+ {
+  "name": "Z",
+  "value": 428.79002853695,
+  "unit": "in",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Height of the fence crown above low ground (common wind exposure height)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Wind_exposureHeight",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Wind_exposureHeight"
+ },
+ {
+  "name": "d_super",
+  "value": 85.0,
+  "unit": "in",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Depth of concrete superstructure exposed to horizontal wind",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Depth_SuperStr",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Depth_SuperStr"
+ },
+ {
+  "name": "Span_1",
+  "value": 107.35,
+  "unit": "ft",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Span 1 length",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_1",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Span_1"
+ },
+ {
+  "name": "Span_2",
+  "value": 104.9,
+  "unit": "ft",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Span 2 length",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_2",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Span_2"
+ },
+ {
+  "name": "w_deck",
+  "value": 163.0,
+  "unit": "in",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Outside-to-outside deck width",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Deck_out2out",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Deck_out2out"
+ },
+ {
+  "name": "Skew_deg_str",
+  "value": "0",
+  "unit": null,
+  "kind": "option",
+  "options": [
+   "0",
+   "15",
+   "30",
+   "45",
+   "60"
+  ],
+  "group": "Bridge geometry",
+  "caption": "Skew angle of wind attack from perpendicular (degrees, LRFD Table 3.8.1.2.3a-1 column)",
+  "source": "Selected value",
+  "status": "journal"
+ },
+ {
+  "name": "V_III",
+  "value": 130.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Wind speed and exposure",
+  "caption": "Design 3-second gust wind speed, Strength III (mph)",
+  "source": "FDOT SDG Table 2.4.1-1 (Duval County)",
+  "status": "code"
+ },
+ {
+  "name": "V_V",
+  "value": 80.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Wind speed and exposure",
+  "caption": "Design gust wind speed, Strength V (mph)",
+  "source": "LRFD Table 3.8.1.1.2-1",
+  "status": "code"
+ },
+ {
+  "name": "V_SI",
+  "value": 70.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Wind speed and exposure",
+  "caption": "Design gust wind speed, Service I (mph)",
+  "source": "LRFD Table 3.8.1.1.2-1",
+  "status": "code"
+ },
+ {
+  "name": "Exp_Cat",
+  "value": "C",
+  "unit": null,
+  "kind": "option",
+  "options": [
+   "C",
+   "D"
+  ],
+  "group": "Wind speed and exposure",
+  "caption": "Wind exposure category (C unless D applies)",
+  "source": "Selected value",
+  "status": "journal"
+ },
+ {
+  "name": "Struct_Type",
+  "value": "I-Girder or Box-Girder Superstructure",
+  "unit": null,
+  "kind": "option",
+  "options": [
+   "I-Girder or Box-Girder Superstructure",
+   "Bridge Substructure",
+   "Truss/Column/Arch - Sharp-Edged",
+   "Truss/Column/Arch - Round",
+   "Sound Barrier"
+  ],
+  "group": "Structure type and coefficients",
+  "caption": "Structure type for the drag coefficient (LRFD Table 3.8.1.2.1-2)",
+  "source": "Selected value",
+  "status": "journal"
+ },
+ {
+  "name": "G_fac",
+  "value": 0.85,
+  "unit": null,
+  "kind": "number",
+  "group": "Structure type and coefficients",
+  "caption": "Gust-effect factor",
+  "source": "SDG 2.4.1.C",
+  "status": "code"
+ },
+ {
+  "name": "Beam_count",
+  "value": 2.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Number of beams",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Beam_count",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Beam_count"
+ },
+ {
+  "name": "p_V_III",
+  "value": 0.02,
+  "unit": "ksf",
+  "kind": "number",
+  "group": "Vertical wind",
+  "caption": "Prescribed Strength III vertical wind pressure",
+  "source": "LRFD 3.8.2",
+  "status": "code"
+ }
+]

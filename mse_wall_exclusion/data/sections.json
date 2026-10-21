@@ -1,0 +1,245 @@
+[
+ {
+  "key": "mse_wall_clearance_front_and_sides",
+  "level": 0,
+  "title": "Overview and result summary",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p0",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p1",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "ResultSummary",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p2",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "1_typical_pile_front_and_side_limits",
+  "level": 0,
+  "title": "1. Typical pile, front and side limits",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "canvas",
+    "id": "TypicalBox",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "2_inputs_and_front_wall_minimum",
+  "level": 0,
+  "title": "2. Inputs and front-wall minimum",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p4",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p5",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p6",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p7",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p8",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p9",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p10",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p11",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p12",
+    "at": "Half"
+   },
+   {
+    "kind": "prose",
+    "id": "p13",
+    "at": "MinClear"
+   },
+   {
+    "kind": "prose",
+    "id": "p14",
+    "at": "LayoutClear"
+   },
+   {
+    "kind": "prose",
+    "id": "p15",
+    "at": "FrontExtent"
+   },
+   {
+    "kind": "prose",
+    "id": "p16",
+    "at": "SideExtent"
+   },
+   {
+    "kind": "prose",
+    "id": "p17",
+    "at": "SideExtent"
+   }
+  ],
+  "hidden_title": "Frame geometry (hidden): cap extents, validity, drawing scales."
+ },
+ {
+  "key": "bent1",
+  "level": 0,
+  "title": "3. End Bent 1, front and side plan",
+  "text": [],
+  "blocks": [],
+  "hidden_title": "End Bent 1 wall rows (hidden): pile coordinates, wall lines and the gap to every pile."
+ },
+ {
+  "key": "3_end_bent_1_front_and_side_plan",
+  "level": 0,
+  "title": "3. END BENT 1 — FRONT AND SIDE PLAN",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p18",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "Bent1Plan",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "Bent1Offsets",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "Bent1Walls",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p20",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "4_end_bent_2_front_and_side_plan",
+  "level": 0,
+  "title": "4. End Bent 2, front and side plan",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p21",
+    "at": "start"
+   },
+   {
+    "kind": "canvas",
+    "id": "Bent2Plan",
+    "at": "end"
+   },
+   {
+    "kind": "table",
+    "name": "Bent2Offsets",
+    "at": "end"
+   },
+   {
+    "kind": "table",
+    "name": "Bent2Walls",
+    "at": "end"
+   },
+   {
+    "kind": "prose",
+    "id": "p23",
+    "at": "end"
+   }
+  ],
+  "hidden_title": "End Bent 2 wall rows (hidden): pile coordinates, wall lines and the gap to every pile."
+ },
+ {
+  "key": "5_separate_requirements_and_use",
+  "level": 0,
+  "title": "5. Separate requirements and use",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "CapSetback",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "SkewBasis",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p24",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p25",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p26",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p27",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p28",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p29",
+    "at": "start"
+   }
+  ]
+ }
+]

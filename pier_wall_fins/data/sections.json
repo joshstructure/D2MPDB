@@ -1,0 +1,649 @@
+[
+ {
+  "key": "overview_journal",
+  "level": 0,
+  "title": "Overview and results preview",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p0",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "C006Box0",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p2",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "C006Table292",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "strategy",
+  "level": 0,
+  "title": "Design basis and calculation strategy",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy01",
+    "ids": [
+     "p3"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy02",
+    "ids": [
+     "p4"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy03",
+    "ids": [
+     "p5"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy04",
+    "ids": [
+     "p6"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy05",
+    "ids": [
+     "p7"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy06",
+    "ids": [
+     "p8"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy07",
+    "ids": [
+     "p9"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "C006Strategy08",
+    "ids": [
+     "p10"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "C006Box2",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "C006Box3",
+    "at": "start"
+   }
+  ],
+  "native_section": "C006Strategy01"
+ },
+ {
+  "key": "step_1_geometry_and_materials",
+  "level": 0,
+  "title": "Step 1. Geometry and materials",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "canvas",
+    "id": "C006FinPlan",
+    "at": "start"
+   }
+  ],
+  "native_section": "C006Work01"
+ },
+ {
+  "key": "adopted_wall_face_cover_matching_the_cur",
+  "level": 1,
+  "title": "Adopted wall-face cover, matching the current formed substructure cover. (FDOT SDG 1.4.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "selected_connection_geometry",
+  "level": 1,
+  "title": "Selected connection geometry",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "C006Box50",
+    "at": "Δ_ground"
+   }
+  ]
+ },
+ {
+  "key": "step_2_gravity_reactions_and_plate_spaci",
+  "level": 0,
+  "title": "Step 2. Gravity reactions and plate spacing",
+  "text": [],
+  "blocks": [],
+  "native_section": "C006Work02"
+ },
+ {
+  "key": "maximum_permanent_structural_dead_load_f",
+  "level": 1,
+  "title": "Maximum permanent structural dead-load factor used for strength. (LRFD Table 3.4.1-2)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "C006Box66",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "six_fin_reaction_schedule",
+  "level": 1,
+  "title": "Six-fin reaction schedule",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "C006Table90",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_3_hairpins_and_development",
+  "level": 0,
+  "title": "Step 3. Hairpins and development",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "canvas",
+    "id": "C006Hairpin",
+    "at": "start"
+   }
+  ],
+  "native_section": "C006Work03"
+ },
+ {
+  "key": "normal_weight_concrete_modifier",
+  "level": 1,
+  "title": "Normal-weight concrete modifier. (LRFD 5.4.2.8)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "required_straight_tail_development_lengt",
+  "level": 1,
+  "title": "Required straight-tail development length for full yield. (LRFD Eq. 5.10.8.2.1a-1)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "C006Box116",
+    "at": "Chk_bend"
+   }
+  ]
+ },
+ {
+  "key": "step_4_fin_plate_resistance",
+  "level": 0,
+  "title": "Step 4. Fin plate resistance",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "canvas",
+    "id": "C006Root",
+    "at": "start"
+   }
+  ],
+  "native_section": "C006Work04"
+ },
+ {
+  "key": "steel_flexure_resistance_factor",
+  "level": 1,
+  "title": "Steel flexure resistance factor. (LRFD 6.5.4.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "steel_shear_yielding_resistance_factor",
+  "level": 1,
+  "title": "Steel shear-yielding resistance factor. (LRFD 6.5.4.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "steel_connection_element_shear_rupture_r",
+  "level": 1,
+  "title": "Steel connection-element shear-rupture resistance factor. (LRFD 6.5.4.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "yield_based_nominal_flexural_resistance",
+  "level": 1,
+  "title": "Yield-based nominal flexural resistance. (LRFD Eq. 6.12.2.2.7-1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "yield_region_ltb_threshold",
+  "level": 1,
+  "title": "Yield-region LTB threshold. (LRFD 6.12.2.2.7)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "elastic_region_ltb_threshold",
+  "level": 1,
+  "title": "Elastic-region LTB threshold. (LRFD 6.12.2.2.7)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "ltb_limited_nominal_major_axis_resistanc",
+  "level": 1,
+  "title": "LTB-limited nominal major-axis resistance. (LRFD Eqs. 6.12.2.2.7-2 through -4)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "adopted_minor_axis_resistance_conservati",
+  "level": 1,
+  "title": "Adopted minor-axis resistance, conservatively limited to first yield. (LRFD 6.12.2.2.7)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "factored_shear_yielding_resistance",
+  "level": 1,
+  "title": "Factored shear-yielding resistance. (LRFD Eq. 6.13.5.3-1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "factored_shear_rupture_resistance_no_hol",
+  "level": 1,
+  "title": "Factored shear-rupture resistance; no holes and Rp = 1. (LRFD Eq. 6.13.5.3-2)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p19",
+    "at": "Chk_root"
+   }
+  ]
+ },
+ {
+  "key": "step_5_out_of_plane_wall_strip",
+  "level": 0,
+  "title": "Step 5. Out-of-plane wall strip",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "canvas",
+    "id": "C006WindStrip",
+    "at": "start"
+   }
+  ],
+  "native_section": "C006Work05"
+ },
+ {
+  "key": "ws_factor_for_these_separate_direct_wind",
+  "level": 1,
+  "title": "WS factor for these separate direct-wind pressure sets. (LRFD Table 3.4.1-1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "rectangular_concrete_stress_block_factor",
+  "level": 1,
+  "title": "Rectangular concrete stress-block factor. (LRFD 5.6.2.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "tension_controlled_reinforced_concrete_r",
+  "level": 1,
+  "title": "Tension-controlled reinforced-concrete resistance factor. (LRFD 5.5.4.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "factored_flexural_resistance_of_either_f",
+  "level": 1,
+  "title": "Factored flexural resistance of either face. (LRFD 5.6.3.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "cracking_variability_factor_for_nonsegme",
+  "level": 1,
+  "title": "Cracking variability factor for nonsegmental concrete. (LRFD 5.6.3.3)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "yield_to_ultimate_factor_for_astm_a615_g",
+  "level": 1,
+  "title": "Yield-to-ultimate factor for ASTM A615 Grade 60 reinforcing. (LRFD 5.6.3.3)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "cracking_moment_for_a_nonprestressed_non",
+  "level": 1,
+  "title": "Cracking moment for a nonprestressed, noncomposite section. (LRFD Eq. 5.6.3.3-1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "minimum_transverse_steel_for_use_of_the_",
+  "level": 1,
+  "title": "Minimum transverse steel for use of the simplified shear parameters. (LRFD Eq. 5.7.2.5-1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "effective_shear_depth",
+  "level": 1,
+  "title": "Effective shear depth. (LRFD 5.7.2.8)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "simplified_shear_parameter_with_at_least",
+  "level": 1,
+  "title": "Simplified shear parameter with at least minimum transverse steel. (LRFD 5.7.3.4.1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "concrete_shear_contribution",
+  "level": 1,
+  "title": "Concrete shear contribution. (LRFD Eq. 5.7.3.3-3)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "cross_tie_contribution_at_theta_45_degre",
+  "level": 1,
+  "title": "Cross-tie contribution at theta = 45 degrees and alpha = 90 degrees. (LRFD Eq. 5.7.3.3-4)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "factored_wall_strip_shear_resistance",
+  "level": 1,
+  "title": "Factored wall-strip shear resistance. (LRFD Eqs. 5.7.3.3-1 and -2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "service_crack_spacing_strain_gradient_fa",
+  "level": 1,
+  "title": "Service crack-spacing strain-gradient factor. (LRFD Eq. 5.6.7-2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "factored_shear_stress_parameter_for_tran",
+  "level": 1,
+  "title": "Factored shear-stress parameter for transverse spacing. (LRFD 5.7.2.8)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "maximum_transverse_reinforcement_spacing",
+  "level": 1,
+  "title": "Maximum transverse reinforcement spacing. (LRFD Eqs. 5.7.2.6-1 and -2)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "C006Box211",
+    "at": "Status_cracking"
+   }
+  ]
+ },
+ {
+  "key": "step_6_distributed_reinforcement_and_det",
+  "level": 0,
+  "title": "Step 6. Distributed reinforcement and detailing",
+  "text": [],
+  "blocks": [],
+  "native_section": "C006Work06"
+ },
+ {
+  "key": "shrinkage_temperature_requirement_for_a_",
+  "level": 1,
+  "title": "Shrinkage/temperature requirement for a one-foot strip on each face. (LRFD Eq. 5.10.6-1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "other_full_component_section_for_distrib",
+  "level": 1,
+  "title": "Other full-component section for distributed reinforcement. (LRFD Eq. 5.10.6-1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "required_shrinkage_temperature_area_per_",
+  "level": 1,
+  "title": "Required shrinkage/temperature area per one-foot strip. (LRFD Eq. 5.10.6-2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "adopted_orthogonal_grid_minimum_for_pote",
+  "level": 1,
+  "title": "Adopted orthogonal grid minimum for potential wall disturbed regions. (LRFD 5.8.2.6)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "shrinkage_temperature_maximum_spacing",
+  "level": 1,
+  "title": "Shrinkage/temperature maximum spacing. (LRFD 5.10.6)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "general_wall_slab_maximum_bar_spacing",
+  "level": 1,
+  "title": "General wall/slab maximum bar spacing. (LRFD 5.10.3.2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "minimum_clear_spacing_within_the_wall_gr",
+  "level": 1,
+  "title": "Minimum clear spacing within the wall grid. (LRFD 5.10.3.1.1)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "basic_full_yield_straight_development_of",
+  "level": 1,
+  "title": "Basic full-yield straight development of a #6 grid bar. (LRFD Eq. 5.10.8.2.1a-2)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "horizontal_top_cast_grid_development_no_",
+  "level": 1,
+  "title": "Horizontal top-cast grid development; no confinement reduction. (LRFD 5.10.8.2.1a-b)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "selected_conservative_class_b_tension_la",
+  "level": 1,
+  "title": "Selected conservative Class B tension-lap length. (LRFD 5.10.8.4.3)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "fdot_mass_concrete_dimensional_screen",
+  "level": 1,
+  "title": "FDOT mass-concrete dimensional screen. (FDOT SDG 1.4.4)",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "adopted_disturbed_region_grid_area_and_t",
+  "level": 1,
+  "title": "Adopted disturbed-region grid area and twelve-inch ceiling. (LRFD 5.8.2.6)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p22",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "C006Box238",
+    "at": "Chk_joints"
+   }
+  ]
+ },
+ {
+  "key": "step_7_weld_and_pile_interface_actions",
+  "level": 0,
+  "title": "Step 7. Weld and pile interface actions",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "C006Box240",
+    "at": "start"
+   }
+  ],
+  "native_section": "C006Work07",
+  "hidden_title": "Fin-root actions by fin (the rows of the weld-action table)."
+ },
+ {
+  "key": "actual_concurrent_weld_actions_positive_",
+  "level": 1,
+  "title": "Actual concurrent weld actions — positive transverse offset",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "C006Table277",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p25",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "hairpin_development_target_every_selecte",
+  "level": 1,
+  "title": "Hairpin development target and pile interface",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "C006Table278",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "receiving_pile_interface_actual_wall_loa",
+  "level": 1,
+  "title": "Receiving pile interface",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "C006Table283",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p26",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "step_8_design_summary_and_verification_b",
+  "level": 0,
+  "title": "Step 8. Design summary and verification boundaries",
+  "text": [],
+  "blocks": [],
+  "native_section": "C006Work08"
+ },
+ {
+  "key": "local_hanger_concrete_saddle_load_transf",
+  "level": 1,
+  "title": "Local hanger/concrete/saddle load-transfer mechanism independently completed?",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "local_pipe_shell_and_concurrent_global_p",
+  "level": 1,
+  "title": "Local pipe-shell and concurrent global pile verification independently completed?",
+  "text": [],
+  "blocks": []
+ },
+ {
+  "key": "implemented_numerical_checks",
+  "level": 1,
+  "title": "Implemented numerical checks",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "C006Table289",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "C006Box290",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "C006Box291",
+    "at": "start"
+   }
+  ]
+ }
+]

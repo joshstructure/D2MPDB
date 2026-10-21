@@ -1,0 +1,342 @@
+[
+ {
+  "name": "FWReviewSummary",
+  "title": "Wind overview",
+  "headers": [
+   "Result",
+   "Strength III",
+   "Service I"
+  ],
+  "rows": [
+   [
+    "Fence force (kip)",
+    {
+     "v": "F_fence"
+    },
+    {
+     "v": "F_fence"
+    }
+   ],
+   [
+    "Fence moment (kip-ft)",
+    {
+     "v": "M_fence"
+    },
+    {
+     "v": "M_fence"
+    }
+   ],
+   [
+    "Cap F_T (kip)",
+    {
+     "v": "F_cap_T_III"
+    },
+    {
+     "v": "F_cap_T_SI"
+    }
+   ],
+   [
+    "Cap F_L (kip)",
+    {
+     "v": "F_cap_L_III"
+    },
+    {
+     "v": "F_cap_L_SI"
+    }
+   ],
+   [
+    "Cap M_L (kip-ft)",
+    {
+     "v": "M_cap_L_III"
+    },
+    {
+     "v": "M_cap_L_SI"
+    }
+   ],
+   [
+    "Cap M_T (kip-ft)",
+    {
+     "v": "M_cap_T_III"
+    },
+    {
+     "v": "M_cap_T_SI"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWGeometryInputs",
+  "title": "Geometry input route",
+  "headers": [
+   "Parameter",
+   "Value",
+   "Source / meaning"
+  ],
+  "rows": [
+   [
+    "h_f",
+    {
+     "v": "h_f"
+    },
+    "BridgeGeometry.Fence_ht; exposed fence height"
+   ],
+   [
+    "R_f",
+    {
+     "v": "R_f"
+    },
+    "Inside parapet spacing and parapet width"
+   ],
+   [
+    "z_base",
+    {
+     "v": "z_base"
+    },
+    "Concrete wind centroid + half concrete depth"
+   ],
+   [
+    "z_mid",
+    {
+     "v": "z_mid"
+    },
+    "Fence projected-height midpoint"
+   ],
+   [
+    "L_trib",
+    {
+     "v": "L_trib"
+    },
+    "BridgeGeometry.TotalSpan / 2"
+   ]
+  ]
+ },
+ {
+  "name": "FWSimplifiedCriteria",
+  "title": "Simplified-method qualification",
+  "headers": [
+   "Criterion",
+   "Actual",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Individual span ≤ 150 ft",
+    {
+     "v": "L_span_max"
+    },
+    {
+     "f": "If(L_span_max <= 150 ft, \"✓ PASS\", \"⊗ FAIL\")"
+    }
+   ],
+   [
+    "Bridge height ≤ 33 ft",
+    {
+     "v": "H_bridge"
+    },
+    {
+     "f": "If(H_bridge <= 33 ft, \"✓ PASS\", \"⊗ FAIL\")"
+    }
+   ],
+   [
+    "Overall simplified-method qualification",
+    "100% T + 25% L",
+    {
+     "v": "Check_simplified"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWCapIII",
+  "title": "Strength III cap-reference wind — simplified simultaneous case, WS = 1.0",
+  "headers": [
+   "Case",
+   "F_T (kip)",
+   "F_L (kip)",
+   "M_L (kip-ft)",
+   "M_T (kip-ft)"
+  ],
+  "rows": [
+   [
+    "Simplified 100% T + 25% L",
+    {
+     "v": "F_cap_T_III"
+    },
+    {
+     "v": "F_cap_L_III"
+    },
+    {
+     "v": "M_cap_L_III"
+    },
+    {
+     "v": "M_cap_T_III"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWCapSI",
+  "title": "Service I cap-reference wind — simplified simultaneous case, WS = 1.0",
+  "headers": [
+   "Case",
+   "F_T (kip)",
+   "F_L (kip)",
+   "M_L (kip-ft)",
+   "M_T (kip-ft)"
+  ],
+  "rows": [
+   [
+    "Simplified 100% T + 25% L",
+    {
+     "v": "F_cap_T_SI"
+    },
+    {
+     "v": "F_cap_L_SI"
+    },
+    {
+     "v": "M_cap_L_SI"
+    },
+    {
+     "v": "M_cap_T_SI"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWWindInputs",
+  "title": "Wind input summary",
+  "headers": [
+   "Parameter",
+   "Strength III",
+   "Service I"
+  ],
+  "rows": [
+   [
+    "V (mph)",
+    {
+     "v": "V_III"
+    },
+    {
+     "v": "V_SI"
+    }
+   ],
+   [
+    "K_Z",
+    {
+     "v": "K_Z_III"
+    },
+    {
+     "v": "K_Z_SI"
+    }
+   ],
+   [
+    "G_f",
+    {
+     "v": "G_f"
+    },
+    {
+     "v": "G_f"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWDirectPressureResults",
+  "title": "Pressure results",
+  "headers": [
+   "Pressure (ksf)",
+   "Strength III",
+   "Service I"
+  ],
+  "rows": [
+   [
+    "Direct substructure: p_sub",
+    {
+     "v": "p_sub_III"
+    },
+    {
+     "v": "p_sub_SI"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWWall",
+  "title": "Direct substructure loads",
+  "headers": [
+   "Limit state",
+   "F_T (kip)",
+   "F_L (kip)"
+  ],
+  "rows": [
+   [
+    "Strength III",
+    {
+     "v": "F_wall_T_III"
+    },
+    {
+     "v": "F_wall_L_III"
+    }
+   ],
+   [
+    "Service I",
+    {
+     "v": "F_wall_T_SI"
+    },
+    {
+     "v": "F_wall_L_SI"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWChecksTable",
+  "title": "Consistency checks",
+  "headers": [
+   "Check",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Fence/tributary geometry",
+    {
+     "v": "Check_geometry"
+    }
+   ],
+   [
+    "LRFD simplified-method qualification",
+    {
+     "v": "Check_simplified"
+    }
+   ],
+   [
+    "Resultant equilibrium",
+    {
+     "v": "Check_balance"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "FWTransferChecks",
+  "title": "Transfer checks",
+  "headers": [
+   "Verification",
+   "Result"
+  ],
+  "rows": [
+   [
+    "Tributary length = half the sum of spans",
+    {
+     "f": "If(Abs(L_trib-(Span_1+Span_2)/2)<0.000001 ft, \"✓ PASS\", \"⊗ FAIL\")"
+    }
+   ],
+   [
+    "Simplified longitudinal force and moment components follow the 25% rule",
+    {
+     "f": "If(And(Abs(F_cap_L_III - 0.25*F_cap_T_III) < 0.000001 kip, Abs(M_cap_T_III - (0.25*M_c_III + 0.25*F_fence*z_mid)) < 0.000001 kip*ft, Abs(F_cap_L_SI - 0.25*F_cap_T_SI) < 0.000001 kip, Abs(M_cap_T_SI - (0.25*M_c_SI + 0.25*F_fence*z_mid)) < 0.000001 kip*ft), \"✓ PASS\", \"⊗ FAIL\")"
+    }
+   ]
+  ]
+ }
+]

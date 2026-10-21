@@ -1,0 +1,6 @@
+group,check,status,ratio,demand,capacity,basis,note,review
+Simplified method,Individual span ≤ 150 ft (LRFD 3.8.1.2.3a),PASS,0.7157,107.350 ft,150 ft,"L_span,max / 150 ft",,
+Simplified method,Bridge height ≤ 33 ft above low ground (LRFD 3.8.1.2.3a),PASS,0.7891,312.478 in,33 ft,H_bridge / 33 ft,,
+Simplified method,Overall simplified-method qualification (100 % T + 25 % L),PASS,,,,Both LRFD 3.8.1.2.3a limits satisfied,,
+Consistency,Fence and tributary geometry,PASS,,,,Positive fence dimensions and tributary length,,
+Consistency,Resultant equilibrium of the fence and cap-reference totals,PASS,,,,Fence moment and cap totals reproduce their parts,,

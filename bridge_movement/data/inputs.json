@@ -1,0 +1,64 @@
+[
+ {
+  "name": "L_left",
+  "value": 107.35,
+  "unit": "ft",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Movement length from the intermediate pier to Begin Bridge (Span 1)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_1",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Span_1"
+ },
+ {
+  "name": "L_right",
+  "value": 104.9,
+  "unit": "ft",
+  "kind": "number",
+  "group": "Bridge geometry",
+  "caption": "Movement length from the intermediate pier to End Bridge (Span 2)",
+  "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_2",
+  "status": "journal",
+  "journal": "BridgeGeometry_2Beam.Span_2"
+ },
+ {
+  "name": "T_mean",
+  "value": 70.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Temperature parameters",
+  "caption": "Mean construction temperature (°F)",
+  "source": "SDG Table 2.7.1-1",
+  "status": "code"
+ },
+ {
+  "name": "T_high",
+  "value": 105.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Temperature parameters",
+  "caption": "High design temperature, concrete-only superstructure (°F)",
+  "source": "SDG Table 2.7.1-1",
+  "status": "code"
+ },
+ {
+  "name": "T_low",
+  "value": 35.0,
+  "unit": null,
+  "kind": "number",
+  "group": "Temperature parameters",
+  "caption": "Low design temperature, concrete-only superstructure (°F)",
+  "source": "SDG Table 2.7.1-1",
+  "status": "code"
+ },
+ {
+  "name": "γ_TU",
+  "value": 1.2,
+  "unit": null,
+  "kind": "number",
+  "group": "Temperature parameters",
+  "caption": "Temperature load factor for the factored TU movement envelope",
+  "source": "SDG 2.7.1.D; SDG 6.3",
+  "status": "code"
+ }
+]

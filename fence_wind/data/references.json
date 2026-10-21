@@ -1,0 +1,67 @@
+{
+ "lrfd_13_8_2": {
+  "code": "LRFD",
+  "article": "13.8.2",
+  "governs": "Prescribed normal pressure on the complete metal-fabric fence surface."
+ },
+ "lrfd_3_8_1_2_3": {
+  "code": "LRFD",
+  "article": "3.8.1.2.3a",
+  "governs": "Maximum individual span used to qualify the LRFD simplified wind method."
+ },
+ "sdg_2_4_1_a": {
+  "code": "SDG",
+  "article": "2.4.1.A",
+  "governs": "Wind speed used for the Strength III direct-pier pressure basis."
+ },
+ "sdg_table_2_4_1_1": {
+  "code": "SDG",
+  "article": "Table 2.4.1-1",
+  "governs": "Wind speed used for the Strength III direct-pier pressure basis."
+ },
+ "lrfd_3_8_1_1_2": {
+  "code": "LRFD",
+  "article": "3.8.1.1.2",
+  "governs": "Wind speed used for the Service I direct-pier pressure basis."
+ },
+ "lrfd_table_3_8_1_1_2_1": {
+  "code": "LRFD",
+  "article": "Table 3.8.1.1.2-1",
+  "governs": "Wind speed used for the Service I direct-pier pressure basis."
+ },
+ "lrfd_3_8_1_2_1": {
+  "code": "LRFD",
+  "article": "3.8.1.2.1",
+  "governs": "Exposure-and-height multiplier adopted for Service I wind."
+ },
+ "sdg_2_4_1_b": {
+  "code": "SDG",
+  "article": "2.4.1.B",
+  "governs": "Exposure-and-height multiplier adopted for Service I wind."
+ },
+ "lrfd_eq_3_8_1_2_1_3": {
+  "code": "LRFD",
+  "article": "Eq. 3.8.1.2.1-3",
+  "governs": "Exposure-and-height multiplier adopted for Service I wind."
+ },
+ "lrfd_3_8_1_2_1_4": {
+  "code": "LRFD",
+  "article": "3.8.1.2.1-4",
+  "governs": "Exposure-and-height multiplier adopted for Service I wind."
+ },
+ "lrfd_eq_3_8_1_2_1_1": {
+  "code": "LRFD",
+  "article": "Eq. 3.8.1.2.1-1",
+  "governs": "Strength III wind-pressure term before the direct-substructure drag multiplier."
+ },
+ "lrfd_table_3_8_1_2_1_2": {
+  "code": "LRFD",
+  "article": "Table 3.8.1.2.1-2",
+  "governs": "Drag multiplier assigned to wind acting directly on the pier."
+ },
+ "lrfd_3_8_1_2_3a": {
+  "code": "LRFD",
+  "article": "3.8.1.2.3a",
+  "governs": "Simplified wind components for girder bridges: span ≤ 150 ft, height ≤ 33 ft"
+ }
+}

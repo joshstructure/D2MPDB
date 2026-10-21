@@ -1,0 +1,10 @@
+group,check,status,ratio,demand,capacity,basis,note,review
+Inputs,Geometry input validity,PASS,,,,,,
+End Bent 1,Front wall clear (pile face),PASS,1.0000,37.500 in,37.500 in,required clear / minimum gap to a pile face,,
+End Bent 1,Left side wall clear (pile face),PASS,1.0000,24.000 in,24.000 in,required clear / minimum gap to a pile face,,
+End Bent 1,Right side wall clear (pile face),FAIL,1.0000,24.000 in,24.000 in,required clear / minimum gap to a pile face,,
+End Bent 1,Front cap face to back of facing (24 in minimum),PASS,0.9412,24 in,25.499 in,24 in / gap,,
+End Bent 2,Front wall clear (pile face),PASS,1.0000,37.500 in,37.500 in,required clear / minimum gap to a pile face,,
+End Bent 2,Left side wall clear (pile face),FAIL,1.0000,24.000 in,24.000 in,required clear / minimum gap to a pile face,,
+End Bent 2,Right side wall clear (pile face),PASS,1.0000,24.000 in,24.000 in,required clear / minimum gap to a pile face,,
+End Bent 2,Front cap face to back of facing (24 in minimum),PASS,0.9412,24 in,25.499 in,24 in / gap,,

@@ -1,0 +1,338 @@
+{
+ "format": "d2mpdb-mse-wall-exclusion",
+ "schema_version": 1,
+ "name": "C015 - MSE Wall Exclusion - Both End Bents (journal values, feb1bb316d08)",
+ "inputs": {
+  "PileSize": 18.0,
+  "PileSpacing": 54.0,
+  "Width": 2.0,
+  "Clear": 0.0,
+  "α": 15.0,
+  "SideClear": 24.0,
+  "RoundStep": 0.25,
+  "FrameAngle": -89.9988175443,
+  "PileCount": 4.0,
+  "CapLength": 235.0,
+  "CapWidth": 42.0,
+  "PanelThickness": 0.458333333333,
+  "Bent1W1x": -9.95834880941,
+  "Bent1W1y": -3.87515478293,
+  "Bent1W1len": 19.9166666622,
+  "Bent1W1tx": 1.0,
+  "Bent1W1ty": 0.0,
+  "Bent1W1nx": -0.0,
+  "Bent1W1ny": 1.0,
+  "Bent1W2x": -9.50001547608,
+  "Bent1W2y": -4.33348811626,
+  "Bent1W2len": 23.1098329385,
+  "Bent1W2tx": 0.0,
+  "Bent1W2ty": 1.0,
+  "Bent1W2nx": 1.0,
+  "Bent1W2ny": -0.0,
+  "Bent1W3x": 9.49998451946,
+  "Bent1W3y": -4.33348811626,
+  "Bent1W3len": 10.1515001933,
+  "Bent1W3tx": 0.0,
+  "Bent1W3ty": 1.0,
+  "Bent1W3nx": -1.0,
+  "Bent1W3ny": -0.0,
+  "Bent2W1x": -9.9583178528,
+  "Bent2W1y": -3.87515478293,
+  "Bent2W1len": 19.9166666622,
+  "Bent2W1tx": 1.0,
+  "Bent2W1ty": -0.0,
+  "Bent2W1nx": -0.0,
+  "Bent2W1ny": 1.0,
+  "Bent2W2x": -9.49998451946,
+  "Bent2W2y": 41.0730339531,
+  "Bent2W2len": 45.4065220694,
+  "Bent2W2tx": 0.0,
+  "Bent2W2ty": -1.0,
+  "Bent2W2nx": 1.0,
+  "Bent2W2ny": 0.0,
+  "Bent2W3x": 9.50001547608,
+  "Bent2W3y": 2.19841103276,
+  "Bent2W3len": 6.53189914902,
+  "Bent2W3tx": 0.0,
+  "Bent2W3ty": -1.0,
+  "Bent2W3nx": -1.0,
+  "Bent2W3ny": 0.0
+ },
+ "units": {
+  "PileSize": "in",
+  "PileSpacing": "in",
+  "Width": "in",
+  "Clear": "in",
+  "α": "deg",
+  "SideClear": "in",
+  "RoundStep": "in",
+  "FrameAngle": "deg",
+  "PileCount": null,
+  "CapLength": "in",
+  "CapWidth": "in",
+  "PanelThickness": "ft",
+  "Bent1W1x": "ft",
+  "Bent1W1y": "ft",
+  "Bent1W1len": "ft",
+  "Bent1W1tx": null,
+  "Bent1W1ty": null,
+  "Bent1W1nx": null,
+  "Bent1W1ny": null,
+  "Bent1W2x": "ft",
+  "Bent1W2y": "ft",
+  "Bent1W2len": "ft",
+  "Bent1W2tx": null,
+  "Bent1W2ty": null,
+  "Bent1W2nx": null,
+  "Bent1W2ny": null,
+  "Bent1W3x": "ft",
+  "Bent1W3y": "ft",
+  "Bent1W3len": "ft",
+  "Bent1W3tx": null,
+  "Bent1W3ty": null,
+  "Bent1W3nx": null,
+  "Bent1W3ny": null,
+  "Bent2W1x": "ft",
+  "Bent2W1y": "ft",
+  "Bent2W1len": "ft",
+  "Bent2W1tx": null,
+  "Bent2W1ty": null,
+  "Bent2W1nx": null,
+  "Bent2W1ny": null,
+  "Bent2W2x": "ft",
+  "Bent2W2y": "ft",
+  "Bent2W2len": "ft",
+  "Bent2W2tx": null,
+  "Bent2W2ty": null,
+  "Bent2W2nx": null,
+  "Bent2W2ny": null,
+  "Bent2W3x": "ft",
+  "Bent2W3y": "ft",
+  "Bent2W3len": "ft",
+  "Bent2W3tx": null,
+  "Bent2W3ty": null,
+  "Bent2W3nx": null,
+  "Bent2W3ny": null
+ },
+ "sources": {
+  "PileSize": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.EndBent_pileWidth",
+   "status": "journal"
+  },
+  "PileSpacing": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.EndBent_pileSpacing",
+   "status": "journal"
+  },
+  "Width": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Clear": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "α": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "SideClear": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "RoundStep": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "FrameAngle": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "PileCount": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.EndBent_pileCount",
+   "status": "journal"
+  },
+  "CapLength": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.EndBentCap_length",
+   "status": "journal"
+  },
+  "CapWidth": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.EndBentCap_width",
+   "status": "journal"
+  },
+  "PanelThickness": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W1x": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W1y": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W1len": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W1tx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W1ty": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W1nx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W1ny": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W2x": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W2y": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W2len": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W2tx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W2ty": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W2nx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W2ny": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W3x": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W3y": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W3len": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W3tx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W3ty": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W3nx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent1W3ny": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W1x": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W1y": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W1len": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W1tx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W1ty": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W1nx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W1ny": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W2x": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W2y": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W2len": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W2tx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W2ty": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W2nx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W2ny": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W3x": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W3y": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W3len": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W3tx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W3ty": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W3nx": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  },
+  "Bent2W3ny": {
+   "source": "C015 - MSE Wall Exclusion - Both End Bents (journal value)",
+   "status": "journal"
+  }
+ },
+ "confirmations": {},
+ "receipts": {},
+ "reviews": {}
+}

@@ -1,0 +1,224 @@
+[
+ {
+  "key": "cover",
+  "level": 0,
+  "title": "1. Cover",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "paragraph69xuejqa",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "cap",
+  "level": 0,
+  "title": "2. Cap dimension chain",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p1",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "pedestal",
+  "level": 0,
+  "title": "3. Pedestal",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p3",
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "PedestalGeometrySummary",
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "minimum_support_length",
+  "level": 1,
+  "title": "3.1 Minimum support length N (LRFD 4.7.4.4)",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "PedestalNContext",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p5",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p6",
+    "at": "start"
+   },
+   {
+    "kind": "prose",
+    "id": "p7",
+    "at": "PedN_H"
+   },
+   {
+    "kind": "table",
+    "name": "PedestalNSummary",
+    "at": "Check_PedN"
+   }
+  ]
+ },
+ {
+  "key": "bearing_pads",
+  "level": 0,
+  "title": "4. Bearing pads, Type F service screening",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose",
+    "id": "p8",
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "TypeFPadDesign",
+    "ids": [
+     "p9",
+     "p10"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "table",
+    "name": "TypeFServiceReactions",
+    "at": "Check_TypeF_B4"
+   },
+   {
+    "kind": "table",
+    "name": "TypeFPropertySummary",
+    "at": "Check_TypeF_B4"
+   }
+  ]
+ },
+ {
+  "key": "level_pier_bearing_seats_rotation_check",
+  "level": 0,
+  "title": "5. Level pier bearing seats, rotation check",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "PierLevelSeatCheck",
+    "ids": [
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "BPContext",
+     "p16",
+     "p17"
+    ],
+    "at": "start"
+   }
+  ]
+ },
+ {
+  "key": "1_source_inputs_and_limits",
+  "level": 1,
+  "title": "5.1 Source inputs and limits",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "BPSavedInputs",
+    "at": "start"
+   }
+  ],
+  "native_section": "PierLevelSeatCheck"
+ },
+ {
+  "key": "2_signed_pier_rotations_and_stage_envelo",
+  "level": 1,
+  "title": "5.2 Signed pier rotations and stage envelope",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "PierLevelSeatCheck",
+    "ids": [
+     "p18"
+    ],
+    "at": "BP_opposite_2"
+   },
+   {
+    "kind": "table",
+    "name": "BPStageResults",
+    "at": "BP_opposite_2"
+   }
+  ],
+  "native_section": "PierLevelSeatCheck",
+  "hidden_title": "Stage rotations by span (the rows of the stage table)."
+ },
+ {
+  "key": "3_longitudinal_movement_screen_and_dispo",
+  "level": 1,
+  "title": "5.3 Longitudinal movement screen and disposition",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "table",
+    "name": "BPCheckSummary",
+    "at": "BP_level_seat_result"
+   },
+   {
+    "kind": "prose_section",
+    "name": "PierLevelSeatCheck",
+    "ids": [
+     "p19",
+     "p20"
+    ],
+    "at": "BP_level_seat_result"
+   }
+  ],
+  "native_section": "PierLevelSeatCheck"
+ },
+ {
+  "key": "adopted_bearing_seat_geometry_level_as_c",
+  "level": 0,
+  "title": "6. Adopted bearing-seat geometry: level as-cast seats at all supports",
+  "text": [],
+  "blocks": [
+   {
+    "kind": "prose_section",
+    "name": "AllLevelSeatOverride",
+    "ids": [
+     "p21",
+     "p22",
+     "p23",
+     "p24",
+     "p25",
+     "p26"
+    ],
+    "at": "start"
+   },
+   {
+    "kind": "prose_section",
+    "name": "TypeFPadDesign",
+    "ids": [
+     "p27",
+     "p28",
+     "p29"
+    ],
+    "at": "start"
+   }
+  ]
+ }
+]

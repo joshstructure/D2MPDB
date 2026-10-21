@@ -1,0 +1,20 @@
+{
+ "BridgeMovement": [
+  {
+   "input": "L_left",
+   "owner": "BridgeGeometry_2Beam.Span_1",
+   "journal_value": 107.35,
+   "case_value": 107.35,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_1 (ft)"
+  },
+  {
+   "input": "L_right",
+   "owner": "BridgeGeometry_2Beam.Span_2",
+   "journal_value": 104.9,
+   "case_value": 104.9,
+   "status": "reference",
+   "note": "shared value — BridgeGeometry_2Beam.Span_2 (ft)"
+  }
+ ]
+}

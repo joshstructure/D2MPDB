@@ -1,0 +1,158 @@
+{
+ "format": "d2mpdb-fence-wind",
+ "schema_version": 1,
+ "name": "C002 - Fence Wind and Pier Node Loads (journal values, feb1bb316d08)",
+ "inputs": {
+  "h_f": 116.3125,
+  "R_f": 76.0,
+  "z_base": 111.5625,
+  "h_tan": 38.5625,
+  "z_spring": 150.125,
+  "z_mid": 169.71875,
+  "Span_1": 107.35,
+  "Span_2": 104.9,
+  "L_trib": 1273.5,
+  "p_fence": 0.015,
+  "P_Z_III": 0.0487493466,
+  "Depth_SuperStr": 85.0,
+  "Dist_windSuperCG_CapCG": 69.0625,
+  "P_Z_SI": 0.01386112,
+  "H_bridge": 312.47752853695,
+  "V_III": 130.0,
+  "V_SI": 70.0,
+  "K_Z_III": 1.01971744991174,
+  "K_Z_SI": 1.0,
+  "G_f": 0.85,
+  "C_sub": 1.6,
+  "PierCap_ht_toTop": 218.91502853695,
+  "PierCap_width": 48.0,
+  "Pier_wall_area": 349.6559483576
+ },
+ "units": {
+  "h_f": "in",
+  "R_f": "in",
+  "z_base": "in",
+  "h_tan": "in",
+  "z_spring": "in",
+  "z_mid": "in",
+  "Span_1": "ft",
+  "Span_2": "ft",
+  "L_trib": "in",
+  "p_fence": "ksf",
+  "P_Z_III": "ksf",
+  "Depth_SuperStr": "in",
+  "Dist_windSuperCG_CapCG": "in",
+  "P_Z_SI": "ksf",
+  "H_bridge": "in",
+  "V_III": null,
+  "V_SI": null,
+  "K_Z_III": null,
+  "K_Z_SI": null,
+  "G_f": null,
+  "C_sub": null,
+  "PierCap_ht_toTop": "in",
+  "PierCap_width": "in",
+  "Pier_wall_area": "ft^2"
+ },
+ "sources": {
+  "h_f": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_ht",
+   "status": "journal"
+  },
+  "R_f": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_radius",
+   "status": "journal"
+  },
+  "z_base": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_base_CapCG",
+   "status": "journal"
+  },
+  "h_tan": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_straight_ht",
+   "status": "journal"
+  },
+  "z_spring": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_spring_CapCG",
+   "status": "journal"
+  },
+  "z_mid": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Fence_CG_CapCG",
+   "status": "journal"
+  },
+  "Span_1": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_1",
+   "status": "journal"
+  },
+  "Span_2": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Span_2",
+   "status": "journal"
+  },
+  "L_trib": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pier_tributaryLength",
+   "status": "journal"
+  },
+  "p_fence": {
+   "source": "LRFD 13.8.2",
+   "status": "code"
+  },
+  "P_Z_III": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.P_Z_III",
+   "status": "journal"
+  },
+  "Depth_SuperStr": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Depth_SuperStr",
+   "status": "journal"
+  },
+  "Dist_windSuperCG_CapCG": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Dist_windSuperCG_CapCG",
+   "status": "journal"
+  },
+  "P_Z_SI": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.P_Z_SI",
+   "status": "journal"
+  },
+  "H_bridge": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Concrete_top_aboveGround",
+   "status": "journal"
+  },
+  "V_III": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.V_III",
+   "status": "journal"
+  },
+  "V_SI": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.V_SI",
+   "status": "journal"
+  },
+  "K_Z_III": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.K_Z_gov",
+   "status": "journal"
+  },
+  "K_Z_SI": {
+   "source": "LRFD 3.8.1.2.1; SDG 2.4.1.B; LRFD Eq. 3.8.1.2.1-3; LRFD 3.8.1.2.1-4",
+   "status": "code"
+  },
+  "G_f": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.G_fac",
+   "status": "journal"
+  },
+  "C_sub": {
+   "source": "LRFD Table 3.8.1.2.1-2; LRFD 13.8.2",
+   "status": "code"
+  },
+  "PierCap_ht_toTop": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PierCap_ht_toTop",
+   "status": "journal"
+  },
+  "PierCap_width": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.PierCap_width",
+   "status": "journal"
+  },
+  "Pier_wall_area": {
+   "source": "Bridge Geometry - 2 Beam · BridgeGeometry_2Beam.Pier_wall_area",
+   "status": "journal"
+  }
+ },
+ "confirmations": {},
+ "receipts": {},
+ "reviews": {}
+}

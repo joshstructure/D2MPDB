@@ -1,0 +1,38 @@
+[
+ {
+  "case_sha256": "ae9e7cf9d7763246f1144b754af484348c0155d5ecece4a15ff632fd80a277dd",
+  "cells_and_labels": 297,
+  "definitions": 192,
+  "fragment": "mse_wall_exclusion/bpad/journal/MSEWallExclusion.xml",
+  "fragment_sha256": "5726db79ee204f9d3d2e5f1d226079716a4effb4ecaf610d6937c5abb06131cc",
+  "functions": 0,
+  "journal_file": "journal/D2_I95_Project_Journal.bpad",
+  "journal_references": 5,
+  "literals_kept": [],
+  "mathcad_values_compared": null,
+  "package_revision": "64d3fa431983354fa8a1d957252141963c96fbc5027ee4c5422207dc199d3fd8",
+  "project_stamp": {
+   "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "CheckDate": "",
+   "CheckedBy": "MIK",
+   "DesignDate": "10/17/2026",
+   "DesignedBy": "JAT",
+   "Firm": "Parsons Transportation Group Inc",
+   "JobNo": "",
+   "Project": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "owner": "ProjectInfo"
+  },
+  "references": [
+   "BridgeGeometry_2Beam.EndBentCap_length",
+   "BridgeGeometry_2Beam.EndBentCap_width",
+   "BridgeGeometry_2Beam.EndBent_pileCount",
+   "BridgeGeometry_2Beam.EndBent_pileSpacing",
+   "BridgeGeometry_2Beam.EndBent_pileWidth"
+  ],
+  "report_name": "MSEWallExclusion",
+  "review_document": "mse_wall_exclusion/bpad/journal/MSE Wall Exclusion - Both End Bents - Journal Edition (review).bpad",
+  "review_sha256": "0d430a8f1f20a62a8de3e6ea9ae452f3bbb9e464d7a157f12171c67b7ff645ee",
+  "status": "⊗ There are FAILURES",
+  "tool_comparisons": 183
+ }
+]

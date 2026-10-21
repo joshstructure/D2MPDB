@@ -1,0 +1,858 @@
+<blocks>
+  <block id="paragraphrefreturn0034" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" id="paragraphrefreturn0034">
+            <link address="#SuperstructureUplift.UpliftStrategyStep01;paragraphupliftstrategy01">Code basis and calculation strategy</link>
+        </paragraph>
+  </block>
+  <block id="paragraphrefreturn0033" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" id="paragraphrefreturn0033">
+            Design basis:
+            <link address="#CodeReferencesC004.CodePage17;paragraphprojectcoderef17C004">LRFD 10th Edition (2024)</link>
+            ; FDOT Structures Manual, January 2026.
+            <link address="#CodeReferencesC004.CodePage01;paragraphprojectcoderef01C004">RFQ V6.0 Addendum 5 — Governing Regulations</link>
+            controls the contract edition and Task Work Order exceptions.
+        </paragraph>
+  </block>
+  <block id="UpliftOverviewContext" kind="prose">
+    <table name="UpliftOverviewContext" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Determine global superstructure uplift, bearing reactions and pier load transfer.</paragraph></textcell>
+                </row>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">C001 wind; C002 fence load; live bridge geometry and classified permanent loads.</paragraph></textcell>
+                </row>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Concurrent bearing reactions, contact/stability checks and signed pier load sets.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftReviewFlow" kind="canvas">
+    <canvas name="UpliftReviewFlow" title="Solution approach and load path" unit="in" size="6.5 in; 2.2 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <lines pts="2.02,1.67,0; 4.470000000000001,1.67,0; 4.470000000000001,2.09,0; 2.02,2.09,0; 2.02,1.67,0" linecolor="#1766A0" linethickness="1"/>
+                <planecontainer origin="2.12,1.92,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>Steps 1–2: Set up the model</textvalue></planecontainer>
+                <planecontainer origin="2.12,1.74,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>Geometry / gravity / load factors</textvalue></planecontainer>
+                <lines pts="0.18,0.92,0; 2.7800000000000002,0.92,0; 2.7800000000000002,1.36,0; 0.18,1.36,0; 0.18,0.92,0" linecolor="#1766A0" linethickness="1"/>
+                <planecontainer origin="0.28,1.1900000000000002,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>Step 3: Resolve concurrent loads</textvalue></planecontainer>
+                <planecontainer origin="0.28,0.99,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>C001 wind / C002 fence / gravity</textvalue></planecontainer>
+                <lines pts="3.72,0.92,0; 6.32,0.92,0; 6.32,1.36,0; 3.72,1.36,0; 3.72,0.92,0" linecolor="#1766A0" linethickness="1"/>
+                <planecontainer origin="3.8200000000000003,1.1900000000000002,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>Step 4: Check physical bearings</textvalue></planecontainer>
+                <planecontainer origin="3.8200000000000003,0.99,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>Reactions / contact / overturning</textvalue></planecontainer>
+                <lines pts="2.02,0.1,0; 4.470000000000001,0.1,0; 4.470000000000001,0.59,0; 2.02,0.59,0; 2.02,0.1,0" linecolor="#1766A0" linethickness="1"/>
+                <planecontainer origin="2.12,0.41999999999999993,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>Steps 5–6: Transfer and verify</textvalue></planecontainer>
+                <planecontainer origin="2.12,0.17,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#29333D"><textvalue>Pier forces / residual moments</textvalue></planecontainer>
+                <arrowlines pts="2.7,1.67,0; 1.48,1.36,0" linecolor="#1766A0" linethickness="1" endarrow="6; 3"/>
+                <arrowlines pts="2.78,1.14,0; 3.72,1.14,0" linecolor="#1766A0" linethickness="1" endarrow="6; 3"/>
+                <arrowlines pts="5.02,.92,0; 3.87,.59,0" linecolor="#1766A0" linethickness="1" endarrow="6; 3"/>
+            </canvas>
+  </block>
+  <block id="p4" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="7">Strength III minimum-gravity combinations; both transverse wind directions are tabulated in the bearing check.</paragraph>
+  </block>
+  <block id="p5" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="8" leftindent="0" background="#F1F5FA">Pier applicability: only the Strength III perpendicular-wind/uplift case is evaluated here. Service IV is not used for the current nonprestressed pier / steel-pile configuration.</paragraph>
+  </block>
+  <block id="p6" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">The source wind geometry is provisional. Positive reactions establish contact for this load model only; pad compression, rotation, shear and connection capacities are separate checks.</paragraph>
+  </block>
+  <block id="paragraphupliftstrategy01" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" spacingbefore="9" keepwithnext="True" id="paragraphupliftstrategy01">1. Model, sign convention and live inputs.</paragraph>
+  </block>
+  <block id="p8" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" level="1">• Read geometry from the project sources, define positive compression, and locate both the bearing plane and the cap reference.</paragraph>
+  </block>
+  <block id="paragraphupliftstrategy02" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" spacingbefore="9" keepwithnext="True" id="paragraphupliftstrategy02">2. Gravity classification and load combinations.</paragraph>
+  </block>
+  <block id="p10" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" level="1">• Separate above-bearing gravity from substructure weight, then apply the existing minimum-gravity factors for each limit state.</paragraph>
+  </block>
+  <block id="paragraphupliftstrategy03" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" spacingbefore="9" keepwithnext="True" id="paragraphupliftstrategy03">3. Concurrent wind and bearing equilibrium.</paragraph>
+  </block>
+  <block id="p12" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" level="1">• Combine C001 vertical wind with matching horizontal wind and resolve the windward-quarter-point eccentricity into unequal beam reactions.</paragraph>
+  </block>
+  <block id="paragraphupliftstrategy04" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" spacingbefore="9" keepwithnext="True" id="paragraphupliftstrategy04">4. Individual bearing reactions and restraint.</paragraph>
+  </block>
+  <block id="p14" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" level="1">• Apply each span contribution to its physical bearings, reverse wind direction, and evaluate contact, overturning and restraint demand.</paragraph>
+  </block>
+  <block id="paragraphupliftstrategy05" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" spacingbefore="9" keepwithnext="True" id="paragraphupliftstrategy05">5. Pier load transfer for FB-MultiPier.</paragraph>
+  </block>
+  <block id="p16" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" level="1">• Collect the physical bearing rows at the pier nodes and retain only the residual couples not already carried by the transferred forces.</paragraph>
+  </block>
+  <block id="paragraphupliftstrategy06" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5" fontweight="bold" spacingbefore="9" keepwithnext="True" id="paragraphupliftstrategy06">6. Coherence, equilibrium and release checks.</paragraph>
+  </block>
+  <block id="p18" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" level="1">• Reconcile geometry, weight classification and force/moment equilibrium; retain the live bearing-datum release condition.</paragraph>
+  </block>
+  <block id="UpliftOverview" kind="prose">
+    <table name="UpliftOverview" capture="False" colwidths="1:520">
+                <stylerule range="A1:A4" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A4" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1:A1" background="#DCE7F3" fontweight="bold" horzalign="Left"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">SOLUTION APPROACH</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftOverview2" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• C001 supplies vertical wind and the matching perpendicular concrete wind. C002 supplies the existing fence load. Geometry and weights remain live project references.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftOverview3" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Resolve concurrent vertical force and transverse overturning at each span end into individual beam-bearing reactions. Sum span contributions only after checking each physical bearing.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftOverview4" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Report contact, overturning, and hold-down demand; provide a separate pier load transfer with explicit residual moments.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftDesignBasis" kind="prose">
+    <table name="UpliftDesignBasis" capture="False" colwidths="1:520">
+                <stylerule range="A1:A5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A5" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="UpliftDesignBasisRow1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold" spacingbefore="0" keepwithnext="True">DESIGN BASIS QUICK REFERENCE</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftDesignBasisRow2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            •
+                            <link address="#CodeReferencesC004.CodePage01;paragraphprojectcoderef01C004">RFQ — Governing Regulations</link>
+                            — The contract adoption record governs the applicable editions and documented Task Work Order exceptions.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftDesignBasisRow3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            •
+                            <link address="#CodeReferencesC004.CodePage11;paragraphprojectcoderef11C004">LRFD 3.8.2</link>
+                            — C001 generates the vertical wind at the windward quarter point, concurrent with the applicable horizontal wind.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftDesignBasisRow4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            •
+                            <link address="#CodeReferencesC004.CodePage14;paragraphprojectcoderef14C004">LRFD Table 3.4.1-1</link>
+                            ;
+                            <link address="#CodeReferencesC004.CodePage27;paragraphprojectcoderef27C004">LRFD Table 3.4.1-2</link>
+                            — The displayed combinations use minimum stabilizing permanent load for each evaluated wind limit state.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftDesignBasisRow5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            •
+                            <link address="#CodeReferencesC004.CodePage28;paragraphprojectcoderef28C004">FDOT SDG 2.10.A.1</link>
+                            ;
+                            <link address="#CodeReferencesC004.CodePage30;paragraphprojectcoderef30C004">SDG 6.5.F/H</link>
+                            ;
+                            <link address="#CodeReferencesC004.CodePage31;paragraphprojectcoderef31C004">SDG 6.5.3</link>
+                            — Bearing reaction modifiers, uplift approval and lateral restraint remain the design-basis conditions documented in the detailed check.
+                        </paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p21" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="8" textcolor="#43556B" keepwithnext="True">
+                Basis:
+                <link address="#CodeReferencesC004.CodePage11;paragraphprojectcoderef11C004">LRFD 3.8.2</link>
+            </paragraph>
+  </block>
+  <block id="UpliftStep01Context" kind="prose">
+    <table name="UpliftStep01Context" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Establish the bearing geometry, reference elevations and tributary lengths.</paragraph></textcell>
+                </row>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">C001 deck width; central bridge geometry; span and bearing locations.</paragraph></textcell>
+                </row>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Live geometry and moment arms for the bearing equilibrium model.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftTransverseSection" kind="canvas">
+    <canvas name="UpliftTransverseSection" title="Perpendicular wind and bearing reactions" unit="in" size="6.5 in; 3.35 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <planecontainer origin="0.18,3.13,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="10" textcolor="#29333D"><textvalue>TRANSVERSE FREE BODY — +T WIND; NOT TO SCALE</textvalue></planecontainer>
+                <lines pts="0.7,1.25,0; 5.8,1.25,0; 5.8,1.42,0; 0.7,1.42,0; 0.7,1.25,0" linecolor="#454B52" linethickness="0.8"/>
+                <lines pts="1.42,1.25,0; 1.42,0.89,0; 1.8599999999999999,0.89,0; 1.8599999999999999,1.25,0" linecolor="#454B52" linethickness="0.8"/>
+                <arrowlines pts="1.64,0.36,0; 1.64,0.86,0" linecolor="#C13A36" linethickness="0.8" endarrow="6; 3"/>
+                <lines pts="4.640000000000001,1.25,0; 4.640000000000001,0.89,0; 5.08,0.89,0; 5.08,1.25,0" linecolor="#454B52" linethickness="0.8"/>
+                <arrowlines pts="4.86,0.36,0; 4.86,0.86,0" linecolor="#C13A36" linethickness="0.8" endarrow="6; 3"/>
+                <arrowlines pts="3.25,2.24,0; 3.25,1.48,0" linecolor="#C13A36" linethickness="0.8" endarrow="6; 3"/>
+                <arrowlines pts="1.975,1.5,0; 1.975,2.24,0" linecolor="#C13A36" linethickness="0.8" endarrow="6; 3"/>
+                <arrowlines pts="0.42,2.16,0; 1.18,2.16,0" linecolor="#C13A36" linethickness="0.8" endarrow="6; 3"/>
+                <planecontainer origin="0.25,2.42,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#C13A36"><textvalue>H →</textvalue></planecontainer>
+                <planecontainer origin="2.1,2.4,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#C13A36"><textvalue>U ↑</textvalue></planecontainer>
+                <planecontainer origin="3.4,2.4,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#C13A36"><textvalue>D ↓</textvalue></planecontainer>
+                <planecontainer origin="4.4,2.16,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>+T →; +V ↑</textvalue></planecontainer>
+                <planecontainer origin="0.6,0.17,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>B− / windward</textvalue></planecontainer>
+                <planecontainer origin="4.5,0.17,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>B+ / leeward</textvalue></planecontainer>
+                <lineardim startpoint="0.7,1.25,0" endpoint="5.8,1.25,0" pointondimline="3.25,0.65,0" formula="BridgeGeometry_2Beam.Deck_out2out" linecolor="#1766A0" textcolor="#1766A0" linethickness=".7" fontsize="9"><num>13 ft 7 in</num></lineardim>
+                <lineardim startpoint="1.64,0.89,0" endpoint="4.86,0.89,0" pointondimline="3.25,1.02,0" formula="BridgeGeometry_2Beam.Beam_spacing" linecolor="#1766A0" textcolor="#1766A0" linethickness=".7" fontsize="9"><num>8 ft 7 in</num></lineardim>
+                <lineardim startpoint="1.975,2.24,0" endpoint="3.25,2.24,0" pointondimline="2.6125,2.76,0" formula="C001WindLoadOnPedBridgeSuperstructure.e_V" linecolor="#1766A0" textcolor="#1766A0" linethickness=".7" fontsize="9"><num>3 25/64 ft</num></lineardim>
+                <planecontainer origin="3.83,1.69,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Opposite wind swaps reactions.</textvalue></planecontainer>
+            </canvas>
+  </block>
+  <block id="UpliftStep01Key" kind="prose">
+    <table name="UpliftStep01Key" capture="False" colwidths="1:520">
+                <stylerule range="A1:A5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A5" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="UpliftStep01KeyRow1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold" spacingbefore="0" keepwithnext="True">GEOMETRY KEY</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep01KeyRow2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.b" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.b</expbody>
+                            </dynexp>
+                             — Outside deck width; the vertical wind acts within this width.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep01KeyRow3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.s" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.s</expbody>
+                            </dynexp>
+                             — Transverse spacing between the beam-bearing lines.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep01KeyRow4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.l_P" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.l_P</expbody>
+                            </dynexp>
+                             — Combined pier tributary length from the adjacent simple spans.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep01KeyRow5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.e" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.e</expbody>
+                            </dynexp>
+                             — Vertical-wind eccentricity from bridge centerline toward the windward quarter point.
+                        </paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftAssumptions" kind="prose">
+    <table name="UpliftAssumptions" capture="False" colwidths="1:520">
+                <stylerule range="A1:A5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A5" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1:A1" background="#DCE7F3" fontweight="bold" horzalign="Left"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">MODEL ASSUMPTIONS</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftAssumptions2" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• T is transverse, L runs from End Bent 1 toward End Bent 2, and V is upward; axes are right-handed. B− and B+ are at negative and positive transverse coordinates. Reactions are positive in compression.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftAssumptions3" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• The deck and diaphragms distribute global transverse overturning to the beam lines. Girders are simply supported for vertical load; deck continuity at the pier does not impose girder flexural continuity.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftAssumptions4" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Uniform equivalent loads use the project span and tributary-length definitions. Equal transverse DC/DW distribution, level bearing reaction planes and common end-section geometry are adopted. Local thickened-end weight is not credited.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftAssumptions5" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                            • C004 uses the explicitly perpendicular horizontal case from
+                            <link address="#CodeReferencesC004.CodePage10;paragraphprojectcoderef10C004">LRFD Table 3.8.1.2.3a-1</link>
+                            . C002’s simplified transverse/longitudinal combination remains a separate load case; do not merge its independent components into these rows.
+                        </paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p26" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="8" textcolor="#43556B" keepwithnext="True">
+                Basis:
+                <link address="#CodeReferencesC004.CodePage14;paragraphprojectcoderef14C004">LRFD Table 3.4.1-1</link>
+                ;
+                <link address="#CodeReferencesC004.CodePage27;paragraphprojectcoderef27C004">LRFD Table 3.4.1-2</link>
+            </paragraph>
+  </block>
+  <block id="UpliftStep02Context" kind="prose">
+    <table name="UpliftStep02Context" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Identify the permanent weight that stabilizes the superstructure bearings.</paragraph></textcell>
+                </row>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Live weight classification; LRFD load factors; bearing reaction modifier.</paragraph></textcell>
+                </row>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Minimum-gravity Strength III combinations.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftStep02Key" kind="prose">
+    <table name="UpliftStep02Key" capture="False" colwidths="1:520">
+                <stylerule range="A1:A4" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="UpliftStep02KeyRow1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold" spacingbefore="0" keepwithnext="True">GRAVITY INPUT KEY</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep02KeyRow2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.w_DC" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.w_DC</expbody>
+                            </dynexp>
+                             — Above-bearing permanent structural line load.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep02KeyRow3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.w_DW" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.w_DW</expbody>
+                            </dynexp>
+                             — Assured wearing-surface and utility line load credited for uplift.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep02KeyRow4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.DC_sub" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.DC_sub</expbody>
+                            </dynexp>
+                             — Below-bearing cheek-wall and pedestal weight used only in pier transfer.
+                        </paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="paragraphrefreturn0035" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2" fontweight="bold" textcolor="#1766A0" texthighlight="#EDF3F8" spacingbefore="4" keepwithnext="True" id="paragraphrefreturn0035">
+            <link address="#SuperstructureUplift.UpliftStrategyStep02;paragraphupliftstrategy02">STEP 2 OF 6 | Gravity classification and load combinations</link>
+        </paragraph>
+  </block>
+  <block id="p30" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Both Strength III wind directions omit pedestrian live load as a stabilizing action. These are minimum-gravity uplift combinations, not the maximum-compression bearing design envelope.</paragraph>
+  </block>
+  <block id="p31" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+            Reference:
+            <link address="#CodeReferencesC004.CodePage14;paragraphprojectcoderef14C004">LRFD Table 3.4.1-1</link>
+        </paragraph>
+  </block>
+  <block id="p32" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+            Reference:
+            <link address="#CodeReferencesC004.CodePage27;paragraphprojectcoderef27C004">LRFD Table 3.4.1-2 (10th Edition)</link>
+        </paragraph>
+  </block>
+  <block id="p33" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="12">
+            Reference:
+            <link address="#CodeReferencesC004.CodePage28;paragraphprojectcoderef28C004">FDOT SDG 2.10.A.1</link>
+            ;
+            <link address="#CodeReferencesC004.CodePage30;paragraphprojectcoderef30C004">SDG 6.5.F/H</link>
+            ;
+            <link address="#CodeReferencesC004.CodePage31;paragraphprojectcoderef31C004">SDG 6.5.3</link>
+        </paragraph>
+  </block>
+  <block id="p34" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="8" textcolor="#43556B" keepwithnext="True">
+                Basis:
+                <link address="#C001WindLoadOnPedBridgeSuperstructure">C001 vertical and horizontal wind</link>
+                ;
+                <link address="#CodeReferencesC004.CodePage11;paragraphprojectcoderef11C004">LRFD 3.8.2</link>
+            </paragraph>
+  </block>
+  <block id="UpliftStep03Context" kind="prose">
+    <table name="UpliftStep03Context" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Resolve simultaneous gravity, vertical wind and transverse wind at the bearing plane.</paragraph></textcell>
+                </row>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">C001 vertical and perpendicular concrete wind; C002 fence wind; live moment arms.</paragraph></textcell>
+                </row>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Concurrent line loads, overturning moment and beam-line reactions.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftStep03Key" kind="prose">
+    <table name="UpliftStep03Key" capture="False" colwidths="1:520">
+                <stylerule range="A1:A6" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A6" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="UpliftStep03KeyRow1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold" spacingbefore="0" keepwithnext="True">EQUILIBRIUM KEY — REPRESENTATIVE STRENGTH III CASE</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep03KeyRow2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.w_D_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.w_D_III</expbody>
+                            </dynexp>
+                             — Downward stabilizing line load for the representative Strength III case.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep03KeyRow3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.w_U_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.w_U_III</expbody>
+                            </dynexp>
+                             — Concurrent upward wind line load.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep03KeyRow4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.m_OT_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.m_OT_III</expbody>
+                            </dynexp>
+                             — Combined transverse overturning moment per bridge length at the bearing plane.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep03KeyRow5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.r_W_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.r_W_III</expbody>
+                            </dynexp>
+                             — Windward compression reaction per tributary length.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep03KeyRow6" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.r_L_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.r_L_III</expbody>
+                            </dynexp>
+                             — Concurrent leeward compression reaction per tributary length.
+                        </paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftEquilibriumBasis" kind="prose">
+    <table name="UpliftEquilibriumBasis" capture="False" colwidths="1:520">
+                <stylerule range="A1:A3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1:A1" background="#DCE7F3" fontweight="bold" horzalign="Left"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">DERIVED EQUILIBRIUM</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftEquilibriumBasis2" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• For either simple-span end, multiply each line-load reaction by the adjacent span tributary length. Reverse the transverse wind sign to swap windward and leeward beam reactions.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftEquilibriumBasis3" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• The force and moment formulas below are static equilibrium, not separate LRFD equations. Each case retains simultaneous gravity, upward wind, horizontal wind and eccentricity.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p38" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="8" textcolor="#43556B" keepwithnext="True">
+                Basis:
+                <link address="#CodeReferencesC004.CodePage30;paragraphprojectcoderef30C004">FDOT SDG 6.5.F/H</link>
+                ;
+                <link address="#CodeReferencesC004.CodePage31;paragraphprojectcoderef31C004">SDG 6.5.3</link>
+            </paragraph>
+  </block>
+  <block id="UpliftStep04Context" kind="prose">
+    <table name="UpliftStep04Context" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Check compression and required hold-down demand at each physical bearing.</paragraph></textcell>
+                </row>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Live beam-line reactions; each span-end tributary length; both wind directions.</paragraph></textcell>
+                </row>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Individual reactions, contact checks and global overturning checks.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftStep04Key" kind="prose">
+    <table name="UpliftStep04Key" capture="False" colwidths="1:520">
+                <stylerule range="A1:A4" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A4" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="UpliftStep04KeyRow1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold" spacingbefore="0" keepwithnext="True">BEARING CHECK KEY — REPRESENTATIVE STRENGTH III CASE</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep04KeyRow2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.R_min_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.R_min_III</expbody>
+                            </dynexp>
+                             — Minimum individual bearing compression in the Strength III cases.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep04KeyRow3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.T_req_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.T_req_III</expbody>
+                            </dynexp>
+                             — Required tensile restraint at the most adversely loaded bearing.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep04KeyRow4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.DC_OT_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.DC_OT_III</expbody>
+                            </dynexp>
+                             — Destabilizing moment divided by stabilizing moment about the leeward bearing line.
+                        </paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p41" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Span 1 rows apply at End Bent 1 and the back-span bearing row at the pier. Span 2 rows apply at the ahead-span pier row and End Bent 2. Each row gives the reactions of individual physical bearings, not paired pier nodes.</paragraph>
+  </block>
+  <block id="p42" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">*Horizontal demand assumes equal transverse shear sharing by the beam bearings and the same simple-span distribution as C002. Final restraint stiffness and load path must support that distribution; no pad or connection shear capacity is asserted.</paragraph>
+  </block>
+  <block id="UpliftRestraintScope" kind="prose">
+    <table name="UpliftRestraintScope" capture="False" colwidths="1:520">
+                <stylerule range="A1:A5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A5" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1:A1" background="#DCE7F3" fontweight="bold" horzalign="Left"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">BEARING RESTRAINT BASIS</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftRestraintScope2" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• The bearing contact model carries compression only and credits no tensile resistance. A negative reaction is a required hold-down force, not force that an unanchored pad can transmit.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftRestraintScope3" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                            •
+                            <link address="#CodeReferencesC004.CodePage30;paragraphprojectcoderef30C004">FDOT SDG 6.5.F</link>
+                            /H requires approval for uplift and uplift restraints. Rebalancing gravity or revising the structural arrangement precedes restraint design.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftRestraintScope4" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">
+                            •
+                            <link address="#CodeReferencesC004.CodePage31;paragraphprojectcoderef31C004">FDOT SDG 6.5.3</link>
+                            requires the lateral restraint load path to be established. Concrete shear lugs for concrete-beam bridges are restricted to the specified extreme-event use; they are not credited for these wind cases.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftRestraintScope5" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Bearing-pad and anchorage capacities are not defined in these calculations. Contact results do not establish pad shear, compression, rotation, anchorage, diaphragm or foundation adequacy.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p44" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="8" textcolor="#43556B" keepwithnext="True">
+                Basis:
+                <link address="#FenceWind">C002 cap reference and load transfer</link>
+            </paragraph>
+  </block>
+  <block id="p45" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">The primary cap application is now the four physical bearing positions in Ped Bridge. The two-node equations below are an optional condensation to the pier centerline; their pitch/yaw residuals must not be applied with the four physical rows.</paragraph>
+  </block>
+  <block id="p46" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">
+            <link address="#FBMPPier.FBMPEntryReference;paragraphfbmpentry">Open the four-bearing node application list</link>
+        </paragraph>
+  </block>
+  <block id="UpliftStep05Context" kind="prose">
+    <table name="UpliftStep05Context" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Transfer each concurrent case to the paired pier nodes without repeating eccentricity effects.</paragraph></textcell>
+                </row>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Physical bearing reactions; below-bearing gravity; cap and bearing reference locations.</paragraph></textcell>
+                </row>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Signed pier forces and the residual moments needed to preserve equilibrium.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftPierPlan" kind="canvas">
+    <canvas name="UpliftPierPlan" title="Physical bearings and paired pier nodes" unit="in" size="6.5 in; 2.5 in; scaletofit">
+                <include target="Library.Geometry"/>
+                <planecontainer origin="0.18,2.31,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>PIER PLAN — PHYSICAL ROWS AND COLLECTED NODES; NOT TO SCALE</textvalue></planecontainer>
+                <lines pts="1.3,0.45,0; 1.3,1.85,0" linecolor="#454B52" linethickness="0.8"/>
+                <lines pts="5.1,0.45,0; 5.1,1.85,0" linecolor="#454B52" linethickness="0.8"/>
+                <lines pts="0.75,1.15,0; 5.3,1.15,0" linecolor="#8A9199" linethickness="0.8"/>
+                <lines pts="1.1800000000000002,0.64,0; 1.42,0.64,0; 1.42,0.82,0; 1.1800000000000002,0.82,0; 1.1800000000000002,0.64,0" linecolor="#454B52" linethickness="0.8"/>
+                <lines pts="1.1800000000000002,1.48,0; 1.42,1.48,0; 1.42,1.6600000000000001,0; 1.1800000000000002,1.6600000000000001,0; 1.1800000000000002,1.48,0" linecolor="#454B52" linethickness="0.8"/>
+                <circle center="1.3,1.15,0" normal="0,0,1" radius=".06" linecolor="#1766A0" fillcolor="#FFFFFF" linethickness="1"/>
+                <lines pts="4.9799999999999995,0.64,0; 5.22,0.64,0; 5.22,0.82,0; 4.9799999999999995,0.82,0; 4.9799999999999995,0.64,0" linecolor="#454B52" linethickness="0.8"/>
+                <lines pts="4.9799999999999995,1.48,0; 5.22,1.48,0; 5.22,1.6600000000000001,0; 4.9799999999999995,1.6600000000000001,0; 4.9799999999999995,1.48,0" linecolor="#454B52" linethickness="0.8"/>
+                <circle center="5.1,1.15,0" normal="0,0,1" radius=".06" linecolor="#1766A0" fillcolor="#FFFFFF" linethickness="1"/>
+                <planecontainer origin="0.12,1.67,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Span 2 (+L)</textvalue></planecontainer>
+                <planecontainer origin="0.12,0.57,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Span 1 (−L)</textvalue></planecontainer>
+                <planecontainer origin="2.5,1.24,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>Pier centerline</textvalue></planecontainer>
+                <planecontainer origin="1.06,0.24,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>B−</textvalue></planecontainer>
+                <planecontainer origin="4.94,0.24,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>B+</textvalue></planecontainer>
+                <arrowlines pts="6.0,0.7,0; 6.0,1.7,0" linecolor="#1766A0" linethickness="0.8" endarrow="6; 3"/>
+                <planecontainer origin="5.78,1.95,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="9" textcolor="#29333D"><textvalue>+L</textvalue></planecontainer>
+                <lineardim startpoint="1.3,1.57,0" endpoint="5.1,1.57,0" pointondimline="3.1999999999999997,2.01,0" formula="BridgeGeometry_2Beam.Beam_spacing" linecolor="#1766A0" textcolor="#1766A0" linethickness=".7" fontsize="9"><num>8 ft 7 in</num></lineardim>
+                <lineardim startpoint="5.10,.73,0" endpoint="5.10,1.57,0" pointondimline="5.50,1.15,0" formula="BridgeGeometry_2Beam.Pier_bearingCL_spacing" linecolor="#1766A0" textcolor="#1766A0" linethickness=".7" fontsize="9"><num>21 in</num></lineardim>
+            </canvas>
+  </block>
+  <block id="UpliftStep05Key" kind="prose">
+    <table name="UpliftStep05Key" capture="False" colwidths="1:520">
+                <stylerule range="A1:A6" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A6" background="#F1F5FA" fontfamily="Times New Roman" fontsize="11" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1" background="#DCE7F3" fontweight="bold"/>
+                <row>
+                    <textcell name="UpliftStep05KeyRow1" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" fontweight="bold" spacingbefore="0" keepwithnext="True">PIER TRANSFER KEY — STRENGTH III / +T</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep05KeyRow2" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.N_minus_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.N_minus_III</expbody>
+                            </dynexp>
+                             — Downward load at the collected negative-transverse pier node for +T wind.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep05KeyRow3" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.N_plus_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.N_plus_III</expbody>
+                            </dynexp>
+                             — Concurrent downward load at the positive-transverse pier node.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep05KeyRow4" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.M_L_res_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.M_L_res_III</expbody>
+                            </dynexp>
+                             — Residual roll moment after transfer to the cap reference.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep05KeyRow5" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.M_T_res_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.M_T_res_III</expbody>
+                            </dynexp>
+                             — Residual pitch moment after collecting the physical bearing rows.
+                        </paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell name="UpliftStep05KeyRow6" capture="False">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7" level="1">
+                            • 
+                            <dynexp formula="SuperstructureUplift.M_V_res_III" mathlayout="on" showformula="True" showidentifier="False" showresult="False" showsteps="False">
+                                <expbody>SuperstructureUplift.M_V_res_III</expbody>
+                            </dynexp>
+                             — Residual yaw moment for the same concurrent case.
+                        </paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="UpliftFBMPRules" kind="prose">
+    <table name="UpliftFBMPRules" capture="False" colwidths="1:520">
+                <stylerule range="A1:A5" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:A5" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;); Border(&quot;BetweenColumns&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+                <stylerule range="A1:A1" background="#DCE7F3" fontweight="bold" horzalign="Left"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">COMPLETE CONCURRENT PIER LOAD SET — APPLY ONCE</paragraph></textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftFBMPRules2" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Use the factored downward node loads below at transverse coordinates minus and plus half the beam spacing, at the pier centerline and cap-reference elevation. They replace the corresponding DC/DW-plus-wind vertical totals; they are not additional gravity loads.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftFBMPRules3" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Apply the transverse force at the cap reference (or split it equally between these two nodes). Apply the residual moments once. The transverse reaction difference already carries the bearing-level overturning moment.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftFBMPRules4" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Do not also apply C002’s full superstructure cap moment or repeat the vertical wind. Wind on the pier itself remains a separate same-direction load; cap and pier-wall self weight remain in FBMP.</paragraph>
+                    </textcell>
+                </row>
+                <row>
+                    <textcell capture="False" name="UpliftFBMPRules5" background="#F1F5FA">
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">• Physical node IDs and model axis mapping are not supplied. The transfer uses the C002 simple-span horizontal sharing assumption and requires confirmation against the actual bearing restraints and model.</paragraph>
+                    </textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p51" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">Residual moments follow the right-hand rule. Reverse T wind to reverse transverse force, roll and yaw; gravity-induced pitch retains its sign. Wind-only increments and equilibrium identities are available in the collapsed derivations.</paragraph>
+  </block>
+  <block id="p52" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="8" textcolor="#43556B" keepwithnext="True">
+                Basis:
+                <link address="#BridgeGeometry_2Beam">Bridge geometry</link>
+                ;
+                <link address="#BearingDesign.TypeFPadDesign;paragraphrefreturn0036">Permanent weights</link>
+            </paragraph>
+  </block>
+  <block id="UpliftStep06Context" kind="prose">
+    <table name="UpliftStep06Context" capture="False" colwidths="1:90, 2:430">
+                <stylerule range="A1:B3" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})"/>
+                <stylerule range="A1:B3" fontfamily="Times New Roman" fontsize="10" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 1, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#CCD9E5&quot;);"/>
+                <stylerule range="A1:A3" fontweight="bold"/>
+                <stylerule range="A1:B1" background="#F1F5FA"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Objective</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Confirm source agreement and identify unresolved conditions for load transfer.</paragraph></textcell>
+                </row>
+                <stylerule range="A2:B2" background="#FFF8E9"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Inputs</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Live geometry, source totals, concurrent forces and moment identities.</paragraph></textcell>
+                </row>
+                <stylerule range="A3:B3" background="#EFF7F1"/>
+                <row>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Output</paragraph></textcell>
+                    <textcell capture="False"><paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Live check status and the governing release condition.</paragraph></textcell>
+                </row>
+            </table>
+  </block>
+  <block id="p54" kind="prose">
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="7">The contact and stability checks are global support checks for the displayed wind combinations. Final geometry, actual load distribution, bearing capacity, lateral restraint and the contract edition remain the design basis for final release.</paragraph>
+  </block>
+</blocks>

@@ -1,0 +1,431 @@
+[
+ {
+  "section": "spans_and_tributary_lengths",
+  "name": "l_P",
+  "expr": "l_1+l_2",
+  "unit": "ft",
+  "caption": "Combined tributary length contributing to the pier.",
+  "refs": []
+ },
+ {
+  "section": "wind_eccentricity_and_reference_elevatio",
+  "name": "h_c",
+  "expr": "Depth_SuperStr/2",
+  "unit": "ft",
+  "caption": "Concrete wind lever arm above the bearing plane.",
+  "refs": []
+ },
+ {
+  "section": "wind_eccentricity_and_reference_elevatio",
+  "name": "h_f",
+  "expr": "Fence_CG_CapCG - BearingPlane_CapCG",
+  "unit": "ft",
+  "caption": "Fence wind lever arm above the bearing plane.",
+  "refs": []
+ },
+ {
+  "section": "concurrent_line_loads_strength_iii",
+  "name": "w_H_III",
+  "expr": "η_bearing*γ_WS_III*(w_c_III+w_f_III)",
+  "unit": "kip/ft",
+  "caption": "Concurrent factored transverse wind intensity.",
+  "refs": []
+ },
+ {
+  "section": "concurrent_line_loads_strength_iii",
+  "name": "w_U_III",
+  "expr": "η_bearing*γ_WS_III*w_V_III",
+  "unit": "kip/ft",
+  "caption": "Concurrent factored upward wind intensity.",
+  "refs": []
+ },
+ {
+  "section": "concurrent_line_loads_strength_iii",
+  "name": "w_D_III",
+  "expr": "η_bearing*(γ_DC_III*w_DC+γ_DW_III*w_DW)",
+  "unit": "kip/ft",
+  "caption": "Minimum factored downward stabilizing intensity.",
+  "refs": []
+ },
+ {
+  "section": "overturning_moments_at_the_bearing_plane",
+  "name": "m_H_III",
+  "expr": "η_bearing*γ_WS_III*(w_c_III*h_c+w_f_III*h_f)",
+  "unit": "kip",
+  "caption": "Horizontal-wind overturning moment per bridge length.",
+  "refs": []
+ },
+ {
+  "section": "overturning_moments_at_the_bearing_plane",
+  "name": "m_U_III",
+  "expr": "w_U_III*e",
+  "unit": "kip",
+  "caption": "Eccentric upward-wind moment per bridge length.",
+  "refs": []
+ },
+ {
+  "section": "overturning_moments_at_the_bearing_plane",
+  "name": "m_OT_III",
+  "expr": "m_H_III+m_U_III",
+  "unit": "kip",
+  "caption": "Combined overturning moment per bridge length.",
+  "refs": []
+ },
+ {
+  "section": "transverse_beam_line_equilibrium",
+  "name": "r_W_III",
+  "expr": "(w_D_III-w_U_III)/2-m_OT_III/s",
+  "unit": "kip/ft",
+  "caption": "Windward line reaction, positive in compression.",
+  "refs": []
+ },
+ {
+  "section": "transverse_beam_line_equilibrium",
+  "name": "r_L_III",
+  "expr": "(w_D_III-w_U_III)/2+m_OT_III/s",
+  "unit": "kip/ft",
+  "caption": "Concurrent leeward line reaction, positive in compression.",
+  "refs": []
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "R_W1_III",
+  "expr": "r_W_III*l_1",
+  "unit": "kip",
+  "caption": "Windward bearing compression, Span 1 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "R_L1_III",
+  "expr": "r_L_III*l_1",
+  "unit": "kip",
+  "caption": "Leeward bearing compression, Span 1 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "H_1_III",
+  "expr": "w_H_III*l_1",
+  "unit": "kip",
+  "caption": "Transverse wind delivered by the Span 1 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "U_1_III",
+  "expr": "w_U_III*l_1",
+  "unit": "kip",
+  "caption": "Upward wind delivered by the Span 1 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "D_1_III",
+  "expr": "w_D_III*l_1",
+  "unit": "kip",
+  "caption": "Factored downward load delivered by the Span 1 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "H_pad1_III",
+  "expr": "H_1_III/Beam_count",
+  "unit": "kip",
+  "caption": "Horizontal wind per bearing, Span 1 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "R_W2_III",
+  "expr": "r_W_III*l_2",
+  "unit": "kip",
+  "caption": "Windward bearing compression, Span 2 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "R_L2_III",
+  "expr": "r_L_III*l_2",
+  "unit": "kip",
+  "caption": "Leeward bearing compression, Span 2 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "H_2_III",
+  "expr": "w_H_III*l_2",
+  "unit": "kip",
+  "caption": "Transverse wind delivered by the Span 2 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "U_2_III",
+  "expr": "w_U_III*l_2",
+  "unit": "kip",
+  "caption": "Upward wind delivered by the Span 2 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "D_2_III",
+  "expr": "w_D_III*l_2",
+  "unit": "kip",
+  "caption": "Factored downward load delivered by the Span 2 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "H_pad2_III",
+  "expr": "H_2_III/Beam_count",
+  "unit": "kip",
+  "caption": "Horizontal wind per bearing, Span 2 end",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "R_min_III",
+  "expr": "Min(R_W1_III,R_L1_III,R_W2_III,R_L2_III)",
+  "unit": "kip",
+  "caption": "Minimum individual bearing compression",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "T_req_III",
+  "expr": "Max(0 kip,-R_min_III)",
+  "unit": "kip",
+  "caption": "Required tensile restraint per bearing",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "Chk_contact_III",
+  "expr": "If(R_min_III>0 kip, \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Contact retained at every bearing",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "Chk_uplift_III",
+  "expr": "If(w_D_III>w_U_III, \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Net vertical compression",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "Chk_OT_III",
+  "expr": "If(DC_OT_III<1, \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Transverse overturning",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "ΔN_minus_III",
+  "expr": "-w_U_III*l_P/2-m_OT_III*l_P/s",
+  "unit": "kip",
+  "caption": "Change of the negative-transverse node load",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "ΔN_plus_III",
+  "expr": "-w_U_III*l_P/2+m_OT_III*l_P/s",
+  "unit": "kip",
+  "caption": "Change of the positive-transverse node load",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "H_P_III",
+  "expr": "H_1_III+H_2_III",
+  "unit": "kip",
+  "caption": "Total transverse wind at the pier",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_4_individual_bearing_reactions_and_",
+  "name": "M_L_total_III",
+  "expr": "m_OT_III*l_P+H_P_III*z_b",
+  "unit": "kip*ft",
+  "caption": "Total roll moment at the cap reference",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "global_overturning_equilibrium_strength_",
+  "name": "m_stab_III",
+  "expr": "w_D_III*s/2",
+  "unit": "kip",
+  "caption": "Stabilizing gravity moment about the leeward bearing line.",
+  "refs": []
+ },
+ {
+  "section": "global_overturning_equilibrium_strength_",
+  "name": "m_destab_III",
+  "expr": "m_H_III+w_U_III*(s/2+e)",
+  "unit": "kip",
+  "caption": "Destabilizing wind moment about the same bearing line.",
+  "refs": []
+ },
+ {
+  "section": "global_overturning_equilibrium_strength_",
+  "name": "DC_OT_III",
+  "expr": "m_destab_III/m_stab_III",
+  "unit": null,
+  "caption": "Overturning demand divided by stabilizing moment.",
+  "refs": []
+ },
+ {
+  "section": "global_overturning_equilibrium_strength_",
+  "name": "DC_uplift_III",
+  "expr": "w_U_III/w_D_III",
+  "unit": null,
+  "caption": "Upward wind intensity / minimum factored downward intensity",
+  "refs": []
+ },
+ {
+  "section": "contact_overturning_and_restraint_checks",
+  "name": "Uplift_restraint",
+  "expr": "If(Chk_contact_III==\"✓ PASS\", \"No uplift-restraint demand in the evaluated wind cases.\", \"LOSS OF COMPRESSION — redesign or approved uplift restraint required.\")",
+  "unit": null,
+  "caption": "Uplift-restraint demand",
+  "refs": []
+ },
+ {
+  "section": "collect_the_physical_bearing_reactions_s",
+  "name": "N_minus_III",
+  "expr": "R_W1_III+R_W2_III+η_bearing*γ_DC_III*DC_sub/2",
+  "unit": "kip",
+  "caption": "Collected negative-transverse pier-node load for +T wind.",
+  "refs": []
+ },
+ {
+  "section": "collect_the_physical_bearing_reactions_s",
+  "name": "N_plus_III",
+  "expr": "R_L1_III+R_L2_III+η_bearing*γ_DC_III*DC_sub/2",
+  "unit": "kip",
+  "caption": "Concurrent positive-transverse pier-node load.",
+  "refs": []
+ },
+ {
+  "section": "residual_moments_at_the_cap_reference_sa",
+  "name": "M_L_res_III",
+  "expr": "H_P_III*z_b",
+  "unit": "kip*ft",
+  "caption": "Residual roll moment between bearing and cap-reference elevations.",
+  "refs": []
+ },
+ {
+  "section": "residual_moments_at_the_cap_reference_sa",
+  "name": "M_T_res_III",
+  "expr": "k*((D_1_III-U_1_III)-(D_2_III-U_2_III))",
+  "unit": "kip*ft",
+  "caption": "Residual pitch from collecting the physical bearing rows.",
+  "refs": []
+ },
+ {
+  "section": "residual_moments_at_the_cap_reference_sa",
+  "name": "M_V_res_III",
+  "expr": "k*(H_1_III-H_2_III)",
+  "unit": "kip*ft",
+  "caption": "Residual yaw from the unequal span contributions.",
+  "refs": []
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Chk_config",
+  "expr": "If(And(Beam_count==2,BearingNodeCount==2*Beam_count,s>0 ft,b>=s,l_1>0 ft,l_2>0 ft,h_c>0 ft,h_f>0 ft), \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Supported beam and node configuration",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Chk_tributary",
+  "expr": "If(Abs(l_P-Pier_tributaryLength)<0.000001 ft, \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Source tributary length",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Chk_horizontal",
+  "expr": "If(And(Abs(w_H_III*l_P-η_bearing*γ_WS_III*F_cap_T_III)<0.000001 kip,Abs((m_H_III+w_H_III*z_b)*l_P-η_bearing*γ_WS_III*M_cap_L_III)<0.000001 kip*ft), \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Strength III horizontal set agrees with C002",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Chk_force",
+  "expr": "If(And(Abs(R_W1_III+R_L1_III-D_1_III+U_1_III)<0.000001 kip,Abs(R_W2_III+R_L2_III-D_2_III+U_2_III)<0.000001 kip), \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Physical-bearing vertical equilibrium",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Chk_roll",
+  "expr": "If(And(Abs((R_L1_III-R_W1_III)*s/2-m_OT_III*l_1)<0.000001 kip*ft,Abs((R_L2_III-R_W2_III)*s/2-m_OT_III*l_2)<0.000001 kip*ft), \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Physical-bearing roll equilibrium",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Chk_transfer",
+  "expr": "If(Abs((N_plus_III-N_minus_III)*s/2+M_L_res_III-M_L_total_III)<0.000001 kip*ft, \"✓ PASS\", \"⊗ FAIL\")",
+  "unit": null,
+  "caption": "Collected-node roll plus residual equals the applied moment",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Check_model",
+  "expr": "If(Or(Chk_config == \"⊗ FAIL\", Chk_tributary == \"⊗ FAIL\", Chk_gravity == \"⊗ FAIL\", Chk_horizontal == \"⊗ FAIL\", Chk_force == \"⊗ FAIL\", Chk_roll == \"⊗ FAIL\", Chk_transfer == \"⊗ FAIL\"), \"⊗ There are FAILURES\", \"✓ All Checks Pass\")",
+  "unit": null,
+  "caption": "All coherence and equilibrium checks",
+  "refs": [],
+  "hidden": true
+ },
+ {
+  "section": "step_6_coherence_equilibrium_and_release",
+  "name": "Status_transfer",
+  "expr": "If(Chk_datum==\"⊗ FAIL\", \"PROVISIONAL — resolve the bearing/cap datum before FBMP transfer.\", If(And(Check_model==\"✓ All Checks Pass\",Chk_contact_III==\"✓ PASS\"), \"Source checks pass; confirm final geometry, restraints and model axes.\", \"REVIEW — source, equilibrium or bearing-contact check fails.\"))",
+  "unit": null,
+  "caption": "Release condition of the pier load transfer",
+  "refs": [],
+  "hidden": true
+ }
+]

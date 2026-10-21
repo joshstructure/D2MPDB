@@ -1,0 +1,223 @@
+{
+ "report_name": "FenceWind",
+ "cnumber": "C002",
+ "title": "Fence Wind and Pier Node Loads",
+ "prefix": "fence",
+ "bpad_file": "Fence Wind and Pier Loads.bpad",
+ "notebook": "Fence_Wind_Pier_Loads.ipynb",
+ "tool_prefix": "fence-tool-",
+ "case_name": "C002 - Fence Wind and Pier Node Loads (journal values, feb1bb316d08)",
+ "intro": [
+  "**What it does.** The wind loads transferred to the intermediate pier: the prescribed LRFD 13.8.2 pressure on the gross projected fence face, the concrete superstructure wind from C001 over the pier tributary length, the simplified LRFD 3.8.1.2.3a components (100 % transverse plus 25 % longitudinal, applied simultaneously) at the cap reference for Strength III and Service I, and the separate wind acting directly on the pier wall and cap."
+ ],
+ "overview": [
+  "Wind loads transferred to the intermediate pier. The fence is loaded by the prescribed LRFD 13.8.2 pressure of 0.015 ksf applied once to the gross projected fence face for the selected wind direction; the opposite direction is a sign-reversed case. The concrete superstructure wind of C001 acts on the pier tributary length, half of each simply supported span.",
+  "For this girder bridge (individual span not more than 150 ft, concrete top not more than 33 ft above low ground) the simplified wind components of LRFD 3.8.1.2.3a are used in lieu of the plan-angle sweep: the transverse force and moment are the full perpendicular-wind resultants and the longitudinal components are 25 % of them, applied simultaneously with WS = 1.0 in Strength III and Service I. Wind acting directly on the pier wall and cap uses the LRFD pressure equation with the substructure drag coefficient and is listed separately."
+ ],
+ "outside": "attachment and fence-member design, bearing uplift (C004), the physical node assignment in the analysis model and foundation capacity.",
+ "flow": [
+  "Fence geometry",
+  "Tributary length",
+  "Fence resultant",
+  "Concrete wind",
+  "Cap-reference totals",
+  "25 % longitudinal",
+  "Direct pier wind",
+  "Checks"
+ ],
+ "key_results": [
+  {
+   "label": "Fence force F_fence",
+   "name": "F_fence"
+  },
+  {
+   "label": "Cap transverse force, Strength III",
+   "name": "F_cap_T_III"
+  },
+  {
+   "label": "Cap longitudinal force, Strength III",
+   "name": "F_cap_L_III"
+  },
+  {
+   "label": "Cap moment M_L, Strength III",
+   "name": "M_cap_L_III"
+  },
+  {
+   "label": "Cap moment M_T, Strength III",
+   "name": "M_cap_T_III"
+  },
+  {
+   "label": "Direct wall force F_T, Strength III",
+   "name": "F_wall_T_III"
+  },
+  {
+   "label": "Direct wall force F_L, Strength III",
+   "name": "F_wall_L_III"
+  }
+ ],
+ "summary_tables": [
+  "FWReviewSummary",
+  "FWCapIII",
+  "FWCapSI",
+  "FWWall"
+ ],
+ "published": [
+  "F_c_III",
+  "F_cap_T_III",
+  "F_fence",
+  "F_wall_L_III",
+  "F_wall_L_SI",
+  "F_wall_T_III",
+  "F_wall_T_SI",
+  "M_c_III",
+  "M_cap_L_III",
+  "M_fence",
+  "p_fence",
+  "p_sub_III",
+  "p_sub_SI",
+  "w_fence",
+  "z_eff",
+  "z_mid"
+ ],
+ "anchors": {
+  "step_1_code_basis_reference_point_and_di": "paragraphfwstrategywork01",
+  "step_2_fence_geometry_and_tributary_leng": "paragraphfwstrategywork02",
+  "step_3_prescribed_lrfd_13_8_2_fence_load": "paragraphfwstrategywork03",
+  "step_4_simplified_superstructure_wind_co": "paragraphfwstrategywork04",
+  "step_5_wind_acting_directly_on_the_pier": "paragraphfwstrategywork05",
+  "step_6_prepare_the_transfer_to_analysis_": "paragraphfwstrategywork06",
+  "step_7_check_the_simplified_method_and_c": "paragraphfwstrategywork07"
+ },
+ "notes": {
+  "h_f": [
+   "Reference the outer gross fence height from Bridge Geometry_2 Beam. Its base is the parapet top; its crown is the outside hoop surface."
+  ],
+  "R_f": [
+   "Reference the post-centerline hoop radius defined in Bridge Geometry_2 Beam. The outer rise used for gross wind height is slightly larger."
+  ],
+  "z_base": [
+   "Reference the fence-base moment arm from Bridge Geometry_2 Beam. The retained cap-reference and concrete-depth assumptions require confirmation."
+  ],
+  "h_tan": [
+   "Reference the dimensioned straight leg directly. Do not subtract the centerline radius from the outer gross fence height; those dimensions end at different surfaces."
+  ],
+  "z_spring": [
+   "Reference the springline height from the geometry module. It equals the fence-base arm plus the dimensioned straight leg."
+  ],
+  "z_mid": [
+   "Reference the centroid of the gross projected fence outline in the geometry module. The underlying cap-reference arm remains provisional."
+  ],
+  "L_trib": [
+   "Reference the pier tributary length from the geometry module. It is half the sum of the two simply supported spans."
+  ],
+  "p_fence": [
+   "Apply this pressure to the gross fence outline, including the mesh openings. No second solidity/drag-based fence pressure is calculated."
+  ],
+  "a_T_fence": [
+   "For global bridge load transfer, the curved enclosure is represented by its gross projected vertical height for the selected wind direction."
+  ],
+  "b_M_fence": [
+   "The projected global fence load is represented as a uniform horizontal pressure over the full projected fence height, so its first moment equals projected height times z_mid."
+  ],
+  "z_eff": [
+   "A horizontal fence force applied at this projected-area centroid creates the same cap-reference moment as the adopted one-face global fence load."
+  ],
+  "w_fence": [
+   "Multiply the prescribed pressure by the one wind-exposed gross projected fence height. The opposite wind direction is a separate sign-reversed case; no second simultaneous leeward 15 psf load is added."
+  ],
+  "F_fence": [
+   "Multiply the fence force per bridge foot by the tributary length carried by the pier."
+  ],
+  "M_fence": [
+   "Use the projected-area centroid so the single horizontal force reproduces the adopted fence moment about the cap reference."
+  ],
+  "F_V_fence": [
+   "The global bridge-transfer model uses one horizontal projected fence resultant for each wind direction. No separate vertical fence component is introduced here; local fence-member and attachment design remains a separate check."
+  ],
+  "M_c_III": [
+   "Multiply force by that distance to obtain its turning effect about the longitudinal axis through the cap reference. The units are force times length, such as kip-feet."
+  ],
+  "F_cap_T_III": [
+   "Both are total forces in the same direction, so they can be added directly. Direct wind on the pier wall and cap itself is handled separately. This total is applied once, not repeated in full at each analysis node."
+  ],
+  "M_cap_L_III": [
+   "Each term already includes its own force location and resulting turning effect. Use the matching total force from this same pressure case when applying the force-and-moment set."
+  ],
+  "M_c_SI": [
+   "Multiply force by that distance to obtain its turning effect about the longitudinal axis through the cap reference. The units are force times length, such as kip-feet."
+  ],
+  "F_cap_T_SI": [
+   "Both are total forces in the same direction, so they can be added directly. Direct wind on the pier wall and cap itself is handled separately. This total is applied once, not repeated in full at each analysis node."
+  ],
+  "M_cap_L_SI": [
+   "Each term already includes its own force location and resulting turning effect. Use the matching total force from this same pressure case when applying the force-and-moment set."
+  ],
+  "L_span_max": [
+   "Compare the two neighboring simply supported spans and keep the larger. LRFD 3.8.1.2.3a limits the simplified method to an individual span not more than 150 ft."
+  ],
+  "H_bridge": [
+   "Reference the concrete-top height above low ground in the geometry module. The numerical simplified-method check is conditional on the retained ground-clearance and concrete-depth assumptions."
+  ],
+  "Check_simplified": [
+   "A passing result authorizes the 100% transverse plus 25% longitudinal simultaneous component method used below. If either geometry limit changes and this check fails, the plan-angle method must be restored."
+  ],
+  "F_cap_L_III": [
+   "LRFD 3.8.1.2.3a permits the longitudinal component to be taken as 25% of the transverse perpendicular-wind load for a qualifying usual girder bridge. Keep this force with the full transverse force from the same row."
+  ],
+  "M_cap_T_III": [
+   "Apply 25% of the concrete perpendicular-wind force at its existing concrete load height and 25% of the fence force at z_mid, the adopted fence projected-height midpoint. This forms the cap-reference moment associated with the simultaneous longitudinal force using the same projected fence load height for the simultaneous longitudinal component."
+  ],
+  "F_cap_L_SI": [
+   "Use 25% of the Service I transverse cap force as the simultaneous longitudinal component. The Strength III and Service I wind sets remain separate."
+  ],
+  "M_cap_T_SI": [
+   "Apply 25% of the Service I concrete perpendicular-wind force at its existing concrete load height and 25% of the fence force at z_mid. This forms the longitudinal-component moment at the cap reference using the same load locations as the corresponding force components."
+  ],
+  "K_Z_SI": [
+   "The entered value of 1 leaves the squared-speed pressure term unchanged by exposure and height in this Service I calculation. The gust and drag multipliers still apply. This input is separate from the height-dependent Strength III multiplier."
+  ],
+  "q_III": [
+   "This result already includes the gust multiplier. Apply the appropriate drag or combined drag-and-area multiplier next, without multiplying by the gust factor again."
+  ],
+  "q_SI": [
+   "This result already includes the gust multiplier. Apply the appropriate drag or combined drag-and-area multiplier next, without multiplying by the gust factor again."
+  ],
+  "C_sub": [
+   "This dimensionless input converts the common wind-pressure term into pressure for the pier wall and cap. It belongs to the direct substructure calculation. The LRFD 13.8.2 fence load is separate and does not use this direct-pier drag coefficient."
+  ],
+  "p_sub_III": [
+   "These direct pier loads are calculated separately from loads delivered through the bridge superstructure and fence."
+  ],
+  "p_sub_SI": [
+   "These direct pier loads are calculated separately from loads delivered through the bridge superstructure and fence."
+  ],
+  "F_wall_T_III": [
+   "Multiply pressure by that area to obtain force. Apply this force at the corresponding wall-load location; it is not included in the superstructure-plus-fence cap totals."
+  ],
+  "F_wall_L_III": [
+   "Multiply the Strength III direct-substructure wind pressure by the broad-face projected pier area in Bridge Geometry_2 Beam. The geometry variable is an area, not a force.",
+   "The exposed pier area is retained from the prior model and needs confirmation from the complete revised pier section. Keep this direct-pier force separate from the superstructure-plus-fence cap total."
+  ],
+  "F_wall_T_SI": [
+   "Multiply pressure by that area to obtain force. Apply this force at the corresponding wall-load location; it is not included in the superstructure-plus-fence cap totals."
+  ],
+  "Check_geometry": [
+   "The fence height and hoop radius must be positive, the straight-leg height must not be negative, and the cap-reference and tributary dimensions must be valid."
+  ],
+  "Check_balance": [
+   "The live check verifies the equivalent-height identity and the Strength III/Service I force-and-moment additions. It does not establish member or foundation capacity."
+  ]
+ },
+ "working_notes": [
+  "The calculation was ported from the journal module FenceWind (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+ ],
+ "pending": [],
+ "symbols": {},
+ "accepted_wording": [
+  "Task Work Order"
+ ],
+ "visible_rules": [],
+ "unused_inputs": [],
+ "confirmations": {},
+ "skipped_journal_definitions": []
+}

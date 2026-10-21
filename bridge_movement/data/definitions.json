@@ -1,0 +1,94 @@
+[
+ {
+  "section": "2_1_bridge_geometry",
+  "name": "L_unit",
+  "expr": "L_left + L_right",
+  "unit": "ft",
+  "caption": "Total continuous deck-unit length.",
+  "refs": []
+ },
+ {
+  "section": "2_2_temperature_parameters",
+  "name": "α_T",
+  "expr": "6*10^-6",
+  "unit": null,
+  "caption": "Coefficient of thermal expansion, normal-weight concrete (per °F)",
+  "refs": [
+   "lrfd_5_4_2_2"
+  ]
+ },
+ {
+  "section": "3_temperature_change",
+  "name": "ΔT_rise",
+  "expr": "T_high - T_mean",
+  "unit": null,
+  "caption": "Temperature rise from the 70°F mean, °F.",
+  "refs": []
+ },
+ {
+  "section": "3_temperature_change",
+  "name": "ΔT_fall",
+  "expr": "T_mean - T_low",
+  "unit": null,
+  "caption": "Temperature fall from the 70°F mean, °F.",
+  "refs": []
+ },
+ {
+  "section": "4_1_unfactored_joint_bearing_detailing_m",
+  "name": "δ_left",
+  "expr": "α_T*ΔT_rise*L_left",
+  "unit": "in",
+  "caption": "Thermal movement magnitude at Begin Bridge for a 35°F rise or fall.",
+  "refs": []
+ },
+ {
+  "section": "4_1_unfactored_joint_bearing_detailing_m",
+  "name": "δ_right",
+  "expr": "α_T*ΔT_rise*L_right",
+  "unit": "in",
+  "caption": "Thermal movement magnitude at End Bridge for a 35°F rise or fall.",
+  "refs": []
+ },
+ {
+  "section": "4_1_unfactored_joint_bearing_detailing_m",
+  "name": "δ_end_max",
+  "expr": "Max(δ_left, δ_right)",
+  "unit": "in",
+  "caption": "Governing unfactored end movement for joint/bearing detailing.",
+  "refs": []
+ },
+ {
+  "section": "4_1_unfactored_joint_bearing_detailing_m",
+  "name": "δ_end_to_end",
+  "expr": "δ_left + δ_right",
+  "unit": "in",
+  "caption": "Total relative thermal change between the two bridge ends.",
+  "refs": []
+ },
+ {
+  "section": "4_2_factored_tu_movement_envelope",
+  "name": "δ_left_TU",
+  "expr": "γ_TU*δ_left",
+  "unit": "in",
+  "caption": "Factored TU movement magnitude at Begin Bridge.",
+  "refs": [
+   "sdg_6_3"
+  ]
+ },
+ {
+  "section": "4_2_factored_tu_movement_envelope",
+  "name": "δ_right_TU",
+  "expr": "γ_TU*δ_right",
+  "unit": "in",
+  "caption": "Factored TU movement magnitude at End Bridge.",
+  "refs": []
+ },
+ {
+  "section": "4_2_factored_tu_movement_envelope",
+  "name": "δ_end_max_TU",
+  "expr": "Max(δ_left_TU, δ_right_TU)",
+  "unit": "in",
+  "caption": "Governing factored TU end movement envelope.",
+  "refs": []
+ }
+]
