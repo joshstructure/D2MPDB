@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "38df825b6305d5c84c689042a55f7aa803cae0c1dd2b11960858d0434904665d",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T028/build_components.py; scripts/build_ring_wall_bpad.py build verification)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "New calculation C017 added from the ring_wall package starting case (673 values and 178 statuses reproduced to 1e-9 by the independent evaluator); no existing module value changed; FBMP not rerun.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "C006 (fin plates and hairpins) unchanged; the pier-wall support concept remains undecided. The new module keeps the ring end-cover and grid-clearance failures and its five open scope items in its hidden notes.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "5f83d392947e6ea2626d4f3bb7f126fbc70a3b54daceadc71768d7558016d362"
+    }
+  ]
+}

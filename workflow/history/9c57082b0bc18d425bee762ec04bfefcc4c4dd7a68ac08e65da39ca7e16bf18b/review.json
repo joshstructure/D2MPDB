@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "9c57082b0bc18d425bee762ec04bfefcc4c4dd7a68ac08e65da39ca7e16bf18b",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T029/verify_order.py)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "Registered module order only: report:PierWallRings (C017, added by T028) moved after report:BearingDesign (C016); every component byte unchanged; FBMP not rerun.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "No component content changed; the open items of every module remain as recorded.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "ab314683a918cb5131ef7fcc494c86f986e0762ccda91b782616def3cc487f45"
+    }
+  ]
+}

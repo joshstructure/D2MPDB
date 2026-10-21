@@ -1,10 +1,10 @@
 {
-  "checked_at_utc": "2026-10-21T14:56:28.248173+00:00",
+  "checked_at_utc": "2026-10-21T23:24:55.645605+00:00",
   "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
-  "register_sha256": "793871c2d49bc0df53629b1261e6ac5c46d3c00003ffa5b11a2219b4d3d8e5e4",
+  "register_sha256": "673987794eb48cc5d4f62231cbe5e2ef208dabad505eb9e7a3dca099c57bfe20",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "assumptions_sha256": "2d7ed24138b1dc2a73581745984cc6f29ce0f59c6aea7fc7bffbbc7ed0b52130",
-  "source_count": 37,
+  "source_count": 40,
   "item_count": 28,
   "outstanding_count": 15,
   "status_counts": {
@@ -15,8 +15,9 @@
   },
   "check_counts": {
     "MATCH": 57,
+    "CHANGED": 3,
     "MISSING": 4,
-    "REVIEW": 12,
+    "REVIEW": 21,
     "ERROR": 9
   },
   "assumption_counts": {
@@ -33,8 +34,8 @@
         "JOURNAL"
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
-      "expected_sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a",
-      "actual_sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+      "expected_sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
+      "actual_sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -60,14 +61,14 @@
     },
     {
       "check_id": "SOURCE:CAP-TOOL",
-      "status": "MATCH",
-      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
       "source_ids": [
         "CAP-TOOL"
       ],
       "path": "Cap_and_Pile_Design.ipynb",
       "expected_sha256": "1ba6ac3134cac7723fcae9a3ea28417a96d40e15f53baa2da622554bb37f231f",
-      "actual_sha256": "1ba6ac3134cac7723fcae9a3ea28417a96d40e15f53baa2da622554bb37f231f"
+      "actual_sha256": "9aca70455755399677eefed74206244f17870771225cc637a06d46c580e867ad"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -258,14 +259,14 @@
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
-      "status": "MATCH",
-      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
       "source_ids": [
         "BACKWALL-TOOL"
       ],
       "path": "End_Bent_Backwall_Design.ipynb",
       "expected_sha256": "ca4cef6dfc6025c15fbce238e3014f509abff2051a2c6c5c8efa05a7e774133f",
-      "actual_sha256": "ca4cef6dfc6025c15fbce238e3014f509abff2051a2c6c5c8efa05a7e774133f"
+      "actual_sha256": "c41f9298140d89b8b4104a062ee5134b0fd0a3cdf41b303e8b6c1c3df4d9faf3"
     },
     {
       "check_id": "SOURCE:EB2-REPORT",
@@ -357,14 +358,14 @@
     },
     {
       "check_id": "SOURCE:PILE-TOOL",
-      "status": "MATCH",
-      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "status": "CHANGED",
+      "detail": "File differs from the registered revision; review its consumers before adoption.",
       "source_ids": [
         "PILE-TOOL"
       ],
       "path": "Pile_Design.ipynb",
       "expected_sha256": "c34bd1ebc5530acb6a2df76199a8b22d35d8126b753c7586f659154ab486b6f5",
-      "actual_sha256": "c34bd1ebc5530acb6a2df76199a8b22d35d8126b753c7586f659154ab486b6f5"
+      "actual_sha256": "c20cb11d4d09d05ad7fd6d14ce09b44ffcaebd5ed155ddc94715359aea9ab49f"
     },
     {
       "check_id": "SOURCE:PILE-EB1-REPORT",
@@ -433,6 +434,48 @@
       "actual_sha256": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
     },
     {
+      "check_id": "SOURCE:PIER-WALL-TOOL",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
+      "source_ids": [
+        "PIER-WALL-TOOL"
+      ],
+      "path": "Pier_Wall_Design.ipynb",
+      "expected_sha256": "03e4d0c66be4f18df630ad5266dd7b639acbfaa776deca704a4d157cc9f3bb18",
+      "actual_sha256": "03e4d0c66be4f18df630ad5266dd7b639acbfaa776deca704a4d157cc9f3bb18"
+    },
+    {
+      "check_id": "SOURCE:PIER-WALL-REPORT",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PIER-WALL-REPORT"
+      ],
+      "path": "project_current/pier_wall/Pier Wall Design 10-21.html",
+      "expected_sha256": "12266ff4ac074e905a537f4910b5381400f37663cf6d1d73cdc1e61a813dda25",
+      "actual_sha256": "12266ff4ac074e905a537f4910b5381400f37663cf6d1d73cdc1e61a813dda25"
+    },
+    {
+      "check_id": "SOURCE:PIER-WALL-CASE",
+      "status": "MATCH",
+      "detail": "Exact registered bytes are present.",
+      "source_ids": [
+        "PIER-WALL-CASE"
+      ],
+      "path": "project_current/pier_wall/selected_case.json",
+      "expected_sha256": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c",
+      "actual_sha256": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c"
+    },
+    {
+      "check_id": "DEP:JOURNAL:BACKWALL-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "JOURNAL",
+        "BACKWALL-TOOL"
+      ]
+    },
+    {
       "check_id": "DEP:MCAD-S1:MCAD-DAT1",
       "status": "REVIEW",
       "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
@@ -469,9 +512,81 @@
       ]
     },
     {
+      "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "BACKWALL-REPORT",
+        "BACKWALL-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:BACKWALL-CASE:BACKWALL-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "BACKWALL-CASE",
+        "BACKWALL-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB1-REPORT:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB1-REPORT",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB1-CASE:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB1-CASE",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB2-REPORT:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB2-REPORT",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-EB2-CASE:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-EB2-CASE",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-PIER-REPORT:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-PIER-REPORT",
+        "PILE-TOOL"
+      ]
+    },
+    {
+      "check_id": "DEP:PILE-PIER-CASE:PILE-TOOL",
+      "status": "REVIEW",
+      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
+      "source_ids": [
+        "PILE-PIER-CASE",
+        "PILE-TOOL"
+      ]
+    },
+    {
       "check_id": "JOURNAL:acceptance",
       "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T026. Review scope remains as recorded.",
+      "detail": "Journal matches acceptance receipt T030. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]
@@ -1306,7 +1421,7 @@
         "current_basis": {
           "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
           "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-          "JOURNAL": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
         },
         "open": true
       },
@@ -1349,7 +1464,7 @@
         ],
         "unknown_sources": [],
         "current_basis": {
-          "JOURNAL": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a",
+          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
           "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9"
         },
         "open": true
@@ -1398,7 +1513,7 @@
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
           "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-          "JOURNAL": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
         },
         "open": false
       },
@@ -1445,7 +1560,7 @@
         "current_basis": {
           "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
           "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
-          "JOURNAL": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
         },
         "open": false
       },
@@ -1495,7 +1610,7 @@
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
           "BACKWALL-CASE": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
-          "JOURNAL": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
         },
         "open": false
       },
@@ -1540,7 +1655,7 @@
         "current_basis": {
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "JOURNAL": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
         },
         "open": false
       },
@@ -1626,7 +1741,7 @@
         "unknown_sources": [],
         "current_basis": {
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "JOURNAL": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a"
+          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
         },
         "open": false
       },

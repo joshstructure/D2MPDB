@@ -1,0 +1,35 @@
+[
+ {
+  "bpad_sha256": "d018d8a8cc633f05d86de9859d94a3647b869aa0aceff513beff58da2fb9e721",
+  "case_sha256": "5778a133d8f058b018c249b307b96eb53dee01f7bd842a2d1f15c4bf46f848fd",
+  "case_title": "D2 I-95 | Wall steel and welded pile rings",
+  "cells_and_labels": 1037,
+  "check_statuses_compared": 178,
+  "definitions": 859,
+  "failed_checks": [
+   "RING-END",
+   "RING-GRID"
+  ],
+  "fragment_sha256": "76ae60d436addcc23b442c08739db644486e6ae65cf874f94fb8b866316b2c14",
+  "journal_file": "journal/D2_I95_Project_Journal.bpad",
+  "journal_references": [],
+  "ledger_values_compared": 673,
+  "native_application_recalculation": false,
+  "number": "C017",
+  "pending_checks": 0,
+  "project_stamp": {
+   "live": true,
+   "owner": "ProjectInfo"
+  },
+  "report_name": "PierWallRings",
+  "source_sha256": "1c7f2db62e90c2bfdd4a40c0b81332f52848340c31c1f450b4b67c74464404f2",
+  "status": "2 FAILED CHECKS · LIMITED SCOPE",
+  "status_words": {
+   "FAIL": "FAIL",
+   "PASS": "PASS",
+   "PENDING": "NO CONTACT"
+  },
+  "title": "C017 - Pier Wall, Annular Pile Rings",
+  "tolerance": 1e-09
+ }
+]

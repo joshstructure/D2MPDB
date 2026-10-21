@@ -1,0 +1,10 @@
+{
+  "task": "T030",
+  "base_sha256": "9c57082b0bc18d425bee762ec04bfefcc4c4dd7a68ac08e65da39ca7e16bf18b",
+  "components": {
+    "report:PierWallRings": {
+      "file": "000.xml",
+      "sha256": "76ae60d436addcc23b442c08739db644486e6ae65cf874f94fb8b866316b2c14"
+    }
+  }
+}

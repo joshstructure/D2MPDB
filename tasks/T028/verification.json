@@ -1,0 +1,46 @@
+{
+  "task": "T028",
+  "base_sha256": "0fc5dcfa9fc259c79af00852549878fa309ebc118cc34d18bfc67dbb05ae901a",
+  "components": {
+    "PierWallRings": {
+      "source": "ring_wall/bpad/journal/PierWallRings.xml",
+      "fragment_sha256": "431ee96f400579cecdca6a75ada8229b3d1144a96b443addea4d212d0d402bd1",
+      "definitions": 859,
+      "ledger_values_compared": 673,
+      "check_statuses_compared": 178,
+      "case_sha256": "5778a133d8f058b018c249b307b96eb53dee01f7bd842a2d1f15c4bf46f848fd",
+      "source_sha256": "1c7f2db62e90c2bfdd4a40c0b81332f52848340c31c1f450b4b67c74464404f2",
+      "status": "2 FAILED CHECKS · LIMITED SCOPE",
+      "status_words": {
+        "FAIL": "FAIL",
+        "PASS": "PASS",
+        "PENDING": "NO CONTACT"
+      },
+      "journal_references": [],
+      "reads": [
+        "ProjectInfo.Address",
+        "ProjectInfo.CheckDate",
+        "ProjectInfo.CheckedBy",
+        "ProjectInfo.DesignDate",
+        "ProjectInfo.DesignedBy",
+        "ProjectInfo.Firm",
+        "ProjectInfo.JobNo",
+        "ProjectInfo.Project"
+      ],
+      "title": "C017 - Pier Wall, Annular Pile Rings",
+      "added": true
+    },
+    "PedBridge": {
+      "source": "base.bpad + C017 index link, heading C001 to C017, revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

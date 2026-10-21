@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-21",
+  "decision": "D-071",
+  "authorization": "User instruction, 21 October 2026: \"run that notebook and update the calc report and the bpad calc in the journal.\"",
+  "scope": "Pier wall annular-ring calculation report and case exported to project_current/pier_wall/ from the starting case of the ring_wall package (D-070 ring moment basis; pile stiffness defaults from PILE-PIER-CASE). No other case, FBMP export, geometry, journal module, tracker row or engineering disposition changed in this step. The Blockpad edition goes to the journal as C017 (T028/T029).",
+  "generator": {
+    "script": "scripts/export_project_pier_wall_report.py",
+    "command": ".venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --date 10-21",
+    "package": "ring_wall",
+    "package_source_sha256": "1c7f2db62e90c2bfdd4a40c0b81332f52848340c31c1f450b4b67c74464404f2",
+    "case_sha256": "5778a133d8f058b018c249b307b96eb53dee01f7bd842a2d1f15c4bf46f848fd",
+    "git_head": "1a6db89",
+    "git_head_note": "Read from .git/HEAD and the ref file; the working tree was not inspected for uncommitted changes.",
+    "python": "3.12.14",
+    "plotly": "6.9.0",
+    "note": "The report embeds random Plotly figure ids, so a rerun gives new bytes; --check regenerates it from the saved case and compares with the ids masked."
+  },
+  "files": {
+    "report": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-21.html",
+      "sha256": "12266ff4ac074e905a537f4910b5381400f37663cf6d1d73cdc1e61a813dda25",
+      "bytes": 8547517
+    },
+    "dated_case": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-21.json",
+      "sha256": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c",
+      "bytes": 1159
+    },
+    "selected_case": {
+      "path": "project_current/pier_wall/selected_case.json",
+      "sha256": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c",
+      "bytes": 1159
+    },
+    "checks_csv": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-21 checks.csv",
+      "sha256": "c868f55bc4e375170af4a97b1703137c28cb563447388db01216e31dbe12ef49",
+      "bytes": 30479
+    },
+    "ring_forces_csv": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-21 ring forces.csv",
+      "sha256": "063858e3bc8885c82148c85bd8ebde451cd300a55ad618fa3afbf7dd1dace2cc",
+      "bytes": 8147
+    }
+  },
+  "selected_case_equals_dated_case": true,
+  "results": {
+    "checks": 178,
+    "status_counts": {
+      "FAIL": 2,
+      "PASS": 176
+    },
+    "failed": [
+      "RING-END",
+      "RING-GRID"
+    ],
+    "pending": [],
+    "overall": "2 FAILED CHECKS · LIMITED SCOPE",
+    "service_weight_kip": 114.73710937499999,
+    "factored_weight_kip": 143.42138671875,
+    "wall_rotation_rad": 1.4142117082402517e-05,
+    "pile_head_moment_kip_in": 17.94536421034581,
+    "ring_moment_kip_in": 3.589072842069162,
+    "kern_limit_in": 5.186905570652174,
+    "largest_equivalent_eccentricity_in": 0.7787206273114742,
+    "largest_equivalent_eccentricity_ring": "R1-P1",
+    "rings_without_contact": 0,
+    "largest_design_ring_load_kip": 9.602834924215255,
+    "largest_qmax_ksi": 0.12651100040371885,
+    "grid": "#5 at 11 in",
+    "weld_leg_provided_in": 0.3125,
+    "largest_trial_weld_leg_in": 0.3125,
+    "scope_items": [
+      "SHARING",
+      "STIFFNESS",
+      "SCOPE",
+      "CONNECTION",
+      "BASIS"
+    ]
+  },
+  "register_rows": [
+    "PIER-WALL-TOOL",
+    "PIER-WALL-REPORT",
+    "PIER-WALL-CASE"
+  ],
+  "limitations": "Notebook package run and export only. The numerical checks are the notebook's; the five scope items (sharing among rows, pile stiffness confirmation, wall load paths, connection scope, geometry basis) remain open; the end-cover and grid-clearance failures of the 23-in ring trial remain. Which pier-wall support concept governs (C006 fin plates and hairpins or these welded rings) is not decided by this export. Selection is not engineering acceptance."
+}
