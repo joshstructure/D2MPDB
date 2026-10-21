@@ -7,7 +7,7 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const byId = new Map(data.nodes.map(n => [n.id,n]));
   const valueById = new Map(data.values.map(v => [v.id,v]));
-  const state = { layout:'default', selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, traceCollapsed:true, valuesCollapsed:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
+  const state = { layout:'default', selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, traceCollapsed:true, traceTab:'flow', valuesCollapsed:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
   const params = new URLSearchParams(location.hash.slice(1));
   if(AtlasLayouts.modes.some(m=>m.id===params.get('layout')))state.layout=params.get('layout');
   if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;state.traceCollapsed=false;state.valuesCollapsed=false;}
@@ -81,6 +81,26 @@
     saveSelection();announce(collapsed?'Trace collapsed. More space for the map.':'Trace expanded.');
   }
   $('trace-collapse').onclick=()=>toggleTrace(true);$('trace-expand').onclick=()=>toggleTrace(false);
+  function renderTraceTabs() {
+    const node=byId.get(state.selected),details=state.traceTab==='details',flags=node?.assumption_flags||0;
+    $('trace-flow-panel').hidden=details;$('source-detail').hidden=!details;
+    ['flow','details'].forEach(tab=>{const button=$('trace-tab-'+tab),active=state.traceTab===tab;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;});
+    $('trace-details-count').hidden=!flags;$('trace-details-count').textContent=flags;
+    $('trace-tab-details').setAttribute('aria-label','Node details'+(flags?', '+flags+' open or stale assumptions':''));
+    $('trace-title').textContent=(!details&&state.parameterFocus?valueById.get(state.value)?.label:node?.title)||'Select a source';
+  }
+  function selectTraceTab(tab) {
+    state.traceTab=tab;renderTraceTabs();drawTraceFlow();saveSelection();
+  }
+  ['flow','details'].forEach(tab=>{
+    const button=$('trace-tab-'+tab);
+    button.onclick=()=>selectTraceTab(tab);
+    button.onkeydown=event=>{
+      if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+      event.preventDefault();const target=event.key==='Home'?'flow':event.key==='End'?'details':tab==='flow'?'details':'flow';
+      selectTraceTab(target);$('trace-tab-'+target).focus();
+    };
+  });
   function renderSelection(preserveCamera=false) {
     renderTraceSidebar();renderValuesPanel();const changed=updateLayout();renderValues();paintGraph();renderTrace();
     if(changed&&!preserveCamera&&state.layout==='neighborhood')fit(data.nodes.map(n=>n.id));
@@ -289,7 +309,7 @@
     }).join('');
   }
   function drawTraceFlow() {
-    if(state.traceCollapsed)return;
+    if(state.traceCollapsed||state.traceTab==='details')return;
     const flow=$('trace-flow');if(!flow)return;
     const cards=[...flow.querySelectorAll('[data-source]')],index=new Map(cards.map((el,i)=>[el.dataset.source,i]));
     const links=data.edges.filter(e=>traversable(e)&&index.has(e.source)&&index.has(e.target));
@@ -314,12 +334,12 @@
   }
   function renderTrace() {
     const trace=traceSets(),node=byId.get(state.selected);
-    renderDocument(node);
+    renderDocument(node);renderNodeDetails(node);renderTraceTabs();
     if(!node&&!state.parameterFocus) {
-      $('trace-title').textContent='Select a source';$('parameter-access').innerHTML='';
+      $('parameter-access').innerHTML='';
       document.querySelector('.trace-controls').hidden=true;document.querySelector('.dependency-toggle').hidden=true;
       $('trace-body').innerHTML='<div class="trace-empty"><span aria-hidden="true">↗</span><p>Select any node on the map or find a source above to see what feeds it and what uses it.</p></div>';
-      $('source-detail').innerHTML='';return;
+      return;
     }
     const nodeValues=data.values.filter(v=>v.node_ids.includes(state.selected)),count=nodeValues.length;
     const received=nodeValues.filter(v=>originOf(v).kind==='received').length;
@@ -332,16 +352,14 @@
     document.querySelector('.dependency-toggle').hidden=state.parameterFocus;
     if(state.parameterFocus) {
       const value=valueById.get(state.value);
-      $('trace-title').textContent=value.label;
       $('trace-body').innerHTML=(value.upstream_context?'<div class="trace-group">Model inputs upstream of this result</div>'+traceButtons(value.upstream_context.node_ids)+'<p class="trace-context-note">Journal inputs feed the analysis. They are different quantities from this result.</p>':'')+'<div class="trace-group">Individual value trail</div>'+value.steps.map(s=>
         `<button class="trace-node" data-source="${escape(s.node)}">${escape(s.title)}<small>${escape(format(s.value))} ${escape(unitText(s.unit))} · ${escape(byId.get(s.node).title)}</small></button>`).join('');
       if(value.inputs?.length){$('trace-body').innerHTML+='<div class="trace-group">Inputs referenced by this formula</div>'+formulaInputs(value);bindFormulaInputs($('trace-body'),value);}
       $('trace-body').querySelectorAll('[data-source]').forEach(el=>el.onclick=()=>selectNode(el.dataset.source));
-      $('source-detail').innerHTML='<strong>'+escape(value.key)+'</strong><p>'+escape(value.transform||value.note||value.source_status)+'</p><p>Exact source locations and handoff evidence are shown in the value inspector below.</p><button id="exit-parameter" class="quiet">Back to component trace ↗</button>';
+      $('trace-body').insertAdjacentHTML('beforeend','<div class="trace-value-note"><strong>'+escape(value.key)+'</strong><p>'+escape(value.transform||value.note||value.source_status)+'</p><p>Exact source locations and handoff evidence are shown in the value inspector below.</p><button id="exit-parameter" class="quiet">Back to component trace ↗</button></div>');
       $('exit-parameter').onclick=()=>selectNode(state.selected);
       return;
     }
-    $('trace-title').textContent=node.title;
     const edges=data.edges.filter(e=>traversable(e)&&trace.all.has(e.source)&&trace.all.has(e.target));
     const feedback=new Set([...trace.upstream].filter(id=>trace.downstream.has(id)));
     const upstream=new Set([...trace.upstream].filter(id=>!feedback.has(id))),downstream=new Set([...trace.downstream].filter(id=>!feedback.has(id)));
@@ -360,19 +378,23 @@
       $('show-registered-trace').onclick=()=>navigate(()=>{state.dependencies=true;$('include-dependencies').checked=true;paintGraph();renderTrace();});
     }
     $('trace-body').querySelectorAll('[data-source]').forEach(el=>el.onclick=()=>selectNode(el.dataset.source));
+  }
+  function renderNodeDetails(node) {
+    if(!node){$('source-detail').innerHTML='<p>Select a node to read its source status, assumptions and notes.</p>';return;}
+    if($('source-detail').dataset.node!==node.id){$('source-detail').scrollTop=0;$('source-detail').dataset.node=node.id;}
     const issues=data.issues.filter(i=>i.node_ids.includes(node.id)&&!['Closed','Not applicable'].includes(i.Status));
-    const entries=entriesAt(node.id);
+    const entries=entriesAt(node.id).sort((a,b)=>Number(b.stale)-Number(a.stale)||Number(b.open)-Number(a.open));
     $('source-detail').innerHTML=badge(node.status)+'<p>'+escape(node.detail)+'</p>'+
       (node.registered_status?'<p><strong>Selection:</strong> '+escape(node.registered_status)+'</p>':'')+
       (node.path?'<code>'+escape(node.path)+'</code>':'')+
-      (node.notes?'<details><summary>Source notes</summary><p>'+escape(node.notes)+'</p></details>':'')+
       (issues.length?'<p>'+issues.length+' open or deferred tracker items reference this source.</p>':'')+
       '<button class="quiet" id="inspect-source">Inspect source record ↗</button>'+
-      '<details><summary>Inspect connected paths</summary>'+data.edges.filter(e=>e.source===node.id||e.target===node.id).map(e=>
-        `<p><button class="quiet" data-inspect-edge="${escape(e.id)}">${escape(e.source)} → ${escape(e.target)}<br>${escape(e.label)}</button></p>`).join('')+'</details>'+
       '<div class="assumption-section"><h4>Assumptions & gaps'+(entries.length?' · '+entries.length:'')+'</h4>'+
       (entries.length?entries.map(e=>assumptionCard(e,node.id)).join(''):'<p>No register entry names this source.</p>')+
-      '<button class="quiet" id="draft-assumption">Draft assumption ↗</button></div>';
+      '<button class="quiet" id="draft-assumption">Draft assumption ↗</button></div>'+
+      (node.notes?'<details open><summary>Source notes</summary><p>'+escape(node.notes)+'</p></details>':'')+
+      '<details><summary>Inspect connected paths</summary>'+data.edges.filter(e=>e.source===node.id||e.target===node.id).map(e=>
+        `<p><button class="quiet" data-inspect-edge="${escape(e.id)}">${escape(e.source)} → ${escape(e.target)}<br>${escape(e.label)}</button></p>`).join('')+'</details>';
     $('inspect-source').onclick=()=>showNodeEvidence(node);
     $('source-detail').querySelectorAll('[data-inspect-edge]').forEach(b=>b.onclick=()=>selectEdge(data.edges.find(e=>e.id===b.dataset.inspectEdge)));
     bindAssumptionCards($('source-detail'));
@@ -396,7 +418,7 @@
   function openEntry(id) {
     const e=entryById.get(id);if(!e)return;
     const target=e.node_ids.find(n=>byId.has(n));if(!target)return;
-    selectNode(target);centerOn(target);
+    selectNode(target);selectTraceTab('details');centerOn(target);
     const card=$('source-detail').querySelector('[data-assumption-card="'+id+'"]');
     if(card){card.scrollIntoView({block:'nearest'});card.classList.add('selected');}
   }

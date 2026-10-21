@@ -65,10 +65,9 @@ main{max-width:none;width:100%;padding:18px 22px}
   .map-legend{padding:8px 18px;gap:14px}
   .canvas{flex:1;min-height:0;height:auto}
   .source-results{position:absolute;top:165px;left:18px;right:18px;z-index:5;background:white;box-shadow:0 6px 20px #162b3820;border:1px solid var(--line);border-radius:7px;max-height:calc(100% - 180px)}
-  #trace-content{height:100%;overflow:auto;display:flex;flex-direction:column}
-  #trace-content>.panel-heading,#trace-content>.parameter-access,#trace-content>.node-document,#trace-content>.trace-controls,#trace-content>.dependency-toggle{flex:none}
-  .trace-body{height:auto;min-height:140px;flex:1 0 140px}
-  .source-detail{flex:none;max-height:180px}
+  #trace-content{height:100%;overflow:hidden;display:flex;flex-direction:column}
+  #trace-content>.panel-heading,#trace-content>.trace-tabs{flex:none}
+  #trace-flow-panel,#source-detail{flex:1;min-height:0;height:auto;max-height:none;overflow:auto}
   .trace-rail{min-height:0}
   #values-content{height:100%;min-height:0;display:flex;flex-direction:column}
   #values-content>.panel-heading,#values-content>.origin-filters,#values-content>.origin-context,#values-content>.value-controls{flex:none}
@@ -80,6 +79,27 @@ main{max-width:none;width:100%;padding:18px 22px}
   .value-table-wrap,.value-detail{height:100%;min-height:0;max-height:none}
   .values-panel.no-selection .value-detail,.values-panel.no-values .value-detail{height:100%}
   footer{flex:none;margin-top:7px;line-height:1.3}
+}
+
+/* Two readable views of the selected node, each with one scrolling area. */
+.trace-tabs{display:flex;gap:6px;padding:0 18px 12px;border-bottom:1px solid var(--line)}
+.trace-tabs [role=tab]{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;padding:9px 7px;white-space:nowrap}
+.trace-tabs [aria-selected=true]{color:var(--teal);background:var(--teal-soft);border-color:#9fc7bf}
+#trace-details-count{min-width:18px;padding:2px 5px;border-radius:10px;background:var(--amber-soft);color:var(--amber);font-size:10px;font-weight:600}
+#trace-details-count[hidden],#trace-flow-panel[hidden],#source-detail[hidden]{display:none}
+#trace-flow-panel{padding-top:16px}
+#trace-flow-panel .trace-body{height:auto;min-height:0;overflow:visible}
+#source-detail{border-top:0;padding:18px 20px;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+#source-detail>code{display:block;margin-bottom:14px}
+#source-detail>details{margin-top:18px}
+#source-detail summary{cursor:pointer;font-weight:600}
+#source-detail .assumption-section h4{font-size:12px;margin-top:22px}
+#source-detail .assumption-card{padding:13px 12px;font-size:13px;line-height:1.65;margin:12px 0}
+#source-detail .assumption-card p{margin:9px 0}
+#source-detail .assumption-card .step-actions button{font-size:11px;padding:6px 8px}
+.trace-value-note{font-size:12px;line-height:1.65;border-top:1px solid var(--line);padding-top:16px;margin-top:18px;overflow-wrap:anywhere}
+@media(max-width:760px),(max-height:799px){
+  #trace-flow-panel,#source-detail{height:max(420px,60dvh);max-height:none;overflow:auto}
 }
 @media(min-width:1200px) and (min-height:800px){
   #values-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto minmax(0,1fr)}

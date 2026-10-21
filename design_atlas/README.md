@@ -72,13 +72,18 @@ The existing site is
 - **Assumptions & gaps** come from the hand-edited register
   `project_current/coherence/assumptions.json` (see
   [Assumptions-and-gaps register](#assumptions-and-gaps-register)). Each entry
-  appears as a card on every related source in pane 02, in the source
+  appears as a card in pane 02's **Node details** tab, in the source
   directory's **Assumptions & gaps** group, and in **Coverage & sources**. A
   card badge counts the open or stale entries at that source. **Inspect record**
   opens the entry with its recorded and current basis hashes. **Draft
   assumption** opens a form that emits a JSON entry with the current register
   hashes filled in; the page cannot write the file, so paste the entry into the
   register and rebuild.
+- Pane **02** has **Source flow** and **Node details** tabs. Node details uses
+  the pane's full reading area for status, assumptions, gaps and source notes,
+  including while tracing an individual value. Stale and open entries appear
+  first; the tab badge counts them. Switching tabs preserves the selection and
+  each tab's scroll position. Use Left/Right arrow keys to switch focused tabs.
 - **Flow** orders all non-context relationships from source to use, keeping
   feedback cycles in the same column. **Impact** groups the number of distinct
   downstream sources reachable through those relationships; this is connectivity,
