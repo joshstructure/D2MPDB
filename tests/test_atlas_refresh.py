@@ -1,5 +1,6 @@
 """Change detection, stable candidates, failure isolation and publication receipts."""
 from pathlib import Path
+import json
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -87,6 +88,46 @@ class RefreshTests(unittest.TestCase):
         self.put('source.json', 'new invalid source')
         with patch.object(r.build, 'build_data', side_effect=ValueError('malformed source')):
             with self.assertRaises(ValueError): r.prepare(self.root)
+        self.assertEqual(pending, r.pending_path(self.root).read_bytes())
+        self.assertEqual(r.read_json(self.root / 'design_atlas/publication.json'), {'previous': 'keep'})
+
+    def test_compact_json_and_browser_exports_preserve_all_data(self):
+        data = self.fake_data(self.root)
+        data['note'] = 'Quoted "source" → <xml>\nnext line'
+        output = self.root / 'export'
+        r.build.write_atlas(data, output, self.root)
+        raw = (output / 'atlas-data.json').read_text(encoding='utf-8')
+        script = (output / 'dataset.js').read_text(encoding='utf-8')
+        self.assertEqual(json.loads(raw), data)
+        self.assertEqual(json.loads(script.removeprefix('window.ATLAS_DATA = ').removesuffix(';\n')), data)
+        self.assertNotIn('<xml>', script)
+        self.assertLess(len(raw), len(json.dumps(data, ensure_ascii=False, indent=2)))
+
+    def test_asset_limit_accepts_boundary_and_rejects_larger_nested_file(self):
+        folder = self.root / 'size-check'
+        path = folder / 'downloads' / 'part.bin'
+        path.parent.mkdir(parents=True)
+        with path.open('wb') as handle:
+            handle.truncate(r.MAX_ASSET_BYTES)
+        r.check_asset_sizes(folder)
+        with path.open('ab') as handle:
+            handle.write(b'X')
+        with self.assertRaisesRegex(RuntimeError, 'hosting limit: downloads/part.bin'):
+            r.check_asset_sizes(folder)
+
+    def test_oversized_export_keeps_previous_publication_and_candidate(self):
+        self.prepare()
+        self.put('design_atlas/publication.json', '{"previous":"keep"}')
+        pending = r.pending_path(self.root).read_bytes()
+        self.put('source.json', '{"value": 5}')
+        write_atlas = r.build.write_atlas
+        def oversized(data, output, root):
+            write_atlas(data, output, root)
+            with (output / 'atlas-data.json').open('ab') as handle:
+                handle.truncate(r.MAX_ASSET_BYTES + 1)
+        with patch.object(r.build, 'write_atlas', side_effect=oversized):
+            with self.assertRaisesRegex(RuntimeError, 'hosting limit: atlas-data.json'):
+                self.prepare()
         self.assertEqual(pending, r.pending_path(self.root).read_bytes())
         self.assertEqual(r.read_json(self.root / 'design_atlas/publication.json'), {'previous': 'keep'})
 

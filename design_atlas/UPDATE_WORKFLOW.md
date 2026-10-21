@@ -44,7 +44,11 @@ modules, ambiguous definitions and unexpanded ranges are not silently adopted.
 
 Preparation verifies all evidence paths are watched, hashes inputs before and
 after ingestion, validates source IDs and origins, checks JavaScript, and tests
-all layouts against the candidate graph. A changing source aborts preparation;
+all layouts against the candidate graph. Every generated asset is also checked
+against the hosting limit of 25 MiB per
+file before publication. Both data exports use compact JSON without dropping
+values or evidence. An oversized asset fails preparation and leaves the last
+successful site unchanged. A changing source aborts preparation;
 retry after the source-writing task finishes. Missing optional evidence and
 engineering disagreements stay visible; malformed required input fails closed.
 No native calculation or engineering approval is implied.

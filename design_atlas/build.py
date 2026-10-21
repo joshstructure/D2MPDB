@@ -483,9 +483,10 @@ def write_atlas(data,output,root=ROOT):
     write_downloads(data,output,root)
     for name in ['index.html','atlas.css','layouts.js','downloads.js','atlas.js']:
         shutil.copyfile(ASSETS/name,output/name)
-    encoded=json.dumps(data,ensure_ascii=False,separators=(',',':'),allow_nan=False).replace('<','\\u003c')
-    (output/'dataset.js').write_text('window.ATLAS_DATA = '+encoded+';\n',encoding='utf-8')
-    (output/'atlas-data.json').write_text(json.dumps(data,ensure_ascii=False,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+    # Keep both exports compact: indentation alone can exceed the hosting asset limit.
+    encoded=json.dumps(data,ensure_ascii=False,separators=(',',':'),allow_nan=False)
+    (output/'dataset.js').write_text('window.ATLAS_DATA = '+encoded.replace('<','\\u003c')+';\n',encoding='utf-8')
+    (output/'atlas-data.json').write_text(encoded+'\n',encoding='utf-8')
 
 
 def main():

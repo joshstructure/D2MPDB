@@ -20,6 +20,7 @@ import sys
 from design_atlas import build
 
 ASSETS = ('index.html', 'atlas.css', 'atlas.js', 'layouts.js', 'downloads.js', 'dataset.js', 'atlas-data.json')
+MAX_ASSET_BYTES = 25 * 1024 * 1024
 FIXED_INPUTS = (build.REGISTRY, build.TRACKER, build.SHEET, build.MAPPING, build.RECEIPT, build.ASSUMPTIONS,
                 'design_atlas/manual_links.json', 'design_atlas/site.json', 'tools/project_coherence.py')
 
@@ -123,8 +124,16 @@ def artifact_hashes(folder):
     return {name: build.sha(folder / name) for name in sorted(names)}
 
 
+def check_asset_sizes(folder):
+    for path in sorted(folder.rglob('*')):
+        if path.is_file() and path.stat().st_size > MAX_ASSET_BYTES:
+            raise RuntimeError(f'Atlas asset exceeds the hosting limit: {path.relative_to(folder).as_posix()} '
+                               f'({path.stat().st_size} bytes; maximum {MAX_ASSET_BYTES}).')
+
+
 def verify_artifact(root, pending, require_current=True):
     folder = local(root, pending['output'])
+    check_asset_sizes(folder)
     if artifact_hashes(folder) != pending['artifacts']:
         raise RuntimeError('Prepared atlas was modified; prepare again before publishing.')
     if require_current and inventory(root) != pending['inputs']:
@@ -165,6 +174,7 @@ def prepare(root):
         # byte-identical candidates only through their verified pending receipt.
         output.mkdir(parents=True, exist_ok=True)
         build.write_atlas(data, output, root)
+        check_asset_sizes(output)
         check_browser_code(root, output)
         if inventory(root) != before:
             raise RuntimeError('Sources changed during preparation; last publication is unchanged. Retry after saves finish.')
