@@ -4,6 +4,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import sys
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -11,6 +12,9 @@ buffer=io.BytesIO()
 with zipfile.ZipFile(buffer,'w',compression=zipfile.ZIP_DEFLATED) as archive:
     files=sorted((ROOT/'ring_wall').rglob('*.py'))+[ROOT/'ring_wall/_native/PROVENANCE.json']
     files+=sorted(p for p in (ROOT/'report_cards').glob('*') if p.suffix in ('.py','.js','.css'))  # report definition cards
+    sys.path.insert(0,str(ROOT))
+    from report_cards import cited_page_files
+    files+=[ROOT/'code_excerpts'/'excerpts.json']+cited_page_files(ROOT,scan=['ring_wall/*.py'])  # citation excerpt cards
     for file in files:
         info=zipfile.ZipInfo(file.relative_to(ROOT).as_posix(),date_time=(2026,10,19,0,0,0))
         info.compress_type=zipfile.ZIP_DEFLATED
@@ -52,7 +56,7 @@ ROOT.mkdir(parents=True,exist_ok=True)
 with zipfile.ZipFile(io.BytesIO(_payload)) as _archive:
     for _name in _archive.namelist():
         _target=(ROOT/_name).resolve()
-        if not _name.startswith(("ring_wall/", "report_cards/")) or not _target.is_relative_to(ROOT.resolve()):
+        if not _name.startswith(("ring_wall/", "report_cards/", "code_excerpts/")) or not _target.is_relative_to(ROOT.resolve()):
             raise ValueError("Unexpected embedded package path")
         _contents=_archive.read(_name)
         if _target.exists() and _target.read_bytes()!=_contents:

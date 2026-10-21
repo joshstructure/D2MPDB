@@ -167,6 +167,8 @@ class Builder:
                 articles.extend(n for n in NUM_RE.findall(seg) if f'{n}-' not in seg)
                 if 'Table' in seg:
                     tables.extend(ids)
+                else:
+                    eqs.extend(i for i in ids if not i.startswith('-'))   # bare "5.10.6-1" is an equation label
         return articles, tables, eqs
 
     # -- locating provisions
@@ -271,10 +273,20 @@ class Builder:
     @staticmethod
     def shrink(path):
         """Palette-quantize a rendered page (text plus highlight): about a third of the 24-bit size."""
+        import os
+        import time
         from PIL import Image
         with Image.open(path) as im:
             q = im.convert('RGB').quantize(colors=48, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
-            q.save(path, 'PNG', optimize=True)
+        tmp = path.with_name(path.stem + '.tmp.png')
+        q.save(tmp, 'PNG', optimize=True)
+        for attempt in range(6):   # a scanner can hold the freshly written file for a moment on Windows
+            try:
+                os.replace(tmp, path)
+                return
+            except OSError:
+                time.sleep(0.5 * (attempt + 1))
+        os.replace(tmp, path)
 
     @staticmethod
     def safe_name(text):
@@ -309,6 +321,9 @@ class Builder:
         pdf = STORE / 'References' / f'{self.safe_name(label)}.pdf'
         out.save(str(pdf), garbage=3, deflate=True)
         out.close()
+        # Pieces that share a page must not inherit each other's highlights.
+        for annot in list(page.annots()):
+            page.delete_annot(annot)
         return dict(crop=f'pages/{crop.name}', full=f'pages/{full.name}', pdf=f'References/{pdf.name}')
 
     def yellow_bbox(self, page):

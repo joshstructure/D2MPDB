@@ -10,7 +10,8 @@
   "citation_sources": [
     {"references": "end_bent_walls/data/references.json"},
     {"references": "pile_design/data/references.json"},
-    {"scan": ["pier_cap/*.py"]}
+    {"scan": ["pier_cap/*.py"]},
+    {"scan": ["ring_wall/*.py"]}
   ],
   "journal_references": "journal/References"
 }

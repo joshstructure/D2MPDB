@@ -58,12 +58,12 @@
    "fbmp_sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentOne.xml",
-   "fragment_sha256": "521a31f6fc369604c2363d6f4dd53ceafb07fcd82debfc6ee3f33b099c4a9ece",
+   "fragment_sha256": "a071f19a138480d1cbfc2606e3d6b300a8dc07f27fcae35238820d46ab65d652",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
-   "package_revision": "4adfbf702f39",
+   "package_revision": "0e572311f649",
    "references": [
     "BridgeGeometry_2Beam.EndBentCage_envelope",
     "BridgeGeometry_2Beam.EndBentCap_depth",
@@ -81,7 +81,7 @@
     "Materials.Rebar_fy",
     "Materials.Substructure_fc"
    ],
-   "report_file": "End Bent 1 Cap Design 10-19.html",
+   "report_file": "End Bent 1 Cap Design 10-20.html",
    "report_name": "CapDesignEndBentOne",
    "sheet_comparisons": 288,
    "stations": [
@@ -118,12 +118,12 @@
    "fbmp_sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignEndBentTwo.xml",
-   "fragment_sha256": "500ed3ed616c0216872e70c0f7019733b1cf0e8e3eddf88f10108112ae65e18b",
+   "fragment_sha256": "f95525d3516a4e725db9033491e975b53e6c9fa7cd89baee920615090ed0d20e",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
-   "package_revision": "4adfbf702f39",
+   "package_revision": "0e572311f649",
    "references": [
     "BridgeGeometry_2Beam.EndBentCage_envelope",
     "BridgeGeometry_2Beam.EndBentCap_depth",
@@ -141,7 +141,7 @@
     "Materials.Rebar_fy",
     "Materials.Substructure_fc"
    ],
-   "report_file": "End Bent 2 Cap Design 10-19.html",
+   "report_file": "End Bent 2 Cap Design 10-20.html",
    "report_name": "CapDesignEndBentTwo",
    "sheet_comparisons": 288,
    "stations": [
@@ -178,12 +178,12 @@
    "fbmp_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignPier.xml",
-   "fragment_sha256": "f07f09d5350a77eebaf1c2d1bb216f345fddea0bebabd71de4cb80c4505412bb",
+   "fragment_sha256": "269b0b26bff70cb8dd37215207326c43c2fa025f03ef4f3ce91418689d0777ba",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
    "mathcad_values_compared": 535,
-   "package_revision": "4adfbf702f39",
+   "package_revision": "0e572311f649",
    "references": [
     "BridgeGeometry_2Beam.PierCap_coverBottom",
     "BridgeGeometry_2Beam.PierCap_coverSide",
@@ -201,7 +201,7 @@
     "Materials.Rebar_fy",
     "Materials.Substructure_fc"
    ],
-   "report_file": "Pier Cap Design 10-19.html",
+   "report_file": "Pier Cap Design 10-20.html",
    "report_name": "CapDesignPier",
    "sheet_comparisons": 288,
    "stations": [
@@ -216,5 +216,5 @@
   }
  ],
  "review_document": "cap_bpad/journal/Cap Design - Journal Edition (review).bpad",
- "review_sha256": "41e1ed26a886954c5207c6381cdc434df147a0dc06e347f6239a3aea60422158"
+ "review_sha256": "cbab2f5e21f7145a8bb19b5093868196ef4913a82a6850b06933905f7c472e07"
 }

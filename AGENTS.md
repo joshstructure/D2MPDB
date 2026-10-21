@@ -7,6 +7,14 @@ from the local checkout to GitHub after verification. This applies across projec
 chats. Include only completed work; preserve concurrent unfinished changes and
 never force-push. Do not commit or push for read-only or planning-only requests.
 
+## New or changed calculations
+
+Build and change calculation packages to `CALCULATION_CONVENTIONS.md`: engine
+definitions, `symbol()` with `data-var`, report cards (`report_cards`), the
+`code_excerpts` citation store, the portable-notebook package list, the
+notebook → Mathcad → Blockpad rebuild chain and the project-record adoption
+pattern. The tests it names enforce most of it.
+
 ## Design atlas refresh (required after source changes)
 
 - The user requires the private design atlas to follow the current project

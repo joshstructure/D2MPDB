@@ -1,5 +1,5 @@
 {
- "built": "2026-10-20 17:11 UTC",
+ "built": "2026-10-21 14:51 UTC",
  "cites": {
   "10.7.1.6.2": {
    "cited_by": [
@@ -636,15 +636,6 @@
    "missing": "",
    "pages": [
     {
-     "crop": "pages/LRFD_3.4.1_Table_3.4.1_1_p65_crop.png",
-     "full": "pages/LRFD_3.4.1_Table_3.4.1_1_p65_full.png",
-     "label": "LRFD 3.4.1 Table 3.4.1-1 (LRFD p. 3-8)",
-     "page": 65,
-     "pdf": "References/LRFD 3.4.1 Table 3.4.1-1 (LRFD p. 3-8).pdf",
-     "printed": "3-8",
-     "source": "LRFD_10th_2024.pdf"
-    },
-    {
      "crop": "pages/LRFD_3.4.1_Table_3.4.1_1_p73_crop.png",
      "full": "pages/LRFD_3.4.1_Table_3.4.1_1_p73_full.png",
      "label": "LRFD 3.4.1 Table 3.4.1-1 (LRFD p. 3-16)",
@@ -654,7 +645,7 @@
      "source": "LRFD_10th_2024.pdf"
     }
    ],
-   "title": "3.4.1—Load Factors and Load Combinations"
+   "title": "Table 3.4.1-1"
   },
   "LRFD 3.4.1, Tables 3.4.1-1 and 3.4.1-2": {
    "cited_by": [
@@ -734,6 +725,26 @@
    ],
    "title": "5.10.1—Concrete Cover"
   },
+  "LRFD 5.10.2": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.10.2_p507_crop.png",
+     "full": "pages/LRFD_5.10.2_p507_full.png",
+     "label": "LRFD 5.10.2 (LRFD p. 5-176)",
+     "page": 507,
+     "pdf": "References/LRFD 5.10.2 (LRFD p. 5-176).pdf",
+     "printed": "5-176",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.10.2—Hooks and Bends"
+  },
   "LRFD 5.10.2.1": {
    "cited_by": [
     "pier_cap/end_grid.py"
@@ -777,7 +788,8 @@
   "LRFD 5.10.3.1.1": {
    "cited_by": [
     "pier_cap/detailing.py",
-    "pier_cap/end_grid.py"
+    "pier_cap/end_grid.py",
+    "ring_wall/design.py"
    ],
    "code": "LRFD",
    "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
@@ -797,6 +809,7 @@
   },
   "LRFD 5.10.3.1.3": {
    "cited_by": [
+    "pier_cap/detailing.py",
     "pier_cap/model.py"
    ],
    "code": "LRFD",
@@ -817,7 +830,8 @@
   },
   "LRFD 5.10.3.2": {
    "cited_by": [
-    "end_bent_walls/data/references.json"
+    "end_bent_walls/data/references.json",
+    "ring_wall/design.py"
    ],
    "code": "LRFD",
    "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
@@ -834,6 +848,26 @@
     }
    ],
    "title": "5.10.3.2—Maximum Spacing of Reinforcing Bars"
+  },
+  "LRFD 5.10.6": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.10.6_p513_crop.png",
+     "full": "pages/LRFD_5.10.6_p513_full.png",
+     "label": "LRFD 5.10.6 (LRFD p. 5-182)",
+     "page": 513,
+     "pdf": "References/LRFD 5.10.6 (LRFD p. 5-182).pdf",
+     "printed": "5-182",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.10.6—Shrinkage and Temperature Reinforcement"
   },
   "LRFD 5.10.6, Eq. 5.10.6-1": {
    "cited_by": [
@@ -855,6 +889,46 @@
    ],
    "title": "5.10.6—Shrinkage and Temperature Reinforcement"
   },
+  "LRFD 5.10.6-1": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.10.6_1_p513_crop.png",
+     "full": "pages/LRFD_5.10.6_1_p513_full.png",
+     "label": "LRFD 5.10.6-1 (LRFD p. 5-182)",
+     "page": 513,
+     "pdf": "References/LRFD 5.10.6-1 (LRFD p. 5-182).pdf",
+     "printed": "5-182",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.10.6-1"
+  },
+  "LRFD 5.10.6-2": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.10.6_2_p513_crop.png",
+     "full": "pages/LRFD_5.10.6_2_p513_full.png",
+     "label": "LRFD 5.10.6-2 (LRFD p. 5-182)",
+     "page": 513,
+     "pdf": "References/LRFD 5.10.6-2 (LRFD p. 5-182).pdf",
+     "printed": "5-182",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.10.6-2"
+  },
   "LRFD 5.10.8": {
    "cited_by": [
     "pier_cap/end_grid.py"
@@ -874,6 +948,46 @@
     }
    ],
    "title": "5.10.8—Development and Splices of Reinforcement"
+  },
+  "LRFD 5.10.8.2.1": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.10.8.2.1_p519_crop.png",
+     "full": "pages/LRFD_5.10.8.2.1_p519_full.png",
+     "label": "LRFD 5.10.8.2.1 (LRFD p. 5-188)",
+     "page": 519,
+     "pdf": "References/LRFD 5.10.8.2.1 (LRFD p. 5-188).pdf",
+     "printed": "5-188",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.10.8.2.1—Deformed Bars and Deformed Wire in Tension"
+  },
+  "LRFD 5.10.8.4.3": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.10.8.4.3_p532_crop.png",
+     "full": "pages/LRFD_5.10.8.4.3_p532_full.png",
+     "label": "LRFD 5.10.8.4.3 (LRFD p. 5-201)",
+     "page": 532,
+     "pdf": "References/LRFD 5.10.8.4.3 (LRFD p. 5-201).pdf",
+     "printed": "5-201",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.10.8.4.3—Splices of Reinforcement in Tension"
   },
   "LRFD 5.12.9.4": {
    "cited_by": [
@@ -979,7 +1093,8 @@
   "LRFD 5.5.4.2": {
    "cited_by": [
     "end_bent_walls/data/references.json",
-    "pile_design/data/references.json"
+    "pile_design/data/references.json",
+    "ring_wall/design.py"
    ],
    "code": "LRFD",
    "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
@@ -1144,6 +1259,26 @@
     }
    ],
    "title": "5.6.4.5—Biaxial Flexure"
+  },
+  "LRFD 5.6.5": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.6.5_p387_crop.png",
+     "full": "pages/LRFD_5.6.5_p387_full.png",
+     "label": "LRFD 5.6.5 (LRFD p. 5-56)",
+     "page": 387,
+     "pdf": "References/LRFD 5.6.5 (LRFD p. 5-56).pdf",
+     "printed": "5-56",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.6.5—Bearing"
   },
   "LRFD 5.6.6.1": {
    "cited_by": [
@@ -1451,9 +1586,110 @@
    ],
    "title": "6.12.2.2.3—Circular Tubes and Round HSS"
   },
+  "LRFD 6.13.3.2.4": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_6.13.3.2.4_p985_crop.png",
+     "full": "pages/LRFD_6.13.3.2.4_p985_full.png",
+     "label": "LRFD 6.13.3.2.4 (LRFD p. 6-334)",
+     "page": 985,
+     "pdf": "References/LRFD 6.13.3.2.4 (LRFD p. 6-334).pdf",
+     "printed": "6-334",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "6.13.3.2.4—Fillet-Welded Connections"
+  },
+  "LRFD 6.13.3.4": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_6.13.3.4_p986_crop.png",
+     "full": "pages/LRFD_6.13.3.4_p986_full.png",
+     "label": "LRFD 6.13.3.4 (LRFD p. 6-335)",
+     "page": 986,
+     "pdf": "References/LRFD 6.13.3.4 (LRFD p. 6-335).pdf",
+     "printed": "6-335",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "6.13.3.4—Size of Fillet Welds"
+  },
+  "LRFD 6.13.3.5": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_6.13.3.5_p987_crop.png",
+     "full": "pages/LRFD_6.13.3.5_p987_full.png",
+     "label": "LRFD 6.13.3.5 (LRFD p. 6-336)",
+     "page": 987,
+     "pdf": "References/LRFD 6.13.3.5 (LRFD p. 6-336).pdf",
+     "printed": "6-336",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "6.13.3.5—Minimum Effective Length of Fillet Welds"
+  },
+  "LRFD 6.13.5.2": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_6.13.5.2_p989_crop.png",
+     "full": "pages/LRFD_6.13.5.2_p989_full.png",
+     "label": "LRFD 6.13.5.2 (LRFD p. 6-338)",
+     "page": 989,
+     "pdf": "References/LRFD 6.13.5.2 (LRFD p. 6-338).pdf",
+     "printed": "6-338",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "6.13.5.2—Tension"
+  },
+  "LRFD 6.13.5.3": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_6.13.5.3_p989_crop.png",
+     "full": "pages/LRFD_6.13.5.3_p989_full.png",
+     "label": "LRFD 6.13.5.3 (LRFD p. 6-338)",
+     "page": 989,
+     "pdf": "References/LRFD 6.13.5.3 (LRFD p. 6-338).pdf",
+     "printed": "6-338",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "6.13.5.3—Shear"
+  },
   "LRFD 6.5.4.2": {
    "cited_by": [
-    "pile_design/data/references.json"
+    "pile_design/data/references.json",
+    "ring_wall/design.py"
    ],
    "code": "LRFD",
    "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
@@ -1588,6 +1824,26 @@
     }
    ],
    "title": "6.9.4.2.1—Classification of Cross-Section Elements"
+  },
+  "LRFD Table 6.13.3.4-1": {
+   "cited_by": [
+    "ring_wall/design.py"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_Table_6.13.3.4_1_p986_crop.png",
+     "full": "pages/LRFD_Table_6.13.3.4_1_p986_full.png",
+     "label": "LRFD Table 6.13.3.4-1 (LRFD p. 6-335)",
+     "page": 986,
+     "pdf": "References/LRFD Table 6.13.3.4-1 (LRFD p. 6-335).pdf",
+     "printed": "6-335",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "Table 6.13.3.4-1"
   },
   "MCAD-S1 q_PL": {
    "cited_by": [
@@ -2248,7 +2504,7 @@
    "title": ""
   }
  },
- "inputs_sha256": "ca8574c484645230e4aa0388e064aa214f4625fa9926d5955b0d0c3c79be2ea7",
+ "inputs_sha256": "433795975e8294aa6aaf4c5443ba37ba21fb1bd8fc285ef6dadf5955fbe6ce78",
  "library": {
   "AASHTO Guide Spec. Pedestrian Bridges": "AASHTO LRFD Guide Specifications for the Design of Pedestrian Bridges (2009)",
   "LRFD": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",

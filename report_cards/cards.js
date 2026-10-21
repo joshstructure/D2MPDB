@@ -117,6 +117,8 @@
     if (paren) ref.appendChild(document.createTextNode(')'));
   });
   const PROSE = /\b(LRFD|SDG|SDM|AASHTO Guide Spec\. Pedestrian Bridges)\s+(?:(Tables?|Eqs?\.|Figures?|Fig\.|Articles?|Art\.)\s+)?(\d+(?:\.\d+)+(?:\.[A-Z](?:\.\d+)?)?(?:-\d+)?)/g;
+  // Bare ids after a citation ("LRFD 5.10.3.2 / 5.10.6", "5.10.8.2.1; 5.10.8.4.3", "5.10.6-1/-2") inherit its code.
+  const CONT = /^(\s*(?:\/|;|,|&|\band\b|\bor\b)\s*)(?:(Tables?|Eqs?\.)\s+)?(\d+(?:\.\d+)+(?:\.[A-Z](?:\.\d+)?)?(?:-\d+)?|-\d+)\b/;
   const canonical = (code, kind, id) => {
     const k = kind ? kind.replace(/s\b/, '').replace('Eq.', 'Eq.').replace('Figure', 'Fig.') : '';
     if (!k || /^Art/.test(k)) return code + ' ' + id;
@@ -136,10 +138,25 @@
       const s = n.nodeValue;
       while ((m = PROSE.exec(s))) {
         const piece = canonical(m[1], m[2], m[3]);
-        if (!CITES[piece]) continue;
-        frag.appendChild(document.createTextNode(s.slice(last, m.index)));
-        const span = el('span', 'cite', m[0]); span.setAttribute('data-cite', piece); frag.appendChild(span);
-        last = m.index + m[0].length; any = true;
+        let pos = m.index + m[0].length, ident = m[3];
+        if (CITES[piece]) {
+          frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+          const span = el('span', 'cite', m[0]); span.setAttribute('data-cite', piece); frag.appendChild(span);
+          last = pos; any = true;
+        }
+        let c;
+        while ((c = CONT.exec(s.slice(pos)))) {
+          ident = c[3].startsWith('-') ? ident.replace(/-\d+$/, '') + c[3] : c[3];
+          const cont = canonical(m[1], c[2], ident);
+          const start = pos + c[1].length;
+          if (CITES[cont]) {
+            frag.appendChild(document.createTextNode(s.slice(last, start)));
+            const span = el('span', 'cite', c[0].slice(c[1].length)); span.setAttribute('data-cite', cont); frag.appendChild(span);
+            last = pos + c[0].length; any = true;
+          }
+          pos += c[0].length;
+        }
+        PROSE.lastIndex = Math.max(PROSE.lastIndex, pos);
       }
       if (!any) return;
       frag.appendChild(document.createTextNode(s.slice(last)));

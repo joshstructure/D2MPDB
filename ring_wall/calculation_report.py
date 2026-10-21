@@ -5,10 +5,16 @@ from .notation import dependencies, expression, math, number, stem, symbol, term
 from .output import STYLE, SOURCES, case_hash, esc, fmt, source_hash, table
 from .schematics import schematic
 try:
-    from report_cards import cards_html
+    from report_cards import cards_html, cite_data, prose_pieces
 except ImportError:  # portable package built without the cards module
     def cards_html(cites=None):
         return ''
+
+    def cite_data(references=None, extra_pieces=(), **_):
+        return None
+
+    def prose_pieces(text):
+        return []
 
 
 # Each check belongs to exactly one method. Repeated ring checks share one example.
@@ -227,5 +233,7 @@ def render_report(r):
         '<details class="check-family" id="inputs"><summary>Case inputs and references</summary>',table(['Input','Value'],[[esc(k),esc(v)] for k,v in r['case'].items()]),
         '<p>'+'; '.join('<a href="'+url+'">'+esc(label)+'</a>' for label,url in SOURCES)+'</p></details>',
         '<p class="footer-note">Equations are rendered directly from the evaluated calculation ledger; native MathML and SVG need no network connection. Schematics explain mechanics and are not fabrication drawings. Native worksheets retain the exported topology and labeled scalar units; formula parity is not native application recalculation or engineering acceptance.</p>',
-        '<p class="footer-note">Case SHA-256: '+case_hash(r)+'<br>Source SHA-256: '+source_hash()+'</p></main><script>'+JS+'</script>'+cards_html()+'</body></html>'])
-    return ''.join(pieces)
+        '<p class="footer-note">Case SHA-256: '+case_hash(r)+'<br>Source SHA-256: '+source_hash()+'</p></main><script>'+JS+'</script>'])
+    body=''.join(pieces)
+    # Definition cards for every data-var symbol; citation cards for the code references in the check captions.
+    return body+cards_html(cite_data(None,extra_pieces=prose_pieces(body)))+'</body></html>'

@@ -1,7 +1,7 @@
 [
  {
   "bpad_file": "cap_bpad/End Bent 1 Cap Design.bpad",
-  "bpad_sha256": "1b8a86aed60e1a73be212e820621e9139e8000bc538cc743cdca1cf76e997eeb",
+  "bpad_sha256": "626158f341338266a54c1c9cb14f6aa9cac1a21df65862531aebbc9fd4251bd8",
   "branches_reached": [
    "end-truncated window",
    "flange cracked (ε doubled)",
@@ -26,8 +26,8 @@
   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
   "functions": 2,
   "mathcad_values_compared": 535,
-  "package_revision": "4adfbf702f39",
-  "report_file": "End Bent 1 Cap Design 10-19.html",
+  "package_revision": "0e572311f649",
+  "report_file": "End Bent 1 Cap Design 10-20.html",
   "report_name": "CapDesignEndBentOne",
   "sheet_comparisons": 288,
   "stations": [
@@ -42,7 +42,7 @@
  },
  {
   "bpad_file": "cap_bpad/End Bent 2 Cap Design.bpad",
-  "bpad_sha256": "e04f5adbbf0c81216b25489052a71981ca64ae503ed00915e6fe41f7151d6551",
+  "bpad_sha256": "a297729621b02688031b2e37d7ca7848e9e45119bbbce9aa664d1e60113a3870",
   "branches_reached": [
    "end-truncated window",
    "flange cracked (ε doubled)",
@@ -67,8 +67,8 @@
   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
   "functions": 2,
   "mathcad_values_compared": 535,
-  "package_revision": "4adfbf702f39",
-  "report_file": "End Bent 2 Cap Design 10-19.html",
+  "package_revision": "0e572311f649",
+  "report_file": "End Bent 2 Cap Design 10-20.html",
   "report_name": "CapDesignEndBentTwo",
   "sheet_comparisons": 288,
   "stations": [
@@ -83,7 +83,7 @@
  },
  {
   "bpad_file": "cap_bpad/Pier Cap Design.bpad",
-  "bpad_sha256": "0fef6f01fda56c30dfff3bae6c4c8debcc7066253bafc9d961775a5f76e12142",
+  "bpad_sha256": "f441f2213c5c41b70e6531a4afcf16d1a547b88477b5ada9ab50f9b713897738",
   "branches_reached": [
    "end-truncated window",
    "flange cracked (ε doubled)",
@@ -108,8 +108,8 @@
   "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
   "functions": 2,
   "mathcad_values_compared": 535,
-  "package_revision": "4adfbf702f39",
-  "report_file": "Pier Cap Design 10-19.html",
+  "package_revision": "0e572311f649",
+  "report_file": "Pier Cap Design 10-20.html",
   "report_name": "CapDesignPier",
   "sheet_comparisons": 288,
   "stations": [

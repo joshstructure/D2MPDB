@@ -55,6 +55,23 @@ def canonical(code: str, kind: str | None, ident: str) -> str:
     return f'{code} {kind} {ident}'
 
 
+CONT_RE = re.compile(r'\s*(?:/|;|,|&|\band\b|\bor\b)\s*(?:(Tables?|Eqs?\.)\s+)?(\d+(?:\.\d+)+(?:\.[A-Z](?:\.\d+)?)?(?:-\d+)?|-\d+)\b')
+
+
+def continuations(text: str, end: int, code: str, kind: str | None, ident: str):
+    """Bare ids that follow a citation ("LRFD 5.10.3.2 / 5.10.6", "5.10.8.2.1; 5.10.8.4.3", "5.10.6-1/-2") inherit its code."""
+    pos, last = end, ident
+    while True:
+        m = CONT_RE.match(text, pos)
+        if not m:
+            return
+        ident = m.group(2)
+        if ident.startswith('-'):
+            ident = last.rsplit('-', 1)[0] + ident
+        yield m, canonical(code, m.group(1), ident)
+        pos, last = m.end(), ident
+
+
 def prose_pieces(text: str) -> list[str]:
     """Citation pieces found in free text (for reports without a REFERENCES table)."""
     out = []
@@ -62,6 +79,9 @@ def prose_pieces(text: str) -> list[str]:
         piece = canonical(m.group(1), m.group(2), m.group(3))
         if piece not in out:
             out.append(piece)
+        for _cm, cont in continuations(text, m.end(), m.group(1), m.group(2), m.group(3)):
+            if cont not in out:
+                out.append(cont)
     return out
 
 

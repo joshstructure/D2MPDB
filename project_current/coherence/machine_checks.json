@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-20T17:52:55.016379+00:00",
+  "checked_at_utc": "2026-10-21T14:56:28.248173+00:00",
   "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
-  "register_sha256": "0ffc564aa3460817362f44b49abc4691cffde305782ba8a6d9496218f4e1b89f",
+  "register_sha256": "793871c2d49bc0df53629b1261e6ac5c46d3c00003ffa5b11a2219b4d3d8e5e4",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
   "assumptions_sha256": "2d7ed24138b1dc2a73581745984cc6f29ce0f59c6aea7fc7bffbbc7ed0b52130",
   "source_count": 37,
@@ -66,8 +66,8 @@
         "CAP-TOOL"
       ],
       "path": "Cap_and_Pile_Design.ipynb",
-      "expected_sha256": "4f5d346e33360f73f1be37f14e303b0381783b147cd2cc1bca72877333928afc",
-      "actual_sha256": "4f5d346e33360f73f1be37f14e303b0381783b147cd2cc1bca72877333928afc"
+      "expected_sha256": "1ba6ac3134cac7723fcae9a3ea28417a96d40e15f53baa2da622554bb37f231f",
+      "actual_sha256": "1ba6ac3134cac7723fcae9a3ea28417a96d40e15f53baa2da622554bb37f231f"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -264,8 +264,8 @@
         "BACKWALL-TOOL"
       ],
       "path": "End_Bent_Backwall_Design.ipynb",
-      "expected_sha256": "09c867fe8aca519c041a59d59b1d3bc409294e24262faf4476f60fc221cb0187",
-      "actual_sha256": "09c867fe8aca519c041a59d59b1d3bc409294e24262faf4476f60fc221cb0187"
+      "expected_sha256": "ca4cef6dfc6025c15fbce238e3014f509abff2051a2c6c5c8efa05a7e774133f",
+      "actual_sha256": "ca4cef6dfc6025c15fbce238e3014f509abff2051a2c6c5c8efa05a7e774133f"
     },
     {
       "check_id": "SOURCE:EB2-REPORT",
@@ -363,8 +363,8 @@
         "PILE-TOOL"
       ],
       "path": "Pile_Design.ipynb",
-      "expected_sha256": "859aa9ca73954fda84606449cbbfdeb45adcec9e03434163e234dc9f2eb8514f",
-      "actual_sha256": "859aa9ca73954fda84606449cbbfdeb45adcec9e03434163e234dc9f2eb8514f"
+      "expected_sha256": "c34bd1ebc5530acb6a2df76199a8b22d35d8126b753c7586f659154ab486b6f5",
+      "actual_sha256": "c34bd1ebc5530acb6a2df76199a8b22d35d8126b753c7586f659154ab486b6f5"
     },
     {
       "check_id": "SOURCE:PILE-EB1-REPORT",
