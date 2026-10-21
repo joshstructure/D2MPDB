@@ -1,0 +1,29 @@
+{
+  "task": "T027",
+  "journal_sha256": "0fc5dcfa9fc259c79af00852549878fa309ebc118cc34d18bfc67dbb05ae901a",
+  "previous_sha256": "feb1bb316d08223afe0fd6f76b66119a0c91ec5665a8937f87c1bd2b551e244a",
+  "promoted": "2026-10-21T18:42:32.305411+00:00",
+  "review": {
+    "candidate_sha256": "0fc5dcfa9fc259c79af00852549878fa309ebc118cc34d18bfc67dbb05ae901a",
+    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T027/build_components.py; calc_common/bpad.py build verification)",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "Seven hand-authored calculations replaced by their notebook-generated journal editions; every former definition reproduced to 1e-9 by the notebooks; names read by other modules preserved as live references; FBMP not rerun.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "C015 keeps its knife-edge SHORTFALL rows; C016 omits the superseded D-064/D-065 status strings (working notes); other components untouched.",
+    "evidence_files": [
+      {
+        "path": "verification.json",
+        "sha256": "c7737f6c7cee41b9954fd31e0bb15611aa3b96047d01c386bc4ccba34bda6215"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/0fc5dcfa9fc259c79af00852549878fa309ebc118cc34d18bfc67dbb05ae901a"
+}
