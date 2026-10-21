@@ -29,7 +29,7 @@ class RingWallEquationTests(unittest.TestCase):
         self.assertIn('D/C is undefined',check_details(r,next(c for c in r['checks'] if c['id']=='RING-GRID')))
 
     def test_grouped_tables_cover_every_check_exactly_once_and_preserve_status(self):
-        for p in [default_case(),default_case()|dict(pile_count=1,ring_count=1),
+        for p in [default_case(),default_case()|dict(pile_count=1,ring_count=1),default_case()|dict(imposed_rotation_rad=.002),
                   default_case()|dict(length_in=240.,thickness_in=44.,placement_tolerance_in=0.)]:
             r=analyze(p);doc=html.fromstring(render_report(r))
             rows=doc.xpath('//tr[@data-check-id]')
@@ -66,7 +66,7 @@ class RingWallEquationTests(unittest.TestCase):
         self.assertEqual(r,original)
 
     def test_representatives_remain_trial_when_contact_fails_and_groups_fail_closed(self):
-        r=analyze();g=next(g for g in families(r) if g['key']=='weld')
+        r=analyze(default_case()|dict(imposed_rotation_rad=.002));g=next(g for g in families(r) if g['key']=='weld')
         self.assertEqual(g['representative']['status'],'PENDING')
         self.assertFalse(g['example']['contact_ok'])
         fragment=Report(r).family(g)
@@ -86,7 +86,7 @@ class RingWallEquationTests(unittest.TestCase):
         self.assertIn('<mn>12</mn>',branch);self.assertIn('<mn>18</mn>',branch)
 
     def test_native_equation_and_status_parity_for_default_and_edited_cases(self):
-        cases=[default_case(),default_case()|dict(length_in=240.,thickness_in=44.,placement_tolerance_in=0.),
+        cases=[default_case(),default_case()|dict(length_in=240.,thickness_in=44.,placement_tolerance_in=0.),default_case()|dict(imposed_rotation_rad=.002),
                default_case()|dict(pile_count=1,ring_count=1,grid_bar=6,coating='epoxy',auto_grid_spacing=False,grid_spacing_in=8.,ring_t_in=1.,weld_leg_in=.375,density_kcf=.19)]
         for p in cases:
             with self.subTest(case=p):

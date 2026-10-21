@@ -2,7 +2,7 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "2b65be6f2d922c29c43479783a0ff63b242b8386f33fce52161fc2bdbffa43c9",
+ "fingerprint": "4dd95166754b2fd4a151aab33889af7fb9ba415c8b784701cfc7902356825f37",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
@@ -38,7 +38,7 @@
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "4477da8aab17b206026b5703d94da22f50ac048d228366c1aff010939e91da77"
+   "sha256": "185bbb43cd156589d0843c983d1e082f9e7debb23bbb96f508fd88691c056e01"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -66,7 +66,7 @@
   },
   {
    "path": "scripts/build_lineage_graph.py",
-   "sha256": "498799118625da69ee6d9a5a032b314711f301ecc982abfd6920f3478eb85d75"
+   "sha256": "16be5be1d764ede8631ce29738eeb052b0c9311d66198af005487fae420dc57b"
   }
  ],
  "derived": [
@@ -11253,7 +11253,8 @@
    ],
    "decisions": [
     "D-049",
-    "D-054"
+    "D-054",
+    "D-070"
    ],
    "issues": [],
    "parameters": [],
@@ -24644,6 +24645,22 @@
     "issues": [],
     "inferred": [
      "JOURNAL"
+    ]
+   }
+  },
+  {
+   "id": "D-070",
+   "date": "2026-10-21",
+   "decision": "Replace the pier-wall ring moment basis in the Pier Wall Design notebook (`ring_wall/`): midplane tributaries assign vertical force only; the radial placement tolerance acts as a rigid-body pile-group reaction redistribution; the ring moment is the pile-head compatibility moment, rotational stiffness 4 E I / L_f against the rigid-wall rotation, shared equally by the ring rows. The superseded tributary-eccentricity moment R (",
+   "basis": "e_n",
+   "refs": {
+    "sources": [
+     "PILE-PIER-CASE"
+    ],
+    "decisions": [],
+    "issues": [],
+    "inferred": [
+     "PILE-PIER-CASE"
     ]
    }
   }

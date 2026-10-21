@@ -17,7 +17,8 @@ class RingWallWorkbenchTests(unittest.TestCase):
         a=self.app;self.assertEqual(a.current,analyze());self.assertFalse(a.export_root.exists())
         self.assertEqual(a.recalc_button.description,'Calc done');self.assertIn('LIMITED SCOPE',a.status.value)
         self.assertAlmostEqual(sum(sum(z) for z in a.figures['reactions'].data[0].z),a.current['totals']['factored_weight'])
-        self.assertNotIn('arch_rise_in',a.controls);self.assertIn('weld_leg_in',a.controls)
+        self.assertNotIn('arch_rise_in',a.controls);self.assertIn('weld_leg_in',a.controls);self.assertIn('pile_free_length_in',a.controls)
+        self.assertIn('D-070',a.rings_panel.children[-1].value);self.assertIn('full compression',a.figures['connection'].layout.title.text)
         self.assertIn('#5 at 11',a.steel_panel.value)
     def test_navigation_mounts_one_panel_preserves_calculation(self):
         a=self.app;r=a.current
@@ -43,8 +44,10 @@ class RingWallWorkbenchTests(unittest.TestCase):
         a=self.app;r=deepcopy(a.current);a.row_filter.value=2
         self.assertIn('<td>2 / 1</td>',a.ring_values.value);self.assertNotIn('<td>1 / 1</td>',a.ring_values.value)
         a.check_view.value='fail';self.assertIn('RING-END',a.checks_panel.value);self.assertNotIn('>PASS<',a.checks_panel.value)
-        a.check_view.value='pending';self.assertIn('SHARING',a.checks_panel.value);self.assertIn('R1-P1-WELD',a.checks_panel.value)
+        a.check_view.value='pending';self.assertIn('SHARING',a.checks_panel.value);self.assertNotIn('R1-P1-WELD',a.checks_panel.value)
         self.assertEqual(a.current,r)
+        a.controls['imposed_rotation_rad'].value=.002;a.recalc_button.click();a.check_view.value='pending'
+        self.assertIn('R1-P1-WELD',a.checks_panel.value);self.assertIn('FULL CONTACT FAILS',a.figures['connection'].layout.title.text)
     def test_export_keeps_previous_downloads_and_blocks_direct_changes(self):
         a=self.app
         with patch.object(a,'download') as download:a.report_button.click();download.assert_called_once_with('html')

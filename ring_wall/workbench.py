@@ -15,7 +15,8 @@ from . import plots as V
 GROUPS={
  'Wall & loads':[
   ('Geometry',[('length_in','Wall length (in)'),('thickness_in','Wall thickness (in)'),('height_in','Wall height (in)'),('pile_count','Pile count'),('pile_spacing_in','Pile pitch (in)'),('pile_od_in','Pile OD (in)'),('placement_tolerance_in','Radial pile tolerance (in)')]),
-  ('Concrete self-weight',[('fc_ksi','Concrete f′c (ksi)'),('density_kcf','Concrete density (kcf)'),('gamma_dc','Self-weight factor')])],
+  ('Concrete self-weight',[('fc_ksi','Concrete f′c (ksi)'),('density_kcf','Concrete density (kcf)'),('gamma_dc','Self-weight factor')]),
+  ('Pile stiffness · ring moment basis (D-070)',[('pile_e_ksi','Pipe E (ksi)'),('pile_free_length_in','Wall bottom to fixity (in)'),('pile_axial_length_in','Axial spring length (in)'),('imposed_rotation_rad','Imposed wall rotation (rad)')])],
  'Wall steel':[
   ('Minimum grid · each way / each face',[('fy_ksi','Rebar fy (ksi)'),('grid_bar','Grid / U-bar size'),('auto_grid_spacing','Select pitch automatically'),('grid_spacing_in','Manual grid pitch (in)'),('spacing_increment_in','Auto pitch increment (in)'),('project_max_spacing_in','Project max pitch (in)')]),
   ('Detailing',[('cover_in','Provided cover (in)'),('required_cover_in','Required cover (in)'),('aggregate_in','Aggregate size (in)'),('u_leg_in','U straight lap leg (in)'),('vertical_lap_in','Vertical lap (in)'),('coating','Bar coating')])],
@@ -79,7 +80,7 @@ class RingWallNotebook:
                     elif key=='grid_bar':w=W.Dropdown(options=[(f'#{n}',n) for n in BAR],value=value)
                     elif key=='coating':w=W.Dropdown(options=['uncoated','epoxy','unknown'],value=value)
                     elif type(value) is int:w=W.IntText(value=value)
-                    else:w=W.FloatText(value=value,step=.0625 if key=='weld_leg_in' else .25)
+                    else:w=W.FloatText(value=value,step=.0625 if key=='weld_leg_in' else .0001 if key.endswith('_rad') else .25)
                     w.description=label;w.style.description_width='180px';w.layout=W.Layout(width='320px',max_width='100%',height='auto',min_height='32px')
                     w.observe(lambda c,k=key:self._changed(k,c),names='value');self.controls[key]=w;controls.append(w)
                 card=W.VBox([W.HTML('<b>'+title+'</b>'),W.HBox(controls,layout=W.Layout(flex_flow='row wrap',grid_gap='6px'))]);card.add_class('ring-section');cards.append(card)
@@ -122,7 +123,8 @@ class RingWallNotebook:
             self.current=r;self.study=study;self.dirty=False
             self.row_filter.options=[('All rows',0)]+[(f'Row {a["row"]} · {a["z"]:g} in',a['row']) for a in r['rows']];self.row_filter.value=0
             self.row_filter.disabled=self.check_view.disabled=False
-            self.ring_values.value=V.ring_table(r);self.rings_panel.children=(reaction,self.ring_values,W.HTML(V.note(f'Force residual: {r["totals"]["force_error"]:.2e} kip; nominal moment residual: {r["totals"]["moment_error"]:.2e} kip-in. Tolerance is a separate local envelope.')))
+            self.ring_values.value=V.ring_table(r);self.rings_panel.children=(reaction,self.ring_values,W.HTML(V.note(f'Force residual: {r["totals"]["force_error"]:.2e} kip; nominal moment residual: {r["totals"]["moment_error"]:.2e} kip-in. '
+                f'Wall rotation {r["totals"]["wall_rotation"]:.3g} rad gives a pile-head moment of {r["totals"]["pile_head_moment"]:.4g} kip-in, shared by the ring rows as M ring = {r["totals"]["ring_moment"]:.4g} kip-in; ΔR is the tolerance redistribution (D-070). Full contact needs e eq ≤ {r["totals"]["kern_limit"]:.4g} in.')))
             self.connection_panel.children=(connection,W.HTML(V.note('Peak annular pressure loads a radial cantilever strip. Each fillet takes half the strip shear plus the radial force from the plate-root moment couple. Loss of full contact makes affected local strength checks PENDING.')))
             self.steel_panel.value=V.steel_table(r);self.checks_panel.value=V.checks_table(r,self.check_view.value)
             self.spacing_values.value=V.spacing_table(study);self.spacing_panel.children=(spacing,self.spacing_values,W.HTML(V.note('First ring is fixed; rows fit below top cover. Minimum wall steel is independent of ring pitch. Trial sizes cannot be adopted where contact or fit fails.')))

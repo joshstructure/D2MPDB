@@ -19,9 +19,12 @@ except ImportError:  # portable package built without the cards module
 
 # Each check belongs to exactly one method. Repeated ring checks share one example.
 GROUPS = [
- ('loads','Tributary self-weight and eccentricity',(),
-  'Allocate the gross wall prism between pile/row midplanes and wall edges; carry its centroid offset into the local connection.',
-  ['@width','$height','@volume','@service','@force','@eccentricity','@design_e','@moment']),
+ ('loads','Tributary self-weight',(),
+  'Allocate the gross wall prism between pile/row midplanes and wall edges as vertical force. The centroid offset is retained for whole-wall equilibrium and shown against the superseded basis; the wall carries it, not the ring (D-070).',
+  ['@width','$height','@volume','@service','@force','@eccentricity','@superseded_moment']),
+ ('compatibility','Pile-head compatibility moment and tolerance redistribution',(),
+  'Rotate the rigid wall on the axial and rotational springs of the pile heads with the pile group displaced by the placement tolerance. The pile-head moment is shared by the ring rows and the axial redistribution adds to each ring reaction.',
+  ['pipe_inner_radius','pipe_area','pipe_inertia','pile_axial_stiffness','pile_rotational_stiffness','group_centroid','group_second_moment','tolerance_rotation','wall_rotation','pile_head_moment','ring_moment','$share','@tolerance_force','@design_force','@equivalent_e']),
  ('steel','Minimum wall reinforcement',('GRID-A',),
   'Calculate the minimum area from both gross wall sections and provide the larger amount each way on each face.',
   ['steel_L','steel_H','steel_required','steel_provided']),
@@ -43,8 +46,8 @@ GROUPS = [
   'Select a fabricable weld leg and continuous length using joined-part thickness, free-edge and fit-up allowances.',
   ['thicker_part','minimum_thick_weld','minimum_mid_weld','minimum_table_weld','weld_minimum','weld_min_gap','weld_maximum','weld_length','weld_length_min']),
  ('contact','Annular area and full compression contact',('CONTACT',),
-  'Distribute reaction and eccentric moment over the horizontal annulus. A negative minimum pressure invalidates the full-contact strength model.',
-  ['pipe_radius','inner_radius','outer_radius','bearing_inner','bearing_area','bearing_inertia','@qavg','@qmoment','@qmax','@qmin']),
+  'Distribute the design reaction and the compatibility ring moment over the horizontal annulus. A negative minimum pressure invalidates the full-contact strength model.',
+  ['pipe_radius','inner_radius','outer_radius','bearing_inner','bearing_area','bearing_inertia','kern_limit','@qavg','@qmoment','@qmax','@qmin']),
  ('bearing','Concrete bearing strength',('BEAR',),
   'Compare the peak compressive pressure with factored concrete bearing resistance, without supporting-area enhancement.',
   ['bearing_limit']),
@@ -78,7 +81,12 @@ h1{font-size:32px;margin:6px 0 12px}h2{font-size:23px}h3{font-size:19px}.eyebrow
 math{font-family:"Cambria Math","STIX Two Math",math}math[display=block]{text-align:left;width:max-content;max-width:none;margin:0}.equation-working{border-left:3px solid #9db7ce;margin:2px 0 5px;padding:4px 0 4px 14px;border-bottom:0}.equation-working>summary{font:13px Arial,sans-serif;padding:5px 0}
 .equation-sketch{margin:12px 0;max-width:900px}.equation-sketch svg{display:block;width:100%;height:auto}.equation-sketch figcaption{margin:6px 0}.operand-table{max-width:920px}.operand-table table{font-size:12px}.operand-table td{background:#fff8e9}.operand-table th{background:#f7e6b9}
 .equation-result{background:#eff7f1;border-left:3px solid #8aaa94;padding:7px 12px;display:flex;align-items:center;gap:10px;font-size:13px}.equation-result.trial{background:#fff7e8;border-color:#b57820}.result-table td{background:#f4faf6}.result-table th{background:#dfede3}.table-scroll{overflow-x:auto}th,td{overflow-wrap:anywhere}.method-index td:first-child{font-weight:600}table{font-family:Arial,sans-serif}summary:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #d79934;outline-offset:3px}.method-links{font:12px Arial,sans-serif;line-height:1.8}.scope{border-left:4px solid #b57820;background:#fff7e8;padding:10px 16px}.footer-note{font:12px/1.5 Arial,sans-serif;overflow-wrap:anywhere}
-@media(max-width:700px){main{margin:0;padding:22px 16px}h1{font-size:26px}.toolbar span{display:none}.check-family>summary{font-size:19px}.equation-line math{font-size:16px}}
+.box{border:1px solid;border-radius:3px;margin:8px 0 12px;padding:0}.box>.hd{padding:5px 10px;font:bold 13px Arial,sans-serif}.box>.bd{padding:8px 10px}.box>.bd>p{margin:6px 0}
+.discussion{border-color:#7189a6;background:#f1f5fa}.discussion>.hd{background:#dce7f3}.inputs{border-color:#a78638;background:#fff8e9}.inputs>.hd{background:#f7e6b9}.outputs{border-color:#6a9075;background:#eff7f1}.outputs>.hd{background:#dcece0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:12px Arial,sans-serif;margin:8px 0}.flow span{border:1px solid #7189a6;background:#fff;border-radius:3px;padding:4px 7px}.flow b{color:#7189a6}
+.contents{margin:18px 0;padding:10px 14px;background:#f1f5fa;border:1px solid #c9d3dc;border-radius:3px;font-family:Arial,sans-serif}.contents h2{margin:0 0 8px;font-size:16px}.contents ul{columns:2;column-gap:24px;list-style:none;margin:0;padding:0}.contents li{break-inside:avoid;margin:0 0 5px}.contents a{color:#245c85;text-decoration:none}
+.check-family.front{border-top:2px solid #c1d1df}.check-family.front>summary{font-size:22px}.basis-table td:first-child{white-space:nowrap;font-weight:600}
+@media(max-width:700px){main{margin:0;padding:22px 16px}.contents ul{columns:1}h1{font-size:26px}.toolbar span{display:none}.check-family>summary{font-size:19px}.equation-line math{font-size:16px}}
 @media print{body{background:#fff}main{margin:0;padding:0;box-shadow:none}.toolbar{display:none}.check-family{break-inside:auto}.equation{break-inside:auto}details::details-content{display:block!important;content-visibility:visible!important}.equation-sketch{break-inside:avoid}.equation-line{overflow:visible}.equation-line math{font-size:13px}.table-scroll{overflow:visible}thead{display:table-header-group}tr{break-inside:avoid}th,td,.objective,.equation-result{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 '''
 
@@ -107,10 +115,10 @@ def badge(status):return '<span class="badge '+esc(status)+'">'+esc(status)+'</s
 
 def sketch_kind(name,group):
     key=stem(name)
-    if key in ('eccentricity','design_e','moment'):return 'eccentricity'
+    if key in ('eccentricity','superseded_moment'):return 'eccentricity'
     if key in ('qavg','qmoment','qmax','qmin') or group=='bearing':return 'pressure'
     if group=='contact':return 'annulus'
-    return {'loads':'tributary','steel':'grid','spacing':'grid','cover':'clearance','development':'lap','bar-fit':'lap',
+    return {'loads':'tributary','compatibility':'compatibility','steel':'grid','spacing':'grid','cover':'clearance','development':'lap','bar-fit':'lap',
             'clearances':'clearance','weld-detail':'weld-detail','plate':'plate','shear':'plate','weld':'weld','base':'base','sizes':'plate'}[group]
 
 
@@ -124,7 +132,7 @@ def families(r):
         if types and not checks:continue
         representative=max(checks,key=lambda c:c['ratio'] if c['ratio'] is not None else float('inf')) if checks else None
         match=re.match(r'R(\d+)-P(\d+)-',representative['id']) if representative else None
-        example=next(a for a in r['rings'] if (a['row'],a['pile'])==tuple(map(int,match.groups()))) if match else max(r['rings'],key=lambda a:a['M'])
+        example=next(a for a in r['rings'] if (a['row'],a['pile'])==tuple(map(int,match.groups()))) if match else max(r['rings'],key=lambda a:(a['e_equivalent'],a['R_design']))
         prefix=f'ring_{example["row"]}_{example["pile"]}_';row=f'row_{example["row"]}_'
         yield dict(key=key,title=title,types=types,idea=idea,checks=checks,representative=representative,example=example,
                    names=[n.replace('@',prefix).replace('$',row) for n in names])
@@ -175,7 +183,7 @@ class Report:
         counts=' · '.join(f'{v} {k.lower()}' for k,v in stats.items()) or f'{len(self.r["rings"])} rings'
         pieces=['<details class="check-family" id="method-'+key+'"'+(' open' if key=='loads' else '')+'><summary>'+esc(g['title'])+'<small>'+esc(counts)+'</small></summary>',
             '<p class="objective">'+esc(g['idea'])+'</p>']
-        if key in ('loads','contact','bearing','plate','shear','weld','base','sizes'):
+        if key in ('loads','compatibility','contact','bearing','plate','shear','weld','base','sizes'):
             label=f'Worked example: R{example["row"]} / P{example["pile"]}.'
             if g['representative']:
                 label+=' Largest displayed D/C in this family (first in a tie); '+g['representative']['status']+'.'
@@ -183,7 +191,7 @@ class Report:
             label+=' Equations are shown once; every location is listed below.'
             pieces.append('<p class="worked">'+esc(label)+'</p>')
         if key in ('bearing','plate','shear','weld','base','sizes'):
-            pieces.append('<p class="method-links">Upstream methods: <a href="#method-loads">tributary actions</a> · <a href="#method-contact">contact pressure and annular geometry</a>. The operands below use this family’s labeled worked example.</p>')
+            pieces.append('<p class="method-links">Upstream methods: <a href="#method-loads">tributary self-weight</a> · <a href="#method-compatibility">compatibility moment and redistribution</a> · <a href="#method-contact">contact pressure and annular geometry</a>. The operands below use this family’s labeled worked example.</p>')
         for name in g['names']:
             if name in self.nodes:pieces.append(self.equation(name,key,example))
             elif name!='between_rings':raise ValueError('Report equation missing: '+name)
@@ -195,9 +203,14 @@ class Report:
             pieces.append(self.equation(c['demand_node'],key,example,c))
         pieces.append('<h3>All results · '+esc(g['title'])+'</h3>')
         if key=='loads':
-            pieces.append('<div class="table-scroll">'+table(['Ring','b × h (in)','V (ft³)','W / R (kip)','e_n / e_d (in)','M (kip-in)'],[
-                [f'R{a["row"]}-P{a["pile"]}',fmt(a['width'])+' × '+fmt(a['height']),fmt(a['volume_ft3']),fmt(a['service'])+' / '+fmt(a['R']),fmt(a['e_nominal'])+' / '+fmt(a['e_design']),fmt(a['M'])] for a in self.r['rings']])+'</div>')
-            pieces.append('<p>Force residual: '+fmt(self.r['totals']['force_error'])+' kip. Nominal moment residual: '+fmt(self.r['totals']['moment_error'])+' kip-in. Radial tolerance is a separate local envelope.</p>')
+            pieces.append('<div class="table-scroll">'+table(['Ring','b × h (in)','V (ft³)','W / R (kip)','e_n (in)','M_s superseded (kip-in)'],[
+                [f'R{a["row"]}-P{a["pile"]}',fmt(a['width'])+' × '+fmt(a['height']),fmt(a['volume_ft3']),fmt(a['service'])+' / '+fmt(a['R']),fmt(a['e_nominal']),fmt(a['M_superseded'])] for a in self.r['rings']])+'</div>')
+            pieces.append('<p>Force residual: '+fmt(self.r['totals']['force_error'])+' kip. Nominal moment residual: '+fmt(self.r['totals']['moment_error'])+' kip-in. The superseded column is the former R (|e_n| + Δ_p) ring moment, kept for comparison with the compatibility moment below (D-070).</p>')
+        elif key=='compatibility':
+            t=self.r['totals']
+            pieces.append('<div class="table-scroll">'+table(['Ring','R (kip)','ΔR (kip)','R_d (kip)','M (kip-in)','e_eq (in)','e_k kern (in)','Contact'],[
+                [f'R{a["row"]}-P{a["pile"]}',fmt(a['R']),fmt(a['dR']),fmt(a['R_design']),fmt(a['M']),fmt(a['e_equivalent']),fmt(t['kern_limit']),badge('PASS' if a['contact_ok'] else 'FAIL')] for a in self.r['rings']])+'</div>')
+            pieces.append('<p>Wall rotation '+fmt(t['wall_rotation'])+' rad; pile-head moment '+fmt(t['pile_head_moment'])+' kip-in shared by '+str(self.r['case']['ring_count'])+' ring rows. ΔR is added with the sign that increases each ring reaction; whole-wall equilibrium is kept by the nominal tributary forces above.</p>')
         elif key=='sizes':
             pieces.append('<div class="table-scroll">'+table(['Ring','t from bending (in)','Trial t required (in)','Provided t (in)','Trial weld required (in)','Provided weld (in)','Contact'],[
                 [f'R{a["row"]}-P{a["pile"]}',fmt(a['t_bending_req']),fmt(a['t_req']),fmt(self.r['case']['ring_t_in']),fmt(a['weld_req']),fmt(self.r['case']['weld_leg_in']),badge('PASS' if a['contact_ok'] else 'FAIL')] for a in self.r['rings']])+'</div>')
@@ -209,15 +222,79 @@ class Report:
         return ''.join(pieces)
 
 
+def box(kind,title,body):return '<div class="box '+kind+'"><div class="hd">'+esc(title)+'</div><div class="bd">'+body+'</div></div>'
+
+
+def front_section(key,title,body):
+    return '<details class="check-family front" id="'+key+'" open><summary>'+esc(title)+'</summary>'+body+'</details>'
+
+
+def overview_html(r):
+    """Objective, load path and scope, in the form the pile and backwall reports open with."""
+    p=r['case'];t=r['totals']
+    flow=' <b>→</b> '.join('<span>'+s+'</span>' for s in ('Tributary self-weight','Pile-head compatibility moment','Annular contact','Bearing, plate, welds, base metal','Minimum wall steel and detailing','Check register'))
+    objective=('<p>Design the welded annular pile rings that carry the self-weight of a '+fmt(p['length_in'])+' × '+fmt(p['thickness_in'])+' × '+fmt(p['height_in'])+' in concrete wall onto '
+        +str(p['pile_count'])+' steel pipe piles of '+fmt(p['pile_od_in'])+' in diameter, and provide the minimum shrinkage/temperature reinforcement and detailing of the wall. '
+        'Each pile carries '+str(p['ring_count'])+' rows of annular plates welded with continuous fillets above and below; the wall concrete bears on the plates. '
+        'The calculation checks full annular compression contact, concrete bearing, plate bending and shear at the pipe face, both fillets and the adjacent ring and pipe base metal, then the wall grid area, spacing, cover, laps and bar fit.</p>'
+        '<div class="flow">'+flow+'</div>'
+        '<p><b>Load path.</b> The gross wall prism is divided at midplanes between piles and between ring rows, clipped at the wall edges, and each cell’s factored weight is the vertical force on its ring. '
+        'The wall is a continuous stiff body, so the offset of a cell centroid from its pile is carried by the wall, not by the ring. The ring moment is the compatibility moment of the pile head: '
+        'the rigid wall rotates on the axial and rotational springs of the pile heads when the pile group is displaced by the radial placement tolerance, every pile head carries '
+        'k<sub>θ</sub> θ<sub>w</sub>, the ring rows share it equally, and the axial redistribution ΔR is added to each tributary reaction (decision D-070, 21 October 2026). '
+        'The superseded basis, R (|e<sub>n</sub>| + Δ<sub>p</sub>) at every ring, is tabulated beside it for comparison only.</p>'
+        '<p><b>Outside this calculation:</b> wall flexure, shear and lateral or seismic load paths; concrete splitting, breakout and the transfer below the lowest ring; pipe-shell bending and ovalization; '
+        'global pile interaction, ring-segment splices, fatigue, corrosion and WPS or fabrication acceptance; confirmation of the pile stiffness lengths. These stay as open items in the register below.</p>'
+        '<p>Equations are rendered from the evaluated ledger. Every equation has a <b>Numeric substitution and schematic</b> dropdown with a mechanics sketch, the current operands and the numbers substituted; '
+        'hovering a symbol opens its definition card. This report is a calculation record, not engineering acceptance.</p>')
+    return front_section('overview','Overview',box('discussion','Objective, method and scope',objective))
+
+
+def basis_html(r):
+    p=r['case'];t=r['totals']
+    codes=('<p>AASHTO LRFD Bridge Design Specifications, 10th edition (2024): concrete bearing LRFD 5.6.5 with the resistance factor of 5.5.4.2 and no supporting-area enhancement (m = 1); '
+        'minimum shrinkage and temperature reinforcement LRFD 5.10.6; bar spacing and clear spacing 5.10.3.1.1 and 5.10.3.2; bend diameter 5.10.2; development and Class B laps 5.10.8.2.1 and 5.10.8.4.3; '
+        'fillet weld resistance, minimum and maximum size and length LRFD 6.13.3.2.4, 6.13.3.4 and 6.13.3.5; shear yielding and rupture of the adjacent ring and pipe metal 6.13.5.2 and 6.13.5.3; '
+        'steel resistance factors LRFD 6.5.4.2; depth to fixity of the default pile free length LRFD 10.7.3.13.4. Project cover, grid pitch cap and exposure follow the entered values and the FDOT Structures Manual.</p>'
+        '<p>Units are inches, kip and ksi; concrete density in kip/ft³; rotations in radians. Ring elevations locate the plate top above the wall bottom. Bearing excludes the footprint of the upper fillet; '
+        'the peak pressure is applied over the whole radial cantilever strip; the two fillets form a couple over the plate thickness. A ring whose minimum pressure is negative loses full contact, and its bearing, plate, weld and base-metal checks are reported <b>PENDING</b> with trial values.</p>')
+    phi=', '.join(f'{label} {p[key]:g}' for label,key in (('bearing φ<sub>b</sub>','phi_concrete'),('plate flexure φ<sub>f</sub>','phi_plate'),('weld φ<sub>w</sub>','phi_weld'),('shear yielding φ<sub>vy</sub>','phi_shear_yield'),('shear rupture φ<sub>vu</sub>','phi_shear_rupture')))
+    rows=[['Wall',f'{p["length_in"]:g} in long × {p["thickness_in"]:g} in thick × {p["height_in"]:g} in high; concrete f′c {p["fc_ksi"]:g} ksi, {p["density_kcf"]:g} kcf, γ<sub>DC</sub> {p["gamma_dc"]:g}','Earlier study snapshot; confirm against current geometry (BASIS)'],
+        ['Piles',f'{p["pile_count"]} pipe piles at {p["pile_spacing_in"]:g} in, OD {p["pile_od_in"]:g} in, effective wall {p["pile_t_effective_in"]:g} in, Fy {p["pile_fy_ksi"]:g} / Fu {p["pile_fu_ksi"]:g} ksi; radial placement tolerance {p["placement_tolerance_in"]:g} in','Entered'],
+        ['Pile stiffness',f'E {p["pile_e_ksi"]:g} ksi; wall bottom to equivalent fixity {p["pile_free_length_in"]:g} in; axial spring length {p["pile_axial_length_in"]:g} in; imposed wall rotation {p["imposed_rotation_rad"]:g} rad','Defaults from the pier pile case (sand depth to fixity); tip elevation pending (STIFFNESS)'],
+        ['Annular rings',f'{p["ring_count"]} rows, first plate top {p["first_ring_in"]:g} in above the bottom at {p["ring_spacing_in"]:g} in pitch; OD {p["ring_od_in"]:g} / ID {p["ring_id_in"]:g} in × {p["ring_t_in"]:g} in; Fy {p["ring_fy_ksi"]:g} / Fu {p["ring_fu_ksi"]:g} ksi','Trial sizes; recalculate after selection'],
+        ['Fillet welds',f'two continuous fillets per ring, leg {p["weld_leg_in"]:g} in, F<sub>EXX</sub> {p["weld_fexx_ksi"]:g} ksi','Trial size; WPS must accept the radial root gap'],
+        ['Wall reinforcement',f'#{p["grid_bar"]} grid each way on each broad face, fy {p["fy_ksi"]:g} ksi, {p["coating"]} bars; cover {p["cover_in"]:g} in provided / {p["required_cover_in"]:g} in required; aggregate {p["aggregate_in"]:g} in; project pitch cap {p["project_max_spacing_in"]:g} in; U leg {p["u_leg_in"]:g} in, vertical lap allowance {p["vertical_lap_in"]:g} in','Pitch '+('selected automatically' if p['auto_grid_spacing'] else f'entered as {p["grid_spacing_in"]:g} in')],
+        ['Resistance factors',phi,'LRFD 5.5.4.2 and 6.5.4.2; visible inputs']]
+    inputs='<div class="table-scroll"><table class="basis-table"><thead><tr><th>Item</th><th>Current case</th><th>Source / status</th></tr></thead><tbody>'+''.join('<tr><td>'+a+'</td><td>'+b+'</td><td>'+c+'</td></tr>' for a,b,c in rows)+'</tbody></table></div>'
+    legend='<p><span class="badge PASS">PASS</span> demand ≤ capacity · <span class="badge FAIL">FAIL</span> demand exceeds capacity or the available clearance is not positive · <span class="badge PENDING">PENDING</span> the ring has lost full contact, so the local strength value is a trial and cannot establish a pass.</p>'
+    return front_section('basis','Design basis and inputs',box('discussion','Codes, assumptions and conventions',codes)+box('inputs','Case inputs',inputs+'<p class="caption">The complete input list with every value is at the end of the report.</p>')+box('discussion','Check status',legend))
+
+
+def results_html(r):
+    from . import plots as V
+    p=r['case'];t=r['totals'];rings=r['rings'];checks=r['checks'];stats=Counter(c['status'] for c in checks)
+    worst=max(rings,key=lambda a:a['e_equivalent']);qring=max(rings,key=lambda a:a['qmax']);qR=next(n['value'] for n in r['nodes'] if n['name']=='bearing_limit')
+    rows=[['Factored wall self-weight',fmt(t['factored_weight'])+' kip (service '+fmt(t['service_weight'])+' kip); force and nominal moment residuals '+fmt(t['force_error'])+' kip, '+fmt(t['moment_error'])+' kip-in'],
+        ['Wall rotation and pile-head moment',fmt(t['wall_rotation'])+' rad; '+fmt(t['pile_head_moment'])+' kip-in per pile head; '+fmt(t['ring_moment'])+' kip-in per ring'],
+        ['Full contact',f'largest equivalent eccentricity {fmt(worst["e_equivalent"])} in at R{worst["row"]}/P{worst["pile"]} against the {fmt(t["kern_limit"])}-in kern; '+str(sum(not a['contact_ok'] for a in rings))+' of '+str(len(rings))+' rings lose contact'],
+        ['Peak bearing',f'q<sub>max</sub> {fmt(qring["qmax"])} ksi at R{qring["row"]}/P{qring["pile"]} against q<sub>R</sub> {fmt(qR)} ksi'],
+        ['Largest design ring load',fmt(max(a['R_design'] for a in rings))+' kip (tributary '+fmt(max(a['R'] for a in rings))+' kip plus redistribution up to '+fmt(max(a['dR'] for a in rings))+' kip)'],
+        ['Wall reinforcement',f'#{r["grid"]["bar"]} at {r["grid"]["spacing"]:g} in each way on each face, {fmt(r["grid"]["provided"])} in²/ft provided against {fmt(r["grid"]["required"])} in²/ft required'],
+        ['Check register',' · '.join(f'{v} {k}' for k,v in stats.items())+'; failures: '+(', '.join(c['id'] for c in checks if c['status']=='FAIL') or 'none')]]
+    return front_section('results','Result summary',V.note(esc(r['overall']),True)+V.summary(r)+box('outputs','Key results',table(['Result','Current case'],rows)))
+
+
 def render_report(r):
     from . import plots as V
     report=Report(r);groups=list(families(r))
+    contents=[('overview','Overview'),('basis','Design basis and inputs'),('results','Result summary'),('methods','Check methods and result index'),('geometry','Geometry and reinforcement drawings'),('scope','Scope and unresolved design items'),('inputs','Case inputs and references')]
     pieces=['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wall steel and annular rings — calculation report</title><style>'+CSS+'</style></head><body>',
-        '<nav class="toolbar" aria-label="Report controls"><a href="#methods">Check methods</a><a href="#geometry">Geometry</a><button id="expand-methods">Expand methods</button><button id="expand-equations">Expand schematics</button><button id="collapse-details">Collapse details</button><button id="print-report">Print / save PDF</button><span>Offline calculation report</span></nav><main>',
+        '<nav class="toolbar" aria-label="Report controls"><a href="#overview">Overview</a><a href="#basis">Design basis</a><a href="#methods">Check methods</a><a href="#geometry">Geometry</a><button id="expand-methods">Expand methods</button><button id="expand-equations">Expand schematics</button><button id="collapse-details">Collapse details</button><button id="print-report">Print / save PDF</button><span>Offline calculation report</span></nav><main>',
         '<p class="eyebrow">D2 DESIGN NOTEBOOK · WALL STEEL / ANNULAR PILE RINGS</p><h1>'+esc(r['case']['title'])+'</h1>',
-        '<p class="lead">Understand each check once, then review every location. Open an equation’s dropdown for its schematic, current operands and numerical substitution.</p>',
-        V.note(esc(r['overall']),True),V.summary(r),
-        '<p>Concrete self-weight only; two face mats; two continuous top/bottom fillets. Gross volume retains pipe/plate displacement. No STM analysis or supporting-area bearing enhancement is used.</p>',
+        '<p class="lead">Read the overview and design basis first, understand each check once, then review every location. Open an equation’s dropdown for its schematic, current operands and numerical substitution.</p>',
+        '<nav class="contents" aria-label="Table of contents"><h2>Contents</h2><ul>'+''.join('<li><a href="#'+k+'">'+esc(v)+'</a></li>' for k,v in contents)+'</ul></nav>',
+        overview_html(r),basis_html(r),results_html(r),
         '<h2 id="methods">Check methods and result index</h2><p class="caption">Each check appears in one family table. Largest D/C may be a trial value where contact fails; the status column controls.</p>']
     index=[]
     for g in groups:
@@ -229,7 +306,7 @@ def render_report(r):
     pieces.append('<details class="check-family" id="geometry"><summary>Geometry and reinforcement drawings</summary>')
     for title,fig in [('Wall layout',V.layout_figure(r['case'])),('Reinforcement and rings',V.cage_figure(r['case'])),('Ring connection',V.connection_figure(r)),('Ring tributary reactions',V.reaction_figure(r))]:
         pieces.extend(['<h3>'+title+'</h3>',fig.to_html(full_html=False,include_plotlyjs=True if title=='Wall layout' else False,config={'responsive':True,'displaylogo':False})])
-    pieces.extend(['</details><h2>Scope and unresolved design items</h2>',table(['Item','Required follow-through'],[[esc(k),esc(v)] for k,v in r['pending']]),
+    pieces.extend(['</details><h2 id="scope">Scope and unresolved design items</h2>',table(['Item','Required follow-through'],[[esc(k),esc(v)] for k,v in r['pending']]),
         '<details class="check-family" id="inputs"><summary>Case inputs and references</summary>',table(['Input','Value'],[[esc(k),esc(v)] for k,v in r['case'].items()]),
         '<p>'+'; '.join('<a href="'+url+'">'+esc(label)+'</a>' for label,url in SOURCES)+'</p></details>',
         '<p class="footer-note">Equations are rendered directly from the evaluated calculation ledger; native MathML and SVG need no network connection. Schematics explain mechanics and are not fabrication drawings. Native worksheets retain the exported topology and labeled scalar units; formula parity is not native application recalculation or engineering acceptance.</p>',

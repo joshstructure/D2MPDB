@@ -23,7 +23,7 @@ def dropdowns(r):
 
 class RingWallSchematicTests(unittest.TestCase):
     def test_every_equation_dropdown_highlights_its_sketch(self):
-        for p in (default_case(), default_case() | dict(pile_count=1, ring_count=1),
+        for p in (default_case(), default_case() | dict(pile_count=1, ring_count=1), default_case() | dict(imposed_rotation_rad=.002),
                   default_case() | dict(length_in=240., thickness_in=44., placement_tolerance_in=0.)):
             r = analyze(p); seen = 0
             for group, name, kind, example, typ in dropdowns(r):
@@ -35,8 +35,8 @@ class RingWallSchematicTests(unittest.TestCase):
                     root = etree.fromstring(svg.encode())  # well-formed XML, offline inline SVG
                     self.assertEqual(len(root.xpath('.//*[local-name()="svg"]')), 1)
                 seen += 1
-            self.assertGreaterEqual(seen, 80 if p['pile_count'] > 1 else 70)
-        self.assertEqual(sum(1 for _ in dropdowns(analyze())), 96)
+            self.assertGreaterEqual(seen, 95 if p['pile_count'] > 1 else 85)
+        self.assertEqual(sum(1 for _ in dropdowns(analyze())), 111)
 
     def test_unknown_kind_and_inactive_sketch(self):
         r = analyze(); ex = r['rings'][0]

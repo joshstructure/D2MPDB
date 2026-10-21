@@ -1,6 +1,6 @@
 # Pier Wall Design
 
-[Open in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb). The 19 October 2026 revision replaces the former strut-and-tie and cone-transfer study with minimum wall reinforcement, detailing and local annular-ring connection checks.
+[Open in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb). The 19 October 2026 revision replaces the former strut-and-tie and cone-transfer study with minimum wall reinforcement, detailing and local annular-ring connection checks. The 21 October 2026 revision (decision D-070) changes the ring moment basis: tributaries assign vertical force only, the placement tolerance redistributes the pile-group reactions, and the ring moment follows the pile-head rotational stiffness against the rigid-wall rotation. The superseded basis is kept in the ledger for comparison.
 
 ## Workflow and drawings
 
@@ -8,7 +8,7 @@ Choose **Runtime → Run all**, edit the amber inputs, and click **Recalc**. Inp
 
 Seven panels show dimensioned plan/elevation, a rotatable 3D cage with view buttons and hideable components, tributary loads, a ring/weld section and pressure distribution, wall reinforcement, a filterable check register with equation/value disclosures, and ring-spacing comparisons. The cage shows two orthogonal layers per broad face, end returns, end-face vertical bars, pipes and annular plates. It is a centerline schematic; final bends, splices, joints and anchorage routing require detailing.
 
-Units are inches, kip and ksi, except density in kip/ft³. Ring elevations locate the **plate top above the wall bottom**. Effective pipe thickness is an explicit input. The connection has two continuous fillets, above and below every ring; a single-sided weld is not modeled.
+Units are inches, kip and ksi, except density in kip/ft³ and rotations in radians. Ring elevations locate the **plate top above the wall bottom**. Effective pipe thickness is an explicit input and also sets the pipe section used for the pile stiffness. The connection has two continuous fillets, above and below every ring; a single-sided weld is not modeled.
 
 ## Basis and scope
 
@@ -16,9 +16,10 @@ The basis is [AASHTO LRFD BDS, 10th edition (2024)](https://store.transportation
 
 Public supporting examples are [FHWA GEC 10, Chapter 12](https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf) for bearing and [Caltrans Bridge Design Practice 6.2](https://dot.ca.gov/-/media/dot-media/programs/engineering/documents/bridge-design-practices/202210bdpchapter62steelplategirdersa11y.pdf) for AASHTO fillet welds. These examples do not establish this wall's load transfer.
 
-Four open items remain in every result:
+Five open items remain in every result:
 
-- Tributary sharing assumes all rings engage. Concrete transfer, including material below a ring, splitting/breakout and row compatibility need a separately substantiated load path.
+- Tributary sharing assigns vertical force, and the ring rows share the pile-head moment equally; all rings are assumed to engage. Concrete transfer, including material below a ring, splitting/breakout and row compatibility need a separately substantiated load path.
+- Ring moments follow pile-head rotational stiffness against the rigid-wall rotation (D-070). The free length to fixity and the axial spring length are entered values whose defaults come from the pier pile case (sand depth to fixity, LRFD C10.7.3.13.4; tip elevation pending). Lateral, thermal, unsymmetric and construction-stage rotations enter only through the imposed rotation input.
 - Wall checks cover minimum shrinkage/temperature steel and detailing, not wall flexure, shear, lateral/seismic resistance or strength load paths.
 - Local plate, weld and adjacent-metal checks do not establish pipe-shell bending/ovalization, global pile interaction, segment splices, fatigue, corrosion or WPS/fabrication adequacy.
 - Confirm geometry, exposure/cover, materials, joints and anchorage routing. Defaults remain the earlier study snapshot, not a current CAD import.
@@ -31,7 +32,19 @@ Boundaries lie at midpoints between adjacent piles and ring rows, clipped at wal
 
 The gross concrete prism is retained conservatively without subtracting pipe or plate displacement. No additional gravity or steel self-weight is included. Ring pitch and count are independent; the top row takes the remaining height. The spacing study changes row count to fit each trial pitch and reports failures.
 
-With cell centroid `xc` and nominal pile center `xp`, nominal eccentricity is `en = xc − xp`; local design eccentricity is `ed = |en| + radial pile tolerance`; `M = R ed`. The signed nominal eccentricity is retained separately for equilibrium: sum `R` recovers total weight; sum `R xp + R en` recovers its moment about the wall end. Placement tolerance is a local envelope, not a simultaneous global displaced-pile geometry.
+With cell centroid `xc` and nominal pile center `xp`, the nominal eccentricity `en = xc − xp` is retained for equilibrium only: sum `R` recovers total weight; sum `R xp + R en` recovers its moment about the wall end. The continuous wall carries that centroid offset internally; it does not load the ring. The former local moment `Ms = R (|en| + Δp)` is still evaluated and tabulated as the **superseded basis** for comparison (D-070).
+
+## Pile-head compatibility moment and tolerance redistribution
+
+The wall is treated as a rigid body on `np` equally spaced pile heads, each with an axial spring `kv = Ap Ep / La` and a rotational spring `kθ = 4 Ep Ip / Lf`, where `Ap` and `Ip` are the effective pipe section, `La` is the entered axial spring length and `Lf` the entered length from the wall bottom to the equivalent point of fixity. The `4EI/L` form (head translation restrained) bounds the fixed-base cantilever family.
+
+The radial placement tolerance displaces the pile group by `Δp` relative to the wall centroid. Moment equilibrium of the rigid wall gives the rotation
+
+`θΔ = Rtotal Δp / (kv Sx + np kθ)`, with `Sx = sp² np (np² − 1) / 12`, the sum of squared pile offsets from the group centroid `x̄`.
+
+The total wall rotation `θw = θΔ + θimp` adds an imposed rotation input (zero by default) for actions outside this calculation. Every pile head then carries `Mp = kθ θw`, shared equally by the ring rows: `M = Mp / nr`. The axial redistribution `ΔR = η kv θw |xp − x̄|`, with `η = h / H` the row share, is added to each ring's tributary reaction with the sign that increases it: `Rd = R + ΔR`. For one pile `Sx = 0`, so the pile carries the whole `Rtotal Δp` in bending and `M` reduces to the former tributary moment.
+
+The equivalent eccentricity `eeq = M / Rd` is compared with the annulus kern `ek = I / (A ro)`; full contact needs `eeq ≤ ek`.
 
 ## Minimum steel and detailing
 
@@ -47,7 +60,7 @@ Lap inputs are allowances, not an actual splice schedule. U-bend inside diameter
 
 Let `rp` = pipe radius, `ri` = ring inside radius, `ro` = ring outside radius, and `w` = weld leg. Bearing excludes the upper fillet footprint: `rb = max(ri,rp+w)`, `A = π(ro²−rb²)`, `I = π(ro⁴−rb⁴)/4`.
 
-Elastic full-contact pressures are `qmax,min = R/A ± M ro/I`. Full compression requires `qmin ≥ 0`. Failure makes bearing, plate, weld and adjacent-metal checks for that ring **PENDING**. Displayed strength/sizing values are trial values. No reduced-contact factor or partial-contact solver is applied.
+Elastic full-contact pressures are `qmax,min = Rd/A ± M ro/I`. Full compression requires `qmin ≥ 0`. Failure makes bearing, plate, weld and adjacent-metal checks for that ring **PENDING**. Displayed strength/sizing values are trial values. No reduced-contact factor or partial-contact solver is applied.
 
 Bearing resistance is `φb 0.85 f′c`, initially `φb = 0.70`, with no supporting-area enhancement (`m = 1`). Peak pressure is conservatively applied over the whole radial cantilever strip:
 
@@ -61,18 +74,24 @@ Minimum weld size follows the thicker-part table (1/8, 3/16, 1/4, 5/16 in at the
 
 ## Starting case
 
-The retained wall is 213 × 36 × 172.375 in with four 20-in piles at 60 in; five rows start 6 in above bottom at 36-in pitch. Rings are 23-in OD × 20.125-in ID × 3/4-in thick with two 5/16-in E70 fillets. Radial pile tolerance is 3 in.
+The retained wall is 213 × 36 × 172.375 in with four 20-in piles at 60 in; five rows start 6 in above bottom at 36-in pitch. Rings are 23-in OD × 20.125-in ID × 3/4-in thick with two 5/16-in E70 fillets. Radial pile tolerance is 3 in. Pile stiffness inputs: E 29,000 ksi, 127 in from the wall bottom to fixity (16.3 in exposed plus 110.7 in sand depth to fixity from the pier pile case), 600-in axial spring length (tip elevation pending), no imposed rotation.
 
 - Service weight **114.737109375 kip**; factored **143.421386719 kip**.
-- Maximum ring reaction **9.462890625 kip**.
+- Maximum tributary ring reaction **9.462890625 kip** (top row, interior pile); the tolerance redistribution adds at most **0.420 kip** at the end piles (top row).
+- Wall rotation **1.414 × 10⁻⁵ rad**; pile-head moment **17.95 kip-in**; ring moment **3.589 kip-in** per ring against a superseded end-pile moment of 42.5 kip-in (row 1).
+- Largest equivalent eccentricity **0.779 in** against the **5.187-in** kern: all twenty rings keep full contact.
 - Minimum grid **#5 at 11 in each way each face**, providing 0.338182 in²/ft against 0.333614 in²/ft required.
-- **12 failed checks:** end cover, grid clearance and full contact at ten end-pile rings. Their 70 local strength checks remain pending, with four scope items open.
+- **2 failed checks:** end cover and grid clearance. No local strength check is pending; five scope items remain open.
 
-Default failures have not been tuned away. Increasing ring diameter also affects end/grid clearance; changed pile layout or eccentricity needs coordinated geometry review.
+Default failures have not been tuned away. Increasing ring diameter also affects end/grid clearance; a changed pile layout needs coordinated geometry review. Entering an imposed rotation of 0.002 rad reproduces the former full-contact failures across all rings, which shows the contact gate still operates.
+
+## Superseded basis (D-070)
+
+Until 21 October 2026 each ring carried `M = R (|en| + Δp)`: the tributary cell's own weight at the offset of its centroid from the nominal pile center plus the radial tolerance. That convention failed full contact at the ten end-pile rings (equivalent eccentricity 9.75 in against the 5.19-in kern) and made their 70 local strength checks pending. It was replaced because the wall is a continuous stiff body that carries the centroid offset internally, while the flexible pile head follows the wall, so the ring sees only the compatibility moment. Plate ductility does not relieve the former statics demand; the basis, not the ring, was the issue. The superseded moment stays in the ledger, the report table and the native sheets as `Ms` for comparison, and the decision is recorded in `project_current/decisions.md`.
 
 ## Exports and reproducibility
 
-The HTML calculation report groups repeated checks into **15 method sections**. Each method states its physical purpose, shows the equations once, identifies its worked example, and includes a table with every applicable check/location. There are **96 equation explanations and 178 check-result rows** for the starting case. Each equation has its own **Numeric substitution and schematic** dropdown with an inline SVG mechanics sketch, current operands, units and numerical substitution. Symbols and fractions are rendered as native MathML directly from the evaluated ledger, rather than copied into a separate calculation implementation.
+The HTML calculation report groups repeated checks into **16 method sections**. Each method states its physical purpose, shows the equations once, identifies its worked example, and includes a table with every applicable check/location. There are **111 equation explanations and 178 check-result rows** for the starting case. Each equation has its own **Numeric substitution and schematic** dropdown with an inline SVG mechanics sketch, current operands, units and numerical substitution. Symbols and fractions are rendered as native MathML directly from the evaluated ledger, rather than copied into a separate calculation implementation.
 
 Use the method index to jump to a check, **Expand methods** to compare equations and result tables, or **Expand schematics** to open all explanations. **Print / save PDF** expands the report for printing and restores the previous expansion state afterward. The HTML remains usable offline. Geometry plots sit in a separate expandable section. Repeated tables preserve original statuses; a worked example with failed contact stays visibly marked as a trial, even when its numerical strength ratio is small. This report presentation does not change the calculation engine or the formula-based native worksheet format.
 
@@ -80,7 +99,7 @@ Optional exports: offline interactive HTML; case JSON; checks and ring-load CSV;
 
 Native sheets use **labeled fixed scalar units**, not native dimensional quantities. They preserve exported topology, selected bar/coating and adopted pitch. Regenerate after changing those choices. Formula parity and XML checks are not native-application recalculation or engineering acceptance.
 
-Schema-free legacy cases migrate shared geometry/materials, discard STM/cone inputs and add new weld/detail defaults with a visible notice. Nonzero added gravity is rejected to avoid silently dropping a load. New cases use complete schema version 2.
+Schema-free legacy cases migrate shared geometry/materials, discard STM/cone inputs and add new weld/detail defaults with a visible notice. Nonzero added gravity is rejected to avoid silently dropping a load. Schema 2 cases (19 October revision) gain the four pile stiffness inputs at their defaults with a D-070 notice. New cases use complete schema version 3.
 
 Code is in `ring_wall/`. Export helpers are vendored from the commit in `ring_wall/_native/PROVENANCE.json`, isolating portable exports from unrelated shared-helper changes. The builder embeds exact source bytes and verifies extraction.
 

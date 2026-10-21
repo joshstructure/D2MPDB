@@ -1,6 +1,9 @@
 """Wall minimum steel and annular pile-ring gravity design; inch, kip, ksi.
 
-Midplane tributaries are an explicit load allocation, not a wall load-path analysis.
+Midplane tributaries allocate vertical force only. Ring moments come from the
+pile-head rotational stiffness against the rigid-wall rotation, with the placement
+tolerance applied as a rigid-body pile-group redistribution (D-070, 21 October 2026).
+The former tributary-eccentricity moment is kept in the ledger for comparison only.
 The equation ledger drives the disclosures and independently checked native sheets.
 """
 from copy import deepcopy
@@ -12,10 +15,20 @@ LEGACY = {'arch_rise_in','arch_panels','tie_offset_in','node_height_in','node_wi
  'cone_slope_hv','phi_tie','bearing_fraction','additional_service_ksf','gamma_additional'}
 
 
+SCHEMA=3
+# Schema 3 (D-070): pile stiffness inputs for the compatibility ring moment.
+# Defaults follow the pier pile case: 20-in pipe, 16.3 in exposed below the wall plus
+# 110.7 in sand depth to fixity (LRFD C10.7.3.13.4); tip elevation pending, so the axial
+# spring length is a stated 600-in allowance (softer spring = larger rotation = conservative moment).
+STIFFNESS_DEFAULTS=dict(pile_e_ksi=29000.,pile_free_length_in=127.,pile_axial_length_in=600.,imposed_rotation_rad=0.)
+ZERO_ALLOWED={'placement_tolerance_in','imposed_rotation_rad'}
+D070_NOTE='Ring moment basis D-070: the ring moment now follows pile-head stiffness against wall rotation, with the tolerance as a pile-group redistribution. Pile stiffness inputs use visible defaults from the pier pile case. Review and Recalc.'
+
+
 def default_case():
-    return dict(schema_version=2,title='D2 I-95 | Wall steel and welded pile rings',
+    return dict(schema_version=SCHEMA,title='D2 I-95 | Wall steel and welded pile rings',
         length_in=213.,thickness_in=36.,height_in=172.375,pile_count=4,pile_spacing_in=60.,pile_od_in=20.,
-        pile_t_effective_in=.475,pile_fy_ksi=50.,pile_fu_ksi=65.,placement_tolerance_in=3.,
+        pile_t_effective_in=.475,pile_fy_ksi=50.,pile_fu_ksi=65.,placement_tolerance_in=3.,**STIFFNESS_DEFAULTS,
         cover_in=3.,required_cover_in=3.,aggregate_in=.75,fc_ksi=5.5,fy_ksi=60.,density_kcf=.150,gamma_dc=1.25,
         first_ring_in=6.,ring_spacing_in=36.,ring_count=5,grid_bar=5,auto_grid_spacing=True,grid_spacing_in=6.,
         spacing_increment_in=.5,project_max_spacing_in=12.,u_leg_in=72.,vertical_lap_in=60.,coating='uncoated',
@@ -32,9 +45,12 @@ def upgrade_case(case=None):
             raise ValueError('Not a recognized ring-wall case.')
         if p.get('additional_service_ksf',0):
             raise ValueError('Legacy case has added gravity. This revision uses concrete self-weight only; resolve that load before migration.')
-        notes=['Legacy case migrated: geometry/materials retained; STM/cone and reduced-contact inputs removed. New weld/detail inputs use visible defaults. Review and Recalc.']
-        p={**default_case(),**{k:v for k,v in p.items() if k not in LEGACY},'schema_version':2}
-    if set(p)!=set(default_case()) or p['schema_version']!=2: raise ValueError('Expected complete ring-wall schema version 2.')
+        notes=['Legacy case migrated: geometry/materials retained; STM/cone and reduced-contact inputs removed. New weld/detail inputs use visible defaults. Review and Recalc.',D070_NOTE]
+        p={**default_case(),**{k:v for k,v in p.items() if k not in LEGACY},'schema_version':SCHEMA}
+    elif p.get('schema_version')==2 and not set(STIFFNESS_DEFAULTS)&set(p) and set(p)|set(STIFFNESS_DEFAULTS)==set(default_case()):
+        notes.append(D070_NOTE)
+        p={**p,**STIFFNESS_DEFAULTS,'schema_version':SCHEMA}
+    if set(p)!=set(default_case()) or p['schema_version']!=SCHEMA: raise ValueError(f'Expected complete ring-wall schema version {SCHEMA}.')
     validate(p)
     return p,notes
 
@@ -47,13 +63,14 @@ def validate(p):
             if type(v) is not bool: raise ValueError(k+': expected true or false.')
         elif type(default) in (int,float):
             if isinstance(v,bool) or not isinstance(v,(int,float)) or not isfinite(v): raise ValueError(k+': expected finite number.')
-            if v<0 or (v==0 and k!='placement_tolerance_in'): raise ValueError(k+': must be positive (tolerance may be zero).')
+            if v<0 or (v==0 and k not in ZERO_ALLOWED): raise ValueError(k+': must be positive (tolerance and imposed rotation may be zero).')
             if type(default) is int and type(v) is not int: raise ValueError(k+': expected integer.')
         elif not isinstance(v,str): raise ValueError(k+': expected text.')
     if p['coating'] not in ('uncoated','epoxy','unknown'): raise ValueError('Invalid coating.')
     if p['grid_bar'] not in BAR: raise ValueError('Supported grid bars: #4 through #10.')
     if not 1<=p['pile_count']<=20 or not 1<=p['ring_count']<=40: raise ValueError('Study limits: 1–20 piles and 1–40 ring rows.')
-    if p['schema_version']!=2: raise ValueError('Expected schema version 2.')
+    if p['schema_version']!=SCHEMA: raise ValueError(f'Expected schema version {SCHEMA}.')
+    if p['imposed_rotation_rad']>.05: raise ValueError('Imposed wall rotation above 0.05 rad is outside the small-rotation model.')
     for k in ('phi_concrete','phi_plate','phi_weld','phi_shear_yield','phi_shear_rupture'):
         if p[k]>1: raise ValueError(k+': must not exceed 1.')
     if p['fc_ksi']>15 or p['fy_ksi']>75: raise ValueError('Normalweight concrete f′c ≤ 15 ksi; rebar fy ≤ 75 ksi.')
@@ -103,7 +120,7 @@ def analyze(case=None):
         v[name]=value;nodes.append(dict(name=name,expr=expr,value=value,unit=unit,label=label or name.replace('_',' ')))
         return value
     for k,value in p.items():
-        if type(value) in (int,float): n(k,repr(value),'in' if k.endswith('_in') else 'ksi' if k.endswith('_ksi') else 'kip/ft³' if k=='density_kcf' else '—')
+        if type(value) in (int,float): n(k,repr(value),'in' if k.endswith('_in') else 'ksi' if k.endswith('_ksi') else 'rad' if k.endswith('_rad') else 'kip/ft³' if k=='density_kcf' else '—')
     n('pi_value',repr(pi))
     def ck(key,title,d,c,unit,ref,note='',valid=True):
         ratio=v[d]/v[c] if v[c]>0 else None
@@ -183,12 +200,28 @@ def analyze(case=None):
         ck('RING-SPACING','Adjacent pile rings / placement clearance','ring_grid_required','between_rings','in','Worst relative pile-placement tolerance')
     n('weight_density','density_kcf*thickness_in/1728','kip/in²','Gross concrete prism; no pipe/plate displacement deduction')
     n('factored_density','gamma_dc*weight_density','kip/in²')
+    service=n('total_service','weight_density*length_in*height_in','kip')
+    factored=n('total_factored','gamma_dc*total_service','kip')
+    # D-070 compatibility basis: the rigid wall rotates on axial and rotational pile springs.
+    n('pipe_inner_radius','pipe_radius-pile_t_effective_in','in','Effective pipe wall')
+    n('pipe_area','pi_value*(pipe_radius**2-pipe_inner_radius**2)','in²')
+    n('pipe_inertia','pi_value*(pipe_radius**4-pipe_inner_radius**4)/4','in⁴')
+    n('pile_axial_stiffness','pipe_area*pile_e_ksi/pile_axial_length_in','kip/in','Axial spring over the entered effective length')
+    n('pile_rotational_stiffness','4*pile_e_ksi*pipe_inertia/pile_free_length_in','kip-in/rad','Head translation restrained; bound of the fixed-base cantilever family')
+    n('group_centroid','end_offset+(pile_count-1)*pile_spacing_in/2','in')
+    n('group_second_moment','pile_spacing_in**2*pile_count*(pile_count**2-1)/12','in²','Equally spaced piles; zero for one pile')
+    n('tolerance_rotation','total_factored*placement_tolerance_in/(pile_axial_stiffness*group_second_moment+pile_count*pile_rotational_stiffness)','rad','Pile group displaced by the tolerance relative to the wall centroid')
+    n('wall_rotation','tolerance_rotation+imposed_rotation_rad','rad','Applied to every pile head')
+    n('pile_head_moment','pile_rotational_stiffness*wall_rotation','kip-in','Compatibility moment at one pile head')
+    n('ring_moment','pile_head_moment/ring_count','kip-in','Shared equally by the ring rows; no shaft-bearing credit')
+    n('kern_limit','bearing_inertia/(bearing_area*outer_radius)','in','Equivalent eccentricity at which full contact is lost')
     rows=[];rings=[]
     for k,(z,lo,hi) in enumerate(zip(g['ring_z'],g['z_bounds'],g['z_bounds'][1:]),1):
         pre=f'row_{k}_'
         n(pre+'lo','0' if k==1 else f'first_ring_in+({k}-1.5)*ring_spacing_in','in')
         n(pre+'hi','height_in' if k==p['ring_count'] else f'first_ring_in+({k}-0.5)*ring_spacing_in','in')
         bh=n(pre+'height',pre+'hi-'+pre+'lo','in')
+        n(pre+'share',pre+'height/height_in','—','Row tributary fraction of the wall height')
         rows.append(dict(row=k,z=z,lo=lo,hi=hi,height=bh,weight=v['factored_density']*bh*p['length_in'],service_weight=v['weight_density']*bh*p['length_in']))
         for j,(x,xlo,xhi) in enumerate(zip(g['pile_x'],g['x_bounds'],g['x_bounds'][1:]),1):
             a=f'ring_{k}_{j}_'
@@ -198,10 +231,12 @@ def analyze(case=None):
             n(a+'width',a+'hi-'+a+'lo','in')
             n(a+'volume',f'{a}width*{pre}height*thickness_in/1728','ft³')
             n(a+'service',f'density_kcf*{a}volume','kip');n(a+'force',f'gamma_dc*{a}service','kip')
-            n(a+'eccentricity',f'({a}lo+{a}hi)/2-{a}x','in')
-            n(a+'design_e',f'abs({a}eccentricity)+placement_tolerance_in','in','Worst radial tolerance plus nominal centroid offset')
-            n(a+'moment',f'{a}force*{a}design_e','kip-in')
-            n(a+'qavg',f'{a}force/bearing_area','ksi');n(a+'qmoment',f'{a}moment*outer_radius/bearing_inertia','ksi')
+            n(a+'eccentricity',f'({a}lo+{a}hi)/2-{a}x','in','Retained for whole-wall equilibrium; carried by the wall, not the ring')
+            n(a+'superseded_moment',f'{a}force*(abs({a}eccentricity)+placement_tolerance_in)','kip-in','Superseded tributary-eccentricity basis (D-070); comparison only')
+            n(a+'tolerance_force',f'{pre}share*pile_axial_stiffness*wall_rotation*abs({a}x-group_centroid)','kip','Rigid-body axial redistribution; sign taken to increase the ring force')
+            n(a+'design_force',f'{a}force+{a}tolerance_force','kip')
+            n(a+'equivalent_e',f'ring_moment/{a}design_force','in','Compare with the kern limit')
+            n(a+'qavg',f'{a}design_force/bearing_area','ksi');n(a+'qmoment',f'ring_moment*outer_radius/bearing_inertia','ksi')
             n(a+'qmax',f'{a}qavg+{a}qmoment','ksi');n(a+'qmin',f'{a}qavg-{a}qmoment','ksi')
             n(a+'root_moment',f'{a}qmax*((outer_radius**3-bearing_inner**3)/(3*pipe_radius)-(outer_radius**2-bearing_inner**2)/2)','kip-in/in','Peak pressure over full radial strip')
             n(a+'root_shear',f'{a}qmax*(outer_radius**2-bearing_inner**2)/(2*pipe_radius)','kip/in')
@@ -225,18 +260,19 @@ def analyze(case=None):
                 ck(key+'-'+suffix,title,d,c,unit,ref,'' if valid else 'Full contact fails. Values are trial values; resolve partial contact before accepting bearing, plate or weld results.',valid)
             get=lambda s:v[a+s]
             rings.append(dict(row=k,pile=j,x=x,z=z,xlo=xlo,xhi=xhi,lo=lo,hi=hi,width=get('width'),height=bh,
-                volume_ft3=get('volume'),service=get('service'),R=get('force'),e_nominal=get('eccentricity'),e_design=get('design_e'),
-                M_nominal=get('force')*get('eccentricity'),M=get('moment'),qmax=get('qmax'),qmin=get('qmin'),m_per_in=get('root_moment'),
+                volume_ft3=get('volume'),service=get('service'),R=get('force'),e_nominal=get('eccentricity'),
+                M_nominal=get('force')*get('eccentricity'),M_superseded=get('superseded_moment'),dR=get('tolerance_force'),R_design=get('design_force'),
+                M=v['ring_moment'],e_equivalent=get('equivalent_e'),qmax=get('qmax'),qmin=get('qmin'),m_per_in=get('root_moment'),
                 v_per_in=get('root_shear'),t_req=get('thickness_required'),t_bending_req=get('thickness_bending'),weld_demand=get('weld_resultant'),weld_capacity=v['weld_capacity'],
                 weld_req=get('weld_required'),contact_ok=valid,bearing_ratio=get('qmax')/v['bearing_limit'],plate_ratio=get('root_moment')/v['plate_capacity'],weld_ratio=get('weld_resultant')/v['weld_capacity']))
-    service=n('total_service','weight_density*length_in*height_in','kip')
-    factored=n('total_factored','gamma_dc*total_service','kip')
-    pending=[('SHARING','Midplane tributaries assume all rings engage. Concrete transfer (including concrete below rings), splitting/breakout and row compatibility need a separately substantiated load path.'),
+    pending=[('SHARING','Midplane tributaries assign vertical force and the ring rows share the pile-head moment equally; all rings are assumed to engage. Concrete transfer (including concrete below rings), splitting/breakout and row compatibility need a separately substantiated load path.'),
+        ('STIFFNESS','Ring moments follow pile-head rotational stiffness against the rigid-wall rotation (D-070). The free length to fixity and the axial spring length are entered values (defaults from the pier pile case with sand depth to fixity, LRFD 10.7.3.13.4; tip elevation pending). Lateral, thermal, unsymmetric and construction-stage rotations enter only through the imposed rotation input.'),
         ('SCOPE','Wall checks cover minimum shrinkage/temperature steel and detailing only. Wall flexure, shear, lateral loads, seismic and strength load paths are outside this calculation.'),
         ('CONNECTION','Local plate and double-fillet checks do not establish pipe-shell bending/ovalization, global pile interaction, ring-segment splices, fatigue, corrosion or WPS/fabrication adequacy.'),
         ('BASIS','Confirm geometry, exposure/cover, material grades, construction joints and bar anchorage routing. Starting dimensions are the earlier study snapshot, not a current CAD import.')]
     failed=sum(c['status']=='FAIL' for c in checks)
     return dict(case=p,migration=migration,geometry=g,grid=steel,rows=rows,rings=rings,checks=checks,nodes=nodes,pending=pending,
         totals=dict(service_weight=service,factored_weight=factored,force_error=sum(r['R'] for r in rings)-factored,
-            moment_error=sum(r['R']*r['x']+r['M_nominal'] for r in rings)-factored*p['length_in']/2),
+            moment_error=sum(r['R']*r['x']+r['M_nominal'] for r in rings)-factored*p['length_in']/2,
+            wall_rotation=v['wall_rotation'],pile_head_moment=v['pile_head_moment'],ring_moment=v['ring_moment'],kern_limit=v['kern_limit']),
         overall=f'{failed} FAILED CHECKS · LIMITED SCOPE' if failed else 'NUMERICAL CHECKS SATISFIED · LIMITED SCOPE')

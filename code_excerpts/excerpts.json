@@ -1,5 +1,5 @@
 {
- "built": "2026-10-21 16:23 UTC",
+ "built": "2026-10-21 20:57 UTC",
  "cites": {
   "10.7.1.6.2": {
    "cited_by": [
@@ -431,7 +431,9 @@
   },
   "LRFD 10.7.3.13.4": {
    "cited_by": [
-    "pile_design/data/references.json"
+    "pile_design/data/references.json",
+    "ring_wall/calculation_report.py",
+    "ring_wall/design.py"
    ],
    "code": "LRFD",
    "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
@@ -975,6 +977,7 @@
   },
   "LRFD 5.10.6": {
    "cited_by": [
+    "ring_wall/calculation_report.py",
     "ring_wall/design.py",
     "pier_wall_fins/data/references.json"
    ],
@@ -1302,6 +1305,7 @@
    "cited_by": [
     "end_bent_walls/data/references.json",
     "pile_design/data/references.json",
+    "ring_wall/calculation_report.py",
     "ring_wall/design.py",
     "pier_wall_fins/data/references.json"
    ],
@@ -1493,6 +1497,7 @@
   },
   "LRFD 5.6.5": {
    "cited_by": [
+    "ring_wall/calculation_report.py",
     "ring_wall/design.py"
    ],
    "code": "LRFD",
@@ -1940,6 +1945,7 @@
   },
   "LRFD 6.13.3.2.4": {
    "cited_by": [
+    "ring_wall/calculation_report.py",
     "ring_wall/design.py"
    ],
    "code": "LRFD",
@@ -1960,6 +1966,7 @@
   },
   "LRFD 6.13.3.4": {
    "cited_by": [
+    "ring_wall/calculation_report.py",
     "ring_wall/design.py"
    ],
    "code": "LRFD",
@@ -1980,6 +1987,7 @@
   },
   "LRFD 6.13.3.5": {
    "cited_by": [
+    "ring_wall/calculation_report.py",
     "ring_wall/design.py"
    ],
    "code": "LRFD",
@@ -2041,6 +2049,7 @@
   "LRFD 6.5.4.2": {
    "cited_by": [
     "pile_design/data/references.json",
+    "ring_wall/calculation_report.py",
     "ring_wall/design.py",
     "pier_wall_fins/data/references.json"
    ],

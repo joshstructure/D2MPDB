@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "title": "D2 I-95 | Wall steel and welded pile rings",
   "length_in": 213.0,
   "thickness_in": 36.0,
@@ -11,6 +11,10 @@
   "pile_fy_ksi": 50.0,
   "pile_fu_ksi": 65.0,
   "placement_tolerance_in": 3.0,
+  "pile_e_ksi": 29000.0,
+  "pile_free_length_in": 127.0,
+  "pile_axial_length_in": 600.0,
+  "imposed_rotation_rad": 0.0,
   "cover_in": 3.0,
   "required_cover_in": 3.0,
   "aggregate_in": 0.75,

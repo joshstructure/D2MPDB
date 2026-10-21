@@ -16,7 +16,7 @@ with zipfile.ZipFile(buffer,'w',compression=zipfile.ZIP_DEFLATED) as archive:
     from report_cards import cited_page_files
     files+=[ROOT/'code_excerpts'/'excerpts.json']+cited_page_files(ROOT,scan=['ring_wall/*.py'])  # citation excerpt cards
     for file in files:
-        info=zipfile.ZipInfo(file.relative_to(ROOT).as_posix(),date_time=(2026,10,19,0,0,0))
+        info=zipfile.ZipInfo(file.relative_to(ROOT).as_posix(),date_time=(2026,10,21,0,0,0))
         info.compress_type=zipfile.ZIP_DEFLATED
         archive.writestr(info,file.read_bytes())
 payload=buffer.getvalue();digest=hashlib.sha256(payload).hexdigest()
@@ -34,13 +34,13 @@ INTRO='''<a href="https://colab.research.google.com/github/joshstructure/D2MPDB/
 
 Choose **Runtime → Run all**. Edit the amber input cards, inspect **Live layout** and **3D reinforcement**, then click **Recalc**. Review **Tributary loads**, **Ring & weld detail**, **Wall steel**, **D/C checks** and **Ring spacing**. Edits clear calculated results and block new exports until Recalc. Green **Calc done** means current results; each check has its own status.
 
-Wall checks cover minimum shrinkage/temperature reinforcement, spacing, cover, lap allowances and bend fit. Ring design assigns gross concrete self-weight between pile/row midplanes and wall edges. It checks full annular compression contact, concrete bearing, plate bending/shear, two continuous top/bottom fillet welds and adjacent base metal. Nominal tributary eccentricity and pile tolerance are included. No STM analysis is performed.
+Wall checks cover minimum shrinkage/temperature reinforcement, spacing, cover, lap allowances and bend fit. Ring design assigns gross concrete self-weight between pile/row midplanes and wall edges as vertical force. The ring moment follows the pile-head rotational stiffness against the rigid-wall rotation, with the radial pile tolerance applied as a pile-group reaction redistribution (D-070, 21 October 2026); the former tributary-eccentricity moment is shown for comparison only. It checks full annular compression contact, concrete bearing, plate bending/shear, two continuous top/bottom fillet welds and adjacent base metal. No STM analysis is performed.
 
 **Report and exports** includes an offline interactive HTML report, case JSON, check and ring-load CSVs, formula-based Mathcad and Blockpad sheets, a source ZIP and a complete bundle with verification records. The HTML report groups repeated checks: each method has readable equations, a schematic and numeric-substitution dropdown for every equation, and tables covering all locations. Exports are optional; Run all does not create them. Save your case before ending the runtime. Legacy cases with zero added gravity migrate with a visible notice; former STM inputs are discarded.
 
 Native sheets use labeled fixed scalar units and the exported layout. Re-export after changing counts, bar size/coating or automatic spacing. Formula parity is verified; native application recalculation is not implied.
 
-The starting geometry has clearance and full-contact failures. A failed contact check makes its bearing/plate/weld strength checks **PENDING**. Minimum steel and local connection checks do not establish wall strength load paths, splitting/breakout, row engagement or pipe-shell adequacy. These open items remain in the check register.
+The starting geometry has end-cover and grid-clearance failures; all rings keep full contact. A failed contact check (for example with an imposed wall rotation) makes its bearing/plate/weld strength checks **PENDING**. Minimum steel and local connection checks do not establish wall strength load paths, splitting/breakout, row engagement, pile stiffness or pipe-shell adequacy. These open items remain in the check register.
 
 The package and native-sheet helpers are embedded; no clone, token or Drive mount is required. Rerunning the workbench retains the active case.
 '''
@@ -99,7 +99,7 @@ app.display()
 '''
 BASIS='''## Design basis
 
-AASHTO LRFD BDS 10th edition (2024): bearing 5.6.5; minimum steel 5.10.6; detailing 5.10.2, 5.10.3 and 5.10.8; welds 6.13.3 and adjacent steel shear 6.13.5. Resistance factors and required cover remain visible inputs. The project spacing cap defaults to 12 inches. Bearing uses m = 1 with no supporting-area enhancement.
+AASHTO LRFD BDS 10th edition (2024): bearing 5.6.5; minimum steel 5.10.6; detailing 5.10.2, 5.10.3 and 5.10.8; welds 6.13.3 and adjacent steel shear 6.13.5; depth to fixity for the default pile free length C10.7.3.13.4. Resistance factors and required cover remain visible inputs. The project spacing cap defaults to 12 inches. Bearing uses m = 1 with no supporting-area enhancement. The ring moment basis (pile-head stiffness against wall rotation; tolerance as pile-group redistribution) is decision D-070 in `project_current/decisions.md`; the superseded tributary-eccentricity moment is tabulated for comparison.
 
 Background: [FHWA concrete bearing](https://www.fhwa.dot.gov/engineering/geotech/nhi18024.pdf), [Caltrans AASHTO fillet-weld example](https://dot.ca.gov/-/media/dot-media/programs/engineering/documents/bridge-design-practices/202210bdpchapter62steelplategirdersa11y.pdf), and [FDOT Structures Manual](https://www.fdot.gov/Structures/StructuresManual/CurrentRelease). Wall dimensions remain an earlier project study snapshot; verify them against current geometry.
 
