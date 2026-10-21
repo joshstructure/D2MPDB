@@ -290,14 +290,17 @@ def results_html(r):
 def render_report(r):
     from . import plots as V
     report=Report(r);groups=list(families(r))
-    contents=[('overview','Overview'),('basis','Design basis and inputs'),('results','Result summary'),('methods','Check methods and result index'),('geometry','Geometry and reinforcement drawings'),('scope','Scope and unresolved design items'),('inputs','Case inputs and references')]
+    contents=[('overview','Overview'),('basis','Design basis and inputs'),('results','Result summary'),('geometry','Geometry and reinforcement drawings'),('methods','Check methods and result index'),('scope','Scope and unresolved design items'),('inputs','Case inputs and references')]
     pieces=['<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Wall steel and annular rings — calculation report</title><style>'+CSS+'</style></head><body>',
         '<nav class="toolbar" aria-label="Report controls"><a href="#overview">Overview</a><a href="#basis">Design basis</a><a href="#methods">Check methods</a><a href="#geometry">Geometry</a><button id="expand-methods">Expand methods</button><button id="expand-equations">Expand schematics</button><button id="collapse-details">Collapse details</button><button id="print-report">Print / save PDF</button><span>Offline calculation report</span></nav><main>',
         '<p class="eyebrow">D2 DESIGN NOTEBOOK · WALL STEEL / ANNULAR PILE RINGS</p><h1>'+esc(r['case']['title'])+'</h1>',
         '<p class="lead">Read the overview and design basis first, understand each check once, then review every location. Open an equation’s dropdown for its schematic, current operands and numerical substitution.</p>',
         '<nav class="contents" aria-label="Table of contents"><h2>Contents</h2><ul>'+''.join('<li><a href="#'+k+'">'+esc(v)+'</a></li>' for k,v in contents)+'</ul></nav>',
         overview_html(r),basis_html(r),results_html(r),
-        '<h2 id="methods">Check methods and result index</h2><p class="caption">Each check appears in one family table. Largest D/C may be a trial value where contact fails; the status column controls.</p>']
+        '<details class="check-family front" id="geometry" open><summary>Geometry and reinforcement drawings</summary><p class="caption">Drawn from the current inputs: dimensioned plan and elevation with the tributary boundaries, the reinforcement cage with piles and annular plates (rotate, zoom, hide a family in the legend), the ring connection with its pressure distribution, and the reaction assigned to each ring. Centerline schematics, not fabrication drawings.</p>']
+    for title,fig in [('Wall layout',V.layout_figure(r['case'])),('Reinforcement and rings',V.cage_figure(r['case'])),('Ring connection',V.connection_figure(r)),('Ring tributary reactions',V.reaction_figure(r))]:
+        pieces.extend(['<h3>'+title+'</h3>',fig.to_html(full_html=False,include_plotlyjs=True if title=='Wall layout' else False,config={'responsive':True,'displaylogo':False})])
+    pieces.append('</details><h2 id="methods">Check methods and result index</h2><p class="caption">Each check appears in one family table. Largest D/C may be a trial value where contact fails; the status column controls.</p>')
     index=[]
     for g in groups:
         stats=Counter(c['status'] for c in g['checks']);ratios=[c['ratio'] for c in g['checks'] if c['ratio'] is not None]
@@ -305,10 +308,7 @@ def render_report(r):
                       ' · '.join(badge(k)+' '+str(v) for k,v in stats.items()) or 'Reference values'])
     pieces.append('<div class="method-index table-scroll">'+table(['Method','Checks','Largest D/C','Results'],index)+'</div>')
     pieces.extend(report.family(g) for g in groups)
-    pieces.append('<details class="check-family" id="geometry"><summary>Geometry and reinforcement drawings</summary>')
-    for title,fig in [('Wall layout',V.layout_figure(r['case'])),('Reinforcement and rings',V.cage_figure(r['case'])),('Ring connection',V.connection_figure(r)),('Ring tributary reactions',V.reaction_figure(r))]:
-        pieces.extend(['<h3>'+title+'</h3>',fig.to_html(full_html=False,include_plotlyjs=True if title=='Wall layout' else False,config={'responsive':True,'displaylogo':False})])
-    pieces.extend(['</details><h2 id="scope">Scope and unresolved design items</h2>',table(['Item','Required follow-through'],[[esc(k),esc(v)] for k,v in r['pending']]),
+    pieces.extend(['<h2 id="scope">Scope and unresolved design items</h2>',table(['Item','Required follow-through'],[[esc(k),esc(v)] for k,v in r['pending']]),
         '<details class="check-family" id="inputs"><summary>Case inputs and references</summary>',table(['Input','Value'],[[esc(k),esc(v)] for k,v in r['case'].items()]),
         '<p>'+'; '.join('<a href="'+url+'">'+esc(label)+'</a>' for label,url in SOURCES)+'</p></details>',
         '<p class="footer-note">Equations are rendered directly from the evaluated calculation ledger; native MathML and SVG need no network connection. Schematics explain mechanics and are not fabrication drawings. Native worksheets retain the exported topology and labeled scalar units; formula parity is not native application recalculation or engineering acceptance.</p>',
