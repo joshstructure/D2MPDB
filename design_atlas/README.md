@@ -56,6 +56,11 @@ The existing site is
   selection** undims every node without moving the map. The **dashed-square
   Fit map** button fits every source without changing the selection. The atlas
   opens with no assumed topic. The source directory is also keyboard accessible.
+- The workspace fills the browser on desktop monitors. A larger window reveals
+  more map at the same zoom. Pane **02** folds into a side rail; pane **03** folds
+  into a bottom bar, returning that space to the map. Select a node to reopen
+  both panes, or use **View parameters** to reopen pane 03. Collapsing preserves
+  the selected value and filters; **Back** restores the pane state too.
 - The **Arrange map** buttons reposition the same complete map and fit it to
   the canvas. **Default**, leftmost, restores alphabetical stage columns:
   **Basis**, **Analysis**, **Design**, **Detailing**, **Deliverables**.

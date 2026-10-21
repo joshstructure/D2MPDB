@@ -7,13 +7,13 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const byId = new Map(data.nodes.map(n => [n.id,n]));
   const valueById = new Map(data.values.map(v => [v.id,v]));
-  const state = { layout:'default', selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, traceCollapsed:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
+  const state = { layout:'default', selected:null, value:'inputs.Vu_G', direction:'both', dependencies:false, allValues:false, parameterFocus:false, overview:true, traceCollapsed:true, valuesCollapsed:true, origin:'all', scale:.7,x:0,y:0, edge:null, depth:0 };
   const params = new URLSearchParams(location.hash.slice(1));
   if(AtlasLayouts.modes.some(m=>m.id===params.get('layout')))state.layout=params.get('layout');
-  if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;state.traceCollapsed=false;}
+  if (byId.has(params.get('source'))) {state.selected=params.get('source');state.overview=false;state.traceCollapsed=false;state.valuesCollapsed=false;}
   if (valueById.has(params.get('value'))) {state.value=params.get('value');state.parameterFocus=params.get('trace')==='value';}
   let directoryOpen = false;
-  let oldWidth=0;
+  let oldWidth=0,oldHeight=0;
   const prettyStatus = {match:'Fingerprint match',changed:'Revision changed',missing:'Source missing',unmapped:'Unmapped',recorded:'Recorded',mismatch:'Conflict',declared:'Registered',context:'Context only',error:'Read error',review:'Review'};
   const badge = (status,label) => `<span class="status ${escape(status)}">${escape(label || prettyStatus[status] || status)}</span>`;
   function format(value) {
@@ -52,10 +52,20 @@
     $('trace-content').hidden=state.traceCollapsed;$('trace-expand').hidden=!state.traceCollapsed;
     $('trace-collapse').setAttribute('aria-expanded',String(!state.traceCollapsed));
     $('trace-expand').setAttribute('aria-expanded',String(!state.traceCollapsed));
-    // A sidebar toggle reveals more canvas without resetting its zoom or pan.
-    oldWidth=$('map-canvas').clientWidth;
     if(!state.traceCollapsed)drawTraceFlow();
   }
+  function renderValuesPanel() {
+    document.querySelector('.workspace').classList.toggle('values-collapsed',state.valuesCollapsed);
+    $('values-content').hidden=state.valuesCollapsed;$('values-expand').hidden=!state.valuesCollapsed;
+    $('values-collapse').setAttribute('aria-expanded',String(!state.valuesCollapsed));
+    $('values-expand').setAttribute('aria-expanded',String(!state.valuesCollapsed));
+  }
+  function toggleValues(collapsed) {
+    state.valuesCollapsed=collapsed;renderValuesPanel();
+    $(collapsed?'values-expand':'values-collapse').focus({preventScroll:true});
+    saveSelection();announce(collapsed?'Parameters collapsed. More space for the map.':'Parameters expanded.');
+  }
+  $('values-collapse').onclick=()=>toggleValues(true);$('values-expand').onclick=()=>toggleValues(false);
   function keepSelectedVisible() {
     if(!state.selected)return;
     const box=$('map-canvas').getBoundingClientRect(),p=positions[state.selected],margin=16;
@@ -72,10 +82,10 @@
   }
   $('trace-collapse').onclick=()=>toggleTrace(true);$('trace-expand').onclick=()=>toggleTrace(false);
   function renderSelection(preserveCamera=false) {
-    renderTraceSidebar();const changed=updateLayout();renderValues();paintGraph();renderTrace();
+    renderTraceSidebar();renderValuesPanel();const changed=updateLayout();renderValues();paintGraph();renderTrace();
     if(changed&&!preserveCamera&&state.layout==='neighborhood')fit(data.nodes.map(n=>n.id));
   }
-  function scrollToValues() {$('values-panel').scrollIntoView({block:'start'});$('values-title').focus({preventScroll:true});}
+  function scrollToValues() {state.valuesCollapsed=false;renderValuesPanel();$('values-panel').scrollIntoView({block:'nearest'});$('values-title').focus({preventScroll:true});}
   window.addEventListener('popstate',event=>{
     if(!event.state?.atlas)return;
     document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
@@ -88,7 +98,7 @@
     window.scrollTo(0,saved.scroll||0);
   });
   $('nav-back').onclick=()=>history.back();
-  function clearSelection(fitMap=false) {navigate(()=>{resetFilters();state.selected=null;state.parameterFocus=false;state.overview=true;state.traceCollapsed=true;state.direction='both';state.dependencies=false;state.edge=null;$('include-dependencies').checked=false;directoryOpen=false;$('source-search').value='';renderDirectory();renderSelection();if(fitMap)fit(data.nodes.map(n=>n.id));announce('Selection cleared. All sources are visible.');});}
+  function clearSelection(fitMap=false) {navigate(()=>{resetFilters();state.selected=null;state.parameterFocus=false;state.overview=true;state.traceCollapsed=true;state.valuesCollapsed=true;state.direction='both';state.dependencies=false;state.edge=null;$('include-dependencies').checked=false;directoryOpen=false;$('source-search').value='';renderDirectory();renderSelection();if(fitMap)fit(data.nodes.map(n=>n.id));announce('Selection cleared. All sources are visible.');});}
   function overview() {clearSelection(true);window.scrollTo(0,0);}
   $('nav-overview').onclick=overview;
   $('help-button').onclick=()=>{$('quick-help').open=!$('quick-help').open;if($('quick-help').open)$('quick-help').scrollIntoView({block:'start'});};
@@ -431,7 +441,7 @@
     $('assumption-dialog').showModal();
   }
   function selectNode(id,openValues=false,valueId=null) {
-    navigate(()=>{state.selected=id;if(valueId)state.value=valueId;state.edge=null;resetFilters();state.parameterFocus=false;state.overview=false;state.traceCollapsed=false;
+    navigate(()=>{state.selected=id;if(valueId)state.value=valueId;state.edge=null;resetFilters();state.parameterFocus=false;state.overview=false;state.traceCollapsed=false;state.valuesCollapsed=false;
       renderSelection();keepSelectedVisible();if(openValues)scrollToValues();announce('Selected '+byId.get(id).title);});
   }
   function showNodeOnMap(id,valueId) {
@@ -582,6 +592,11 @@
   document.querySelector('.brand').onclick=e=>{e.preventDefault();overview();};
   history.scrollRestoration='manual';
   renderSelection();requestAnimationFrame(()=>{fit(data.nodes.map(n=>n.id));saveSelection();});
-  new ResizeObserver(()=>{const width=$('map-canvas').clientWidth;if(Math.abs(width-oldWidth)>60){oldWidth=width;if(state.overview)fit(data.nodes.map(n=>n.id));}}).observe($('map-canvas'));
+  // Keep the zoom level when a monitor or pane changes size: extra pixels reveal
+  // more of the map. Only nudge the selection back into view when space shrinks.
+  new ResizeObserver(()=>{const {clientWidth:width,clientHeight:height}=$('map-canvas');
+    if(oldWidth&&(width<oldWidth||height<oldHeight))keepSelectedVisible();
+    oldWidth=width;oldHeight=height;
+  }).observe($('map-canvas'));
   new ResizeObserver(drawTraceFlow).observe($('trace-body'));
 })();
