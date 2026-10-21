@@ -16,7 +16,7 @@ Equivalent command, from the repository root:
 .venv\Scripts\python.exe -m design_atlas.build
 ```
 
-The private hosted copy is a published snapshot. Source-changing agents must run
+The public hosted copy is a published snapshot. Source-changing agents must run
 the deterministic refresh gate and complete the publication workflow in
 [UPDATE_WORKFLOW.md](UPDATE_WORKFLOW.md), as required by the root AGENTS.md.
 `python -m design_atlas.refresh status` compares source hashes to the last
@@ -26,6 +26,13 @@ The existing site is
 `https://d2-pier-cap-design-atlas.ochrebee15.chatgpt.site`.
 
 ## Explore
+
+- Select any node and use **Download document** at the top of **02 / Isolated
+  trace**. Journal modules offer **Download journal**, which saves the full journal
+  containing that module. Downloads also sit beside exact-source links. Filenames
+  and formats are preserved. Missing or unlinked documents say **Document unavailable**.
+  Files follow the latest registered sources in each atlas update; verified public
+  repository revisions host larger documents without duplicating them in the Site.
 
 - The numbered calculations of the journal (**C001** to **C016**: wind, fence
   wind, temperature movement, uplift, pier wall and fins, cap design basis and

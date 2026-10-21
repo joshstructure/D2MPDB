@@ -94,6 +94,50 @@
   $('help-button').onclick=()=>{$('quick-help').open=!$('quick-help').open;if($('quick-help').open)$('quick-help').scrollIntoView({block:'start'});};
   function announce(text) { $('announcement').textContent=text; }
 
+  const fileSize=bytes=>bytes<1024?bytes+' B':bytes<1048576?(bytes/1024).toFixed(1)+' KB':(bytes/1048576).toFixed(1)+' MB';
+  function downloadLink(path,label='Download document ↓') {
+    const doc=data.documents[path]?.download;
+    if(!doc)return '';
+    if(location.protocol==='file:')return `<a class="document-download" href="${escape(new URL('../../'+path,location.href).href)}" download="${escape(doc.filename)}">${escape(label)}</a>`;
+    const attrs=`class="document-download" data-download="${escape(path)}" title="${escape(doc.filename)} · ${fileSize(doc.bytes)}"`;
+    return doc.parts.length===1?`<a ${attrs} href="${escape(doc.parts[0].href)}" download="${escape(doc.filename)}">${escape(label)}</a>`:
+      `<button ${attrs}>${escape(label)}</button>`;
+  }
+  function renderDocument(node) {
+    const target=$('node-document');
+    if(!node){target.innerHTML='';return;}
+    const download=node.download,doc=data.documents[download?.path]?.download;
+    target.innerHTML=doc?downloadLink(download.path,download.scope==='journal'?'Download journal ↓':'Download document ↓')+
+      `<small class="document-filename">${escape(doc.filename)} · ${fileSize(doc.bytes)}</small>`+
+      `<p>${download.scope==='journal'?'Full project journal containing this module.':'Current source document in this atlas update.'}</p>`:
+      `<div class="document-unavailable"><strong>Document unavailable</strong><p>${escape(download?.reason||'No document is linked to this node yet.')}</p></div>`;
+  }
+  let activeDownload=null;
+  document.addEventListener('click',async event=>{
+    const link=event.target.closest('[data-download]');if(!link)return;
+    event.preventDefault();
+    if(activeDownload){announce('A document is already downloading. Finish or cancel it first.');return;}
+    const doc=data.documents[link.dataset.download]?.download;if(!doc)return;
+    const controller=new AbortController();activeDownload=controller;
+    $('download-status').hidden=false;$('cancel-download').hidden=false;$('dismiss-download').hidden=true;
+    $('download-message').textContent='Preparing '+doc.filename+'…';
+    try {
+      const blob=await AtlasDownloads.fetchDocument(doc,{signal:controller.signal,onProgress:(done,total)=>{
+        $('download-message').textContent='Downloading '+doc.filename+' · '+Math.round(done/Math.max(1,total)*100)+'%';
+      }});
+      const url=URL.createObjectURL(blob),anchor=document.createElement('a');
+      anchor.href=url;anchor.download=doc.filename;document.body.appendChild(anchor);anchor.click();anchor.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),60000);
+      $('download-message').textContent='Ready to save: '+doc.filename;
+    } catch(error) {
+      $('download-message').textContent=error.name==='AbortError'?'Download cancelled.':(error.message||'Download failed. Please retry.');
+    } finally {
+      activeDownload=null;$('cancel-download').hidden=true;$('dismiss-download').hidden=false;
+    }
+  });
+  $('cancel-download').onclick=()=>activeDownload?.abort();
+  $('dismiss-download').onclick=()=>{$('download-status').hidden=true;};
+
   let layout=AtlasLayouts.create(data,state.layout,state.selected),positions=layout.positions,layoutKey='';
   const ns='http://www.w3.org/2000/svg';
   const svg=$('map-links');
@@ -260,6 +304,7 @@
   }
   function renderTrace() {
     const trace=traceSets(),node=byId.get(state.selected);
+    renderDocument(node);
     if(!node&&!state.parameterFocus) {
       $('trace-title').textContent='Select a source';$('parameter-access').innerHTML='';
       document.querySelector('.trace-controls').hidden=true;document.querySelector('.dependency-toggle').hidden=true;
@@ -472,7 +517,7 @@
       // Restart a branch when, for example, report and worksheet both use the case.
       const branch=previous&&previous.node!==s.node&&from!==previous.node;
       const branchLabel=branch?(from?`<div class="value-flow-branch">Separate handoff from <strong>${escape(byId.get(from).title)}</strong><span class="sr-only">, flowing down to ${escape(byId.get(s.node).title)}</span></div>`:'<p class="value-flow-break">Separate source record · transfer not established</p>'):'';
-      return branchLabel+`<div class="value-step${s.node===context.id?' current-component':''}">${connects?`<span class="flow-connector${arrow?' with-arrow':''}" aria-hidden="true"></span>`:''}<h4>${escape(s.title)}${s.node===context.id?'<span class="current-label">Selected component</span>':''}</h4>${badge(s.status,s.status==='match'?'Value matches':s.status==='recorded'?'Source record':s.status)}<div class="step-value">${escape(format(s.value))} ${escape(unitText(s.unit))}</div><code>${escape(s.evidence.locator)}</code>${s.note?'<p>'+escape(s.note)+'</p>':''}<div class="step-actions"><button data-evidence-step="${i}">View exact source ↗</button><button data-map-step="${i}" aria-label="Show ${escape(byId.get(s.node).title)} on map" title="Show ${escape(byId.get(s.node).title)} on map">Show on map ↗</button>${s.mapping?`<button data-mapping-step="${i}">Mapping record</button>`:''}</div></div>`;
+      return branchLabel+`<div class="value-step${s.node===context.id?' current-component':''}">${connects?`<span class="flow-connector${arrow?' with-arrow':''}" aria-hidden="true"></span>`:''}<h4>${escape(s.title)}${s.node===context.id?'<span class="current-label">Selected component</span>':''}</h4>${badge(s.status,s.status==='match'?'Value matches':s.status==='recorded'?'Source record':s.status)}<div class="step-value">${escape(format(s.value))} ${escape(unitText(s.unit))}</div><code>${escape(s.evidence.locator)}</code>${s.note?'<p>'+escape(s.note)+'</p>':''}<div class="step-actions"><button data-evidence-step="${i}">View exact source ↗</button>${downloadLink(s.evidence.path)}<button data-map-step="${i}" aria-label="Show ${escape(byId.get(s.node).title)} on map" title="Show ${escape(byId.get(s.node).title)} on map">Show on map ↗</button>${s.mapping?`<button data-mapping-step="${i}">Mapping record</button>`:''}</div></div>`;
     }).join('');
     $('value-detail').innerHTML=`<div class="value-top"><div><div class="eyebrow">${escape(v.category.toUpperCase())}</div><h3>${escape(v.label)}</h3></div><div class="big-value ${v.value_kind==='expression'?'expression-value':''}">${escape(format(v.value))} <small>${escape(unitText(v.unit))}</small></div></div>`+
       `<div class="origin-card ${role.kind}"><span class="origin-badge ${role.kind}">${roleNames[role.kind]}</span><small> at ${escape(context.title)}</small><p>${escape(role.basis)}</p>${role.from_node?`<button id="follow-origin">Open ${escape(byId.get(role.from_node).title)} ↗</button>`:''}${role.evidence.map((e,i)=>`<button data-origin-evidence="${i}">Origin evidence${role.evidence.length>1?' '+(i+1):''}</button>`).join('')}</div>`+
@@ -506,6 +551,7 @@
     $('evidence-title').textContent=title;
     $('evidence-content').innerHTML='<p><strong>File</strong><br><code>'+escape(evidence.path)+'</code></p>'+
       '<p><strong>Location</strong><br><code>'+escape(evidence.locator)+'</code></p>'+
+      (doc?.download?'<div class="evidence-download">'+downloadLink(evidence.path)+'<small>'+escape(doc.download.filename)+' · '+fileSize(doc.download.bytes)+'</small></div>':'')+
       (doc?.sha256?'<div class="hash-block"><strong>Snapshot fingerprint · exact file bytes</strong><br><code>'+escape(doc.sha256)+'</code></div>':'<div class="gap-note">No file fingerprint is available for this record.</div>')+
       (evidence.note?'<p>'+escape(evidence.note)+'</p>':'')+'<pre>'+escape(evidence.excerpt)+'</pre>'+
       (location.protocol==='file:'&&doc?.exists?'<a id="open-original" target="_blank" rel="noopener">Open local source file ↗</a>':'')+

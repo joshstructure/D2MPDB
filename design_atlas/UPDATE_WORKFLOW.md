@@ -68,11 +68,21 @@ and pass only through the helper's hidden stdin. Never save credentials.
    .venv\Scripts\python.exe -m design_atlas.refresh stage --checkout 'C:/Users/joshs/Desktop/D2 MPDB/outputs/pier-cap-atlas-site'
    ```
 
-   It refuses a wrong Site or changed candidate, copies the six verified assets,
+   It refuses a wrong Site or changed candidate, copies the verified app and document assets,
    verifies their hashes, preserves exact bytes in Git using a scoped
    `.gitattributes` rule, and updates the local viewer. Do not edit generated
    values or assets afterward. Add this workflow and site.json to the hosting
    source checkout as maintenance context, outside dist/.
+
+   Document downloads use the exact files already identified by the atlas, with
+   no date-based reselection. When identical committed bytes exist in the configured
+   public GitHub repository, downloads use that exact commit. Staging verifies that
+   the repository remains public and each referenced commit is on its published
+   default branch; this requires network access. Other files are stored in bounded
+   binary parts in the Site. The browser verifies hashes and saves one original document. Downloads
+   share the same inventory, preparation, staging and committed-blob checks as
+   the app. Staging removes obsolete generated downloads. Journal module nodes
+   link to the whole current journal; missing/unlinked documents remain explicit.
 3. Run the Sites source helper with the opening object, credential,
    `commands: []`, and an absolute archive path. Use its verified pushed commit
    and archive with `save_version_and_deploy_private` for the owner-private Site.
@@ -118,7 +128,8 @@ completion rather than waiting for the next scheduled check.
 ## Verification after workflow changes
 
 ```powershell
-.venv\Scripts\python.exe -m unittest tests.test_atlas_refresh tests.test_design_atlas tests.test_end_bent_atlas tests.test_journal_calcs -v
+.venv\Scripts\python.exe -m unittest tests.test_atlas_refresh tests.test_atlas_downloads tests.test_design_atlas tests.test_end_bent_atlas tests.test_journal_calcs -v
+node tests/test_atlas_downloads.js
 ```
 
 The refresh state lock is held during each local operation and releases on a

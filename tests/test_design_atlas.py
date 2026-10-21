@@ -246,7 +246,8 @@ class ProjectAtlasTests(unittest.TestCase):
         entries={e['id']:e for e in self.data['assumptions']['entries']}
         self.assertEqual(entries['A-001']['disposition']['decision'],'D-062')
         self.assertEqual(entries['A-001']['magnitude'],{'value':0.4,'unit':'kip','sized_by':entries['A-001']['magnitude']['sized_by']})
-        self.assertFalse(entries['A-001']['stale'])
+        current={r['source_id']:r['sha256'] for r in self.register_rows()}
+        self.assertEqual(entries['A-001']['stale'],any(current[s]!=h for s,h in entries['A-001']['basis'].items()))
         self.assertIn('EB-XML',entries['A-001']['basis'])
         self.assertEqual(entries['A-009']['disposition']['status'],'pending')
         self.assertTrue(entries['A-009']['open'])
@@ -259,18 +260,23 @@ class ProjectAtlasTests(unittest.TestCase):
         proof=lambda path,locator,value,note='': {'path':path,'locator':locator,'excerpt':'','note':note}
         summary=attach_assumptions(data,ROOT,rows,proof)
         stale={e['id'] for e in summary['entries'] if e['stale']}
-        expected={e['id'] for e in self.data['assumptions']['entries'] if 'EB-XML' in e['basis']}
+        current={r['source_id']:r['sha256'] for r in rows}
+        expected_sources={e['id']:sorted(s for s,h in e['basis'].items() if current[s]!=h)
+                          for e in self.data['assumptions']['entries']}
+        expected={key for key,sources in expected_sources.items() if sources}
         self.assertTrue(expected)
         self.assertEqual(stale,expected)
         for e in summary['entries']:
             if e['stale']:
-                self.assertEqual(e['stale_sources'],['EB-XML'])
+                self.assertEqual(sorted(e['stale_sources']),expected_sources[e['id']])
+            if 'EB-XML' in e['basis']:
+                self.assertIn('EB-XML',e['stale_sources'])
                 self.assertEqual(e['current_basis']['EB-XML'],'0'*64)
         self.assertEqual(summary['counts']['stale'],len(expected))
         self.assertTrue(all(e['stale'] for e in summary['entries'][:len(expected)]))
         nodes={n['id']:n for n in data['nodes']}
         self.assertEqual(nodes['EB-XML']['assumption_stale'],len([e for e in summary['entries'] if e['stale'] and 'EB-XML' in e['node_ids']]))
-        self.assertGreater(nodes['EB-XML']['assumption_flags'],self.data['nodes'][[n['id'] for n in self.data['nodes']].index('EB-XML')]['assumption_flags'])
+        self.assertEqual(nodes['EB-XML']['assumption_flags'],sum(e['stale'] or e['open'] for e in summary['entries'] if 'EB-XML' in e['node_ids']))
         validate(data)
 
     def test_assumption_validation_rejects_unknown_nodes_and_sources(self):

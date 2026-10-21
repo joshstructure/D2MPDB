@@ -33,6 +33,7 @@
         <div id="trace-content" hidden>
         <div class="panel-heading"><div><span class="eyebrow">02 / ISOLATED TRACE</span><h2 id="trace-title">Select a source</h2></div><button id="trace-collapse" class="trace-collapse-button" aria-label="Collapse isolated trace" aria-controls="trace-content" aria-expanded="true" title="Collapse trace to give the map more space">›</button></div>
         <div id="parameter-access" class="parameter-access"></div>
+        <div id="node-document" class="node-document"></div>
         <div class="trace-controls" role="group" aria-label="Trace direction"><button data-direction="both" class="active" aria-pressed="true">Both ways</button><button data-direction="upstream" aria-pressed="false">Upstream sources</button><button data-direction="downstream" aria-pressed="false">Downstream uses</button></div>
         <label class="dependency-toggle"><input id="include-dependencies" type="checkbox"> Include wider registered dependencies</label>
         <div id="trace-body" class="trace-body"></div>
@@ -53,5 +54,6 @@
   <dialog id="about-dialog"><div class="dialog-head"><h2>Coverage & source snapshot</h2><button id="close-about" aria-label="Close coverage">×</button></div><div id="about-content"></div></dialog>
   <dialog id="assumption-dialog"><div class="dialog-head"><div><span class="eyebrow">ASSUMPTIONS REGISTER</span><h2>Draft assumption</h2></div><button id="close-assumption" aria-label="Close draft">×</button></div><div id="assumption-content"></div></dialog>
   <div id="announcement" class="sr-only" aria-live="polite"></div>
-  <script src="dataset.js"></script><script src="layouts.js"></script><script src="atlas.js"></script>
+  <div id="download-status" class="download-status" hidden><span role="status" id="download-message"></span><button id="cancel-download">Cancel</button><button id="dismiss-download" hidden>Dismiss</button></div>
+  <script src="dataset.js"></script><script src="layouts.js"></script><script src="downloads.js"></script><script src="atlas.js"></script>
 </body></html>

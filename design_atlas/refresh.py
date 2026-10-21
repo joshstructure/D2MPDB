@@ -19,7 +19,7 @@ import sys
 
 from design_atlas import build
 
-ASSETS = ('index.html', 'atlas.css', 'atlas.js', 'layouts.js', 'dataset.js', 'atlas-data.json')
+ASSETS = ('index.html', 'atlas.css', 'atlas.js', 'layouts.js', 'downloads.js', 'dataset.js', 'atlas-data.json')
 FIXED_INPUTS = (build.REGISTRY, build.TRACKER, build.SHEET, build.MAPPING, build.RECEIPT, build.ASSUMPTIONS,
                 'design_atlas/manual_links.json', 'design_atlas/site.json', 'tools/project_coherence.py')
 
@@ -118,7 +118,9 @@ def status(root):
 
 
 def artifact_hashes(folder):
-    return {name: build.sha(folder / name) for name in ASSETS}
+    names = set(ASSETS)
+    names.update(p.relative_to(folder).as_posix() for p in (folder / 'downloads').rglob('*') if p.is_file())
+    return {name: build.sha(folder / name) for name in sorted(names)}
 
 
 def verify_artifact(root, pending, require_current=True):
@@ -131,9 +133,11 @@ def verify_artifact(root, pending, require_current=True):
 
 
 def check_browser_code(root, folder):
-    for asset in ('atlas.js', 'layouts.js', 'dataset.js'):
+    for asset in ('atlas.js', 'layouts.js', 'downloads.js', 'dataset.js'):
         subprocess.run(['node', '--check', str(folder / asset)], check=True, capture_output=True, text=True)
     subprocess.run(['node', str(root / 'tests/test_atlas_layouts.js'), str(folder / 'atlas-data.json')],
+                   cwd=root, check=True, capture_output=True, text=True)
+    subprocess.run(['node', str(root / 'tests/test_atlas_downloads.js')],
                    cwd=root, check=True, capture_output=True, text=True)
 
 
@@ -160,7 +164,7 @@ def prepare(root):
         # An interrupted build is never the pending publication. Reuse complete
         # byte-identical candidates only through their verified pending receipt.
         output.mkdir(parents=True, exist_ok=True)
-        build.write_atlas(data, output)
+        build.write_atlas(data, output, root)
         check_browser_code(root, output)
         if inventory(root) != before:
             raise RuntimeError('Sources changed during preparation; last publication is unchanged. Retry after saves finish.')
@@ -173,7 +177,7 @@ def prepare(root):
 
 
 def stage(root, checkout):
-    """Copy only the six verified static assets to the already-open Site."""
+    """Copy the verified app and exact source downloads to the opened Site."""
     with lock(root):
         pending = read_json(pending_path(root))
         if not pending:
@@ -183,6 +187,8 @@ def stage(root, checkout):
         if pending.get('staged_at') and not pending.get('deployment'):
             raise RuntimeError('Publication already in progress. Reconcile the staged Site revision first.')
         source = verify_artifact(root, pending)
+        from design_atlas.downloads import verify_remote_downloads
+        verify_remote_downloads(read_json(source / 'atlas-data.json'), root)
         site = read_json(root / 'design_atlas/site.json')
         manifest = read_json(checkout / '.openai/hosting.json', {})
         if manifest.get('project_id') != site['project_id'] or manifest.get('static', {}).get('directory') != 'dist':
@@ -195,14 +201,19 @@ def stage(root, checkout):
             attributes.write_text(existing.rstrip() + '\ndist/** -text\n', encoding='utf-8')
         target = checkout / 'dist'
         target.mkdir(parents=True, exist_ok=True)
-        for name in ASSETS:
+        from design_atlas.downloads import clean_downloads
+        clean_downloads(target, set(pending['artifacts']))
+        for name in pending['artifacts']:
+            (target / name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source / name, target / name)
         if artifact_hashes(target) != pending['artifacts']:
             raise RuntimeError('Staged assets differ from the prepared atlas.')
         # Also leave the familiar local viewer updated only after validation.
         local_dist = root / 'design_atlas/dist'
         local_dist.mkdir(parents=True, exist_ok=True)
-        for name in ASSETS:
+        clean_downloads(local_dist, set(pending['artifacts']))
+        for name in pending['artifacts']:
+            (local_dist / name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source / name, local_dist / name)
         pending['staged_at'] = datetime.now(timezone.utc).isoformat()
         pending['staged_checkout'] = str(checkout)

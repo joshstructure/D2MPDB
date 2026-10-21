@@ -444,6 +444,8 @@ def build_data(root=ROOT):
     if (root/ASSUMPTIONS).is_file(): document(ASSUMPTIONS)
     attach_assumptions(result, root, register, evidence)
     result['coverage']['limits'].append('Assumptions-register entries are recorded human judgments pinned to register hashes; a stale badge means the basis moved, not that the judgment was re-made.')
+    from design_atlas.downloads import attach_downloads
+    attach_downloads(result, root)
     changed=[p for p,digest in fingerprints.items() if not (root/p).is_file() or sha(root/p)!=digest]
     if changed: raise RuntimeError('Sources changed during atlas build: '+', '.join(changed))
     validate(result)
@@ -475,9 +477,11 @@ def validate(data):
     json.dumps(data,allow_nan=False)
 
 
-def write_atlas(data,output):
+def write_atlas(data,output,root=ROOT):
     output=Path(output);output.mkdir(parents=True,exist_ok=True)
-    for name in ['index.html','atlas.css','layouts.js','atlas.js']:
+    from design_atlas.downloads import write_downloads
+    write_downloads(data,output,root)
+    for name in ['index.html','atlas.css','layouts.js','downloads.js','atlas.js']:
         shutil.copyfile(ASSETS/name,output/name)
     encoded=json.dumps(data,ensure_ascii=False,separators=(',',':'),allow_nan=False).replace('<','\\u003c')
     (output/'dataset.js').write_text('window.ATLAS_DATA = '+encoded+';\n',encoding='utf-8')
@@ -489,7 +493,7 @@ def main():
     parser.add_argument('--root',type=Path,default=ROOT)
     parser.add_argument('--output',type=Path,default=ROOT/'design_atlas'/'dist')
     args=parser.parse_args()
-    data=build_data(args.root);write_atlas(data,args.output)
+    data=build_data(args.root);write_atlas(data,args.output,args.root)
     print(json.dumps({'output':str(args.output),'nodes':len(data['nodes']),'edges':len(data['edges']),
                       'values':len(data['values']),'checks':data['checks']},indent=2))
 

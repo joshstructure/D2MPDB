@@ -1,0 +1,20 @@
+const assert=require('node:assert/strict');
+const {createHash,webcrypto}=require('node:crypto');
+const {fetchDocument}=require('../design_atlas/web/downloads.js');
+const hash=b=>createHash('sha256').update(b).digest('hex');
+(async()=>{
+  const buffers=[Buffer.from([0,255,13,10]),Buffer.from('original native document')];
+  const bytes=Buffer.concat(buffers);
+  const document={bytes:bytes.length,sha256:hash(bytes),parts:buffers.map((b,i)=>({href:'part'+i,bytes:b.length,sha256:hash(b)}))};
+  const progress=[];
+  const fetch=async path=>new Response(buffers[Number(path.slice(4))]);
+  const blob=await fetchDocument(document,{fetch,crypto:webcrypto,onProgress:n=>progress.push(n)});
+  assert.deepEqual(Buffer.from(await blob.arrayBuffer()),bytes);
+  assert.equal(progress.at(-1),bytes.length);
+  await assert.rejects(fetchDocument(document,{fetch:async()=>new Response('corrupt'),crypto:webcrypto}),/integrity/);
+  await assert.rejects(fetchDocument(document,{fetch:async()=>new Response('',{status:404}),crypto:webcrypto}),/retrieved/);
+  await assert.rejects(fetchDocument({...document,sha256:'0'.repeat(64)},{fetch,crypto:webcrypto}),/integrity/);
+  const controller=new AbortController();controller.abort();
+  await assert.rejects(fetchDocument(document,{fetch,crypto:webcrypto,signal:controller.signal}),{name:'AbortError'});
+  console.log('Document download: exact bytes, integrity, missing parts and cancellation passed.');
+})().catch(error=>{console.error(error);process.exitCode=1;});
