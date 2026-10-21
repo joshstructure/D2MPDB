@@ -405,7 +405,18 @@ symbol at page scale.
   imports exactly as the sheets show; the intelligent DXF stays for
   editing.  Checked (tests): the flat file is byte-identical on rebuild,
   holds no DIMENSION or POINT, keeps the sheets, viewports, groups and
-  units, and passes the symbology audit.
+  units, and passes the symbology audit.  The engineer keeps real
+  dimensions ("I dont know that I like an exploded dimension"), so the
+  intelligent DXF is the one to import and the flat file a fallback.
+  Third step (2026-10-21): every DIMENSION carried a DIMSCALE override (16
+  or 32, its view's scale factor) sizing its text, arrows and extension
+  offsets; an import that turns it into a style scale shrinks the
+  dimension-line offset toward each feature, which breaks exactly the rows
+  whose extension lines reach features at different heights.  One
+  dimension style per drawing scale (`fdot.dim_style_name`: the Note-Arrow
+  sizes times the scale factor, DIMSCALE 1) and no override on any entity.
+  Checked (tests): every DIMENSION on its view's scaled style, no DIMSCALE
+  override, the scaled sizes equal the base times the factor.
 
 ## C. Reinforcing (SDM 4.3)
 
@@ -971,3 +982,4 @@ Markups on the 2.6.0 sheets ("Reinforcing Sheets.pdf"), 2026-10-20 round 7, with
 | (all double-line bars) | I want real width rebar to end in a squared off end not a round end. That's how it's actually cut and also it's easier to dim to | C8 | straight square caps on every double-line bar (`View._cap`), rule C8 reworded |
 | (DGN import, dimension rows) | Some of the dimension lines which are chained end to end in the review sheets come in not chained. They dimension the stuff correctly but they lose their alignment with the other dim lines | B13 | the importer follows a DIMENSION's moved-text location: DIMTMOVE 0 in the style, no text location on any entity, every pulled-out or two-line value drawn as a separate masked MTEXT with the dimension's own text suppressed |
 | (DGN import, second try) | Its still off. The dim lines offset from the thing they are dimensioning is not the same as the review sheets on import. Is there an import setting or something or is there a way we can force consistency ... I'm open to ideas | B13 | the import rebuilds DIMENSION entities with its own offsets: a flat variant of each DXF (`*_flat.dxf`) explodes every dimension into lines, arrowheads and masked text as drawn, so nothing is rebuilt on import; the intelligent DXF stays for editing |
+| (DGN import, real dimensions) | I dont know that I like an exploded dimension. Can we instead use some kind of contraint | B13 | per-scale dimension styles with the sizes baked in and DIMSCALE 1, no DIMSCALE override on any entity (the likely cause of the shrunk offsets); the flat file stays a fallback |

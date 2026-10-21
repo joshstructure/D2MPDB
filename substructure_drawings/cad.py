@@ -99,6 +99,20 @@ def new_document():
     ds.dxf.dimclrt = 256
     ds.dxf.dimlwd = -1
     ds.dxf.dimlwe = -1
+    # One style per drawing scale (B13, 2026-10-21): the Note-Arrow sizes
+    # times the scale factor with DIMSCALE 1, so a view's dimensions use the
+    # style of their scale and carry no DIMSCALE override (the override was
+    # 16 or 32 per entity; a DGN import that reads it as a style scale shrank
+    # the dimension-line offsets toward each feature and broke the chained
+    # rows whose extension lines reach features at different heights)
+    for key, sf in fdot.SCALES.items():
+        d2 = doc.dimstyles.add(fdot.dim_style_name(key))
+        for attr, value in ds.dxf.all_existing_dxf_attribs().items():
+            if attr not in ("name", "handle", "owner"):
+                d2.dxf.set(attr, value)
+        for attr in ("dimtxt", "dimasz", "dimexo", "dimexe", "dimgap"):
+            d2.dxf.set(attr, ds.dxf.get(attr) * sf)
+        d2.dxf.dimscale = 1.0
     doc.header["$TEXTSTYLE"] = fdot.TEXT_STYLE
     doc.header["$DIMSTYLE"] = fdot.DIM_STYLE
     doc.header["$CELWEIGHT"] = -1
@@ -743,7 +757,7 @@ class View:
         lines = text.split("\\P")
         tw = max(text_extent(x, self.th) for x in lines)
         th_box = self.th * (1.4 + 1.67 * (len(lines) - 1))
-        override = {"dimscale": self.sf}
+        override = {}   # (B13: the view's scaled dimension style carries the sizes; no DIMSCALE override)
         if horizontal:
             override["dimtih"] = 1
             override["dimtoh"] = 1
@@ -829,7 +843,7 @@ class View:
         self._track([p1, p2, base])
         text_box = self.texts[-1][0]   # the value's box, whichever branch placed it (inset 0)
         d = self.msp.add_linear_dim(base=self.T(base), p1=self.T(p1), p2=self.T(p2), angle=angle,
-                                    dimstyle=fdot.DIM_STYLE, text=" " if text_loc is not None else text,
+                                    dimstyle=fdot.dim_style_for(self.sf), text=" " if text_loc is not None else text,
                                     override=override, dxfattribs={"layer": layer})
         d.render()
         if d.dimension.dxf.get("text_midpoint") is None:

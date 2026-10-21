@@ -735,8 +735,22 @@ class SubstructureDxfTests(unittest.TestCase):
                 self.assertEqual(ds.dxf.get(k), v, k)
         self.assertEqual(self.doc.header["$DIMSTYLE"], "FDOT Structures Note-Arrow")
         self.assertEqual(self.doc.header["$TEXTSTYLE"], "FDOT Structures")
-        self.assertEqual({d.dxf.dimstyle for d in self.doc.modelspace().query("DIMENSION")},
-                         {"FDOT Structures Note-Arrow"})
+        # B13 (2026-10-21): every DIMENSION uses the scaled style of its view
+        # (sizes times the scale factor, DIMSCALE 1) and overrides no DIMSCALE
+        scaled = {fdot.dim_style_name(k) for k in fdot.SCALES}
+        used = {d.dxf.dimstyle for d in self.doc.modelspace().query("DIMENSION")}
+        self.assertTrue(used <= scaled, used)
+        self.assertIn(fdot.dim_style_name("3/8"), used)
+        self.assertIn(fdot.dim_style_name("3/4"), used)
+        for key, sf in fdot.SCALES.items():
+            s = self.doc.dimstyles.get(fdot.dim_style_name(key))
+            self.assertEqual(s.dxf.dimscale, 1.0, key)
+            for attr in ("dimtxt", "dimasz", "dimexo", "dimexe", "dimgap"):
+                self.assertAlmostEqual(s.dxf.get(attr), ds.dxf.get(attr) * sf, places=9, msg=attr)
+            for attr in ("dimtxsty", "dimtad", "dimlunit", "dimlfac", "dimzin", "dimfrac", "dimtmove", "dimtfill"):
+                self.assertEqual(s.dxf.get(attr), ds.dxf.get(attr), attr)
+        for d in self.doc.modelspace().query("DIMENSION"):
+            self.assertNotIn("dimscale", d.override().dimstyle_attribs, d.dxf.geometry)
 
     def test_source_provenance(self):
         self.assertEqual(self.manifest["level_source"]["sha256"],

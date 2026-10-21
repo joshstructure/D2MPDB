@@ -175,6 +175,24 @@ STAMP_STYLE = "FDOT Mono (Small)"
 DIM_STYLE = "FDOT Structures Note-Arrow"
 
 
+def dim_style_name(scale_key):
+    """The dimension style of one drawing scale (STYLE_GUIDE B13,
+    2026-10-21): the Note-Arrow style with its sizes (text, arrows, extension
+    offsets, gap) multiplied by the scale factor and DIMSCALE 1, so no
+    DIMENSION entity needs a DIMSCALE override (a DGN import that turns the
+    override into a style scale moved the dimension lines).  '/' and '='
+    are not allowed in a DXF table name."""
+    return "%s %s" % (DIM_STYLE, scale_key.replace("/", "-").replace("=", "-"))
+
+
+def dim_style_for(sf):
+    """The scaled dimension style of a view drawn at scale factor ``sf``."""
+    for key, value in SCALES.items():
+        if abs(value - sf) < 1e-9:
+            return dim_style_name(key)
+    raise KeyError("no FDOT scale with factor %r" % sf)
+
+
 def style_in(name):
     """Plotted text height of an FDOT text style, inches."""
     return TEXT_STYLES[name][1] * 12.0

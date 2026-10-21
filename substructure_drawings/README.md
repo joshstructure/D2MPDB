@@ -32,8 +32,11 @@ separate masked MTEXT with the dimension's own text suppressed (B13). The
 import still rebuilt the dimensions with its own offsets, so each build also
 writes a flat variant, `output/B4_Substructure_EndBents_Pier_flat.dxf` (and
 `B4_Model_Plan_flat.dxf`), with every dimension exploded into lines,
-arrowheads and masked text as drawn: import the flat file into the DGN; the
-intelligent DXF stays for editing.
+arrowheads and masked text as drawn, as a fallback. The engineer keeps real
+dimensions, so (21 October) every drawing scale has its own dimension style
+("FDOT Structures Note-Arrow 3-8", "... 3-4", ...; the sizes times the scale
+factor, DIMSCALE 1) and no dimension carries a DIMSCALE override, which an
+import may read as a style scale and shrink the dimension-line offsets with.
 
 **Generator 2.6.0 (19 October 2026)** rebuilt this DXF from the model with
 revision D-061 (D-044 weather closure and copings, D-045 strap references,
