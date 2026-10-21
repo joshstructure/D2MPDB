@@ -31,7 +31,11 @@ Each package is data: `data/inputs.json` (every value the module reads from anot
 module's own literal inputs with their provisions), `data/definitions.json` (the equations in document order, with sections,
 units, captions and cited provisions), `data/checks.json`, `data/tables.json`, `data/sections.json`, `data/text.json` and
 `data/journal_blocks.xml` (the module's native figures, content boxes and design-basis prose, carried into the Blockpad
-editions with their anchor ids).
+editions with their anchor ids). Each package also carries a hand-drawn `schematics.py`: the "What it represents" block
+under every equation of the report is a QC drawing of that equation from the current case (the fence hoop and its
+pressure band, the pier collecting the forces at the cap reference, the deck section with its bearing lines and wind
+lever arms, the pedestal with the support length, the beam-end rotation stages, the end-bent plan with the pile-face
+gaps, the pier wall with its fins and hairpins, the wall strip and face grid), with the defined quantity in red.
 
 Open a notebook in Colab and choose **Runtime → Run all**. Cell 1 lists the inputs with their journal module or provision;
 Cell 2 holds the inputs, results, the journal figures, the D/C register with *Equation & values* disclosures, the equations

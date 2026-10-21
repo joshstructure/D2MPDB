@@ -13,7 +13,11 @@ Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; re
 - **Data-driven package on `calc_common/`** (the journal calculations C001–C004, C006, C015, C016): the package is its
   `data/` folder (`inputs.json`, `definitions.json`, `checks.json`, `tables.json`, `sections.json`, `text.json`,
   `references.json`, `sources.json`, `journal_blocks.xml`) plus thin modules that bind `calc_common` (the modules
-  `scripts/build_journal_calc_data.py` writes). The shared framework supplies the engine, MathML, report, exports, Colab UI,
+  `scripts/build_journal_calc_data.py` writes) and a hand-drawn `schematics.py`: a few scene functions built on the
+  `calc_common.schematics` toolkit (`Svg`, `Frame`, dimensions, load arrows, moments, gauges, bar comparisons, small
+  plots) and a `drawer(name)` map that gives every definition its own "What it represents" drawing from the current
+  case, with the result in red in the right-hand panel. `tests/test_journal_calc_packages.py` fails when a definition
+  falls back to the generic term diagram. The shared framework supplies the engine, MathML, report, exports, Colab UI,
   Blockpad editions (standalone and journal, with the same verification steps as the backwall builder) and the portable
   notebook. A calculation that starts as a journal module is imported with `scripts/import_journal_calc.py`, drafted with
   `scripts/build_journal_calc_data.py`, then authored (titles, overview, captions of referenced values, check ratios, key

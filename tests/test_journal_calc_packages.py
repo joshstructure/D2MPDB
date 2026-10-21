@@ -24,7 +24,7 @@ from calc_common import bpad, notebook  # noqa: E402
 from calc_common.exports import Exports  # noqa: E402
 from calc_common.model import evaluate, default_case  # noqa: E402
 from calc_common.report import build_report  # noqa: E402
-from calc_common.schematics import schematic, meaning  # noqa: E402
+from calc_common.schematics import schematic, meaning, package_drawer  # noqa: E402
 from calc_common.spec import ALL_PASS, FAILURES  # noqa: E402
 from pier_cap.engine import Q  # noqa: E402
 
@@ -102,11 +102,15 @@ class ReportsAndChecks(unittest.TestCase):
             self.assertEqual(len(re.findall(r'<div class="eq">.*?</div>\s*<details class="qc">', html, re.S)), equations, package)
             for section in spec.sections:
                 self.assertIn(f'id="section-{section["key"]}"', html, f'{package}: {section["key"]}')
+            drawer = package_drawer(spec)
+            self.assertIsNotNone(drawer, f'{package}: no schematics module')
             for d in e.definitions:
                 if 'function' in d:
                     continue
+                self.assertIsNotNone(drawer(d['name']), f'{package}: {d["name"]} falls back to the generic term diagram')
                 svg, label = schematic(spec, e, d['name'])
                 self.assertTrue(svg.startswith('<svg') and label, f'{package}: {d["name"]}')
+                ET.fromstring(svg)
                 self.assertTrue(meaning(spec, d['name']), f'{package}: {d["name"]}')
 
     def test_checks_follow_the_journal_flags(self):
