@@ -13,6 +13,25 @@ STYLE='''body{font:14px/1.5 Arial,sans-serif;color:#213649;margin:32px auto;max-
 EQUATION_STYLE=STYLE
 def esc(s): return escape(str(s))
 def fmt(v): return '—' if v is None else f'{v:.4g}' if isinstance(v,(int,float)) else esc(v)
+# Weld sizes are specified in sixteenths of an inch; these ledger nodes display as fractions.
+WELD_SIZE_NODES={'weld_leg_in','weld_required','weld_required_16','weld_strength_leg','weld_minimum','weld_min_gap','weld_maximum','minimum_table_weld','minimum_thick_weld','minimum_mid_weld','weld_throat','root_gap'}
+def sixteenths(v):
+    """(whole, sixteenths, denominator) when v is a whole number of sixteenths, else None."""
+    if v is None or not isinstance(v,(int,float)):return None
+    k=round(v*16)
+    if abs(v*16-k)>1e-9 or k<0:return None
+    whole,rem=divmod(int(k),16)
+    if rem==0:return (whole,0,1)
+    d=16
+    while rem%2==0:rem//=2;d//=2
+    return (whole,rem,d)
+def frac16(v):
+    """Fraction text in sixteenths (5/16, 1 1/16); decimal fallback for other values."""
+    parts=sixteenths(v)
+    if parts is None:return fmt(v)
+    whole,num,den=parts
+    if num==0:return str(whole)
+    return (f'{whole} ' if whole else '')+f'{num}/{den}'
 def table(headers,rows):
     return '<table><thead><tr>'+''.join('<th>'+esc(x)+'</th>' for x in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td>'+str(x)+'</td>' for x in row)+'</tr>' for row in rows)+'</tbody></table>'
 

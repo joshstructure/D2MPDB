@@ -278,7 +278,8 @@ def schematic(kind,name,r,example):
         s.text(405,146,'F_R,w = φ_w · 0.60 F_EXX · a_w ≥ F_w (WELD)','weld_capacity',size=12)
         s.text(405,170,'w_strength = g + √2 F_w / (φ_w · 0.60 F_EXX)','weld_strength_leg',size=12)
         s.text(405,194,'w_req = max(w_strength, w_min,g) · trial','weld_required',size=12)
-        s.text(405,222,'Root gap g is deducted from the leg before the throat.','root_gap',size=11)
+        s.text(405,216,'w_16 = next 1/16 in at or above w_req; n_16 = round(16 w_req)',('weld_sixteenths','weld_required_16'),size=11)
+        s.text(405,236,'Root gap g is deducted from the leg before the throat.','root_gap',size=11)
     elif kind=='base':
         weld_joint(s)
         s.line(145,108,145,144,RED,width=5);s.line(80,74,108,74,RED,width=5);s.line(80,178,108,178,RED,width=5)

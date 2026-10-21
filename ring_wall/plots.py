@@ -4,7 +4,7 @@ import re
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from .model import geometry, steel_layout
-from .output import STYLE, check_details, esc, fmt, table
+from .output import STYLE, check_details, esc, fmt, frac16, table
 
 BLUE,GREEN,ORANGE,RED='#315d82','#258875','#c87b30','#b53333'
 _scoped=re.sub(r'([^{}]+)\{([^{}]*)\}',lambda m:','.join('.ring-workbench' if s.strip()=='body' else '.ring-workbench '+s.strip() for s in m[1].split(','))+'{'+m[2]+'}',STYLE.split('@media print')[0])
@@ -94,7 +94,7 @@ def connection_figure(r):
         x=rb+(ro-rb)*i/6
         fig.add_annotation(x=x,y=.03,ax=x,ay=.7,xref='x',yref='y',axref='x',ayref='y',showarrow=True,arrowcolor=GREEN,arrowhead=2,text='')
     fig.add_annotation(x=(rb+ro)/2,y=.95,text='q max',showarrow=False,font=dict(color=GREEN))
-    fig.add_annotation(x=rp,y=-t-1.05,text=f't = {t:g} in · weld leg = {w:g} in<br>radial root gap = {ri-rp:g} in',showarrow=False,xanchor='left')
+    fig.add_annotation(x=rp,y=-t-1.05,text=f't = {t:g} in · weld leg = {frac16(w)} in<br>radial root gap = {frac16(ri-rp)} in',showarrow=False,xanchor='left')
     angles=list(range(361));q0=(ring['qmax']+ring['qmin'])/2;qm=ring['qmax']-q0
     fig.add_trace(go.Scatter(x=angles,y=[q0+qm*cos(a*pi/180) for a in angles],name='Outer-edge pressure',line=dict(color=BLUE),hovertemplate='%{x:.0f}°<br>%{y:.4f} ksi<extra></extra>'),row=1,col=2)
     fig.add_trace(go.Scatter(x=[0,360],y=[0,0],name='Compression boundary',line=dict(color=RED,dash='dash')),row=1,col=2)
@@ -120,13 +120,14 @@ def spacing_figure(study):
 
 
 def summary(r):
-    items=[('Service concrete weight',fmt(r['totals']['service_weight'])+' kip'),('Factored concrete weight',fmt(r['totals']['factored_weight'])+' kip'),('Maximum design ring load',fmt(max(a['R_design'] for a in r['rings']))+' kip'),('Ring moment · kern',fmt(r['totals']['ring_moment'])+' kip-in · '+fmt(r['totals']['kern_limit'])+' in'),('Face reinforcement',f'#{r["grid"]["bar"]} @ {r["grid"]["spacing"]:g} in')]
+    items=[('Service concrete weight',fmt(r['totals']['service_weight'])+' kip'),('Factored concrete weight',fmt(r['totals']['factored_weight'])+' kip'),('Maximum design ring load',fmt(max(a['R_design'] for a in r['rings']))+' kip'),('Ring moment · kern',fmt(r['totals']['ring_moment'])+' kip-in · '+fmt(r['totals']['kern_limit'])+' in'),
+        ('Weld leg · provided / trial',frac16(r['case']['weld_leg_in'])+' / '+frac16(max(a['weld_req'] for a in r['rings']))+' in'),('Face reinforcement',f'#{r["grid"]["bar"]} @ {r["grid"]["spacing"]:g} in')]
     return '<div class="ring-cards">'+''.join('<div class="ring-card">'+a+'<b>'+b+'</b></div>' for a,b in items)+'</div>'
 
 
 def ring_table(r,row=0):
-    return working_table(['Row / pile','Trib. width × height (in)','Concrete (ft³)','Service / factored (kip)','ΔR / R design (kip)','M ring (kip-in)','e eq (in)','q min / max (ksi)','Plate t required (in)','Weld leg required (in)','Contact'],[
-        [f'{a["row"]} / {a["pile"]}',fmt(a['width'])+' × '+fmt(a['height']),fmt(a['volume_ft3']),fmt(a['service'])+' / '+fmt(a['R']),fmt(a['dR'])+' / '+fmt(a['R_design']),fmt(a['M']),fmt(a['e_equivalent']),fmt(a['qmin'])+' / '+fmt(a['qmax']),fmt(a['t_req']),fmt(a['weld_req']),
+    return working_table(['Row / pile','Trib. width × height (in)','Concrete (ft³)','Service / factored (kip)','ΔR / R design (kip)','M ring (kip-in)','e eq (in)','q min / max (ksi)','Plate t required (in)','Weld leg required, next 1/16 (in)','Contact'],[
+        [f'{a["row"]} / {a["pile"]}',fmt(a['width'])+' × '+fmt(a['height']),fmt(a['volume_ft3']),fmt(a['service'])+' / '+fmt(a['R']),fmt(a['dR'])+' / '+fmt(a['R_design']),fmt(a['M']),fmt(a['e_equivalent']),fmt(a['qmin'])+' / '+fmt(a['qmax']),fmt(a['t_req']),frac16(a['weld_req']),
          'OK' if a['contact_ok'] else '<b class="FAIL">FAIL · strength values trial only</b>'] for a in r['rings'] if not row or row==a['row']])
 
 
@@ -153,4 +154,4 @@ def checks_table(r,view='all'):
 
 def spacing_table(study):
     return working_table(['Pitch (in)','Rows','Max ring (kip)','Max trial plate t (in)','Max trial weld leg (in)','Failed contact rings','Status'],[
-        [fmt(a['spacing_in']),a.get('ring_count','—'),fmt(a.get('max_ring_kip')),fmt(a.get('max_t_in')),fmt(a.get('max_weld_in')),a.get('contact_failures','—'),esc(a.get('status',a.get('error','')))] for a in study])
+        [fmt(a['spacing_in']),a.get('ring_count','—'),fmt(a.get('max_ring_kip')),fmt(a.get('max_t_in')),frac16(a.get('max_weld_in')),a.get('contact_failures','—'),esc(a.get('status',a.get('error','')))] for a in study])

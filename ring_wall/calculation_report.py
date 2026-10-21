@@ -1,8 +1,8 @@
 """Grouped check methods, ledger-derived MathML, sketches and complete result tables."""
 from collections import Counter
 import re
-from .notation import dependencies, expression, math, number, stem, symbol, term
-from .output import STYLE, SOURCES, case_hash, esc, fmt, source_hash, table
+from .notation import dependencies, expression, fraction, math, number, stem, symbol, term
+from .output import STYLE, SOURCES, WELD_SIZE_NODES, case_hash, esc, fmt, frac16, source_hash, table
 from .schematics import schematic
 try:
     from report_cards import cards_html, cite_data, prose_pieces
@@ -59,7 +59,7 @@ GROUPS = [
   ['@root_shear','plate_shear_capacity','@thickness_shear']),
  ('weld','Top and bottom fillet weld strength',('WELD',),
   'Split vertical shear between two fillets and use their radial force couple to resist plate-root moment. Check the resultant in each weld.',
-  ['root_gap','@weld_radial','@weld_resultant','weld_throat','weld_capacity','@weld_strength_leg','@weld_required']),
+  ['root_gap','@weld_radial','@weld_resultant','weld_throat','weld_capacity','@weld_strength_leg','@weld_required','@weld_sixteenths','@weld_required_16']),
  ('base','Adjacent ring and pipe base metal',('RING-BASE','PIPE-YIELD','PIPE-BASE'),
   'Compare the force transferred by each fillet with adjacent ring/pipe shear resistance. Local pipe-shell bending remains outside this check.',
   ['ring_base_capacity','pipe_yield_capacity','pipe_base_capacity']),
@@ -148,22 +148,22 @@ class Report:
         else:
             item=self.nodes[name];source=item['expr'];meaning=term(name)[1];unit=item['unit']
         self.count+=1;key='eq-'+group+'-'+(check_type(comparison) if comparison else stem(name))
-        formula=expression(source);numeric=expression(source,self.values)
+        formula=expression(source);numeric=expression(source,self.values);weld=stem(name) in WELD_SIZE_NODES
         if not comparison:
             formula=symbol(name)+'<mo>=</mo>'+formula
-            numeric=symbol(name)+'<mo>=</mo>'+numeric+'<mo>=</mo>'+number(item['value'])+'<mspace width="0.3em"/><mtext>'+esc(unit)+'</mtext>'
+            numeric=symbol(name)+'<mo>=</mo>'+numeric+'<mo>=</mo>'+(fraction(item['value']) if weld else number(item['value']))+'<mspace width="0.3em"/><mtext>'+esc(unit)+'</mtext>'
         operands=[]
         for dep in dependencies(source):
             n=self.nodes[dep]
-            operands.append([math(symbol(dep)),esc(term(dep)[1]),fmt(n['value']),esc(n['unit'])])
-        caption='Fixed units shown below; constants use the inch–kip–ksi convention. Values are rounded for display only.'
+            operands.append([math(symbol(dep)),esc(term(dep)[1]),frac16(n['value']) if stem(dep) in WELD_SIZE_NODES else fmt(n['value']),esc(n['unit'])])
+        caption='Fixed units shown below; constants use the inch–kip–ksi convention. Values are rounded for display only; weld sizes are shown in sixteenths of an inch.'
         if comparison:
-            result=badge(c['status'])+' · D/C '+fmt(c['ratio'])
+            result=badge(c['status'])+' · D/C '+fmt(c['ratio'])+(' · '+frac16(c['demand'])+' ≤ '+frac16(c['capacity'])+' in' if weld else '')
             if c['capacity']<=0:caption+=' Nonpositive available capacity/clearance: D/C is undefined and the check fails.'
             if c['status']=='PENDING':caption+=' Contact fails: the numerical inequality is trial only and cannot establish a pass.'
             reference='<p class="caption">'+esc(c['ref'])+'</p>'
         else:
-            result=math(symbol(name)+'<mo>=</mo>'+number(item['value']))+' '+esc(unit);reference=''
+            result=math(symbol(name)+'<mo>=</mo>'+(fraction(item['value']) if weld else number(item['value'])))+' '+esc(unit);reference=''
         trial=not comparison and name.startswith('ring_') and group in ('contact','plate','shear','weld','base','sizes') and not example['contact_ok']
         if trial:result='Contact failed · trial value: '+result
         return ('<article class="equation" id="'+key+'" data-node="'+esc(name)+'"><span class="equation-number">('+str(self.count)+')</span><h4>'+esc(meaning)+'</h4>'
@@ -175,7 +175,8 @@ class Report:
     def result_table(self,checks):
         body=[]
         for c in checks:
-            body.append('<tr data-check-id="'+esc(c['id'])+'"><td>'+esc(c['id'])+'</td><td>'+esc(c['title'])+'</td><td>'+fmt(c['demand'])+'</td><td>'+fmt(c['capacity'])+'</td><td>'+esc(c['unit'])+'</td><td>'+fmt(c['ratio'])+'</td><td>'+badge(c['status'])+'</td></tr>')
+            show=frac16 if stem(c['demand_node']) in WELD_SIZE_NODES and stem(c['capacity_node']) in WELD_SIZE_NODES else fmt
+            body.append('<tr data-check-id="'+esc(c['id'])+'"><td>'+esc(c['id'])+'</td><td>'+esc(c['title'])+'</td><td>'+show(c['demand'])+'</td><td>'+show(c['capacity'])+'</td><td>'+esc(c['unit'])+'</td><td>'+fmt(c['ratio'])+'</td><td>'+badge(c['status'])+'</td></tr>')
         return '<div class="table-scroll"><table class="result-table"><thead><tr>'+''.join('<th>'+x+'</th>' for x in ['Location / check','Check','Demand','Capacity','Unit','D/C','Status'])+'</tr></thead><tbody>'+''.join(body)+'</tbody></table></div>'
 
     def family(self,g):
@@ -212,9 +213,9 @@ class Report:
                 [f'R{a["row"]}-P{a["pile"]}',fmt(a['R']),fmt(a['dR']),fmt(a['R_design']),fmt(a['M']),fmt(a['e_equivalent']),fmt(t['kern_limit']),badge('PASS' if a['contact_ok'] else 'FAIL')] for a in self.r['rings']])+'</div>')
             pieces.append('<p>Wall rotation '+fmt(t['wall_rotation'])+' rad; pile-head moment '+fmt(t['pile_head_moment'])+' kip-in shared by '+str(self.r['case']['ring_count'])+' ring rows. ΔR is added with the sign that increases each ring reaction; whole-wall equilibrium is kept by the nominal tributary forces above.</p>')
         elif key=='sizes':
-            pieces.append('<div class="table-scroll">'+table(['Ring','t from bending (in)','Trial t required (in)','Provided t (in)','Trial weld required (in)','Provided weld (in)','Contact'],[
-                [f'R{a["row"]}-P{a["pile"]}',fmt(a['t_bending_req']),fmt(a['t_req']),fmt(self.r['case']['ring_t_in']),fmt(a['weld_req']),fmt(self.r['case']['weld_leg_in']),badge('PASS' if a['contact_ok'] else 'FAIL')] for a in self.r['rings']])+'</div>')
-            pieces.append('<p class="scope">Sizes are not an acceptance summary. Contact must pass and all cover, clearance, steel, plate, weld and base-metal checks must be resolved before adoption.</p>')
+            pieces.append('<div class="table-scroll">'+table(['Ring','t from bending (in)','Trial t required (in)','Provided t (in)','Strength + minimum leg (in)','Trial weld, next 1/16 (in)','Provided weld (in)','Contact'],[
+                [f'R{a["row"]}-P{a["pile"]}',fmt(a['t_bending_req']),fmt(a['t_req']),fmt(self.r['case']['ring_t_in']),fmt(a['weld_req_raw']),frac16(a['weld_req']),frac16(self.r['case']['weld_leg_in']),badge('PASS' if a['contact_ok'] else 'FAIL')] for a in self.r['rings']])+'</div>')
+            pieces.append('<p class="scope">Sizes are not an acceptance summary. Weld legs are specified in sixteenths of an inch: the trial leg is the strength-plus-minimum value rounded up to the next 1/16 in. Contact must pass and all cover, clearance, steel, plate, weld and base-metal checks must be resolved before adoption.</p>')
         else:pieces.append(self.result_table(checks))
         for note in dict.fromkeys(c['note'] for c in checks if c['note']):pieces.append('<p class="scope">'+esc(note)+'</p>')
         if any(c['capacity']<=0 for c in checks):pieces.append('<p class="scope">Nonpositive available clearance/capacity fails; its D/C is shown as —.</p>')
@@ -263,7 +264,7 @@ def basis_html(r):
         ['Piles',f'{p["pile_count"]} pipe piles at {p["pile_spacing_in"]:g} in, OD {p["pile_od_in"]:g} in, effective wall {p["pile_t_effective_in"]:g} in, Fy {p["pile_fy_ksi"]:g} / Fu {p["pile_fu_ksi"]:g} ksi; radial placement tolerance {p["placement_tolerance_in"]:g} in','Entered'],
         ['Pile stiffness',f'E {p["pile_e_ksi"]:g} ksi; wall bottom to equivalent fixity {p["pile_free_length_in"]:g} in; axial spring length {p["pile_axial_length_in"]:g} in; imposed wall rotation {p["imposed_rotation_rad"]:g} rad','Defaults from the pier pile case (sand depth to fixity); tip elevation pending (STIFFNESS)'],
         ['Annular rings',f'{p["ring_count"]} rows, first plate top {p["first_ring_in"]:g} in above the bottom at {p["ring_spacing_in"]:g} in pitch; OD {p["ring_od_in"]:g} / ID {p["ring_id_in"]:g} in × {p["ring_t_in"]:g} in; Fy {p["ring_fy_ksi"]:g} / Fu {p["ring_fu_ksi"]:g} ksi','Trial sizes; recalculate after selection'],
-        ['Fillet welds',f'two continuous fillets per ring, leg {p["weld_leg_in"]:g} in, F<sub>EXX</sub> {p["weld_fexx_ksi"]:g} ksi','Trial size; WPS must accept the radial root gap'],
+        ['Fillet welds',f'two continuous fillets per ring, leg {frac16(p["weld_leg_in"])} in, F<sub>EXX</sub> {p["weld_fexx_ksi"]:g} ksi; radial root gap {frac16((p["ring_id_in"]-p["pile_od_in"])/2)} in','Trial size in sixteenths of an inch; WPS must accept the radial root gap'],
         ['Wall reinforcement',f'#{p["grid_bar"]} grid each way on each broad face, fy {p["fy_ksi"]:g} ksi, {p["coating"]} bars; cover {p["cover_in"]:g} in provided / {p["required_cover_in"]:g} in required; aggregate {p["aggregate_in"]:g} in; project pitch cap {p["project_max_spacing_in"]:g} in; U leg {p["u_leg_in"]:g} in, vertical lap allowance {p["vertical_lap_in"]:g} in','Pitch '+('selected automatically' if p['auto_grid_spacing'] else f'entered as {p["grid_spacing_in"]:g} in')],
         ['Resistance factors',phi,'LRFD 5.5.4.2 and 6.5.4.2; visible inputs']]
     inputs='<div class="table-scroll"><table class="basis-table"><thead><tr><th>Item</th><th>Current case</th><th>Source / status</th></tr></thead><tbody>'+''.join('<tr><td>'+a+'</td><td>'+b+'</td><td>'+c+'</td></tr>' for a,b,c in rows)+'</tbody></table></div>'
@@ -280,6 +281,7 @@ def results_html(r):
         ['Full contact',f'largest equivalent eccentricity {fmt(worst["e_equivalent"])} in at R{worst["row"]}/P{worst["pile"]} against the {fmt(t["kern_limit"])}-in kern; '+str(sum(not a['contact_ok'] for a in rings))+' of '+str(len(rings))+' rings lose contact'],
         ['Peak bearing',f'q<sub>max</sub> {fmt(qring["qmax"])} ksi at R{qring["row"]}/P{qring["pile"]} against q<sub>R</sub> {fmt(qR)} ksi'],
         ['Largest design ring load',fmt(max(a['R_design'] for a in rings))+' kip (tributary '+fmt(max(a['R'] for a in rings))+' kip plus redistribution up to '+fmt(max(a['dR'] for a in rings))+' kip)'],
+        ['Weld leg',f'{frac16(p["weld_leg_in"])} in provided; largest trial requirement {frac16(max(a["weld_req"] for a in rings))} in (next sixteenth above {fmt(max(a["weld_req_raw"] for a in rings))} in)'],
         ['Wall reinforcement',f'#{r["grid"]["bar"]} at {r["grid"]["spacing"]:g} in each way on each face, {fmt(r["grid"]["provided"])} in²/ft provided against {fmt(r["grid"]["required"])} in²/ft required'],
         ['Check register',' · '.join(f'{v} {k}' for k,v in stats.items())+'; failures: '+(', '.join(c['id'] for c in checks if c['status']=='FAIL') or 'none')]]
     return front_section('results','Result summary',V.note(esc(r['overall']),True)+V.summary(r)+box('outputs','Key results',table(['Result','Current case'],rows)))

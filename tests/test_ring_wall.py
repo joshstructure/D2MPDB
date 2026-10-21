@@ -78,6 +78,12 @@ class RingWallTests(unittest.TestCase):
         throat=(p['weld_leg_in']-(p['ring_id_in']-p['pile_od_in'])/2)/sqrt(2)
         self.assertAlmostEqual(a['weld_capacity'],.8*.6*70*throat)
         self.assertGreater(a['weld_demand'],v/2)  # Do not omit radial plate-root moment.
+        # Trial weld legs are specified in sixteenths: the next sixteenth at or above the strength-plus-minimum leg.
+        for x in r['rings']:
+            self.assertAlmostEqual(x['weld_req']*16,round(x['weld_req']*16));self.assertGreaterEqual(x['weld_req']+1e-12,x['weld_req_raw']);self.assertLess(x['weld_req']-x['weld_req_raw'],1/16)
+        vals={x['name']:x['value'] for x in r['nodes']};self.assertEqual(vals['ring_3_1_weld_required_16'],vals['ring_3_1_weld_required']) if vals['ring_3_1_weld_required']*16==round(vals['ring_3_1_weld_required']*16) else None
+        self.assertAlmostEqual(analyze(default_case()|dict(weld_leg_in=.25))['rings'][0]['weld_req'],.3125)  # 1/4 table minimum + 1/16 gap = 5/16 exactly
+        self.assertAlmostEqual(analyze(default_case()|dict(ring_t_in=1.,weld_leg_in=.5))['rings'][0]['weld_req'],.375)  # 5/16 table minimum + 1/16 gap = 3/8
 
     def test_bearing_annulus_excludes_top_weld_and_compatibility_moment(self):
         r=analyze();p=r['case'];a=r['rings'][0];rp=p['pile_od_in']/2;rb=rp+p['weld_leg_in'];ro=p['ring_od_in']/2
@@ -133,7 +139,7 @@ class RingWallTests(unittest.TestCase):
 
     def test_invalid_inputs_and_case_migration(self):
         for changes in [dict(ring_count=100),dict(pile_count=True),dict(ring_id_in=19.),dict(height_in=float('nan')),dict(weld_leg_in=.02),dict(weld_leg_in=2.),dict(coating='guess'),dict(phi_weld=1.1),dict(ring_fu_ksi=30.),dict(grid_bar=3),dict(cover_in=20.),
-                        dict(imposed_rotation_rad=.1),dict(imposed_rotation_rad=-.001),dict(pile_free_length_in=0.),dict(schema_version=2)]:
+                        dict(imposed_rotation_rad=.1),dict(imposed_rotation_rad=-.001),dict(pile_free_length_in=0.),dict(schema_version=2),dict(weld_leg_in=.3)]:
             with self.subTest(changes=changes),self.assertRaises(ValueError):analyze(default_case()|changes)
         legacy=default_case();legacy.pop('schema_version');legacy.update(support_model='face_transfer',arch_rise_in=10.,bearing_fraction=.5,additional_service_ksf=0)
         for key in ('pile_e_ksi','pile_free_length_in','pile_axial_length_in','imposed_rotation_rad'):legacy.pop(key)

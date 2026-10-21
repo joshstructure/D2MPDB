@@ -102,6 +102,8 @@ TERMS = {
  'weld_resultant':('F_w','Resultant force per unit length of each top/bottom fillet'),
  'weld_strength_leg':('w_strength','Fillet leg required by strength including the gap'),
  'weld_required':('w_req','Trial weld leg including strength and minimum detailing'),
+ 'weld_sixteenths':('n_16','Nearest whole number of sixteenths in the trial leg'),
+ 'weld_required_16':('w_16','Trial weld leg rounded up to the next 1/16 in'),
 }
 
 
@@ -128,6 +130,17 @@ def number(value):
         base, exponent = text.split('e')
         return '<mrow><mn>'+base+'</mn><mo>×</mo><msup><mn>10</mn><mn>'+str(int(exponent))+'</mn></msup></mrow>'
     return '<mn>'+text+'</mn>'
+
+
+def fraction(value):
+    """MathML mixed fraction in sixteenths when exact; plain number otherwise."""
+    from .output import sixteenths
+    parts=sixteenths(value)
+    if parts is None:return number(value)
+    whole,num,den=parts
+    if num==0:return '<mn>'+str(whole)+'</mn>'
+    frac='<mfrac><mn>'+str(num)+'</mn><mn>'+str(den)+'</mn></mfrac>'
+    return '<mrow><mn>'+str(whole)+'</mn>'+frac+'</mrow>' if whole else frac
 
 
 def fence(body):
@@ -160,7 +173,7 @@ def expression(source, values=None):
             if name=='sqrt':return '<msqrt>'+args[0]+'</msqrt>'
             if name=='abs':return '<mrow><mo>|</mo>'+args[0]+'<mo>|</mo></mrow>'
             if name=='IF':
-                return '<mrow><mo>{</mo><mtable><mtr><mtd>'+args[1]+'</mtd><mtd><mtext>if </mtext>'+args[0]+'</mtd></mtr><mtr><mtd>'+args[2]+'</mtd><mtd><mtext>otherwise</mtext></mtd></mtr></mtable></mrow>'
+                return '<mrow><mo>{</mo><mtable><mtr><mtd>'+args[1]+'</mtd><mtd><mtext>if</mtext><mspace width="0.3em"/>'+args[0]+'</mtd></mtr><mtr><mtd>'+args[2]+'</mtd><mtd><mtext>otherwise</mtext></mtd></mtr></mtable></mrow>'
             return '<mrow><mi mathvariant="normal">'+escape(name)+'</mi>'+fence('<mo>,</mo>'.join(args))+'</mrow>'
         raise ValueError('Unsupported report expression: '+ast.dump(node))
     return draw(ast.parse(source, mode='eval').body)
@@ -171,5 +184,5 @@ def math(body, block=False):
 
 
 def dependencies(source):
-    functions={'min','max','IF','abs','sqrt'}
+    functions={'min','max','IF','abs','sqrt','round'}
     return list(dict.fromkeys(n.id for n in ast.walk(ast.parse(source, mode='eval')) if isinstance(n,ast.Name) and n.id not in functions))

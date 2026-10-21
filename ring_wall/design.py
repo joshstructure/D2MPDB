@@ -83,6 +83,7 @@ def validate(p):
     if p['ring_count']>1 and p['ring_spacing_in']<=p['ring_t_in']+2*p['weld_leg_in']: raise ValueError('Adjacent plates/welds overlap.')
     if 2*p['cover_in']+4*BAR[p['grid_bar']][0]>=min(p['thickness_in'],p['height_in'],p['length_in']): raise ValueError('Cover and face mats do not fit.')
     if p['weld_leg_in']<=(p['ring_id_in']-p['pile_od_in'])/2: raise ValueError('Weld leg must exceed radial root gap.')
+    if abs(p['weld_leg_in']*16-round(p['weld_leg_in']*16))>1e-9: raise ValueError('Weld leg must be a whole number of sixteenths of an inch.')
     if p['pile_od_in']/2+p['weld_leg_in']>=p['ring_od_in']/2: raise ValueError('Top weld occupies all horizontal bearing width.')
     if p['ring_fu_ksi']<p['ring_fy_ksi'] or p['pile_fu_ksi']<p['pile_fy_ksi']: raise ValueError('Steel Fu must be at least Fy.')
 
@@ -115,7 +116,7 @@ def analyze(case=None):
     # Only internally constructed expressions are evaluated. Case strings never enter expressions.
     def n(name,expr,unit='—',label=''):
         if name in v: raise ValueError('Duplicate equation '+name)
-        value=float(eval(expr,{'__builtins__':{}},dict(v,min=min,max=max,abs=abs,sqrt=sqrt,IF=lambda a,b,c:b if a else c)))
+        value=float(eval(expr,{'__builtins__':{}},dict(v,min=min,max=max,abs=abs,sqrt=sqrt,round=round,IF=lambda a,b,c:b if a else c)))
         if not isfinite(value): raise ValueError('Nonfinite result '+name)
         v[name]=value;nodes.append(dict(name=name,expr=expr,value=value,unit=unit,label=label or name.replace('_',' ')))
         return value
@@ -247,6 +248,8 @@ def analyze(case=None):
             n(a+'weld_resultant',f'sqrt(({a}root_shear/2)**2+{a}weld_radial**2)','kip/in','Per fillet: half vertical shear + full radial couple force')
             n(a+'weld_strength_leg',f'root_gap+sqrt(2)*{a}weld_resultant/(phi_weld*0.6*weld_fexx_ksi)','in')
             n(a+'weld_required',f'max({a}weld_strength_leg,weld_min_gap)','in','Strength and minimum detailing; revise/recalculate after selecting weld')
+            n(a+'weld_sixteenths',f'round(16*{a}weld_required,0)','—','Nearest whole number of sixteenths')
+            n(a+'weld_required_16',f'IF({a}weld_sixteenths>=16*{a}weld_required,{a}weld_sixteenths,{a}weld_sixteenths+1)/16','in','Trial leg rounded up to the next 1/16 in')
             valid=v[a+'qmin']>=-1e-10;key=f'R{k}-P{j}'
             ck(key+'-CONTACT','Full annular compression contact',a+'qmoment',a+'qavg','ksi','Elastic annulus; qmin ≥ 0')
             for suffix,title,d,c,unit,ref in [
@@ -264,7 +267,7 @@ def analyze(case=None):
                 M_nominal=get('force')*get('eccentricity'),M_superseded=get('superseded_moment'),dR=get('tolerance_force'),R_design=get('design_force'),
                 M=v['ring_moment'],e_equivalent=get('equivalent_e'),qmax=get('qmax'),qmin=get('qmin'),m_per_in=get('root_moment'),
                 v_per_in=get('root_shear'),t_req=get('thickness_required'),t_bending_req=get('thickness_bending'),weld_demand=get('weld_resultant'),weld_capacity=v['weld_capacity'],
-                weld_req=get('weld_required'),contact_ok=valid,bearing_ratio=get('qmax')/v['bearing_limit'],plate_ratio=get('root_moment')/v['plate_capacity'],weld_ratio=get('weld_resultant')/v['weld_capacity']))
+                weld_req=get('weld_required_16'),weld_req_raw=get('weld_required'),contact_ok=valid,bearing_ratio=get('qmax')/v['bearing_limit'],plate_ratio=get('root_moment')/v['plate_capacity'],weld_ratio=get('weld_resultant')/v['weld_capacity']))
     pending=[('SHARING','Midplane tributaries assign vertical force and the ring rows share the pile-head moment equally; all rings are assumed to engage. Concrete transfer (including concrete below rings), splitting/breakout and row compatibility need a separately substantiated load path.'),
         ('STIFFNESS','Ring moments follow pile-head rotational stiffness against the rigid-wall rotation (D-070). The free length to fixity and the axial spring length are entered values (defaults from the pier pile case with sand depth to fixity, LRFD 10.7.3.13.4; tip elevation pending). Lateral, thermal, unsymmetric and construction-stage rotations enter only through the imposed rotation input.'),
         ('SCOPE','Wall checks cover minimum shrinkage/temperature steel and detailing only. Wall flexure, shear, lateral loads, seismic and strength load paths are outside this calculation.'),

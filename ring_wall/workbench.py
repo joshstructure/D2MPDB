@@ -7,7 +7,7 @@ from pathlib import Path
 import ipywidgets as W
 from IPython.display import display
 from .model import BAR,analyze,default_case,upgrade_case,validate
-from .output import esc,export_results
+from .output import esc,export_results,frac16
 from .study import spacing_study
 from .ui_support import Accordion,FigureWidget,PanelTabs,update_figure
 from . import plots as V
@@ -22,7 +22,7 @@ GROUPS={
   ('Detailing',[('cover_in','Provided cover (in)'),('required_cover_in','Required cover (in)'),('aggregate_in','Aggregate size (in)'),('u_leg_in','U straight lap leg (in)'),('vertical_lap_in','Vertical lap (in)'),('coating','Bar coating')])],
  'Rings & welds':[
   ('Annular rings',[('first_ring_in','First ring top (in)'),('ring_spacing_in','Vertical ring pitch (in)'),('ring_count','Ring rows'),('ring_id_in','Ring ID (in)'),('ring_od_in','Ring OD (in)'),('ring_t_in','Ring thickness (in)'),('ring_fy_ksi','Ring Fy (ksi)'),('ring_fu_ksi','Ring Fu (ksi)')]),
-  ('Continuous fillets above and below each plate',[('weld_leg_in','Fillet leg size (in)'),('weld_fexx_ksi','Weld FEXX (ksi)'),('pile_t_effective_in','Effective pipe wall (in)'),('pile_fy_ksi','Pipe Fy (ksi)'),('pile_fu_ksi','Pipe Fu (ksi)')])],
+  ('Continuous fillets above and below each plate',[('weld_leg_in','Fillet leg (sixteenths)'),('weld_fexx_ksi','Weld FEXX (ksi)'),('pile_t_effective_in','Effective pipe wall (in)'),('pile_fy_ksi','Pipe Fy (ksi)'),('pile_fu_ksi','Pipe Fu (ksi)')])],
  'Factors':[('Resistance factors',[('phi_concrete','Concrete bearing φ'),('phi_plate','Plate flexure φ'),('phi_weld','Weld metal φ'),('phi_shear_yield','Shear yielding φ'),('phi_shear_rupture','Shear rupture φ')])]}
 EXPORTS={'html':('ring_wall_report.html','text/html'),'zip':('Ring_Wall_Design_Exports.zip','application/zip'),
  'case':('ring_wall_case.json','application/json'),'checks':('ring_wall_checks.csv','text/csv'),
@@ -79,8 +79,9 @@ class RingWallNotebook:
                     if type(value) is bool:w=W.Checkbox(value=value,indent=False)
                     elif key=='grid_bar':w=W.Dropdown(options=[(f'#{n}',n) for n in BAR],value=value)
                     elif key=='coating':w=W.Dropdown(options=['uncoated','epoxy','unknown'],value=value)
+                    elif key=='weld_leg_in':w=W.Dropdown(options=[(frac16(k/16)+' in',k/16) for k in range(2,17)],value=value)  # fillet legs in sixteenths
                     elif type(value) is int:w=W.IntText(value=value)
-                    else:w=W.FloatText(value=value,step=.0625 if key=='weld_leg_in' else .0001 if key.endswith('_rad') else .25)
+                    else:w=W.FloatText(value=value,step=.0001 if key.endswith('_rad') else .25)
                     w.description=label;w.style.description_width='180px';w.layout=W.Layout(width='320px',max_width='100%',height='auto',min_height='32px')
                     w.observe(lambda c,k=key:self._changed(k,c),names='value');self.controls[key]=w;controls.append(w)
                 card=W.VBox([W.HTML('<b>'+title+'</b>'),W.HBox(controls,layout=W.Layout(flex_flow='row wrap',grid_gap='6px'))]);card.add_class('ring-section');cards.append(card)

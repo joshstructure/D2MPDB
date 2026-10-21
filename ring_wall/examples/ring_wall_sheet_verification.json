@@ -1,11 +1,11 @@
 {
   "case_sha256": "5778a133d8f058b018c249b307b96eb53dee01f7bd842a2d1f15c4bf46f848fd",
-  "source_sha256": "470b889431a426fbe48305c11fe8191d0732f2673802d1d50aaf7979cc1389e5",
-  "numeric_values": 633,
+  "source_sha256": "7ea2cc36afb85c75406bcb45e5e757ac5fb1bb3c09a87b0a29e9180eaf897ffe",
+  "numeric_values": 673,
   "check_statuses": 178,
   "tolerance": 1e-09,
-  "mathcad_sha256": "accd1f23810af7f22241847bd173d557a687b9ccf919acec5627c5dbe9d1de7b",
-  "bpad_sha256": "0acf42136ce129173ba11feb6b44ad8d6db88a0b87c2bb9e602a54d0ec07ecd9",
+  "mathcad_sha256": "7f43ca3ed14f6397872c5c8298378750a279a1c567d54bc83892d3a28699d39c",
+  "bpad_sha256": "6644a3159eaff5277b7400cdaa98694599b370b62010a9c6f77950a11e39a0b2",
   "native_application_recalculation": false,
   "units": "Fixed scalar units, labeled; not dimensionally evaluated",
   "status": "FORMULA PARITY VERIFIED"

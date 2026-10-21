@@ -177,6 +177,7 @@
       "weld_demand": 0.11144625596721695,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.01990580287927144,
       "plate_ratio": 0.016504722886349712,
@@ -212,6 +213,7 @@
       "weld_demand": 0.13455701963609526,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.024033696651830694,
       "plate_ratio": 0.019927330014210144,
@@ -247,6 +249,7 @@
       "weld_demand": 0.13455701963609526,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.024033696651830694,
       "plate_ratio": 0.019927330014210144,
@@ -282,6 +285,7 @@
       "weld_demand": 0.11144625596721695,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.01990580287927144,
       "plate_ratio": 0.016504722886349712,
@@ -317,6 +321,7 @@
       "weld_demand": 0.15989558774918528,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.02855950631429735,
       "plate_ratio": 0.02367986563251272,
@@ -352,6 +357,7 @@
       "weld_demand": 0.1945617332525027,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03475134697313623,
       "plate_ratio": 0.028813776324303368,
@@ -387,6 +393,7 @@
       "weld_demand": 0.1945617332525027,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03475134697313623,
       "plate_ratio": 0.028813776324303368,
@@ -422,6 +429,7 @@
       "weld_demand": 0.15989558774918528,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.02855950631429735,
       "plate_ratio": 0.02367986563251272,
@@ -457,6 +465,7 @@
       "weld_demand": 0.15989558774918528,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.02855950631429735,
       "plate_ratio": 0.02367986563251272,
@@ -492,6 +501,7 @@
       "weld_demand": 0.1945617332525027,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03475134697313623,
       "plate_ratio": 0.028813776324303368,
@@ -527,6 +537,7 @@
       "weld_demand": 0.1945617332525027,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03475134697313623,
       "plate_ratio": 0.028813776324303368,
@@ -562,6 +573,7 @@
       "weld_demand": 0.15989558774918528,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.02855950631429735,
       "plate_ratio": 0.02367986563251272,
@@ -597,6 +609,7 @@
       "weld_demand": 0.15989558774918528,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.02855950631429735,
       "plate_ratio": 0.02367986563251272,
@@ -632,6 +645,7 @@
       "weld_demand": 0.1945617332525027,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03475134697313623,
       "plate_ratio": 0.028813776324303368,
@@ -667,6 +681,7 @@
       "weld_demand": 0.1945617332525027,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03475134697313623,
       "plate_ratio": 0.028813776324303368,
@@ -702,6 +717,7 @@
       "weld_demand": 0.15989558774918528,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.02855950631429735,
       "plate_ratio": 0.02367986563251272,
@@ -737,6 +753,7 @@
       "weld_demand": 0.17755940662802788,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.031714502358317215,
       "plate_ratio": 0.02629580309205132,
@@ -772,6 +789,7 @@
       "weld_demand": 0.21643845175848458,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03865882365277887,
       "plate_ratio": 0.032053626541524854,
@@ -807,6 +825,7 @@
       "weld_demand": 0.21643845175848458,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.03865882365277887,
       "plate_ratio": 0.032053626541524854,
@@ -842,6 +861,7 @@
       "weld_demand": 0.17755940662802788,
       "weld_capacity": 5.939696961966999,
       "weld_req": 0.3125,
+      "weld_req_raw": 0.3125,
       "contact_ok": true,
       "bearing_ratio": 0.031714502358317215,
       "plate_ratio": 0.02629580309205132,
@@ -4160,6 +4180,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_1_1_weld_sixteenths",
+      "expr": "round(16*ring_1_1_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_1_1_weld_required_16",
+      "expr": "IF(ring_1_1_weld_sixteenths>=16*ring_1_1_weld_required,ring_1_1_weld_sixteenths,ring_1_1_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_1_2_x",
       "expr": "end_offset+(2-1)*pile_spacing_in",
       "value": 76.5,
@@ -4333,6 +4367,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_1_2_weld_sixteenths",
+      "expr": "round(16*ring_1_2_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_1_2_weld_required_16",
+      "expr": "IF(ring_1_2_weld_sixteenths>=16*ring_1_2_weld_required,ring_1_2_weld_sixteenths,ring_1_2_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "ring_1_3_x",
@@ -4510,6 +4558,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_1_3_weld_sixteenths",
+      "expr": "round(16*ring_1_3_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_1_3_weld_required_16",
+      "expr": "IF(ring_1_3_weld_sixteenths>=16*ring_1_3_weld_required,ring_1_3_weld_sixteenths,ring_1_3_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_1_4_x",
       "expr": "end_offset+(4-1)*pile_spacing_in",
       "value": 196.5,
@@ -4683,6 +4745,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_1_4_weld_sixteenths",
+      "expr": "round(16*ring_1_4_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_1_4_weld_required_16",
+      "expr": "IF(ring_1_4_weld_sixteenths>=16*ring_1_4_weld_required,ring_1_4_weld_sixteenths,ring_1_4_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "row_2_lo",
@@ -4888,6 +4964,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_2_1_weld_sixteenths",
+      "expr": "round(16*ring_2_1_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_2_1_weld_required_16",
+      "expr": "IF(ring_2_1_weld_sixteenths>=16*ring_2_1_weld_required,ring_2_1_weld_sixteenths,ring_2_1_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_2_2_x",
       "expr": "end_offset+(2-1)*pile_spacing_in",
       "value": 76.5,
@@ -5061,6 +5151,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_2_2_weld_sixteenths",
+      "expr": "round(16*ring_2_2_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_2_2_weld_required_16",
+      "expr": "IF(ring_2_2_weld_sixteenths>=16*ring_2_2_weld_required,ring_2_2_weld_sixteenths,ring_2_2_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "ring_2_3_x",
@@ -5238,6 +5342,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_2_3_weld_sixteenths",
+      "expr": "round(16*ring_2_3_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_2_3_weld_required_16",
+      "expr": "IF(ring_2_3_weld_sixteenths>=16*ring_2_3_weld_required,ring_2_3_weld_sixteenths,ring_2_3_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_2_4_x",
       "expr": "end_offset+(4-1)*pile_spacing_in",
       "value": 196.5,
@@ -5411,6 +5529,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_2_4_weld_sixteenths",
+      "expr": "round(16*ring_2_4_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_2_4_weld_required_16",
+      "expr": "IF(ring_2_4_weld_sixteenths>=16*ring_2_4_weld_required,ring_2_4_weld_sixteenths,ring_2_4_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "row_3_lo",
@@ -5616,6 +5748,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_3_1_weld_sixteenths",
+      "expr": "round(16*ring_3_1_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_3_1_weld_required_16",
+      "expr": "IF(ring_3_1_weld_sixteenths>=16*ring_3_1_weld_required,ring_3_1_weld_sixteenths,ring_3_1_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_3_2_x",
       "expr": "end_offset+(2-1)*pile_spacing_in",
       "value": 76.5,
@@ -5789,6 +5935,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_3_2_weld_sixteenths",
+      "expr": "round(16*ring_3_2_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_3_2_weld_required_16",
+      "expr": "IF(ring_3_2_weld_sixteenths>=16*ring_3_2_weld_required,ring_3_2_weld_sixteenths,ring_3_2_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "ring_3_3_x",
@@ -5966,6 +6126,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_3_3_weld_sixteenths",
+      "expr": "round(16*ring_3_3_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_3_3_weld_required_16",
+      "expr": "IF(ring_3_3_weld_sixteenths>=16*ring_3_3_weld_required,ring_3_3_weld_sixteenths,ring_3_3_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_3_4_x",
       "expr": "end_offset+(4-1)*pile_spacing_in",
       "value": 196.5,
@@ -6139,6 +6313,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_3_4_weld_sixteenths",
+      "expr": "round(16*ring_3_4_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_3_4_weld_required_16",
+      "expr": "IF(ring_3_4_weld_sixteenths>=16*ring_3_4_weld_required,ring_3_4_weld_sixteenths,ring_3_4_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "row_4_lo",
@@ -6344,6 +6532,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_4_1_weld_sixteenths",
+      "expr": "round(16*ring_4_1_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_4_1_weld_required_16",
+      "expr": "IF(ring_4_1_weld_sixteenths>=16*ring_4_1_weld_required,ring_4_1_weld_sixteenths,ring_4_1_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_4_2_x",
       "expr": "end_offset+(2-1)*pile_spacing_in",
       "value": 76.5,
@@ -6517,6 +6719,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_4_2_weld_sixteenths",
+      "expr": "round(16*ring_4_2_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_4_2_weld_required_16",
+      "expr": "IF(ring_4_2_weld_sixteenths>=16*ring_4_2_weld_required,ring_4_2_weld_sixteenths,ring_4_2_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "ring_4_3_x",
@@ -6694,6 +6910,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_4_3_weld_sixteenths",
+      "expr": "round(16*ring_4_3_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_4_3_weld_required_16",
+      "expr": "IF(ring_4_3_weld_sixteenths>=16*ring_4_3_weld_required,ring_4_3_weld_sixteenths,ring_4_3_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_4_4_x",
       "expr": "end_offset+(4-1)*pile_spacing_in",
       "value": 196.5,
@@ -6867,6 +7097,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_4_4_weld_sixteenths",
+      "expr": "round(16*ring_4_4_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_4_4_weld_required_16",
+      "expr": "IF(ring_4_4_weld_sixteenths>=16*ring_4_4_weld_required,ring_4_4_weld_sixteenths,ring_4_4_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "row_5_lo",
@@ -7072,6 +7316,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_5_1_weld_sixteenths",
+      "expr": "round(16*ring_5_1_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_5_1_weld_required_16",
+      "expr": "IF(ring_5_1_weld_sixteenths>=16*ring_5_1_weld_required,ring_5_1_weld_sixteenths,ring_5_1_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_5_2_x",
       "expr": "end_offset+(2-1)*pile_spacing_in",
       "value": 76.5,
@@ -7245,6 +7503,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_5_2_weld_sixteenths",
+      "expr": "round(16*ring_5_2_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_5_2_weld_required_16",
+      "expr": "IF(ring_5_2_weld_sixteenths>=16*ring_5_2_weld_required,ring_5_2_weld_sixteenths,ring_5_2_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     },
     {
       "name": "ring_5_3_x",
@@ -7422,6 +7694,20 @@
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
     },
     {
+      "name": "ring_5_3_weld_sixteenths",
+      "expr": "round(16*ring_5_3_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_5_3_weld_required_16",
+      "expr": "IF(ring_5_3_weld_sixteenths>=16*ring_5_3_weld_required,ring_5_3_weld_sixteenths,ring_5_3_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
+    },
+    {
       "name": "ring_5_4_x",
       "expr": "end_offset+(4-1)*pile_spacing_in",
       "value": 196.5,
@@ -7595,6 +7881,20 @@
       "value": 0.3125,
       "unit": "in",
       "label": "Strength and minimum detailing; revise/recalculate after selecting weld"
+    },
+    {
+      "name": "ring_5_4_weld_sixteenths",
+      "expr": "round(16*ring_5_4_weld_required,0)",
+      "value": 5.0,
+      "unit": "—",
+      "label": "Nearest whole number of sixteenths"
+    },
+    {
+      "name": "ring_5_4_weld_required_16",
+      "expr": "IF(ring_5_4_weld_sixteenths>=16*ring_5_4_weld_required,ring_5_4_weld_sixteenths,ring_5_4_weld_sixteenths+1)/16",
+      "value": 0.3125,
+      "unit": "in",
+      "label": "Trial leg rounded up to the next 1/16 in"
     }
   ],
   "pending": [

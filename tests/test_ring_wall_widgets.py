@@ -18,6 +18,8 @@ class RingWallWorkbenchTests(unittest.TestCase):
         self.assertEqual(a.recalc_button.description,'Calc done');self.assertIn('LIMITED SCOPE',a.status.value)
         self.assertAlmostEqual(sum(sum(z) for z in a.figures['reactions'].data[0].z),a.current['totals']['factored_weight'])
         self.assertNotIn('arch_rise_in',a.controls);self.assertIn('weld_leg_in',a.controls);self.assertIn('pile_free_length_in',a.controls)
+        self.assertEqual([o[0] for o in a.controls['weld_leg_in'].options][:4],['1/8 in','3/16 in','1/4 in','5/16 in']);self.assertEqual(a.controls['weld_leg_in'].value,.3125)
+        self.assertIn('5/16 / 5/16 in',a.metrics.value);self.assertIn('weld leg = 5/16 in',a.figures['connection'].layout.annotations[-1].text)
         self.assertIn('D-070',a.rings_panel.children[-1].value);self.assertIn('full compression',a.figures['connection'].layout.title.text)
         self.assertIn('#5 at 11',a.steel_panel.value)
     def test_navigation_mounts_one_panel_preserves_calculation(self):
