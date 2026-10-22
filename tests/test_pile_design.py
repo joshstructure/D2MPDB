@@ -438,7 +438,7 @@ class DefaultCases(unittest.TestCase):
     def test_pier_reports_tension_and_fbmp_dc(self):
         e = self.evals['Pier']
         by = {c.key: c for c in e.checks}
-        self.assertTrue(10.0 < e.value('T_u') < 13.0)
+        self.assertTrue(13.0 < e.value('T_u') < 17.0)   # 14.89 kip with the D-077 export (11 to 12 kip under D-073)
         self.assertAlmostEqual(e.value('P_r_t'), 0.95 * 45.0 * 29.44, delta=0.5)
         self.assertAlmostEqual(by['pipe_tension'].ratio, e.value('T_u') / e.value('P_r_t'), places=12)
         self.assertGreater(by['pipe_tension'].ratio, 0.0)

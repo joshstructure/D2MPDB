@@ -2,15 +2,15 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "00fc1f3cf935fefc44a10be0d791988a7104c8fbb36b357cf1c0bde60f9e3d2c",
+ "fingerprint": "b3e20c1974afbf50a621933cf43d114ef6a7f647f9e895798bad5bf56865f59b",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
-   "sha256": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
+   "sha256": "050e94fd45f603d9df5de8b1ed197c60e6e035f2dac9e1367e821ca44f924cee"
   },
   {
    "path": "lineage/signoff.json",
-   "sha256": "ca44d42e8a14d5e68738af1eabf1edd87eb5768a2e5f2f27d202da54c1e9cb7f"
+   "sha256": "602710804f8f7f990357bba13f6f4a40efceaa3d0f950f4727ff0f5e33c74276"
   },
   {
    "path": "project_current/cap_design/backwall/selected_case.json",
@@ -26,7 +26,7 @@
   },
   {
    "path": "project_current/cap_design/pier/selected_case.json",
-   "sha256": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5"
+   "sha256": "926886b5efc310be979c065b2016aa445fd19c9987356cb3158ea4980c981e3a"
   },
   {
    "path": "project_current/coherence/items_snapshot.csv",
@@ -34,11 +34,11 @@
   },
   {
    "path": "project_current/coherence/machine_checks.json",
-   "sha256": "52970c3cd09de549564077769325e05f7dd984c0a0d4ba690bb9243b509d4e12"
+   "sha256": "d7b2e1cc5cecd84cdf54aff8ee5a812a39a825eeb74ae83d24cc4a0be92622ca"
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "c058f5e22ab6db4a7587247baa5f229a7425c49cdc3957e7a2ee50803a0c1716"
+   "sha256": "dbfa73b9d4ee94e2aa636155d56635d31e29b3052da6a1fa46028aee9df97e00"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -54,7 +54,7 @@
   },
   {
    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
-   "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6"
+   "sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6"
   },
   {
    "path": "project_current/fbmp/pier/Pier_MinTip.XML",
@@ -62,40 +62,40 @@
   },
   {
    "path": "project_current/source_register.csv",
-   "sha256": "34ef05b1579d0a37d211c3037e0ba60a672946c2d8179a988df91eb6d0c62083"
+   "sha256": "a7c0a5040f5a9145ef68c251f50d655524abb8a61fd0dd26c616c3b9fcfa69d5"
   },
   {
    "path": "scripts/build_lineage_graph.py",
-   "sha256": "19e59f0b9f01051c6b9168beb8ac9a299b3a122aa3194f314d487c0ce9b6417b"
+   "sha256": "6bdfe58a4f5e4c358a136a0d8249199479daf89d43480c610897b81fd6c6f11a"
   }
  ],
  "derived": [
   {
    "id": "formula-trace:EB-CASE",
    "sha256": "ffea4384d1e126d6529fff449e2f1e8206e7b7c6d697e00f9aaad9615031e174",
-   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+   "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
   },
   {
    "id": "formula-trace:EB2-CASE",
    "sha256": "91ed8d3683ebe3bbe7230ada3232bfae78ad3436fc43dcf6a278eb9f0910434d",
-   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+   "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
   },
   {
    "id": "formula-trace:PIER-CASE",
-   "sha256": "3880794cba6bcaabe7b27f81430edd104cdf17f5369a0a0b5cc7c67d1cfef2ed",
-   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+   "sha256": "92655facea12b567e71013f65a7b62c4c01ae398ad77ab1f9a8f8cac21f4877f",
+   "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
   }
  ],
  "cap_package": {
   "path": "pier_cap",
   "files": 79,
-  "sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+  "sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
  },
  "cap_trace": {
   "available": true,
   "reason": ""
  },
- "checked_at_utc": "2026-10-22T12:09:46.908709+00:00",
+ "checked_at_utc": "2026-10-22T13:45:20.232375+00:00",
  "stages": [
   {
    "id": "inputs",
@@ -1145,7 +1145,7 @@
     {
      "check_id": "ASSUMPTION:A-002",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
     },
     {
      "check_id": "ASSUMPTION:A-007",
@@ -4242,7 +4242,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "ffea4384d1e126d6529fff449e2f1e8206e7b7c6d697e00f9aaad9615031e174",
-    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+    "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
    },
    "open_issues": [
     "COH-023",
@@ -4388,8 +4388,8 @@
     },
     {
      "check_id": "ASSUMPTION:A-001",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-003",
@@ -7312,7 +7312,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "91ed8d3683ebe3bbe7230ada3232bfae78ad3436fc43dcf6a278eb9f0910434d",
-    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+    "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
    },
    "open_issues": [
     "COH-023",
@@ -7386,8 +7386,8 @@
     },
     {
      "check_id": "ASSUMPTION:A-001",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-003",
@@ -7673,9 +7673,9 @@
    "stage": "inputs",
    "registered": true,
    "path": "journal/D2_I95_Project_Journal.bpad",
-   "status": "Current - calculations C001-C017 in order with project stamps; pier modules on the D-073 export; pier wall on the CAD geometry (D-075); D-065 as-cast override; final bearing fit unresolved",
+   "status": "Current - calculations C001-C017 in order with project stamps; pier modules on the D-077 export; pier wall on the CAD geometry (D-075); D-065 as-cast override; final bearing fit unresolved",
    "scope": "Adopted project geometry, assumptions, decisions, live journal quantities and the cap, pile, end-bent backwall and pier-wall ring design calculations",
-   "sha256": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+   "sha256": "050e94fd45f603d9df5de8b1ed197c60e6e035f2dac9e1367e821ca44f924cee",
    "registered_on": "2026-10-22",
    "depends_on": [
     "GEOMETRY",
@@ -7698,7 +7698,7 @@
     "PIER-WALL-TOOL"
    ],
    "origin": "workflow/accepted.json",
-   "notes": "T035 (22 October 2026): C006 and C004 replaced by their regenerated journal editions naming the T034 journal (82e7d3e1) as the journal whose values their inputs equal (case name and provenance sentence in the hidden notes); every definition, cached value and canvas identical to the T034 modules; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T035/verification.json. T034 / D-075 (22 October 2026): pier wall reconciled to the CAD geometry (219 x 36 in from EL 24.5264 to the cap bottom EL 40.76494, 194.8625 in high): gravity sheet row 42 edited (E42 18 ft 3 in, G42 16 ft 2.8625 in; H42/J42/K42 caches recomputed, wall weight 114.737 to 133.359 kip); C006 and C004 regenerated by their packages with the new journal values through their coherence gates; C017 regenerated from the 22 October starting case (free length 92.4 in from the wall bottom; 1 failed check, grid clearance); PedBridge revision note and DecisionLog entry. FBMP pier export unchanged (wall load gap recorded as assumption A-012); native recalculation, appearance and engineering reviews not performed. See tasks/T034/verification.json. T033 (21 October 2026): C008 and C009 replaced by their regenerated journal editions naming the registered 10-20 End Bent cap reports (D-068); every definition, cached value and canvas identical; PedBridge revision note and DecisionLog entry; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T033/verification.json. T032 / D-073 (21 October 2026): pier modules follow the 21 October FBMP rerun (pipe pile material Fy 45 ksi in place of 60 ksi; loads and geometry unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions with every definition, cached value and canvas identical to the prior modules (text only: new export identity, 11 pending pile items in place of 16 with the steel-grade prerequisite source-backed); Pile Section Properties, FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-073 export; DecisionLog entry. End-bent modules unchanged; no engineering value changed; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T032/verification.json. T031 (21 October 2026): C001-C004 code-reference modules retired (citations live in the calculation reports); C001-C004 editions regenerated with plain-text citations; no value changed. T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
+   "notes": "T036 / D-077 (22 October 2026): pier modules follow the 22 October FBMP rerun (pier wall extra members ending at the soil surface; loads, geometry, section, material and soil unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions (cap: nine force inputs moved, no status change; pile: demands of the new export); FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-077 export; DecisionLog entry. End-bent modules unchanged; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T036/verification.json. T035 (22 October 2026): C006 and C004 replaced by their regenerated journal editions naming the T034 journal (82e7d3e1) as the journal whose values their inputs equal (case name and provenance sentence in the hidden notes); every definition, cached value and canvas identical to the T034 modules; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T035/verification.json. T034 / D-075 (22 October 2026): pier wall reconciled to the CAD geometry (219 x 36 in from EL 24.5264 to the cap bottom EL 40.76494, 194.8625 in high): gravity sheet row 42 edited (E42 18 ft 3 in, G42 16 ft 2.8625 in; H42/J42/K42 caches recomputed, wall weight 114.737 to 133.359 kip); C006 and C004 regenerated by their packages with the new journal values through their coherence gates; C017 regenerated from the 22 October starting case (free length 92.4 in from the wall bottom; 1 failed check, grid clearance); PedBridge revision note and DecisionLog entry. FBMP pier export unchanged (wall load gap recorded as assumption A-012); native recalculation, appearance and engineering reviews not performed. See tasks/T034/verification.json. T033 (21 October 2026): C008 and C009 replaced by their regenerated journal editions naming the registered 10-20 End Bent cap reports (D-068); every definition, cached value and canvas identical; PedBridge revision note and DecisionLog entry; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T033/verification.json. T032 / D-073 (21 October 2026): pier modules follow the 21 October FBMP rerun (pipe pile material Fy 45 ksi in place of 60 ksi; loads and geometry unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions with every definition, cached value and canvas identical to the prior modules (text only: new export identity, 11 pending pile items in place of 16 with the steel-grade prerequisite source-backed); Pile Section Properties, FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-073 export; DecisionLog entry. End-bent modules unchanged; no engineering value changed; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T032/verification.json. T031 (21 October 2026): C001-C004 code-reference modules retired (citations live in the calculation reports); C001-C004 editions regenerated with plain-text citations; no value changed. T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -7715,17 +7715,17 @@
     {
      "check_id": "JOURNAL:acceptance",
      "status": "MATCH",
-     "detail": "Journal matches acceptance receipt T035. Review scope remains as recorded."
+     "detail": "Journal matches acceptance receipt T036. Review scope remains as recorded."
     },
     {
      "check_id": "ASSUMPTION:A-001",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-002",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
     },
     {
      "check_id": "ASSUMPTION:A-003",
@@ -7744,8 +7744,8 @@
     },
     {
      "check_id": "ASSUMPTION:A-009",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL, PILE-PIER-CASE); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-010",
@@ -7781,7 +7781,8 @@
     "D-071",
     "D-072",
     "D-073",
-    "D-075"
+    "D-075",
+    "D-077"
    ],
    "issues": [
     "COH-001",
@@ -8029,13 +8030,13 @@
    "path": "project_current/cap_design/pier/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable cap case using the latest fixed-run forces and the existing adopted cage",
-   "sha256": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5",
-   "registered_on": "2026-10-21",
+   "sha256": "926886b5efc310be979c065b2016aa445fd19c9987356cb3158ea4980c981e3a",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "PIER-XML"
    ],
-   "origin": "Cap package rerun with the registered PIER-XML export (scripts/apply_fbmp_to_cap_case.py), 21 October 2026",
-   "notes": "D-073 (21 October 2026). Rerun from the 21 October Pier_Fixed.XML (pipe pile material 45 ksi) with scripts/apply_fbmp_to_cap_case.py: the imported force envelopes and every check ratio and status are unchanged (the cap member forces differ from the 19 October export only by solver noise); geometry, reinforcement, covers and design factors retained; analysis provenance now names the registered PIER-XML SHA-256. Previous case archived under archive/2026-10-21-before-fbmp-rerun/. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-21-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-21.json. D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-19.json",
+   "origin": "Cap package rerun with the registered PIER-XML export (scripts/apply_fbmp_to_cap_case.py), 22 October 2026",
+   "notes": "D-077 (22 October 2026). Pier cap case rerun from the 22 October fixed-run export (pier wall extra members ending at the soil surface; loads, geometry, section, material and soil identical to the 21 October export); see coherence/evidence/2026-10-22-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-22.json. D-073 (21 October 2026). Rerun from the 21 October Pier_Fixed.XML (pipe pile material 45 ksi) with scripts/apply_fbmp_to_cap_case.py: the imported force envelopes and every check ratio and status are unchanged (the cap member forces differ from the 19 October export only by solver noise); geometry, reinforcement, covers and design factors retained; analysis provenance now names the registered PIER-XML SHA-256. Previous case archived under archive/2026-10-21-before-fbmp-rerun/. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-21-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-21.json. D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-19.json",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -8095,7 +8096,8 @@
     "D-007",
     "D-020",
     "D-051",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [
     "COH-019"
@@ -8349,7 +8351,7 @@
     },
     {
      "name": "Mu_N",
-     "value": "39.12",
+     "value": "40.32",
      "unit": "kip*ft",
      "role": "input",
      "governing": "STRENGTH-III load case 9, combination 2, element 27 side J, x = 120.0 in",
@@ -8357,7 +8359,7 @@
     },
     {
      "name": "Mu_P",
-     "value": "158.98",
+     "value": "152.68",
      "unit": "kip*ft",
      "role": "input",
      "governing": "STRENGTH-I load case 8, combination 1, element 29 side interior, x = 130.0 in",
@@ -8365,15 +8367,15 @@
     },
     {
      "name": "Mu_B",
-     "value": "365.84",
+     "value": "361.01",
      "unit": "kip*ft",
      "role": "input",
-     "governing": "STRENGTH-I load case 8, combination 1, element 31 side J, x = 141.49 in",
+     "governing": "STRENGTH-I load case 8, combination 1, element 12 side J, x = 38.5 in",
      "source": "PIER-XML"
     },
     {
      "name": "Vu_G",
-     "value": "218.96",
+     "value": "220.46",
      "unit": "kip",
      "role": "input",
      "governing": "STRENGTH-I load case 8, combination 1, element 28 side I, x = 120.0 in",
@@ -8381,7 +8383,7 @@
     },
     {
      "name": "Vu_L",
-     "value": "218.96",
+     "value": "220.46",
      "unit": "kip",
      "role": "input",
      "governing": "STRENGTH-I load case 8, combination 1, element 28 side I, x = 120.0 in",
@@ -8389,7 +8391,7 @@
     },
     {
      "name": "Tu",
-     "value": "26.55",
+     "value": "26.15",
      "unit": "kip*ft",
      "role": "input",
      "governing": "STRENGTH-III load case 9, combination 2, element 13 side I, x = 38.5 in",
@@ -8397,7 +8399,7 @@
     },
     {
      "name": "MI_N",
-     "value": "21.91",
+     "value": "26.31",
      "unit": "kip*ft",
      "role": "input",
      "governing": "SERVICE-I load case 11, combination 4, element 27 side J, x = 120.0 in",
@@ -8405,7 +8407,7 @@
     },
     {
      "name": "MI_P",
-     "value": "121.97",
+     "value": "118.04",
      "unit": "kip*ft",
      "role": "input",
      "governing": "SERVICE-I load case 11, combination 4, element 29 side interior, x = 130.0 in",
@@ -8413,7 +8415,7 @@
     },
     {
      "name": "MI_B",
-     "value": "312.22",
+     "value": "309.28",
      "unit": "kip*ft",
      "role": "input",
      "governing": "SERVICE-I load case 11, combination 4, element 32 side I, x = 141.49 in",
@@ -8784,63 +8786,63 @@
     {
      "name": "Mu_N",
      "role": "formula",
-     "value": "39.12000 kip*ft",
+     "value": "40.32000 kip*ft",
      "formula": "Mu_N = 169.44 kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored strength moment magnitude. Strength K68, Pil 4 CL, combo 2."
     },
     {
      "name": "MI_N",
      "role": "formula",
-     "value": "21.91000 kip*ft",
+     "value": "26.31000 kip*ft",
      "formula": "MI_N = 148.19 kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I moment magnitude. Service I K88, Pil 4 CL, combo 4."
     },
     {
      "name": "Mu_P",
      "role": "formula",
-     "value": "158.98000 kip*ft",
+     "value": "152.68000 kip*ft",
      "formula": "Mu_P = 143.56 kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored strength moment magnitude. Strength K17, Pil 2 LF, combo 1."
     },
     {
      "name": "MI_P",
      "role": "formula",
-     "value": "121.97000 kip*ft",
+     "value": "118.04000 kip*ft",
      "formula": "MI_P = 103.46 kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I moment magnitude. Service I K42/K85, Pil 3 RF, combo 4."
     },
     {
      "name": "Mu_B",
      "role": "formula",
-     "value": "365.84000 kip*ft",
+     "value": "361.01000 kip*ft",
      "formula": "Mu_B = 337.61 kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored strength moment magnitude. Strength K16, Brg 1, combo 1."
     },
     {
      "name": "MI_B",
      "role": "formula",
-     "value": "312.22000 kip*ft",
+     "value": "309.28000 kip*ft",
      "formula": "MI_B = 293.7 kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I moment magnitude. Service I K43, Brg 2, combo 4."
     },
     {
      "name": "Vu_G",
      "role": "formula",
-     "value": "218.96000 kip",
+     "value": "220.46000 kip",
      "formula": "Vu_G = 205.11 kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Global factored |F22|: J24 Pil 3 RCL / J74 Pil 2 LCL; Strength I, combo 1."
     },
     {
      "name": "Vu_L",
      "role": "formula",
-     "value": "218.96000 kip",
+     "value": "220.46000 kip",
      "formula": "Vu_L = 43.73 kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Low-shear interval only: Pil 2 RCL through Pil 3 LCL; J78, Strength III, combo 2."
     },
     {
      "name": "Tu",
      "role": "formula",
-     "value": "26.55000 kip*ft",
+     "value": "26.15000 kip*ft",
      "formula": "Tu = 33.83 kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Global factored |torque|: N17:N19, Brg 1 R / Pil 2 LF / Pil 2 LCL; Strength III, combo 2."
     },
@@ -9533,35 +9535,35 @@
     {
      "name": "Asreq_N",
      "role": "formula",
-     "value": "0.27423 in^2",
+     "value": "0.28264 in^2",
      "formula": "Asreq_N = Mu_N/(phi_f*fy*(d_N-a_N/2)) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required area using the source fixed provided stress block."
     },
     {
      "name": "Mmin_N",
      "role": "formula",
-     "value": "52.02960 kip*ft",
+     "value": "53.62560 kip*ft",
      "formula": "Mmin_N = Min(Mmin_cr,1.33*Mu_N) to kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Minimum factored flexural resistance target."
     },
     {
      "name": "Asmin_N",
      "role": "formula",
-     "value": "0.36472 in^2",
+     "value": "0.37591 in^2",
      "formula": "Asmin_N = Mmin_N/(phi_f*fy*(d_N-a_N/2)) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Equivalent minimum area with the same fixed provided stress block."
     },
     {
      "name": "DC_flex_N",
      "role": "formula",
-     "value": "0.12465",
+     "value": "0.12847",
      "formula": "DC_flex_N = Mu_N/Mr_N",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored flexural demand / resistance."
     },
     {
      "name": "DC_min_N",
      "role": "formula",
-     "value": "0.16578",
+     "value": "0.17087",
      "formula": "DC_min_N = Mmin_N/Mr_N",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Minimum flexural target / resistance."
     },
@@ -9624,35 +9626,35 @@
     {
      "name": "Asreq_P",
      "role": "formula",
-     "value": "1.12975 in^2",
+     "value": "1.08498 in^2",
      "formula": "Asreq_P = Mu_P/(phi_f*fy*(d_P-a_P/2)) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required area using the source fixed provided stress block."
     },
     {
      "name": "Mmin_P",
      "role": "formula",
-     "value": "211.44340 kip*ft",
+     "value": "203.06440 kip*ft",
      "formula": "Mmin_P = Min(Mmin_cr,1.33*Mu_P) to kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Minimum factored flexural resistance target."
     },
     {
      "name": "Asmin_P",
      "role": "formula",
-     "value": "1.50256 in^2",
+     "value": "1.44302 in^2",
      "formula": "Asmin_P = Mmin_P/(phi_f*fy*(d_P-a_P/2)) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Equivalent minimum area with the same fixed provided stress block."
     },
     {
      "name": "DC_flex_P",
      "role": "formula",
-     "value": "0.28244",
+     "value": "0.27124",
      "formula": "DC_flex_P = Mu_P/Mr_P",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored flexural demand / resistance."
     },
     {
      "name": "DC_min_P",
      "role": "formula",
-     "value": "0.37564",
+     "value": "0.36075",
      "formula": "DC_min_P = Mmin_P/Mr_P",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Minimum flexural target / resistance."
     },
@@ -9715,35 +9717,35 @@
     {
      "name": "Asreq_B",
      "role": "formula",
-     "value": "2.61117 in^2",
+     "value": "2.57670 in^2",
      "formula": "Asreq_B = Mu_B/(phi_f*fy*(d_B-a_B/2)) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required area using the source fixed provided stress block."
     },
     {
      "name": "Mmin_B",
      "role": "formula",
-     "value": "486.56720 kip*ft",
+     "value": "480.14330 kip*ft",
      "formula": "Mmin_B = Min(Mmin_cr,1.33*Mu_B) to kip*ft",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Minimum factored flexural resistance target."
     },
     {
      "name": "Asmin_B",
      "role": "formula",
-     "value": "3.47286 in^2",
+     "value": "3.42701 in^2",
      "formula": "Asmin_B = Mmin_B/(phi_f*fy*(d_B-a_B/2)) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Equivalent minimum area with the same fixed provided stress block."
     },
     {
      "name": "DC_flex_B",
      "role": "formula",
-     "value": "0.47048",
+     "value": "0.46427",
      "formula": "DC_flex_B = Mu_B/Mr_B",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored flexural demand / resistance."
     },
     {
      "name": "DC_min_B",
      "role": "formula",
-     "value": "0.62574",
+     "value": "0.61748",
      "formula": "DC_min_B = Mmin_B/Mr_B",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Minimum flexural target / resistance."
     },
@@ -9778,7 +9780,7 @@
     {
      "name": "DC_flex_max",
      "role": "formula",
-     "value": "0.47048",
+     "value": "0.46427",
      "formula": "DC_flex_max = Max(DC_flex_N,DC_flex_P,DC_flex_B)",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. "
     },
@@ -9841,14 +9843,14 @@
     {
      "name": "fs_I_N",
      "role": "formula",
-     "value": "3.90158 ksi",
+     "value": "4.68510 ksi",
      "formula": "fs_I_N = MI_N*n_mod/Ss_N to ksi",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I steel stress at tension-steel centroid."
     },
     {
      "name": "SI_N",
      "role": "formula",
-     "value": "144.19080 in",
+     "value": "118.73733 in",
      "formula": "SI_N = S_allow(fs_I_N,bs_N,dc_N) to in",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I allowable bar spacing."
     },
@@ -9925,14 +9927,14 @@
     {
      "name": "fs_I_P",
      "role": "formula",
-     "value": "12.19063 ksi",
+     "value": "11.79784 ksi",
      "formula": "fs_I_P = MI_P*n_mod/Ss_P to ksi",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I steel stress at tension-steel centroid."
     },
     {
      "name": "SI_P",
      "role": "formula",
-     "value": "39.93235 in",
+     "value": "41.54110 in",
      "formula": "SI_P = S_allow(fs_I_P,bs_P,dc_P) to in",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I allowable bar spacing."
     },
@@ -10009,14 +10011,14 @@
     {
      "name": "fs_I_B",
      "role": "formula",
-     "value": "22.65406 ksi",
+     "value": "22.44074 ksi",
      "formula": "fs_I_B = MI_B*n_mod/Ss_B to ksi",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I steel stress at tension-steel centroid."
     },
     {
      "name": "SI_B",
      "role": "formula",
-     "value": "17.83317 in",
+     "value": "18.08108 in",
      "formula": "SI_B = S_allow(fs_I_B,bs_B,dc_B) to in",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Service I allowable bar spacing."
     },
@@ -10058,7 +10060,7 @@
     {
      "name": "fs_I_max",
      "role": "formula",
-     "value": "22.65406 ksi",
+     "value": "22.44074 ksi",
      "formula": "fs_I_max = Max(fs_I_N,fs_I_P,fs_I_B) to ksi",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. "
     },
@@ -10233,14 +10235,14 @@
     {
      "name": "Vn_req_G",
      "role": "formula",
-     "value": "243.28889 kip",
+     "value": "244.95556 kip",
      "formula": "Vn_req_G = Vu_G/phi_v to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Uncapped required nominal shear resistance."
     },
     {
      "name": "Vs_req_G",
      "role": "formula",
-     "value": "21.78437 kip",
+     "value": "23.45104 kip",
      "formula": "Vs_req_G = Max(0 kip,Vn_req_G-Vc) to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required nominal contribution of stirrups."
     },
@@ -10261,14 +10263,14 @@
     {
      "name": "vu_G",
      "role": "formula",
-     "value": "0.16279 ksi",
+     "value": "0.16391 ksi",
      "formula": "vu_G = Vu_G/(phi_v*b*dv) to ksi",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored shear stress normalized by resistance factor."
     },
     {
      "name": "s_strength_G",
      "role": "formula",
-     "value": "75.46260 in",
+     "value": "70.09947 in",
      "formula": "s_strength_G = If(Vs_req_G > 0 kip,Av*fy*dv*g_shear/Max(Vs_req_G,0.000001 kip),1000000 in) to in",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Strength spacing limit; no division by zero when concrete alone exceeds demand."
     },
@@ -10303,7 +10305,7 @@
     {
      "name": "DC_shear_G",
      "role": "formula",
-     "value": "0.60196",
+     "value": "0.60608",
      "formula": "DC_shear_G = Vu_G/Vr_G",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored demand / resistance."
     },
@@ -10317,8 +10319,8 @@
     {
      "name": "Chk_shear_G",
      "role": "formula",
-     "value": "PENDING; D/C = 0.5917415061169771",
-     "formula": "Pending because:\n• Shear window includes reinforcement without verified anchorage: R2\n• R2: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\n• Shear window includes reinforcement without verified anchorage: R2, R4\n• R4: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\n• Shear window includes reinforcement without verified anchorage: R4\n• Shear window includes reinforcement without verified anchorage: R6\n• R6: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\n• Shear window includes reinforcement without verified anchorage: R8\n• R8: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left -50°, right -50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\nActual adjacent stations; detailed operands in interval table. Governing: R4-1 → R4-2 · ; ratio 0.591742.",
+     "value": "PENDING; D/C = 0.5957463696436434",
+     "formula": "Pending because:\n• Shear window includes reinforcement without verified anchorage: R2\n• R2: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\n• Shear window includes reinforcement without verified anchorage: R2, R4\n• R4: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\n• Shear window includes reinforcement without verified anchorage: R4\n• Shear window includes reinforcement without verified anchorage: R6\n• R6: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left +50°, right +50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\n• Shear window includes reinforcement without verified anchorage: R8\n• R8: anchorage / closure is unconfirmed — Custom hook extension. Trial hook rotation: left -50°, right -50°. Rotated-hook anchorage is PENDING: verify 3D engagement of longitudinal bars and hook congestion. The rotation range is not a code allowance.\nActual adjacent stations; detailed operands in interval table. Governing: R4-1 → R4-2 · ; ratio 0.595746.",
      "note": "Active actual-cage LRFD check; full operands in lrfd_calculations.json and the LRFD tab."
     },
     {
@@ -10331,14 +10333,14 @@
     {
      "name": "Vn_req_L",
      "role": "formula",
-     "value": "243.28889 kip",
+     "value": "244.95556 kip",
      "formula": "Vn_req_L = Vu_L/phi_v to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Uncapped required nominal shear resistance."
     },
     {
      "name": "Vs_req_L",
      "role": "formula",
-     "value": "21.78437 kip",
+     "value": "23.45104 kip",
      "formula": "Vs_req_L = Max(0 kip,Vn_req_L-Vc) to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required nominal contribution of stirrups."
     },
@@ -10359,14 +10361,14 @@
     {
      "name": "vu_L",
      "role": "formula",
-     "value": "0.16279 ksi",
+     "value": "0.16391 ksi",
      "formula": "vu_L = Vu_L/(phi_v*b*dv) to ksi",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored shear stress normalized by resistance factor."
     },
     {
      "name": "s_strength_L",
      "role": "formula",
-     "value": "75.46260 in",
+     "value": "70.09947 in",
      "formula": "s_strength_L = If(Vs_req_L > 0 kip,Av*fy*dv*g_shear/Max(Vs_req_L,0.000001 kip),1000000 in) to in",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Strength spacing limit; no division by zero when concrete alone exceeds demand."
     },
@@ -10401,7 +10403,7 @@
     {
      "name": "DC_shear_L",
      "role": "formula",
-     "value": "0.60196",
+     "value": "0.60608",
      "formula": "DC_shear_L = Vu_L/Vr_L",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Factored demand / resistance."
     },
@@ -10457,7 +10459,7 @@
     {
      "name": "tstress",
      "role": "formula",
-     "value": "0.42343 ksi",
+     "value": "0.41784 ksi",
      "formula": "tstress = Max(Mu_N,Mu_P,Mu_B)*yt/Ig to ksi",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Gross-section bending stress envelope."
     },
@@ -10513,7 +10515,7 @@
     {
      "name": "At_G",
      "role": "formula",
-     "value": "0.02589 in^2",
+     "value": "0.02550 in^2",
      "formula": "At_G = (Tu/phi_v)*s_G/(2*Ao*fy*cot_theta) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required additional closed-hoop area per leg for the full torque envelope."
     },
@@ -10527,7 +10529,7 @@
     {
      "name": "Acomb_G",
      "role": "formula",
-     "value": "0.58536 in^2",
+     "value": "0.58458 in^2",
      "formula": "Acomb_G = Av_shear_G+2*At_G to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Conservative combined shear and full torsion area screen."
     },
@@ -10548,7 +10550,7 @@
     {
      "name": "At_L",
      "role": "formula",
-     "value": "0.02589 in^2",
+     "value": "0.02550 in^2",
      "formula": "At_L = (Tu/phi_v)*s_L/(2*Ao*fy*cot_theta) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required additional closed-hoop area per leg for the full torque envelope."
     },
@@ -10562,7 +10564,7 @@
     {
      "name": "Acomb_L",
      "role": "formula",
-     "value": "0.58536 in^2",
+     "value": "0.58458 in^2",
      "formula": "Acomb_L = Av_shear_L+2*At_L to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Conservative combined shear and full torsion area screen."
     },
@@ -10583,7 +10585,7 @@
     {
      "name": "F_vt",
      "role": "formula",
-     "value": "243.53521 kip",
+     "value": "245.19289 kip",
      "formula": "F_vt = cot_theta*Sqrt((Vu_G/phi_v)^2+(0.45*ph*Tu/(2*Ao*phi_v))^2) to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Common additional longitudinal tension from shear and torque."
     },
@@ -10597,85 +10599,85 @@
     {
      "name": "F_long_N",
      "role": "formula",
-     "value": "260.28829 kip",
+     "value": "262.45987 kip",
      "formula": "F_long_N = Mu_N/(phi_f*dv)+F_vt to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Source longitudinal equilibrium form, with conservative zero shear-steel credit."
     },
     {
      "name": "As_add_N",
      "role": "formula",
-     "value": "2.13814 in^2",
+     "value": "2.17433 in^2",
      "formula": "As_add_N = Max(0 in^2,F_long_N/fy-As_N) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Supplementary longitudinal area needed beyond main flexural steel."
     },
     {
      "name": "DC_long_N",
      "role": "formula",
-     "value": "1.09549",
+     "value": "1.10463",
      "formula": "DC_long_N = F_long_N/((As_N+As_skin_eff)*fy)",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required longitudinal tension / available main-plus-effective-skin yield force."
     },
     {
      "name": "Chk_long_N",
      "role": "formula",
-     "value": "PENDING; D/C = 0.9549257082685926",
-     "formula": "5.7.3.5-1 / 5.7.3.6.3-1. Actual developed tension-half steel; detailed region/force/calculation table. Governing: R4-3/R4-4 · C1 E16 · x=84.745213 in · top · ; ratio 0.954926.",
+     "value": "PENDING; D/C = 0.9720574476560737",
+     "formula": "5.7.3.5-1 / 5.7.3.6.3-1. Actual developed tension-half steel; detailed region/force/calculation table. Governing: R6-3/R6-4 · C1 E28 · x=145.254787 in · top · ; ratio 0.972057.",
      "note": "Active actual-cage LRFD check; full operands in lrfd_calculations.json and the LRFD tab."
     },
     {
      "name": "F_long_P",
      "role": "formula",
-     "value": "311.61815 kip",
+     "value": "310.57786 kip",
      "formula": "F_long_P = Mu_P/(phi_f*dv)+F_vt to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Source longitudinal equilibrium form, with conservative zero shear-steel credit."
     },
     {
      "name": "As_add_P",
      "role": "formula",
-     "value": "1.19364 in^2",
+     "value": "1.17630 in^2",
      "formula": "As_add_P = Max(0 in^2,F_long_P/fy-As_P) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Supplementary longitudinal area needed beyond main flexural steel."
     },
     {
      "name": "DC_long_P",
      "role": "formula",
-     "value": "0.90167",
+     "value": "0.89866",
      "formula": "DC_long_P = F_long_P/((As_P+As_skin_eff)*fy)",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required longitudinal tension / available main-plus-effective-skin yield force."
     },
     {
      "name": "Chk_long_P",
      "role": "formula",
-     "value": "PENDING; D/C = 0.7711420042553263",
-     "formula": "5.7.3.5-1 / 5.7.3.6.3-1. Actual developed tension-half steel; detailed region/force/calculation table. Governing: R6-4/R6-5 · C1 E29 · x=155.000000 in · bottom · ; ratio 0.771142.",
+     "value": "PENDING; D/C = 0.7661085703280789",
+     "formula": "5.7.3.5-1 / 5.7.3.6.3-1. Actual developed tension-half steel; detailed region/force/calculation table. Governing: R6-4/R6-5 · C1 E29 · x=155.000000 in · bottom · ; ratio 0.766109.",
      "note": "Active actual-cage LRFD check; full operands in lrfd_calculations.json and the LRFD tab."
     },
     {
      "name": "F_long_B",
      "role": "formula",
-     "value": "400.20563 kip",
+     "value": "399.79487 kip",
      "formula": "F_long_B = Mu_B/(phi_f*dv)+F_vt to kip",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Source longitudinal equilibrium form, with conservative zero shear-steel credit."
     },
     {
      "name": "As_add_B",
      "role": "formula",
-     "value": "1.12009 in^2",
+     "value": "1.11325 in^2",
      "formula": "As_add_B = Max(0 in^2,F_long_B/fy-As_B) to in^2",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Supplementary longitudinal area needed beyond main flexural steel."
     },
     {
      "name": "DC_long_B",
      "role": "formula",
-     "value": "0.91246",
+     "value": "0.91153",
      "formula": "DC_long_B = F_long_B/((As_B+As_skin_eff)*fy)",
      "note": "Inherited sectional equation archive; actual-cage shear/torsion/development working is in lrfd_calculations.json. Required longitudinal tension / available main-plus-effective-skin yield force."
     },
     {
      "name": "Chk_long_B",
      "role": "formula",
-     "value": "PENDING; D/C = 0.858765711958058",
-     "formula": "5.7.3.5-1 / 5.7.3.6.3-1. Actual developed tension-half steel; detailed region/force/calculation table. Governing: R7-1/R7-2 · C1 E31 · x=161.499998 in · bottom · ; ratio 0.858766.",
+     "value": "PENDING; D/C = 0.8547369754041148",
+     "formula": "5.7.3.5-1 / 5.7.3.6.3-1. Actual developed tension-half steel; detailed region/force/calculation table. Governing: R7-1/R7-2 · C1 E31 · x=161.499998 in · bottom · ; ratio 0.854737.",
      "note": "Active actual-cage LRFD check; full operands in lrfd_calculations.json and the LRFD tab."
     },
     {
@@ -10918,15 +10920,15 @@
     }
    ],
    "case_name": "Pier_Fixed — XML analysis",
-   "analysis_id": "Pier_Fixed.XML · SHA256 8be45bb889f5",
+   "analysis_id": "Pier_Fixed.XML · SHA256 420e614aa8b9",
    "formula_trace": {
     "available": true,
     "basis": "pier_cap.model.formula_trace(evaluate(selected_case.json)) with the pier_cap package in the working tree at build time. Formulas are the cap tool's definitions (pier_cap/data/c005_formulas.json); values are the saved case evaluated by that package. This is not the registered report's own calculation and not engineering acceptance.",
     "entries": 337,
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
-    "sha256": "3880794cba6bcaabe7b27f81430edd104cdf17f5369a0a0b5cc7c67d1cfef2ed",
-    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+    "sha256": "92655facea12b567e71013f65a7b62c4c01ae398ad77ab1f9a8f8cac21f4877f",
+    "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
    },
    "open_issues": [
     "COH-019"
@@ -10991,17 +10993,17 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/cap_design/pier/Pier Cap Design 10-21.html",
+   "path": "project_current/cap_design/pier/Pier Cap Design 10-22.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Recalculated cap report using the latest supplied fixed-run XML",
-   "sha256": "216c26dd78b4394451c0726b3246bc29fafb646a1b06dc6e73607ca445a0eed2",
-   "registered_on": "2026-10-21",
+   "sha256": "c2b0bdb79ee06b2a577da57663533b8019246cf15db3b8f6665359778ef5f612",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "PIER-CASE",
     "PIER-XML"
    ],
-   "origin": "Cap package rerun with the registered PIER-XML export (scripts/apply_fbmp_to_cap_case.py), 21 October 2026",
-   "notes": "D-073 (21 October 2026). Rerun from the 21 October Pier_Fixed.XML (pipe pile material 45 ksi) with scripts/apply_fbmp_to_cap_case.py: the imported force envelopes and every check ratio and status are unchanged (the cap member forces differ from the 19 October export only by solver noise); geometry, reinforcement, covers and design factors retained; analysis provenance now names the registered PIER-XML SHA-256. Previous case archived under archive/2026-10-21-before-fbmp-rerun/. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-21-cap-rerun/source_receipt.json. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
+   "origin": "Cap package rerun with the registered PIER-XML export (scripts/apply_fbmp_to_cap_case.py), 22 October 2026",
+   "notes": "D-077 (22 October 2026). Pier cap case rerun from the 22 October fixed-run export (pier wall extra members ending at the soil surface; loads, geometry, section, material and soil identical to the 21 October export); see coherence/evidence/2026-10-22-cap-rerun/source_receipt.json. D-073 (21 October 2026). Rerun from the 21 October Pier_Fixed.XML (pipe pile material 45 ksi) with scripts/apply_fbmp_to_cap_case.py: the imported force envelopes and every check ratio and status are unchanged (the cap member forces differ from the 19 October export only by solver noise); geometry, reinforcement, covers and design factors retained; analysis provenance now names the registered PIER-XML SHA-256. Previous case archived under archive/2026-10-21-before-fbmp-rerun/. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-21-cap-rerun/source_receipt.json. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11022,7 +11024,8 @@
     "D-020",
     "D-051",
     "D-068",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [
     "COH-002",
@@ -11165,11 +11168,11 @@
    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
    "status": "Current source - cap report and case matched",
    "scope": "Exact fixed-run analysis export used by the current cap report and saved case",
-   "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-   "registered_on": "2026-10-21",
+   "sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+   "registered_on": "2026-10-22",
    "depends_on": [],
    "origin": "User-supplied Pier_Fixed.XML, 21 October 2026",
-   "notes": "D-073 (21 October 2026). User-supplied rerun of the fixed pier model: the pipe pile material is ASTM A252 Grade 3, Fy 45 ksi, in place of the 60 ksi of the 19 October export; nodal loads, geometry, pile section, soil and load combinations are unchanged, the cap member forces differ only by solver noise below 1e-7 kip, and the pile failure ratios, the interaction diagram and the output summary follow the 45 ksi material. Exact supplied bytes; the 19 October export is archived under fbmp/pier/archive/2026-10-19/. The pier cap case and the pier pile case are rerun from this export the same day (D-073). See coherence/evidence/2026-10-21-fbmp/source_receipt.json. D-049 supplied bytes retained. D-051 recalculated the cap and exported a matching report/case. Native run records, pile-head review and any other downstream calculations retain their separate status. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
+   "notes": "D-077 (22 October 2026). User-supplied rerun of the fixed pier model after the user found that the pier wall extra members had followed the soil elevation changes: the four vertical 36 x 60 in wall members now span pile points 2 to 11 (EL 40.20 to the soil surface EL 26.05, 169.8 in) instead of points 2 to 13 (EL 19.72); every other input (nodal and bearing loads, geometry, pile section and material, soil, the four load combinations, the thirty ties) is identical. Wall self-weight in the model 127.3 kip service (31.83 kip per member) in place of 184.4 kip; the CAD wall is 133.4 kip. Cap envelope moves slightly (max M3 365.84 to 361.01 kip-ft, max V2 218.96 to 220.46 kip) and the pile demands follow. The 21 October export is archived under fbmp/pier/archive/2026-10-22/. D-073 (21 October 2026). User-supplied rerun of the fixed pier model: the pipe pile material is ASTM A252 Grade 3, Fy 45 ksi, in place of the 60 ksi of the 19 October export; nodal loads, geometry, pile section, soil and load combinations are unchanged, the cap member forces differ only by solver noise below 1e-7 kip, and the pile failure ratios, the interaction diagram and the output summary follow the 45 ksi material. Exact supplied bytes; the 19 October export is archived under fbmp/pier/archive/2026-10-19/. The pier cap case and the pier pile case are rerun from this export the same day (D-073). See coherence/evidence/2026-10-21-fbmp/source_receipt.json. D-049 supplied bytes retained. D-051 recalculated the cap and exported a matching report/case. Native run records, pile-head review and any other downstream calculations retain their separate status. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11185,13 +11188,13 @@
     },
     {
      "check_id": "ASSUMPTION:A-001",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-002",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
     },
     {
      "check_id": "ASSUMPTION:A-007",
@@ -11200,8 +11203,8 @@
     },
     {
      "check_id": "ASSUMPTION:A-009",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL, PILE-PIER-CASE); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-012",
@@ -11221,7 +11224,8 @@
     "D-051",
     "D-062",
     "D-073",
-    "D-074"
+    "D-074",
+    "D-077"
    ],
    "issues": [
     "COH-001",
@@ -11233,20 +11237,20 @@
     {
      "name": "XML identity (SHA-256)",
      "role": "identity",
-     "value": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-     "status": "MATCH: PIER-CASE requires 8be45bb889f5…, this file is 8be45bb889f5…",
-     "detail": "registered 8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6; PIER-CASE requires 8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-     "xml_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6"
+     "value": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+     "status": "MATCH: PIER-CASE requires 420e614aa8b9…, this file is 420e614aa8b9…",
+     "detail": "registered 420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6; PIER-CASE requires 420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+     "xml_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6"
     }
    ],
    "xml_source": {
     "available": true,
     "filename": "Pier_Fixed.XML",
-    "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-    "registered_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+    "registered_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
     "register_match": true,
     "case_id": "PIER-CASE",
-    "case_requires_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "case_requires_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
     "case_match": true
    },
    "open_issues": [
@@ -11263,14 +11267,14 @@
    "path": "project_current/pile_design/end_bent_1/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable pile case for the End Bent 1 piles, byte-identical to the dated case beside the report",
-   "sha256": "39736d61e1ac9a67cbb8b7baaa6fb783ca1f486f7024db6dfc77b1da87ba347b",
-   "registered_on": "2026-10-21",
+   "sha256": "df58bf43457c516618d12001c151e928c43da6cc97cf9d30f1f78210f7f1afb6",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "EB-XML",
     "PILE-TOOL"
    ],
-   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-073. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-077. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 0b518b6fa963) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-077. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 0e95c2c8d804) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-073. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11288,7 +11292,8 @@
    "decisions": [
     "D-049",
     "D-054",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [],
    "parameters": [],
@@ -11300,18 +11305,18 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-21.html",
+   "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-22.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Pile analysis and design calculation report for the End Bent 1 piles (18 in square prestressed concrete, FBMP fixed run)",
-   "sha256": "f294d7e5098796053e3842da314589f872e8a5a6ddb3e1ff90768542996349b1",
-   "registered_on": "2026-10-21",
+   "sha256": "045d256d58970c8abb2479f8a7be0bded2babdaa1a4fb9ba601eccf7f4c2e12d",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "PILE-EB1-CASE",
     "PILE-TOOL",
     "EB-XML"
    ],
-   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-073. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-077. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 0b518b6fa963) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-077. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 0e95c2c8d804) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-073. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11325,7 +11330,8 @@
     "D-049",
     "D-054",
     "D-068",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [],
    "parameters": [],
@@ -11340,14 +11346,14 @@
    "path": "project_current/pile_design/end_bent_2/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable pile case for the End Bent 2 piles, byte-identical to the dated case beside the report",
-   "sha256": "af5841086e999398fe3d1df25cd4a70ff64a81563fc444b5cd1b13c30a8ce8a7",
-   "registered_on": "2026-10-21",
+   "sha256": "1a2b6aa148151df0c869e9cdd4db990d1c1eb7767e88b496480a86b3c204a950",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "EB2-XML",
     "PILE-TOOL"
    ],
-   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-073. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-077. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 0b518b6fa963) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-077. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 0e95c2c8d804) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-073. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11365,7 +11371,8 @@
    "decisions": [
     "D-049",
     "D-054",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [],
    "parameters": [],
@@ -11377,18 +11384,18 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-21.html",
+   "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-22.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Pile analysis and design calculation report for the End Bent 2 piles (18 in square prestressed concrete, FBMP fixed run)",
-   "sha256": "4cef7d11713815a385d4d9e7dd00ba68955161ddb17267da97f3927e09fdd2b8",
-   "registered_on": "2026-10-21",
+   "sha256": "d9d35bba65d29a06a6c3a67a3647c0ea8fecb2a3c9e637339d5fa486b9b7cbd2",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "PILE-EB2-CASE",
     "PILE-TOOL",
     "EB2-XML"
    ],
-   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-073. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-077. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 0b518b6fa963) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-077. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 0e95c2c8d804) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-073. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11402,7 +11409,8 @@
     "D-049",
     "D-054",
     "D-068",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [],
    "parameters": [],
@@ -11417,14 +11425,14 @@
    "path": "project_current/pile_design/pier/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable pile case for the Pier piles, byte-identical to the dated case beside the report",
-   "sha256": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
-   "registered_on": "2026-10-21",
+   "sha256": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "PIER-XML",
     "PILE-TOOL"
    ],
-   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-073. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-073 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-077. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 0b518b6fa963) with the D-077 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.464); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-077. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 0e95c2c8d804) with the D-077 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.464); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-073. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-073 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11435,8 +11443,8 @@
     },
     {
      "check_id": "ASSUMPTION:A-009",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL, PILE-PIER-CASE); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-011",
@@ -11460,7 +11468,8 @@
     "D-070",
     "D-071",
     "D-073",
-    "D-075"
+    "D-075",
+    "D-077"
    ],
    "issues": [],
    "parameters": [],
@@ -11472,18 +11481,18 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/pile_design/pier/Pier Pile Design 10-21.html",
+   "path": "project_current/pile_design/pier/Pier Pile Design 10-22.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Pile analysis and design calculation report for the Pier piles (20 in steel pipe, FBMP fixed run)",
-   "sha256": "cf549c5abad7e4ddf97f378a9cba7f05393b529365a5b9138e99cd758fa36a3b",
-   "registered_on": "2026-10-21",
+   "sha256": "775438ad6c4325592e2bf81d32c2be974da31288a107e881f976d55fb5034b86",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "PILE-PIER-CASE",
     "PILE-TOOL",
     "PIER-XML"
    ],
-   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-073. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-073 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-077. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 0b518b6fa963) with the D-077 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.464); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-077. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 0e95c2c8d804) with the D-077 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.464); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-22-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-073. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-073 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11497,7 +11506,8 @@
     "D-049",
     "D-054",
     "D-068",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [],
    "parameters": [],
@@ -11512,8 +11522,8 @@
    "path": "Pile_Design.ipynb",
    "status": "Current tool - bounded verification",
    "scope": "Pile structural and geotechnical checks (LRFD 10th ed., SDG/SDM January 2026, Standard Plans Index 455); reads EB-XML, EB2-XML and PIER-XML with the 18-ton end-bent downdrag",
-   "sha256": "e649d760a0be486d311346f3259fd9eb0349a5f2502c138bc70210b141fa37d2",
-   "registered_on": "2026-10-21",
+   "sha256": "5fbbf05f266ff015ccc133e2253a2cc1eafd0b9d2e3fecb3ec6af912ecb553e2",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "EB-XML",
     "EB2-XML",
@@ -11523,7 +11533,7 @@
     "PIER-CASE"
    ],
    "origin": "Repository main",
-   "notes": "D-073 (21 October 2026): notebook rebuilt after the pile package change that records the agreement between a registered export's pile material Fy and the design Fy as source-backed evidence for the steel_grade prerequisite (pile_design/sources.py, model.py; Fy input source text) and the re-registration of PIER-XML in pile_design/data/sources.json (21 October pier export, 45 ksi pile material; PIER-CASE hash refreshed). The embedded Mathcad and Blockpad generators are rebuilt in the same chain; no equation or check changed. D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1c6b9162e589. Historical basis: D-050. Portable notebook built by scripts/build_pile_notebook.py with the three D-049 fixed-run exports embedded; distilled Mathcad editions in pile_mathcad/ (scripts/build_pile_mathcad.py). 19 October 2026 run: all numerical checks pass (End Bent 1 structural D/C 0.550, End Bent 2 0.557, Pier 0.457); downdrag source, pile-to-cap connection, steel grade, corrosion, minimum tip, scour and drivability remain pending. A rebuild changes this hash and needs a recorded disposition. Tool revision is distinct from a saved design; selection is not engineering acceptance.",
+   "notes": "D-077 (22 October 2026): notebook rebuilt embedding the pile package with the re-registered 22 October pier export (pile_design/data/sources.json PIER-XML 420e614aa8b9...); package code unchanged. D-073 (21 October 2026): notebook rebuilt after the pile package change that records the agreement between a registered export's pile material Fy and the design Fy as source-backed evidence for the steel_grade prerequisite (pile_design/sources.py, model.py; Fy input source text) and the re-registration of PIER-XML in pile_design/data/sources.json (21 October pier export, 45 ksi pile material; PIER-CASE hash refreshed). The embedded Mathcad and Blockpad generators are rebuilt in the same chain; no equation or check changed. D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1c6b9162e589. Historical basis: D-050. Portable notebook built by scripts/build_pile_notebook.py with the three D-049 fixed-run exports embedded; distilled Mathcad editions in pile_mathcad/ (scripts/build_pile_mathcad.py). 19 October 2026 run: all numerical checks pass (End Bent 1 structural D/C 0.550, End Bent 2 0.557, Pier 0.457); downdrag source, pile-to-cap connection, steel grade, corrosion, minimum tip, scour and drivability remain pending. A rebuild changes this hash and needs a recorded disposition. Tool revision is distinct from a saved design; selection is not engineering acceptance.",
    "hash_basis": "lf_text",
    "health": "MATCH",
    "checks": [
@@ -11539,7 +11549,8 @@
     "D-054",
     "D-066",
     "D-068",
-    "D-073"
+    "D-073",
+    "D-077"
    ],
    "issues": [],
    "parameters": [],
@@ -17072,111 +17083,111 @@
     },
     {
      "name": "Mu_N",
-     "value": "39.12",
+     "value": "40.32",
      "unit": "kip*ft",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "Mu_N",
-     "source_value": "39.12",
+     "source_value": "40.32",
      "target_name": "Mu_N",
-     "target_value": "39.12"
+     "target_value": "40.32"
     },
     {
      "name": "Mu_P",
-     "value": "158.98",
+     "value": "152.68",
      "unit": "kip*ft",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "Mu_P",
-     "source_value": "158.98",
+     "source_value": "152.68",
      "target_name": "Mu_P",
-     "target_value": "158.98"
+     "target_value": "152.68"
     },
     {
      "name": "Mu_B",
-     "value": "365.84",
+     "value": "361.01",
      "unit": "kip*ft",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "Mu_B",
-     "source_value": "365.84",
+     "source_value": "361.01",
      "target_name": "Mu_B",
-     "target_value": "365.84"
+     "target_value": "361.01"
     },
     {
      "name": "Vu_G",
-     "value": "218.96",
+     "value": "220.46",
      "unit": "kip",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "Vu_G",
-     "source_value": "218.96",
+     "source_value": "220.46",
      "target_name": "Vu_G",
-     "target_value": "218.96"
+     "target_value": "220.46"
     },
     {
      "name": "Vu_L",
-     "value": "218.96",
+     "value": "220.46",
      "unit": "kip",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "Vu_L",
-     "source_value": "218.96",
+     "source_value": "220.46",
      "target_name": "Vu_L",
-     "target_value": "218.96"
+     "target_value": "220.46"
     },
     {
      "name": "Tu",
-     "value": "26.55",
+     "value": "26.15",
      "unit": "kip*ft",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "Tu",
-     "source_value": "26.55",
+     "source_value": "26.15",
      "target_name": "Tu",
-     "target_value": "26.55"
+     "target_value": "26.15"
     },
     {
      "name": "MI_N",
-     "value": "21.91",
+     "value": "26.31",
      "unit": "kip*ft",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "MI_N",
-     "source_value": "21.91",
+     "source_value": "26.31",
      "target_name": "MI_N",
-     "target_value": "21.91"
+     "target_value": "26.31"
     },
     {
      "name": "MI_P",
-     "value": "121.97",
+     "value": "118.04",
      "unit": "kip*ft",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "MI_P",
-     "source_value": "121.97",
+     "source_value": "118.04",
      "target_name": "MI_P",
-     "target_value": "121.97"
+     "target_value": "118.04"
     },
     {
      "name": "MI_B",
-     "value": "312.22",
+     "value": "309.28",
      "unit": "kip*ft",
      "embedded": true,
      "status": "MATCH",
      "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
      "source_name": "MI_B",
-     "source_value": "312.22",
+     "source_value": "309.28",
      "target_name": "MI_B",
-     "target_value": "312.22"
+     "target_value": "309.28"
     },
     {
      "name": "Ready_III",
@@ -17543,7 +17554,7 @@
    "parameters": [
     {
      "name": "Mu_N",
-     "value": "39.12",
+     "value": "40.32",
      "unit": "kip*ft",
      "state": "STRENGTH-III",
      "load_case": "9",
@@ -17553,11 +17564,11 @@
      "source_name": "",
      "source_value": "",
      "target_name": "Mu_N",
-     "target_value": "39.12"
+     "target_value": "40.32"
     },
     {
      "name": "Mu_P",
-     "value": "158.98",
+     "value": "152.68",
      "unit": "kip*ft",
      "state": "STRENGTH-I",
      "load_case": "8",
@@ -17567,25 +17578,25 @@
      "source_name": "",
      "source_value": "",
      "target_name": "Mu_P",
-     "target_value": "158.98"
+     "target_value": "152.68"
     },
     {
      "name": "Mu_B",
-     "value": "365.84",
+     "value": "361.01",
      "unit": "kip*ft",
      "state": "STRENGTH-I",
      "load_case": "8",
      "combination": "1",
-     "element": "31",
-     "x_in": 141.49,
+     "element": "12",
+     "x_in": 38.5,
      "source_name": "",
      "source_value": "",
      "target_name": "Mu_B",
-     "target_value": "365.84"
+     "target_value": "361.01"
     },
     {
      "name": "Vu_G",
-     "value": "218.96",
+     "value": "220.46",
      "unit": "kip",
      "state": "STRENGTH-I",
      "load_case": "8",
@@ -17595,11 +17606,11 @@
      "source_name": "",
      "source_value": "",
      "target_name": "Vu_G",
-     "target_value": "218.96"
+     "target_value": "220.46"
     },
     {
      "name": "Tu",
-     "value": "26.55",
+     "value": "26.15",
      "unit": "kip*ft",
      "state": "STRENGTH-III",
      "load_case": "9",
@@ -17609,11 +17620,11 @@
      "source_name": "",
      "source_value": "",
      "target_name": "Tu",
-     "target_value": "26.55"
+     "target_value": "26.15"
     },
     {
      "name": "MI_N",
-     "value": "21.91",
+     "value": "26.31",
      "unit": "kip*ft",
      "state": "SERVICE-I",
      "load_case": "11",
@@ -17623,11 +17634,11 @@
      "source_name": "",
      "source_value": "",
      "target_name": "MI_N",
-     "target_value": "21.91"
+     "target_value": "26.31"
     },
     {
      "name": "MI_P",
-     "value": "121.97",
+     "value": "118.04",
      "unit": "kip*ft",
      "state": "SERVICE-I",
      "load_case": "11",
@@ -17637,11 +17648,11 @@
      "source_name": "",
      "source_value": "",
      "target_name": "MI_P",
-     "target_value": "121.97"
+     "target_value": "118.04"
     },
     {
      "name": "MI_B",
-     "value": "312.22",
+     "value": "309.28",
      "unit": "kip*ft",
      "state": "SERVICE-I",
      "load_case": "11",
@@ -17651,11 +17662,11 @@
      "source_name": "",
      "source_value": "",
      "target_name": "MI_B",
-     "target_value": "312.22"
+     "target_value": "309.28"
     },
     {
      "name": "Vu_L",
-     "value": "218.96",
+     "value": "220.46",
      "unit": "kip",
      "state": "STRENGTH-I",
      "load_case": "8",
@@ -17665,7 +17676,7 @@
      "source_name": "",
      "source_value": "",
      "target_name": "Vu_L",
-     "target_value": "218.96"
+     "target_value": "220.46"
     }
    ],
    "checks": [
@@ -17677,39 +17688,39 @@
    ],
    "flags": [],
    "analysis_identity": {
-    "case_requires_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-    "registered_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "case_requires_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+    "registered_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
     "match": true,
     "file_present": true
    },
    "fbmp_summary": {
     "max moment about 3 axis": {
-     "extracted": 365.84,
-     "summary": 365.84
+     "extracted": 361.01,
+     "summary": 361.01
     },
     "min moment about 3 axis": {
-     "extracted": -39.12,
-     "summary": -39.12
+     "extracted": -40.32,
+     "summary": -40.32
     },
     "max shear in 2 direction": {
-     "extracted": 218.96,
-     "summary": 218.96
+     "extracted": 220.46,
+     "summary": 220.46
     },
     "min shear in 2 direction": {
-     "extracted": -218.95,
-     "summary": -218.95
+     "extracted": -220.42,
+     "summary": -220.42
     },
     "max axial force": {
-     "extracted": 7.87,
-     "summary": 7.87
+     "extracted": 6.95,
+     "summary": 6.95
     },
     "min axial force": {
-     "extracted": -19.82,
-     "summary": -19.82
+     "extracted": -20.4,
+     "summary": -20.4
     },
     "absolute torque": {
-     "extracted": 26.55,
-     "summary": 26.55
+     "extracted": 26.15,
+     "summary": 26.15
     }
    },
    "fbmp": {
@@ -23077,9 +23088,9 @@
    "target": "PIER-REPORT",
    "index": 41,
    "source_name": "Mu_N",
-   "source_value": "39.12",
+   "source_value": "40.32",
    "target_name": "Mu_N",
-   "target_value": "39.12",
+   "target_value": "40.32",
    "unit": "kip*ft",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23091,9 +23102,9 @@
    "target": "PIER-REPORT",
    "index": 42,
    "source_name": "Mu_P",
-   "source_value": "158.98",
+   "source_value": "152.68",
    "target_name": "Mu_P",
-   "target_value": "158.98",
+   "target_value": "152.68",
    "unit": "kip*ft",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23105,9 +23116,9 @@
    "target": "PIER-REPORT",
    "index": 43,
    "source_name": "Mu_B",
-   "source_value": "365.84",
+   "source_value": "361.01",
    "target_name": "Mu_B",
-   "target_value": "365.84",
+   "target_value": "361.01",
    "unit": "kip*ft",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23119,9 +23130,9 @@
    "target": "PIER-REPORT",
    "index": 44,
    "source_name": "Vu_G",
-   "source_value": "218.96",
+   "source_value": "220.46",
    "target_name": "Vu_G",
-   "target_value": "218.96",
+   "target_value": "220.46",
    "unit": "kip",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23133,9 +23144,9 @@
    "target": "PIER-REPORT",
    "index": 45,
    "source_name": "Vu_L",
-   "source_value": "218.96",
+   "source_value": "220.46",
    "target_name": "Vu_L",
-   "target_value": "218.96",
+   "target_value": "220.46",
    "unit": "kip",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23147,9 +23158,9 @@
    "target": "PIER-REPORT",
    "index": 46,
    "source_name": "Tu",
-   "source_value": "26.55",
+   "source_value": "26.15",
    "target_name": "Tu",
-   "target_value": "26.55",
+   "target_value": "26.15",
    "unit": "kip*ft",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23161,9 +23172,9 @@
    "target": "PIER-REPORT",
    "index": 47,
    "source_name": "MI_N",
-   "source_value": "21.91",
+   "source_value": "26.31",
    "target_name": "MI_N",
-   "target_value": "21.91",
+   "target_value": "26.31",
    "unit": "kip*ft",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23175,9 +23186,9 @@
    "target": "PIER-REPORT",
    "index": 48,
    "source_name": "MI_P",
-   "source_value": "121.97",
+   "source_value": "118.04",
    "target_name": "MI_P",
-   "target_value": "121.97",
+   "target_value": "118.04",
    "unit": "kip*ft",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23189,9 +23200,9 @@
    "target": "PIER-REPORT",
    "index": 49,
    "source_name": "MI_B",
-   "source_value": "312.22",
+   "source_value": "309.28",
    "target_name": "MI_B",
-   "target_value": "312.22",
+   "target_value": "309.28",
    "unit": "kip*ft",
    "detail": "PIER:report-case: Saved case equals the case embedded in the registered report.",
    "status": "MATCH",
@@ -23527,7 +23538,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "Mu_N",
-   "target_value": "39.12",
+   "target_value": "40.32",
    "unit": "kip*ft",
    "detail": "STRENGTH-III load case 9, combination 2, element 27, x = 120.0 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -23541,7 +23552,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "Mu_P",
-   "target_value": "158.98",
+   "target_value": "152.68",
    "unit": "kip*ft",
    "detail": "STRENGTH-I load case 8, combination 1, element 29, x = 130.0 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -23555,9 +23566,9 @@
    "source_name": "",
    "source_value": "",
    "target_name": "Mu_B",
-   "target_value": "365.84",
+   "target_value": "361.01",
    "unit": "kip*ft",
-   "detail": "STRENGTH-I load case 8, combination 1, element 31, x = 141.49 in; governing provenance from the saved case; XML forces are not extracted",
+   "detail": "STRENGTH-I load case 8, combination 1, element 12, x = 38.5 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
    "kind": "governing"
   },
@@ -23569,7 +23580,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "Vu_G",
-   "target_value": "218.96",
+   "target_value": "220.46",
    "unit": "kip",
    "detail": "STRENGTH-I load case 8, combination 1, element 28, x = 120.0 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -23583,7 +23594,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "Tu",
-   "target_value": "26.55",
+   "target_value": "26.15",
    "unit": "kip*ft",
    "detail": "STRENGTH-III load case 9, combination 2, element 13, x = 38.5 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -23597,7 +23608,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "MI_N",
-   "target_value": "21.91",
+   "target_value": "26.31",
    "unit": "kip*ft",
    "detail": "SERVICE-I load case 11, combination 4, element 27, x = 120.0 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -23611,7 +23622,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "MI_P",
-   "target_value": "121.97",
+   "target_value": "118.04",
    "unit": "kip*ft",
    "detail": "SERVICE-I load case 11, combination 4, element 29, x = 130.0 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -23625,7 +23636,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "MI_B",
-   "target_value": "312.22",
+   "target_value": "309.28",
    "unit": "kip*ft",
    "detail": "SERVICE-I load case 11, combination 4, element 32, x = 141.49 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -23639,7 +23650,7 @@
    "source_name": "",
    "source_value": "",
    "target_name": "Vu_L",
-   "target_value": "218.96",
+   "target_value": "220.46",
    "unit": "kip",
    "detail": "STRENGTH-I load case 8, combination 1, element 28, x = 120.0 in; governing provenance from the saved case; XML forces are not extracted",
    "status": "NOT COMPARED",
@@ -25114,6 +25125,38 @@
     ],
     "issues": [],
     "inferred": []
+   }
+  },
+  {
+   "id": "D-077",
+   "date": "2026-10-22",
+   "decision": "Select the 22 October fixed-run `Pier_Fixed.XML` (pier wall extra members ending at the soil surface) as the current pier analysis export (PIER-XML), rerun the pier cap case (PIER-CASE, PIER-REPORT) and the pier pile case (PILE-PIER-CASE, PILE-PIER-REPORT) from it, rebuild the cap and pile editions, and carry the rerun into the journal pier modules.",
+   "basis": "User supplied the rerun on 22 October 2026 (\"Here we go updated fbmp run\") after finding that the pier wall extra members had followed the soil elevation changes and announcing the rerun. Element-wise comparison with the 21 October export (D-073, now archived under fbmp/pier/archive/2026-10-22/): the only model change is the extent of the four vertical 36 x 60 in wall members between the pile nodes, pile points 2 to 11 (EL 40.20 to the soil surface EL 26.05, 169.8 in, 31.83 kip each, 127.3 kip in all) in place of points 2 to 13 (EL 19.72, 245.8 in, 184.4 kip in all); nodal and bearing loads, geometry, pile section and material, soil and the four load combinations are identical. Against the CAD wall (219 x 36 in, EL 24.53 to 40.76, 133.4 kip) the model wall is 6.1 kip lighter, its top 6.8 in below the cap bottom and its bottom 18.3 in above the CAD wall bottom. The cap member envelope moves slightly (max M3 365.84 to 361.01 kip-ft, max V2 218.96 to 220.46 kip); the pile demands follow (the pile structural checks govern at element 11 below the wall). The pier cap case was rerun with scripts/apply_fbmp_to_cap_case.py and the pier pile case with scripts/export_project_pile_reports.py; the cap and pile editions were rebuilt; journal task T036 carries the pier modules. FBMP was rerun by the user, not here; native recalculation, appearance and engineering reviews not performed; COH-004 and COH-028 keep their recorded status. Assumption A-012 is re-judged against this export. See [receipt](coherence/evidence/2026-10-22-fbmp/source_receipt.json), [cap rerun](coherence/evidence/2026-10-22-cap-rerun/source_receipt.json) and [pile export](coherence/evidence/2026-10-22-pile-reports/source_receipt.json).",
+   "refs": {
+    "sources": [
+     "JOURNAL",
+     "PIER-CASE",
+     "PIER-REPORT",
+     "PIER-XML",
+     "PILE-EB1-CASE",
+     "PILE-EB1-REPORT",
+     "PILE-EB2-CASE",
+     "PILE-EB2-REPORT",
+     "PILE-PIER-CASE",
+     "PILE-PIER-REPORT",
+     "PILE-TOOL"
+    ],
+    "decisions": [
+     "D-073"
+    ],
+    "issues": [
+     "COH-004",
+     "COH-028"
+    ],
+    "inferred": [
+     "JOURNAL",
+     "PILE-TOOL"
+    ]
    }
   }
  ],

@@ -66,7 +66,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">C010 - Pier Cap Design</paragraph>
   <section name="WorkingNotes" capture="False" hide="true">
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="4" fontweight="bold" textcolor="#43505C">Working notes (hidden; not part of the submitted calculation): how this edition was produced, its tool status and the open bookkeeping items.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from Pier Cap Design 10-21.html (generated 2026-10-22T00:52:32+00:00); same case (canonical SHA-256 dd02b3a9d524) and C005 formula set (327838126d06) as the report; FBMP Pier_Fixed.XML (8be45bb889f5); cap notebook package 71ba1ddfc4ef. Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Distilled from Pier Cap Design 10-22.html (generated 2026-10-22T13:27:18+00:00); same case (canonical SHA-256 8b85bf2a1a3e) and C005 formula set (327838126d06) as the report; FBMP Pier_Fixed.XML (420e614aa8b9); cap notebook package 71ba1ddfc4ef. Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Codes note: inherited sectional relations of the cap tool (C005 formula set 327838126d06).</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Tool status: CHECK FAILURES — revise the trial cage or section.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• Service III (D-007) and fatigue remain pending.</paragraph>
@@ -100,12 +100,12 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="L_cap = 230 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>L_cap = 230 in</expbody></dynexp><break type="tab"/>cap length (cap analysis)</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="s_proj = 12 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>s_proj = 12 in</expbody></dynexp><break type="tab"/>project spacing limit, face steel</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Actions (from the analysis envelope)</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_N = 39.12 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_N = 39.12 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, N</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="MI_N = 21.91 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>MI_N = 21.91 kip*ft</expbody></dynexp><break type="tab"/>Service I moment, N</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_P = 158.98 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_P = 158.98 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, P</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="MI_P = 121.97 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>MI_P = 121.97 kip*ft</expbody></dynexp><break type="tab"/>Service I moment, P</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_B = 365.84 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_B = 365.84 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, B</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="MI_B = 312.22 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>MI_B = 312.22 kip*ft</expbody></dynexp><break type="tab"/>Service I moment, B</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_N = 40.32 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_N = 40.32 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, N</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="MI_N = 26.31 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>MI_N = 26.31 kip*ft</expbody></dynexp><break type="tab"/>Service I moment, N</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_P = 152.68 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_P = 152.68 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, P</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="MI_P = 118.04 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>MI_P = 118.04 kip*ft</expbody></dynexp><break type="tab"/>Service I moment, P</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Mu_B = 361.01 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Mu_B = 361.01 kip*ft</expbody></dynexp><break type="tab"/>Strength moment, B</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="MI_B = 309.28 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>MI_B = 309.28 kip*ft</expbody></dynexp><break type="tab"/>Service I moment, B</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="3" fontweight="bold" spacingbefore="4" keepwithnext="True">Reinforcement</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Bar_N1 = 6" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>Bar_N1 = 6</expbody></dynexp><break type="tab"/>top row 1 bar</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="n_N1 = 5" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input"><expbody>n_N1 = 5</expbody></dynexp><break type="tab"/>top row 1 count</paragraph>
@@ -258,9 +258,9 @@
       <planecontainer origin="6.024,2.67,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#1766A0">
         <textvalue>R9</textvalue>
       </planecontainer>
-      <plot formula="PlotLines([2.461,2.461],[3.06,1.011])" linecolor="#B35012" linethickness="1"/>
-      <circle center="2.461, 3.15, 0" normal="0, 0, 1" radius="0.09" linethickness="1" linecolor="#B35012" fillcolor="#FFFFFF"/>
-      <planecontainer origin="2.434,3.115,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#B35012">
+      <plot formula="PlotLines([4.039,4.039],[3.06,1.011])" linecolor="#B35012" linethickness="1"/>
+      <circle center="4.039, 3.15, 0" normal="0, 0, 1" radius="0.09" linethickness="1" linecolor="#B35012" fillcolor="#FFFFFF"/>
+      <planecontainer origin="4.012,3.115,0" dir="1,0,0" normal="0,0,1" fontfamily="Times New Roman" fontsize="8" textcolor="#B35012">
         <textvalue>N</textvalue>
       </planecontainer>
       <plot formula="PlotLines([2.2,2.2],[2.05,0.851])" linecolor="#B35012" linethickness="1"/>
@@ -568,14 +568,14 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="A_req_N = Mu_N/(φ_f*fy*(d_N - a_N/2)) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>A_req_N = Mu_N/(φ_f*fy*(d_N - a_N/2)) to in^2</expbody>
-      <expresult> = 0.274 in^2</expresult>
+      <expresult> = 0.283 in^2</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">steel required for M_u</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="M_min_N = Min(M_crm, 1.33*Mu_N) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>M_min_N = Min(M_crm, 1.33*Mu_N) to kip*ft</expbody>
-      <expresult> = 52.030 kip*ft</expresult>
+      <expresult> = 53.626 kip*ft</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum factored resistance</paragraph>
@@ -589,14 +589,14 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_flex_N = Mu_N/M_r_N" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_flex_N = Mu_N/M_r_N</expbody>
-      <expresult> = 0.125</expresult>
+      <expresult> = 0.128</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flexure, M_u / M_r</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_min_N = M_min_N/M_r_N" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_min_N = M_min_N/M_r_N</expbody>
-      <expresult> = 0.166</expresult>
+      <expresult> = 0.171</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum steel, M_min / M_r</paragraph>
@@ -668,28 +668,28 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="A_req_P = Mu_P/(φ_f*fy*(d_P - a_P/2)) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>A_req_P = Mu_P/(φ_f*fy*(d_P - a_P/2)) to in^2</expbody>
-        <expresult> = 1.130 in^2</expresult>
+        <expresult> = 1.085 in^2</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">steel required for M_u</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="A_req_B = Mu_B/(φ_f*fy*(d_B - a_B/2)) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>A_req_B = Mu_B/(φ_f*fy*(d_B - a_B/2)) to in^2</expbody>
-        <expresult> = 2.611 in^2</expresult>
+        <expresult> = 2.577 in^2</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">steel required for M_u</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_min_P = Min(M_crm, 1.33*Mu_P) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>M_min_P = Min(M_crm, 1.33*Mu_P) to kip*ft</expbody>
-        <expresult> = 211.443 kip*ft</expresult>
+        <expresult> = 203.064 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum factored resistance</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_min_B = Min(M_crm, 1.33*Mu_B) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>M_min_B = Min(M_crm, 1.33*Mu_B) to kip*ft</expbody>
-        <expresult> = 486.567 kip*ft</expresult>
+        <expresult> = 480.143 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum factored resistance</paragraph>
@@ -710,28 +710,28 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_flex_P = Mu_P/M_r_P" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_flex_P = Mu_P/M_r_P</expbody>
-        <expresult> = 0.282</expresult>
+        <expresult> = 0.271</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flexure, M_u / M_r</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_flex_B = Mu_B/M_r_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_flex_B = Mu_B/M_r_B</expbody>
-        <expresult> = 0.470</expresult>
+        <expresult> = 0.464</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flexure, M_u / M_r</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_min_P = M_min_P/M_r_P" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_min_P = M_min_P/M_r_P</expbody>
-        <expresult> = 0.376</expresult>
+        <expresult> = 0.361</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum steel, M_min / M_r</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_min_B = M_min_B/M_r_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_min_B = M_min_B/M_r_B</expbody>
-        <expresult> = 0.626</expresult>
+        <expresult> = 0.617</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum steel, M_min / M_r</paragraph>
@@ -830,13 +830,13 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">steel required for M_u (in^2)</paragraph>
         </textcell>
         <c formula="A_req_N to in^2" capture="False" background="#EFF7F1">
-          <num>0.274 in^2</num>
+          <num>0.283 in^2</num>
         </c>
         <c formula="A_req_P to in^2" capture="False" background="#EFF7F1">
-          <num>1.130 in^2</num>
+          <num>1.085 in^2</num>
         </c>
         <c formula="A_req_B to in^2" capture="False" background="#EFF7F1">
-          <num>2.611 in^2</num>
+          <num>2.577 in^2</num>
         </c>
       </row>
       <row>
@@ -844,13 +844,13 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">minimum factored resistance (kip*ft)</paragraph>
         </textcell>
         <c formula="M_min_N to kip*ft" capture="False" background="#EFF7F1">
-          <num>52.030 kip*ft</num>
+          <num>53.626 kip*ft</num>
         </c>
         <c formula="M_min_P to kip*ft" capture="False" background="#EFF7F1">
-          <num>211.443 kip*ft</num>
+          <num>203.064 kip*ft</num>
         </c>
         <c formula="M_min_B to kip*ft" capture="False" background="#EFF7F1">
-          <num>486.567 kip*ft</num>
+          <num>480.143 kip*ft</num>
         </c>
       </row>
       <row>
@@ -872,13 +872,13 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">flexure, M_u / M_r</paragraph>
         </textcell>
         <c formula="DC_flex_N" capture="False" background="#EFF7F1">
-          <num>0.125</num>
+          <num>0.128</num>
         </c>
         <c formula="DC_flex_P" capture="False" background="#EFF7F1">
-          <num>0.282</num>
+          <num>0.271</num>
         </c>
         <c formula="DC_flex_B" capture="False" background="#EFF7F1">
-          <num>0.470</num>
+          <num>0.464</num>
         </c>
       </row>
       <row>
@@ -886,13 +886,13 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">minimum steel, M_min / M_r</paragraph>
         </textcell>
         <c formula="DC_min_N" capture="False" background="#EFF7F1">
-          <num>0.166</num>
+          <num>0.171</num>
         </c>
         <c formula="DC_min_P" capture="False" background="#EFF7F1">
-          <num>0.376</num>
+          <num>0.361</num>
         </c>
         <c formula="DC_min_B" capture="False" background="#EFF7F1">
-          <num>0.626</num>
+          <num>0.617</num>
         </c>
       </row>
       <row>
@@ -971,21 +971,21 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="f_sI_N = MI_N*n_m/S_s_N to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>f_sI_N = MI_N*n_m/S_s_N to ksi</expbody>
-      <expresult> = 3.902 ksi</expresult>
+      <expresult> = 4.685 ksi</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I steel stress</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="s_I_N = If(f_sI_N &gt; 0 ksi, 700*γ_e/(β_s_N*f_sI_N/(1 ksi))*(1 in) - 2*dc_N, 1000000 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>s_I_N = If(f_sI_N &gt; 0 ksi, 700*γ_e/(β_s_N*f_sI_N/(1 ksi))*(1 in) - 2*dc_N, 1000000 in) to in</expbody>
-      <expresult> = 144.191 in</expresult>
+      <expresult> = 118.737 in</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">allowable bar spacing, 5.6.7-1</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_I_N = Max(f_sI_N/f_slim, SP_N/s_I_N)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_I_N = Max(f_sI_N/f_slim, SP_N/s_I_N)</expbody>
-      <expresult> = 0.081</expresult>
+      <expresult> = 0.098</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">larger of stress / limit and spacing / allowable</paragraph>
@@ -1064,42 +1064,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="f_sI_P = MI_P*n_m/S_s_P to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>f_sI_P = MI_P*n_m/S_s_P to ksi</expbody>
-        <expresult> = 12.191 ksi</expresult>
+        <expresult> = 11.798 ksi</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I steel stress</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="f_sI_B = MI_B*n_m/S_s_B to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>f_sI_B = MI_B*n_m/S_s_B to ksi</expbody>
-        <expresult> = 22.654 ksi</expresult>
+        <expresult> = 22.441 ksi</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I steel stress</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="s_I_P = If(f_sI_P &gt; 0 ksi, 700*γ_e/(β_s_P*f_sI_P/(1 ksi))*(1 in) - 2*dc_P, 1000000 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>s_I_P = If(f_sI_P &gt; 0 ksi, 700*γ_e/(β_s_P*f_sI_P/(1 ksi))*(1 in) - 2*dc_P, 1000000 in) to in</expbody>
-        <expresult> = 39.932 in</expresult>
+        <expresult> = 41.541 in</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">allowable bar spacing, 5.6.7-1</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="s_I_B = If(f_sI_B &gt; 0 ksi, 700*γ_e/(β_s_B*f_sI_B/(1 ksi))*(1 in) - 2*dc_B, 1000000 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>s_I_B = If(f_sI_B &gt; 0 ksi, 700*γ_e/(β_s_B*f_sI_B/(1 ksi))*(1 in) - 2*dc_B, 1000000 in) to in</expbody>
-        <expresult> = 17.833 in</expresult>
+        <expresult> = 18.081 in</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">allowable bar spacing, 5.6.7-1</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_I_P = Max(f_sI_P/f_slim, SP_P/s_I_P)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_I_P = Max(f_sI_P/f_slim, SP_P/s_I_P)</expbody>
-        <expresult> = 0.254</expresult>
+        <expresult> = 0.246</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">larger of stress / limit and spacing / allowable</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_I_B = Max(f_sI_B/f_slim, SP_B/s_I_B)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_I_B = Max(f_sI_B/f_slim, SP_B/s_I_B)</expbody>
-        <expresult> = 0.472</expresult>
+        <expresult> = 0.468</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">larger of stress / limit and spacing / allowable</paragraph>
@@ -1198,13 +1198,13 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service I steel stress (ksi)</paragraph>
         </textcell>
         <c formula="f_sI_N to ksi" capture="False" background="#EFF7F1">
-          <num>3.902 ksi</num>
+          <num>4.685 ksi</num>
         </c>
         <c formula="f_sI_P to ksi" capture="False" background="#EFF7F1">
-          <num>12.191 ksi</num>
+          <num>11.798 ksi</num>
         </c>
         <c formula="f_sI_B to ksi" capture="False" background="#EFF7F1">
-          <num>22.654 ksi</num>
+          <num>22.441 ksi</num>
         </c>
       </row>
       <row>
@@ -1212,13 +1212,13 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">allowable bar spacing, 5.6.7-1 (in)</paragraph>
         </textcell>
         <c formula="s_I_N to in" capture="False" background="#EFF7F1">
-          <num>144.191 in</num>
+          <num>118.737 in</num>
         </c>
         <c formula="s_I_P to in" capture="False" background="#EFF7F1">
-          <num>39.932 in</num>
+          <num>41.541 in</num>
         </c>
         <c formula="s_I_B to in" capture="False" background="#EFF7F1">
-          <num>17.833 in</num>
+          <num>18.081 in</num>
         </c>
       </row>
       <row>
@@ -1226,13 +1226,13 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">larger of stress / limit and spacing / allowable</paragraph>
         </textcell>
         <c formula="DC_I_N" capture="False" background="#EFF7F1">
-          <num>0.081</num>
+          <num>0.098</num>
         </c>
         <c formula="DC_I_P" capture="False" background="#EFF7F1">
-          <num>0.254</num>
+          <num>0.246</num>
         </c>
         <c formula="DC_I_B" capture="False" background="#EFF7F1">
-          <num>0.472</num>
+          <num>0.468</num>
         </c>
       </row>
     </table>
@@ -1263,7 +1263,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True" pagebreakbefore="break">8. Actual-cage section checks at the governing stations</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6">Stations k: 0 = S, the shear-governing point; 1, 2, 3 = N, P, B, the longitudinal-tension points of each region; 4 = M, the least minimum transverse steel. Each line gives the interval, combination C, element E, load state, station and tension face; the equations recompute every check there.</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• S shear: R4-1 → R4-2 · C1 E15 · STRENGTH-I · x = 74.745 in · bottom face</paragraph>
-  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• N long.: R4-3/R4-4 · C1 E16 · STRENGTH-I · x = 84.745 in · top face</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• N long.: R6-3/R6-4 · C1 E28 · STRENGTH-I · x = 145.255 in · top face</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• P long.: R6-4/R6-5 · C1 E29 · STRENGTH-I · x = 155.000 in · bottom face</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• B long.: R7-1/R7-2 · C1 E31 · STRENGTH-I · x = 161.500 in · bottom face</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4">• M min Av: R7-5/R7-6 · C1 E35 · STRENGTH-I · x = 188.190 in · bottom face</paragraph>
@@ -1309,8 +1309,8 @@
         </textcell>
         <textcell name="StationInputsR1C2" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="x_N = 84.74521311 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>x_N = 84.74521311 in</expbody>
+            <dynexp formula="x_N = 145.2547869 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>x_N = 145.2547869 in</expbody>
             </dynexp>
           </paragraph>
         </textcell>
@@ -1345,36 +1345,36 @@
         </textcell>
         <textcell name="StationInputsR2C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="M_S = 163.3049078 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>M_S = 163.3049078 kip*ft</expbody>
+            <dynexp formula="M_S = 157.165466 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_S = 157.165466 kip*ft</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR2C2" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="M_N = -18.32788146 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>M_N = -18.32788146 kip*ft</expbody>
+            <dynexp formula="M_N = -25.57562404 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_N = -25.57562404 kip*ft</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR2C3" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="M_P = 158.9705625 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>M_P = 158.9705625 kip*ft</expbody>
+            <dynexp formula="M_P = 152.6772292 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_P = 152.6772292 kip*ft</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR2C4" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="M_B = 276.2977699 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>M_B = 276.2977699 kip*ft</expbody>
+            <dynexp formula="M_B = 270.8152355 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_B = 270.8152355 kip*ft</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR2C5" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="M_M = 148.903851 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>M_M = 148.903851 kip*ft</expbody>
+            <dynexp formula="M_M = 146.7577937 kip*ft" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>M_M = 146.7577937 kip*ft</expbody>
             </dynexp>
           </paragraph>
         </textcell>
@@ -1388,36 +1388,36 @@
         </textcell>
         <textcell name="StationInputsR3C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="V_S = 217.0236025 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>V_S = 217.0236025 kip</expbody>
+            <dynexp formula="V_S = 218.4924024 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_S = 218.4924024 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR3C2" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="V_N = 218.9023151 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>V_N = 218.9023151 kip</expbody>
+            <dynexp formula="V_N = 220.4123151 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_N = 220.4123151 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR3C3" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="V_P = 217.09 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>V_P = 217.09 kip</expbody>
+            <dynexp formula="V_P = 218.59 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_P = 218.59 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR3C4" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="V_B = 215.8638015 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>V_B = 215.8638015 kip</expbody>
+            <dynexp formula="V_B = 217.3638015 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_B = 217.3638015 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR3C5" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="V_M = 122.0259142 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>V_M = 122.0259142 kip</expbody>
+            <dynexp formula="V_M = 120.5259142 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>V_M = 120.5259142 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
@@ -1431,36 +1431,36 @@
         </textcell>
         <textcell name="StationInputsR4C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="N_S = -10.05 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>N_S = -10.05 kip</expbody>
+            <dynexp formula="N_S = -11.33 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>N_S = -11.33 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR4C2" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="N_N = -10.05 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>N_N = -10.05 kip</expbody>
+            <dynexp formula="N_N = -11.33 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>N_N = -11.33 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR4C3" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="N_P = -10.05 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>N_P = -10.05 kip</expbody>
+            <dynexp formula="N_P = -11.33 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>N_P = -11.33 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR4C4" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="N_B = -10.05 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>N_B = -10.05 kip</expbody>
+            <dynexp formula="N_B = -11.33 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>N_B = -11.33 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR4C5" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="N_M = -10.05 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>N_M = -10.05 kip</expbody>
+            <dynexp formula="N_M = -11.33 kip" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>N_M = -11.33 kip</expbody>
             </dynexp>
           </paragraph>
         </textcell>
@@ -1732,36 +1732,36 @@
         </textcell>
         <textcell name="StationInputsR11C1" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="L_wg_S = 39.86573733 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>L_wg_S = 39.86573733 in</expbody>
+            <dynexp formula="L_wg_S = 39.79676126 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>L_wg_S = 39.79676126 in</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR11C2" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="L_wg_N = 34.34881071 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>L_wg_N = 34.34881071 in</expbody>
+            <dynexp formula="L_wg_N = 34.26154217 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>L_wg_N = 34.26154217 in</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR11C3" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="L_wg_P = 39.86174666 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>L_wg_P = 39.86174666 in</expbody>
+            <dynexp formula="L_wg_P = 39.79090815 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>L_wg_P = 39.79090815 in</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR11C4" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="L_wg_B = 39.93552465 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>L_wg_B = 39.93552465 in</expbody>
+            <dynexp formula="L_wg_B = 39.86452326 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>L_wg_B = 39.86452326 in</expbody>
             </dynexp>
           </paragraph>
         </textcell>
         <textcell name="StationInputsR11C5" capture="False" background="#FFF8E9">
           <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="2">
-            <dynexp formula="L_wg_M = 45.81237996 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
-              <expbody>L_wg_M = 45.81237996 in</expbody>
+            <dynexp formula="L_wg_M = 45.94886598 in" mathlayout="on" showformula="True" showresult="False" showsteps="False" style="Required Input">
+              <expbody>L_wg_M = 45.94886598 in</expbody>
             </dynexp>
           </paragraph>
         </textcell>
@@ -2047,7 +2047,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="T_th_S = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_S/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>T_th_S = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_S/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft</expbody>
-      <expresult> = 99.441 kip*ft</expresult>
+      <expresult> = 99.563 kip*ft</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">torsion threshold, 5.7.2.1</paragraph>
@@ -2061,14 +2061,14 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="V_ef_S = If(tor_S &gt; 0, Sqrt(V_S^2 + (0.9*p_h_S*T_S/(2*A_o_S))^2), V_S) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>V_ef_S = If(tor_S &gt; 0, Sqrt(V_S^2 + (0.9*p_h_S*T_S/(2*A_o_S))^2), V_S) to kip</expbody>
-      <expresult> = 217.024 kip</expresult>
+      <expresult> = 218.492 kip</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective shear, 5.7.3.4.2-5</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="M_e_S = Max(Abs(M_S), V_S*d_v) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>M_e_S = Max(Abs(M_S), V_S*d_v) to kip*ft</expbody>
-      <expresult> = 563.078 kip*ft</expresult>
+      <expresult> = 566.889 kip*ft</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment for ε: not less than V d_v</paragraph>
@@ -2101,14 +2101,14 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="F_fl_S = 0.5*N_S + V_ef_S - Abs(M_S)/d_v to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>F_fl_S = 0.5*N_S + V_ef_S - Abs(M_S)/d_v to kip</expbody>
-      <expresult> = 149.057 kip</expresult>
+      <expresult> = 152.252 kip</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">compression-half flange force, C5.7.3.4.2</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="f_fl_S = F_fl_S*E_c/(E_c*A_cc_S + Es*A_cs_S) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>f_fl_S = F_fl_S*E_c/(E_c*A_cc_S + Es*A_cs_S) to ksi</expbody>
-      <expresult> = 0.168 ksi</expresult>
+      <expresult> = 0.172 ksi</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flange tensile stress</paragraph>
@@ -2131,7 +2131,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="T_th_N = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_N/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>T_th_N = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_N/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft</expbody>
-        <expresult> = 99.441 kip*ft</expresult>
+        <expresult> = 99.563 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">torsion threshold, 5.7.2.1</paragraph>
@@ -2145,14 +2145,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="V_ef_N = If(tor_N &gt; 0, Sqrt(V_N^2 + (0.9*p_h_N*T_N/(2*A_o_N))^2), V_N) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>V_ef_N = If(tor_N &gt; 0, Sqrt(V_N^2 + (0.9*p_h_N*T_N/(2*A_o_N))^2), V_N) to kip</expbody>
-        <expresult> = 218.902 kip</expresult>
+        <expresult> = 220.412 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective shear, 5.7.3.4.2-5</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_e_N = Max(Abs(M_N), V_N*d_v) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>M_e_N = Max(Abs(M_N), V_N*d_v) to kip*ft</expbody>
-        <expresult> = 567.953 kip*ft</expresult>
+        <expresult> = 571.870 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment for ε: not less than V d_v</paragraph>
@@ -2185,14 +2185,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_fl_N = 0.5*N_N + V_ef_N - Abs(M_N)/d_v to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_fl_N = 0.5*N_N + V_ef_N - Abs(M_N)/d_v to kip</expbody>
-        <expresult> = 206.813 kip</expresult>
+        <expresult> = 204.890 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">compression-half flange force, C5.7.3.4.2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="f_fl_N = F_fl_N*E_c/(E_c*A_cc_N + Es*A_cs_N) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>f_fl_N = F_fl_N*E_c/(E_c*A_cc_N + Es*A_cs_N) to ksi</expbody>
-        <expresult> = 0.231 ksi</expresult>
+        <expresult> = 0.229 ksi</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flange tensile stress</paragraph>
@@ -2213,7 +2213,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="T_th_P = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_P/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>T_th_P = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_P/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft</expbody>
-        <expresult> = 99.441 kip*ft</expresult>
+        <expresult> = 99.563 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">torsion threshold, 5.7.2.1</paragraph>
@@ -2227,14 +2227,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="V_ef_P = If(tor_P &gt; 0, Sqrt(V_P^2 + (0.9*p_h_P*T_P/(2*A_o_P))^2), V_P) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>V_ef_P = If(tor_P &gt; 0, Sqrt(V_P^2 + (0.9*p_h_P*T_P/(2*A_o_P))^2), V_P) to kip</expbody>
-        <expresult> = 217.090 kip</expresult>
+        <expresult> = 218.590 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective shear, 5.7.3.4.2-5</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_e_P = Max(Abs(M_P), V_P*d_v) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>M_e_P = Max(Abs(M_P), V_P*d_v) to kip*ft</expbody>
-        <expresult> = 563.250 kip*ft</expresult>
+        <expresult> = 567.142 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment for ε: not less than V d_v</paragraph>
@@ -2267,14 +2267,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_fl_P = 0.5*N_P + V_ef_P - Abs(M_P)/d_v to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_fl_P = 0.5*N_P + V_ef_P - Abs(M_P)/d_v to kip</expbody>
-        <expresult> = 150.794 kip</expresult>
+        <expresult> = 154.080 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">compression-half flange force, C5.7.3.4.2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="f_fl_P = F_fl_P*E_c/(E_c*A_cc_P + Es*A_cs_P) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>f_fl_P = F_fl_P*E_c/(E_c*A_cc_P + Es*A_cs_P) to ksi</expbody>
-        <expresult> = 0.170 ksi</expresult>
+        <expresult> = 0.174 ksi</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flange tensile stress</paragraph>
@@ -2295,7 +2295,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="T_th_B = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_B/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>T_th_B = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_B/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft</expbody>
-        <expresult> = 99.441 kip*ft</expresult>
+        <expresult> = 99.563 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">torsion threshold, 5.7.2.1</paragraph>
@@ -2309,14 +2309,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="V_ef_B = If(tor_B &gt; 0, Sqrt(V_B^2 + (0.9*p_h_B*T_B/(2*A_o_B))^2), V_B) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>V_ef_B = If(tor_B &gt; 0, Sqrt(V_B^2 + (0.9*p_h_B*T_B/(2*A_o_B))^2), V_B) to kip</expbody>
-        <expresult> = 215.864 kip</expresult>
+        <expresult> = 217.364 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective shear, 5.7.3.4.2-5</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_e_B = Max(Abs(M_B), V_B*d_v) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>M_e_B = Max(Abs(M_B), V_B*d_v) to kip*ft</expbody>
-        <expresult> = 560.069 kip*ft</expresult>
+        <expresult> = 563.961 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment for ε: not less than V d_v</paragraph>
@@ -2349,14 +2349,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_fl_B = 0.5*N_B + V_ef_B - Abs(M_B)/d_v to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_fl_B = 0.5*N_B + V_ef_B - Abs(M_B)/d_v to kip</expbody>
-        <expresult> = 104.347 kip</expresult>
+        <expresult> = 107.320 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">compression-half flange force, C5.7.3.4.2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="f_fl_B = F_fl_B*E_c/(E_c*A_cc_B + Es*A_cs_B) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>f_fl_B = F_fl_B*E_c/(E_c*A_cc_B + Es*A_cs_B) to ksi</expbody>
-        <expresult> = 0.118 ksi</expresult>
+        <expresult> = 0.121 ksi</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flange tensile stress</paragraph>
@@ -2377,7 +2377,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="T_th_M = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_M/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>T_th_M = 0.25*φ_v*0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)*(b*h)^2/(2*(b + h))*Sqrt(Max(0, 1 - N_M/(b*h)/(0.126*λ*Sqrt(fc/(1 ksi))*(1 ksi)))) to kip*ft</expbody>
-        <expresult> = 99.441 kip*ft</expresult>
+        <expresult> = 99.563 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">torsion threshold, 5.7.2.1</paragraph>
@@ -2391,14 +2391,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="V_ef_M = If(tor_M &gt; 0, Sqrt(V_M^2 + (0.9*p_h_M*T_M/(2*A_o_M))^2), V_M) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>V_ef_M = If(tor_M &gt; 0, Sqrt(V_M^2 + (0.9*p_h_M*T_M/(2*A_o_M))^2), V_M) to kip</expbody>
-        <expresult> = 122.026 kip</expresult>
+        <expresult> = 120.526 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">effective shear, 5.7.3.4.2-5</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="M_e_M = Max(Abs(M_M), V_M*d_v) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>M_e_M = Max(Abs(M_M), V_M*d_v) to kip*ft</expbody>
-        <expresult> = 316.602 kip*ft</expresult>
+        <expresult> = 312.710 kip*ft</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment for ε: not less than V d_v</paragraph>
@@ -2431,14 +2431,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_fl_M = 0.5*N_M + V_ef_M - Abs(M_M)/d_v to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_fl_M = 0.5*N_M + V_ef_M - Abs(M_M)/d_v to kip</expbody>
-        <expresult> = 59.610 kip</expresult>
+        <expresult> = 58.297 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">compression-half flange force, C5.7.3.4.2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="f_fl_M = F_fl_M*E_c/(E_c*A_cc_M + Es*A_cs_M) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>f_fl_M = F_fl_M*E_c/(E_c*A_cc_M + Es*A_cs_M) to ksi</expbody>
-        <expresult> = 0.067 ksi</expresult>
+        <expresult> = 0.066 ksi</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flange tensile stress</paragraph>
@@ -2461,14 +2461,14 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="β_g_S = 4.8/(1 + 750*ε_s_S)*If(okg_S &gt; 0, 1, 51/(39 + s_xe_S/(1 in)))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>β_g_S = 4.8/(1 + 750*ε_s_S)*If(okg_S &gt; 0, 1, 51/(39 + s_xe_S/(1 in)))</expbody>
-      <expresult> = 1.640</expresult>
+      <expresult> = 1.635</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general β, 5.7.3.4.2-1/-2</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="θ_g_S = (29 + 3500*ε_s_S)*(1 deg) to deg" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>θ_g_S = (29 + 3500*ε_s_S)*(1 deg) to deg</expbody>
-      <expresult> = 37.989 deg</expresult>
+      <expresult> = 38.037 deg</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general θ, 5.7.3.4.2-3</paragraph>
@@ -2481,7 +2481,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="l_g_S = Max(d_v*cot_g_S, 0.00000001 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>l_g_S = Max(d_v*cot_g_S, 0.00000001 in) to in</expbody>
-      <expresult> = 39.866 in</expresult>
+      <expresult> = 39.797 in</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general window length d_v cot θ</paragraph>
@@ -2557,7 +2557,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_V_S = Max(V_S/Max(V_r_S, 0.000000001 kip), V_ef_S/φ_v/V_lim)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_V_S = Max(V_S/Max(V_r_S, 0.000000001 kip), V_ef_S/φ_v/V_lim)</expbody>
-      <expresult> = 0.592</expresult>
+      <expresult> = 0.596</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear D/C</paragraph>
@@ -2580,14 +2580,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="β_g_N = 4.8/(1 + 750*ε_s_N)*If(okg_N &gt; 0, 1, 51/(39 + s_xe_N/(1 in)))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>β_g_N = 4.8/(1 + 750*ε_s_N)*If(okg_N &gt; 0, 1, 51/(39 + s_xe_N/(1 in)))</expbody>
-        <expresult> = 1.254</expresult>
+        <expresult> = 1.249</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general β, 5.7.3.4.2-1/-2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="θ_g_N = (29 + 3500*ε_s_N)*(1 deg) to deg" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>θ_g_N = (29 + 3500*ε_s_N)*(1 deg) to deg</expbody>
-        <expresult> = 42.190 deg</expresult>
+        <expresult> = 42.262 deg</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general θ, 5.7.3.4.2-3</paragraph>
@@ -2600,7 +2600,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="l_g_N = Max(d_v*cot_g_N, 0.00000001 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>l_g_N = Max(d_v*cot_g_N, 0.00000001 in) to in</expbody>
-        <expresult> = 34.349 in</expresult>
+        <expresult> = 34.262 in</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general window length d_v cot θ</paragraph>
@@ -2669,7 +2669,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_V_N = Max(V_N/Max(V_r_N, 0.000000001 kip), V_ef_N/φ_v/V_lim)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_V_N = Max(V_N/Max(V_r_N, 0.000000001 kip), V_ef_N/φ_v/V_lim)</expbody>
-        <expresult> = 0.505</expresult>
+        <expresult> = 0.508</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear D/C</paragraph>
@@ -2690,14 +2690,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="β_g_P = 4.8/(1 + 750*ε_s_P)*If(okg_P &gt; 0, 1, 51/(39 + s_xe_P/(1 in)))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>β_g_P = 4.8/(1 + 750*ε_s_P)*If(okg_P &gt; 0, 1, 51/(39 + s_xe_P/(1 in)))</expbody>
-        <expresult> = 1.640</expresult>
+        <expresult> = 1.634</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general β, 5.7.3.4.2-1/-2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="θ_g_P = (29 + 3500*ε_s_P)*(1 deg) to deg" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>θ_g_P = (29 + 3500*ε_s_P)*(1 deg) to deg</expbody>
-        <expresult> = 37.992 deg</expresult>
+        <expresult> = 38.042 deg</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general θ, 5.7.3.4.2-3</paragraph>
@@ -2710,7 +2710,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="l_g_P = Max(d_v*cot_g_P, 0.00000001 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>l_g_P = Max(d_v*cot_g_P, 0.00000001 in) to in</expbody>
-        <expresult> = 39.862 in</expresult>
+        <expresult> = 39.791 in</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general window length d_v cot θ</paragraph>
@@ -2779,7 +2779,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_V_P = Max(V_P/Max(V_r_P, 0.000000001 kip), V_ef_P/φ_v/V_lim)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_V_P = Max(V_P/Max(V_r_P, 0.000000001 kip), V_ef_P/φ_v/V_lim)</expbody>
-        <expresult> = 0.542</expresult>
+        <expresult> = 0.546</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear D/C</paragraph>
@@ -2800,14 +2800,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="β_g_B = 4.8/(1 + 750*ε_s_B)*If(okg_B &gt; 0, 1, 51/(39 + s_xe_B/(1 in)))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>β_g_B = 4.8/(1 + 750*ε_s_B)*If(okg_B &gt; 0, 1, 51/(39 + s_xe_B/(1 in)))</expbody>
-        <expresult> = 1.646</expresult>
+        <expresult> = 1.640</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general β, 5.7.3.4.2-1/-2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="θ_g_B = (29 + 3500*ε_s_B)*(1 deg) to deg" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>θ_g_B = (29 + 3500*ε_s_B)*(1 deg) to deg</expbody>
-        <expresult> = 37.941 deg</expresult>
+        <expresult> = 37.990 deg</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general θ, 5.7.3.4.2-3</paragraph>
@@ -2820,7 +2820,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="l_g_B = Max(d_v*cot_g_B, 0.00000001 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>l_g_B = Max(d_v*cot_g_B, 0.00000001 in) to in</expbody>
-        <expresult> = 39.936 in</expresult>
+        <expresult> = 39.865 in</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general window length d_v cot θ</paragraph>
@@ -2889,7 +2889,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_V_B = Max(V_B/Max(V_r_B, 0.000000001 kip), V_ef_B/φ_v/V_lim)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_V_B = Max(V_B/Max(V_r_B, 0.000000001 kip), V_ef_B/φ_v/V_lim)</expbody>
-        <expresult> = 0.539</expresult>
+        <expresult> = 0.543</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear D/C</paragraph>
@@ -2910,14 +2910,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="β_g_M = 4.8/(1 + 750*ε_s_M)*If(okg_M &gt; 0, 1, 51/(39 + s_xe_M/(1 in)))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>β_g_M = 4.8/(1 + 750*ε_s_M)*If(okg_M &gt; 0, 1, 51/(39 + s_xe_M/(1 in)))</expbody>
-        <expresult> = 2.270</expresult>
+        <expresult> = 2.289</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general β, 5.7.3.4.2-1/-2</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="θ_g_M = (29 + 3500*ε_s_M)*(1 deg) to deg" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>θ_g_M = (29 + 3500*ε_s_M)*(1 deg) to deg</expbody>
-        <expresult> = 34.200 deg</expresult>
+        <expresult> = 34.121 deg</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general θ, 5.7.3.4.2-3</paragraph>
@@ -2930,7 +2930,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="l_g_M = Max(d_v*cot_g_M, 0.00000001 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>l_g_M = Max(d_v*cot_g_M, 0.00000001 in) to in</expbody>
-        <expresult> = 45.812 in</expresult>
+        <expresult> = 45.949 in</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">general window length d_v cot θ</paragraph>
@@ -2999,7 +2999,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_V_M = Max(V_M/Max(V_r_M, 0.000000001 kip), V_ef_M/φ_v/V_lim)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_V_M = Max(V_M/Max(V_r_M, 0.000000001 kip), V_ef_M/φ_v/V_lim)</expbody>
-        <expresult> = 0.333</expresult>
+        <expresult> = 0.329</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear D/C</paragraph>
@@ -3029,7 +3029,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="F_sh_S = Max(0 kip, V_S/φ_v - 0.5*V_cr_S) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>F_sh_S = Max(0 kip, V_S/φ_v - 0.5*V_cr_S) to kip</expbody>
-      <expresult> = 203.937 kip</expresult>
+      <expresult> = 205.569 kip</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear part</paragraph>
@@ -3055,28 +3055,28 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="F_mo_S = Abs(M_S)/(φ_m_S*d_v) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>F_mo_S = Abs(M_S)/(φ_m_S*d_v) to kip</expbody>
-      <expresult> = 69.935 kip</expresult>
+      <expresult> = 67.306 kip</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment term</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="F_ax_S = 0.5*N_S/φ_n_S to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>F_ax_S = 0.5*N_S/φ_n_S to kip</expbody>
-      <expresult> = -5.583 kip</expresult>
+      <expresult> = -6.294 kip</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial term</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="F_di_S = cot_t_S*Sqrt(F_sh_S^2 + F_to_S^2) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>F_di_S = cot_t_S*Sqrt(F_sh_S^2 + F_to_S^2) to kip</expbody>
-      <expresult> = 203.937 kip</expresult>
+      <expresult> = 205.569 kip</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">diagonal term</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="F_req_S = Max(0 kip, F_mo_S + F_ax_S + F_di_S) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>F_req_S = Max(0 kip, F_mo_S + F_ax_S + F_di_S) to kip</expbody>
-      <expresult> = 268.289 kip</expresult>
+      <expresult> = 266.581 kip</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">required tension</paragraph>
@@ -3090,7 +3090,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_L_S = F_req_S/F_cap_S" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_L_S = F_req_S/F_cap_S</expbody>
-      <expresult> = 0.776</expresult>
+      <expresult> = 0.771</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension D/C</paragraph>
@@ -3106,7 +3106,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_sh_N = Max(0 kip, V_N/φ_v - 0.5*V_cr_N) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_sh_N = Max(0 kip, V_N/φ_v - 0.5*V_cr_N) to kip</expbody>
-        <expresult> = 224.625 kip</expresult>
+        <expresult> = 226.303 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear part</paragraph>
@@ -3132,28 +3132,28 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_mo_N = Abs(M_N)/(φ_m_N*d_v) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_mo_N = Abs(M_N)/(φ_m_N*d_v) to kip</expbody>
-        <expresult> = 7.849 kip</expresult>
+        <expresult> = 10.953 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_ax_N = 0.5*N_N/φ_n_N to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_ax_N = 0.5*N_N/φ_n_N to kip</expbody>
-        <expresult> = -5.583 kip</expresult>
+        <expresult> = -6.294 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_di_N = cot_t_N*Sqrt(F_sh_N^2 + F_to_N^2) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_di_N = cot_t_N*Sqrt(F_sh_N^2 + F_to_N^2) to kip</expbody>
-        <expresult> = 224.625 kip</expresult>
+        <expresult> = 226.303 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">diagonal term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_req_N = Max(0 kip, F_mo_N + F_ax_N + F_di_N) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_req_N = Max(0 kip, F_mo_N + F_ax_N + F_di_N) to kip</expbody>
-        <expresult> = 226.890 kip</expresult>
+        <expresult> = 230.961 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">required tension</paragraph>
@@ -3167,7 +3167,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_L_N = F_req_N/F_cap_N" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_L_N = F_req_N/F_cap_N</expbody>
-        <expresult> = 0.955</expresult>
+        <expresult> = 0.972</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension D/C</paragraph>
@@ -3181,7 +3181,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_sh_P = Max(0 kip, V_P/φ_v - 0.5*V_cr_P) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_sh_P = Max(0 kip, V_P/φ_v - 0.5*V_cr_P) to kip</expbody>
-        <expresult> = 204.011 kip</expresult>
+        <expresult> = 205.678 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear part</paragraph>
@@ -3207,28 +3207,28 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_mo_P = Abs(M_P)/(φ_m_P*d_v) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_mo_P = Abs(M_P)/(φ_m_P*d_v) to kip</expbody>
-        <expresult> = 68.079 kip</expresult>
+        <expresult> = 65.384 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_ax_P = 0.5*N_P/φ_n_P to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_ax_P = 0.5*N_P/φ_n_P to kip</expbody>
-        <expresult> = -5.583 kip</expresult>
+        <expresult> = -6.294 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_di_P = cot_t_P*Sqrt(F_sh_P^2 + F_to_P^2) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_di_P = cot_t_P*Sqrt(F_sh_P^2 + F_to_P^2) to kip</expbody>
-        <expresult> = 204.011 kip</expresult>
+        <expresult> = 205.678 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">diagonal term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_req_P = Max(0 kip, F_mo_P + F_ax_P + F_di_P) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_req_P = Max(0 kip, F_mo_P + F_ax_P + F_di_P) to kip</expbody>
-        <expresult> = 266.507 kip</expresult>
+        <expresult> = 264.767 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">required tension</paragraph>
@@ -3242,7 +3242,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_L_P = F_req_P/F_cap_P" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_L_P = F_req_P/F_cap_P</expbody>
-        <expresult> = 0.771</expresult>
+        <expresult> = 0.766</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension D/C</paragraph>
@@ -3256,7 +3256,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_sh_B = Max(0 kip, V_B/φ_v - 0.5*V_cr_B) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_sh_B = Max(0 kip, V_B/φ_v - 0.5*V_cr_B) to kip</expbody>
-        <expresult> = 184.049 kip</expresult>
+        <expresult> = 185.715 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear part</paragraph>
@@ -3282,28 +3282,28 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_mo_B = Abs(M_B)/(φ_m_B*d_v) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_mo_B = Abs(M_B)/(φ_m_B*d_v) to kip</expbody>
-        <expresult> = 118.324 kip</expresult>
+        <expresult> = 115.976 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_ax_B = 0.5*N_B/φ_n_B to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_ax_B = 0.5*N_B/φ_n_B to kip</expbody>
-        <expresult> = -5.583 kip</expresult>
+        <expresult> = -6.294 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_di_B = cot_t_B*Sqrt(F_sh_B^2 + F_to_B^2) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_di_B = cot_t_B*Sqrt(F_sh_B^2 + F_to_B^2) to kip</expbody>
-        <expresult> = 184.049 kip</expresult>
+        <expresult> = 185.715 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">diagonal term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_req_B = Max(0 kip, F_mo_B + F_ax_B + F_di_B) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_req_B = Max(0 kip, F_mo_B + F_ax_B + F_di_B) to kip</expbody>
-        <expresult> = 296.789 kip</expresult>
+        <expresult> = 295.397 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">required tension</paragraph>
@@ -3317,7 +3317,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_L_B = F_req_B/F_cap_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_L_B = F_req_B/F_cap_B</expbody>
-        <expresult> = 0.859</expresult>
+        <expresult> = 0.855</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension D/C</paragraph>
@@ -3331,7 +3331,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_sh_M = Max(0 kip, V_M/φ_v - 0.5*V_cr_M) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_sh_M = Max(0 kip, V_M/φ_v - 0.5*V_cr_M) to kip</expbody>
-        <expresult> = 79.784 kip</expresult>
+        <expresult> = 78.118 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear part</paragraph>
@@ -3357,28 +3357,28 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_mo_M = Abs(M_M)/(φ_m_M*d_v) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_mo_M = Abs(M_M)/(φ_m_M*d_v) to kip</expbody>
-        <expresult> = 63.768 kip</expresult>
+        <expresult> = 62.849 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">moment term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_ax_M = 0.5*N_M/φ_n_M to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_ax_M = 0.5*N_M/φ_n_M to kip</expbody>
-        <expresult> = -5.583 kip</expresult>
+        <expresult> = -6.294 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">axial term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_di_M = cot_t_M*Sqrt(F_sh_M^2 + F_to_M^2) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_di_M = cot_t_M*Sqrt(F_sh_M^2 + F_to_M^2) to kip</expbody>
-        <expresult> = 79.784 kip</expresult>
+        <expresult> = 78.118 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">diagonal term</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="F_req_M = Max(0 kip, F_mo_M + F_ax_M + F_di_M) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>F_req_M = Max(0 kip, F_mo_M + F_ax_M + F_di_M) to kip</expbody>
-        <expresult> = 137.969 kip</expresult>
+        <expresult> = 134.672 kip</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">required tension</paragraph>
@@ -3392,7 +3392,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="DC_L_M = F_req_M/F_cap_M" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>DC_L_M = F_req_M/F_cap_M</expbody>
-        <expresult> = 0.415</expresult>
+        <expresult> = 0.405</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension D/C</paragraph>
@@ -3431,16 +3431,16 @@
           <num>366.754 kip</num>
         </c>
         <c formula="DC_V_S" capture="False" background="#EFF7F1">
-          <num>0.592</num>
+          <num>0.596</num>
         </c>
         <c formula="F_req_S to kip" capture="False" background="#EFF7F1">
-          <num>268.289 kip</num>
+          <num>266.581 kip</num>
         </c>
         <c formula="F_cap_S to kip" capture="False" background="#EFF7F1">
           <num>345.600 kip</num>
         </c>
         <c formula="DC_L_S" capture="False" background="#EFF7F1">
-          <num>0.776</num>
+          <num>0.771</num>
         </c>
       </row>
       <row>
@@ -3451,16 +3451,16 @@
           <num>433.714 kip</num>
         </c>
         <c formula="DC_V_N" capture="False" background="#EFF7F1">
-          <num>0.505</num>
+          <num>0.508</num>
         </c>
         <c formula="F_req_N to kip" capture="False" background="#EFF7F1">
-          <num>226.890 kip</num>
+          <num>230.961 kip</num>
         </c>
         <c formula="F_cap_N to kip" capture="False" background="#EFF7F1">
           <num>237.600 kip</num>
         </c>
         <c formula="DC_L_N" capture="False" background="#EFF7F1">
-          <num>0.955</num>
+          <num>0.972</num>
         </c>
       </row>
       <row>
@@ -3471,16 +3471,16 @@
           <num>400.234 kip</num>
         </c>
         <c formula="DC_V_P" capture="False" background="#EFF7F1">
-          <num>0.542</num>
+          <num>0.546</num>
         </c>
         <c formula="F_req_P to kip" capture="False" background="#EFF7F1">
-          <num>266.507 kip</num>
+          <num>264.767 kip</num>
         </c>
         <c formula="F_cap_P to kip" capture="False" background="#EFF7F1">
           <num>345.600 kip</num>
         </c>
         <c formula="DC_L_P" capture="False" background="#EFF7F1">
-          <num>0.771</num>
+          <num>0.766</num>
         </c>
       </row>
       <row>
@@ -3491,16 +3491,16 @@
           <num>400.234 kip</num>
         </c>
         <c formula="DC_V_B" capture="False" background="#EFF7F1">
-          <num>0.539</num>
+          <num>0.543</num>
         </c>
         <c formula="F_req_B to kip" capture="False" background="#EFF7F1">
-          <num>296.789 kip</num>
+          <num>295.397 kip</num>
         </c>
         <c formula="F_cap_B to kip" capture="False" background="#EFF7F1">
           <num>345.600 kip</num>
         </c>
         <c formula="DC_L_B" capture="False" background="#EFF7F1">
-          <num>0.859</num>
+          <num>0.855</num>
         </c>
       </row>
       <row>
@@ -3511,16 +3511,16 @@
           <num>366.754 kip</num>
         </c>
         <c formula="DC_V_M" capture="False" background="#EFF7F1">
-          <num>0.333</num>
+          <num>0.329</num>
         </c>
         <c formula="F_req_M to kip" capture="False" background="#EFF7F1">
-          <num>137.969 kip</num>
+          <num>134.672 kip</num>
         </c>
         <c formula="F_cap_M to kip" capture="False" background="#EFF7F1">
           <num>332.834 kip</num>
         </c>
         <c formula="DC_L_M" capture="False" background="#EFF7F1">
-          <num>0.415</num>
+          <num>0.405</num>
         </c>
       </row>
     </table>
@@ -4422,28 +4422,28 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_shear = DC_V_S" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_shear = DC_V_S</expbody>
-      <expresult> = 0.592</expresult>
+      <expresult> = 0.596</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">shear at S</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_LN = DC_L_N" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_LN = DC_L_N</expbody>
-      <expresult> = 0.955</expresult>
+      <expresult> = 0.972</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension at N</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_LP = DC_L_P" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_LP = DC_L_P</expbody>
-      <expresult> = 0.771</expresult>
+      <expresult> = 0.766</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension at P</paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_LB = DC_L_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_LB = DC_L_B</expbody>
-      <expresult> = 0.859</expresult>
+      <expresult> = 0.855</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">longitudinal tension at B</paragraph>
@@ -4471,7 +4471,7 @@
   <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
     <dynexp formula="DC_sect = Max(DC_flex_N, DC_flex_P, DC_flex_B, DC_min_N, DC_min_P, DC_min_B, DC_eps_N, DC_eps_P, DC_eps_B, DC_I_N, DC_I_P, DC_I_B, DC_shear, DC_LN, DC_LP, DC_LB)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
       <expbody>DC_sect = Max(DC_flex_N, DC_flex_P, DC_flex_B, DC_min_N, DC_min_P, DC_min_B, DC_eps_N, DC_eps_P, DC_eps_B, DC_I_N, DC_I_P, DC_I_B, DC_shear, DC_LN, DC_LP, DC_LB)</expbody>
-      <expresult> = 0.955</expresult>
+      <expresult> = 0.972</expresult>
     </dynexp>
   </paragraph>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">flexure, Service I, shear, tension</paragraph>
@@ -4651,7 +4651,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">N (top steel)</paragraph>
         </textcell>
         <c formula="DC_flex_N" capture="False" background="#EFF7F1">
-          <num>0.125</num>
+          <num>0.128</num>
         </c>
         <c formula="Chk_flex_N" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4665,7 +4665,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">P (bottom, piles)</paragraph>
         </textcell>
         <c formula="DC_flex_P" capture="False" background="#EFF7F1">
-          <num>0.282</num>
+          <num>0.271</num>
         </c>
         <c formula="Chk_flex_P" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4679,7 +4679,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">B (bottom, between piles)</paragraph>
         </textcell>
         <c formula="DC_flex_B" capture="False" background="#EFF7F1">
-          <num>0.470</num>
+          <num>0.464</num>
         </c>
         <c formula="Chk_flex_B" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4693,7 +4693,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">N (top steel)</paragraph>
         </textcell>
         <c formula="DC_min_N" capture="False" background="#EFF7F1">
-          <num>0.166</num>
+          <num>0.171</num>
         </c>
         <c formula="Chk_min_N" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4707,7 +4707,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">P (bottom, piles)</paragraph>
         </textcell>
         <c formula="DC_min_P" capture="False" background="#EFF7F1">
-          <num>0.376</num>
+          <num>0.361</num>
         </c>
         <c formula="Chk_min_P" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4721,7 +4721,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">B (bottom, between piles)</paragraph>
         </textcell>
         <c formula="DC_min_B" capture="False" background="#EFF7F1">
-          <num>0.626</num>
+          <num>0.617</num>
         </c>
         <c formula="Chk_min_B" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4777,7 +4777,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">N (top steel)</paragraph>
         </textcell>
         <c formula="DC_I_N" capture="False" background="#EFF7F1">
-          <num>0.081</num>
+          <num>0.098</num>
         </c>
         <c formula="Chk_I_N" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4791,7 +4791,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">P (bottom, piles)</paragraph>
         </textcell>
         <c formula="DC_I_P" capture="False" background="#EFF7F1">
-          <num>0.254</num>
+          <num>0.246</num>
         </c>
         <c formula="Chk_I_P" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4805,7 +4805,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">B (bottom, between piles)</paragraph>
         </textcell>
         <c formula="DC_I_B" capture="False" background="#EFF7F1">
-          <num>0.472</num>
+          <num>0.468</num>
         </c>
         <c formula="Chk_I_B" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4819,7 +4819,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">S</paragraph>
         </textcell>
         <c formula="DC_shear" capture="False" background="#EFF7F1">
-          <num>0.592</num>
+          <num>0.596</num>
         </c>
         <c formula="Chk_shear" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4833,7 +4833,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">N</paragraph>
         </textcell>
         <c formula="DC_LN" capture="False" background="#EFF7F1">
-          <num>0.955</num>
+          <num>0.972</num>
         </c>
         <c formula="Chk_LN" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4847,7 +4847,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">P</paragraph>
         </textcell>
         <c formula="DC_LP" capture="False" background="#EFF7F1">
-          <num>0.771</num>
+          <num>0.766</num>
         </c>
         <c formula="Chk_LP" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>
@@ -4861,7 +4861,7 @@
           <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">B</paragraph>
         </textcell>
         <c formula="DC_LB" capture="False" background="#EFF7F1">
-          <num>0.859</num>
+          <num>0.855</num>
         </c>
         <c formula="Chk_LB" capture="False" background="#EFF7F1">
           <textvalue>✓ PASS</textvalue>

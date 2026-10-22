@@ -1,0 +1,34 @@
+{
+  "task": "T036",
+  "base_sha256": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "acf0b19da7aef74e6fec129446e390a836c8ff64a96c15df0187be42986a0fa5"
+    },
+    "report:BridgeGeometry_2Beam": {
+      "file": "001.xml",
+      "sha256": "b9a15e8e64f239ea8c9d34db9c447a599d17fd384038f6ceb3f11424e7be45e6"
+    },
+    "report:FBMPPier": {
+      "file": "002.xml",
+      "sha256": "7c8825537b08f540450d3d801754101af06bf616ec3be77f86028dd07f426dab"
+    },
+    "report:FoundationModeling": {
+      "file": "003.xml",
+      "sha256": "5fd70b0a49220e861d8e5cd798edb4c893a906abd8b34118658da6abbd57202c"
+    },
+    "report:CapDesignPier": {
+      "file": "004.xml",
+      "sha256": "de32e1e40244fd0266ed4a47137cb5e8282047adbe15ca469176386ecca0e738"
+    },
+    "report:PileDesignPier": {
+      "file": "005.xml",
+      "sha256": "b18e24e92d43748731ae0c039d3a9003f9ac7a6ae9a0191484734d4a3f276eb9"
+    },
+    "report:DecisionLog": {
+      "file": "006.xml",
+      "sha256": "0156a963bca07c1570ced99bd293e4a7d2b717bd394917267ebdc90bf12723f8"
+    }
+  }
+}

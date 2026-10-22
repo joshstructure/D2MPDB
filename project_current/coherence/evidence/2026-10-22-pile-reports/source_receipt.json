@@ -1,0 +1,385 @@
+{
+  "date": "2026-10-22",
+  "decision": "D-077",
+  "authorization": "User supplied the rerun Pier_Fixed.XML on 22 October 2026 (pier wall extra members ending at the soil surface) and asked for it to be carried through the project; End Bent cases re-exported for package currency.",
+  "xml_decisions": {
+    "End Bent 1": "D-049",
+    "End Bent 2": "D-049",
+    "Pier": "D-077"
+  },
+  "supports": [
+    "End Bent 1",
+    "End Bent 2",
+    "Pier"
+  ],
+  "scope": "Pile analysis and design reports and cases for End Bent 1, End Bent 2, Pier exported to project_current/pile_design/ from the preset cases of the pile_design package (D-049, D-077 FBMP fixed-run exports, 18 tons end-bent downdrag, D-050). No cap design, FBMP export, geometry, journal, tracker row or engineering disposition changed in this step. The Blockpad editions go to the journal through the BPAD workflow.",
+  "generator": {
+    "script": "scripts/export_project_pile_reports.py",
+    "command": ".venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --date 10-22",
+    "package": "pile_design",
+    "package_revision": "0b518b6fa963e083ba6d2c36bd8517049d5db555d0666fd87c19fbcf32fe46db",
+    "package_revision_basis": "pile_design.mathcad.package_revision(): SHA-256 of pile_design/*.py and data/*.json, newline-normalised",
+    "git_head": "77b1123",
+    "git_head_note": "Read from .git/HEAD and the ref file; the working tree was not inspected for uncommitted changes.",
+    "python": "3.12.14",
+    "plotly": "6.9.0",
+    "openpyxl": "3.1.5",
+    "note": "Each report embeds its generation time and random figure ids, a saved case holds the load time of its FBMP receipt, and the workbook holds a zip timestamp, so a rerun gives new bytes. scripts/export_project_pile_reports.py --check regenerates the reports, check registers and workbooks from the saved cases and compares them with the registered files."
+  },
+  "reports": [
+    {
+      "support": "End Bent 1",
+      "family": "psc",
+      "case_name": "End Bent 1 piles: 18 in square prestressed concrete, FBMP fixed run",
+      "schema_version": 1,
+      "source_ids": {
+        "report": "PILE-EB1-REPORT",
+        "case": "PILE-EB1-CASE",
+        "fbmp_export": "EB-XML"
+      },
+      "xml_decision": "D-049",
+      "files": {
+        "report": {
+          "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-22.html",
+          "sha256": "045d256d58970c8abb2479f8a7be0bded2babdaa1a4fb9ba601eccf7f4c2e12d",
+          "bytes": 15879789
+        },
+        "dated_case": {
+          "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-22.json",
+          "sha256": "df58bf43457c516618d12001c151e928c43da6cc97cf9d30f1f78210f7f1afb6",
+          "bytes": 470141
+        },
+        "selected_case": {
+          "path": "project_current/pile_design/end_bent_1/selected_case.json",
+          "sha256": "df58bf43457c516618d12001c151e928c43da6cc97cf9d30f1f78210f7f1afb6",
+          "bytes": 470141
+        },
+        "checks_csv": {
+          "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-22 checks.csv",
+          "sha256": "f172579a606be4e9ff86fa5e6359e638c91f936077b3c5e7ff3b64e5bbbfe2b9",
+          "bytes": 6151
+        },
+        "data_table_xlsx": {
+          "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Data Table 10-22.xlsx",
+          "sha256": "1755d866657fb17a8ae987df335a56eb0884c6d4a0a55d82c34172fae2234d65",
+          "bytes": 11922
+        }
+      },
+      "selected_case_equals_dated_case": true,
+      "case_sha256": "df58bf43457c516618d12001c151e928c43da6cc97cf9d30f1f78210f7f1afb6",
+      "fbmp_export": {
+        "id": "EB-XML",
+        "filename": "End Bent 1_Fixed.XML",
+        "sha256": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
+        "matches_register": true
+      },
+      "check_register": {
+        "checks": 26,
+        "status_counts": {
+          "INFO": 5,
+          "PASS": 6,
+          "PASS · PENDING INPUT": 6,
+          "PENDING": 9
+        },
+        "PASS": 12,
+        "PASS_with_pending_input": 6,
+        "PENDING": 9,
+        "INFO": 5,
+        "FAIL": 0,
+        "pending_items": 15,
+        "pending_check_labels": [
+          "Axial compression · maximum Pu / φPn,max",
+          "Axial + biaxial flexure · LRFD Eq. 5.6.4.5-3",
+          "Axial + flexure · resultant bending axis (strain compatibility)",
+          "Shear · general procedure",
+          "Service I concrete tension",
+          "Minimum square pile size (Table 3.5.1-1)",
+          "Pile-to-cap moment transfer (embedment below 48 in)",
+          "Pile Data Table completeness (SDM 11.4)",
+          "Environment classification",
+          "Pile-to-cap connection (12 in embedment)",
+          "Downdrag source documented",
+          "FBMP export current",
+          "Minimum tip elevation",
+          "Scour resistance and elevations",
+          "Drivability"
+        ],
+        "other_pending_checks": [
+          "Pile-to-cap moment transfer (embedment below 48 in)",
+          "Pile Data Table completeness (SDM 11.4)"
+        ],
+        "unconfirmed_prerequisites": [
+          "exposure",
+          "head_connection",
+          "downdrag_source",
+          "analysis_current",
+          "min_tip",
+          "scour",
+          "drivability"
+        ],
+        "strength_dc": 0.550301,
+        "max_ratio": 1.0,
+        "status_text": "All numerical checks pass (largest ratio 1.00) · 15 pending item(s) remain",
+        "NBR_tons": 89.92,
+        "FDL_tons": 49.44
+      },
+      "pile_data_table_row": {
+        "Pier / Bent": "End Bent 1",
+        "Pile Size & Type": "18\" Sq. Prestr. Conc.",
+        "Nominal Bearing Resistance (tons)": 90,
+        "Tension Resistance (tons)": "N/A",
+        "Minimum Tip Elevation (ft)": "N/A",
+        "Test Pile Length / Pile Order Length (ft)": "N/A",
+        "Required Jet Elevation (ft)": "N/A",
+        "Required Preform Elevation (ft)": "N/A",
+        "Factored Design Load (tons)": 50,
+        "Downdrag (tons)": 18,
+        "Total Scour Resistance (tons)": "N/A",
+        "Net Scour Resistance (tons)": "N/A",
+        "100-Year Scour Elevation (ft)": "N/A",
+        "Design Scour Elevation (temporary bridges)": "N/A",
+        "Long-Term Scour Elevation (ft)": "N/A",
+        "Resistance Factor": 0.75,
+        "Pile Cut-Off Elevation (ft)": 41.2
+      }
+    },
+    {
+      "support": "End Bent 2",
+      "family": "psc",
+      "case_name": "End Bent 2 piles: 18 in square prestressed concrete, FBMP fixed run",
+      "schema_version": 1,
+      "source_ids": {
+        "report": "PILE-EB2-REPORT",
+        "case": "PILE-EB2-CASE",
+        "fbmp_export": "EB2-XML"
+      },
+      "xml_decision": "D-049",
+      "files": {
+        "report": {
+          "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-22.html",
+          "sha256": "d9d35bba65d29a06a6c3a67a3647c0ea8fecb2a3c9e637339d5fa486b9b7cbd2",
+          "bytes": 15879641
+        },
+        "dated_case": {
+          "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-22.json",
+          "sha256": "1a2b6aa148151df0c869e9cdd4db990d1c1eb7767e88b496480a86b3c204a950",
+          "bytes": 467949
+        },
+        "selected_case": {
+          "path": "project_current/pile_design/end_bent_2/selected_case.json",
+          "sha256": "1a2b6aa148151df0c869e9cdd4db990d1c1eb7767e88b496480a86b3c204a950",
+          "bytes": 467949
+        },
+        "checks_csv": {
+          "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-22 checks.csv",
+          "sha256": "a843962c2b6e867f48564a32e7c7396224f1713f2ebc5c4af1c38c0194adae9d",
+          "bytes": 6152
+        },
+        "data_table_xlsx": {
+          "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Data Table 10-22.xlsx",
+          "sha256": "19c650b506136650f23172df7a8551c52f58d26894862a5555d2dbf4c29b2c3a",
+          "bytes": 11925
+        }
+      },
+      "selected_case_equals_dated_case": true,
+      "case_sha256": "1a2b6aa148151df0c869e9cdd4db990d1c1eb7767e88b496480a86b3c204a950",
+      "fbmp_export": {
+        "id": "EB2-XML",
+        "filename": "End Bent 2_Fixed.XML",
+        "sha256": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
+        "matches_register": true
+      },
+      "check_register": {
+        "checks": 26,
+        "status_counts": {
+          "INFO": 5,
+          "PASS": 6,
+          "PASS · PENDING INPUT": 6,
+          "PENDING": 9
+        },
+        "PASS": 12,
+        "PASS_with_pending_input": 6,
+        "PENDING": 9,
+        "INFO": 5,
+        "FAIL": 0,
+        "pending_items": 15,
+        "pending_check_labels": [
+          "Axial compression · maximum Pu / φPn,max",
+          "Axial + biaxial flexure · LRFD Eq. 5.6.4.5-3",
+          "Axial + flexure · resultant bending axis (strain compatibility)",
+          "Shear · general procedure",
+          "Service I concrete tension",
+          "Minimum square pile size (Table 3.5.1-1)",
+          "Pile-to-cap moment transfer (embedment below 48 in)",
+          "Pile Data Table completeness (SDM 11.4)",
+          "Environment classification",
+          "Pile-to-cap connection (12 in embedment)",
+          "Downdrag source documented",
+          "FBMP export current",
+          "Minimum tip elevation",
+          "Scour resistance and elevations",
+          "Drivability"
+        ],
+        "other_pending_checks": [
+          "Pile-to-cap moment transfer (embedment below 48 in)",
+          "Pile Data Table completeness (SDM 11.4)"
+        ],
+        "unconfirmed_prerequisites": [
+          "exposure",
+          "head_connection",
+          "downdrag_source",
+          "analysis_current",
+          "min_tip",
+          "scour",
+          "drivability"
+        ],
+        "strength_dc": 0.556838,
+        "max_ratio": 1.0,
+        "status_text": "All numerical checks pass (largest ratio 1.00) · 15 pending item(s) remain",
+        "NBR_tons": 89.74,
+        "FDL_tons": 49.305
+      },
+      "pile_data_table_row": {
+        "Pier / Bent": "End Bent 2",
+        "Pile Size & Type": "18\" Sq. Prestr. Conc.",
+        "Nominal Bearing Resistance (tons)": 90,
+        "Tension Resistance (tons)": "N/A",
+        "Minimum Tip Elevation (ft)": "N/A",
+        "Test Pile Length / Pile Order Length (ft)": "N/A",
+        "Required Jet Elevation (ft)": "N/A",
+        "Required Preform Elevation (ft)": "N/A",
+        "Factored Design Load (tons)": 50,
+        "Downdrag (tons)": 18,
+        "Total Scour Resistance (tons)": "N/A",
+        "Net Scour Resistance (tons)": "N/A",
+        "100-Year Scour Elevation (ft)": "N/A",
+        "Design Scour Elevation (temporary bridges)": "N/A",
+        "Long-Term Scour Elevation (ft)": "N/A",
+        "Resistance Factor": 0.75,
+        "Pile Cut-Off Elevation (ft)": 41.3
+      }
+    },
+    {
+      "support": "Pier",
+      "family": "pipe",
+      "case_name": "Pier piles: 20 in steel pipe, FBMP fixed run",
+      "schema_version": 1,
+      "source_ids": {
+        "report": "PILE-PIER-REPORT",
+        "case": "PILE-PIER-CASE",
+        "fbmp_export": "PIER-XML"
+      },
+      "xml_decision": "D-077",
+      "files": {
+        "report": {
+          "path": "project_current/pile_design/pier/Pier Pile Design 10-22.html",
+          "sha256": "775438ad6c4325592e2bf81d32c2be974da31288a107e881f976d55fb5034b86",
+          "bytes": 15077122
+        },
+        "dated_case": {
+          "path": "project_current/pile_design/pier/Pier Pile Design 10-22.json",
+          "sha256": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
+          "bytes": 540381
+        },
+        "selected_case": {
+          "path": "project_current/pile_design/pier/selected_case.json",
+          "sha256": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
+          "bytes": 540381
+        },
+        "checks_csv": {
+          "path": "project_current/pile_design/pier/Pier Pile Design 10-22 checks.csv",
+          "sha256": "59047d020332948131d71a9a00e9bb9aa9690ca7a0dab17b1f9e7cd43f1f23bb",
+          "bytes": 4819
+        },
+        "data_table_xlsx": {
+          "path": "project_current/pile_design/pier/Pier Pile Data Table 10-22.xlsx",
+          "sha256": "9192e04a999574665112d5bf7acb8e3604a5f59f8deb9e81ac8033014af2e45e",
+          "bytes": 12063
+        }
+      },
+      "selected_case_equals_dated_case": true,
+      "case_sha256": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
+      "fbmp_export": {
+        "id": "PIER-XML",
+        "filename": "Pier_Fixed.XML",
+        "sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+        "matches_register": true
+      },
+      "check_register": {
+        "checks": 22,
+        "status_counts": {
+          "CONFIRMED": 1,
+          "INFO": 5,
+          "PASS": 5,
+          "PASS · PENDING INPUT": 2,
+          "PENDING": 9
+        },
+        "PASS": 7,
+        "PASS_with_pending_input": 2,
+        "PENDING": 9,
+        "INFO": 5,
+        "FAIL": 0,
+        "pending_items": 11,
+        "pending_check_labels": [
+          "Local buckling class · nonslender (D/t vs 0.11 E/Fy)",
+          "Tension · maximum strength uplift",
+          "Pile Data Table completeness (SDM 11.4)",
+          "Corrosion allowance",
+          "Environment classification",
+          "Pile-to-cap connection (12 in embedment)",
+          "Downdrag source documented",
+          "FBMP export current",
+          "Minimum tip elevation",
+          "Scour resistance and elevations",
+          "Drivability"
+        ],
+        "other_pending_checks": [
+          "Pile Data Table completeness (SDM 11.4)"
+        ],
+        "unconfirmed_prerequisites": [
+          "exposure",
+          "head_connection",
+          "corrosion",
+          "downdrag_source",
+          "analysis_current",
+          "min_tip",
+          "scour",
+          "drivability"
+        ],
+        "strength_dc": 0.464288,
+        "max_ratio": 1.0,
+        "status_text": "All numerical checks pass (largest ratio 1.00) · 11 pending item(s) remain",
+        "NBR_tons": 150.7067,
+        "FDL_tons": 113.03
+      },
+      "pile_data_table_row": {
+        "Pier / Bent": "Pier",
+        "Pile Size & Type": "20\" Ø Pipe",
+        "Nominal Bearing Resistance (tons)": 151,
+        "Tension Resistance (tons)": "N/A",
+        "Minimum Tip Elevation (ft)": "N/A",
+        "Test Pile Length / Pile Order Length (ft)": "N/A",
+        "Required Jet Elevation (ft)": "N/A",
+        "Required Preform Elevation (ft)": "N/A",
+        "Factored Design Load (tons)": 114,
+        "Downdrag (tons)": "N/A",
+        "Total Scour Resistance (tons)": "N/A",
+        "Net Scour Resistance (tons)": "N/A",
+        "100-Year Scour Elevation (ft)": "N/A",
+        "Design Scour Elevation (temporary bridges)": "N/A",
+        "Long-Term Scour Elevation (ft)": "N/A",
+        "Resistance Factor": 0.75,
+        "Pile Cut-Off Elevation (ft)": 41.8
+      }
+    }
+  ],
+  "register_rows": [
+    "PILE-EB1-REPORT",
+    "PILE-EB1-CASE",
+    "PILE-EB2-REPORT",
+    "PILE-EB2-CASE",
+    "PILE-PIER-REPORT",
+    "PILE-PIER-CASE"
+  ],
+  "limitations": "Notebook package run and export only. The numerical checks are the notebook's; the pending items (downdrag source documentation, pile-to-cap connection, pipe steel grade and corrosion, minimum tip, scour, drivability, environment classification, FBMP export currency) remain open. FB-MultiPier was not rerun. Selection is not engineering acceptance."
+}

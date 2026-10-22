@@ -1,0 +1,390 @@
+{
+  "date": "2026-10-22",
+  "decision": "D-077",
+  "authorization": "User supplied the rerun Pier_Fixed.XML on 22 October 2026 (Here we go updated fbmp run) after finding that the pier wall extra members had followed the soil elevation changes.",
+  "scope": "Pier fixed-run export only; the pier wall extra members now end at the soil surface (pile point 11) instead of pile point 13; all other inputs identical to the 21 October export.",
+  "register_row": {
+    "source_id": "PIER-XML",
+    "topic": "Pier FBMP fixed results",
+    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+    "status": "Current source - cap report and case matched",
+    "scope": "Exact fixed-run analysis export used by the current cap report and saved case",
+    "sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+    "registered_on": "2026-10-22",
+    "depends_on": "",
+    "origin": "User-supplied Pier_Fixed.XML, 21 October 2026",
+    "notes": "D-077 (22 October 2026). User-supplied rerun of the fixed pier model after the user found that the pier wall extra members had followed the soil elevation changes: the four vertical 36 x 60 in wall members now span pile points 2 to 11 (EL 40.20 to the soil surface EL 26.05, 169.8 in) instead of points 2 to 13 (EL 19.72); every other input (nodal and bearing loads, geometry, pile section and material, soil, the four load combinations, the thirty ties) is identical. Wall self-weight in the model 127.3 kip service (31.83 kip per member) in place of 184.4 kip; the CAD wall is 133.4 kip. Cap envelope moves slightly (max M3 365.84 to 361.01 kip-ft, max V2 218.96 to 220.46 kip) and the pile demands follow. The 21 October export is archived under fbmp/pier/archive/2026-10-22/. D-073 (21 October 2026). User-supplied rerun of the fixed pier model: the pipe pile material is ASTM A252 Grade 3, Fy 45 ksi, in place of the 60 ksi of the 19 October export; nodal loads, geometry, pile section, soil and load combinations are unchanged, the cap member forces differ only by solver noise below 1e-7 kip, and the pile failure ratios, the interaction diagram and the output summary follow the 45 ksi material. Exact supplied bytes; the 19 October export is archived under fbmp/pier/archive/2026-10-19/. The pier cap case and the pier pile case are rerun from this export the same day (D-073). See coherence/evidence/2026-10-21-fbmp/source_receipt.json. D-049 supplied bytes retained. D-051 recalculated the cap and exported a matching report/case. Native run records, pile-head review and any other downstream calculations retain their separate status. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
+    "hash_basis": "exact_bytes"
+  },
+  "supplied_path": "C:\\Users\\joshs\\Downloads\\Pier_Fixed.XML",
+  "file": {
+    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+    "sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+    "bytes": 2069966,
+    "project": "D2 I95 MPDB",
+    "software_version": "6.1.0",
+    "project_date": "05/13/26",
+    "units": "English",
+    "analysis": "Static",
+    "load_combinations": [
+      {
+        "number": "1",
+        "limitstate": "STRENGTH-I"
+      },
+      {
+        "number": "2",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "3",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "4",
+        "limitstate": "SERVICE-I"
+      }
+    ],
+    "pier_node_count": 40,
+    "pier_node_z_in": [
+      -501.26
+    ],
+    "pile_material_props_ksi": {
+      "FPC": "0.00000",
+      "E_CONCRETE": "0.00000",
+      "FY_MILD": "0.00000",
+      "E_STEEL": "0.00000",
+      "FY_PS": "0.00000",
+      "E_PS": "0.00000",
+      "FY_HPILE": "60.00",
+      "E_HPILE": "29000.00",
+      "FY_SHELL": "45.00",
+      "E_SHELL": "29000.00"
+    }
+  },
+  "archived_previous": {
+    "path": "project_current/fbmp/pier/archive/2026-10-22/Pier_Fixed.XML",
+    "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "bytes": 2069987,
+    "project": "D2 I95 MPDB",
+    "software_version": "6.1.0",
+    "project_date": "05/13/26",
+    "units": "English",
+    "analysis": "Static",
+    "load_combinations": [
+      {
+        "number": "1",
+        "limitstate": "STRENGTH-I"
+      },
+      {
+        "number": "2",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "3",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "4",
+        "limitstate": "SERVICE-I"
+      }
+    ],
+    "pier_node_count": 40,
+    "pier_node_z_in": [
+      -501.26
+    ],
+    "pile_material_props_ksi": {
+      "FPC": "0.00000",
+      "E_CONCRETE": "0.00000",
+      "FY_MILD": "0.00000",
+      "E_STEEL": "0.00000",
+      "FY_PS": "0.00000",
+      "E_PS": "0.00000",
+      "FY_HPILE": "60.00",
+      "E_HPILE": "29000.00",
+      "FY_SHELL": "45.00",
+      "E_SHELL": "29000.00"
+    }
+  },
+  "comparison_with_previous": {
+    "elements_with_text": {
+      "previous": 32516,
+      "current": 32516
+    },
+    "only_in_previous": 0,
+    "only_in_current": 0,
+    "changed": 18479,
+    "changed_by_section": {
+      "MODEL_INFO#4/SUBSTRUCTURE/LOAD_CASE_RESULTS": 18427,
+      "MODEL_INFO#6/SUBSTRUCTURE/OUTPUT_SUMMARY": 52
+    },
+    "changed_by_leaf_tag": {
+      "X-PM": {
+        "count": 4,
+        "largest_abs_change": 0.7,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=1][@number=8]/TIME_STEP[@number=1]/P_MULTIPLIERS/PILE[@number=1]/X-PM",
+          "before": "0.30",
+          "after": "1.00"
+        }
+      },
+      "DX": {
+        "count": 640,
+        "largest_abs_change": 0.03,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_DISPLACEMENTS/PILE[@number=1]/NODE[@node_number=55][@number=12]/DX",
+          "before": "0.22",
+          "after": "0.25"
+        }
+      },
+      "DY": {
+        "count": 670,
+        "largest_abs_change": 0.8599999999999999,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/STRUCTURE_DISPLACEMENTS/NODE[@node_number=44]/DY",
+          "before": "1.69",
+          "after": "2.55"
+        }
+      },
+      "DZ": {
+        "count": 670,
+        "largest_abs_change": 0.07,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_DISPLACEMENTS/PILE[@number=4]/NODE[@node_number=161][@number=16]/DZ",
+          "before": "0.33",
+          "after": "0.26"
+        }
+      },
+      "RX": {
+        "count": 695,
+        "largest_abs_change": 0.0034974000000000003,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_DISPLACEMENTS/PILE[@number=4]/NODE[@node_number=150][@number=5]/RX",
+          "before": "0.50769E-02",
+          "after": "0.85743E-02"
+        }
+      },
+      "RY": {
+        "count": 710,
+        "largest_abs_change": 0.0004808000000000002,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_DISPLACEMENTS/PILE[@number=4]/NODE[@node_number=157][@number=12]/RY",
+          "before": "-0.16859E-02",
+          "after": "-0.21667E-02"
+        }
+      },
+      "RZ": {
+        "count": 712,
+        "largest_abs_change": 0.00034999,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_DISPLACEMENTS/PILE[@number=4]/NODE[@node_number=148][@number=3]/RZ",
+          "before": "0.55506E-03",
+          "after": "0.90505E-03"
+        }
+      },
+      "ITEM_VALUE": {
+        "count": 54,
+        "largest_abs_change": 71.47999999999999,
+        "example": {
+          "path": "MODEL_INFO#6/SUBSTRUCTURE[@number=1]/OUTPUT_SUMMARY/PILE_MAX/MAX_ITEM#7/ITEM_VALUE",
+          "before": "19.46",
+          "after": "90.94"
+        }
+      },
+      "PILE": {
+        "count": 12,
+        "largest_abs_change": 3.0,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=1][@number=8]/TIME_STEP[@number=1]/PILE_STRAINS/MAX_ITEM#11/PILE",
+          "before": "4",
+          "after": "1"
+        }
+      },
+      "FZ": {
+        "count": 400,
+        "largest_abs_change": 7.259999999999998,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=4]/NODE[@node_number=180][@number=35]/FZ",
+          "before": "47.76",
+          "after": "40.50"
+        }
+      },
+      "MZ": {
+        "count": 390,
+        "largest_abs_change": 0.30999999999999983,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=3]/NODE[@node_number=123][@number=12]/MZ",
+          "before": "1.07",
+          "after": "1.38"
+        }
+      },
+      "FX": {
+        "count": 351,
+        "largest_abs_change": 1.3100000000000005,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=3][@number=10]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=4]/NODE[@node_number=160][@number=15]/FX",
+          "before": "4.57",
+          "after": "3.26"
+        }
+      },
+      "FY": {
+        "count": 313,
+        "largest_abs_change": 0.5800000000000001,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=4]/NODE[@node_number=163][@number=18]/FY",
+          "before": "-3.51",
+          "after": "-4.09"
+        }
+      },
+      "CUMULATIVE_TOP_TO_BOTTOM": {
+        "count": 400,
+        "largest_abs_change": 26.639999999999986,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=1][@number=8]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=4]/DOWNDRAG_CURVES/NODE[@node_number=180]/CUMULATIVE_TOP_TO_BOTTOM",
+          "before": "386.59",
+          "after": "359.95"
+        }
+      },
+      "CUMULATIVE_BOTTOM_TO_TOP_0_TIP": {
+        "count": 400,
+        "largest_abs_change": 21.230000000000018,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=3]/DOWNDRAG_CURVES/NODE[@node_number=122]/CUMULATIVE_BOTTOM_TO_TOP_0_TIP",
+          "before": "222.05",
+          "after": "200.82"
+        }
+      },
+      "CUMULATIVE_BOTTOM_TO_TOP_25_TIP": {
+        "count": 400,
+        "largest_abs_change": 22.50999999999999,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=3]/DOWNDRAG_CURVES/NODE[@node_number=122]/CUMULATIVE_BOTTOM_TO_TOP_25_TIP",
+          "before": "228.51",
+          "after": "206.00"
+        }
+      },
+      "CUMULATIVE_BOTTOM_TO_TOP_50_TIP": {
+        "count": 400,
+        "largest_abs_change": 23.78,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=3]/DOWNDRAG_CURVES/NODE[@node_number=122]/CUMULATIVE_BOTTOM_TO_TOP_50_TIP",
+          "before": "234.97",
+          "after": "211.19"
+        }
+      },
+      "CUMULATIVE_BOTTOM_TO_TOP_75_TIP": {
+        "count": 400,
+        "largest_abs_change": 25.05000000000001,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=3]/DOWNDRAG_CURVES/NODE[@node_number=122]/CUMULATIVE_BOTTOM_TO_TOP_75_TIP",
+          "before": "241.43",
+          "after": "216.38"
+        }
+      },
+      "CUMULATIVE_BOTTOM_TO_TOP_100_TIP": {
+        "count": 400,
+        "largest_abs_change": 26.329999999999984,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/SOIL_REACTION_FORCES/PILE[@number=3]/DOWNDRAG_CURVES/NODE[@node_number=122]/CUMULATIVE_BOTTOM_TO_TOP_100_TIP",
+          "before": "247.89",
+          "after": "221.56"
+        }
+      },
+      "AXIAL": {
+        "count": 1628,
+        "largest_abs_change": 222.64,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_INTERNAL_FORCES/PILE[@number=4]/ELEMENT[@number=11]/PILE_ELEMENT_I_END/AXIAL",
+          "before": "-28.84",
+          "after": "-251.48"
+        }
+      },
+      "SHEAR-2": {
+        "count": 1577,
+        "largest_abs_change": 15.599999999999998,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/STRUCTURE_INTERNAL_FORCES/PIER_CAP/ELEMENT[@number=77]/STRUCTURE_ELEMENT_J_END/SHEAR-2",
+          "before": "4.39",
+          "after": "19.99"
+        }
+      },
+      "SHEAR-3": {
+        "count": 1500,
+        "largest_abs_change": 11.1,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_INTERNAL_FORCES/PILE[@number=1]/ELEMENT[@number=11]/PILE_ELEMENT_I_END/SHEAR-3",
+          "before": "-2.52",
+          "after": "-13.62"
+        }
+      },
+      "MOMENT-3": {
+        "count": 1579,
+        "largest_abs_change": 81.39,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=3][@number=10]/TIME_STEP[@number=1]/STRUCTURE_INTERNAL_FORCES/PIER_CAP/ELEMENT[@number=73]/STRUCTURE_ELEMENT_I_END/MOMENT-3",
+          "before": "-42.72",
+          "after": "38.67"
+        }
+      },
+      "TORQUE": {
+        "count": 1440,
+        "largest_abs_change": 9.6,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_INTERNAL_FORCES/PILE[@number=1]/ELEMENT[@number=11]/PILE_ELEMENT_I_END/TORQUE",
+          "before": "-0.14",
+          "after": "-9.74"
+        }
+      },
+      "MOMENT-2": {
+        "count": 1452,
+        "largest_abs_change": 186.95,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_INTERNAL_FORCES/PILE[@number=1]/ELEMENT[@number=12]/PILE_ELEMENT_J_END/MOMENT-2",
+          "before": "1.42",
+          "after": "-185.53"
+        }
+      },
+      "FAILURE-RATIO": {
+        "count": 1276,
+        "largest_abs_change": 0.44000000000000006,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/STRUCTURE_INTERNAL_FORCES/PIER_CAP/ELEMENT[@number=77]/STRUCTURE_ELEMENT_I_END/FAILURE-RATIO",
+          "before": "0.12",
+          "after": "0.56"
+        }
+      },
+      "LOAD_CASE": {
+        "count": 3,
+        "largest_abs_change": 1.0,
+        "example": {
+          "path": "MODEL_INFO#6/SUBSTRUCTURE[@number=1]/OUTPUT_SUMMARY/PILE_MAX/MAX_ITEM/LOAD_CASE",
+          "before": "9",
+          "after": "10"
+        }
+      },
+      "COMBINATION": {
+        "count": 3,
+        "largest_abs_change": 1.0,
+        "example": {
+          "path": "MODEL_INFO#6/SUBSTRUCTURE[@number=1]/OUTPUT_SUMMARY/PILE_MAX/MAX_ITEM/COMBINATION",
+          "before": "2",
+          "after": "3"
+        }
+      }
+    }
+  },
+  "direct_consumers": [
+    "JOURNAL",
+    "PIER-CASE",
+    "PIER-REPORT",
+    "PILE-PIER-CASE",
+    "PILE-PIER-REPORT",
+    "PILE-TOOL"
+  ],
+  "downstream_disposition": "Pier cap case and pier pile case rerun from this export (D-077); cap and pile editions rebuilt; journal task T036; A-012 re-judged.",
+  "verification": {
+    "exact_supplied_bytes": true,
+    "registered_sha256_matches_file": true,
+    "archived_bytes_present": true,
+    "native_recalculation_performed": false
+  }
+}

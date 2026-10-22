@@ -103,7 +103,7 @@ class CurrentJournalTests(unittest.TestCase):
             material = self.values['journal.' + name + '.fc']
             self.assertEqual(material['inputs'][0]['value_id'], 'journal.Materials.Substructure_fc')
             self.assertEqual(material['origins']['JOURNAL-CALC-' + name]['kind'], 'received')
-        self.assertEqual(self.values['journal.CapDesignPier.Mu_N']['value'], 39.12)
+        self.assertEqual(self.values['journal.CapDesignPier.Mu_N']['value'], 40.32)   # D-077 export (39.12 before 22 October 2026)
         self.assertEqual(self.values['journal.CapDesignPier.Mu_N']['origins']['JOURNAL-CALC-CapDesignPier']['kind'], 'defined')
         self.assertNotIn('PIER-REPORT', self.values['journal.CapDesignPier.Mu_N']['node_ids'])
 

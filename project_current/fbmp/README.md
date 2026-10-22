@@ -1,15 +1,40 @@
 # Current FBMP analysis sources
 
-The pier fixed-run export supplied on **21 October 2026** is selected under D-073;
+The pier fixed-run export supplied on **22 October 2026** is selected under D-077;
 the two end-bent fixed exports supplied on **19 October 2026** remain selected under
 D-049. All are preserved byte-for-byte. The two minimum-tip variants remain the
 10 October sources.
 
 | Component | Current fixed export | Minimum-tip export | Selected cap-report relationship |
 | --- | --- | --- | --- |
-| Pier | [Pier_Fixed.XML](pier/Pier_Fixed.XML) (21 October, D-073) | [Pier_MinTip.XML](pier/Pier_MinTip.XML) | Exact match to the 21 October report and saved case |
+| Pier | [Pier_Fixed.XML](pier/Pier_Fixed.XML) (22 October, D-077) | [Pier_MinTip.XML](pier/Pier_MinTip.XML) | Exact match to the 22 October report and saved case |
 | End Bent 1 | [End Bent 1_Fixed.XML](end_bents/End%20Bent%201_Fixed.XML) | [End Bent 1_Min_tip.XML](end_bents/End%20Bent%201_Min_tip.XML) | Exact match to the 19 October report and saved case |
 | End Bent 2 | [End Bent 2_Fixed.XML](end_bents/End%20Bent%202_Fixed.XML) | Not supplied | Exact match to the 19 October report and saved case |
+
+## 22 October pier rerun (D-077)
+
+The 22 October pier export corrects the pier wall extra members, which had
+followed earlier soil elevation changes. The four vertical 36 x 60 in wall
+members between the pile nodes now span pile points 2 to 11 (EL 40.20 to the
+soil surface EL 26.05, 169.8 in, 127.3 kip in all) in place of points 2 to 13
+(EL 19.72, 245.8 in, 184.4 kip). Every other input is identical to the
+21 October export: nodal and bearing loads, geometry, pile section and material,
+soil, the four load combinations and the thirty weightless ties. Against the
+CAD pier wall of D-075 (219 x 36 in, EL 24.53 to 40.76, 133.4 kip) the model
+wall is 6.1 kip lighter.
+
+The pier cap case was rerun with `scripts/apply_fbmp_to_cap_case.py` (nine force
+inputs moved, the largest Mu_B 365.84 to 361.01 kip-ft and Vu 218.96 to
+220.46 kip; 62 ratios changed; no status changed) and the three pile cases with
+`scripts/export_project_pile_reports.py` (pier demands follow the export,
+structural D/C 0.464 governing below the wall at pile element 11; the End Bent
+cases were re-exported with identical checks for package currency). See the
+[22 October receipt](../coherence/evidence/2026-10-22-fbmp/source_receipt.json),
+the [cap rerun receipt](../coherence/evidence/2026-10-22-cap-rerun/source_receipt.json)
+and the [pile export receipt](../coherence/evidence/2026-10-22-pile-reports/source_receipt.json).
+The 21 October pier export is retained in the
+[pier archive](pier/archive/2026-10-22/Pier_Fixed.XML). The pile-head
+comparison below still holds: the node coordinates are unchanged.
 
 ## 21 October pier rerun (D-073)
 

@@ -1,0 +1,87 @@
+{
+  "task": "T036",
+  "base_sha256": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+  "decision": "D-077",
+  "pier_xml_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+  "pier_cap_report_sha256": "c2b0bdb79ee06b2a577da57663533b8019246cf15db3b8f6665359778ef5f612",
+  "pier_pile_report_sha256": "ef4a2c0cd40763281f54464ed9e42315f9e4e60d27e39656495aee7c2048248b",
+  "cap_inputs_changed": {
+    "Mu_N": {
+      "before": 39.12,
+      "after": 40.32
+    },
+    "Mu_P": {
+      "before": 158.98,
+      "after": 152.68
+    },
+    "Mu_B": {
+      "before": 365.84,
+      "after": 361.01
+    },
+    "Vu_G": {
+      "before": 218.96,
+      "after": 220.46
+    },
+    "Vu_L": {
+      "before": 218.96,
+      "after": 220.46
+    },
+    "Tu": {
+      "before": 26.55,
+      "after": 26.15
+    },
+    "MI_N": {
+      "before": 21.91,
+      "after": 26.31
+    },
+    "MI_P": {
+      "before": 121.97,
+      "after": 118.04
+    },
+    "MI_B": {
+      "before": 312.22,
+      "after": 309.28
+    }
+  },
+  "components": {
+    "CapDesignPier": {
+      "source": "cap_bpad/journal/CapDesignPier.xml",
+      "fragment_sha256": "de32e1e40244fd0266ed4a47137cb5e8282047adbe15ca469176386ecca0e738",
+      "fbmp_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+      "status": "✓ All Checks Pass",
+      "definitions": 527,
+      "definitions_with_changed_formula_or_cache": 128,
+      "canvases_unchanged": false
+    },
+    "PileDesignPier": {
+      "source": "pile_bpad/journal/PileDesignPier.xml",
+      "fragment_sha256": "b18e24e92d43748731ae0c039d3a9003f9ac7a6ae9a0191484734d4a3f276eb9",
+      "fbmp_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+      "status": "✓ All Checks Pass",
+      "definitions": 133,
+      "definitions_with_changed_formula_or_cache": 35,
+      "canvases_unchanged": true
+    },
+    "FBMPPier": {
+      "source": "base.bpad + geometry source, report and XML identities, resolved note"
+    },
+    "FoundationModeling": {
+      "source": "base.bpad + heading and current-model paragraph"
+    },
+    "BridgeGeometry_2Beam": {
+      "source": "base.bpad + two sentences (pier export, pier cap report); no value, cache or figure changed"
+    },
+    "PedBridge": {
+      "source": "base.bpad + revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

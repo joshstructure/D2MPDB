@@ -1,5 +1,5 @@
 {
- "note": "Hashes copied from project_current/source_register.csv (D-049, 2026-10-19; PIER-XML re-registered under D-073, 2026-10-21). Never hard-code another value; rerun the generator after a re-registration.",
+ "note": "Hashes copied from project_current/source_register.csv (D-049, 2026-10-19; PIER-XML re-registered under D-073, 2026-10-21, and D-077, 2026-10-22). Never hard-code another value; rerun the generator after a re-registration.",
  "sources": {
   "EB-XML": {
    "label": "End Bent 1 FBMP fixed results",
@@ -14,7 +14,7 @@
   "PIER-XML": {
    "label": "Pier FBMP fixed results",
    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
-   "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6"
+   "sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6"
   },
   "EB-MINTIP-XML": {
    "label": "End Bent 1 FBMP minimum-tip results",
@@ -39,7 +39,7 @@
   "PIER-CASE": {
    "label": "Pier saved cap case",
    "path": "project_current/cap_design/pier/selected_case.json",
-   "sha256": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5"
+   "sha256": "926886b5efc310be979c065b2016aa445fd19c9987356cb3158ea4980c981e3a"
   }
  },
  "decisions": [

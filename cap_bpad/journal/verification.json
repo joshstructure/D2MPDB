@@ -168,17 +168,17 @@
     "torsion investigated"
    ],
    "cap": "Pier Cap",
-   "case_sha256": "dd02b3a9d524357113546f0d789e14bb4cb2a54d41d87cf0bb673900686cbad0",
+   "case_sha256": "8b85bf2a1a3e5c91549e233dd55eec77f65c1da0a79c117f78dec7f08cbd2ea7",
    "cells_and_labels": 538,
-   "coverage_comparisons": 571,
-   "coverage_rows_real": 6,
+   "coverage_comparisons": 540,
+   "coverage_rows_real": 5,
    "coverage_rows_synthetic": 12,
    "definitions": 527,
    "fbmp_file": "Pier_Fixed.XML",
-   "fbmp_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+   "fbmp_sha256": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
    "formula_sha256": "327838126d06a4adfa120f825487ffefda868af1977f13e2f098c782ab02dc48",
    "fragment": "cap_bpad/journal/CapDesignPier.xml",
-   "fragment_sha256": "c4505305a7ff2a1b3987e49a8a39afeb87324ceba016c3a92a22f557d262cf37",
+   "fragment_sha256": "de32e1e40244fd0266ed4a47137cb5e8282047adbe15ca469176386ecca0e738",
    "functions": 0,
    "journal_references": 15,
    "literals_kept": [],
@@ -201,20 +201,20 @@
     "Materials.Rebar_fy",
     "Materials.Substructure_fc"
    ],
-   "report_file": "Pier Cap Design 10-21.html",
+   "report_file": "Pier Cap Design 10-22.html",
    "report_name": "CapDesignPier",
    "sheet_comparisons": 288,
    "stations": [
     "R4-1 → R4-2",
-    "R4-3/R4-4 · C1 E16 · x=84.745213 in · top",
+    "R6-3/R6-4 · C1 E28 · x=145.254787 in · top",
     "R6-4/R6-5 · C1 E29 · x=155.000000 in · bottom",
     "R7-1/R7-2 · C1 E31 · x=161.499998 in · bottom",
     "R7-5/R7-6 · C1 E35 · x=188.189893 in · bottom"
    ],
    "status": "✓ All Checks Pass",
-   "tool_comparisons": 859
+   "tool_comparisons": 828
   }
  ],
  "review_document": "cap_bpad/journal/Cap Design - Journal Edition (review).bpad",
- "review_sha256": "47006216ca7ee115a8aa64f73e94e45a7e4d2d0c8737cdda35bbcf80018c04c7"
+ "review_sha256": "403ba92077f9af77c49d95bd4da02440551c4fece315ef8fce8a4e76e14aa4c5"
 }
