@@ -14,10 +14,12 @@ the model's `PierWallSteelInputs` and the twenty `PierWallRing*` solids and
 adds the wall's own projections; the wall bars are the pier's G family
 (5G1 verticals, 5G2 horizontals, 5G3 end U returns, 124 bars) and join the
 bar list. The End Bent 2 sheets are now B4-12 to B4-15 and the bar list
-B4-16. The model still carries the controller's PW- identifiers on the
-wall bars ("drawing SDM marks pending", D-076), so the bar list carries a
-MODEL CHECK note until the marks are written back (D-042 pattern); the
-sheets also carry the model's own open items (the RING-GRID check of the
+B4-16. The model carried the controller's PW- identifiers on the wall
+bars ("drawing SDM marks pending", D-076), so the bar list carried a
+MODEL CHECK note until the marks were written back (D-042 pattern): D-083
+(22 October 2026) wrote 5G1 to 5G3 into the model with `freecad_marks.py`
+and the snapshots were re-extracted, so the note is silent; the sheets
+still carry the model's own open items (the RING-GRID check of the
 selected calculation, the verticals stopping inside the wall).
 
 **Generator 2.7.0 (20 October 2026)** rebuilds both DXFs from the model with
@@ -530,10 +532,13 @@ are not made again:
   (2 OF 3) sheets carry a "MODEL CHECK" note until the model has it; the
   sections draw the cut top level (D14).
 - The pier wall reinforcement and annular ring plates are the model's
-  (D-076 / D-079) and are drawn on sheets B4-9 to B4-11. The model carries
-  the controller's PW- identifiers on the wall bars ("drawing SDM marks
-  pending"), so the bar list has a MODEL CHECK note until `freecad_marks.py`
-  writes 5G1 to 5G3 into the model (the D-042 / D-060 job pattern). The
+  (D-076 / D-079) and are drawn on sheets B4-9 to B4-11. While the model
+  carried the controller's PW- identifiers on the wall bars ("drawing SDM
+  marks pending") the bar list had a MODEL CHECK note; `freecad_marks.py`
+  wrote 5G1 to 5G3 into the model under D-083 (the D-042 / D-060 job
+  pattern) and the note goes silent once the snapshot shows the model
+  marks (the model's `MarkStatus` says when every wall bar carries its SDM
+  mark; a regenerated bar gets a PW- mark again, so rerun the script). The
   wall verticals stop 3 5/16" below the cap bottom and above the wall
   bottom in the model (no anchorage into the cap), and the selected ring
   calculation's RING-GRID check fails at the 3" placement tolerance; both

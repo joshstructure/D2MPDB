@@ -1,0 +1,108 @@
+{
+  "decision": "D-083",
+  "date": "2026-10-22",
+  "status": "ADOPTED_IN_PROJECT_SOURCE",
+  "model_sha256": "1ccba7cd720f894052fefc2b12657fc6efbb63dee55ef692a3b90c27b8e5daef",
+  "previous_model_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+  "scope": "Write the FDOT SDM 4.3 bar marks of the D-076 pier wall reinforcement into the Mark property of its 124 native rebars (controller identifiers PW-<id> to 5G1 for the 48 face and end-face verticals, 5G2 for the 38 horizontals and 5G3 for the 38 end U returns), into their schedule, and record on PierWallSteelInputs that the drawing marks are written; the pier uses G for the wall as the end bent and pier DXF (generator 2.8.0) lists it.",
+  "convention": "SDM January 2026 4.3.C-E and 4.3.10.B as D-042 and D-060. End bents: A cap longitudinal, B cap stirrups/hoops, C cap U-bars between piles, D backwall, E cheek walls, F pedestals. Pier: A, B, C as above, D cap end U-bars, E cheek walls (D-059/D-060), F pedestals, G pier wall (D-076).",
+  "mark_source": "substructure_drawings/output/bar_mark_register.csv (copied here as sdm-bar-marks.csv), generated from model 224de267 with the FDOT end bent and pier DXF (generator 2.8.0, sheets B4-9 to B4-11); drawings and model share one mapping.",
+  "marks_by_support": {
+    "END BENT 1": {
+      "4D2": 10,
+      "4E1": 10,
+      "4E2": 6,
+      "4E3": 6,
+      "4E4": 10,
+      "4F1": 16,
+      "4F2": 10,
+      "5C": 9,
+      "5D1": 44,
+      "6A1": 5,
+      "6A3": 8,
+      "6B1": 20,
+      "6B2": 16,
+      "8A2": 4
+    },
+    "PIER": {
+      "4E1": 12,
+      "4E2": 12,
+      "4F1": 16,
+      "4F2": 16,
+      "5B1": 24,
+      "5B2": 24,
+      "5C": 15,
+      "5D1": 4,
+      "5D2": 6,
+      "5G1": 48,
+      "5G2": 38,
+      "5G3": 38,
+      "6A1": 5,
+      "6A3": 8,
+      "9A2": 4
+    },
+    "END BENT 2": {
+      "4D2": 10,
+      "4E1": 10,
+      "4E2": 8,
+      "4E3": 6,
+      "4E4": 8,
+      "4F1": 16,
+      "4F2": 10,
+      "5C": 9,
+      "5D1": 44,
+      "6A1": 5,
+      "6A3": 8,
+      "6B1": 20,
+      "6B2": 16,
+      "8A2": 4
+    }
+  },
+  "pier_wall_marks": {
+    "5G1": 48,
+    "5G2": 38,
+    "5G3": 38
+  },
+  "mark_changes": {
+    "PW-E* -> 5G3": 38,
+    "PW-E* -> 5G1": 8,
+    "PW-F* -> 5G2": 38,
+    "PW-F* -> 5G1": 40
+  },
+  "mark_status": {
+    "object": "PierWallSteelInputs",
+    "old": "PW identifiers are CAD instance identifiers; drawing SDM marks pending",
+    "new": "SDM drawing marks written from the DXF bar-mark register (substructure_drawings/freecad_marks.py); PW- identifiers remain the bar object names"
+  },
+  "changed": {
+    "mark_properties": 124,
+    "schedule_cells": 124,
+    "schedule_sheets": [
+      "PierWallSteelSchedule"
+    ],
+    "schedule_json_mark_fields": 0,
+    "mark_status_strings": 1
+  },
+  "unchanged": "Every other bar mark (494), the lug WWR wire designations (180), labels, geometry, placements, expressions, dependencies, controllers, quantities, check statuses and all other property values; all view records and other archive members.",
+  "verification": "Cold-opened the prior archive and the delivery in FreeCAD 1.1.3 with the pinned controllers. Compared native shape hashes, placements, expressions, dependencies, labels, controller types, check statuses and every other readable property value of all 2464 objects. No recompute or save.",
+  "source_preservation": "Native FreeCAD change on a disposable copy; delivery edits only the mark values, the schedule cell text and the pier wall MarkStatus string in the registered archive (as the D-042 and D-060 jobs). All other object, view and resource bytes kept.",
+  "limitations": "Naming only: no geometry, reinforcement, quantity, calculation input, journal or tracker change. The PW- identifiers remain the bar object names and labels; the controller gives any newly regenerated bar a PW- mark again, so rerun substructure_drawings/freecad_marks.py after a pier wall regeneration. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain.",
+  "regeneration_note": "The pier_wall_rings controller gives a bar it creates the PW-<id> mark (existing bars keep their Mark through a regeneration; the schedule is rewritten from the bars). After a regeneration, rebuild the DXF snapshot and rerun substructure_drawings/freecad_marks.py; its MarkStatus string says when every wall bar carries its SDM mark.",
+  "downstream_review": "Naming only. The substructure DXF and model plan snapshots are re-extracted from this model so their registers record the model marks and the bar list MODEL CHECK note about the PW- identifiers goes silent. The D-076 follow-ups (RING-GRID tolerance, calculation reconciliation, drawing exports, fabrication and engineering acceptance) remain open.",
+  "tracker_sha256": "a41ceabda4591d478def85249d3ede63b9faf67e12b4a91916cde44197c95da7",
+  "tracker_disposition": "Byte-identical; existing statuses, responses and outstanding findings retained.",
+  "journal_sha256": "0c505b2c1db96828e4f637c321045b0a655e80aa2010ade8c6042c43be66c3ff",
+  "journal_disposition": "Byte-identical; no journal change.",
+  "backups": [
+    "archive/B4-before-sdm-bar-marks-pier-wall-20261022.FCStd",
+    "archive/B4-before-sdm-bar-marks-pier-wall-record-20261022.zip"
+  ],
+  "job": "CAD_AI/reports/sdm-bar-marks-pier-wall-20261022 (native_update.py, prepare_delivery.py, verify_native.py, finalize_delivery.py; copied here)",
+  "assumptions_rejudged": [
+    "A-002",
+    "A-007",
+    "A-010",
+    "A-012",
+    "A-013"
+  ]
+}

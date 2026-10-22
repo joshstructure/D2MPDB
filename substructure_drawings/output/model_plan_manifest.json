@@ -2,12 +2,12 @@
  "generator": "substructure_drawings.model_plan",
  "version": "1.0.0",
  "dxf": "B4_Model_Plan.dxf",
- "dxf_sha256": "596c6a7906c676726e9af59e554b28586c4c494ba96e3b3017b3d543d0bdbed8",
+ "dxf_sha256": "d1c204fe52dd8337ddd6689216826b3f053512dadccbbf54a4a687110c7e9bba",
  "dxf_flat": "B4_Model_Plan_flat.dxf",
- "dxf_flat_sha256": "5d3a757b7fed4e4adc7f6b5f7f8d9d2a4708a55b94561d8a88c2c0939c37884a",
+ "dxf_flat_sha256": "c732f77aea857935fca4912f49bbaac7b0b253ddaef68f75411357e060f3555b",
  "dimensions_flattened": 0,
- "snapshot_sha256": "bdf7e1a95679b812d0d44807ed810776a9924249f584314b3f59b38690718967",
- "model_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+ "snapshot_sha256": "b80285093a76938a9214473b024c5d98751dd85dee64ccc86d47f7aaf4029e7f",
+ "model_sha256": "1ccba7cd720f894052fefc2b12657fc6efbb63dee55ef692a3b90c27b8e5daef",
  "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the plan frame",
  "frame": {
   "e1": [
@@ -359,7 +359,7 @@
   "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
   "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
   "138 objects chosen, 28 skipped",
-  "projection 58 s (4028 edges)",
-  "total 67 s"
+  "projection 68 s (4028 edges)",
+  "total 75 s"
  ]
 }

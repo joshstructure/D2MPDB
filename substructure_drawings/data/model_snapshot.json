@@ -4,7 +4,7 @@
   "PIER: 144 plan, 296 elev edges, 270 bars, 0 wwr",
   "EB2: 149 plan, 243 elev edges, 174 bars, 90 wwr"
  ],
- "model_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+ "model_sha256": "1ccba7cd720f894052fefc2b12657fc6efbb63dee55ef692a3b90c27b8e5daef",
  "schema": 2,
  "station_direction": [
   0,
@@ -106550,7 +106550,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal",
      "length_in": 212.375,
-     "mark_model": "PW-F1H01",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H01"
     },
     {
@@ -106579,7 +106579,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal001",
      "length_in": 212.375,
-     "mark_model": "PW-F1H02",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H02"
     },
     {
@@ -106608,7 +106608,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal002",
      "length_in": 212.375,
-     "mark_model": "PW-F1H03",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H03"
     },
     {
@@ -106637,7 +106637,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal003",
      "length_in": 212.375,
-     "mark_model": "PW-F1H04",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H04"
     },
     {
@@ -106666,7 +106666,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal004",
      "length_in": 212.375,
-     "mark_model": "PW-F1H05",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H05"
     },
     {
@@ -106695,7 +106695,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal005",
      "length_in": 212.375,
-     "mark_model": "PW-F1H06",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H06"
     },
     {
@@ -106724,7 +106724,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal006",
      "length_in": 212.375,
-     "mark_model": "PW-F1H07",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H07"
     },
     {
@@ -106753,7 +106753,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal007",
      "length_in": 212.375,
-     "mark_model": "PW-F1H08",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H08"
     },
     {
@@ -106782,7 +106782,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal008",
      "length_in": 212.375,
-     "mark_model": "PW-F1H09",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H09"
     },
     {
@@ -106811,7 +106811,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal009",
      "length_in": 212.375,
-     "mark_model": "PW-F1H10",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H10"
     },
     {
@@ -106840,7 +106840,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal010",
      "length_in": 212.375,
-     "mark_model": "PW-F1H11",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H11"
     },
     {
@@ -106869,7 +106869,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal011",
      "length_in": 212.375,
-     "mark_model": "PW-F1H12",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H12"
     },
     {
@@ -106898,7 +106898,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal012",
      "length_in": 212.375,
-     "mark_model": "PW-F1H13",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H13"
     },
     {
@@ -106927,7 +106927,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal013",
      "length_in": 212.375,
-     "mark_model": "PW-F1H14",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H14"
     },
     {
@@ -106956,7 +106956,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal014",
      "length_in": 212.375,
-     "mark_model": "PW-F1H15",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H15"
     },
     {
@@ -106985,7 +106985,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal015",
      "length_in": 212.375,
-     "mark_model": "PW-F1H16",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H16"
     },
     {
@@ -107014,7 +107014,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal016",
      "length_in": 212.375,
-     "mark_model": "PW-F1H17",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H17"
     },
     {
@@ -107043,7 +107043,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal017",
      "length_in": 212.375,
-     "mark_model": "PW-F1H18",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H18"
     },
     {
@@ -107072,7 +107072,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 horizontal018",
      "length_in": 212.375,
-     "mark_model": "PW-F1H19",
+     "mark_model": "5G2",
      "name": "PierWallSteelF1H19"
     },
     {
@@ -107101,7 +107101,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V01",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V01"
     },
     {
@@ -107130,7 +107130,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical001",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V02",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V02"
     },
     {
@@ -107159,7 +107159,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical002",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V03",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V03"
     },
     {
@@ -107188,7 +107188,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical003",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V04",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V04"
     },
     {
@@ -107217,7 +107217,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical004",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V05",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V05"
     },
     {
@@ -107246,7 +107246,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical005",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V06",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V06"
     },
     {
@@ -107275,7 +107275,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical006",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V07",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V07"
     },
     {
@@ -107304,7 +107304,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical007",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V08",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V08"
     },
     {
@@ -107333,7 +107333,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical008",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V09",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V09"
     },
     {
@@ -107362,7 +107362,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical009",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V10",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V10"
     },
     {
@@ -107391,7 +107391,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical010",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V11",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V11"
     },
     {
@@ -107420,7 +107420,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical011",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V12",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V12"
     },
     {
@@ -107449,7 +107449,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical012",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V13",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V13"
     },
     {
@@ -107478,7 +107478,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical013",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V14",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V14"
     },
     {
@@ -107507,7 +107507,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical014",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V15",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V15"
     },
     {
@@ -107536,7 +107536,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical015",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V16",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V16"
     },
     {
@@ -107565,7 +107565,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical016",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V17",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V17"
     },
     {
@@ -107594,7 +107594,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical017",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V18",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V18"
     },
     {
@@ -107623,7 +107623,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical018",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V19",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V19"
     },
     {
@@ -107652,7 +107652,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 1 vertical019",
      "length_in": 188.237479,
-     "mark_model": "PW-F1V20",
+     "mark_model": "5G1",
      "name": "PierWallSteelF1V20"
     },
     {
@@ -107681,7 +107681,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal",
      "length_in": 212.375,
-     "mark_model": "PW-F2H01",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H01"
     },
     {
@@ -107710,7 +107710,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal001",
      "length_in": 212.375,
-     "mark_model": "PW-F2H02",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H02"
     },
     {
@@ -107739,7 +107739,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal002",
      "length_in": 212.375,
-     "mark_model": "PW-F2H03",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H03"
     },
     {
@@ -107768,7 +107768,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal003",
      "length_in": 212.375,
-     "mark_model": "PW-F2H04",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H04"
     },
     {
@@ -107797,7 +107797,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal004",
      "length_in": 212.375,
-     "mark_model": "PW-F2H05",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H05"
     },
     {
@@ -107826,7 +107826,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal005",
      "length_in": 212.375,
-     "mark_model": "PW-F2H06",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H06"
     },
     {
@@ -107855,7 +107855,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal006",
      "length_in": 212.375,
-     "mark_model": "PW-F2H07",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H07"
     },
     {
@@ -107884,7 +107884,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal007",
      "length_in": 212.375,
-     "mark_model": "PW-F2H08",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H08"
     },
     {
@@ -107913,7 +107913,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal008",
      "length_in": 212.375,
-     "mark_model": "PW-F2H09",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H09"
     },
     {
@@ -107942,7 +107942,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal009",
      "length_in": 212.375,
-     "mark_model": "PW-F2H10",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H10"
     },
     {
@@ -107971,7 +107971,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal010",
      "length_in": 212.375,
-     "mark_model": "PW-F2H11",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H11"
     },
     {
@@ -108000,7 +108000,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal011",
      "length_in": 212.375,
-     "mark_model": "PW-F2H12",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H12"
     },
     {
@@ -108029,7 +108029,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal012",
      "length_in": 212.375,
-     "mark_model": "PW-F2H13",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H13"
     },
     {
@@ -108058,7 +108058,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal013",
      "length_in": 212.375,
-     "mark_model": "PW-F2H14",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H14"
     },
     {
@@ -108087,7 +108087,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal014",
      "length_in": 212.375,
-     "mark_model": "PW-F2H15",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H15"
     },
     {
@@ -108116,7 +108116,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal015",
      "length_in": 212.375,
-     "mark_model": "PW-F2H16",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H16"
     },
     {
@@ -108145,7 +108145,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal016",
      "length_in": 212.375,
-     "mark_model": "PW-F2H17",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H17"
     },
     {
@@ -108174,7 +108174,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal017",
      "length_in": 212.375,
-     "mark_model": "PW-F2H18",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H18"
     },
     {
@@ -108203,7 +108203,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 horizontal018",
      "length_in": 212.375,
-     "mark_model": "PW-F2H19",
+     "mark_model": "5G2",
      "name": "PierWallSteelF2H19"
     },
     {
@@ -108232,7 +108232,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V01",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V01"
     },
     {
@@ -108261,7 +108261,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical001",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V02",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V02"
     },
     {
@@ -108290,7 +108290,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical002",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V03",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V03"
     },
     {
@@ -108319,7 +108319,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical003",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V04",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V04"
     },
     {
@@ -108348,7 +108348,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical004",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V05",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V05"
     },
     {
@@ -108377,7 +108377,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical005",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V06",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V06"
     },
     {
@@ -108406,7 +108406,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical006",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V07",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V07"
     },
     {
@@ -108435,7 +108435,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical007",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V08",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V08"
     },
     {
@@ -108464,7 +108464,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical008",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V09",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V09"
     },
     {
@@ -108493,7 +108493,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical009",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V10",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V10"
     },
     {
@@ -108522,7 +108522,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical010",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V11",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V11"
     },
     {
@@ -108551,7 +108551,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical011",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V12",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V12"
     },
     {
@@ -108580,7 +108580,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical012",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V13",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V13"
     },
     {
@@ -108609,7 +108609,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical013",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V14",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V14"
     },
     {
@@ -108638,7 +108638,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical014",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V15",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V15"
     },
     {
@@ -108667,7 +108667,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical015",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V16",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V16"
     },
     {
@@ -108696,7 +108696,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical016",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V17",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V17"
     },
     {
@@ -108725,7 +108725,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical017",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V18",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V18"
     },
     {
@@ -108754,7 +108754,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical018",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V19",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V19"
     },
     {
@@ -108783,7 +108783,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 Face 2 vertical019",
      "length_in": 188.237479,
-     "mark_model": "PW-F2V20",
+     "mark_model": "5G1",
      "name": "PierWallSteelF2V20"
     },
     {
@@ -108812,7 +108812,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 vertical",
      "length_in": 188.237479,
-     "mark_model": "PW-E1V01",
+     "mark_model": "5G1",
      "name": "PierWallSteelE1V01"
     },
     {
@@ -108841,7 +108841,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 vertical001",
      "length_in": 188.237479,
-     "mark_model": "PW-E1V02",
+     "mark_model": "5G1",
      "name": "PierWallSteelE1V02"
     },
     {
@@ -108870,7 +108870,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 vertical002",
      "length_in": 188.237479,
-     "mark_model": "PW-E1V03",
+     "mark_model": "5G1",
      "name": "PierWallSteelE1V03"
     },
     {
@@ -108899,7 +108899,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 vertical003",
      "length_in": 188.237479,
-     "mark_model": "PW-E1V04",
+     "mark_model": "5G1",
      "name": "PierWallSteelE1V04"
     },
     {
@@ -109020,7 +109020,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U01",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U01"
     },
     {
@@ -109141,7 +109141,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs001",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U02",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U02"
     },
     {
@@ -109262,7 +109262,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs002",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U03",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U03"
     },
     {
@@ -109383,7 +109383,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs003",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U04",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U04"
     },
     {
@@ -109504,7 +109504,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs004",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U05",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U05"
     },
     {
@@ -109625,7 +109625,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs005",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U06",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U06"
     },
     {
@@ -109746,7 +109746,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs006",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U07",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U07"
     },
     {
@@ -109867,7 +109867,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs007",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U08",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U08"
     },
     {
@@ -109988,7 +109988,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs008",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U09",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U09"
     },
     {
@@ -110109,7 +110109,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs009",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U10",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U10"
     },
     {
@@ -110230,7 +110230,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs010",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U11",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U11"
     },
     {
@@ -110351,7 +110351,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs011",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U12",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U12"
     },
     {
@@ -110472,7 +110472,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs012",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U13",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U13"
     },
     {
@@ -110593,7 +110593,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs013",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U14",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U14"
     },
     {
@@ -110714,7 +110714,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs014",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U15",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U15"
     },
     {
@@ -110835,7 +110835,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs015",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U16",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U16"
     },
     {
@@ -110956,7 +110956,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs016",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U17",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U17"
     },
     {
@@ -111077,7 +111077,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs017",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U18",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U18"
     },
     {
@@ -111198,7 +111198,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs018",
      "length_in": 175.872234,
-     "mark_model": "PW-E1U19",
+     "mark_model": "5G3",
      "name": "PierWallSteelE1U19"
     },
     {
@@ -111227,7 +111227,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 vertical",
      "length_in": 188.237479,
-     "mark_model": "PW-E2V01",
+     "mark_model": "5G1",
      "name": "PierWallSteelE2V01"
     },
     {
@@ -111256,7 +111256,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 vertical001",
      "length_in": 188.237479,
-     "mark_model": "PW-E2V02",
+     "mark_model": "5G1",
      "name": "PierWallSteelE2V02"
     },
     {
@@ -111285,7 +111285,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 vertical002",
      "length_in": 188.237479,
-     "mark_model": "PW-E2V03",
+     "mark_model": "5G1",
      "name": "PierWallSteelE2V03"
     },
     {
@@ -111314,7 +111314,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 vertical003",
      "length_in": 188.237479,
-     "mark_model": "PW-E2V04",
+     "mark_model": "5G1",
      "name": "PierWallSteelE2V04"
     },
     {
@@ -111435,7 +111435,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U01",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U01"
     },
     {
@@ -111556,7 +111556,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs001",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U02",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U02"
     },
     {
@@ -111677,7 +111677,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs002",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U03",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U03"
     },
     {
@@ -111798,7 +111798,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs003",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U04",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U04"
     },
     {
@@ -111919,7 +111919,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs004",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U05",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U05"
     },
     {
@@ -112040,7 +112040,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs005",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U06",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U06"
     },
     {
@@ -112161,7 +112161,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs006",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U07",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U07"
     },
     {
@@ -112282,7 +112282,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs007",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U08",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U08"
     },
     {
@@ -112403,7 +112403,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs008",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U09",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U09"
     },
     {
@@ -112524,7 +112524,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs009",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U10",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U10"
     },
     {
@@ -112645,7 +112645,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs010",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U11",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U11"
     },
     {
@@ -112766,7 +112766,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs011",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U12",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U12"
     },
     {
@@ -112887,7 +112887,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs012",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U13",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U13"
     },
     {
@@ -113008,7 +113008,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs013",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U14",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U14"
     },
     {
@@ -113129,7 +113129,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs014",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U15",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U15"
     },
     {
@@ -113250,7 +113250,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs015",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U16",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U16"
     },
     {
@@ -113371,7 +113371,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs016",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U17",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U17"
     },
     {
@@ -113492,7 +113492,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs017",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U18",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U18"
     },
     {
@@ -113613,7 +113613,7 @@
      "group": "PierWallSteelBars",
      "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs018",
      "length_in": 175.872234,
-     "mark_model": "PW-E2U19",
+     "mark_model": "5G3",
      "name": "PierWallSteelE2U19"
     }
    ],
@@ -137795,7 +137795,7 @@
      "FirstRingTop": 6.0,
      "InsideBendDiameter": 3.75,
      "Limitations": "CAD wall retained by user direction, 22 October 2026. The source calculation snapshot and its failed checks are retained, not rejudged. U bends and contact lap routing are CAD detailing assumptions; fabrication, anchorage and engineering acceptance remain open. Continuous vertical bars; the source 60-in vertical lap allowance is recorded, not a modeled splice. Ring welds are properties, not physical weld solids. Nominal pile positions only; 3-in placement envelope is not resolved.",
-     "MarkStatus": "PW identifiers are CAD instance identifiers; drawing SDM marks pending",
+     "MarkStatus": "SDM drawing marks written from the DXF bar-mark register (substructure_drawings/freecad_marks.py); PW- identifiers remain the bar object names",
      "MaximumSpacing": 11.0,
      "PlacementTolerance": 3.0,
      "RingCount": 5,

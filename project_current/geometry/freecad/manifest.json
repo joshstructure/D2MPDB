@@ -3,8 +3,8 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
-    "bytes": 4984583,
+    "sha256": "1ccba7cd720f894052fefc2b12657fc6efbb63dee55ef692a3b90c27b8e5daef",
+    "bytes": 4983531,
     "objects": 2464
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
@@ -35,10 +35,11 @@
     "D-061: native straight vertical development with selected LRFD inputs, signed mat offsets, coordinated stations, live quantities and BRep anchorage/cover/clash checks.",
     "D-065: native level_seats host/pad dependencies and fixed pre-grinding cage elevation reference; independent rigid-fit failures remain visible.",
     "D-076: pier_wall_rings native steel/ring controllers; existing geometry retained; immutable calculation snapshot updated to the separately selected D-075 case without changing details.",
-    "D-079: no controller change; ring plate thickness input set to the selected D-078 case (1/2 in) through the native recompute; provenance strings updated."
+    "D-079: no controller change; ring plate thickness input set to the selected D-078 case (1/2 in) through the native recompute; provenance strings updated.",
+    "D-083: no controller change; substructure_drawings/freecad_marks.py wrote the pier wall SDM marks, schedule cells and MarkStatus; API notes updated."
   ],
   "runtime_files": {
-    "runtime/API.md": "3241c4fc2e111087e65f7d3d072f5a39fab5aaf474d7ebfcf449bdb4c44ba980",
+    "runtime/API.md": "25f3ff746a8004b0fd3713282a4235296d889c0355faccd251f19f3a5fbd5742",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -184,7 +185,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "e9bef3578287c5c273d7c2d49f7d6054ed3640a7eaf61a05232a9ef37bd6bf32",
+    "evidence/Model-update-report.txt": "bb2cde64c58a9a362ea4a09ff2e41aa65a195ed3e92712d52ace96cd18e2fa63",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -466,20 +467,31 @@
     "evidence/2026-10-22-ring-plate-half-inch/selected-case-at-transfer.json": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
     "evidence/2026-10-22-ring-plate-half-inch/build.log": "a8b350fc7c6f52fc8498b0bf28b40087acb54f7708efd58750aaae0452a66384",
     "evidence/2026-10-22-ring-plate-half-inch/installed-verification.json": "7938b7905459cb5647368d7de63b70d78f90ac4b4cc89911ba670ba8d5709a69",
-    "evidence/2026-10-22-ring-plate-half-inch/verify_installed.py": "45cd5fe924cae43aa983900f519c9519106ef178ec5586e81d2ff6521c8dab30"
+    "evidence/2026-10-22-ring-plate-half-inch/verify_installed.py": "45cd5fe924cae43aa983900f519c9519106ef178ec5586e81d2ff6521c8dab30",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/cold-reopen.json": "dc3950b7454f44c74c7238e63d30e5dcdb66889148caf4c6eccbd444efd3dc79",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/finalize_delivery.py": "aa72ee344a2453d86eb28443aeaaa0714f5c8d076146c391bee29874bda2712c",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/mark-changes.json": "e8d39ee0e25ce8bdbe6a9cb4a3f563202173f332f45826c1cfa0670c54c68479",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/native-preservation.json": "3805684c2cd88220da73ec7b07b20f4ff3b53a2054cd4a0f59e535da8af41ba3",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/native-update.json": "6ce940a69b19bcc14b4ca08399941dc183c2d382ef0f313d773bb8ecbfce1f3e",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/native_update.py": "6193444f4b4833017a2a04d7c8d8644df95a30e2c0f0dae45e817334d33d8e63",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/prepare_delivery.py": "5e02cd4f6de838612f6d1e13d6e9bfce685be9c411db8af0f8d4da7030577d42",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/sdm-bar-marks.csv": "176fa9d87b4968546a227cf1479585f030f2eb5f462ac633a9db3270b987a735",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/update-summary.json": "6f10c2e09947cb7329c8325570ac9d2b8458c7617286b6aa7353cbc1ed2a3d9c",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/verify_native.py": "9a9e28200b71407620882ca56722b896e81e2d1299fb5528e06b3c42170e4ef9",
+    "evidence/2026-10-22-sdm-bar-marks-pier-wall/finalize_resume.py": "fcc7577907b8f8284314395913e2c6034b61df37f5b2936a6fddbc0dc593a4cc"
   },
-  "known_review_status": "D-079: 1/2-in ring plates PASS; source RING-GRID tolerance failure remains. The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-076: nominal CAD geometry PASS; source RING-GRID tolerance failure remains. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: level as-cast geometry PASS; final pad/beam fit FAIL at all eight pads. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Prior recorded review status: 0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
+  "known_review_status": "D-083: pier wall SDM bar marks written (5G1/5G2/5G3); naming only. Naming only: no geometry, reinforcement, quantity, calculation input, journal or tracker change. The PW- identifiers remain the bar object names and labels; the controller gives any newly regenerated bar a PW- mark again, so rerun substructure_drawings/freecad_marks.py after a pier wall regeneration. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. Prior: D-079: 1/2-in ring plates PASS; source RING-GRID tolerance failure remains. The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-076: nominal CAD geometry PASS; source RING-GRID tolerance failure remains. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: level as-cast geometry PASS; final pad/beam fit FAIL at all eight pads. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Prior recorded review status: 0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
   "updated_on": "2026-10-22",
   "current_update": {
     "date": "2026-10-22",
-    "decision": "D-079",
-    "scope": "Set the twenty pier wall annular ring plates of the CAD model to 1/2 in thick (3/4 in under D-076), matching the selected D-078 calculation case.",
-    "summary": "evidence/2026-10-22-ring-plate-half-inch/adoption-summary.json",
-    "previous_model_sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+    "decision": "D-083",
+    "scope": "Write the FDOT SDM 4.3 bar marks of the D-076 pier wall reinforcement into the Mark property of its 124 native rebars (controller identifiers PW-<id> to 5G1 for the 48 face and end-face verticals, 5G2 for the 38 horizontals and 5G3 for the 38 end U returns), into their schedule, and record on PierWallSteelInputs that the drawing marks are written; the pier uses G for the wall as the end bent and pier DXF (generator 2.8.0) lists it.",
+    "summary": "evidence/2026-10-22-sdm-bar-marks-pier-wall/update-summary.json",
+    "previous_model_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
     "calculation_snapshot_sha256": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
-    "follow_up": "The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes.",
-    "installed_reopen": "evidence/2026-10-22-ring-plate-half-inch/installed-verification.json"
+    "follow_up": "Naming only: no geometry, reinforcement, quantity, calculation input, journal or tracker change. The PW- identifiers remain the bar object names and labels; the controller gives any newly regenerated bar a PW- mark again, so rerun substructure_drawings/freecad_marks.py after a pier wall regeneration. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain.",
+    "cold_reopen": "evidence/2026-10-22-sdm-bar-marks-pier-wall/cold-reopen.json"
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -533,15 +545,19 @@
     "archive/B4-before-pier-wall-rings-20261022.FCStd": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
     "archive/B4-before-pier-wall-rings-record-20261022.zip": "1addfc1eb5c988a219c4b4623e1e0a5ecb692a84c244c5b288654515ea418971",
     "archive/B4-before-ring-plate-half-inch-20261022.FCStd": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
-    "archive/B4-before-ring-plate-half-inch-record-20261022.zip": "50b4fbc4045b2d89921c6498f178caa74d6a0fbac25def06d16ea1948e0976c9"
+    "archive/B4-before-ring-plate-half-inch-record-20261022.zip": "50b4fbc4045b2d89921c6498f178caa74d6a0fbac25def06d16ea1948e0976c9",
+    "archive/B4-before-sdm-bar-marks-pier-wall-20261022.FCStd": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+    "archive/B4-before-sdm-bar-marks-pier-wall-record-20261022.zip": "ad407e60853759dc5f70a18017a33e239602a3c7a9094d23f13133dd65c02d35"
   },
   "previous_update": {
     "date": "2026-10-22",
-    "decision": "D-076",
-    "scope": "Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details.",
-    "summary": "evidence/2026-10-22-pier-wall-rings/adoption-summary.json",
-    "previous_model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
-    "follow_up": "The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes."
+    "decision": "D-079",
+    "scope": "Set the twenty pier wall annular ring plates of the CAD model to 1/2 in thick (3/4 in under D-076), matching the selected D-078 calculation case.",
+    "summary": "evidence/2026-10-22-ring-plate-half-inch/adoption-summary.json",
+    "previous_model_sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+    "calculation_snapshot_sha256": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
+    "follow_up": "The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes.",
+    "installed_reopen": "evidence/2026-10-22-ring-plate-half-inch/installed-verification.json"
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

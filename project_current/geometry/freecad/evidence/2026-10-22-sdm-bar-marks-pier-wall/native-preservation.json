@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "before_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+  "model_sha256": "1ccba7cd720f894052fefc2b12657fc6efbb63dee55ef692a3b90c27b8e5daef",
+  "native_saved_sha256": "b3171b08a97f9d6c16c993e494566960f509b8f8d4415b7d32d1102731b62c50",
+  "objects": 2464,
+  "changed_properties": {
+    "MarkStatus": 1,
+    "cells": 1,
+    "Mark": 124
+  },
+  "mark_values_changed": 124,
+  "schedule_cells_changed": 124,
+  "schedule_sheets_changed": [
+    "PierWallSteelSchedule"
+  ],
+  "schedule_json_marks_changed": 0,
+  "mark_status": {
+    "object": "PierWallSteelInputs",
+    "old": "PW identifiers are CAD instance identifiers; drawing SDM marks pending",
+    "new": "SDM drawing marks written from the DXF bar-mark register (substructure_drawings/freecad_marks.py); PW- identifiers remain the bar object names"
+  },
+  "unchanged_archive_members": 4471,
+  "gui_document_unchanged": true,
+  "method": "Native FreeCAD change on a disposable copy; delivery edits only the mark values, the schedule cell text and the pier wall MarkStatus string in the registered archive (as the D-042 and D-060 jobs). All other object, view and resource bytes kept.",
+  "not_transplanted": "Console-save Visibility/_GroupTouched records, attribute escaping and last-digit volume recalculations in NativeSaved are presentation or numerical-noise artifacts and were not adopted."
+}

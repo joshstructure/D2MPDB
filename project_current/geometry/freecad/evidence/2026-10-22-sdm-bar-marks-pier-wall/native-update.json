@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "before_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+  "objects": 2464,
+  "invalid_before": [],
+  "touched_before": [],
+  "proxies_not_restored": [
+    "CheekLugWWRChecks",
+    "CheekSteelChecks",
+    "ClosureEB1Inputs",
+    "ClosureEB2Inputs",
+    "MSEAssembly",
+    "MSEInputs",
+    "ModelDesignation",
+    "PedestalSteelChecks",
+    "ReturnDetailEB1L",
+    "ReturnDetailEB1R",
+    "ReturnDetailEB2L",
+    "ReturnDetailEB2R",
+    "WallSteelChecks"
+  ],
+  "invalid_after": [],
+  "source_state_unchanged": true,
+  "labels_unchanged": true,
+  "verify_failures": [],
+  "mark_status_before": "PW identifiers are CAD instance identifiers; drawing SDM marks pending",
+  "mark_status_after": "SDM drawing marks written from the DXF bar-mark register (substructure_drawings/freecad_marks.py); PW- identifiers remain the bar object names",
+  "marks_after": {
+    "5G1": 48,
+    "5G2": 38,
+    "5G3": 38
+  },
+  "probe_cell": {
+    "sheet": "PierWallSteelSchedule",
+    "content": "'5G2",
+    "value": "5G2"
+  },
+  "bars_changed": 124,
+  "bars_already_marked": 494,
+  "schedule_cells_changed": 124,
+  "schedules": [
+    "PierWallSteelSchedule"
+  ],
+  "quantities_refreshed": [],
+  "groups_untouched": [
+    "PierWallSteel"
+  ],
+  "pending_objects_after": [],
+  "mark_status": {
+    "object": "PierWallSteelInputs",
+    "old": "PW identifiers are CAD instance identifiers; drawing SDM marks pending",
+    "new": "SDM drawing marks written from the DXF bar-mark register (substructure_drawings/freecad_marks.py); PW- identifiers remain the bar object names"
+  },
+  "native_saved_sha256": "b3171b08a97f9d6c16c993e494566960f509b8f8d4415b7d32d1102731b62c50"
+}

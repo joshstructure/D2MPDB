@@ -9,11 +9,13 @@ created with the controllers' default ``<support>-<id>`` marks).
 What changes, and nothing else:
 
 * ``Mark`` of every listed native rebar (cap cages, backwall and cheek walls,
-  pedestals).  Lug WWR wires keep their fabric designation.
+  pedestals, pier wall).  Lug WWR wires keep their fabric designation.
 * Column A ("Mark") of each bar row in the matching schedule spreadsheet; the
   controllers copy the mark there as text when a schedule is written.
 * ``ScheduleJSON`` of the three cap-cage quantity objects, refreshed by their
   own controller (it lists each bar's mark).
+* ``MarkStatus`` of ``PierWallSteelInputs`` (D-076 wrote "drawing SDM marks
+  pending" there; the bar list repeats it while the PW- identifiers stand).
 
 Geometry is not recomputed: touched rebars are purged and only the edited
 spreadsheets are recomputed.  Dated check snapshots are left as recorded.
@@ -23,7 +25,13 @@ import json
 from pathlib import Path
 
 REGISTER = Path(__file__).resolve().parent / "output" / "bar_mark_register.csv"
-SCHEDULE_PREFIXES = ("Cage", "SteelBridge", "PedSteel")
+# Schedule spreadsheets: <prefix><support>Schedule, listing the bars of the
+# <prefix><support>Bars group by name (BarNames).  The pier wall controller
+# (pier_wall_rings) keeps one PierWallSteelSchedule for its 124 bars.
+SCHEDULE_PREFIXES = ("Cage", "SteelBridge", "PedSteel", "PierWallSteel")
+WALL_INPUTS = "PierWallSteelInputs"
+MARK_STATUS_WRITTEN = ("SDM drawing marks written from the DXF bar-mark register "
+                       "(substructure_drawings/freecad_marks.py); PW- identifiers remain the bar object names")
 
 
 def load_register(path=REGISTER):
@@ -99,6 +107,7 @@ def apply(doc, register):
     for name in sorted(quantities):
         q = doc.getObject(name)
         q.Proxy.execute(q)
+    status_changed = wall_mark_status(doc, register)
     # Marks and quantity text do not drive geometry: no rebar/cap recompute.
     for o in doc.Objects:
         o.purgeTouched()
@@ -120,13 +129,42 @@ def apply(doc, register):
         "quantities_refreshed": sorted(quantities),
         "groups_untouched": sorted(g.Name for g in groups),
         "pending_objects_after": pending,
+        "mark_status": status_changed,
         "changes": [{"object": b.Name, "old": o, "new": n} for b, o, n in changes],
     }
+
+
+def wall_bars(doc, register):
+    """The pier wall bars of the register (those listed by PierWallSteelSchedule)."""
+    sheet = doc.getObject("PierWallSteelSchedule")
+    names = set(getattr(sheet, "BarNames", [])) if sheet is not None else set()
+    return sorted(n for n in register if n in names)
+
+
+def wall_mark_status(doc, register):
+    """Set MarkStatus on the pier wall inputs once every wall bar carries its
+    SDM mark; returns {object, old, new} or None when nothing changed."""
+    inp = doc.getObject(WALL_INPUTS)
+    bars = wall_bars(doc, register)
+    if inp is None or "MarkStatus" not in inp.PropertiesList or not bars:
+        return None
+    if "MarkStatus" in dict(getattr(inp, "ExpressionEngine", [])):
+        raise ValueError(WALL_INPUTS + ": MarkStatus is expression-driven")
+    if any(doc.getObject(n).Mark != register[n]["mark"] for n in bars):
+        return None
+    if inp.MarkStatus == MARK_STATUS_WRITTEN:
+        return None
+    old = inp.MarkStatus
+    inp.MarkStatus = MARK_STATUS_WRITTEN
+    return {"object": inp.Name, "old": old, "new": MARK_STATUS_WRITTEN}
 
 
 def verify(doc, register):
     """Independent check that model marks, schedules and quantities agree."""
     failures = []
+    inp = doc.getObject(WALL_INPUTS)
+    if inp is not None and wall_bars(doc, register) and inp.MarkStatus != MARK_STATUS_WRITTEN:
+        failures.append("%s MarkStatus %r" % (WALL_INPUTS, inp.MarkStatus))
     for name, row in register.items():
         bar = doc.getObject(name)
         if bar.Mark != row["mark"]:
