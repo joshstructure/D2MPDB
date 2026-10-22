@@ -4,7 +4,12 @@
     .venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --register --date 10-21
     .venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --date 10-22 --decision D-075
     .venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --register --replace --date 10-22 --decision D-075
+    .venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --date 10-22b --decision D-078
+    .venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --register --replace --date 10-22b --decision D-078
     .venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --check
+
+A label may carry a trailing letter (`10-22b`) for a second export on the same day: the file names and the evidence folder
+use the label, the register and decision rows use the calendar date.
 
 The starting case of the ring_wall package (the engine of Pier_Wall_Design.ipynb) is evaluated and written under
 project_current/pier_wall/:
@@ -21,7 +26,7 @@ register rows (PIER-WALL-TOOL, PIER-WALL-REPORT, PIER-WALL-CASE) when absent, th
 it never changes an existing row unless `--replace` is given, which rewrites the three rows in place (the new decision text
 goes in front of the row's notes, scripts/register_update.py) and the README index row. `--decision` names the decision
 the export records (D-071 for the 21 October 2026 selection; D-075 for the 22 October 2026 rerun on the CAD wall geometry);
-the decision row text and the authorization are keyed by it below. The report embeds the case and package hashes but also
+the decision row text and the authorization are keyed by it below; D-078 for the 22 October 2026 ring plate selection (1/2 in; second export of the day, label 10-22b). The report embeds the case and package hashes but also
 random Plotly figure ids, so a rerun gives new bytes; `--check` regenerates the report, check register and ring forces from
 the saved case with the current package and compares them with the registered files (figure ids masked).
 """
@@ -54,6 +59,9 @@ AUTHORIZATIONS = {
     'D-075': ('User instruction, 22 October 2026: reconcile the pier wall to the CAD geometry (219 in long, 36 in thick, bottom 1 ft below terrain '
               'at EL 24.5264, top at cap bottom): update the journal gravity row, C006/C017 inputs, the ring wall case and the pile free length, '
               'then rerun the editions.'),
+    'D-078': ('User instruction, 22 October 2026: "Lets update the design to 1/2 thick plate", after asking what the thinnest annular ring can be '
+              'with no check above 0.95 of its limit (7/16 in with the 5/16-in fillet, set by the maximum fillet at the ring edge; strength alone '
+              'would allow 3/16 in).'),
 }
 # What the starting geometry is, per decision (README and receipt text).
 GEOMETRY_NOTES = {
@@ -62,13 +70,28 @@ GEOMETRY_NOTES = {
               'EL 40.76494 ft (194.8625 in high), 19.5 in from each wall end to the outer pile; the free length to fixity (92.4 in) is measured from that '
               'bottom (110.7 in sand depth to fixity below the pile-case ground EL 26.05 less the 18.3 in of wall below it). The journal gravity sheet '
               'row, C006 and this case agree with the CAD model and the drawings.'),
+    'D-078': ('The starting dimensions follow the CAD pier wall (D-075: 219 × 36 in, bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom '
+              'EL 40.76494 ft, 194.8625 in high; free length to fixity 92.4 in from the wall bottom). The ring plate is 1/2 in by user selection (D-078) '
+              'in place of the 3/4 in of the first editions; the ring diameters (23 / 20.125 in), the 5/16-in fillets and every other input are unchanged. '
+              'The CAD rings added under D-076 are 3/4 in thick until the model is reconciled.'),
 }
 FIGURE_ID = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
+LABEL = re.compile(r'^(\d\d)-(\d\d)([a-z]?)$')
 
 
 def date_phrase(label: str) -> str:
-    month, day = label.split('-')
-    return f'{int(day)} {MONTHS[month]}'
+    m = LABEL.match(label)
+    if not m:
+        raise ValueError(f'label {label!r}: expected m-d with an optional trailing letter, for example 10-22 or 10-22b')
+    return f'{int(m[2])} {MONTHS[m[1]]}'
+
+
+def iso_date(label: str) -> str:
+    """The calendar date of a label (the trailing letter of a same-day export is dropped)."""
+    m = LABEL.match(label)
+    if not m:
+        raise ValueError(f'label {label!r}: expected m-d with an optional trailing letter, for example 10-22 or 10-22b')
+    return f'{YEAR}-{m[1]}-{m[2]}'
 
 
 def sha256(data: bytes) -> str:
@@ -175,7 +198,7 @@ def export(label: str) -> dict:
     s = summary(r)
     (FOLDER / 'README.md').write_text(readme(r, s, files, label, case_hash(r), source_hash()), encoding='utf-8', newline='\n')
     receipt = {
-        'date': f'{YEAR}-{label}', 'decision': DECISION, 'authorization': AUTHORIZATIONS[DECISION],
+        'date': iso_date(label), 'label': label, 'decision': DECISION, 'authorization': AUTHORIZATIONS[DECISION],
         'scope': ('Pier wall annular-ring calculation report and case exported to project_current/pier_wall/ from the starting case of the ring_wall '
                   'package (D-070 ring moment basis; pile stiffness defaults from PILE-PIER-CASE). ' + GEOMETRY_NOTES[DECISION] + ' No other case, FBMP '
                   'export, CAD geometry, tracker row or engineering disposition changed in this step. The Blockpad edition goes to the journal as C017.'),
@@ -192,8 +215,10 @@ def export(label: str) -> dict:
         'limitations': ('Notebook package run and export only. The numerical checks are the notebook\'s; the five scope items (sharing among rows, pile '
                         'stiffness confirmation, wall load paths, connection scope, geometry basis) remain open; the failed checks of the 23-in ring '
                         f'trial ({", ".join(s["failed"]) or "none"}) remain. Which pier-wall support concept governs (C006 fin plates and hairpins or '
-                        'these welded rings) is not decided by this export. Selection is not engineering acceptance.')}
+                        'these welded rings) is not decided by this export. Selection is not engineering acceptance.'
+                        + (' The CAD rings (D-076) are 3/4 in thick until the model is reconciled to this 1/2-in plate.' if DECISION == 'D-078' else ''))}
     folder = EVIDENCE / f'{YEAR}-{label}-pier-wall'
+    receipt['receipt'] = rel(folder / 'source_receipt.json')
     folder.mkdir(parents=True, exist_ok=True)
     (folder / 'source_receipt.json').write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + '\n', encoding='utf-8', newline='\n')
     return receipt
@@ -207,21 +232,23 @@ def register_rows(receipt: dict) -> list[dict]:
     s = receipt['results']
     files = receipt['files']
     date = receipt['date']
-    when = f'{date_phrase(date[5:])} {YEAR}'
+    label = receipt.get('label', date[5:])
+    when = f'{date_phrase(label)} {YEAR}'
     geometry = ('CAD wall geometry (219 x 36 x 194.8625 in, free length 92.4 in from the wall bottom). ' if DECISION != 'D-071' else '')
+    plate = 'Ring plate 1/2 in by user selection (D-078; 3/4 in before). ' if DECISION == 'D-078' else ''
     note = (f'{DECISION}. Pier wall annular-ring calculation from the ring_wall package (PIER-WALL-TOOL, source {receipt["generator"]["package_source_sha256"][:12]}) '
-            f'on its starting case; ring moment basis D-070 with pile stiffness defaults from PILE-PIER-CASE. {geometry}{s["overall"]}: failed {", ".join(s["failed"]) or "none"}; '
+            f'on its starting case; ring moment basis D-070 with pile stiffness defaults from PILE-PIER-CASE. {geometry}{plate}{s["overall"]}: failed {", ".join(s["failed"]) or "none"}; '
             f'{len(s["pending"])} pending; largest equivalent eccentricity {s["largest_equivalent_eccentricity_in"]:.3f} in against the {s["kern_limit_in"]:.3f} in kern. '
             f'Open: {", ".join(s["scope_items"])}; support concept (C006 fin plates vs welded rings) undecided. ')
     origin = f'Notebook package run requested by the user, {when} (scripts/export_project_pier_wall_report.py)'
-    receipt_note = f'See coherence/evidence/{date}-pier-wall/source_receipt.json. Selection is not engineering acceptance.'
+    receipt_note = f'See coherence/evidence/{YEAR}-{label}-pier-wall/source_receipt.json. Selection is not engineering acceptance.'
     tool = ROOT / 'Pier_Wall_Design.ipynb'
     return [
         {'source_id': 'PIER-WALL-TOOL', 'topic': 'Pier wall ring design notebook', 'path': 'Pier_Wall_Design.ipynb', 'status': 'Current tool - bounded verification',
          'scope': 'Pier wall minimum steel, detailing and welded annular pile-ring connection checks (LRFD 10th ed.); reads PILE-PIER-CASE for the default pile stiffness lengths',
          'sha256': lf_digest(tool), 'registered_on': date, 'depends_on': 'PILE-PIER-CASE', 'origin': 'Repository main',
          'notes': f'{DECISION} ({when}): portable notebook embedding the ring_wall package (source {receipt["generator"]["package_source_sha256"][:12]}), '
-                  f'D-070 ring moment basis, {geometry.lower() if geometry else ""}weld legs in sixteenths, report with overview, design basis and drawings. ' + receipt_note,
+                  f'D-070 ring moment basis, {geometry.lower() if geometry else ""}{plate.lower() if plate else ""}weld legs in sixteenths, report with overview, design basis and drawings. ' + receipt_note,
          'hash_basis': 'lf_text'},
         {'source_id': 'PIER-WALL-REPORT', 'topic': 'Pier wall ring design report', 'path': files['report']['path'], 'status': STATUS,
          'scope': 'Calculation report for the pier wall on welded annular pile rings (minimum steel, detailing, contact, bearing, plate, welds, base metal)',
@@ -301,6 +328,20 @@ def add_decision(receipt: dict) -> bool:
                f'wall; the 133.4 kip CAD wall is +18.6 kip, recorded as assumption A-012 for the next FBMP rerun decision) and the pile case ground EL 26.05 '
                f'against the journal/CAD terrain 25.5264 (A-013). Native recalculation, appearance and engineering reviews not performed; selection is not '
                f'engineering acceptance. See [receipt](coherence/evidence/{receipt["date"]}-pier-wall/source_receipt.json). |')
+    if DECISION == 'D-078':
+        row = (f'| {DECISION} | {receipt["date"]} | Select a 1/2-in annular ring plate for the pier wall pile rings in place of the 3/4-in plate of the first '
+               f'editions; the ring wall starting case, its project export ({date_phrase(receipt["label"])} report, PIER-WALL-REPORT, and case, PIER-WALL-CASE; '
+               f'second export of the day, label {receipt["label"]}) and the journal edition C017 follow. | {AUTHORIZATIONS[DECISION]} The 3/4-in plate was not '
+               f'strength-governed: on the D-075 case the largest ring strength ratio was 0.21 (contact) and plate bending 0.05 of capacity. Sweeping the '
+               f'plate thickness through the ring_wall engine, the strength checks reach 0.95 only at about 0.17 in; with the 5/16-in fillet held, the '
+               f'maximum fillet at the ring edge (leg at most the plate thickness less 1/16 in, LRFD 6.13.3.4) governs and gives 7/16 in (ratio 0.83) as the '
+               f'thinnest standard plate, 3/8 in sitting at 1.00. The user chose 1/2 in. Ring diameters (23 / 20.125 in), the 5/16-in fillets and every other '
+               f'input are unchanged, so the tributary forces, wall rotation, ring moment, contact and bearing results are those of D-075. Results of this '
+               f'case: {results} At 1/2 in the minimum fillet of the thicker-part table drops to 3/16 in (plus the 1/16-in gap allowance, 1/4 in), so the '
+               f'5/16-in fillet reads 0.80 of the minimum check and 0.71 of the ring-edge maximum. Not changed: the CAD model, whose D-076 rings are '
+               f'3/4 in thick (reconciliation pending), the C006 fin-plate concept (support concept still undecided), the FBMP export and the pile cases. '
+               f'Native recalculation, appearance and engineering reviews not performed; selection is not engineering acceptance. See '
+               f'[receipt]({receipt["receipt"].replace("project_current/", "", 1)}). |')
     lines = text.split('\n')
     idx = max(i for i, line in enumerate(lines) if re.match(r'\| D-\d{3} \|', line))
     lines.insert(idx + 1, row)
@@ -312,10 +353,14 @@ def add_readme_row(receipt: dict) -> bool:
     path = PC / 'README.md'
     text = path.read_text(encoding='utf-8')
     report = receipt['files']['report']['path'].replace('project_current/', '', 1).replace(' ', '%20')
-    when = date_phrase(receipt['date'][5:])
+    when = date_phrase(receipt.get('label', receipt['date'][5:]))
     if DECISION == 'D-071':
         row = (f'| Pier wall on annular pile rings | [Report]({report}), [saved case](pier_wall/selected_case.json) — welded-ring support concept, '
                f'D-070 moment basis, {when} run ({DECISION}); Blockpad edition C017 in the journal (T028/T029); the C006 fin-plate concept is not superseded |')
+    elif DECISION == 'D-078':
+        row = (f'| Pier wall on annular pile rings | [Report]({report}), [saved case](pier_wall/selected_case.json) — welded-ring support concept, '
+               f'D-070 moment basis, CAD wall geometry (219 × 36 × 194.8625 in, D-075), 1/2-in ring plate ({DECISION}), second {when} run; Blockpad edition '
+               f'C017 in the journal (T028/T029/T034/T037); the CAD rings (D-076) are still 3/4 in; the C006 fin-plate concept is not superseded |')
     else:
         row = (f'| Pier wall on annular pile rings | [Report]({report}), [saved case](pier_wall/selected_case.json) — welded-ring support concept, '
                f'D-070 moment basis, CAD wall geometry (219 × 36 × 194.8625 in, {DECISION}), {when} run; Blockpad edition C017 in the journal (T028/T029/T034); '
@@ -380,7 +425,7 @@ def check() -> list[str]:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument('--date', help='m-d suffix for the file names, for example 10-21')
+    parser.add_argument('--date', help='m-d suffix for the file names, for example 10-21; a trailing letter (10-22b) marks a second export on the same day')
     parser.add_argument('--decision', default='D-071', choices=sorted(AUTHORIZATIONS), help='the decision this export records (default D-071)')
     parser.add_argument('--register', action='store_true', help='append the register rows, the decision row and the README row from the receipt of --date')
     parser.add_argument('--replace', action='store_true', help='with --register: rewrite existing PIER-WALL-* rows and the README row for a new decision')
@@ -409,7 +454,7 @@ def main(argv=None) -> int:
     receipt = export(args.date)
     for key, info in receipt['files'].items():
         print(f'Wrote {info["path"]} ({info["bytes"]:,} bytes)')
-    print(f'Wrote project_current/coherence/evidence/{receipt["date"]}-pier-wall/source_receipt.json')
+    print(f'Wrote {receipt["receipt"]}')
     return 0
 
 

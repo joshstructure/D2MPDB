@@ -74,13 +74,17 @@ Minimum weld size follows the thicker-part table (1/8, 3/16, 1/4, 5/16 in at the
 
 ## Starting case
 
-The wall is the CAD pier wall (D-075): 219 × 36 × 194.8625 in (bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom EL 40.76494 ft) with four 20-in piles at 60 in, 19.5 in from each wall end; five rows start 6 in above bottom at 36-in pitch. Rings are 23-in OD × 20.125-in ID × 3/4-in thick with two 5/16-in E70 fillets. Radial pile tolerance is 3 in. Pile stiffness inputs: E 29,000 ksi, 92.4 in from the wall bottom to fixity (110.7 in sand depth to fixity below the pile-case ground EL 26.05 less the 18.3 in of wall below that ground), 600-in axial spring length (tip elevation pending), no imposed rotation.
+The wall is the CAD pier wall (D-075): 219 × 36 × 194.8625 in (bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom EL 40.76494 ft) with four 20-in piles at 60 in, 19.5 in from each wall end; five rows start 6 in above bottom at 36-in pitch. Rings are 23-in OD × 20.125-in ID × 1/2-in thick (D-078; 3/4 in until 22 October 2026) with two 5/16-in E70 fillets. Radial pile tolerance is 3 in. Pile stiffness inputs: E 29,000 ksi, 92.4 in from the wall bottom to fixity (110.7 in sand depth to fixity below the pile-case ground EL 26.05 less the 18.3 in of wall below that ground), 600-in axial spring length (tip elevation pending), no imposed rotation.
 
 - Service weight **133.359023438 kip**; factored **166.698779297 kip** (gross prism; the pile bores are not deducted).
 - Wall rotation **1.547 × 10⁻⁵ rad**; pile-head moment **26.98 kip-in**; ring moment **5.397 kip-in** per ring.
 - Largest equivalent eccentricity **1.105 in** (row 1, end piles) against the **5.187-in** kern: all twenty rings keep full contact.
 - Minimum grid **#5 at 11 in each way each face**, providing 0.338182 in²/ft against 0.334941 in²/ft required.
 - **1 failed check:** grid clearance (the inner face-grid layer meets the 23-in ring). The ring end cover passes with the 19.5-in end distance (it failed at 2 in with the former 213-in wall). No local strength check is pending; five scope items remain open.
+
+- Ring plate: the largest strength ratio at 1/2 in is the row-1 end-pile contact check (0.21); plate bending is 0.11, the fillet 0.09 of capacity. The 5/16-in fillet reads 0.80 of the minimum fillet (3/16 in from the thicker-part table at 1/2 in, plus the 1/16-in gap allowance) and 0.71 of the ring-edge maximum (plate thickness less 1/16 in).
+
+**Ring plate selection (D-078).** The 3/4-in plate of the first editions was not strength-governed (plate bending 0.05 of capacity). Sweeping the plate thickness through the engine with every other input held: the strength checks reach 0.95 of capacity only at about 0.17 in (row-5 plate bending); with the 5/16-in fillet the ring-edge maximum fillet governs, so the thinnest standard plate with every check at or under 0.95 of its limit is 7/16 in (0.83), with 3/8 in at exactly 1.00. The user selected 1/2 in on 22 October 2026. The CAD rings added under D-076 are 3/4 in thick until the model is reconciled.
 
 Default failures have not been tuned away. Increasing ring diameter also affects end/grid clearance; a changed pile layout needs coordinated geometry review. Entering an imposed rotation of 0.002 rad reproduces the former full-contact failures across all rings, which shows the contact gate still operates.
 

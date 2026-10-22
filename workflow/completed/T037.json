@@ -1,0 +1,29 @@
+{
+  "task": "T037",
+  "journal_sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+  "previous_sha256": "050e94fd45f603d9df5de8b1ed197c60e6e035f2dac9e1367e821ca44f924cee",
+  "promoted": "2026-10-22T13:48:18.498537+00:00",
+  "review": {
+    "candidate_sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T037/build_components.py; scripts/build_ring_wall_bpad.py build verification: 673 values and 178 statuses evaluated independently to 1e-9)",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "No external analysis changed: C017 reads the ring wall starting case only (ring plate 1/2 in, D-078); the FBMP exports, the pile and cap cases and their modules are untouched.",
+    "external_analysis_status": "not_applicable",
+    "inherited_issues_disposition": "Unchanged: the C017 grid-clearance failure (RING-GRID) and its five scope items, the undecided support concept (C006 fin plates or welded rings) and the 3/4-in CAD rings of D-076 (reconciliation pending) keep their recorded status.",
+    "evidence_files": [
+      {
+        "path": "verification.json",
+        "sha256": "91d5a9bf80d83848f2354c0d694e8e1d78a4b948084d0f3ed6cc4897239a1506"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
+}

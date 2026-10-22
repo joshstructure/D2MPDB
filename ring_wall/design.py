@@ -22,6 +22,10 @@ SCHEMA=3
 # the 18.3 in of wall below that ground (wall bottom EL 24.5264, 1 ft below terrain) = 92.4 in
 # from the wall bottom to fixity; tip elevation pending, so the axial spring length is a
 # stated 600-in allowance (softer spring = larger rotation = conservative moment).
+# Ring plate 1/2 in (D-078, 22 October 2026): the 3/4-in plate of the first editions was not
+# strength-governed (plate bending 0.05 of capacity); the thinnest plate with every check at or
+# under 0.95 of its limit is 7/16 in, set by the maximum fillet at the ring edge (leg <= t - 1/16),
+# and the user selected 1/2 in. The CAD rings (D-076) are still 3/4 in until reconciled.
 STIFFNESS_DEFAULTS=dict(pile_e_ksi=29000.,pile_free_length_in=92.4,pile_axial_length_in=600.,imposed_rotation_rad=0.)
 ZERO_ALLOWED={'placement_tolerance_in','imposed_rotation_rad'}
 D070_NOTE='Ring moment basis D-070: the ring moment now follows pile-head stiffness against wall rotation, with the tolerance as a pile-group redistribution. Pile stiffness inputs use visible defaults from the pier pile case. Review and Recalc.'
@@ -34,7 +38,7 @@ def default_case():
         cover_in=3.,required_cover_in=3.,aggregate_in=.75,fc_ksi=5.5,fy_ksi=60.,density_kcf=.150,gamma_dc=1.25,
         first_ring_in=6.,ring_spacing_in=36.,ring_count=5,grid_bar=5,auto_grid_spacing=True,grid_spacing_in=6.,
         spacing_increment_in=.5,project_max_spacing_in=12.,u_leg_in=72.,vertical_lap_in=60.,coating='uncoated',
-        ring_id_in=20.125,ring_od_in=23.,ring_t_in=.75,ring_fy_ksi=50.,ring_fu_ksi=65.,weld_leg_in=.3125,
+        ring_id_in=20.125,ring_od_in=23.,ring_t_in=.5,ring_fy_ksi=50.,ring_fu_ksi=65.,weld_leg_in=.3125,
         weld_fexx_ksi=70.,phi_concrete=.70,phi_plate=1.,phi_weld=.80,phi_shear_yield=1.,phi_shear_rupture=.80)
 
 
@@ -274,7 +278,7 @@ def analyze(case=None):
         ('STIFFNESS','Ring moments follow pile-head rotational stiffness against the rigid-wall rotation (D-070). The free length to fixity and the axial spring length are entered values (defaults from the pier pile case with sand depth to fixity, LRFD 10.7.3.13.4; tip elevation pending). Lateral, thermal, unsymmetric and construction-stage rotations enter only through the imposed rotation input.'),
         ('SCOPE','Wall checks cover minimum shrinkage/temperature steel and detailing only. Wall flexure, shear, lateral loads, seismic and strength load paths are outside this calculation.'),
         ('CONNECTION','Local plate and double-fillet checks do not establish pipe-shell bending/ovalization, global pile interaction, ring-segment splices, fatigue, corrosion or WPS/fabrication adequacy.'),
-        ('BASIS','Confirm exposure/cover, material grades, construction joints and bar anchorage routing. Starting dimensions follow the CAD pier wall (219 x 36 in, bottom 1 ft below terrain at EL 24.5264, top at the cap bottom); the geometry notebook does not yet own the pier wall.')]
+        ('BASIS','Confirm exposure/cover, material grades, construction joints and bar anchorage routing. Starting dimensions follow the CAD pier wall (219 x 36 in, bottom 1 ft below terrain at EL 24.5264, top at the cap bottom); the geometry notebook does not yet own the pier wall. The ring plate is 1/2 in by user selection (D-078; the thinnest plate with every check at or under 0.95 of its limit is 7/16 in, set by the maximum fillet at the ring edge); the CAD rings (D-076) are 3/4 in until reconciled.')]
     failed=sum(c['status']=='FAIL' for c in checks)
     return dict(case=p,migration=migration,geometry=g,grid=steel,rows=rows,rings=rings,checks=checks,nodes=nodes,pending=pending,
         totals=dict(service_weight=service,factored_weight=factored,force_error=sum(r['R'] for r in rings)-factored,

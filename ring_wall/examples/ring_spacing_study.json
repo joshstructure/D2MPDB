@@ -5,8 +5,8 @@
     "grid_spacing_in": 11.0,
     "max_ring_kip": 7.702148437500003,
     "max_t_in": 0.375,
-    "max_weld_in": 0.3125,
-    "max_weld_dc": 0.02995425785285728,
+    "max_weld_in": 0.25,
+    "max_weld_dc": 0.043106210375415746,
     "contact_failures": 0,
     "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
@@ -16,8 +16,8 @@
     "grid_spacing_in": 11.0,
     "max_ring_kip": 7.03125,
     "max_t_in": 0.375,
-    "max_weld_in": 0.3125,
-    "max_weld_dc": 0.027874375244053184,
+    "max_weld_in": 0.25,
+    "max_weld_dc": 0.040113118116823006,
     "contact_failures": 0,
     "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
@@ -27,8 +27,8 @@
     "grid_spacing_in": 11.0,
     "max_ring_kip": 8.4375,
     "max_t_in": 0.375,
-    "max_weld_in": 0.3125,
-    "max_weld_dc": 0.0333615682720851,
+    "max_weld_in": 0.25,
+    "max_weld_dc": 0.048009561360343254,
     "contact_failures": 0,
     "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
@@ -38,8 +38,8 @@
     "grid_spacing_in": 11.0,
     "max_ring_kip": 9.84375,
     "max_t_in": 0.375,
-    "max_weld_in": 0.3125,
-    "max_weld_dc": 0.03902412534167446,
+    "max_weld_in": 0.25,
+    "max_weld_dc": 0.05615836536355222,
     "contact_failures": 0,
     "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
@@ -49,8 +49,8 @@
     "grid_spacing_in": 11.0,
     "max_ring_kip": 16.139648437500004,
     "max_t_in": 0.375,
-    "max_weld_in": 0.3125,
-    "max_weld_dc": 0.06254860844312853,
+    "max_weld_in": 0.25,
+    "max_weld_dc": 0.09001169341212088,
     "contact_failures": 0,
     "status": "1 FAILED CHECKS · LIMITED SCOPE"
   }

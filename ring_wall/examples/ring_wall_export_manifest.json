@@ -1,16 +1,16 @@
 {
-  "case_sha256": "bcca7f0914179905c43dddf9c269c3667f7a9023d506acc1956e6c45faec88c9",
-  "source_sha256": "2b8da8c397160e6857f245d2c4ff0cfa6ce49d63b7c5057c30e5efef09cfae0a",
+  "case_sha256": "bc5d7e9701d2615a3008a9e7b31b2d15cac017f06b243aa226f800fcc119cf8a",
+  "source_sha256": "dc3550977246aa0511f7b5cbe389f7cd4662c1c5cc147f9b2c259b9cd0ff55b6",
   "files": {
-    "ring_wall_case.json": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c",
-    "ring_wall_results.json": "fa3b25bfaec67f85706fba9bd3c017054f40d12ca55e5c23c0a83520d3965604",
-    "ring_wall_checks.csv": "ac8859015cc14008d5531dd0087701295d6b60bfa60e95ddff24329acca4f98b",
-    "ring_wall_ring_forces.csv": "807a625a0681ae1332094202fbb85c8cb7ca65df00ca2b0f98a722c6f9128c3e",
-    "ring_wall_report.html": "d0462a43ac73f964dcbc1afafd4e7f79706cb91468031ac7da8e816b31852b3f",
-    "ring_spacing_study.json": "898ab84aa22a7b3d1cc1ab867e3ca74a5654338bafc37e579114a8167061fc4c",
-    "ring_wall_design.xmcd": "3741aba38d27e26ac828ac8d8f266653a512eb6d00aead7beb30bd3242afc120",
-    "Ring Supported Wall Design.bpad": "7f25e7cfb1f7cefd97663f2946ec5eaa71e810d9bbb791b40461b8b412ed15a6",
-    "ring_wall_sheet_verification.json": "757b41066cfd0c682163a914cd6ac45bd498e8760949d3d1d3e68c2507c62cd8",
-    "ring_wall_source.zip": "f1ff0467ec451f66bbfd815a3e4d7e292773d3b0b2b559f54c5a3969af9e437b"
+    "ring_wall_case.json": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
+    "ring_wall_results.json": "e82e7703f6c3459b314f51c26269cfe790f160ffa139300ed39483671b8f42d6",
+    "ring_wall_checks.csv": "309dba77461562b5749a69f740f1e433868272982294d8b587bb7d3244888b2f",
+    "ring_wall_ring_forces.csv": "ef9533daf54a31c72d12e13deb72a96213d763d332edf300080848375da082e8",
+    "ring_wall_report.html": "88c06fcc24f583c6d74ed621dde8d8a42e26bb74e0c5e315a80afc4dce56bcd8",
+    "ring_spacing_study.json": "8c09bf275504a4efe29bd5d46744f3505371bc9a428418014db0ee13a5fdb1e0",
+    "ring_wall_design.xmcd": "0e70d3a1886314a50101ea0e075c85003290ad879528ddad88b9519deeda0b4a",
+    "Ring Supported Wall Design.bpad": "4c7016f810faa0233d18a6187b659c147206d1c63831f6ba51a756a45e5ea1d7",
+    "ring_wall_sheet_verification.json": "7c1d6fcf192d1fe6fff9a57d27831bdc1fdc0c60e0fdfd25ff41b85a9cdba365",
+    "ring_wall_source.zip": "6b5b5943aaf14b8d50e0605010899588c246f5f28d42c65400c56c790340aeb7"
   }
 }

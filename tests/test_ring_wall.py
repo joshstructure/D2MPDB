@@ -82,7 +82,8 @@ class RingWallTests(unittest.TestCase):
         for x in r['rings']:
             self.assertAlmostEqual(x['weld_req']*16,round(x['weld_req']*16));self.assertGreaterEqual(x['weld_req']+1e-12,x['weld_req_raw']);self.assertLess(x['weld_req']-x['weld_req_raw'],1/16)
         vals={x['name']:x['value'] for x in r['nodes']};self.assertEqual(vals['ring_3_1_weld_required_16'],vals['ring_3_1_weld_required']) if vals['ring_3_1_weld_required']*16==round(vals['ring_3_1_weld_required']*16) else None
-        self.assertAlmostEqual(analyze(default_case()|dict(weld_leg_in=.25))['rings'][0]['weld_req'],.3125)  # 1/4 table minimum + 1/16 gap = 5/16 exactly
+        self.assertAlmostEqual(analyze(default_case()|dict(weld_leg_in=.25))['rings'][0]['weld_req'],.25)  # 1/2-in plate (D-078): 3/16 table minimum + 1/16 gap = 1/4 exactly
+        self.assertAlmostEqual(analyze(default_case()|dict(ring_t_in=.75,weld_leg_in=.25))['rings'][0]['weld_req'],.3125)  # 3/4-in plate: 1/4 table minimum + 1/16 gap = 5/16 exactly
         self.assertAlmostEqual(analyze(default_case()|dict(ring_t_in=1.,weld_leg_in=.5))['rings'][0]['weld_req'],.375)  # 5/16 table minimum + 1/16 gap = 3/8
 
     def test_bearing_annulus_excludes_top_weld_and_compatibility_moment(self):

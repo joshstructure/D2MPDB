@@ -1,3 +1,23 @@
+# Verification record — 22 October 2026 (ring plate 1/2 in, D-078)
+
+The annular ring plate of the starting case is **1/2 in** thick in place of 3/4 in, by user direction ("Lets update the design to 1/2 thick plate") after the question of the thinnest ring with no check above 0.95 of its limit. The answer, from sweeping `ring_t_in` through the engine with every other input held: the strength checks (plate bending, shear, fillets, base metal, bearing, contact) reach 0.95 of capacity only at about 0.17 in (row-5 plate bending); with the 5/16-in fillet held, the maximum fillet at the ring edge (leg ≤ plate thickness − 1/16 in, LRFD 6.13.3.4) governs, so 7/16 in is the thinnest standard plate (0.83) and 3/8 in sits at exactly 1.00. The 3/4-in plate was never strength-governed (plate bending 0.05 of capacity). No equation changed; the default, the BASIS scope text, the design-basis table rows and the notebook text changed. Decision D-078 in `project_current/decisions.md`; second project export of the day under label `10-22b` (`scripts/export_project_pier_wall_report.py --date 10-22b --decision D-078`, which now accepts a trailing letter for a same-day export). The CAD rings added under D-076 are 3/4 in thick until the model is reconciled.
+
+## Automated verification
+
+`python -m unittest discover -s tests -p 'test_ring_wall*.py'` passes **31 tests** locally (ipywidgets 8.1.9, Plotly 6.9.0); two assertions that pinned the 3/4-in plate's weld minimum were updated (at 1/2 in the thicker-part table gives 3/16 in, so a 1/4-in fillet is the trial leg with the gap allowance; the 3/4-in case is still asserted explicitly). `tests.test_report_cards` passes (12 tests). The Colab-pinned environment and native application recalculation were not rerun. The journal edition verified **673 values and 178 statuses** to 1e-9 (fragment `6cea494ef70b`).
+
+Embedded package SHA-256:
+
+`2e3c858380b1af9ef6e96fd3856ae6569e69882f8b607dff7c1e26eb4816f274`
+
+## Starting-case results (22 October 2026, 1/2-in plate)
+
+- Wall, piles, ring diameters, fillets, tolerance and stiffness inputs unchanged from the D-075 record below, so the service weight (**133.359 kip**), wall rotation (**1.547 × 10⁻⁵ rad**), pile-head moment (**26.983 kip-in**), ring moment (**5.397 kip-in**), largest equivalent eccentricity (**1.105 in** against the **5.187-in** kern), contact and bearing results are identical.
+- Largest ring strength ratios: contact **0.213** (R1-P1), plate bending **0.112** (R5-P2; 0.050 at 3/4 in), ring shear 0.018, fillet **0.081** (0.057 at 3/4 in), ring base metal 0.032, pipe shear yielding 0.035, pipe base metal 0.034, bearing 0.060.
+- Weld detailing: the minimum fillet of the thicker-part table is 3/16 in at 1/2 in (1/4 in with the 1/16-in gap allowance), so the 5/16-in fillet reads **0.80** of the minimum check and **0.71** of the ring-edge maximum (7/16 in); the largest trial leg is 1/4 in. The bottom ring cover rises to 5.1875 in (0.58 of the check).
+- Grid unchanged: **#5 at 11 in each way each face**.
+- **1 failed check** (RING-GRID, unchanged); no pending strength check; five scope items open.
+
 # Verification record — 22 October 2026 (CAD wall geometry, D-075)
 
 The starting case now follows the CAD pier wall: length 219 in (18 ft 3 in, 19.5 in from each wall end to the outer pile), thickness 36 in, height 194.8625 in (bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom EL 40.76494 ft), and the pile free length to fixity 92.4 in measured from that bottom (110.7 in sand depth to fixity below the pile-case ground EL 26.05 less 18.3 in of wall below it). The former 213 × 36 × 172.375 in snapshot and the 127-in free length (taken from the pile cutoff) were not tied to any registered elevation. No equation changed; the defaults, the BASIS scope text and the design-basis table caption changed. Decision D-075 in `project_current/decisions.md`.

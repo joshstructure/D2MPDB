@@ -1,0 +1,36 @@
+{
+  "task": "T037",
+  "base_sha256": "050e94fd45f603d9df5de8b1ed197c60e6e035f2dac9e1367e821ca44f924cee",
+  "decision": "D-078",
+  "components": {
+    "PierWallRings": {
+      "source": "ring_wall/bpad/journal/PierWallRings.xml",
+      "fragment_sha256": "6cea494ef70b988f81317a84183170b8a673567382378b355c7ad578b602f259",
+      "case_sha256": "bc5d7e9701d2615a3008a9e7b31b2d15cac017f06b243aa226f800fcc119cf8a",
+      "definitions": 859,
+      "status": "1 FAILED CHECKS · LIMITED SCOPE",
+      "failed_checks": [
+        "RING-GRID"
+      ],
+      "definitions_with_changed_formula_or_cache": 131,
+      "ring_t_in": [
+        0.75,
+        0.5
+      ],
+      "largest_plate_bending_ratio": 0.11198145053765869,
+      "largest_fillet_ratio": 0.08142125807945669
+    },
+    "PedBridge": {
+      "source": "base.bpad + revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

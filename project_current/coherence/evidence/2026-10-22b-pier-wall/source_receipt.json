@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-22",
+  "label": "10-22b",
+  "decision": "D-078",
+  "authorization": "User instruction, 22 October 2026: \"Lets update the design to 1/2 thick plate\", after asking what the thinnest annular ring can be with no check above 0.95 of its limit (7/16 in with the 5/16-in fillet, set by the maximum fillet at the ring edge; strength alone would allow 3/16 in).",
+  "scope": "Pier wall annular-ring calculation report and case exported to project_current/pier_wall/ from the starting case of the ring_wall package (D-070 ring moment basis; pile stiffness defaults from PILE-PIER-CASE). The starting dimensions follow the CAD pier wall (D-075: 219 × 36 in, bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom EL 40.76494 ft, 194.8625 in high; free length to fixity 92.4 in from the wall bottom). The ring plate is 1/2 in by user selection (D-078) in place of the 3/4 in of the first editions; the ring diameters (23 / 20.125 in), the 5/16-in fillets and every other input are unchanged. The CAD rings added under D-076 are 3/4 in thick until the model is reconciled. No other case, FBMP export, CAD geometry, tracker row or engineering disposition changed in this step. The Blockpad edition goes to the journal as C017.",
+  "geometry_basis": "The starting dimensions follow the CAD pier wall (D-075: 219 × 36 in, bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom EL 40.76494 ft, 194.8625 in high; free length to fixity 92.4 in from the wall bottom). The ring plate is 1/2 in by user selection (D-078) in place of the 3/4 in of the first editions; the ring diameters (23 / 20.125 in), the 5/16-in fillets and every other input are unchanged. The CAD rings added under D-076 are 3/4 in thick until the model is reconciled.",
+  "generator": {
+    "script": "scripts/export_project_pier_wall_report.py",
+    "command": ".venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --date 10-22b",
+    "package": "ring_wall",
+    "package_source_sha256": "dc3550977246aa0511f7b5cbe389f7cd4662c1c5cc147f9b2c259b9cd0ff55b6",
+    "case_sha256": "bc5d7e9701d2615a3008a9e7b31b2d15cac017f06b243aa226f800fcc119cf8a",
+    "git_head": "77b1123",
+    "git_head_note": "Read from .git/HEAD and the ref file; the working tree was not inspected for uncommitted changes.",
+    "python": "3.12.14",
+    "plotly": "6.9.0",
+    "note": "The report embeds random Plotly figure ids, so a rerun gives new bytes; --check regenerates it from the saved case and compares with the ids masked."
+  },
+  "files": {
+    "report": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22b.html",
+      "sha256": "eef1ec7b97a3c5b742c98d4ecf9b531099c5ef1c86ec307f50cc413809e81020",
+      "bytes": 8549297
+    },
+    "dated_case": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22b.json",
+      "sha256": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
+      "bytes": 1158
+    },
+    "selected_case": {
+      "path": "project_current/pier_wall/selected_case.json",
+      "sha256": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
+      "bytes": 1158
+    },
+    "checks_csv": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22b checks.csv",
+      "sha256": "309dba77461562b5749a69f740f1e433868272982294d8b587bb7d3244888b2f",
+      "bytes": 30692
+    },
+    "ring_forces_csv": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22b ring forces.csv",
+      "sha256": "ef9533daf54a31c72d12e13deb72a96213d763d332edf300080848375da082e8",
+      "bytes": 8171
+    }
+  },
+  "selected_case_equals_dated_case": true,
+  "results": {
+    "checks": 178,
+    "status_counts": {
+      "FAIL": 1,
+      "PASS": 177
+    },
+    "failed": [
+      "RING-GRID"
+    ],
+    "pending": [],
+    "overall": "1 FAILED CHECKS · LIMITED SCOPE",
+    "service_weight_kip": 133.35902343749999,
+    "factored_weight_kip": 166.698779296875,
+    "wall_rotation_rad": 1.5470903713465155e-05,
+    "pile_head_moment_kip_in": 26.9826923385866,
+    "ring_moment_kip_in": 5.39653846771732,
+    "kern_limit_in": 5.186905570652174,
+    "largest_equivalent_eccentricity_in": 1.1053660463397488,
+    "largest_equivalent_eccentricity_ring": "R1-P1",
+    "rings_without_contact": 0,
+    "largest_design_ring_load_kip": 14.944252313541758,
+    "largest_qmax_ksi": 0.1964331079261927,
+    "grid": "#5 at 11 in",
+    "weld_leg_provided_in": 0.3125,
+    "largest_trial_weld_leg_in": 0.25,
+    "scope_items": [
+      "SHARING",
+      "STIFFNESS",
+      "SCOPE",
+      "CONNECTION",
+      "BASIS"
+    ]
+  },
+  "register_rows": [
+    "PIER-WALL-TOOL",
+    "PIER-WALL-REPORT",
+    "PIER-WALL-CASE"
+  ],
+  "limitations": "Notebook package run and export only. The numerical checks are the notebook's; the five scope items (sharing among rows, pile stiffness confirmation, wall load paths, connection scope, geometry basis) remain open; the failed checks of the 23-in ring trial (RING-GRID) remain. Which pier-wall support concept governs (C006 fin plates and hairpins or these welded rings) is not decided by this export. Selection is not engineering acceptance. The CAD rings (D-076) are 3/4 in thick until the model is reconciled to this 1/2-in plate.",
+  "receipt": "project_current/coherence/evidence/2026-10-22b-pier-wall/source_receipt.json"
+}

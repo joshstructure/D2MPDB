@@ -206,6 +206,7 @@ DECISION_SOURCES = {
     "D-072": ["JOURNAL"],
     "D-075": ["JOURNAL", "CAD-MODEL", "PILE-PIER-CASE"],  # pier wall reconciled to the CAD geometry; PIER-WALL-* are named in the text
     "D-077": ["JOURNAL", "PILE-TOOL"],  # 22 October pier FBMP rerun; PIER-XML, PIER-CASE/REPORT and PILE-PIER-CASE/REPORT are named in the text
+    "D-078": ["JOURNAL", "CAD-MODEL"],  # 1/2-in pier wall ring plate; PIER-WALL-REPORT/CASE are named in the text; the CAD rings (D-076) stay 3/4 in
 }
 # D-054 (pile reports and cases) and D-055 (backwall vertical coordination) name their
 # register IDs in the decision text, so find_refs attaches them without a hand map.

@@ -18,12 +18,12 @@
     <include target="Library.Geometry"/>
     <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
     <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">Wall steel and annular pile rings</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Fixed scalar units: inches, kip, ksi, with density in kip/ft^3 and areas per foot as labeled. Units are labels, not native dimensional quantities. This sheet recomputes the exported topology. Regenerate after changing pile/row counts, bar size/coating, automatic spacing, or contact assumptions. Two continuous top/bottom fillets. Values are not design acceptance. Case bcca7f091417.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Fixed scalar units: inches, kip, ksi, with density in kip/ft^3 and areas per foot as labeled. Units are labels, not native dimensional quantities. This sheet recomputes the exported topology. Regenerate after changing pile/row counts, bar size/coating, automatic spacing, or contact assumptions. Two continuous top/bottom fillets. Values are not design acceptance. Case bc5d7e9701d2.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">SHARING: Midplane tributaries assign vertical force and the ring rows share the pile-head moment equally; all rings are assumed to engage. Concrete transfer (including concrete below rings), splitting/breakout and row compatibility need a separately substantiated load path.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">STIFFNESS: Ring moments follow pile-head rotational stiffness against the rigid-wall rotation (D-070). The free length to fixity and the axial spring length are entered values (defaults from the pier pile case with sand depth to fixity, LRFD 10.7.3.13.4; tip elevation pending). Lateral, thermal, unsymmetric and construction-stage rotations enter only through the imposed rotation input.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">SCOPE: Wall checks cover minimum shrinkage/temperature steel and detailing only. Wall flexure, shear, lateral loads, seismic and strength load paths are outside this calculation.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">CONNECTION: Local plate and double-fillet checks do not establish pipe-shell bending/ovalization, global pile interaction, ring-segment splices, fatigue, corrosion or WPS/fabrication adequacy.</paragraph>
-    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">BASIS: Confirm exposure/cover, material grades, construction joints and bar anchorage routing. Starting dimensions follow the CAD pier wall (219 x 36 in, bottom 1 ft below terrain at EL 24.5264, top at the cap bottom); the geometry notebook does not yet own the pier wall.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">BASIS: Confirm exposure/cover, material grades, construction joints and bar anchorage routing. Starting dimensions follow the CAD pier wall (219 x 36 in, bottom 1 ft below terrain at EL 24.5264, top at the cap bottom); the geometry notebook does not yet own the pier wall. The ring plate is 1/2 in by user selection (D-078; the thinnest plate with every check at or under 0.95 of its limit is 7/16 in, set by the maximum fillet at the ring edge); the CAD rings (D-076) are 3/4 in until reconciled.</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0001 = 3" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0001 = 3</expbody>
@@ -256,9 +256,9 @@
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring od in [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
-      <dynexp formula="v_0034 = 0.75" mathlayout="on" showformula="True" showresult="True" showsteps="False">
-        <expbody>v_0034 = 0.75</expbody>
-        <expresult> = 0.750</expresult>
+      <dynexp formula="v_0034 = 0.5" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+        <expbody>v_0034 = 0.5</expbody>
+        <expresult> = 0.500</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring t in [in]</paragraph>
@@ -538,14 +538,14 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0074 = v_0040*v_0035*v_0034^2/6" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0074 = v_0040*v_0035*v_0034^2/6</expbody>
-        <expresult> = 4.688</expresult>
+        <expresult> = 2.083</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Elastic radial cantilever strip [kip-in/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0075 = v_0042*0.58*v_0035*v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0075 = v_0042*0.58*v_0035*v_0034</expbody>
-        <expresult> = 21.750</expresult>
+        <expresult> = 14.500</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">plate shear capacity [kip/in]</paragraph>
@@ -566,7 +566,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0078 = Max(v_0034, v_0008)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0078 = Max(v_0034, v_0008)</expbody>
-        <expresult> = 0.750</expresult>
+        <expresult> = 0.500</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">thicker part [in]</paragraph>
@@ -580,35 +580,35 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0080 = If(v_0078 &lt;= 0.5, 0.1875, v_0079)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0080 = If(v_0078 &lt;= 0.5, 0.1875, v_0079)</expbody>
-        <expresult> = 0.250</expresult>
+        <expresult> = 0.188</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum mid weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0081 = If(v_0078 &lt;= 0.25, 0.125, v_0080)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0081 = If(v_0078 &lt;= 0.25, 0.125, v_0080)</expbody>
-        <expresult> = 0.250</expresult>
+        <expresult> = 0.188</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">minimum table weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0082 = Min(v_0081, v_0034, v_0008)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0082 = Min(v_0081, v_0034, v_0008)</expbody>
-        <expresult> = 0.250</expresult>
+        <expresult> = 0.188</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">weld minimum [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0083 = v_0082 + v_0069" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0083 = v_0082 + v_0069</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">weld min gap [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0084 = If(v_0034 &lt; 0.25, v_0034, v_0034 - 0.0625)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0084 = If(v_0034 &lt; 0.25, v_0034, v_0034 - 0.0625)</expbody>
-        <expresult> = 0.688</expresult>
+        <expresult> = 0.438</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Ring edge limit; pipe is a face, not free edge [in]</paragraph>
@@ -629,7 +629,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0087 = v_0043*0.58*v_0036*v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0087 = v_0043*0.58*v_0036*v_0034</expbody>
-        <expresult> = 22.620</expresult>
+        <expresult> = 15.080</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring base capacity [kip/in]</paragraph>
@@ -685,7 +685,7 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0095 = v_0023 - v_0034 - v_0037" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0095 = v_0023 - v_0034 - v_0037</expbody>
-        <expresult> = 4.938</expresult>
+        <expresult> = 5.188</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">bottom ring cover [in]</paragraph>
@@ -993,42 +993,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0139 = v_0134/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0139 = v_0134/v_0034</expbody>
-        <expresult> = 0.115</expresult>
+        <expresult> = 0.173</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0140 = Sqrt((v_0135/2)^2 + v_0139^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0140 = Sqrt((v_0135/2)^2 + v_0139^2)</expbody>
-        <expresult> = 0.125</expresult>
+        <expresult> = 0.179</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0141 = v_0069 + Sqrt(2)*v_0140/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0141 = v_0069 + Sqrt(2)*v_0140/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.068</expresult>
+        <expresult> = 0.070</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 1 1 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0142 = Max(v_0141, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0142 = Max(v_0141, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0143 = Round(16*v_0142, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0143 = Round(16*v_0142, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0144 = If(v_0143 &gt;= 16*v_0142, v_0143, v_0143 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0144 = If(v_0143 &gt;= 16*v_0142, v_0143, v_0143 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -1182,42 +1182,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0166 = v_0161/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0166 = v_0161/v_0034</expbody>
-        <expresult> = 0.131</expresult>
+        <expresult> = 0.197</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0167 = Sqrt((v_0162/2)^2 + v_0166^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0167 = Sqrt((v_0162/2)^2 + v_0166^2)</expbody>
-        <expresult> = 0.142</expresult>
+        <expresult> = 0.204</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0168 = v_0069 + Sqrt(2)*v_0167/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0168 = v_0069 + Sqrt(2)*v_0167/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.068</expresult>
+        <expresult> = 0.071</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 1 2 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0169 = Max(v_0168, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0169 = Max(v_0168, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0170 = Round(16*v_0169, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0170 = Round(16*v_0169, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0171 = If(v_0170 &gt;= 16*v_0169, v_0170, v_0170 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0171 = If(v_0170 &gt;= 16*v_0169, v_0170, v_0170 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -1371,42 +1371,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0193 = v_0188/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0193 = v_0188/v_0034</expbody>
-        <expresult> = 0.131</expresult>
+        <expresult> = 0.197</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0194 = Sqrt((v_0189/2)^2 + v_0193^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0194 = Sqrt((v_0189/2)^2 + v_0193^2)</expbody>
-        <expresult> = 0.142</expresult>
+        <expresult> = 0.204</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0195 = v_0069 + Sqrt(2)*v_0194/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0195 = v_0069 + Sqrt(2)*v_0194/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.068</expresult>
+        <expresult> = 0.071</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 1 3 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0196 = Max(v_0195, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0196 = Max(v_0195, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0197 = Round(16*v_0196, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0197 = Round(16*v_0196, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0198 = If(v_0197 &gt;= 16*v_0196, v_0197, v_0197 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0198 = If(v_0197 &gt;= 16*v_0196, v_0197, v_0197 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -1560,42 +1560,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0220 = v_0215/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0220 = v_0215/v_0034</expbody>
-        <expresult> = 0.115</expresult>
+        <expresult> = 0.173</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0221 = Sqrt((v_0216/2)^2 + v_0220^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0221 = Sqrt((v_0216/2)^2 + v_0220^2)</expbody>
-        <expresult> = 0.125</expresult>
+        <expresult> = 0.179</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0222 = v_0069 + Sqrt(2)*v_0221/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0222 = v_0069 + Sqrt(2)*v_0221/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.068</expresult>
+        <expresult> = 0.070</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 1 4 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0223 = Max(v_0222, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0223 = Max(v_0222, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0224 = Round(16*v_0223, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0224 = Round(16*v_0223, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0225 = If(v_0224 &gt;= 16*v_0223, v_0224, v_0224 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0225 = If(v_0224 &gt;= 16*v_0223, v_0224, v_0224 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -1777,42 +1777,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0251 = v_0246/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0251 = v_0246/v_0034</expbody>
-        <expresult> = 0.163</expresult>
+        <expresult> = 0.244</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0252 = Sqrt((v_0247/2)^2 + v_0251^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0252 = Sqrt((v_0247/2)^2 + v_0251^2)</expbody>
-        <expresult> = 0.176</expresult>
+        <expresult> = 0.253</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0253 = v_0069 + Sqrt(2)*v_0252/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0253 = v_0069 + Sqrt(2)*v_0252/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.070</expresult>
+        <expresult> = 0.073</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 2 1 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0254 = Max(v_0253, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0254 = Max(v_0253, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0255 = Round(16*v_0254, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0255 = Round(16*v_0254, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0256 = If(v_0255 &gt;= 16*v_0254, v_0255, v_0255 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0256 = If(v_0255 &gt;= 16*v_0254, v_0255, v_0255 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -1966,42 +1966,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0278 = v_0273/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0278 = v_0273/v_0034</expbody>
-        <expresult> = 0.187</expresult>
+        <expresult> = 0.280</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0279 = Sqrt((v_0274/2)^2 + v_0278^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0279 = Sqrt((v_0274/2)^2 + v_0278^2)</expbody>
-        <expresult> = 0.202</expresult>
+        <expresult> = 0.290</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0280 = v_0069 + Sqrt(2)*v_0279/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0280 = v_0069 + Sqrt(2)*v_0279/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.071</expresult>
+        <expresult> = 0.075</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 2 2 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0281 = Max(v_0280, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0281 = Max(v_0280, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0282 = Round(16*v_0281, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0282 = Round(16*v_0281, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0283 = If(v_0282 &gt;= 16*v_0281, v_0282, v_0282 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0283 = If(v_0282 &gt;= 16*v_0281, v_0282, v_0282 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -2155,42 +2155,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0305 = v_0300/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0305 = v_0300/v_0034</expbody>
-        <expresult> = 0.187</expresult>
+        <expresult> = 0.280</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0306 = Sqrt((v_0301/2)^2 + v_0305^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0306 = Sqrt((v_0301/2)^2 + v_0305^2)</expbody>
-        <expresult> = 0.202</expresult>
+        <expresult> = 0.290</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0307 = v_0069 + Sqrt(2)*v_0306/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0307 = v_0069 + Sqrt(2)*v_0306/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.071</expresult>
+        <expresult> = 0.075</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 2 3 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0308 = Max(v_0307, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0308 = Max(v_0307, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0309 = Round(16*v_0308, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0309 = Round(16*v_0308, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0310 = If(v_0309 &gt;= 16*v_0308, v_0309, v_0309 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0310 = If(v_0309 &gt;= 16*v_0308, v_0309, v_0309 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -2344,42 +2344,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0332 = v_0327/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0332 = v_0327/v_0034</expbody>
-        <expresult> = 0.163</expresult>
+        <expresult> = 0.244</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0333 = Sqrt((v_0328/2)^2 + v_0332^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0333 = Sqrt((v_0328/2)^2 + v_0332^2)</expbody>
-        <expresult> = 0.176</expresult>
+        <expresult> = 0.253</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0334 = v_0069 + Sqrt(2)*v_0333/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0334 = v_0069 + Sqrt(2)*v_0333/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.070</expresult>
+        <expresult> = 0.073</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 2 4 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0335 = Max(v_0334, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0335 = Max(v_0334, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0336 = Round(16*v_0335, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0336 = Round(16*v_0335, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0337 = If(v_0336 &gt;= 16*v_0335, v_0336, v_0336 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0337 = If(v_0336 &gt;= 16*v_0335, v_0336, v_0336 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -2561,42 +2561,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0363 = v_0358/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0363 = v_0358/v_0034</expbody>
-        <expresult> = 0.163</expresult>
+        <expresult> = 0.244</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0364 = Sqrt((v_0359/2)^2 + v_0363^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0364 = Sqrt((v_0359/2)^2 + v_0363^2)</expbody>
-        <expresult> = 0.176</expresult>
+        <expresult> = 0.253</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0365 = v_0069 + Sqrt(2)*v_0364/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0365 = v_0069 + Sqrt(2)*v_0364/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.070</expresult>
+        <expresult> = 0.073</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 3 1 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0366 = Max(v_0365, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0366 = Max(v_0365, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0367 = Round(16*v_0366, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0367 = Round(16*v_0366, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0368 = If(v_0367 &gt;= 16*v_0366, v_0367, v_0367 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0368 = If(v_0367 &gt;= 16*v_0366, v_0367, v_0367 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -2750,42 +2750,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0390 = v_0385/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0390 = v_0385/v_0034</expbody>
-        <expresult> = 0.187</expresult>
+        <expresult> = 0.280</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0391 = Sqrt((v_0386/2)^2 + v_0390^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0391 = Sqrt((v_0386/2)^2 + v_0390^2)</expbody>
-        <expresult> = 0.202</expresult>
+        <expresult> = 0.290</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0392 = v_0069 + Sqrt(2)*v_0391/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0392 = v_0069 + Sqrt(2)*v_0391/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.071</expresult>
+        <expresult> = 0.075</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 3 2 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0393 = Max(v_0392, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0393 = Max(v_0392, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0394 = Round(16*v_0393, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0394 = Round(16*v_0393, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0395 = If(v_0394 &gt;= 16*v_0393, v_0394, v_0394 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0395 = If(v_0394 &gt;= 16*v_0393, v_0394, v_0394 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -2939,42 +2939,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0417 = v_0412/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0417 = v_0412/v_0034</expbody>
-        <expresult> = 0.187</expresult>
+        <expresult> = 0.280</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0418 = Sqrt((v_0413/2)^2 + v_0417^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0418 = Sqrt((v_0413/2)^2 + v_0417^2)</expbody>
-        <expresult> = 0.202</expresult>
+        <expresult> = 0.290</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0419 = v_0069 + Sqrt(2)*v_0418/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0419 = v_0069 + Sqrt(2)*v_0418/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.071</expresult>
+        <expresult> = 0.075</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 3 3 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0420 = Max(v_0419, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0420 = Max(v_0419, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0421 = Round(16*v_0420, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0421 = Round(16*v_0420, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0422 = If(v_0421 &gt;= 16*v_0420, v_0421, v_0421 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0422 = If(v_0421 &gt;= 16*v_0420, v_0421, v_0421 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -3128,42 +3128,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0444 = v_0439/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0444 = v_0439/v_0034</expbody>
-        <expresult> = 0.163</expresult>
+        <expresult> = 0.244</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0445 = Sqrt((v_0440/2)^2 + v_0444^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0445 = Sqrt((v_0440/2)^2 + v_0444^2)</expbody>
-        <expresult> = 0.176</expresult>
+        <expresult> = 0.253</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0446 = v_0069 + Sqrt(2)*v_0445/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0446 = v_0069 + Sqrt(2)*v_0445/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.070</expresult>
+        <expresult> = 0.073</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 3 4 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0447 = Max(v_0446, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0447 = Max(v_0446, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0448 = Round(16*v_0447, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0448 = Round(16*v_0447, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0449 = If(v_0448 &gt;= 16*v_0447, v_0448, v_0448 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0449 = If(v_0448 &gt;= 16*v_0447, v_0448, v_0448 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -3345,42 +3345,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0475 = v_0470/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0475 = v_0470/v_0034</expbody>
-        <expresult> = 0.163</expresult>
+        <expresult> = 0.244</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0476 = Sqrt((v_0471/2)^2 + v_0475^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0476 = Sqrt((v_0471/2)^2 + v_0475^2)</expbody>
-        <expresult> = 0.176</expresult>
+        <expresult> = 0.253</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0477 = v_0069 + Sqrt(2)*v_0476/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0477 = v_0069 + Sqrt(2)*v_0476/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.070</expresult>
+        <expresult> = 0.073</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 4 1 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0478 = Max(v_0477, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0478 = Max(v_0477, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0479 = Round(16*v_0478, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0479 = Round(16*v_0478, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0480 = If(v_0479 &gt;= 16*v_0478, v_0479, v_0479 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0480 = If(v_0479 &gt;= 16*v_0478, v_0479, v_0479 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -3534,42 +3534,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0502 = v_0497/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0502 = v_0497/v_0034</expbody>
-        <expresult> = 0.187</expresult>
+        <expresult> = 0.280</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0503 = Sqrt((v_0498/2)^2 + v_0502^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0503 = Sqrt((v_0498/2)^2 + v_0502^2)</expbody>
-        <expresult> = 0.202</expresult>
+        <expresult> = 0.290</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0504 = v_0069 + Sqrt(2)*v_0503/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0504 = v_0069 + Sqrt(2)*v_0503/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.071</expresult>
+        <expresult> = 0.075</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 4 2 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0505 = Max(v_0504, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0505 = Max(v_0504, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0506 = Round(16*v_0505, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0506 = Round(16*v_0505, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0507 = If(v_0506 &gt;= 16*v_0505, v_0506, v_0506 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0507 = If(v_0506 &gt;= 16*v_0505, v_0506, v_0506 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -3723,42 +3723,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0529 = v_0524/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0529 = v_0524/v_0034</expbody>
-        <expresult> = 0.187</expresult>
+        <expresult> = 0.280</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0530 = Sqrt((v_0525/2)^2 + v_0529^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0530 = Sqrt((v_0525/2)^2 + v_0529^2)</expbody>
-        <expresult> = 0.202</expresult>
+        <expresult> = 0.290</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0531 = v_0069 + Sqrt(2)*v_0530/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0531 = v_0069 + Sqrt(2)*v_0530/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.071</expresult>
+        <expresult> = 0.075</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 4 3 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0532 = Max(v_0531, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0532 = Max(v_0531, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0533 = Round(16*v_0532, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0533 = Round(16*v_0532, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0534 = If(v_0533 &gt;= 16*v_0532, v_0533, v_0533 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0534 = If(v_0533 &gt;= 16*v_0532, v_0533, v_0533 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -3912,42 +3912,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0556 = v_0551/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0556 = v_0551/v_0034</expbody>
-        <expresult> = 0.163</expresult>
+        <expresult> = 0.244</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0557 = Sqrt((v_0552/2)^2 + v_0556^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0557 = Sqrt((v_0552/2)^2 + v_0556^2)</expbody>
-        <expresult> = 0.176</expresult>
+        <expresult> = 0.253</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0558 = v_0069 + Sqrt(2)*v_0557/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0558 = v_0069 + Sqrt(2)*v_0557/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.070</expresult>
+        <expresult> = 0.073</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 4 4 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0559 = Max(v_0558, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0559 = Max(v_0558, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0560 = Round(16*v_0559, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0560 = Round(16*v_0559, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0561 = If(v_0560 &gt;= 16*v_0559, v_0560, v_0560 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0561 = If(v_0560 &gt;= 16*v_0559, v_0560, v_0560 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -4129,42 +4129,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0587 = v_0582/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0587 = v_0582/v_0034</expbody>
-        <expresult> = 0.269</expresult>
+        <expresult> = 0.404</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0588 = Sqrt((v_0583/2)^2 + v_0587^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0588 = Sqrt((v_0583/2)^2 + v_0587^2)</expbody>
-        <expresult> = 0.291</expresult>
+        <expresult> = 0.418</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0589 = v_0069 + Sqrt(2)*v_0588/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0589 = v_0069 + Sqrt(2)*v_0588/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.075</expresult>
+        <expresult> = 0.080</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 5 1 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0590 = Max(v_0589, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0590 = Max(v_0589, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0591 = Round(16*v_0590, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0591 = Round(16*v_0590, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0592 = If(v_0591 &gt;= 16*v_0590, v_0591, v_0591 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0592 = If(v_0591 &gt;= 16*v_0590, v_0591, v_0591 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -4318,42 +4318,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0614 = v_0609/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0614 = v_0609/v_0034</expbody>
-        <expresult> = 0.311</expresult>
+        <expresult> = 0.467</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0615 = Sqrt((v_0610/2)^2 + v_0614^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0615 = Sqrt((v_0610/2)^2 + v_0614^2)</expbody>
-        <expresult> = 0.336</expresult>
+        <expresult> = 0.484</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0616 = v_0069 + Sqrt(2)*v_0615/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0616 = v_0069 + Sqrt(2)*v_0615/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.077</expresult>
+        <expresult> = 0.083</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 5 2 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0617 = Max(v_0616, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0617 = Max(v_0616, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0618 = Round(16*v_0617, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0618 = Round(16*v_0617, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0619 = If(v_0618 &gt;= 16*v_0617, v_0618, v_0618 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0619 = If(v_0618 &gt;= 16*v_0617, v_0618, v_0618 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -4507,42 +4507,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0641 = v_0636/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0641 = v_0636/v_0034</expbody>
-        <expresult> = 0.311</expresult>
+        <expresult> = 0.467</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0642 = Sqrt((v_0637/2)^2 + v_0641^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0642 = Sqrt((v_0637/2)^2 + v_0641^2)</expbody>
-        <expresult> = 0.336</expresult>
+        <expresult> = 0.484</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0643 = v_0069 + Sqrt(2)*v_0642/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0643 = v_0069 + Sqrt(2)*v_0642/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.077</expresult>
+        <expresult> = 0.083</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 5 3 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0644 = Max(v_0643, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0644 = Max(v_0643, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0645 = Round(16*v_0644, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0645 = Round(16*v_0644, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0646 = If(v_0645 &gt;= 16*v_0644, v_0645, v_0645 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0646 = If(v_0645 &gt;= 16*v_0644, v_0645, v_0645 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
@@ -4696,42 +4696,42 @@
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0668 = v_0663/v_0034" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0668 = v_0663/v_0034</expbody>
-        <expresult> = 0.269</expresult>
+        <expresult> = 0.404</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Top/bottom weld couple separated conservatively by plate thickness [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0669 = Sqrt((v_0664/2)^2 + v_0668^2)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0669 = Sqrt((v_0664/2)^2 + v_0668^2)</expbody>
-        <expresult> = 0.291</expresult>
+        <expresult> = 0.418</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Per fillet: half vertical shear + full radial couple force [kip/in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0670 = v_0069 + Sqrt(2)*v_0669/(v_0041*0.6*v_0038)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0670 = v_0069 + Sqrt(2)*v_0669/(v_0041*0.6*v_0038)</expbody>
-        <expresult> = 0.075</expresult>
+        <expresult> = 0.080</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">ring 5 4 weld strength leg [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0671 = Max(v_0670, v_0083)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0671 = Max(v_0670, v_0083)</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength and minimum detailing; revise/recalculate after selecting weld [in]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0672 = Round(16*v_0671, 0)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0672 = Round(16*v_0671, 0)</expbody>
-        <expresult> = 5.000</expresult>
+        <expresult> = 4.000</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nearest whole number of sixteenths [—]</paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
       <dynexp formula="v_0673 = If(v_0672 &gt;= 16*v_0671, v_0672, v_0672 + 1)/16" mathlayout="on" showformula="True" showresult="True" showsteps="False">
         <expbody>v_0673 = If(v_0672 &gt;= 16*v_0671, v_0672, v_0672 + 1)/16</expbody>
-        <expresult> = 0.312</expresult>
+        <expresult> = 0.250</expresult>
       </dynexp>
     </paragraph>
     <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Trial leg rounded up to the next 1/16 in [in]</paragraph>
