@@ -7,6 +7,11 @@ Both backwall tops now use two 2% slopes, level through their thickness,
 4-1/4 in below the FFBW deck-top line. The ramp slabs thicken locally to
 meet them. Model e9b41b8eaf agrees with the adopted CAD backwalls.
 
+The pedestal tops here are the sloped seat planes of the notebook, kept as the
+full-resolution seat record and grinding reference (D-086). The CAD model and
+construction use the level as-cast tops of D-065, one elevation per pedestal at
+its maximum corner. The difference is intended.
+
 It recalculates the geometry notebook as live Excel formulas. It also fills the FGE,
 Build-Up & Deflection, Table of Beam Variables, Bearing Plate and Pedestal
 Elevation CAD tables, including the cap, pile-cutoff and end-bent wall

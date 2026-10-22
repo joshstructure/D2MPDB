@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-22T15:53:24.813603+00:00",
+  "checked_at_utc": "2026-10-22T18:45:55.914428+00:00",
   "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
-  "register_sha256": "924f975ca30191177872d152523720e9fd27af45eadfd356bf8671f0f04b1868",
+  "register_sha256": "012ab96772f5c9abb9991b345585f4c113559547f1f804c6278423456b3e18ca",
   "tracker_sha256": "a41ceabda4591d478def85249d3ede63b9faf67e12b4a91916cde44197c95da7",
   "assumptions_sha256": "b62b4091a0966a6eb8dacce04c6f499f1ba8cd605a7419ed15c75ca0497ffb4d",
   "source_count": 43,
@@ -341,8 +341,8 @@
         "GEOMETRY-TABLES"
       ],
       "path": "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx",
-      "expected_sha256": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
-      "actual_sha256": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977"
+      "expected_sha256": "188501878f4498e14e429d1d5c0a7268662889ee8547e71acb7b55e95798cc8f",
+      "actual_sha256": "188501878f4498e14e429d1d5c0a7268662889ee8547e71acb7b55e95798cc8f"
     },
     {
       "check_id": "SOURCE:GEOMETRY-REPORT",

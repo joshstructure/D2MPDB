@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-22",
+  "decision": "D-086",
+  "authorization": "User direction, 22 October 2026, after a coherence check of the workbook against the project: \"I want to leave the pedestal top in the workbook as like a higher resolution dictation of what they could be but we are simplifying for the cad and for construction. If however we needed to grind down to a slope in the future the workbook would have the values.\" Then: \"Yes, record the decision: the workbook keeps the sloped seat planes as the grinding reference, CAD and construction use the D-065 level tops. Add the decision entry, update the D-065 pending-reconciliation wording, note it on the workbook Cover open items, and commit.\"",
+  "finding": {
+    "summary": "The workbook (GEOMETRY-TABLES) chords the cambered soffit over each pad and tabulates sloped pedestal corner elevations; the CAD model (CAD-MODEL) has levelled each pedestal at its former maximum since D-065. The level top at each support equals the workbook's highest corner there, so the level tops sit on or above the sloped planes everywhere.",
+    "workbook_corner_range_ft": {"End Bent 1": [43.73229964536867, 43.74578111249234], "Pier": [44.25976369563759, 44.2668632006303], "End Bent 2": [43.742855891468814, 43.75994652287092]},
+    "cad_level_top_ft": {"End Bent 1": 43.74578111249233, "Pier": 44.26686320063029, "End Bent 2": 43.75994652287092},
+    "disposition": "Intended difference. The workbook keeps the sloped seat planes as the full-resolution seat record and grinding reference; the CAD model and construction use the D-065 level as-cast tops. Neither is reconciled to the other."
+  },
+  "source": {
+    "source_id": "GEOMETRY-TABLES",
+    "path": "project_current/geometry/tables/B4_Geometry_CAD_Tables.xlsx",
+    "sha256": "188501878f4498e14e429d1d5c0a7268662889ee8547e71acb7b55e95798cc8f",
+    "bytes": 1405974,
+    "hash_basis": "exact_bytes",
+    "previous_sha256": "7ae68ec09a308fe6eda6df52d28eb402e61dec18033c219b411c551a51f14977",
+    "previous_bytes": 1405570,
+    "registered_on": "2026-10-22"
+  },
+  "build": {
+    "generator": "scripts/build_geometry_cad_tables.py (geometry_tables package, version 1.1.2; 1.1.1 before)",
+    "change": "One Cover open item added (D-086 pedestal-top disposition) and the version string; no calculation, table, chart or Method-tab change.",
+    "fingerprint": "3d2af8b941df78adc8aa",
+    "previous_fingerprint": "8291d84b1993a439602b",
+    "notebook_model_id": "e9b41b8eaf",
+    "inputs": {
+      "GEOMETRY": {"path": "Bridge_Geometry_2 Beam_V2.ipynb", "sha256_lf_text": "4ccd84724ab53d45b9e2bcc7201ece64c0406f8b72e9772d8df5456b0199310b", "unchanged": true},
+      "ROADWAY": {"path": "Geometry Report.xml", "sha256": "9880ef7adeeac4228666146f5d5bb4dd17ef93f66ffeaf465a2c813eb69489e4", "unchanged": true},
+      "MCAD-S1": {"sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd", "unchanged": true},
+      "MCAD-S2": {"sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8", "unchanged": true}
+    }
+  },
+  "verification": {
+    "excel_recalculation": "Recalculated and saved by Microsoft Excel over COM; no formula errors.",
+    "qc": "182 pass / 0 fail / 1 check (the informational clearance status, as before).",
+    "comparison_with_d053_build": "Cell-by-cell against the committed D-053 file (7ae68ec0): 15,250 populated value cells, 39 differ, all of them the Cover build fingerprint, version and time, the Cover open-item list (one item inserted), the Method-tab banners and Inputs Method note that quote the fingerprint, and twelve QC expected-value constants for the backwall top elevations that differ only in the 15th significant figure (47.111000000000004 against 47.111; 4e-15 ft, inside QC tolerance). No calculation, CAD-table or chart cell changed.",
+    "named_values": "351 named values; only Build_Fingerprint and Build_Time differ from the D-053 build.",
+    "input_sync": "Inputs_Edited = 0; every Method-tab banner reads LIVE.",
+    "tests": "tests/test_geometry_cad_tables.py: 12 pass on the rebuilt file."
+  },
+  "record_changes": [
+    "decisions.md: D-086 added; the D-065 row's 'Notebook, B4 geometry table and drawings pending reconciliation' now reads that the notebook and workbook keep the sloped seat planes by D-086 and that the substructure drawings follow the level tops (generator 2.7.0).",
+    "source_register.csv: GEOMETRY-TABLES moved to the new hash with this note; the same D-065 wording replaced in the JOURNAL, CAD-MODEL, CAD-RUNTIME and CAD-REPORT notes.",
+    "geometry/freecad/README.md D-065 section, geometry/README.md and geometry/tables/README.md updated with the disposition.",
+    "geometry_tables/workbook.py: Cover open item and version 1.1.2."
+  ],
+  "not_changed": [
+    "The geometry notebook, the CAD model, the FBMP exports, the cases, the journal and the tracker responses.",
+    "The workbook's bearing slopes and beveled-plate flags stay on the sloped-seat basis. With level seats the pad sees the beam grade; the T019 pier rotation check covers the level pier seat conditionally and the end bents have no equivalent check (open under D-065).",
+    "Engineering acceptance of the seats, the pads or the workbook's BCC-template items."
+  ],
+  "review_scope": "Source disposition and bounded workbook comparison; not engineering acceptance."
+}

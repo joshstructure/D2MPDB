@@ -22,9 +22,11 @@ Partial roadway coverage and existing CAD/analysis reconciliation remain open.
 ## Selected geometry tables
 
 The [geometry CAD-tables workbook](tables/README.md) is selected under D-041 and
-registered as GEOMETRY-TABLES. It is generated from notebook model 622e5ca1bf and
-the 12 October Mathcad runs. It holds the FGE, build-up, beam-variable, bearing-plate,
-pedestal, cap and pile-cutoff tables, with live Method-tab charts.
+registered as GEOMETRY-TABLES. It is generated from notebook model e9b41b8eaf (D-053)
+and the 12 October Mathcad runs. It holds the FGE, build-up, beam-variable, bearing-plate,
+pedestal, cap and pile-cutoff tables, with live Method-tab charts. Its pedestal tops
+are the sloped seat planes, kept as the grinding reference; the CAD model and
+construction use the level as-cast tops of D-065 (D-086).
 
 ## Current editable model
 

@@ -24,7 +24,7 @@ from openpyxl.workbook.defined_name import DefinedName
 
 from . import figures, sources
 
-GENERATOR_VERSION = '1.1.1'
+GENERATOR_VERSION = '1.1.2'
 OUTPUT = sources.ROOT / 'project_current' / 'geometry' / 'tables' / 'B4_Geometry_CAD_Tables.xlsx'   # selected source (D-041)
 FGE_INCREMENTS = 10
 PACKAGE = Path(__file__).resolve().parent
@@ -1857,6 +1857,7 @@ def build(output: Path = OUTPUT) -> dict:
     ]
     ctx['open_items'] = [
         'Both backwall tops use two straight 2% slopes (D-053), 4-1/4 in below their FFBW deck-top lines. Ramp slabs thicken locally (about 4.05-4.95 in at checked points). Recheck profile edits and reconcile downstream drawings, quantities and backwall/slab design.',
+        'Pedestal tops (D-086): this workbook keeps the sloped seat planes and their corner elevations (A-D, pier E/F) as the full-resolution seat record and the grinding reference. The CAD model and construction use level as-cast tops at each pedestal maximum (D-065: End Bent 1 43.7458, Pier 44.2669, End Bent 2 43.7599 ft). The difference is intended, not a discrepancy; grind to these planes only if ever required.',
         'Cheek tops are the four D-033 MSE barrier-return base elevations, entered as notebook inputs.',
         'Deck barrier (D-031, 12 ft clear) is not in the notebook, so no barrier-face FGE line is tabulated.',
         'Job number, calculated/checked by and dates are blank on the Inputs tab.',
