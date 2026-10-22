@@ -1,0 +1,60 @@
+{
+  "task": "T039",
+  "base_sha256": "f8352579e4f8bc5a61e60f5ec05a20ce14fe533871dc4fec1cd6c3d0fe6545c9",
+  "candidate_sha256": "b582cce60ac3d36015c104401a64d066053ffecec159fa352dcd26f311d59b6f",
+  "components": 277,
+  "moved": {
+    "report:PierCheekWalls": {
+      "from": 276,
+      "to": 268,
+      "after": "report:PierWallRings"
+    }
+  },
+  "component_bytes_changed": [],
+  "module_order": [
+    "report:PedBridge",
+    "report:ProjectInfo",
+    "report:Materials",
+    "report:BridgeGeometry_2Beam",
+    "report:AccessGeometry",
+    "report:PileProperties",
+    "spreadsheet:PedBridgeWeights_2Beams",
+    "report:GeneralLoads",
+    "report:PedBridgeWind",
+    "report:LoadCombinations",
+    "report:FBMPPier",
+    "report:FBMPEndBent",
+    "report:FoundationModeling",
+    "report:C001WindLoadOnPedBridgeSuperstructure",
+    "report:FenceWind",
+    "report:BridgeMovement",
+    "report:SuperstructureUplift",
+    "report:PierWallFins",
+    "report:CapDesignBasis",
+    "report:CapDesignEndBentOne",
+    "report:CapDesignEndBentTwo",
+    "report:CapDesignPier",
+    "report:PileDesignEndBentOne",
+    "report:PileDesignEndBentTwo",
+    "report:PileDesignPier",
+    "report:EndBentBackwallDesign",
+    "report:MSEWallExclusion",
+    "report:BearingDesign",
+    "report:PierWallRings",
+    "report:PierCheekWalls",
+    "spreadsheet:QauntitiesBridge",
+    "spreadsheet:QuantitiesMSEWall",
+    "report:DecisionLog",
+    "report:Notes",
+    "report:CodeReferencesGeneral",
+    "report:BridgeGeometry_3Beam",
+    "spreadsheet:PedBridgeWeights_3Beams",
+    "report:VoidPedBridge"
+  ],
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

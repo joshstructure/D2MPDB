@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-22",
+  "label": "10-22",
+  "decision": "D-081",
+  "authorization": "User direction, 22 October 2026 (relayed by the coordinating session): select the pier cap cheek wall calculation as a current project source and add it to the project journal as calculation C018.",
+  "scope": "Pier cap cheek wall calculation report and case exported to project_current/pier_cheek_wall/ from the starting case of the pier_cheek_wall package (D-080: the D-059/D-061 CAD walls and mats, C001 wind values, C002 substructure drag coefficient, pier cap case materials). No input, case, FBMP export, CAD geometry, tracker row or engineering disposition changed in this step. The Blockpad edition goes to the journal as C018 (PierCheekWalls).",
+  "generator": {
+    "script": "scripts/export_project_pier_cheek_wall_report.py",
+    "command": ".venv\\Scripts\\python.exe scripts\\export_project_pier_cheek_wall_report.py --date 10-22 --decision D-081",
+    "package": "pier_cheek_wall",
+    "package_revision": "646e1010c4a05a927fb05668464737faf1d79cb6b8fdf9144311413c8c270879",
+    "case_sha256": "a7ca0109a0c8fe5879ad7196d806b8d80dc525a00ca4e7d939e29cf7be3cb8bb",
+    "git_head": "4a6dda6",
+    "git_head_note": "Read from .git/HEAD and the ref file; the working tree was not inspected for uncommitted changes.",
+    "python": "3.12.14",
+    "note": "The report embeds its generation time and random Plotly figure ids, so a rerun gives new bytes; --check regenerates it from the saved case and compares with both masked."
+  },
+  "files": {
+    "report": {
+      "path": "project_current/pier_cheek_wall/Pier Cheek Wall Design 10-22.html",
+      "sha256": "82a3331dd1b383e6c60a37934cb1349484e925a36fbd5fc99df5c4da302b9ec0",
+      "bytes": 13360579
+    },
+    "dated_case": {
+      "path": "project_current/pier_cheek_wall/Pier Cheek Wall Design 10-22.json",
+      "sha256": "df28e0523354eeaeaf08a90b04c38da9bd7439ab13faadd3b39d0c3045e6063c",
+      "bytes": 7794
+    },
+    "selected_case": {
+      "path": "project_current/pier_cheek_wall/selected_case.json",
+      "sha256": "df28e0523354eeaeaf08a90b04c38da9bd7439ab13faadd3b39d0c3045e6063c",
+      "bytes": 7794
+    },
+    "checks_csv": {
+      "path": "project_current/pier_cheek_wall/Pier Cheek Wall Design 10-22 checks.csv",
+      "sha256": "0c52d8b07694ccbd4f6f221c8c4828ad449d7c54cffabc81124b8c7e54bf9bd1",
+      "bytes": 2869
+    }
+  },
+  "selected_case_equals_dated_case": true,
+  "same_as_committed_package_run": {
+    "folder": "pier_cheek_wall/report",
+    "case": true,
+    "checks_csv": true,
+    "report_masked": true
+  },
+  "package_sources_vs_register": {
+    "CAD-MODEL": {
+      "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+      "package_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+      "registered_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+      "registered": true,
+      "equal_to_register": true
+    },
+    "CAD-SNAPSHOT": {
+      "path": "substructure_drawings/data/model_snapshot.json",
+      "package_sha256": "81238eed17856fb2a3ec3db7c5a5d37b694c62422ba19daa72e73ee69b5f3d53",
+      "registered_sha256": null,
+      "registered": false,
+      "equal_to_register": false
+    },
+    "PIER-CASE": {
+      "path": "project_current/cap_design/pier/selected_case.json",
+      "package_sha256": "926886b5efc310be979c065b2016aa445fd19c9987356cb3158ea4980c981e3a",
+      "registered_sha256": "926886b5efc310be979c065b2016aa445fd19c9987356cb3158ea4980c981e3a",
+      "registered": true,
+      "equal_to_register": true
+    },
+    "JOURNAL": {
+      "path": "journal/D2_I95_Project_Journal.bpad",
+      "package_sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+      "registered_sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+      "registered": true,
+      "equal_to_register": true
+    }
+  },
+  "results": {
+    "checks": 20,
+    "status_counts": {
+      "PASS": 18,
+      "PASS · PENDING INPUT": 2
+    },
+    "failed": [],
+    "pending": [
+      "temp_v",
+      "temp_h"
+    ],
+    "at_limit": [
+      "cover",
+      "develop"
+    ],
+    "status": "All numerical checks pass · 2 pending item(s) remain",
+    "blockpad_status": "✓ All Checks Pass",
+    "strength_dc": 1.0,
+    "P_III_ksf": 0.059999195824054885,
+    "F_T_III_per_wall_kip": 0.959987133184878,
+    "F_L_III_per_wall_kip": 0.2399967832962195,
+    "F_T_III_both_kip": 1.919974266369756,
+    "F_L_III_both_kip": 0.479993566592439,
+    "M_u_A_kip_ft": 1.9199742663697563,
+    "V_u_kip": 0.9599871331848782,
+    "DC_flex_A": 0.07161760898645968,
+    "DC_develop": 1.0,
+    "l_d_full_in": 12.280361262083161,
+    "ratios": {
+      "govern": 0.3713756441893276,
+      "flex_A": 0.07161760898645968,
+      "flex_B": 0.05569226615054501,
+      "minflex_A": 0.09525141995199138,
+      "minflex_B": 0.07407071398022486,
+      "shear_A": 0.017352797543302458,
+      "interface": 0.012345513544044215,
+      "interface_min": 0.39999999999999997,
+      "crack_A": 0.10101010101010101,
+      "crack_B": 0.10101010101010101,
+      "fss_A": 0.023966468989144462,
+      "fss_B": 0.018640116339247403,
+      "develop": 1.0,
+      "temp_v": 0.7333333333333332,
+      "temp_h": 0.7333333333333332,
+      "space_v": 0.5555555555555556,
+      "space_h": 0.5555555555555556,
+      "clear": 0.6,
+      "cover": 1.0,
+      "thick": 0.6666666666666666
+    }
+  },
+  "register_rows": [
+    "CHEEK-TOOL",
+    "CHEEK-REPORT",
+    "CHEEK-CASE"
+  ],
+  "limitations": "Notebook package run and export only. The numerical checks are the notebook's; the straight development of the verticals and the cover sit exactly at their limits (ratio 1.00) and the one-centred-mat shrinkage and temperature convention is pending confirmation. Wind is the only load considered (LRFD 3.8.1.3, 3.8.2 and 3.8.3 not applicable; no vehicular, pedestrian or seismic action on the walls). The cap anchorage is the straight embedment of D-061; the joint transfer is the interface shear check. Selection is not engineering acceptance.",
+  "receipt": "project_current/coherence/evidence/2026-10-22-pier-cheek-wall-selection/source_receipt.json",
+  "assumptions_rejudged": {
+    "from_journal": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+    "to_journal": "b582cce60ac3d36015c104401a64d066053ffecec159fa352dcd26f311d59b6f",
+    "entries": [
+      "A-001",
+      "A-002",
+      "A-009",
+      "A-012",
+      "A-013"
+    ],
+    "basis": "The T038/T039 journal change adds module C018 only; no statement depends on it, dispositions unchanged.",
+    "script": "project_current/coherence/evidence/2026-10-22-pier-cheek-wall-selection/rejudge_assumptions.py"
+  }
+}

@@ -27,6 +27,7 @@ design-completion status.
 | Pier piles | [Report](pile_design/pier/Pier%20Pile%20Design%2010-22.html), [saved case](pile_design/pier/selected_case.json), [Pile Data Table](pile_design/pier/Pier%20Pile%20Data%20Table%2010-22.xlsx) — 20 in steel pipe pile, 22 October run on the D-077 export (structural D/C 0.464, governing below the pier wall at element 11; FDL from the pile head); the Fy reconciliation closed under D-073 |
 | Selected backwall and cheekwall design | [20 October report](cap_design/backwall/Backwall%20Design%2010-20.html) and [saved case](cap_design/backwall/selected_case.json) — one centered #4 mat at 10 in each way; analysis and detailing prerequisites remain pending |
 | Pier wall on annular pile rings | [Report](pier_wall/Pier%20Wall%20Design%2010-22b.html), [saved case](pier_wall/selected_case.json) — welded-ring support concept, D-070 moment basis, CAD wall geometry (219 × 36 × 194.8625 in, D-075), 1/2-in ring plate (D-078), second 22 October run; Blockpad edition C017 in the journal (T028/T029/T034/T037); the CAD rings (D-076) follow the 1/2-in plate under D-079; the C006 fin-plate concept is not superseded |
+| Pier cap cheek walls | [Report](pier_cheek_wall/Pier%20Cheek%20Wall%20Design%2010-22.html), [saved case](pier_cheek_wall/selected_case.json) — wind directly on the D-059 walls (LRFD 3.8.1.2.1 and 3.8.1.2.3b with the C001 values), D-059/D-061 CAD mats as the starting case, 22 October run (D-081); every numerical check passes, development and cover at their limits, one-mat convention pending; Blockpad edition C018 in the journal (T038/T039) |
 | Report cards (D-068) | All seven calculation reports above were re-exported on 20 October 2026 with definition and citation cards (report_cards; commits 18b47cb and a866e6b): hover a variable for its definition, a code reference for the highlighted provision. Results unchanged; 19 October reports retained; see [receipt](coherence/evidence/2026-10-20-report-cards/source_receipt.json) |
 | FBMP source variants | [Three current fixed exports and two minimum-tip variants](fbmp/README.md) |
 | Mathcad | [Span 1](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd), [Span 2](mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd) — 12 October beam runs; [changes and downstream review](mathcad/README.md) |
@@ -333,8 +334,10 @@ cantilever from the cap top with the D-059/D-061 CAD mat as the starting case. E
 numerical check passes; the straight development of the verticals (12 in, the LRFD
 minimum once the excess-reinforcement factor applies) and the 2 in cover sit exactly
 at their limits, and the one-centred-mat shrinkage/temperature convention awaits
-confirmation. The run with the CAD case is in `pier_cheek_wall/report/`. The
-notebook, report and case are **not** registered sources; select them with a
-dated decision when adopted. The four registered tool notebooks were rebuilt to
+confirmation. The run with the CAD case is in `pier_cheek_wall/report/`; the same
+starting case is selected under D-081 as CHEEK-TOOL, CHEEK-REPORT and CHEEK-CASE
+(`project_current/pier_cheek_wall/`, 22 October export) and its Blockpad edition is
+journal calculation C018 (tasks T038 and T039; see the
+[selection receipt](coherence/evidence/2026-10-22-pier-cheek-wall-selection/source_receipt.json)). The four registered tool notebooks were rebuilt to
 embed the extended code-excerpt store and re-registered (hash-only change; see the
 [receipt](coherence/evidence/2026-10-22-pier-cheek-walls/source_receipt.json)).

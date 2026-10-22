@@ -1,0 +1,44 @@
+{
+ "PierCheekWalls": [
+  {
+   "input": "V_III",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.V_III",
+   "journal_value": 130.0,
+   "case_value": 130.0,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.V_III (no unit)"
+  },
+  {
+   "input": "V_V",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.V_V",
+   "journal_value": 80.0,
+   "case_value": 80.0,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.V_V (no unit)"
+  },
+  {
+   "input": "V_SI",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.V_SI",
+   "journal_value": 70.0,
+   "case_value": 70.0,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.V_SI (no unit)"
+  },
+  {
+   "input": "K_Z_III",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.K_Z_gov",
+   "journal_value": 1.019717449912,
+   "case_value": 1.019717449912,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.K_Z_gov (no unit)"
+  },
+  {
+   "input": "G_f",
+   "owner": "C001WindLoadOnPedBridgeSuperstructure.G_fac",
+   "journal_value": 0.85,
+   "case_value": 0.85,
+   "status": "reference",
+   "note": "shared value — C001WindLoadOnPedBridgeSuperstructure.G_fac (no unit)"
+  }
+ ]
+}

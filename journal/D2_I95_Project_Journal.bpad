@@ -131,7 +131,7 @@
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
             <link address="#FoundationModeling">Foundation Modeling</link>
         </paragraph>
-        <heading level="1" keepwithnext="True">Calculations C001 to C017</heading>
+        <heading level="1" keepwithnext="True">Calculations C001 to C018</heading>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
             <link address="#C001WindLoadOnPedBridgeSuperstructure">C001 - Superstructure Wind</link>
         </paragraph>
@@ -180,6 +180,9 @@
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
             <link address="#PierWallRings">C017 - Pier Wall, Annular Pile Rings (21 October 2026 case)</link>
         </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PierCheekWalls">C018 - Pier Cap Cheek Wall Design (22 October 2026 case)</link>
+        </paragraph>
         <heading level="1" keepwithnext="True">Quantities, decisions and references</heading>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
             <link address="#QauntitiesBridge">Bridge Quantities</link>
@@ -206,6 +209,7 @@
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
             <link address="#VoidPedBridge">Archive - Previous Ped Bridge</link>
         </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 22 October 2026, C018 Pier Cap Cheek Wall Design added (T038): the two pier cap cheek walls of the CAD model (48 x 48 x 12 in with the recessed panel; centred #4 mat at 10 in each way, verticals developed 12 in straight into the cap) enter the journal as their own calculation, generated from the Pier Cheek Wall Design notebook package (pier_cheek_wall, calc_common framework) by scripts/build_pier_cheek_wall.py on its starting case: wind directly on the walls per LRFD 3.8.1.2.1 and 3.8.1.2.3b with the C001 wind speeds, exposure coefficient and gust factor as live references and the C002 substructure drag coefficient; the wall as a cantilever from the cap top checked for flexure, minimum flexure, shear, interface shear, crack control, straight development, shrinkage and temperature steel, spacing, cover and thickness. 183 native definitions, 174 values compared with the notebook to 1 part in 10⁹, live project stamp and hidden working notes. Every numerical check passes; the development and the cover sit exactly at their limits and the one-centred-mat shrinkage and temperature convention is pending confirmation. The project record selects the same run as CHEEK-TOOL, CHEEK-REPORT and CHEEK-CASE (D-081). The module is appended here and moved after C017 by T039. Native recalculation, appearance and engineering reviews not performed; no existing value changed.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 22 October 2026, pier wall ring plate 1/2 in (T037): by user direction the annular pile-ring plate of C017 Pier Wall, Annular Pile Rings is 1/2 in thick in place of 3/4 in. The thicker plate was not strength-governed (plate bending 0.05 of capacity); the thinnest standard plate with every check at or under 0.95 of its limit is 7/16 in, set by the maximum fillet at the ring edge with the 5/16-in fillet, and the user selected 1/2 in. C017 is regenerated from the second 22 October starting case: ring diameters, fillets, wall, forces, rotation, ring moment, contact and bearing unchanged from the previous revision; plate bending 0.11 and the fillet 0.08 of capacity; 1 failed check, grid clearance, as before. The CAD model rings are 3/4 in until reconciled. Native recalculation, appearance and engineering reviews not performed.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 22 October 2026, pier modules follow the 22 October FBMP rerun (T036, D-077): the user’s rerun Pier_Fixed.XML (SHA-256 420e614aa8b9…) corrects the pier wall extra members, which had followed the soil elevation changes: the four vertical 36 x 60 in pier wall members between the pile nodes now span pile points 2 to 11 (EL 40.20 to the soil surface EL 26.05, 169.8 in, 127.3 kip in all) in place of points 2 to 13 (EL 19.72, 245.8 in, 184.4 kip in all); nodal and bearing loads, geometry, pile section and material, soil and the four load combinations are identical. C010 Pier Cap Design and C013 Pier Pile Design are replaced by their regenerated journal editions (the cap edition from the 10-22 report with nine force inputs moved and no status change; the pile edition with the demands of the new export, structural D/C 0.464, 11 pending items). FBMP Entry - Pier, Foundations and FBMP Modeling and Bridge Geometry record the new export identity. End-bent modules unchanged. Native recalculation, appearance and engineering reviews not performed.</paragraph>
         <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 22 October 2026, pier wall reconciled to the CAD geometry (T034): by user direction the CAD pier wall governs, 219 in long, 36 in thick, bottom 1 ft below terrain at EL 24.5264 ft and top at the cap bottom EL 40.76494 ft (194.8625 in high), 19.5 in from each wall end to the outer pile; the gravity sheet row 42 (Loads - Gravity - 2 Beam) carries that wall (wall weight 114.737 to 133.359 kip), C006 Pier Wall, Hairpins and Fin Plates and C004 Superstructure Uplift are regenerated by their notebook packages with the new values (C004 shows the wall weight for information only; no result changes), and C017 Pier Wall, Annular Pile Rings is regenerated from the 22 October starting case (free length to fixity 92.4 in from the wall bottom in place of 127 in from the pile cutoff; 1 failed check, grid clearance; the former end-cover failure was an artefact of the 213-in length). The FBMP pier model keeps its pile-row wall load from the 114.7 kip wall (the CAD wall is 133.4 kip gross; recorded for the next rerun decision), C002 keeps the cap-face wind area, and the geometry notebook does not yet own the pier wall. Native recalculation, appearance and engineering reviews not performed.</paragraph>
@@ -47094,6 +47098,1911 @@
     </table>
   </embed>
   <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The summary tables repeat the definitions above; the status column of the check register controls.</paragraph>
+</report><report name="PierCheekWalls" title="C018 - Pier Cap Cheek Wall Design" unit="in" pagesize="816,1056" margin="48,48,48,48" bordermargin="0,0,0,0" collapsemargins="False">
+  <include target="Library.Geometry"/>
+  <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9"/>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="ProjectStamp" capture="False" colwidths="1:95, 2:165, 3:95, 4:165">
+      <stylerule range="A1:D4" fontfamily="Times New Roman" fontsize="9" vertalign="Center" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#7189A6&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#7189A6&quot;);"/>
+      <row>
+        <textcell name="ProjectStampR0C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Firm</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR0C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_Firm = ProjectInfo.Firm" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_Firm = ProjectInfo.Firm</expbody>
+              <expresult>Parsons Transportation Group Inc</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR0C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Project</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR0C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_Project = ProjectInfo.Project" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_Project = ProjectInfo.Project</expbody>
+              <expresult>I-95 Capacity Improvements from South of SR 152 to South of SR 126</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="ProjectStampR1C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Address</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR1C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_Address = ProjectInfo.Address" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_Address = ProjectInfo.Address</expbody>
+              <expresult>1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR1C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Job no.</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR1C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_JobNo = ProjectInfo.JobNo" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_JobNo = ProjectInfo.JobNo</expbody>
+              <expresult></expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="ProjectStampR2C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Designed by</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR2C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_DesignedBy = ProjectInfo.DesignedBy" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_DesignedBy = ProjectInfo.DesignedBy</expbody>
+              <expresult>JAT</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR2C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Date</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR2C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_DesignDate = ProjectInfo.DesignDate" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_DesignDate = ProjectInfo.DesignDate</expbody>
+              <expresult>10/17/2026</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="ProjectStampR3C0" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Checked by</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR3C1" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_CheckedBy = ProjectInfo.CheckedBy" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_CheckedBy = ProjectInfo.CheckedBy</expbody>
+              <expresult>MIK</expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+        <textcell name="ProjectStampR3C2" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0" fontweight="bold">Date</paragraph>
+        </textcell>
+        <textcell name="ProjectStampR3C3" capture="False" background="#F1F5FA">
+          <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="0">
+            <dynexp formula="Stamp_CheckDate = ProjectInfo.CheckDate" mathlayout="on" showformula="False" showresult="True" showsteps="False" style="Result only" showidentifier="False">
+              <expbody>Stamp_CheckDate = ProjectInfo.CheckDate</expbody>
+              <expresult></expresult>
+            </dynexp>
+          </paragraph>
+        </textcell>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="16" spacingafter="2" fontweight="bold">D2 I-95 PEDESTRIAN BRIDGE</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold">C018 - Pier Cap Cheek Wall Design</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Design basis: AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Manual January 2026 (SDG Volume 1, SDM Volume 2)</paragraph>
+  <section name="WorkingNotes" capture="False" hide="true">
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="4" fontweight="bold" textcolor="#43505C">Working notes (hidden; not part of the submitted calculation): how this edition was produced, its tool status and the open bookkeeping items.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" textcolor="#43505C">Journal edition written by calc_common/bpad.py (pier_cheek_wall) from the notebook case a7ca0109a0c8. Every definition was evaluated independently and compared with the notebook to 1 part in 10⁹; the inputs the journal owns are live references, compared with the case by the coherence gate before the build.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" textcolor="#43505C">Starting case: the pier cheek walls and mats of the current CAD model (decisions D-059 and D-061; model evidence 2026-10-19-pier-cheek-relief and 2026-10-19-pier-cheek-development). The vertical bar position x_v is the left wall's 5.125 in from the recessed face (the right wall's mat is centred, 5.75 in); the governing wall is used for both. Wind inputs V_III, V_V, V_SI, K_Z_gov and G_fac are the journal values of C001. The calculation number C018 is proposed; the calculation is not yet a journal module.</paragraph>
+    <paragraph fontfamily="Times New Roman" fontsize="9" spacingafter="5" textcolor="#43505C">A ✓ status covers only the recomputed numerical checks; it is not design acceptance. The equation notes of the calculation are in its report.</paragraph>
+  </section>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Inputs are highlighted amber; results are the green tables.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">Overview</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">Design of the two solid cheek walls on the ends of the pier cap, each 48 in high, 48 in wide (the full cap width) and 12 in thick, set 3 in in from the cap end, with a 30 by 30 in recessed panel 3/4 in deep and 9 in above the cap top on the outside face. Each wall is a vertical cantilever from the cap top. It retains no fill, carries no bearing and does not touch the superstructure, so wind acting directly on it is its only lateral load.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">The wind pressure follows the superstructure wind calculation C001 and LRFD 3.8.1.2.1: the SDG Table 2.4.1-1 Strength III wind speed with the C001 exposure coefficient and gust factor, the Strength V and Service I speeds of LRFD Table 3.8.1.1.2-1 with K_Z = 1.0, and the substructure drag coefficient of LRFD Table 3.8.1.2.1-2, as for the direct pier wind of C002. Per LRFD 3.8.1.2.3b the pressure acts on the exposed face seen in elevation; the wall is designed for the full pressure normal to its broad face, which bounds the face component of every skewed wind direction, and the force on its 12 in edge is reported with the pier loads. The wind load factor of LRFD Table 3.4.1-1 is 1.0 in Strength III, Strength V and Service I. Wind on live load (LRFD 3.8.1.3), vertical wind (3.8.2) and aeroelastic effects (3.8.3) do not apply to a solid substructure wall on a pedestrian bridge.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">The checks follow LRFD Section 5 for the reinforcement the CAD model carries: one centred mat of six #4 verticals and six #4 horizontals per wall at 10 in maximum each way, 2 in clear cover, verticals developed straight 12 in into the cap. Flexure and minimum reinforcement are checked at the cap top (section A, full thickness) and at the bottom of the recessed panel (section B, net thickness); crack control applies only where the service tension exceeds 0.8 fr; shear uses the simplified β; interface shear uses the SDG 1.15 clean-joint factors; the straight development of the verticals carries the confinement and excess reinforcement factors; shrinkage and temperature steel, bar spacing, cover and the minimum thickness complete the register.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" background="#F1F5FA">Outside this calculation: cap-end flexure and torsion from the wall moment, the cap stirrup and end-bar layout around the embedded verticals, the architectural panel and chamfer detailing, and the pier analysis model, which carries the direct wall wind as node loads.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">1. Wall geometry and exposed faces</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Each cheek wall stands on the pier cap top at the cap end (3 in in from the end), full cap width, with a shallow recessed panel on its outside face. The wall is a vertical cantilever fixed at the cap top; the panel reduces the thickness over the middle of the height, so two sections are checked: A at the cap top and B at the panel bottom.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="H_w = 48 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>H_w = 48 in</expbody><expresult> = 48.000 in</expresult></dynexp><break type="tab"/>Wall height above the cap top</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="w_w = 48 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>w_w = 48 in</expbody><expresult> = 48.000 in</expresult></dynexp><break type="tab"/>Wall width along the bridge (full cap width)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="t_w = 12 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>t_w = 12 in</expbody><expresult> = 12.000 in</expresult></dynexp><break type="tab"/>Wall thickness along the cap</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="r_rec = 0.75 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>r_rec = 0.75 in</expbody><expresult> = 0.750 in</expresult></dynexp><break type="tab"/>Depth of the recessed panel on the outside face</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="z_rec = 9 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>z_rec = 9 in</expbody><expresult> = 9.000 in</expresult></dynexp><break type="tab"/>Height of the panel bottom above the cap top</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="w_c = 0.15 kip/ft^3" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>w_c = 0.15 kip/ft^3</expbody><expresult> = 0.150 kip/ft^3</expresult></dynexp><break type="tab"/>Reinforced concrete unit weight</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="t_B = t_w - r_rec to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>t_B = t_w - r_rec to in</expbody>
+      <expresult> = 11.250 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Net wall thickness behind the recessed panel.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="H_B = H_w - z_rec to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>H_B = H_w - z_rec to in</expbody>
+      <expresult> = 39.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Wall height above the panel bottom: the lever arm of the wind above section B.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_face = H_w*w_w to ft^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_face = H_w*w_w to ft^2</expbody>
+      <expresult> = 16.000 ft^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Broad face of one wall exposed to wind across the bridge. (LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_edge = H_w*t_w to ft^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_edge = H_w*t_w to ft^2</expbody>
+      <expresult> = 4.000 ft^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Edge of one wall exposed to wind along the bridge. (LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="z_c = H_w/2 to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>z_c = H_w/2 to in</expbody>
+      <expresult> = 24.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Height of the wind resultant above the cap top (uniform pressure on the face).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="W_wall = w_c*H_w*w_w*t_w to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>W_wall = w_c*H_w*w_w*t_w to kip</expbody>
+      <expresult> = 2.400 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Self-weight of one wall above the cap (gross prism; its compression is neglected in every check).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">2. Design wind pressure</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The pressure of LRFD Eq. 3.8.1.2.1-1 with the substructure drag coefficient, as the direct pier wind of C002: the Strength III speed and exposure coefficient of C001, the Strength V and Service I speeds of LRFD Table 3.8.1.1.2-1 with K_Z = 1.0, and the gust factor of SDG 2.4.1.C. The wind load factor is 1.0 in all three combinations (LRFD Table 3.4.1-1), so the largest strength pressure governs.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="V_III = C001WindLoadOnPedBridgeSuperstructure.V_III" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>V_III = C001WindLoadOnPedBridgeSuperstructure.V_III</expbody><expresult> = 130.000</expresult></dynexp><break type="tab"/>shared value — C001WindLoadOnPedBridgeSuperstructure.V_III; Strength III design wind speed (mph)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="V_V = C001WindLoadOnPedBridgeSuperstructure.V_V" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>V_V = C001WindLoadOnPedBridgeSuperstructure.V_V</expbody><expresult> = 80.000</expresult></dynexp><break type="tab"/>shared value — C001WindLoadOnPedBridgeSuperstructure.V_V; Strength V wind speed (mph)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="V_SI = C001WindLoadOnPedBridgeSuperstructure.V_SI" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>V_SI = C001WindLoadOnPedBridgeSuperstructure.V_SI</expbody><expresult> = 70.000</expresult></dynexp><break type="tab"/>shared value — C001WindLoadOnPedBridgeSuperstructure.V_SI; Service I wind speed (mph)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K_Z_III = C001WindLoadOnPedBridgeSuperstructure.K_Z_gov" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>K_Z_III = C001WindLoadOnPedBridgeSuperstructure.K_Z_gov</expbody><expresult> = 1.020</expresult></dynexp><break type="tab"/>shared value — C001WindLoadOnPedBridgeSuperstructure.K_Z_gov; Strength III pressure exposure and elevation coefficient</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K_Z_V = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>K_Z_V = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Strength V exposure coefficient</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K_Z_SI = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>K_Z_SI = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Service I exposure coefficient</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="G_f = C001WindLoadOnPedBridgeSuperstructure.G_fac" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>G_f = C001WindLoadOnPedBridgeSuperstructure.G_fac</expbody><expresult> = 0.850</expresult></dynexp><break type="tab"/>shared value — C001WindLoadOnPedBridgeSuperstructure.G_fac; Gust effect factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="C_D = 1.6" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>C_D = 1.6</expbody><expresult> = 1.600</expresult></dynexp><break type="tab"/>Drag coefficient, bridge substructure</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="gamma_WS_III = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>gamma_WS_III = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Wind load factor, Strength III</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="gamma_WS_V = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>gamma_WS_V = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Wind load factor, Strength V</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="gamma_WS_SI = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>gamma_WS_SI = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Wind load factor, Service I</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="q_III = 0.00000256*V_III^2*K_Z_III*G_f*1 ksf to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>q_III = 0.00000256*V_III^2*K_Z_III*G_f*1 ksf to ksf</expbody>
+      <expresult> = 0.037 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength III wind pressure term before the drag coefficient. (LRFD 3.8.1.2.1, Eq. 3.8.1.2.1-1; Table 3.8.1.2.1-2; SDG 2.4.1, Table 2.4.1-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="q_V = 0.00000256*V_V^2*K_Z_V*G_f*1 ksf to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>q_V = 0.00000256*V_V^2*K_Z_V*G_f*1 ksf to ksf</expbody>
+      <expresult> = 0.014 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength V wind pressure term before the drag coefficient. (LRFD 3.8.1.2.1, Eq. 3.8.1.2.1-1; Table 3.8.1.2.1-2; LRFD 3.8.1.1.2, Table 3.8.1.1.2-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="q_SI = 0.00000256*V_SI^2*K_Z_SI*G_f*1 ksf to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>q_SI = 0.00000256*V_SI^2*K_Z_SI*G_f*1 ksf to ksf</expbody>
+      <expresult> = 0.011 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I wind pressure term before the drag coefficient. (LRFD 3.8.1.2.1, Eq. 3.8.1.2.1-1; Table 3.8.1.2.1-2; LRFD 3.8.1.1.2, Table 3.8.1.1.2-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_III = q_III*C_D to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_III = q_III*C_D to ksf</expbody>
+      <expresult> = 0.060 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength III design pressure on the wall face (substructure drag coefficient). (LRFD 3.8.1.2.1, Eq. 3.8.1.2.1-1; Table 3.8.1.2.1-2; LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_V = q_V*C_D to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_V = q_V*C_D to ksf</expbody>
+      <expresult> = 0.022 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength V design pressure on the wall face. (LRFD 3.8.1.2.1, Eq. 3.8.1.2.1-1; Table 3.8.1.2.1-2; LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_SI = q_SI*C_D to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_SI = q_SI*C_D to ksf</expbody>
+      <expresult> = 0.017 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I design pressure on the wall face. (LRFD 3.8.1.2.1, Eq. 3.8.1.2.1-1; Table 3.8.1.2.1-2; LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_str = Max(gamma_WS_III*P_III, gamma_WS_V*P_V) to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_str = Max(gamma_WS_III*P_III, gamma_WS_V*P_V) to ksf</expbody>
+      <expresult> = 0.060 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Governing factored strength pressure (WS = 1.0 in Strength III and Strength V). (LRFD 3.4.1, Tables 3.4.1-1 and 3.4.1-2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="P_ser = gamma_WS_SI*P_SI to ksf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>P_ser = gamma_WS_SI*P_SI to ksf</expbody>
+      <expresult> = 0.017 ksf</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored Service I pressure for crack control. (LRFD 3.4.1, Tables 3.4.1-1 and 3.4.1-2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" fontweight="bold" keepwithnext="True">Design wind pressure by limit state</paragraph>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="CKPressures" capture="False" colwidths="1:67, 2:67, 3:67, 4:67, 5:67, 6:67, 7:67, 8:67">
+      <stylerule range="A1:H4" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:H1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:H4" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="CKPressuresR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Limit state</paragraph>
+        </textcell>
+        <textcell name="CKPressuresR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">V (mph)</paragraph>
+        </textcell>
+        <textcell name="CKPressuresR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">K_Z</paragraph>
+        </textcell>
+        <textcell name="CKPressuresR0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">G</paragraph>
+        </textcell>
+        <textcell name="CKPressuresR0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">q (ksf)</paragraph>
+        </textcell>
+        <textcell name="CKPressuresR0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">C_D</paragraph>
+        </textcell>
+        <textcell name="CKPressuresR0C6" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">P (ksf)</paragraph>
+        </textcell>
+        <textcell name="CKPressuresR0C7" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">γ_WS</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="CKPressuresR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength III</paragraph>
+        </textcell>
+        <c formula="V_III" capture="False" background="#EFF7F1">
+          <num>130.000</num>
+        </c>
+        <c formula="K_Z_III" capture="False" background="#EFF7F1">
+          <num>1.020</num>
+        </c>
+        <c formula="G_f" capture="False" background="#EFF7F1">
+          <num>0.850</num>
+        </c>
+        <c formula="q_III to ksf" capture="False" background="#EFF7F1">
+          <num>0.037 ksf</num>
+        </c>
+        <c formula="C_D" capture="False" background="#EFF7F1">
+          <num>1.600</num>
+        </c>
+        <c formula="P_III to ksf" capture="False" background="#EFF7F1">
+          <num>0.060 ksf</num>
+        </c>
+        <c formula="gamma_WS_III" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKPressuresR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength V</paragraph>
+        </textcell>
+        <c formula="V_V" capture="False" background="#EFF7F1">
+          <num>80.000</num>
+        </c>
+        <c formula="K_Z_V" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+        <c formula="G_f" capture="False" background="#EFF7F1">
+          <num>0.850</num>
+        </c>
+        <c formula="q_V to ksf" capture="False" background="#EFF7F1">
+          <num>0.014 ksf</num>
+        </c>
+        <c formula="C_D" capture="False" background="#EFF7F1">
+          <num>1.600</num>
+        </c>
+        <c formula="P_V to ksf" capture="False" background="#EFF7F1">
+          <num>0.022 ksf</num>
+        </c>
+        <c formula="gamma_WS_V" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKPressuresR3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service I</paragraph>
+        </textcell>
+        <c formula="V_SI" capture="False" background="#EFF7F1">
+          <num>70.000</num>
+        </c>
+        <c formula="K_Z_SI" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+        <c formula="G_f" capture="False" background="#EFF7F1">
+          <num>0.850</num>
+        </c>
+        <c formula="q_SI to ksf" capture="False" background="#EFF7F1">
+          <num>0.011 ksf</num>
+        </c>
+        <c formula="C_D" capture="False" background="#EFF7F1">
+          <num>1.600</num>
+        </c>
+        <c formula="P_SI to ksf" capture="False" background="#EFF7F1">
+          <num>0.017 ksf</num>
+        </c>
+        <c formula="gamma_WS_SI" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">3. Direct wind delivered to the pier</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">LRFD 3.8.1.2.3b applies the pressure to the exposed substructure areas seen in end and front elevation. Each wall adds its broad face to the pier's transverse area and its edge to the longitudinal area; the resultants act at mid-height above the cap top. The wall itself is designed for the full pressure normal to its face, which bounds the face component of every skewed wind direction.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_T_III = P_III*A_face to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_T_III = P_III*A_face to kip</expbody>
+      <expresult> = 0.960 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength III wind across the bridge on one wall face. (LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_T_III = F_T_III*z_c to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_T_III = F_T_III*z_c to kip*ft</expbody>
+      <expresult> = 1.920 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength III moment of one wall's wind about the cap top.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_L_III = P_III*A_edge to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_L_III = P_III*A_edge to kip</expbody>
+      <expresult> = 0.240 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength III wind along the bridge on one wall edge. (LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_T_III_both = 2*F_T_III to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_T_III_both = 2*F_T_III to kip</expbody>
+      <expresult> = 1.920 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength III transverse wind on both cheek walls, delivered to the pier.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_L_III_both = 2*F_L_III to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_L_III_both = 2*F_L_III to kip</expbody>
+      <expresult> = 0.480 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength III longitudinal wind on both cheek wall edges, delivered to the pier.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_T_SI = P_SI*A_face to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_T_SI = P_SI*A_face to kip</expbody>
+      <expresult> = 0.273 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I wind across the bridge on one wall face. (LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_T_SI = F_T_SI*z_c to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_T_SI = F_T_SI*z_c to kip*ft</expbody>
+      <expresult> = 0.546 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I moment of one wall's wind about the cap top.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="F_L_SI = P_SI*A_edge to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>F_L_SI = P_SI*A_edge to kip</expbody>
+      <expresult> = 0.068 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I wind along the bridge on one wall edge. (LRFD 3.8.1.2.3b)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" fontweight="bold" keepwithnext="True">Direct wind on the cheek walls delivered to the pier (resultants at mid-height above the cap top)</paragraph>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="CKPierLoads" capture="False" colwidths="1:90, 2:90, 3:90, 4:90, 5:90, 6:90">
+      <stylerule range="A1:F3" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:F1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:F3" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="CKPierLoadsR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Limit state</paragraph>
+        </textcell>
+        <textcell name="CKPierLoadsR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">F_T per wall (kip)</paragraph>
+        </textcell>
+        <textcell name="CKPierLoadsR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">M_T per wall at the cap top (kip-ft)</paragraph>
+        </textcell>
+        <textcell name="CKPierLoadsR0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">F_L per wall (kip)</paragraph>
+        </textcell>
+        <textcell name="CKPierLoadsR0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">F_T both walls (kip)</paragraph>
+        </textcell>
+        <textcell name="CKPierLoadsR0C5" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">F_L both walls (kip)</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="CKPierLoadsR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength III</paragraph>
+        </textcell>
+        <c formula="F_T_III to kip" capture="False" background="#EFF7F1">
+          <num>0.960 kip</num>
+        </c>
+        <c formula="M_T_III to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.920 kip*ft</num>
+        </c>
+        <c formula="F_L_III to kip" capture="False" background="#EFF7F1">
+          <num>0.240 kip</num>
+        </c>
+        <c formula="F_T_III_both to kip" capture="False" background="#EFF7F1">
+          <num>1.920 kip</num>
+        </c>
+        <c formula="F_L_III_both to kip" capture="False" background="#EFF7F1">
+          <num>0.480 kip</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKPierLoadsR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service I</paragraph>
+        </textcell>
+        <c formula="F_T_SI to kip" capture="False" background="#EFF7F1">
+          <num>0.273 kip</num>
+        </c>
+        <c formula="M_T_SI to kip*ft" capture="False" background="#EFF7F1">
+          <num>0.546 kip*ft</num>
+        </c>
+        <c formula="F_L_SI to kip" capture="False" background="#EFF7F1">
+          <num>0.068 kip</num>
+        </c>
+        <c formula="2*F_T_SI to kip" capture="False" background="#EFF7F1">
+          <num>0.546 kip</num>
+        </c>
+        <c formula="2*F_L_SI to kip" capture="False" background="#EFF7F1">
+          <num>0.136 kip</num>
+        </c>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">4. Wall demands as a cantilever from the cap top</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The pressure on the whole face is a uniform line load up the wall; the base shear and the moments at sections A and B follow. Self-weight compression is neglected (conservative for flexure and interface shear). No fill, bearing or superstructure contact loads the wall.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="w_u = P_str*w_w to kip/ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>w_u = P_str*w_w to kip/ft</expbody>
+      <expresult> = 0.240 kip/ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored wind line load up the wall (pressure times the full wall width). (LRFD 3.4.1, Tables 3.4.1-1 and 3.4.1-2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_u = w_u*H_w to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_u = w_u*H_w to kip</expbody>
+      <expresult> = 0.960 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored shear at the cap top, whole wall.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_u_A = w_u*H_w^2/2 to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_u_A = w_u*H_w^2/2 to kip*ft</expbody>
+      <expresult> = 1.920 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored moment at section A, the cap top, whole wall.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_u_B = w_u*H_B^2/2 to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_u_B = w_u*H_B^2/2 to kip*ft</expbody>
+      <expresult> = 1.267 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored moment at section B, the bottom of the recessed panel.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="w_s = P_ser*w_w to kip/ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>w_s = P_ser*w_w to kip/ft</expbody>
+      <expresult> = 0.068 kip/ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I wind line load up the wall.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_s_A = w_s*H_w^2/2 to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_s_A = w_s*H_w^2/2 to kip*ft</expbody>
+      <expresult> = 0.546 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I moment at section A.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_s_B = w_s*H_B^2/2 to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_s_B = w_s*H_B^2/2 to kip*ft</expbody>
+      <expresult> = 0.360 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I moment at section B.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" fontweight="bold" keepwithnext="True">Cantilever demands, whole wall</paragraph>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="CKDemands" capture="False" colwidths="1:108, 2:108, 3:108, 4:108, 5:108">
+      <stylerule range="A1:E3" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:E1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:E3" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="CKDemandsR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Section</paragraph>
+        </textcell>
+        <textcell name="CKDemandsR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Lever arm (in)</paragraph>
+        </textcell>
+        <textcell name="CKDemandsR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Strength M_u (kip-ft)</paragraph>
+        </textcell>
+        <textcell name="CKDemandsR0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Service I M_s (kip-ft)</paragraph>
+        </textcell>
+        <textcell name="CKDemandsR0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">V_u (kip)</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="CKDemandsR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">A · cap top</paragraph>
+        </textcell>
+        <c formula="H_w to in" capture="False" background="#EFF7F1">
+          <num>48.000 in</num>
+        </c>
+        <c formula="M_u_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.920 kip*ft</num>
+        </c>
+        <c formula="M_s_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>0.546 kip*ft</num>
+        </c>
+        <c formula="V_u to kip" capture="False" background="#EFF7F1">
+          <num>0.960 kip</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDemandsR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">B · panel bottom</paragraph>
+        </textcell>
+        <c formula="H_B to in" capture="False" background="#EFF7F1">
+          <num>39.000 in</num>
+        </c>
+        <c formula="M_u_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.267 kip*ft</num>
+        </c>
+        <c formula="M_s_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>0.360 kip*ft</num>
+        </c>
+        <textcell name="CKDemandsR2C4" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">—</paragraph>
+        </textcell>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">5. Materials, bars and section constants</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Concrete and reinforcement properties of the pier cap case; the bar sizes of the mat.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="bar_v = &quot;#4&quot;" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>bar_v = "#4"</expbody><expresult> = #4</expresult></dynexp><break type="tab"/>Vertical bar size (mark 4E1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="n_v = 6" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>n_v = 6</expbody><expresult> = 6.000</expresult></dynexp><break type="tab"/>Vertical bars per wall</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="bar_h = &quot;#4&quot;" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>bar_h = "#4"</expbody><expresult> = #4</expresult></dynexp><break type="tab"/>Horizontal bar size (mark 4E2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="fc = 5.5 ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>fc = 5.5 ksi</expbody><expresult> = 5.500 ksi</expresult></dynexp><break type="tab"/>Concrete compressive strength (cap and walls)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="fy = 60 ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>fy = 60 ksi</expbody><expresult> = 60.000 ksi</expresult></dynexp><break type="tab"/>Reinforcement yield strength (A615 Grade 60)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="Es = 29000 ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>Es = 29000 ksi</expbody><expresult> = 29000.000 ksi</expresult></dynexp><break type="tab"/>Reinforcement modulus</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="w_cE = 0.1455 kip/ft^3" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>w_cE = 0.1455 kip/ft^3</expbody><expresult> = 0.145 kip/ft^3</expresult></dynexp><break type="tab"/>Plain concrete unit weight for the elastic modulus</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K_1 = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>K_1 = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Aggregate correction factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="lambda_c = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>lambda_c = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Concrete density modification factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="fss_ratio = 0.8" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>fss_ratio = 0.8</expbody><expresult> = 0.800</expresult></dynexp><break type="tab"/>Service stress limit as a fraction of fy</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="beta_1 = Min(0.85, Max(0.65, 0.85 - 0.05*(fc - 4 ksi)/(1 ksi)))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>beta_1 = Min(0.85, Max(0.65, 0.85 - 0.05*(fc - 4 ksi)/(1 ksi)))</expbody>
+      <expresult> = 0.775</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Stress block factor. (LRFD 5.6.2.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="E_c = 120000*K_1*(w_cE/(1 kip/ft^3))^2*(fc/(1 ksi))^0.33*(1 ksi) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>E_c = 120000*K_1*(w_cE/(1 kip/ft^3))^2*(fc/(1 ksi))^0.33*(1 ksi) to ksi</expbody>
+      <expresult> = 4458.892 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Concrete modulus. (LRFD 5.4.2.4, Eq. 5.4.2.4-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="n_m = Es/E_c" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>n_m = Es/E_c</expbody>
+      <expresult> = 6.504</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Modular ratio.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="f_r = 0.24*lambda_c*Sqrt(fc/(1 ksi))*(1 ksi) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>f_r = 0.24*lambda_c*Sqrt(fc/(1 ksi))*(1 ksi) to ksi</expbody>
+      <expresult> = 0.563 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Modulus of rupture. (LRFD 5.4.2.6)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="f_ss_lim = fss_ratio*fy to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>f_ss_lim = fss_ratio*fy to ksi</expbody>
+      <expresult> = 48.000 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service steel stress limit. (SDG 3.10.F)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="d_b_v = If(bar_v == &quot;#3&quot;, 0.375 in, If(bar_v == &quot;#4&quot;, 0.5 in, If(bar_v == &quot;#5&quot;, 0.625 in, 0.75 in))) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>d_b_v = If(bar_v == "#3", 0.375 in, If(bar_v == "#4", 0.5 in, If(bar_v == "#5", 0.625 in, 0.75 in))) to in</expbody>
+      <expresult> = 0.500 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical bar diameter.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_b_v = If(bar_v == &quot;#3&quot;, 0.11 in^2, If(bar_v == &quot;#4&quot;, 0.20 in^2, If(bar_v == &quot;#5&quot;, 0.31 in^2, 0.44 in^2))) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_b_v = If(bar_v == "#3", 0.11 in^2, If(bar_v == "#4", 0.20 in^2, If(bar_v == "#5", 0.31 in^2, 0.44 in^2))) to in^2</expbody>
+      <expresult> = 0.200 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical bar area.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="d_b_h = If(bar_h == &quot;#3&quot;, 0.375 in, If(bar_h == &quot;#4&quot;, 0.5 in, If(bar_h == &quot;#5&quot;, 0.625 in, 0.75 in))) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>d_b_h = If(bar_h == "#3", 0.375 in, If(bar_h == "#4", 0.5 in, If(bar_h == "#5", 0.625 in, 0.75 in))) to in</expbody>
+      <expresult> = 0.500 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Horizontal bar diameter.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_b_h = If(bar_h == &quot;#3&quot;, 0.11 in^2, If(bar_h == &quot;#4&quot;, 0.20 in^2, If(bar_h == &quot;#5&quot;, 0.31 in^2, 0.44 in^2))) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_b_h = If(bar_h == "#3", 0.11 in^2, If(bar_h == "#4", 0.20 in^2, If(bar_h == "#5", 0.31 in^2, 0.44 in^2))) to in^2</expbody>
+      <expresult> = 0.200 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Horizontal bar area.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_s = n_v*A_b_v to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_s = n_v*A_b_v to in^2</expbody>
+      <expresult> = 1.200 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical steel crossing the base of one wall (the tension steel for wind from either side).</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">6. Section A at the cap top (full thickness)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Rectangular section of the full wall width with the single layer of verticals. Wind can act on either face, so the effective depth is the lesser of the bar's distances to the two faces. Flexure (LRFD 5.6.3.2), minimum reinforcement (5.6.3.3), crack control (5.6.7, applied only where the service tension exceeds 0.8 fr), the SDG service stress limit and shear (5.7.3.3 with the simplified β) are evaluated.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="x_v = 5.125 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>x_v = 5.125 in</expbody><expresult> = 5.125 in</expresult></dynexp><break type="tab"/>Vertical bar centreline from the outside (recessed) face</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="phi_f = 0.9" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>phi_f = 0.9</expbody><expresult> = 0.900</expresult></dynexp><break type="tab"/>Flexural resistance factor (tension controlled)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="phi_v = 0.9" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>phi_v = 0.9</expbody><expresult> = 0.900</expresult></dynexp><break type="tab"/>Shear resistance factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="gamma_e = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>gamma_e = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Crack-control exposure factor (Class 1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="gamma_1 = 1.6" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>gamma_1 = 1.6</expbody><expresult> = 1.600</expresult></dynexp><break type="tab"/>Flexural cracking variability factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="gamma_3 = 0.67" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>gamma_3 = 0.67</expbody><expresult> = 0.670</expresult></dynexp><break type="tab"/>Yield-to-ultimate ratio factor (A615 Grade 60)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="beta_v = 2" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>beta_v = 2</expbody><expresult> = 2.000</expresult></dynexp><break type="tab"/>Simplified shear β (overall depth below 16 in, no transverse steel)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="d_A = Min(t_w - x_v, x_v) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>d_A = Min(t_w - x_v, x_v) to in</expbody>
+      <expresult> = 5.125 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Effective depth at section A for the weaker wind direction (the mat is off-centre). (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="a_A = A_s*fy/(0.85*fc*w_w) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>a_A = A_s*fy/(0.85*fc*w_w) to in</expbody>
+      <expresult> = 0.321 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Stress block depth. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="c_A = a_A/beta_1 to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>c_A = a_A/beta_1 to in</expbody>
+      <expresult> = 0.414 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Neutral axis depth. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="eps_t_A = 0.003*(d_A - c_A)/c_A" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>eps_t_A = 0.003*(d_A - c_A)/c_A</expbody>
+      <expresult> = 0.034</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Net tensile strain in the verticals. (LRFD 5.5.4.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="phi_A = If(eps_t_A &gt;= 0.005, phi_f, If(eps_t_A &lt;= 0.002, 0.75, 0.75 + 0.15*(eps_t_A - 0.002)/0.003))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>phi_A = If(eps_t_A &gt;= 0.005, phi_f, If(eps_t_A &lt;= 0.002, 0.75, 0.75 + 0.15*(eps_t_A - 0.002)/0.003))</expbody>
+      <expresult> = 0.900</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Flexural resistance factor. (LRFD 5.5.4.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_n_A = A_s*fy*(d_A - a_A/2) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_n_A = A_s*fy*(d_A - a_A/2) to kip*ft</expbody>
+      <expresult> = 29.787 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nominal flexural resistance at section A. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_r_A = phi_A*M_n_A to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_r_A = phi_A*M_n_A to kip*ft</expbody>
+      <expresult> = 26.809 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored flexural resistance at section A. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1; LRFD 5.5.4.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="S_c_A = w_w*t_w^2/6 to in^3" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>S_c_A = w_w*t_w^2/6 to in^3</expbody>
+      <expresult> = 1152.000 in^3</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Section modulus of the full-thickness wall. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_cr_A = gamma_3*gamma_1*f_r*S_c_A to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_cr_A = gamma_3*gamma_1*f_r*S_c_A to kip*ft</expbody>
+      <expresult> = 57.924 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Cracking moment at section A. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_min_A = Min(M_cr_A, 1.33*M_u_A) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_min_A = Min(M_cr_A, 1.33*M_u_A) to kip*ft</expbody>
+      <expresult> = 2.554 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum required flexural resistance at section A. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_req_A = 0.85*fc*w_w*d_A/fy*(1 - Sqrt(Max(1 - 2*M_min_A/(0.85*phi_f*fc*w_w*d_A^2), 0))) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_req_A = 0.85*fc*w_w*d_A/fy*(1 - Sqrt(Max(1 - 2*M_min_A/(0.85*phi_f*fc*w_w*d_A^2), 0))) to in^2</expbody>
+      <expresult> = 0.111 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical steel the minimum design moment requires at section A. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="rho_A = A_s/(w_w*d_A)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>rho_A = A_s/(w_w*d_A)</expbody>
+      <expresult> = 0.005</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Reinforcement ratio.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="k_A = Sqrt(2*rho_A*n_m + (rho_A*n_m)^2) - rho_A*n_m" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>k_A = Sqrt(2*rho_A*n_m + (rho_A*n_m)^2) - rho_A*n_m</expbody>
+      <expresult> = 0.222</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Cracked neutral axis ratio.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="j_A = 1 - k_A/3" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>j_A = 1 - k_A/3</expbody>
+      <expresult> = 0.926</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Lever arm ratio.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="f_ss_A = M_s_A/(A_s*j_A*d_A) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>f_ss_A = M_s_A/(A_s*j_A*d_A) to ksi</expbody>
+      <expresult> = 1.150 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I steel stress on the cracked section. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="f_ct_A = M_s_A/S_c_A to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>f_ct_A = M_s_A/S_c_A to ksi</expbody>
+      <expresult> = 0.006 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I tension at the extreme fibre of the uncracked section. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="d_c_A = t_w - d_A to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>d_c_A = t_w - d_A to in</expbody>
+      <expresult> = 6.875 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Tension face to the bar centre. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="beta_s_A = 1 + d_c_A/(0.7*(t_w - d_c_A))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>beta_s_A = 1 + d_c_A/(0.7*(t_w - d_c_A))</expbody>
+      <expresult> = 2.916</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Flexural strain ratio. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_cr_A = If(f_ct_A &gt; 0.8*f_r, 700*gamma_e/(beta_s_A*f_ss_A/(1 ksi))*(1 in) - 2*d_c_A, 99 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_cr_A = If(f_ct_A &gt; 0.8*f_r, 700*gamma_e/(beta_s_A*f_ss_A/(1 ksi))*(1 in) - 2*d_c_A, 99 in) to in</expbody>
+      <expresult> = 99.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Crack-control spacing limit (99 in: the service tension stays below 0.8 fr, so the limit does not apply). (LRFD 5.6.7, Eq. 5.6.7-1; SDG 3.10.F)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="d_v_A = Max(d_A - a_A/2, 0.9*d_A, 0.72*t_w) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>d_v_A = Max(d_A - a_A/2, 0.9*d_A, 0.72*t_w) to in</expbody>
+      <expresult> = 8.640 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Effective shear depth. (LRFD 5.7.2.8)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_c_A = 0.0316*beta_v*lambda_c*Sqrt(fc/(1 ksi))*(1 ksi)*w_w*d_v_A to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_c_A = 0.0316*beta_v*lambda_c*Sqrt(fc/(1 ksi))*(1 ksi)*w_w*d_v_A to kip</expbody>
+      <expresult> = 61.469 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Concrete shear resistance, whole wall. (LRFD 5.7.3.3 and 5.7.3.4.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_n_A = Min(V_c_A, 0.25*fc*w_w*d_v_A) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_n_A = Min(V_c_A, 0.25*fc*w_w*d_v_A) to kip</expbody>
+      <expresult> = 61.469 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nominal shear resistance. (LRFD 5.7.3.3 and 5.7.3.4.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_r_A = phi_v*V_n_A to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_r_A = phi_v*V_n_A to kip</expbody>
+      <expresult> = 55.322 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored shear resistance. (LRFD 5.7.3.3 and 5.7.3.4.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">7. Section B at the bottom of the recessed panel</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The same section checks on the net thickness behind the panel, with the smaller moment of the wind above the panel bottom. Compression on the recessed face gives the smaller effective depth.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="d_B = Min(t_w - x_v, x_v - r_rec) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>d_B = Min(t_w - x_v, x_v - r_rec) to in</expbody>
+      <expresult> = 4.375 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Effective depth at section B for the weaker direction (compression on the recessed face). (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="a_B = A_s*fy/(0.85*fc*w_w) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>a_B = A_s*fy/(0.85*fc*w_w) to in</expbody>
+      <expresult> = 0.321 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Stress block depth. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="c_B = a_B/beta_1 to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>c_B = a_B/beta_1 to in</expbody>
+      <expresult> = 0.414 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Neutral axis depth. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="eps_t_B = 0.003*(d_B - c_B)/c_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>eps_t_B = 0.003*(d_B - c_B)/c_B</expbody>
+      <expresult> = 0.029</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Net tensile strain in the verticals. (LRFD 5.5.4.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="phi_B = If(eps_t_B &gt;= 0.005, phi_f, If(eps_t_B &lt;= 0.002, 0.75, 0.75 + 0.15*(eps_t_B - 0.002)/0.003))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>phi_B = If(eps_t_B &gt;= 0.005, phi_f, If(eps_t_B &lt;= 0.002, 0.75, 0.75 + 0.15*(eps_t_B - 0.002)/0.003))</expbody>
+      <expresult> = 0.900</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Flexural resistance factor. (LRFD 5.5.4.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_n_B = A_s*fy*(d_B - a_B/2) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_n_B = A_s*fy*(d_B - a_B/2) to kip*ft</expbody>
+      <expresult> = 25.287 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nominal flexural resistance at section B. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_r_B = phi_B*M_n_B to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_r_B = phi_B*M_n_B to kip*ft</expbody>
+      <expresult> = 22.759 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored flexural resistance at section B. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1; LRFD 5.5.4.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="S_c_B = w_w*t_B^2/6 to in^3" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>S_c_B = w_w*t_B^2/6 to in^3</expbody>
+      <expresult> = 1012.500 in^3</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Section modulus of the net section behind the panel. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_cr_B = gamma_3*gamma_1*f_r*S_c_B to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_cr_B = gamma_3*gamma_1*f_r*S_c_B to kip*ft</expbody>
+      <expresult> = 50.910 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Cracking moment at section B. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="M_min_B = Min(M_cr_B, 1.33*M_u_B) to kip*ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>M_min_B = Min(M_cr_B, 1.33*M_u_B) to kip*ft</expbody>
+      <expresult> = 1.686 kip*ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum required flexural resistance at section B. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_req_B = 0.85*fc*w_w*d_B/fy*(1 - Sqrt(Max(1 - 2*M_min_B/(0.85*phi_f*fc*w_w*d_B^2), 0))) to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_req_B = 0.85*fc*w_w*d_B/fy*(1 - Sqrt(Max(1 - 2*M_min_B/(0.85*phi_f*fc*w_w*d_B^2), 0))) to in^2</expbody>
+      <expresult> = 0.086 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical steel the minimum design moment requires at section B. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="rho_B = A_s/(w_w*d_B)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>rho_B = A_s/(w_w*d_B)</expbody>
+      <expresult> = 0.006</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Reinforcement ratio.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="k_B = Sqrt(2*rho_B*n_m + (rho_B*n_m)^2) - rho_B*n_m" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>k_B = Sqrt(2*rho_B*n_m + (rho_B*n_m)^2) - rho_B*n_m</expbody>
+      <expresult> = 0.238</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Cracked neutral axis ratio.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="j_B = 1 - k_B/3" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>j_B = 1 - k_B/3</expbody>
+      <expresult> = 0.921</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Lever arm ratio.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="f_ss_B = M_s_B/(A_s*j_B*d_B) to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>f_ss_B = M_s_B/(A_s*j_B*d_B) to ksi</expbody>
+      <expresult> = 0.895 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I steel stress on the cracked section. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="f_ct_B = M_s_B/S_c_B to ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>f_ct_B = M_s_B/S_c_B to ksi</expbody>
+      <expresult> = 0.004 ksi</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I tension at the extreme fibre of the uncracked net section. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="d_c_B = t_B - d_B to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>d_c_B = t_B - d_B to in</expbody>
+      <expresult> = 6.875 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Tension face to the bar centre. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="beta_s_B = 1 + d_c_B/(0.7*(t_B - d_c_B))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>beta_s_B = 1 + d_c_B/(0.7*(t_B - d_c_B))</expbody>
+      <expresult> = 3.245</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Flexural strain ratio. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_cr_B = If(f_ct_B &gt; 0.8*f_r, 700*gamma_e/(beta_s_B*f_ss_B/(1 ksi))*(1 in) - 2*d_c_B, 99 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_cr_B = If(f_ct_B &gt; 0.8*f_r, 700*gamma_e/(beta_s_B*f_ss_B/(1 ksi))*(1 in) - 2*d_c_B, 99 in) to in</expbody>
+      <expresult> = 99.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Crack-control spacing limit (99 in: the limit does not apply). (LRFD 5.6.7, Eq. 5.6.7-1; SDG 3.10.F)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" fontweight="bold" keepwithnext="True">Section results</paragraph>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="CKSections" capture="False" colwidths="1:180, 2:180, 3:180">
+      <stylerule range="A1:C11" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:C1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:C11" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="CKSectionsR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Result</paragraph>
+        </textcell>
+        <textcell name="CKSectionsR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Section A (cap top)</paragraph>
+        </textcell>
+        <textcell name="CKSectionsR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Section B (panel bottom)</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="CKSectionsR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Thickness (in)</paragraph>
+        </textcell>
+        <c formula="t_w to in" capture="False" background="#EFF7F1">
+          <num>12.000 in</num>
+        </c>
+        <c formula="t_B to in" capture="False" background="#EFF7F1">
+          <num>11.250 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Effective depth d (in)</paragraph>
+        </textcell>
+        <c formula="d_A to in" capture="False" background="#EFF7F1">
+          <num>5.125 in</num>
+        </c>
+        <c formula="d_B to in" capture="False" background="#EFF7F1">
+          <num>4.375 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Factored resistance φMn (kip-ft)</paragraph>
+        </textcell>
+        <c formula="M_r_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>26.809 kip*ft</num>
+        </c>
+        <c formula="M_r_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>22.759 kip*ft</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Factored moment Mu (kip-ft)</paragraph>
+        </textcell>
+        <c formula="M_u_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.920 kip*ft</num>
+        </c>
+        <c formula="M_u_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.267 kip*ft</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Cracking moment Mcr (kip-ft)</paragraph>
+        </textcell>
+        <c formula="M_cr_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>57.924 kip*ft</num>
+        </c>
+        <c formula="M_cr_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>50.910 kip*ft</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Minimum design moment (kip-ft)</paragraph>
+        </textcell>
+        <c formula="M_min_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>2.554 kip*ft</num>
+        </c>
+        <c formula="M_min_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.686 kip*ft</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Steel required for it (in²)</paragraph>
+        </textcell>
+        <c formula="A_req_A to in^2" capture="False" background="#EFF7F1">
+          <num>0.111 in^2</num>
+        </c>
+        <c formula="A_req_B to in^2" capture="False" background="#EFF7F1">
+          <num>0.086 in^2</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service tension on the gross section (ksi)</paragraph>
+        </textcell>
+        <c formula="f_ct_A to ksi" capture="False" background="#EFF7F1">
+          <num>0.006 ksi</num>
+        </c>
+        <c formula="f_ct_B to ksi" capture="False" background="#EFF7F1">
+          <num>0.004 ksi</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR9C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service steel stress fss (ksi)</paragraph>
+        </textcell>
+        <c formula="f_ss_A to ksi" capture="False" background="#EFF7F1">
+          <num>1.150 ksi</num>
+        </c>
+        <c formula="f_ss_B to ksi" capture="False" background="#EFF7F1">
+          <num>0.895 ksi</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKSectionsR10C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Crack-control spacing limit (in)</paragraph>
+        </textcell>
+        <c formula="s_cr_A to in" capture="False" background="#EFF7F1">
+          <num>99.000 in</num>
+        </c>
+        <c formula="s_cr_B to in" capture="False" background="#EFF7F1">
+          <num>99.000 in</num>
+        </c>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">8. Development of the verticals into the cap</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">The verticals run straight into the cap. LRFD 5.10.8.2.1a gives the basic length, 5.10.8.2.1c the confinement factor from the cover in the cap (no transverse steel credited) and the excess reinforcement factor from the steel the minimum design moment requires; the result is not less than 12 in.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="c_b_cap = 3.25 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>c_b_cap = 3.25 in</expbody><expresult> = 3.250 in</expresult></dynexp><break type="tab"/>Bar centre to the nearest concrete surface in the cap (outer verticals at the cap side faces)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="lambda_rl = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>lambda_rl = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Reinforcement location factor (vertical bars)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="lambda_cf = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>lambda_cf = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Coating factor (uncoated bars)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="lambda_lw = 1" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>lambda_lw = 1</expbody><expresult> = 1.000</expresult></dynexp><break type="tab"/>Concrete density factor λ for development (normal weight)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="l_db = 2.4*d_b_v*(fy/(1 ksi))/Sqrt(fc/(1 ksi)) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>l_db = 2.4*d_b_v*(fy/(1 ksi))/Sqrt(fc/(1 ksi)) to in</expbody>
+      <expresult> = 30.701 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Basic tension development length of the verticals. (LRFD 5.10.8.2.1a)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="lambda_rc = Max(0.4, Min(1.0, d_b_v/c_b_cap))" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>lambda_rc = Max(0.4, Min(1.0, d_b_v/c_b_cap))</expbody>
+      <expresult> = 0.400</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Reinforcement confinement factor from the cover and spacing in the cap, no transverse steel credited (0.4 floor). (LRFD 5.10.8.2.1c)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="lambda_er = Min(1, A_req_A/A_s)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>lambda_er = Min(1, A_req_A/A_s)</expbody>
+      <expresult> = 0.093</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Excess reinforcement factor: steel the minimum design moment requires over the steel provided. (LRFD 5.10.8.2.1c)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="l_d_full = l_db*lambda_rl*lambda_cf*lambda_rc/lambda_lw to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>l_d_full = l_db*lambda_rl*lambda_cf*lambda_rc/lambda_lw to in</expbody>
+      <expresult> = 12.280 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Straight development for full yield, without the excess reinforcement credit. (LRFD 5.10.8.2.1a; LRFD 5.10.8.2.1c)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="l_d = Max(12 in, l_d_full*lambda_er) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>l_d = Max(12 in, l_d_full*lambda_er) to in</expbody>
+      <expresult> = 12.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Required straight development of the verticals into the cap, not less than 12 in. (LRFD 5.10.8.2.1a)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">9. Interface shear at the construction joint</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Shear friction across the cap top with the SDG 1.15 clean-joint factors and no permanent compression; the verticals are the interface reinforcement.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="c_if = 0.075 ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>c_if = 0.075 ksi</expbody><expresult> = 0.075 ksi</expresult></dynexp><break type="tab"/>Interface cohesion, clean joint not intentionally roughened</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="mu_if = 0.6" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>mu_if = 0.6</expbody><expresult> = 0.600</expresult></dynexp><break type="tab"/>Interface friction factor</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K1_if = 0.2" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>K1_if = 0.2</expbody><expresult> = 0.200</expresult></dynexp><break type="tab"/>Interface strength fraction K1</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="K2_if = 0.8 ksi" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>K2_if = 0.8 ksi</expbody><expresult> = 0.800 ksi</expresult></dynexp><break type="tab"/>Interface limiting stress K2</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_cv = w_w*t_w to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_cv = w_w*t_w to in^2</expbody>
+      <expresult> = 576.000 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Interface area at the construction joint on the cap top. (LRFD 5.7.4.3 and 5.7.4.4)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_vf = A_s to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_vf = A_s to in^2</expbody>
+      <expresult> = 1.200 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Reinforcement crossing the joint (the verticals). (LRFD 5.7.4.3 and 5.7.4.4)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_ni = Min(c_if*A_cv + mu_if*A_vf*fy, K1_if*fc*A_cv, K2_if*A_cv) to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_ni = Min(c_if*A_cv + mu_if*A_vf*fy, K1_if*fc*A_cv, K2_if*A_cv) to kip</expbody>
+      <expresult> = 86.400 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Nominal interface shear resistance, Pc = 0. (LRFD 5.7.4.3 and 5.7.4.4; SDG 1.15)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="V_ri = phi_v*V_ni to kip" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>V_ri = phi_v*V_ni to kip</expbody>
+      <expresult> = 77.760 kip</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Factored interface shear resistance. (LRFD 5.7.4.3 and 5.7.4.4)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_vf_min = 0.05*(1 ksi)*A_cv/fy to in^2" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_vf_min = 0.05*(1 ksi)*A_cv/fy to in^2</expbody>
+      <expresult> = 0.480 in^2</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum interface reinforcement. (LRFD 5.7.4.2, Eq. 5.7.4.2-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">10. Distribution steel, spacing, cover and thickness</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Shrinkage and temperature steel of LRFD 5.10.6 (both face requirements carried by the one centred mat), the maximum spacing of primary and distribution steel, the minimum clear spacing, the SDG cover for cheek walls and the SDM minimum thickness.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="s_v_min = 3 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>s_v_min = 3 in</expbody><expresult> = 3.000 in</expresult></dynexp><break type="tab"/>Smallest vertical bar spacing (centre to centre)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="n_h = 6" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>n_h = 6</expbody><expresult> = 6.000</expresult></dynexp><break type="tab"/>Horizontal bars per wall</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="s_h_min = 3.5 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>s_h_min = 3.5 in</expbody><expresult> = 3.500 in</expresult></dynexp><break type="tab"/>Smallest horizontal bar spacing (centre to centre)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="d_agg = 1 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>d_agg = 1 in</expbody><expresult> = 1.000 in</expresult></dynexp><break type="tab"/>Maximum coarse aggregate size</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="b_ts = Min(H_w, w_w) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>b_ts = Min(H_w, w_w) to in</expbody>
+      <expresult> = 48.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Least width of the wall for the shrinkage and temperature equation. (LRFD 5.10.6, Eq. 5.10.6-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_ts_face = Min(Max(1.30*(b_ts/(1 in))*(t_w/(1 in))/(2*((b_ts + t_w)/(1 in))*(fy/(1 ksi)))*(1 in^2/ft), 0.11 in^2/ft), 0.60 in^2/ft) to in^2/ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_ts_face = Min(Max(1.30*(b_ts/(1 in))*(t_w/(1 in))/(2*((b_ts + t_w)/(1 in))*(fy/(1 ksi)))*(1 in^2/ft), 0.11 in^2/ft), 0.60 in^2/ft) to in^2/ft</expbody>
+      <expresult> = 0.110 in^2/ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Shrinkage and temperature steel required on each face. (LRFD 5.10.6, Eq. 5.10.6-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_ts_mat = 2*A_ts_face to in^2/ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_ts_mat = 2*A_ts_face to in^2/ft</expbody>
+      <expresult> = 0.220 in^2/ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Both face requirements carried by the one centred mat. (LRFD 5.10.6, Eq. 5.10.6-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_pr_v = n_v*A_b_v/w_w to in^2/ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_pr_v = n_v*A_b_v/w_w to in^2/ft</expbody>
+      <expresult> = 0.300 in^2/ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical steel provided per foot of wall width.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="A_pr_h = n_h*A_b_h/H_w to in^2/ft" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>A_pr_h = n_h*A_b_h/H_w to in^2/ft</expbody>
+      <expresult> = 0.300 in^2/ft</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Horizontal steel provided per foot of wall height.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_max_pri = Min(1.5*t_w, 18 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_max_pri = Min(1.5*t_w, 18 in) to in</expbody>
+      <expresult> = 18.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Maximum spacing of the primary (vertical) reinforcement. (LRFD 5.10.3.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_max_ts = Min(3*t_w, 18 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_max_ts = Min(3*t_w, 18 in) to in</expbody>
+      <expresult> = 18.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Maximum spacing of shrinkage and temperature (horizontal) reinforcement. (LRFD 5.10.6, Eq. 5.10.6-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_clr_min = Max(1.5*d_b_v, 1.5*d_agg, 1.5 in) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_clr_min = Max(1.5*d_b_v, 1.5*d_agg, 1.5 in) to in</expbody>
+      <expresult> = 1.500 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum clear spacing between bars. (LRFD 5.10.3.1.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_clr_v = s_v_min - d_b_v to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_clr_v = s_v_min - d_b_v to in</expbody>
+      <expresult> = 2.500 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Smallest clear spacing between verticals. (LRFD 5.10.3.1.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_clr_h = s_h_min - d_b_h to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_clr_h = s_h_min - d_b_h to in</expbody>
+      <expresult> = 3.000 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Smallest clear spacing between horizontals. (LRFD 5.10.3.1.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="s_clr_prov = Min(s_clr_v, s_clr_h) to in" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>s_clr_prov = Min(s_clr_v, s_clr_h) to in</expbody>
+      <expresult> = 2.500 in</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Smallest clear spacing in the mat. (LRFD 5.10.3.1.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C" fontweight="bold" keepwithnext="True">Detailing: provided against required</paragraph>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="CKDetailing" capture="False" colwidths="1:180, 2:180, 3:180">
+      <stylerule range="A1:C10" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:C1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:C10" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="CKDetailingR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Item</paragraph>
+        </textcell>
+        <textcell name="CKDetailingR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Provided</paragraph>
+        </textcell>
+        <textcell name="CKDetailingR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Required or limit</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="CKDetailingR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Vertical steel per foot of width (in²/ft)</paragraph>
+        </textcell>
+        <c formula="A_pr_v to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.300 in^2/ft</num>
+        </c>
+        <c formula="A_ts_mat to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.220 in^2/ft</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Horizontal steel per foot of height (in²/ft)</paragraph>
+        </textcell>
+        <c formula="A_pr_h to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.300 in^2/ft</num>
+        </c>
+        <c formula="A_ts_mat to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.220 in^2/ft</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Largest vertical spacing (in)</paragraph>
+        </textcell>
+        <c formula="s_v to in" capture="False" background="#EFF7F1">
+          <num>10.000 in</num>
+        </c>
+        <c formula="s_max_pri to in" capture="False" background="#EFF7F1">
+          <num>18.000 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Largest horizontal spacing (in)</paragraph>
+        </textcell>
+        <c formula="s_h to in" capture="False" background="#EFF7F1">
+          <num>10.000 in</num>
+        </c>
+        <c formula="s_max_ts to in" capture="False" background="#EFF7F1">
+          <num>18.000 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Smallest clear spacing (in)</paragraph>
+        </textcell>
+        <c formula="s_clr_prov to in" capture="False" background="#EFF7F1">
+          <num>2.500 in</num>
+        </c>
+        <c formula="s_clr_min to in" capture="False" background="#EFF7F1">
+          <num>1.500 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Clear cover (in)</paragraph>
+        </textcell>
+        <c formula="c_edge to in" capture="False" background="#EFF7F1">
+          <num>2.000 in</num>
+        </c>
+        <c formula="cv_req to in" capture="False" background="#EFF7F1">
+          <num>2.000 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Wall thickness (in)</paragraph>
+        </textcell>
+        <c formula="t_w to in" capture="False" background="#EFF7F1">
+          <num>12.000 in</num>
+        </c>
+        <c formula="t_min to in" capture="False" background="#EFF7F1">
+          <num>8.000 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Straight embedment of the verticals in the cap (in)</paragraph>
+        </textcell>
+        <c formula="L_emb to in" capture="False" background="#EFF7F1">
+          <num>12.000 in</num>
+        </c>
+        <c formula="l_d to in" capture="False" background="#EFF7F1">
+          <num>12.000 in</num>
+        </c>
+      </row>
+      <row>
+        <textcell name="CKDetailingR9C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Straight length for full yield, no excess-steel credit (in)</paragraph>
+        </textcell>
+        <textcell name="CKDetailingR9C1" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" horzalign="Center">—</paragraph>
+        </textcell>
+        <c formula="l_d_full to in" capture="False" background="#EFF7F1">
+          <num>12.280 in</num>
+        </c>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">11. Demand-to-capacity ratios</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Every check as a ratio of demand to capacity, or of required to provided; the register lists them with their status.</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="s_v = 10 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>s_v = 10 in</expbody><expresult> = 10.000 in</expresult></dynexp><break type="tab"/>Largest vertical bar spacing</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="L_emb = 12 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>L_emb = 12 in</expbody><expresult> = 12.000 in</expresult></dynexp><break type="tab"/>Straight embedment of the verticals below the cap top</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="s_h = 10 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>s_h = 10 in</expbody><expresult> = 10.000 in</expresult></dynexp><break type="tab"/>Largest horizontal bar spacing</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="c_edge = 2 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>c_edge = 2 in</expbody><expresult> = 2.000 in</expresult></dynexp><break type="tab"/>Smallest clear cover provided in the wall (bar ends and the top bar)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="cv_req = 2 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>cv_req = 2 in</expbody><expresult> = 2.000 in</expresult></dynexp><break type="tab"/>Required clear cover, cheek walls</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="4" level="1"><dynexp formula="t_min = 8 in" mathlayout="on" showformula="True" showresult="True" showsteps="False" style="Required Input"><expbody>t_min = 8 in</expbody><expresult> = 8.000 in</expresult></dynexp><break type="tab"/>Minimum cheek wall thickness</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_govern = (gamma_WS_V*P_V)/(gamma_WS_III*P_III)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_govern = (gamma_WS_V*P_V)/(gamma_WS_III*P_III)</expbody>
+      <expresult> = 0.371</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Strength V pressure over Strength III: below 1, Strength III governs every strength check. (LRFD 3.4.1, Tables 3.4.1-1 and 3.4.1-2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_flex_A = M_u_A/M_r_A" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_flex_A = M_u_A/M_r_A</expbody>
+      <expresult> = 0.072</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Flexure at section A. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_flex_B = M_u_B/M_r_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_flex_B = M_u_B/M_r_B</expbody>
+      <expresult> = 0.056</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Flexure at section B. (LRFD 5.6.3.2, Eqs. 5.6.3.2.2-1 and 5.6.3.2.3-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_minflex_A = M_min_A/M_r_A" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_minflex_A = M_min_A/M_r_A</expbody>
+      <expresult> = 0.095</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum flexural resistance at section A. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_minflex_B = M_min_B/M_r_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_minflex_B = M_min_B/M_r_B</expbody>
+      <expresult> = 0.074</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum flexural resistance at section B. (LRFD 5.6.3.3)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_shear_A = V_u/V_r_A" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_shear_A = V_u/V_r_A</expbody>
+      <expresult> = 0.017</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Shear at the cap top. (LRFD 5.7.3.3 and 5.7.3.4.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_crack_A = s_v/s_cr_A" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_crack_A = s_v/s_cr_A</expbody>
+      <expresult> = 0.101</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical bar spacing against the crack-control limit at section A. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_crack_B = s_v/s_cr_B" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_crack_B = s_v/s_cr_B</expbody>
+      <expresult> = 0.101</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Vertical bar spacing against the crack-control limit at section B. (LRFD 5.6.7, Eq. 5.6.7-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_fss_A = f_ss_A/f_ss_lim" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_fss_A = f_ss_A/f_ss_lim</expbody>
+      <expresult> = 0.024</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I steel stress at section A. (SDG 3.10.F)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_fss_B = f_ss_B/f_ss_lim" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_fss_B = f_ss_B/f_ss_lim</expbody>
+      <expresult> = 0.019</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Service I steel stress at section B. (SDG 3.10.F)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_interface = V_u/V_ri" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_interface = V_u/V_ri</expbody>
+      <expresult> = 0.012</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Interface shear at the construction joint. (LRFD 5.7.4.3 and 5.7.4.4)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_interface_min = A_vf_min/A_vf" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_interface_min = A_vf_min/A_vf</expbody>
+      <expresult> = 0.400</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum interface reinforcement. (LRFD 5.7.4.2, Eq. 5.7.4.2-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_develop = l_d/L_emb" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_develop = l_d/L_emb</expbody>
+      <expresult> = 1.000</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Required over provided straight embedment of the verticals in the cap. (LRFD 5.10.8.2.1a)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_temp_v = A_ts_mat/A_pr_v" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_temp_v = A_ts_mat/A_pr_v</expbody>
+      <expresult> = 0.733</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Shrinkage and temperature steel, vertical. (LRFD 5.10.6, Eq. 5.10.6-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_temp_h = A_ts_mat/A_pr_h" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_temp_h = A_ts_mat/A_pr_h</expbody>
+      <expresult> = 0.733</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Shrinkage and temperature steel, horizontal. (LRFD 5.10.6, Eq. 5.10.6-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_space_v = s_v/s_max_pri" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_space_v = s_v/s_max_pri</expbody>
+      <expresult> = 0.556</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Largest vertical spacing against the primary-steel limit. (LRFD 5.10.3.2)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_space_h = s_h/s_max_ts" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_space_h = s_h/s_max_ts</expbody>
+      <expresult> = 0.556</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Largest horizontal spacing against the shrinkage and temperature limit. (LRFD 5.10.6, Eq. 5.10.6-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_clear = s_clr_min/s_clr_prov" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_clear = s_clr_min/s_clr_prov</expbody>
+      <expresult> = 0.600</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum clear spacing over the smallest clear spacing provided. (LRFD 5.10.3.1.1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_cover = cv_req/c_edge" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_cover = cv_req/c_edge</expbody>
+      <expresult> = 1.000</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Required over provided clear cover. (SDG Table 1.4.2-1)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="DC_thick = t_min/t_w" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>DC_thick = t_min/t_w</expbody>
+      <expresult> = 0.667</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Minimum over provided wall thickness. (SDM 12.6.B)</paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="14" spacingafter="6" fontweight="bold" textcolor="#1766A0" spacingbefore="8" keepwithnext="True">12. Checks</paragraph>
+  <embed spacingbefore="5" spacingafter="8">
+    <table name="Checks" capture="False" colwidths="1:250, 2:95, 3:95, 4:60, 5:90">
+      <stylerule range="A1:E21" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" border="Border(&quot;AllSides&quot;, &quot;Solid&quot;, 0.6, &quot;#6A9075&quot;); Border(&quot;BetweenRows&quot;, &quot;Solid&quot;, 0.4, &quot;#6A9075&quot;);"/>
+      <stylerule range="A1:E1" horzalign="Center" vertalign="Center"/>
+      <stylerule range="B2:E21" horzalign="Center" vertalign="Center"/>
+      <row>
+        <textcell name="ChecksR0C0" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Check</paragraph>
+        </textcell>
+        <textcell name="ChecksR0C1" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Demand</paragraph>
+        </textcell>
+        <textcell name="ChecksR0C2" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Capacity / limit</paragraph>
+        </textcell>
+        <textcell name="ChecksR0C3" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Ratio</paragraph>
+        </textcell>
+        <textcell name="ChecksR0C4" capture="False" background="#DCECE0">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0" fontweight="bold" horzalign="Center">Result</paragraph>
+        </textcell>
+      </row>
+      <row>
+        <textcell name="ChecksR1C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Strength III governs over Strength V</paragraph>
+        </textcell>
+        <c formula="P_V to ksf" capture="False" background="#EFF7F1">
+          <num>0.022 ksf</num>
+        </c>
+        <c formula="P_III to ksf" capture="False" background="#EFF7F1">
+          <num>0.060 ksf</num>
+        </c>
+        <c formula="DC_govern" capture="False" background="#EFF7F1">
+          <num>0.371</num>
+        </c>
+        <c formula="If(DC_govern &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR2C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Flexure at section A (cap top)</paragraph>
+        </textcell>
+        <c formula="M_u_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.920 kip*ft</num>
+        </c>
+        <c formula="M_r_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>26.809 kip*ft</num>
+        </c>
+        <c formula="DC_flex_A" capture="False" background="#EFF7F1">
+          <num>0.072</num>
+        </c>
+        <c formula="If(DC_flex_A &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR3C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Flexure at section B (panel bottom)</paragraph>
+        </textcell>
+        <c formula="M_u_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.267 kip*ft</num>
+        </c>
+        <c formula="M_r_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>22.759 kip*ft</num>
+        </c>
+        <c formula="DC_flex_B" capture="False" background="#EFF7F1">
+          <num>0.056</num>
+        </c>
+        <c formula="If(DC_flex_B &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR4C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Minimum flexural resistance at section A</paragraph>
+        </textcell>
+        <c formula="M_min_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>2.554 kip*ft</num>
+        </c>
+        <c formula="M_r_A to kip*ft" capture="False" background="#EFF7F1">
+          <num>26.809 kip*ft</num>
+        </c>
+        <c formula="DC_minflex_A" capture="False" background="#EFF7F1">
+          <num>0.095</num>
+        </c>
+        <c formula="If(DC_minflex_A &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR5C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Minimum flexural resistance at section B</paragraph>
+        </textcell>
+        <c formula="M_min_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>1.686 kip*ft</num>
+        </c>
+        <c formula="M_r_B to kip*ft" capture="False" background="#EFF7F1">
+          <num>22.759 kip*ft</num>
+        </c>
+        <c formula="DC_minflex_B" capture="False" background="#EFF7F1">
+          <num>0.074</num>
+        </c>
+        <c formula="If(DC_minflex_B &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR6C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Shear at the cap top</paragraph>
+        </textcell>
+        <c formula="V_u to kip" capture="False" background="#EFF7F1">
+          <num>0.960 kip</num>
+        </c>
+        <c formula="V_r_A to kip" capture="False" background="#EFF7F1">
+          <num>55.322 kip</num>
+        </c>
+        <c formula="DC_shear_A" capture="False" background="#EFF7F1">
+          <num>0.017</num>
+        </c>
+        <c formula="If(DC_shear_A &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR7C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Interface shear at the construction joint</paragraph>
+        </textcell>
+        <c formula="V_u to kip" capture="False" background="#EFF7F1">
+          <num>0.960 kip</num>
+        </c>
+        <c formula="V_ri to kip" capture="False" background="#EFF7F1">
+          <num>77.760 kip</num>
+        </c>
+        <c formula="DC_interface" capture="False" background="#EFF7F1">
+          <num>0.012</num>
+        </c>
+        <c formula="If(DC_interface &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR8C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Minimum interface reinforcement</paragraph>
+        </textcell>
+        <c formula="A_vf_min to in^2" capture="False" background="#EFF7F1">
+          <num>0.480 in^2</num>
+        </c>
+        <c formula="A_vf to in^2" capture="False" background="#EFF7F1">
+          <num>1.200 in^2</num>
+        </c>
+        <c formula="DC_interface_min" capture="False" background="#EFF7F1">
+          <num>0.400</num>
+        </c>
+        <c formula="If(DC_interface_min &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR9C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Crack-control spacing at section A</paragraph>
+        </textcell>
+        <c formula="s_v to in" capture="False" background="#EFF7F1">
+          <num>10.000 in</num>
+        </c>
+        <c formula="s_cr_A to in" capture="False" background="#EFF7F1">
+          <num>99.000 in</num>
+        </c>
+        <c formula="DC_crack_A" capture="False" background="#EFF7F1">
+          <num>0.101</num>
+        </c>
+        <c formula="If(DC_crack_A &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR10C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Crack-control spacing at section B</paragraph>
+        </textcell>
+        <c formula="s_v to in" capture="False" background="#EFF7F1">
+          <num>10.000 in</num>
+        </c>
+        <c formula="s_cr_B to in" capture="False" background="#EFF7F1">
+          <num>99.000 in</num>
+        </c>
+        <c formula="DC_crack_B" capture="False" background="#EFF7F1">
+          <num>0.101</num>
+        </c>
+        <c formula="If(DC_crack_B &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR11C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service I steel stress at section A</paragraph>
+        </textcell>
+        <c formula="f_ss_A to ksi" capture="False" background="#EFF7F1">
+          <num>1.150 ksi</num>
+        </c>
+        <c formula="f_ss_lim to ksi" capture="False" background="#EFF7F1">
+          <num>48.000 ksi</num>
+        </c>
+        <c formula="DC_fss_A" capture="False" background="#EFF7F1">
+          <num>0.024</num>
+        </c>
+        <c formula="If(DC_fss_A &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR12C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Service I steel stress at section B</paragraph>
+        </textcell>
+        <c formula="f_ss_B to ksi" capture="False" background="#EFF7F1">
+          <num>0.895 ksi</num>
+        </c>
+        <c formula="f_ss_lim to ksi" capture="False" background="#EFF7F1">
+          <num>48.000 ksi</num>
+        </c>
+        <c formula="DC_fss_B" capture="False" background="#EFF7F1">
+          <num>0.019</num>
+        </c>
+        <c formula="If(DC_fss_B &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR13C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Straight development of the verticals into the cap</paragraph>
+        </textcell>
+        <c formula="l_d to in" capture="False" background="#EFF7F1">
+          <num>12.000 in</num>
+        </c>
+        <c formula="L_emb to in" capture="False" background="#EFF7F1">
+          <num>12.000 in</num>
+        </c>
+        <c formula="DC_develop" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+        <c formula="If(DC_develop &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR14C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Shrinkage and temperature steel, vertical</paragraph>
+        </textcell>
+        <c formula="A_ts_mat to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.220 in^2/ft</num>
+        </c>
+        <c formula="A_pr_v to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.300 in^2/ft</num>
+        </c>
+        <c formula="DC_temp_v" capture="False" background="#EFF7F1">
+          <num>0.733</num>
+        </c>
+        <c formula="If(DC_temp_v &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR15C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Shrinkage and temperature steel, horizontal</paragraph>
+        </textcell>
+        <c formula="A_ts_mat to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.220 in^2/ft</num>
+        </c>
+        <c formula="A_pr_h to in^2/ft" capture="False" background="#EFF7F1">
+          <num>0.300 in^2/ft</num>
+        </c>
+        <c formula="DC_temp_h" capture="False" background="#EFF7F1">
+          <num>0.733</num>
+        </c>
+        <c formula="If(DC_temp_h &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR16C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Maximum spacing of the verticals (primary steel)</paragraph>
+        </textcell>
+        <c formula="s_v to in" capture="False" background="#EFF7F1">
+          <num>10.000 in</num>
+        </c>
+        <c formula="s_max_pri to in" capture="False" background="#EFF7F1">
+          <num>18.000 in</num>
+        </c>
+        <c formula="DC_space_v" capture="False" background="#EFF7F1">
+          <num>0.556</num>
+        </c>
+        <c formula="If(DC_space_v &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR17C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Maximum spacing of the horizontals</paragraph>
+        </textcell>
+        <c formula="s_h to in" capture="False" background="#EFF7F1">
+          <num>10.000 in</num>
+        </c>
+        <c formula="s_max_ts to in" capture="False" background="#EFF7F1">
+          <num>18.000 in</num>
+        </c>
+        <c formula="DC_space_h" capture="False" background="#EFF7F1">
+          <num>0.556</num>
+        </c>
+        <c formula="If(DC_space_h &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR18C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Minimum clear spacing between bars</paragraph>
+        </textcell>
+        <c formula="s_clr_min to in" capture="False" background="#EFF7F1">
+          <num>1.500 in</num>
+        </c>
+        <c formula="s_clr_prov to in" capture="False" background="#EFF7F1">
+          <num>2.500 in</num>
+        </c>
+        <c formula="DC_clear" capture="False" background="#EFF7F1">
+          <num>0.600</num>
+        </c>
+        <c formula="If(DC_clear &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR19C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Concrete cover</paragraph>
+        </textcell>
+        <c formula="cv_req to in" capture="False" background="#EFF7F1">
+          <num>2.000 in</num>
+        </c>
+        <c formula="c_edge to in" capture="False" background="#EFF7F1">
+          <num>2.000 in</num>
+        </c>
+        <c formula="DC_cover" capture="False" background="#EFF7F1">
+          <num>1.000</num>
+        </c>
+        <c formula="If(DC_cover &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+      <row>
+        <textcell name="ChecksR20C0" capture="False" background="#EFF7F1">
+          <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="0">Minimum cheek wall thickness</paragraph>
+        </textcell>
+        <c formula="t_min to in" capture="False" background="#EFF7F1">
+          <num>8.000 in</num>
+        </c>
+        <c formula="t_w to in" capture="False" background="#EFF7F1">
+          <num>12.000 in</num>
+        </c>
+        <c formula="DC_thick" capture="False" background="#EFF7F1">
+          <num>0.667</num>
+        </c>
+        <c formula="If(DC_thick &lt;= 1, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)" capture="False" background="#EFF7F1">
+          <textvalue>✓ PASS</textvalue>
+        </c>
+      </row>
+    </table>
+  </embed>
+  <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="1" spacingbefore="4" keepwithnext="True">
+    <dynexp formula="Status = If(Or(DC_govern &gt; 1, DC_flex_A &gt; 1, DC_flex_B &gt; 1, DC_minflex_A &gt; 1, DC_minflex_B &gt; 1, DC_shear_A &gt; 1, DC_interface &gt; 1, DC_interface_min &gt; 1, DC_crack_A &gt; 1, DC_crack_B &gt; 1, DC_fss_A &gt; 1, DC_fss_B &gt; 1, DC_develop &gt; 1, DC_temp_v &gt; 1, DC_temp_h &gt; 1, DC_space_v &gt; 1, DC_space_h &gt; 1, DC_clear &gt; 1, DC_cover &gt; 1, DC_thick &gt; 1), &quot;⊗ There are FAILURES&quot;, &quot;✓ All Checks Pass&quot;)" mathlayout="on" showformula="True" showresult="True" showsteps="False">
+      <expbody>Status = If(Or(DC_govern &gt; 1, DC_flex_A &gt; 1, DC_flex_B &gt; 1, DC_minflex_A &gt; 1, DC_minflex_B &gt; 1, DC_shear_A &gt; 1, DC_interface &gt; 1, DC_interface_min &gt; 1, DC_crack_A &gt; 1, DC_crack_B &gt; 1, DC_fss_A &gt; 1, DC_fss_B &gt; 1, DC_develop &gt; 1, DC_temp_v &gt; 1, DC_temp_h &gt; 1, DC_space_v &gt; 1, DC_space_h &gt; 1, DC_clear &gt; 1, DC_cover &gt; 1, DC_thick &gt; 1), "⊗ There are FAILURES", "✓ All Checks Pass")</expbody>
+      <expresult> = ✓ All Checks Pass</expresult>
+    </dynexp>
+  </paragraph>
+  <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="5" textcolor="#43505C">Overall status of the recomputed numerical checks.</paragraph>
 </report><spreadsheet name="QauntitiesBridge" title="Quantities - Bridge" unit="in" pagesize="816, 1056" colwidths="1: 107.48, 4: 66.64, 5: 66.64" margin="48,48,48,48">
         <stylerule range="A12:A16" fontweight="bold" />
         <stylerule range="C5:D5" fontweight="bold" />
@@ -48650,6 +50559,10 @@
         <section name="PierWallRingPlate20261022" capture="False" hide="false">
             <heading level="1" keepwithnext="True">2026-10-22 - Pier wall annular ring plate 1/2 in (T037)</heading>
             <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">User direction of 22 October 2026 (project decision D-078): the annular pile-ring plate of the pier wall is 1/2 in thick in place of the 3/4 in of the first editions. The user asked what the thinnest ring can be with no check above 0.95 of its limit; sweeping the plate thickness through the calculation with every other input held, the strength checks (plate bending, shear, fillets, base metal, bearing, contact) reach 0.95 of capacity only at about 0.17 in, while with the 5/16-in fillet the maximum fillet at the ring edge (leg at most the plate thickness less 1/16 in, LRFD 6.13.3.4) governs: 7/16 in is the thinnest standard plate (0.83), 3/8 in sits at 1.00, and the user chose 1/2 in. C017 is regenerated from the second 22 October 2026 starting case of the Pier Wall Design notebook (219 × 36 × 194.8625 in wall, 23 / 20.125 in rings, two 5/16-in fillets, free length to fixity 92.4 in): wall rotation 1.547e-5 rad, 5.397 kip-in per ring, largest equivalent eccentricity 1.105 in against the 5.187 in kern and all rings in full contact, as before; the largest plate bending ratio is 0.112 and the largest fillet ratio 0.081; at 1/2 in the minimum fillet of the thicker-part table is 3/16 in (1/4 in with the gap allowance), so the 5/16-in fillet reads 0.80 of the minimum and 0.71 of the ring-edge maximum; 1 failed check, the inner face-grid clearance to the 23-in ring, as before. Not changed: the CAD model (its rings of 22 October are 3/4 in thick; reconciliation pending), C006 (the support concept, fin plates or welded rings, is still undecided), the gravity sheet, C004, the FBMP exports and the pile and cap calculations. Native recalculation, appearance and engineering reviews not performed; selection is not engineering acceptance.</paragraph>
+        </section>
+        <section name="PierCheekWalls20261022" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">2026-10-22 - C018 Pier Cap Cheek Wall Design added from the Pier Cheek Wall Design notebook (T038, T039)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">User direction of 22 October 2026 (select the pier cap cheek wall calculation as a current project source and add it to the journal as C018; project decision D-081): the pier cap cheek walls are added as calculation C018 (report PierCheekWalls), the journal edition of the pier_cheek_wall package on its starting case (the D-059 walls and D-061 straight cap embedment of the CAD model, the C001 wind values, the C002 substructure drag coefficient and the pier cap materials). The calculation applies the LRFD 3.8.1.2.1 design wind pressure with the C001 speeds, exposure coefficient and gust factor and the 1.6 drag coefficient of C002 normal to the broad face of each wall (LRFD 3.8.1.2.3b; the full pressure governs every skew, the edge force is reported for the pier), with WS = 1.0 in Strength III, Strength V and Service I; treats the wall as a 48-in-wide cantilever from the cap top at the cap-top section and the recessed panel section; and checks flexure, minimum flexural resistance, shear, interface shear at the construction joint, crack control, the straight development of the verticals into the cap, shrinkage and temperature steel, bar spacing, clear spacing, cover and the SDM minimum thickness. Starting case: Strength III pressure 0.0600 ksf, 0.96 kip transverse and 0.24 kip longitudinal per wall, cantilever moment 1.920 kip-ft and shear 0.960 kip at the cap top; every numerical check passes (flexure 0.07 of capacity); the 12-in straight development (the LRFD 5.10.8.2.1a floor once the excess-reinforcement factor applies; 12.28 in for full yield without it) and the 2-in cover sit exactly at their limits; the shrinkage and temperature steel (0.73) carries both face requirements in the one centred mat, pending confirmation of that convention as for the end bents. The project record selects the same run as CHEEK-TOOL, CHEEK-REPORT and CHEEK-CASE. C014 (end-bent backwall and cheek walls) is unchanged. Native recalculation, appearance and engineering reviews not performed; no existing journal value changed; FBMP not rerun; selection is not engineering acceptance.</paragraph>
         </section>
     </report><report name="Notes" title="Notes" unit="in" pagesize="816, 1056">
         <paragraph>

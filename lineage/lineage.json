@@ -2,15 +2,15 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "798803608073d41e7b371edbfab3c27514ddb315acb23d7911931277a0803a5d",
+ "fingerprint": "4288ad2d9c66abbfe2bf1c790994a06cbcd995c3fa7e27007309c2d514062e9f",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
-   "sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
+   "sha256": "b582cce60ac3d36015c104401a64d066053ffecec159fa352dcd26f311d59b6f"
   },
   {
    "path": "lineage/signoff.json",
-   "sha256": "ca44d42e8a14d5e68738af1eabf1edd87eb5768a2e5f2f27d202da54c1e9cb7f"
+   "sha256": "602710804f8f7f990357bba13f6f4a40efceaa3d0f950f4727ff0f5e33c74276"
   },
   {
    "path": "project_current/cap_design/backwall/selected_case.json",
@@ -34,11 +34,11 @@
   },
   {
    "path": "project_current/coherence/machine_checks.json",
-   "sha256": "e4cbe5ac598d3238732b95533e759c7b7eb769f07c9516fde0b0287ad1f9d4f4"
+   "sha256": "c41cd534673ed0fe1b924bc45d3a7eb28e98d3b3e5d343a2dc8de52622fb6c8e"
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "dd373a6b9502dd85baa5ad9896195c376a9d785cba54f473b5ff01c5aeae4ff1"
+   "sha256": "a104b563ec25020be6b59431bec349c23b6b444cab84f8b1c05177813f537f31"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -62,40 +62,40 @@
   },
   {
    "path": "project_current/source_register.csv",
-   "sha256": "ea06c84673d262db15b77b8ae0c89a2db7cb95340a5a217b8814c102de545f74"
+   "sha256": "a820c215dcb92358961dff43d57c18fbc81fba28b5ca857995bd9cd6cb6d8331"
   },
   {
    "path": "scripts/build_lineage_graph.py",
-   "sha256": "6db2702b0a7ec3b51f1f02432f28e0f5f6eecd124d705ac3546b1d7df74cbba3"
+   "sha256": "a5fbe9321b009d38e35dbf575e2174d0e699de301b0248ae7c6292ee8005079d"
   }
  ],
  "derived": [
   {
    "id": "formula-trace:EB-CASE",
    "sha256": "ffea4384d1e126d6529fff449e2f1e8206e7b7c6d697e00f9aaad9615031e174",
-   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+   "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
   },
   {
    "id": "formula-trace:EB2-CASE",
    "sha256": "91ed8d3683ebe3bbe7230ada3232bfae78ad3436fc43dcf6a278eb9f0910434d",
-   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+   "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
   },
   {
    "id": "formula-trace:PIER-CASE",
    "sha256": "92655facea12b567e71013f65a7b62c4c01ae398ad77ab1f9a8f8cac21f4877f",
-   "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+   "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
   }
  ],
  "cap_package": {
   "path": "pier_cap",
   "files": 79,
-  "sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+  "sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
  },
  "cap_trace": {
   "available": true,
   "reason": ""
  },
- "checked_at_utc": "2026-10-22T14:32:07.924161+00:00",
+ "checked_at_utc": "2026-10-22T15:18:05.373680+00:00",
  "stages": [
   {
    "id": "inputs",
@@ -1174,7 +1174,8 @@
     "D-075",
     "D-076",
     "D-078",
-    "D-079"
+    "D-079",
+    "D-081"
    ],
    "issues": [
     "COH-023",
@@ -1313,6 +1314,117 @@
    "open_issues": [
     "COH-021"
    ]
+  },
+  {
+   "id": "CHEEK-CASE",
+   "label": "Pier cap cheek wall saved case",
+   "kind": "source",
+   "stage": "inputs",
+   "registered": true,
+   "path": "project_current/pier_cheek_wall/selected_case.json",
+   "status": "User-selected current - engineering review retained",
+   "scope": "Editable cheek wall case (d2mpdb-pier-cheek-wall schema 1), byte-identical to the dated case beside the report",
+   "sha256": "df28e0523354eeaeaf08a90b04c38da9bd7439ab13faadd3b39d0c3045e6063c",
+   "registered_on": "2026-10-22",
+   "depends_on": [
+    "CHEEK-TOOL",
+    "CAD-MODEL",
+    "PIER-CASE",
+    "JOURNAL"
+   ],
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pier_cheek_wall_report.py)",
+   "notes": "D-081. Pier cap cheek wall calculation from the pier_cheek_wall package (CHEEK-TOOL, revision 646e1010c4a0) on its starting case (D-080: the D-059/D-061 CAD walls and mats of CAD-MODEL, the C001 wind values of JOURNAL, the C002 drag coefficient, materials of PIER-CASE). All numerical checks pass · 2 pending item(s) remain: failed none; pending temp_v, temp_h; at their limits cover, develop. Strength III pressure 0.0600 ksf, 0.96 kip transverse per wall; flexure 0.072 of capacity. See coherence/evidence/2026-10-22-pier-cheek-wall-selection/source_receipt.json. Selection is not engineering acceptance.",
+   "hash_basis": "exact_bytes",
+   "health": "MATCH",
+   "checks": [
+    {
+     "check_id": "SOURCE:CHEEK-CASE",
+     "status": "MATCH",
+     "detail": "Exact registered bytes are present."
+    }
+   ],
+   "decisions": [
+    "D-059",
+    "D-061",
+    "D-080",
+    "D-081"
+   ],
+   "issues": [],
+   "parameters": [],
+   "open_issues": []
+  },
+  {
+   "id": "CHEEK-REPORT",
+   "label": "Pier cap cheek wall report",
+   "kind": "source",
+   "stage": "inputs",
+   "registered": true,
+   "path": "project_current/pier_cheek_wall/Pier Cheek Wall Design 10-22.html",
+   "status": "User-selected current - engineering review retained",
+   "scope": "Calculation report for the two pier cap cheek walls under wind (flexure, minimum flexure, shear, interface shear, service, development, shrinkage and temperature steel, spacing, cover, thickness)",
+   "sha256": "82a3331dd1b383e6c60a37934cb1349484e925a36fbd5fc99df5c4da302b9ec0",
+   "registered_on": "2026-10-22",
+   "depends_on": [
+    "CHEEK-CASE",
+    "CHEEK-TOOL",
+    "CAD-MODEL",
+    "PIER-CASE",
+    "JOURNAL"
+   ],
+   "origin": "Notebook package run requested by the user, 22 October 2026 (scripts/export_project_pier_cheek_wall_report.py)",
+   "notes": "D-081. Pier cap cheek wall calculation from the pier_cheek_wall package (CHEEK-TOOL, revision 646e1010c4a0) on its starting case (D-080: the D-059/D-061 CAD walls and mats of CAD-MODEL, the C001 wind values of JOURNAL, the C002 drag coefficient, materials of PIER-CASE). All numerical checks pass · 2 pending item(s) remain: failed none; pending temp_v, temp_h; at their limits cover, develop. Strength III pressure 0.0600 ksf, 0.96 kip transverse per wall; flexure 0.072 of capacity. The report embeds its generation time and random figure ids; --check regenerates it from the case. See coherence/evidence/2026-10-22-pier-cheek-wall-selection/source_receipt.json. Selection is not engineering acceptance.",
+   "hash_basis": "exact_bytes",
+   "health": "MATCH",
+   "checks": [
+    {
+     "check_id": "SOURCE:CHEEK-REPORT",
+     "status": "MATCH",
+     "detail": "Exact registered bytes are present."
+    }
+   ],
+   "decisions": [
+    "D-059",
+    "D-061",
+    "D-080",
+    "D-081"
+   ],
+   "issues": [],
+   "parameters": [],
+   "open_issues": []
+  },
+  {
+   "id": "CHEEK-TOOL",
+   "label": "Pier cap cheek wall notebook",
+   "kind": "source",
+   "stage": "inputs",
+   "registered": true,
+   "path": "Pier_Cheek_Wall_Design.ipynb",
+   "status": "Current tool - bounded verification",
+   "scope": "Pier cap cheek wall wind loading (LRFD 3.8.1.2.1, 3.8.1.2.3b), cantilever flexure, shear, interface shear, crack control, development, shrinkage and temperature steel and detailing checks (LRFD 10th ed., FDOT SDG/SDM 2026); reads CAD-MODEL geometry and mats, the C001 wind values of JOURNAL and the materials of PIER-CASE",
+   "sha256": "9507df0b5f04897fef0fdf660d085e5886adfd0ba100ee17460035c9089cb4ea",
+   "registered_on": "2026-10-22",
+   "depends_on": [
+    "CAD-MODEL",
+    "PIER-CASE",
+    "JOURNAL"
+   ],
+   "origin": "Repository main",
+   "notes": "D-081 (22 October 2026): portable notebook embedding the pier_cheek_wall package (revision 646e1010c4a0) on the calc_common framework; report with overview, design basis, schematics and definition and citation cards; standalone and journal Blockpad editions. See coherence/evidence/2026-10-22-pier-cheek-wall-selection/source_receipt.json. Selection is not engineering acceptance.",
+   "hash_basis": "lf_text",
+   "health": "MATCH",
+   "checks": [
+    {
+     "check_id": "SOURCE:CHEEK-TOOL",
+     "status": "MATCH",
+     "detail": "Registered text content matches after CRLF/LF normalization."
+    }
+   ],
+   "decisions": [
+    "D-081"
+   ],
+   "issues": [],
+   "parameters": [],
+   "open_issues": []
   },
   {
    "id": "EB-CASE",
@@ -4225,7 +4337,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "ffea4384d1e126d6529fff449e2f1e8206e7b7c6d697e00f9aaad9615031e174",
-    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+    "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
    },
    "open_issues": [
     "COH-023",
@@ -7295,7 +7407,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "91ed8d3683ebe3bbe7230ada3232bfae78ad3436fc43dcf6a278eb9f0910434d",
-    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+    "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
    },
    "open_issues": [
     "COH-023",
@@ -7656,9 +7768,9 @@
    "stage": "inputs",
    "registered": true,
    "path": "journal/D2_I95_Project_Journal.bpad",
-   "status": "Current - calculations C001-C017 in order with project stamps; pier modules on the D-077 export; pier wall on the CAD geometry (D-075) with 1/2-in ring plates (D-078); D-065 as-cast override; final bearing fit unresolved",
-   "scope": "Adopted project geometry, assumptions, decisions, live journal quantities and the cap, pile, end-bent backwall and pier-wall ring design calculations",
-   "sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+   "status": "Current - calculations C001-C018 in order with project stamps; pier modules on the D-077 export; pier wall on the CAD geometry (D-075) with 1/2-in ring plates (D-078); D-065 as-cast override; final bearing fit unresolved",
+   "scope": "Adopted project geometry, assumptions, decisions, live journal quantities and the cap, pile, end-bent backwall, pier-wall ring and pier cap cheek wall design calculations",
+   "sha256": "b582cce60ac3d36015c104401a64d066053ffecec159fa352dcd26f311d59b6f",
    "registered_on": "2026-10-22",
    "depends_on": [
     "GEOMETRY",
@@ -7678,10 +7790,12 @@
     "MCAD-S1",
     "MCAD-S2",
     "PIER-WALL-CASE",
-    "PIER-WALL-TOOL"
+    "PIER-WALL-TOOL",
+    "CHEEK-CASE",
+    "CHEEK-TOOL"
    ],
    "origin": "workflow/accepted.json",
-   "notes": "T037 / D-078 (22 October 2026): C017 Pier Wall, Annular Pile Rings regenerated from the second 22 October ring wall case with a 1/2-in ring plate (3/4 in before; the thinnest standard plate with every check at or under 0.95 of its limit is 7/16 in, set by the maximum fillet at the ring edge); wall, diameters, fillets, forces, rotation, moment, contact and bearing unchanged; 1 failed check (grid clearance) as before; PedBridge revision note; DecisionLog entry. The CAD rings (D-076) are 3/4 in until reconciled. Native recalculation, appearance and engineering reviews not performed. See tasks/T037/verification.json. T036 / D-077 (22 October 2026): pier modules follow the 22 October FBMP rerun (pier wall extra members ending at the soil surface; loads, geometry, section, material and soil unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions (cap: nine force inputs moved, no status change; pile: demands of the new export); FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-077 export; DecisionLog entry. End-bent modules unchanged; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T036/verification.json. T035 (22 October 2026): C006 and C004 replaced by their regenerated journal editions naming the T034 journal (82e7d3e1) as the journal whose values their inputs equal (case name and provenance sentence in the hidden notes); every definition, cached value and canvas identical to the T034 modules; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T035/verification.json. T034 / D-075 (22 October 2026): pier wall reconciled to the CAD geometry (219 x 36 in from EL 24.5264 to the cap bottom EL 40.76494, 194.8625 in high): gravity sheet row 42 edited (E42 18 ft 3 in, G42 16 ft 2.8625 in; H42/J42/K42 caches recomputed, wall weight 114.737 to 133.359 kip); C006 and C004 regenerated by their packages with the new journal values through their coherence gates; C017 regenerated from the 22 October starting case (free length 92.4 in from the wall bottom; 1 failed check, grid clearance); PedBridge revision note and DecisionLog entry. FBMP pier export unchanged (wall load gap recorded as assumption A-012); native recalculation, appearance and engineering reviews not performed. See tasks/T034/verification.json. T033 (21 October 2026): C008 and C009 replaced by their regenerated journal editions naming the registered 10-20 End Bent cap reports (D-068); every definition, cached value and canvas identical; PedBridge revision note and DecisionLog entry; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T033/verification.json. T032 / D-073 (21 October 2026): pier modules follow the 21 October FBMP rerun (pipe pile material Fy 45 ksi in place of 60 ksi; loads and geometry unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions with every definition, cached value and canvas identical to the prior modules (text only: new export identity, 11 pending pile items in place of 16 with the steel-grade prerequisite source-backed); Pile Section Properties, FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-073 export; DecisionLog entry. End-bent modules unchanged; no engineering value changed; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T032/verification.json. T031 (21 October 2026): C001-C004 code-reference modules retired (citations live in the calculation reports); C001-C004 editions regenerated with plain-text citations; no value changed. T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
+   "notes": "T038-T039 / D-081 (22 October 2026): C018 Pier Cap Cheek Wall Design (report PierCheekWalls) added from the Pier Cheek Wall Design notebook package (pier_cheek_wall, starting case of D-080: the D-059/D-061 CAD walls and mats, the C001 wind values as live references through the coherence gate, the C002 drag coefficient; 183 definitions, 174 values compared with the notebook to 1e-9; live project stamp) and placed after C017; every numerical check passes, development and cover at their limits, one-mat convention pending; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T038/verification.json and tasks/T039/verification.json. T037 / D-078 (22 October 2026): C017 Pier Wall, Annular Pile Rings regenerated from the second 22 October ring wall case with a 1/2-in ring plate (3/4 in before; the thinnest standard plate with every check at or under 0.95 of its limit is 7/16 in, set by the maximum fillet at the ring edge); wall, diameters, fillets, forces, rotation, moment, contact and bearing unchanged; 1 failed check (grid clearance) as before; PedBridge revision note; DecisionLog entry. The CAD rings (D-076) are 3/4 in until reconciled. Native recalculation, appearance and engineering reviews not performed. See tasks/T037/verification.json. T036 / D-077 (22 October 2026): pier modules follow the 22 October FBMP rerun (pier wall extra members ending at the soil surface; loads, geometry, section, material and soil unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions (cap: nine force inputs moved, no status change; pile: demands of the new export); FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-077 export; DecisionLog entry. End-bent modules unchanged; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T036/verification.json. T035 (22 October 2026): C006 and C004 replaced by their regenerated journal editions naming the T034 journal (82e7d3e1) as the journal whose values their inputs equal (case name and provenance sentence in the hidden notes); every definition, cached value and canvas identical to the T034 modules; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T035/verification.json. T034 / D-075 (22 October 2026): pier wall reconciled to the CAD geometry (219 x 36 in from EL 24.5264 to the cap bottom EL 40.76494, 194.8625 in high): gravity sheet row 42 edited (E42 18 ft 3 in, G42 16 ft 2.8625 in; H42/J42/K42 caches recomputed, wall weight 114.737 to 133.359 kip); C006 and C004 regenerated by their packages with the new journal values through their coherence gates; C017 regenerated from the 22 October starting case (free length 92.4 in from the wall bottom; 1 failed check, grid clearance); PedBridge revision note and DecisionLog entry. FBMP pier export unchanged (wall load gap recorded as assumption A-012); native recalculation, appearance and engineering reviews not performed. See tasks/T034/verification.json. T033 (21 October 2026): C008 and C009 replaced by their regenerated journal editions naming the registered 10-20 End Bent cap reports (D-068); every definition, cached value and canvas identical; PedBridge revision note and DecisionLog entry; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T033/verification.json. T032 / D-073 (21 October 2026): pier modules follow the 21 October FBMP rerun (pipe pile material Fy 45 ksi in place of 60 ksi; loads and geometry unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions with every definition, cached value and canvas identical to the prior modules (text only: new export identity, 11 pending pile items in place of 16 with the steel-grade prerequisite source-backed); Pile Section Properties, FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-073 export; DecisionLog entry. End-bent modules unchanged; no engineering value changed; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T032/verification.json. T031 (21 October 2026): C001-C004 code-reference modules retired (citations live in the calculation reports); C001-C004 editions regenerated with plain-text citations; no value changed. T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -7693,7 +7807,7 @@
     {
      "check_id": "JOURNAL:acceptance",
      "status": "MATCH",
-     "detail": "Journal matches acceptance receipt T037. Review scope remains as recorded."
+     "detail": "Journal matches acceptance receipt T039. Review scope remains as recorded."
     },
     {
      "check_id": "ASSUMPTION:A-001",
@@ -7747,6 +7861,8 @@
     "D-056",
     "D-057",
     "D-058",
+    "D-059",
+    "D-061",
     "D-062",
     "D-063",
     "D-064",
@@ -7762,7 +7878,9 @@
     "D-075",
     "D-076",
     "D-077",
-    "D-078"
+    "D-078",
+    "D-080",
+    "D-081"
    ],
    "issues": [
     "COH-001",
@@ -8077,7 +8195,8 @@
     "D-020",
     "D-051",
     "D-073",
-    "D-077"
+    "D-077",
+    "D-081"
    ],
    "issues": [
     "COH-019"
@@ -10908,7 +11027,7 @@
     "journal_references": 5,
     "package_status": "CHECK FAILURES — revise the trial cage or section",
     "sha256": "92655facea12b567e71013f65a7b62c4c01ae398ad77ab1f9a8f8cac21f4877f",
-    "package_sha256": "79933bac8f0dd3c1ba54b1ec3564de80bf3414bea617ec7ec1c3f4ef47d7fbbc"
+    "package_sha256": "e5277a631b6fe43132536ffba33e03dda8033770703d4e36a5b82188785520cb"
    },
    "open_issues": [
     "COH-019"
@@ -13072,6 +13191,36 @@
    "flags": []
   },
   {
+   "id": "CAD-MODEL->CHEEK-CASE",
+   "source": "CAD-MODEL",
+   "target": "CHEEK-CASE",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "CAD-MODEL->CHEEK-REPORT",
+   "source": "CAD-MODEL",
+   "target": "CHEEK-REPORT",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "CAD-MODEL->CHEEK-TOOL",
+   "source": "CAD-MODEL",
+   "target": "CHEEK-TOOL",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
    "id": "CAD-MODEL->JOURNAL",
    "source": "CAD-MODEL",
    "target": "JOURNAL",
@@ -13091,6 +13240,56 @@
    "id": "CAD-RUNTIME->CAD-MODEL",
    "source": "CAD-RUNTIME",
    "target": "CAD-MODEL",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "CHEEK-CASE->CHEEK-REPORT",
+   "source": "CHEEK-CASE",
+   "target": "CHEEK-REPORT",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "CHEEK-CASE->JOURNAL",
+   "source": "CHEEK-CASE",
+   "target": "JOURNAL",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "CHEEK-TOOL->CHEEK-CASE",
+   "source": "CHEEK-TOOL",
+   "target": "CHEEK-CASE",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "CHEEK-TOOL->CHEEK-REPORT",
+   "source": "CHEEK-TOOL",
+   "target": "CHEEK-REPORT",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "CHEEK-TOOL->JOURNAL",
+   "source": "CHEEK-TOOL",
+   "target": "JOURNAL",
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
@@ -16090,6 +16289,36 @@
    "flags": []
   },
   {
+   "id": "JOURNAL->CHEEK-CASE",
+   "source": "JOURNAL",
+   "target": "CHEEK-CASE",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "JOURNAL->CHEEK-REPORT",
+   "source": "JOURNAL",
+   "target": "CHEEK-REPORT",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "JOURNAL->CHEEK-TOOL",
+   "source": "JOURNAL",
+   "target": "CHEEK-TOOL",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
    "id": "JOURNAL->EB-CASE",
    "source": "JOURNAL",
    "target": "EB-CASE",
@@ -16528,6 +16757,36 @@
    "id": "PIER-CASE->CAD-MODEL",
    "source": "PIER-CASE",
    "target": "CAD-MODEL",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "PIER-CASE->CHEEK-CASE",
+   "source": "PIER-CASE",
+   "target": "CHEEK-CASE",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "PIER-CASE->CHEEK-REPORT",
+   "source": "PIER-CASE",
+   "target": "CHEEK-REPORT",
+   "kind": "depends_on",
+   "label": "feeds",
+   "parameters": [],
+   "checks": [],
+   "flags": []
+  },
+  {
+   "id": "PIER-CASE->CHEEK-TOOL",
+   "source": "PIER-CASE",
+   "target": "CHEEK-TOOL",
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
@@ -24729,7 +24988,10 @@
     "sources": [
      "CAD-MODEL",
      "CAD-REPORT",
-     "CAD-RUNTIME"
+     "CAD-RUNTIME",
+     "CHEEK-CASE",
+     "CHEEK-REPORT",
+     "JOURNAL"
     ],
     "decisions": [],
     "issues": [],
@@ -24763,7 +25025,10 @@
     "sources": [
      "CAD-MODEL",
      "CAD-REPORT",
-     "CAD-RUNTIME"
+     "CAD-RUNTIME",
+     "CHEEK-CASE",
+     "CHEEK-REPORT",
+     "JOURNAL"
     ],
     "decisions": [
      "D-060"
@@ -25181,6 +25446,9 @@
     "sources": [
      "BACKWALL-TOOL",
      "CAP-TOOL",
+     "CHEEK-CASE",
+     "CHEEK-REPORT",
+     "JOURNAL",
      "PIER-WALL-TOOL",
      "PILE-TOOL"
     ],
@@ -25189,6 +25457,29 @@
      "D-059",
      "D-061",
      "D-062"
+    ],
+    "issues": [],
+    "inferred": []
+   }
+  },
+  {
+   "id": "D-081",
+   "date": "2026-10-22",
+   "decision": "Select the pier cap cheek wall calculation as a current project source: the Pier Cheek Wall Design notebook (CHEEK-TOOL), its 22 October report (CHEEK-REPORT) and saved case (CHEEK-CASE) under `project_current/pier_cheek_wall/`, and add its Blockpad edition to the journal as calculation C018 (PierCheekWalls) after C017.",
+   "basis": "User direction, 22 October 2026 (relayed by the coordinating session): select the pier cap cheek wall calculation as a current project source and add it to the project journal as calculation C018. Starting case of the pier_cheek_wall package (revision 646e1010c4a0; D-080): the D-059/D-061 walls and mats of CAD-MODEL, the C001 wind values of JOURNAL (live references in the journal edition through the coherence gate), the C002 substructure drag coefficient and the materials of PIER-CASE; no input changed by hand. Results: all numerical checks pass · 2 pending item(s) remain; failed none; pending temp_v, temp_h (one-centred-mat shrinkage and temperature convention); development and cover exactly at their limits (1.00); Strength III pressure 0.0600 ksf, 0.96 kip transverse and 0.24 kip longitudinal per wall, cantilever moment 1.920 kip-ft and shear 0.960 kip at the cap top, flexure 0.072 of capacity. The journal edition is generated by scripts/build_pier_cheek_wall.py --journal (every definition evaluated independently by the Blockpad-syntax evaluator and compared with the notebook to 1 part in 10⁹; live project stamp; hidden working notes) and added by task T038, then moved after C017 by task T039; native recalculation, appearance and engineering reviews not performed. The case names the T037 journal revision (ceeb8ebb) as the journal whose C001 values its wind inputs equal; the C018 edition enters the following revision, as the C006/C004 editions of T035 do. Not changed: the CAD model and drawings, the pier cap case and FBMP exports, the end-bent backwall calculation (C014 keeps the end-bent cheek walls), the other journal modules and the tracker responses. Wind is the only action considered; the straight 12-in cap embedment and the 2-in cover sit exactly at their limits and the one-mat convention awaits confirmation. Selection is not engineering acceptance. See [receipt](coherence/evidence/2026-10-22-pier-cheek-wall-selection/source_receipt.json).",
+   "refs": {
+    "sources": [
+     "CAD-MODEL",
+     "CHEEK-CASE",
+     "CHEEK-REPORT",
+     "CHEEK-TOOL",
+     "JOURNAL",
+     "PIER-CASE"
+    ],
+    "decisions": [
+     "D-059",
+     "D-061",
+     "D-080"
     ],
     "issues": [],
     "inferred": []

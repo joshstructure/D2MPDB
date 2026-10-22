@@ -1,0 +1,38 @@
+[
+ {
+  "case_sha256": "a7ca0109a0c8fe5879ad7196d806b8d80dc525a00ca4e7d939e29cf7be3cb8bb",
+  "cells_and_labels": 338,
+  "definitions": 183,
+  "fragment": "pier_cheek_wall/bpad/journal/PierCheekWalls.xml",
+  "fragment_sha256": "ea913b682247fea394d7750932e740a87b2a130b4539d8e34f6c6e86bee581fe",
+  "functions": 0,
+  "journal_file": "journal/D2_I95_Project_Journal.bpad",
+  "journal_references": 5,
+  "literals_kept": [],
+  "mathcad_values_compared": null,
+  "package_revision": "646e1010c4a05a927fb05668464737faf1d79cb6b8fdf9144311413c8c270879",
+  "project_stamp": {
+   "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
+   "CheckDate": "",
+   "CheckedBy": "MIK",
+   "DesignDate": "10/17/2026",
+   "DesignedBy": "JAT",
+   "Firm": "Parsons Transportation Group Inc",
+   "JobNo": "",
+   "Project": "I-95 Capacity Improvements from South of SR 152 to South of SR 126",
+   "owner": "ProjectInfo"
+  },
+  "references": [
+   "C001WindLoadOnPedBridgeSuperstructure.G_fac",
+   "C001WindLoadOnPedBridgeSuperstructure.K_Z_gov",
+   "C001WindLoadOnPedBridgeSuperstructure.V_III",
+   "C001WindLoadOnPedBridgeSuperstructure.V_SI",
+   "C001WindLoadOnPedBridgeSuperstructure.V_V"
+  ],
+  "report_name": "PierCheekWalls",
+  "review_document": "pier_cheek_wall/bpad/journal/Pier Cap Cheek Wall Design - Journal Edition (review).bpad",
+  "review_sha256": "d7f42e279c672b9f2547f25779c1fa4cfb8364bd743ebc3bdf9056c33bfd47a1",
+  "status": "✓ All Checks Pass",
+  "tool_comparisons": 174
+ }
+]

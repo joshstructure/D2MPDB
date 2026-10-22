@@ -1,0 +1,29 @@
+{
+  "task": "T038",
+  "journal_sha256": "f8352579e4f8bc5a61e60f5ec05a20ce14fe533871dc4fec1cd6c3d0fe6545c9",
+  "previous_sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+  "promoted": "2026-10-22T15:00:07.165528+00:00",
+  "review": {
+    "candidate_sha256": "f8352579e4f8bc5a61e60f5ec05a20ce14fe533871dc4fec1cd6c3d0fe6545c9",
+    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T038/build_components.py; scripts/build_pier_cheek_wall.py --journal build verification: 174 values compared with the notebook to 1e-9, five C001 references through the coherence gate)",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "No external analysis involved: C018 reads the pier cheek wall starting case (CAD walls and mats, D-080/D-081), five C001 wind values and ProjectInfo; the FBMP exports, the pile and cap cases and their modules are untouched.",
+    "external_analysis_status": "not_applicable",
+    "inherited_issues_disposition": "New module; no existing module value changed. Its own open items (development and cover exactly at their limits, one-centred-mat shrinkage and temperature convention pending confirmation) are recorded in its hidden notes and the project record; C014 (end-bent backwall and cheek walls) keeps its recorded status.",
+    "evidence_files": [
+      {
+        "path": "verification.json",
+        "sha256": "8fbb14f14405d990fa34786f291ba20d0f6557ed8ff491fa00f8832367790e60"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/f8352579e4f8bc5a61e60f5ec05a20ce14fe533871dc4fec1cd6c3d0fe6545c9"
+}

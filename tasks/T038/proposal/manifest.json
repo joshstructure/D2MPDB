@@ -1,0 +1,18 @@
+{
+  "task": "T038",
+  "base_sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "8a96bdc4beef86d1e5552e1b4ddf9e4b327f9cd2964d83469ec6c6ee656ec866"
+    },
+    "report:DecisionLog": {
+      "file": "001.xml",
+      "sha256": "daf16a385982966f07e205598aaa76b26a9776523a4d82b6cf0ae885f13cdcad"
+    },
+    "report:PierCheekWalls": {
+      "file": "002.xml",
+      "sha256": "ea913b682247fea394d7750932e740a87b2a130b4539d8e34f6c6e86bee581fe"
+    }
+  }
+}

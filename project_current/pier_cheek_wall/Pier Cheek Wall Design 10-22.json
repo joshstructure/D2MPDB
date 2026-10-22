@@ -1,0 +1,328 @@
+{
+ "format": "d2mpdb-pier-cheek-wall",
+ "schema_version": 1,
+ "name": "C018 - Pier Cap Cheek Wall Design (CAD walls and mats of 19 October 2026, C001 wind values)",
+ "inputs": {
+  "H_w": 48.0,
+  "w_w": 48.0,
+  "t_w": 12.0,
+  "r_rec": 0.75,
+  "z_rec": 9.0,
+  "bar_v": "#4",
+  "n_v": 6,
+  "s_v": 10.0,
+  "s_v_min": 3.0,
+  "x_v": 5.125,
+  "L_emb": 12.0,
+  "c_b_cap": 3.25,
+  "bar_h": "#4",
+  "n_h": 6,
+  "s_h": 10.0,
+  "s_h_min": 3.5,
+  "c_edge": 2.0,
+  "V_III": 130.0,
+  "V_V": 80.0,
+  "V_SI": 70.0,
+  "K_Z_III": 1.01971744991174,
+  "K_Z_V": 1.0,
+  "K_Z_SI": 1.0,
+  "G_f": 0.85,
+  "C_D": 1.6,
+  "gamma_WS_III": 1.0,
+  "gamma_WS_V": 1.0,
+  "gamma_WS_SI": 1.0,
+  "fc": 5.5,
+  "fy": 60.0,
+  "Es": 29000.0,
+  "w_c": 0.15,
+  "w_cE": 0.1455,
+  "K_1": 1.0,
+  "lambda_c": 1.0,
+  "phi_f": 0.9,
+  "phi_v": 0.9,
+  "gamma_e": 1.0,
+  "fss_ratio": 0.8,
+  "gamma_1": 1.6,
+  "gamma_3": 0.67,
+  "beta_v": 2.0,
+  "c_if": 0.075,
+  "mu_if": 0.6,
+  "K1_if": 0.2,
+  "K2_if": 0.8,
+  "lambda_rl": 1.0,
+  "lambda_cf": 1.0,
+  "lambda_lw": 1.0,
+  "d_agg": 1.0,
+  "cv_req": 2.0,
+  "t_min": 8.0
+ },
+ "units": {
+  "H_w": "in",
+  "w_w": "in",
+  "t_w": "in",
+  "r_rec": "in",
+  "z_rec": "in",
+  "bar_v": null,
+  "n_v": null,
+  "s_v": "in",
+  "s_v_min": "in",
+  "x_v": "in",
+  "L_emb": "in",
+  "c_b_cap": "in",
+  "bar_h": null,
+  "n_h": null,
+  "s_h": "in",
+  "s_h_min": "in",
+  "c_edge": "in",
+  "V_III": null,
+  "V_V": null,
+  "V_SI": null,
+  "K_Z_III": null,
+  "K_Z_V": null,
+  "K_Z_SI": null,
+  "G_f": null,
+  "C_D": null,
+  "gamma_WS_III": null,
+  "gamma_WS_V": null,
+  "gamma_WS_SI": null,
+  "fc": "ksi",
+  "fy": "ksi",
+  "Es": "ksi",
+  "w_c": "kip/ft^3",
+  "w_cE": "kip/ft^3",
+  "K_1": null,
+  "lambda_c": null,
+  "phi_f": null,
+  "phi_v": null,
+  "gamma_e": null,
+  "fss_ratio": null,
+  "gamma_1": null,
+  "gamma_3": null,
+  "beta_v": null,
+  "c_if": "ksi",
+  "mu_if": null,
+  "K1_if": null,
+  "K2_if": "ksi",
+  "lambda_rl": null,
+  "lambda_cf": null,
+  "lambda_lw": null,
+  "d_agg": "in",
+  "cv_req": "in",
+  "t_min": "in"
+ },
+ "sources": {
+  "H_w": {
+   "source": "CAD-MODEL pier cheek walls (adoption record 2026-10-19-pier-cheek-relief): 48 x 48 x 12 in, top EL 47.765 ft",
+   "status": "project source"
+  },
+  "w_w": {
+   "source": "CAD-MODEL pier cheek walls (2026-10-19-pier-cheek-relief); cap width 48 in",
+   "status": "project source"
+  },
+  "t_w": {
+   "source": "CAD-MODEL pier cheek walls (2026-10-19-pier-cheek-relief)",
+   "status": "project source"
+  },
+  "r_rec": {
+   "source": "CAD-MODEL pier cheek walls: 30 x 30 in panel, 3/4 in deep with a 3/4 in chamfer, 11.25 in solid behind it",
+   "status": "project source"
+  },
+  "z_rec": {
+   "source": "CAD-MODEL pier cheek walls: 9 in borders around the panel",
+   "status": "project source"
+  },
+  "bar_v": {
+   "source": "CAD-MODEL mats (2026-10-19-pier-cheek-development): six #4 verticals per wall",
+   "status": "project source"
+  },
+  "n_v": {
+   "source": "CAD-MODEL mats: six verticals per wall",
+   "status": "project source"
+  },
+  "s_v": {
+   "source": "CAD-MODEL mats: 9, 10, 10, 9.5 and 3 in between the six verticals",
+   "status": "project source"
+  },
+  "s_v_min": {
+   "source": "CAD-MODEL mats: the two outer verticals at the side faces",
+   "status": "project source"
+  },
+  "x_v": {
+   "source": "CAD-MODEL mats: 5.125 in on the left wall (mat moved 5/8 in outward to clear the cap stirrup), 5.75 in on the right wall; the governing wall is used",
+   "status": "project source"
+  },
+  "L_emb": {
+   "source": "CAD-MODEL mats (2026-10-19-pier-cheek-development): verticals 57.75 in long, 12 in into the cap",
+   "status": "project source"
+  },
+  "c_b_cap": {
+   "source": "CAD-MODEL mats: outer verticals 3.25 in from the side faces (3 in clear in the cap); half the 9 in spacing is larger",
+   "status": "project source"
+  },
+  "bar_h": {
+   "source": "CAD-MODEL mats: six #4 horizontals per wall, 43.5 in long",
+   "status": "project source"
+  },
+  "n_h": {
+   "source": "CAD-MODEL mats: six horizontals per wall",
+   "status": "project source"
+  },
+  "s_h": {
+   "source": "CAD-MODEL mats: 10 in between the horizontals (3.5 in to the top bar)",
+   "status": "project source"
+  },
+  "s_h_min": {
+   "source": "CAD-MODEL mats: the two top horizontals",
+   "status": "project source"
+  },
+  "c_edge": {
+   "source": "CAD-MODEL mats: measured minimum cover 2.0 in; the mat is 4.875 in clear of the recessed face",
+   "status": "project source"
+  },
+  "V_III": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.V_III (SDG Table 2.4.1-1, Duval County)",
+   "status": "journal"
+  },
+  "V_V": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.V_V (LRFD Table 3.8.1.1.2-1)",
+   "status": "journal"
+  },
+  "V_SI": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.V_SI (LRFD Table 3.8.1.1.2-1)",
+   "status": "journal"
+  },
+  "K_Z_III": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.K_Z_gov (Exposure C at the common 35.7 ft crown height; bounds the 47.8 ft wall top above the pier terrain at EL 25.5)",
+   "status": "journal"
+  },
+  "K_Z_V": {
+   "source": "LRFD 3.8.1.2.1 (1.0 at the 80 mph Strength V speed, as C001)",
+   "status": "code"
+  },
+  "K_Z_SI": {
+   "source": "LRFD 3.8.1.2.1 (1.0 at the 70 mph Service I speed, as C001 and C002)",
+   "status": "code"
+  },
+  "G_f": {
+   "source": "C001 - Superstructure Wind · C001WindLoadOnPedBridgeSuperstructure.G_fac (SDG 2.4.1.C)",
+   "status": "journal"
+  },
+  "C_D": {
+   "source": "LRFD Table 3.8.1.2.1-2 (as the direct pier wind of C002)",
+   "status": "code"
+  },
+  "gamma_WS_III": {
+   "source": "LRFD Table 3.4.1-1",
+   "status": "code"
+  },
+  "gamma_WS_V": {
+   "source": "LRFD Table 3.4.1-1",
+   "status": "code"
+  },
+  "gamma_WS_SI": {
+   "source": "LRFD Table 3.4.1-1",
+   "status": "code"
+  },
+  "fc": {
+   "source": "PIER-CASE selected_case.json inputs.fc",
+   "status": "project source"
+  },
+  "fy": {
+   "source": "PIER-CASE selected_case.json inputs.fy",
+   "status": "project source"
+  },
+  "Es": {
+   "source": "LRFD 5.4.3.2",
+   "status": "code"
+  },
+  "w_c": {
+   "source": "SDG Table 2.2-1",
+   "status": "code"
+  },
+  "w_cE": {
+   "source": "LRFD Table 3.5.1-1: 0.140 + 0.001 f′c",
+   "status": "code"
+  },
+  "K_1": {
+   "source": "LRFD 5.4.2.4",
+   "status": "code"
+  },
+  "lambda_c": {
+   "source": "LRFD 5.4.2.8 normal weight",
+   "status": "code"
+  },
+  "phi_f": {
+   "source": "LRFD 5.5.4.2",
+   "status": "code"
+  },
+  "phi_v": {
+   "source": "LRFD 5.5.4.2",
+   "status": "code"
+  },
+  "gamma_e": {
+   "source": "SDG 3.10.F",
+   "status": "code"
+  },
+  "fss_ratio": {
+   "source": "SDG 3.10.F",
+   "status": "code"
+  },
+  "gamma_1": {
+   "source": "LRFD 5.6.3.3",
+   "status": "code"
+  },
+  "gamma_3": {
+   "source": "LRFD 5.6.3.3",
+   "status": "code"
+  },
+  "beta_v": {
+   "source": "LRFD 5.7.3.4.1",
+   "status": "code"
+  },
+  "c_if": {
+   "source": "LRFD 5.7.4.4; SDG 1.15",
+   "status": "code"
+  },
+  "mu_if": {
+   "source": "LRFD 5.7.4.4; SDG 1.15",
+   "status": "code"
+  },
+  "K1_if": {
+   "source": "LRFD 5.7.4.4",
+   "status": "code"
+  },
+  "K2_if": {
+   "source": "LRFD 5.7.4.4",
+   "status": "code"
+  },
+  "lambda_rl": {
+   "source": "LRFD 5.10.8.2.1b",
+   "status": "code"
+  },
+  "lambda_cf": {
+   "source": "LRFD 5.10.8.2.1b",
+   "status": "code"
+  },
+  "lambda_lw": {
+   "source": "LRFD 5.10.8.2.1a; 5.4.2.8",
+   "status": "code"
+  },
+  "d_agg": {
+   "source": "Assumed No. 57 stone (1 in nominal); confirm with the concrete class",
+   "status": "pending confirmation"
+  },
+  "cv_req": {
+   "source": "SDG Table 1.4.2-1 cheekwalls",
+   "status": "code"
+  },
+  "t_min": {
+   "source": "SDM 12.6.B",
+   "status": "code"
+  }
+ },
+ "confirmations": {
+  "single_mat": false
+ },
+ "receipts": {},
+ "reviews": {}
+}

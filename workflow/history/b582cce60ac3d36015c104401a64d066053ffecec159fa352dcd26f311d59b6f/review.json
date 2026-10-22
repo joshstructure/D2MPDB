@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "b582cce60ac3d36015c104401a64d066053ffecec159fa352dcd26f311d59b6f",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T039/verify_order.py: registered order applied, every component byte-identical to the base)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "No external analysis involved: component reorder only; no component bytes change.",
+  "external_analysis_status": "not_applicable",
+  "inherited_issues_disposition": "Unchanged: every module keeps the bytes of the T038 revision; C018 open items (development and cover at their limits, one-mat convention pending) keep their recorded status.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "e2c4432075bebbfec7ff586fc1388af9a455abc94d962bbb42715ca4bfae35f9"
+    }
+  ]
+}

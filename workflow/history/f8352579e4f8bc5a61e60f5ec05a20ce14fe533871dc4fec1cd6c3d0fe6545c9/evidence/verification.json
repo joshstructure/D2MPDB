@@ -1,0 +1,56 @@
+{
+  "task": "T038",
+  "base_sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
+  "decision": "D-081",
+  "components": {
+    "PierCheekWalls": {
+      "source": "pier_cheek_wall/bpad/journal/PierCheekWalls.xml",
+      "fragment_sha256": "ea913b682247fea394d7750932e740a87b2a130b4539d8e34f6c6e86bee581fe",
+      "definitions": 183,
+      "dynexp_count": 183,
+      "tool_comparisons": 174,
+      "case_sha256": "a7ca0109a0c8fe5879ad7196d806b8d80dc525a00ca4e7d939e29cf7be3cb8bb",
+      "package_revision": "646e1010c4a05a927fb05668464737faf1d79cb6b8fdf9144311413c8c270879",
+      "status": "✓ All Checks Pass",
+      "journal_references": 5,
+      "reads": [
+        "C001WindLoadOnPedBridgeSuperstructure.G_fac",
+        "C001WindLoadOnPedBridgeSuperstructure.K_Z_gov",
+        "C001WindLoadOnPedBridgeSuperstructure.V_III",
+        "C001WindLoadOnPedBridgeSuperstructure.V_SI",
+        "C001WindLoadOnPedBridgeSuperstructure.V_V",
+        "ProjectInfo.Address",
+        "ProjectInfo.CheckDate",
+        "ProjectInfo.CheckedBy",
+        "ProjectInfo.DesignDate",
+        "ProjectInfo.DesignedBy",
+        "ProjectInfo.Firm",
+        "ProjectInfo.JobNo",
+        "ProjectInfo.Project"
+      ],
+      "failed_checks": [],
+      "pending_checks": [
+        "temp_h",
+        "temp_v"
+      ],
+      "checks_at_limit": [
+        "cover",
+        "develop"
+      ],
+      "title": "C018 - Pier Cap Cheek Wall Design",
+      "added": true
+    },
+    "PedBridge": {
+      "source": "base.bpad + C018 index link, heading C001 to C018, revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}
