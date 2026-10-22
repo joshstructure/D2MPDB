@@ -1,0 +1,27 @@
+{
+ "note": "Inputs are the pier cheek walls and mats of the current CAD model (decisions D-059 and D-061) and the wind values the project journal holds for C001; the journal-owned values are live references in the journal edition.",
+ "sources": {
+  "CAD-MODEL": {
+   "label": "Current FreeCAD bridge model: pier cheek walls 48 x 48 x 12 in with the recessed panel and their #4 mats (D-059, D-061)",
+   "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
+   "sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
+  },
+  "CAD-SNAPSHOT": {
+   "label": "Drawing snapshot of the model (schema 2): cheek wall solids and bar centrelines read for the mat position, spacing, cover and embedment",
+   "path": "substructure_drawings/data/model_snapshot.json",
+   "sha256": "81238eed17856fb2a3ec3db7c5a5d37b694c62422ba19daa72e73ee69b5f3d53"
+  },
+  "PIER-CASE": {
+   "label": "Pier saved cap case: concrete and reinforcement strengths",
+   "path": "project_current/cap_design/pier/selected_case.json",
+   "sha256": "926886b5efc310be979c065b2016aa445fd19c9987356cb3158ea4980c981e3a"
+  },
+  "JOURNAL": {
+   "label": "Project journal: C001 wind speeds, exposure coefficient and gust factor",
+   "path": "journal/D2_I95_Project_Journal.bpad",
+   "sha256": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
+  }
+ },
+ "decisions": ["D-059", "D-061", "D-062"],
+ "editions": "AASHTO LRFD Bridge Design Specifications, 10th edition (2024); FDOT Structures Manual January 2026 (SDG Volume 1, SDM Volume 2)"
+}

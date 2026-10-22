@@ -322,3 +322,19 @@ All report/case/XML identities match. Geometry and reinforcement are preserved;
 failed checks. Existing detailing failures and pending reviews remain. Backwall,
 CAD, journal, minimum-tip sources and tracker responses are unchanged.
 See the [rerun receipt](coherence/evidence/2026-10-19-cap-rerun/source_receipt.json).
+
+## 22 October pier cap cheek wall calculation (D-080)
+
+The D-059 pier cheek walls now have their own calculation, `pier_cheek_wall/`
+with the notebook [Pier_Cheek_Wall_Design.ipynb](../Pier_Cheek_Wall_Design.ipynb)
+(proposed C018): wind directly on the walls per LRFD 3.8.1.2.1 and 3.8.1.2.3b with
+the C001 wind values and the C002 substructure drag coefficient, and the wall as a
+cantilever from the cap top with the D-059/D-061 CAD mat as the starting case. Every
+numerical check passes; the straight development of the verticals (12 in, the LRFD
+minimum once the excess-reinforcement factor applies) and the 2 in cover sit exactly
+at their limits, and the one-centred-mat shrinkage/temperature convention awaits
+confirmation. The run with the CAD case is in `pier_cheek_wall/report/`. The
+notebook, report and case are **not** registered sources; select them with a
+dated decision when adopted. The four registered tool notebooks were rebuilt to
+embed the extended code-excerpt store and re-registered (hash-only change; see the
+[receipt](coherence/evidence/2026-10-22-pier-cheek-walls/source_receipt.json)).

@@ -1,0 +1,30 @@
+{
+ "decision": "D-080",
+ "date": "2026-10-22",
+ "tools": {
+  "CAP-TOOL": {
+   "path": "Cap_and_Pile_Design.ipynb",
+   "previous_sha256": "1ba6ac3134cac7723fcae9a3ea28417a96d40e15f53baa2da622554bb37f231f",
+   "sha256": "46887ed03569659c9a7b693c88945d9921fca93475b31a7858633ae8297ec91f",
+   "hash_basis": "lf_text"
+  },
+  "PILE-TOOL": {
+   "path": "Pile_Design.ipynb",
+   "previous_sha256": "5fbbf05f266ff015ccc133e2253a2cc1eafd0b9d2e3fecb3ec6af912ecb553e2",
+   "sha256": "81d5d5b8e6174ced1f422296cd60f9e0b7b9cc7cc8f6764eeff01ece1c721885",
+   "hash_basis": "lf_text"
+  },
+  "BACKWALL-TOOL": {
+   "path": "End_Bent_Backwall_Design.ipynb",
+   "previous_sha256": "ca4cef6dfc6025c15fbce238e3014f509abff2051a2c6c5c8efa05a7e774133f",
+   "sha256": "f126b6d5632fe67b1cae7faffbd50b53fd0693f46bf874c2d0160b04b11a0f96",
+   "hash_basis": "lf_text"
+  },
+  "PIER-WALL-TOOL": {
+   "path": "Pier_Wall_Design.ipynb",
+   "previous_sha256": "94238b3a20960c03637872d2a6c4f36d0f75b86299451a33090b1947ff3391c2",
+   "sha256": "088d250a62e2f6b93370312307c276a7a4bb5dfd8b7192eb8dfe0fa5c2066492",
+   "hash_basis": "lf_text"
+  }
+ }
+}

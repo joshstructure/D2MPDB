@@ -1,7 +1,7 @@
 {
-  "checked_at_utc": "2026-10-22T14:10:36.258141+00:00",
+  "checked_at_utc": "2026-10-22T14:32:07.924161+00:00",
   "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
-  "register_sha256": "c765c8accc10c11fab7559eabfc066202fce11af1643539edf12540d7461f12c",
+  "register_sha256": "ea06c84673d262db15b77b8ae0c89a2db7cb95340a5a217b8814c102de545f74",
   "tracker_sha256": "a41ceabda4591d478def85249d3ede63b9faf67e12b4a91916cde44197c95da7",
   "assumptions_sha256": "6def1d2e2d0396d06f35c7667ce7568bb665411a167b6a3ab13b615254ef2877",
   "source_count": 40,
@@ -13,10 +13,9 @@
     "Deferred": 2
   },
   "check_counts": {
-    "MATCH": 63,
-    "CHANGED": 2,
+    "MATCH": 65,
     "MISSING": 4,
-    "REVIEW": 12,
+    "REVIEW": 9,
     "ERROR": 9
   },
   "assumption_counts": {
@@ -60,14 +59,14 @@
     },
     {
       "check_id": "SOURCE:CAP-TOOL",
-      "status": "CHANGED",
-      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
       "source_ids": [
         "CAP-TOOL"
       ],
       "path": "Cap_and_Pile_Design.ipynb",
-      "expected_sha256": "1ba6ac3134cac7723fcae9a3ea28417a96d40e15f53baa2da622554bb37f231f",
-      "actual_sha256": "9aca70455755399677eefed74206244f17870771225cc637a06d46c580e867ad"
+      "expected_sha256": "46887ed03569659c9a7b693c88945d9921fca93475b31a7858633ae8297ec91f",
+      "actual_sha256": "46887ed03569659c9a7b693c88945d9921fca93475b31a7858633ae8297ec91f"
     },
     {
       "check_id": "SOURCE:PIER-REPORT",
@@ -258,14 +257,14 @@
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
-      "status": "CHANGED",
-      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
       "source_ids": [
         "BACKWALL-TOOL"
       ],
       "path": "End_Bent_Backwall_Design.ipynb",
-      "expected_sha256": "ca4cef6dfc6025c15fbce238e3014f509abff2051a2c6c5c8efa05a7e774133f",
-      "actual_sha256": "c41f9298140d89b8b4104a062ee5134b0fd0a3cdf41b303e8b6c1c3df4d9faf3"
+      "expected_sha256": "f126b6d5632fe67b1cae7faffbd50b53fd0693f46bf874c2d0160b04b11a0f96",
+      "actual_sha256": "f126b6d5632fe67b1cae7faffbd50b53fd0693f46bf874c2d0160b04b11a0f96"
     },
     {
       "check_id": "SOURCE:EB2-REPORT",
@@ -363,8 +362,8 @@
         "PILE-TOOL"
       ],
       "path": "Pile_Design.ipynb",
-      "expected_sha256": "5fbbf05f266ff015ccc133e2253a2cc1eafd0b9d2e3fecb3ec6af912ecb553e2",
-      "actual_sha256": "5fbbf05f266ff015ccc133e2253a2cc1eafd0b9d2e3fecb3ec6af912ecb553e2"
+      "expected_sha256": "81d5d5b8e6174ced1f422296cd60f9e0b7b9cc7cc8f6764eeff01ece1c721885",
+      "actual_sha256": "81d5d5b8e6174ced1f422296cd60f9e0b7b9cc7cc8f6764eeff01ece1c721885"
     },
     {
       "check_id": "SOURCE:PILE-EB1-REPORT",
@@ -440,8 +439,8 @@
         "PIER-WALL-TOOL"
       ],
       "path": "Pier_Wall_Design.ipynb",
-      "expected_sha256": "94238b3a20960c03637872d2a6c4f36d0f75b86299451a33090b1947ff3391c2",
-      "actual_sha256": "94238b3a20960c03637872d2a6c4f36d0f75b86299451a33090b1947ff3391c2"
+      "expected_sha256": "088d250a62e2f6b93370312307c276a7a4bb5dfd8b7192eb8dfe0fa5c2066492",
+      "actual_sha256": "088d250a62e2f6b93370312307c276a7a4bb5dfd8b7192eb8dfe0fa5c2066492"
     },
     {
       "check_id": "SOURCE:PIER-WALL-REPORT",
@@ -464,15 +463,6 @@
       "path": "project_current/pier_wall/selected_case.json",
       "expected_sha256": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
       "actual_sha256": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10"
-    },
-    {
-      "check_id": "DEP:JOURNAL:BACKWALL-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "JOURNAL",
-        "BACKWALL-TOOL"
-      ]
     },
     {
       "check_id": "DEP:MCAD-S1:MCAD-DAT1",
@@ -508,24 +498,6 @@
       "source_ids": [
         "MCAD-S2",
         "PSB-S2"
-      ]
-    },
-    {
-      "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "BACKWALL-REPORT",
-        "BACKWALL-TOOL"
-      ]
-    },
-    {
-      "check_id": "DEP:BACKWALL-CASE:BACKWALL-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "BACKWALL-CASE",
-        "BACKWALL-TOOL"
       ]
     },
     {

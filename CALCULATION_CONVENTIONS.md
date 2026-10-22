@@ -10,9 +10,10 @@ Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; re
 
 - **Hand-written package** (backwall, piles, cap, pier wall): `model.py` holds the definition list in code; the report, exports,
   widgets, Mathcad and Blockpad builders are written for that calculation. Follow sections 1–7.
-- **Data-driven package on `calc_common/`** (the journal calculations C001–C004, C006, C015, C016): the package is its
+- **Data-driven package on `calc_common/`** (the journal calculations C001–C004, C006, C015, C016, and the pier cheek
+  walls C018, `pier_cheek_wall/`, which was authored directly as data rather than imported from the journal): the package is its
   `data/` folder (`inputs.json`, `definitions.json`, `checks.json`, `tables.json`, `sections.json`, `text.json`,
-  `references.json`, `sources.json`, `journal_blocks.xml`) plus thin modules that bind `calc_common` (the modules
+  `references.json`, `sources.json`, `journal_blocks.xml` when it came from the journal) plus thin modules that bind `calc_common` (the modules
   `scripts/build_journal_calc_data.py` writes) and a hand-drawn `schematics.py`: a few scene functions built on the
   `calc_common.schematics` toolkit (`Svg`, `Frame`, dimensions, load arrows, moments, gauges, bar comparisons, small
   plots) and a `drawer(name)` map that gives every definition its own "What it represents" drawing from the current
@@ -23,7 +24,12 @@ Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; re
   `scripts/build_journal_calc_data.py`, then authored (titles, overview, captions of referenced values, check ratios, key
   results). Rebuild chain: `build_journal_calc_notebooks.py` → `build_journal_calc_bpads.py` (→ `--journal`) →
   `export_journal_calc_reports.py`; `tests/test_journal_calc_packages.py` enforces currency and the journal fidelity
-  (every former journal definition reproduced to 1e-9). These packages have no Mathcad edition.
+  (every former journal definition reproduced to 1e-9). These packages have no Mathcad edition. A data package that is not
+  (yet) a journal module gets its own chain script and test instead (`scripts/build_pier_cheek_wall.py`,
+  `tests/test_pier_cheek_wall.py`: hand arithmetic of the starting case, every definition drawn, report, sheet, notebook);
+  its check ratios are definitions (`DC_*`) so the Blockpad Status formula sees every check. Visible text of a sheet must not
+  carry the working words `scripts/bpad_sheet.py` forbids (decision and task ids, notebook, tool, journal, pending …);
+  those go in `working_notes`, the report notes and the input sources.
 
 ## 1. Package layout
 

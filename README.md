@@ -5,6 +5,7 @@
 ## Quick links — open in Colab
 
 - [Pier Wall Design](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb)
+- [Pier cap cheek wall design (C018)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Cheek_Wall_Design.ipynb)
 - [Bridge geometry](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Geometry_2%20Beam_V2.ipynb)
 - [End-bent backwall, cheek walls and tie-back straps](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/End_Bent_Backwall_Design.ipynb)
 - [Pile analysis and design (prestressed and pipe piles)](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pile_Design.ipynb)
@@ -55,6 +56,27 @@ titles, overview text, captions and check ratios. Rebuild chain after a package 
 → `scripts/export_journal_calc_reports.py`; `tests/test_journal_calc_packages.py` says which edition is stale and proves that
 every definition of the former journal modules (697 in all) is reproduced to 1 part in 10⁹. No Mathcad edition is written for
 these seven calculations.
+
+## Pier cap cheek wall design (C018)
+
+[Open the notebook in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Cheek_Wall_Design.ipynb)
+and choose **Runtime → Run all**. The two solid cheek walls on the pier cap ends (D-059: 48 x 48 x 12 in with a 3/4 in
+recessed panel, one centred mat of six #4 verticals and six #4 horizontals at 10 in maximum, verticals 12 in into the cap,
+D-061) are designed for wind acting directly on them: the LRFD 3.8.1.2.1 pressure with the C001 wind speed, exposure
+coefficient and gust factor and the substructure drag coefficient (C_D = 1.6, as the direct pier wind of C002) for Strength
+III, Strength V and Service I with WS = 1.0 (LRFD Table 3.4.1-1); the wind delivered to the pier per LRFD 3.8.1.2.3b (the
++1.9 kip transverse and +0.5 kip longitudinal of the D-062 load review); and the wall as a cantilever from the cap top:
+flexure and minimum reinforcement at the cap top and at the recessed panel, crack control (where the service tension exceeds
+0.8 fr) and the SDG 3.10.F stress limit, shear, interface shear at the construction joint (SDG 1.15 clean joint), straight
+development of the verticals into the cap (LRFD 5.10.8.2.1 with the confinement and excess-reinforcement factors), shrinkage
+and temperature steel, spacing, cover and the SDM 12.6.B minimum thickness. The package `pier_cheek_wall/` is a data package
+on `calc_common/` like the journal calculations (every equation drawn in the report's "What it represents" blocks); the
+starting case is the CAD steel, on which every numerical check passes, the straight development and the 2 in cover sitting
+exactly at their limits (the straight length for full yield without the excess-steel credit would be 12.3 in against the
+12 in embedment). Rebuild chain: `scripts/build_pier_cheek_wall.py` (notebook → standalone Blockpad sheet → `pier_cheek_wall/report/`;
+`--journal` adds the journal edition with live C001 references); `tests/test_pier_cheek_wall.py` checks the mechanics by hand,
+the CAD case, the report, the sheet and the notebook. C018 is a proposed number: the calculation is not yet a journal module
+and the notebook, report and case are not yet registered project sources.
 
 ## End bent and pier DXF (FDOT sheets)
 

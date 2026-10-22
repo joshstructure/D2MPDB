@@ -1,5 +1,5 @@
 {
- "built": "2026-10-21 20:57 UTC",
+ "built": "2026-10-22 14:19 UTC",
  "cites": {
   "10.7.1.6.2": {
    "cited_by": [
@@ -727,6 +727,26 @@
    ],
    "title": "3.8.1.1.2—Wind Speed"
   },
+  "LRFD 3.8.1.1.2, Table 3.8.1.1.2-1": {
+   "cited_by": [
+    "pier_cheek_wall/data/references.json"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_3.8.1.1.2_Table_3.8.1.1.2_1_p103_crop.png",
+     "full": "pages/LRFD_3.8.1.1.2_Table_3.8.1.1.2_1_p103_full.png",
+     "label": "LRFD 3.8.1.1.2, Table 3.8.1.1.2-1 (LRFD p. 3-46)",
+     "page": 103,
+     "pdf": "References/LRFD 3.8.1.1.2, Table 3.8.1.1.2-1 (LRFD p. 3-46).pdf",
+     "printed": "3-46",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "3.8.1.1.2—Wind Speed"
+  },
   "LRFD 3.8.1.2.1": {
    "cited_by": [
     "wind_superstructure/data/references.json",
@@ -803,6 +823,26 @@
      "label": "LRFD 3.8.1.2.3a (LRFD p. 3-53)",
      "page": 110,
      "pdf": "References/LRFD 3.8.1.2.3a (LRFD p. 3-53).pdf",
+     "printed": "3-53",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "3.8.1.2.3—Loads on the Substructure"
+  },
+  "LRFD 3.8.1.2.3b": {
+   "cited_by": [
+    "pier_cheek_wall/data/references.json"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_3.8.1.2.3b_p110_crop.png",
+     "full": "pages/LRFD_3.8.1.2.3b_p110_full.png",
+     "label": "LRFD 3.8.1.2.3b (LRFD p. 3-53)",
+     "page": 110,
+     "pdf": "References/LRFD 3.8.1.2.3b (LRFD p. 3-53).pdf",
      "printed": "3-53",
      "source": "LRFD_10th_2024.pdf"
     }
@@ -1111,6 +1151,26 @@
      "label": "LRFD 5.10.8.2.1a (LRFD p. 5-188)",
      "page": 519,
      "pdf": "References/LRFD 5.10.8.2.1a (LRFD p. 5-188).pdf",
+     "printed": "5-188",
+     "source": "LRFD_10th_2024.pdf"
+    }
+   ],
+   "title": "5.10.8.2.1—Deformed Bars and Deformed Wire in Tension"
+  },
+  "LRFD 5.10.8.2.1c": {
+   "cited_by": [
+    "pier_cheek_wall/data/references.json"
+   ],
+   "code": "LRFD",
+   "edition": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",
+   "missing": "",
+   "pages": [
+    {
+     "crop": "pages/LRFD_5.10.8.2.1c_p519_crop.png",
+     "full": "pages/LRFD_5.10.8.2.1c_p519_full.png",
+     "label": "LRFD 5.10.8.2.1c (LRFD p. 5-188)",
+     "page": 519,
+     "pdf": "References/LRFD 5.10.8.2.1c (LRFD p. 5-188).pdf",
      "printed": "5-188",
      "source": "LRFD_10th_2024.pdf"
     }
@@ -3655,7 +3715,7 @@
    "title": ""
   }
  },
- "inputs_sha256": "19455704d6f3b80834007bf9cebbff77d98182d034dde62696b46f46c06795bb",
+ "inputs_sha256": "dc2abda1ac191201c0157cbab8277c3de98345cf864aa29806822ffcfdb6b0de",
  "library": {
   "AASHTO Guide Spec. Pedestrian Bridges": "AASHTO LRFD Guide Specifications for the Design of Pedestrian Bridges (2009)",
   "LRFD": "AASHTO LRFD Bridge Design Specifications, 10th Edition (2024)",

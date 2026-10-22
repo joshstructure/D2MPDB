@@ -2,7 +2,7 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "b057b9fb699486dcccfe25e3af419802d8f3048a935390a0df992d12cf256456",
+ "fingerprint": "798803608073d41e7b371edbfab3c27514ddb315acb23d7911931277a0803a5d",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
@@ -34,11 +34,11 @@
   },
   {
    "path": "project_current/coherence/machine_checks.json",
-   "sha256": "3d092603ab1215a11593a41e9b1aa4bc899c3a2c43d0ef6cb208e68f65e3a980"
+   "sha256": "e4cbe5ac598d3238732b95533e759c7b7eb769f07c9516fde0b0287ad1f9d4f4"
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "b016562b33f4ac917a6645b070a202f051a4c4d092992c4ee58268af92695c31"
+   "sha256": "dd373a6b9502dd85baa5ad9896195c376a9d785cba54f473b5ff01c5aeae4ff1"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -62,7 +62,7 @@
   },
   {
    "path": "project_current/source_register.csv",
-   "sha256": "c765c8accc10c11fab7559eabfc066202fce11af1643539edf12540d7461f12c"
+   "sha256": "ea06c84673d262db15b77b8ae0c89a2db7cb95340a5a217b8814c102de545f74"
   },
   {
    "path": "scripts/build_lineage_graph.py",
@@ -95,7 +95,7 @@
   "available": true,
   "reason": ""
  },
- "checked_at_utc": "2026-10-22T14:10:36.258141+00:00",
+ "checked_at_utc": "2026-10-22T14:32:07.924161+00:00",
  "stages": [
   {
    "id": "inputs",
@@ -156,11 +156,6 @@
      "check_id": "SOURCE:BACKWALL-CASE",
      "status": "MATCH",
      "detail": "Exact registered bytes are present."
-    },
-    {
-     "check_id": "DEP:BACKWALL-CASE:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
     },
     {
      "check_id": "ASSUMPTION:A-003",
@@ -1012,11 +1007,6 @@
      "check_id": "SOURCE:BACKWALL-REPORT",
      "status": "MATCH",
      "detail": "Exact registered bytes are present."
-    },
-    {
-     "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
     }
    ],
    "decisions": [
@@ -1048,8 +1038,8 @@
    "path": "End_Bent_Backwall_Design.ipynb",
    "status": "Current tool - bounded verification",
    "scope": "Backwall, cheek-wall and tie-back strap calculation; reads EB-CASE, EB-XML and CAD-MODEL (D-053/D-055 native measurement)",
-   "sha256": "ca4cef6dfc6025c15fbce238e3014f509abff2051a2c6c5c8efa05a7e774133f",
-   "registered_on": "2026-10-20",
+   "sha256": "f126b6d5632fe67b1cae7faffbd50b53fd0693f46bf874c2d0160b04b11a0f96",
+   "registered_on": "2026-10-22",
    "depends_on": [
     "EB-CASE",
     "EB2-CASE",
@@ -1060,29 +1050,14 @@
     "MCAD-S1"
    ],
    "origin": "Repository main",
-   "notes": "D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision e63bcc5990f4. Historical basis: D-057. Package 16ee4d414858 (19 October 2026): sources reconciled with the register (EB-XML c1a4afa1, EB-CASE 898b3e13, CAD-MODEL d0f053d5 measured natively by scripts/measure_backwall_cad.py, JOURNAL 855e2cec, MCAD-S1 unchanged); backwall crown 4.0691 ft and edges 3.8733 ft above the cap (D-053 tops), backwall volume 77.770 ft3, landing tributary length 17.155 ft; bearing actions unchanged. 37 tests pass. Mathcad edition and the standalone and journal Blockpad editions rebuilt (scripts/build_backwall_bpad.py, --journal). Six prerequisites remain pending; D-014 to D-019 unchanged. See coherence/evidence/2026-10-19-backwall-rerun/source_receipt.json. History: D-035 (16 October) reconciled D-026/D-033 geometry and D-034 landing quantities with one centered #4 mat at 10 in each way; D-037 selected the 16 October exports; D-038 added collapsible report sections; D-039 applied the cheek steel to CAD. COH-023/024 remain open.",
+   "notes": "D-080 (22 October): notebook rebuilt to embed the code-excerpt store extended with the pier cheek wall citations (LRFD Table 3.8.1.1.2-1, 3.8.1.2.3b, 5.10.8.2.1c); calculation package and case handling unchanged. D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision e63bcc5990f4. Historical basis: D-057. Package 16ee4d414858 (19 October 2026): sources reconciled with the register (EB-XML c1a4afa1, EB-CASE 898b3e13, CAD-MODEL d0f053d5 measured natively by scripts/measure_backwall_cad.py, JOURNAL 855e2cec, MCAD-S1 unchanged); backwall crown 4.0691 ft and edges 3.8733 ft above the cap (D-053 tops), backwall volume 77.770 ft3, landing tributary length 17.155 ft; bearing actions unchanged. 37 tests pass. Mathcad edition and the standalone and journal Blockpad editions rebuilt (scripts/build_backwall_bpad.py, --journal). Six prerequisites remain pending; D-014 to D-019 unchanged. See coherence/evidence/2026-10-19-backwall-rerun/source_receipt.json. History: D-035 (16 October) reconciled D-026/D-033 geometry and D-034 landing quantities with one centered #4 mat at 10 in each way; D-037 selected the 16 October exports; D-038 added collapsible report sections; D-039 applied the cheek steel to CAD. COH-023/024 remain open.",
    "hash_basis": "lf_text",
-   "health": "CHANGED",
+   "health": "MATCH",
    "checks": [
     {
      "check_id": "SOURCE:BACKWALL-TOOL",
-     "status": "CHANGED",
-     "detail": "File differs from the registered revision; review its consumers before adoption."
-    },
-    {
-     "check_id": "DEP:JOURNAL:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
-     "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
-     "check_id": "DEP:BACKWALL-CASE:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
+     "status": "MATCH",
+     "detail": "Registered text content matches after CRLF/LF normalization."
     }
    ],
    "decisions": [
@@ -1104,7 +1079,8 @@
     "D-055",
     "D-057",
     "D-066",
-    "D-068"
+    "D-068",
+    "D-080"
    ],
    "issues": [],
    "parameters": [],
@@ -1309,25 +1285,26 @@
    "path": "Cap_and_Pile_Design.ipynb",
    "status": "Current tool",
    "scope": "Calculation engine; load a registered project case",
-   "sha256": "1ba6ac3134cac7723fcae9a3ea28417a96d40e15f53baa2da622554bb37f231f",
-   "registered_on": "2026-10-20",
+   "sha256": "46887ed03569659c9a7b693c88945d9921fca93475b31a7858633ae8297ec91f",
+   "registered_on": "2026-10-22",
    "depends_on": [],
    "origin": "Repository main",
-   "notes": "D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1af14e6efa50. Historical basis: Tool revision is distinct from a saved design. Existing reports were not regenerated with this tool, except the D-043 17 October cap reports, which the repository package at commit 5cce568 generated rather than this registered revision.",
+   "notes": "D-080 (22 October): notebook rebuilt to embed the code-excerpt store extended with the pier cheek wall citations (LRFD Table 3.8.1.1.2-1, 3.8.1.2.3b, 5.10.8.2.1c); calculation package and case handling unchanged. D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1af14e6efa50. Historical basis: Tool revision is distinct from a saved design. Existing reports were not regenerated with this tool, except the D-043 17 October cap reports, which the repository package at commit 5cce568 generated rather than this registered revision.",
    "hash_basis": "lf_text",
-   "health": "CHANGED",
+   "health": "MATCH",
    "checks": [
     {
      "check_id": "SOURCE:CAP-TOOL",
-     "status": "CHANGED",
-     "detail": "File differs from the registered revision; review its consumers before adoption."
+     "status": "MATCH",
+     "detail": "Registered text content matches after CRLF/LF normalization."
     }
    ],
    "decisions": [
     "D-011",
     "D-043",
     "D-066",
-    "D-068"
+    "D-068",
+    "D-080"
    ],
    "issues": [
     "COH-021"
@@ -7714,11 +7691,6 @@
      "detail": "Exact registered bytes are present."
     },
     {
-     "check_id": "DEP:JOURNAL:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
      "check_id": "JOURNAL:acceptance",
      "status": "MATCH",
      "detail": "Journal matches acceptance receipt T037. Review scope remains as recorded."
@@ -11145,13 +11117,13 @@
    "path": "Pier_Wall_Design.ipynb",
    "status": "Current tool - bounded verification",
    "scope": "Pier wall minimum steel, detailing and welded annular pile-ring connection checks (LRFD 10th ed.); reads PILE-PIER-CASE for the default pile stiffness lengths",
-   "sha256": "94238b3a20960c03637872d2a6c4f36d0f75b86299451a33090b1947ff3391c2",
+   "sha256": "088d250a62e2f6b93370312307c276a7a4bb5dfd8b7192eb8dfe0fa5c2066492",
    "registered_on": "2026-10-22",
    "depends_on": [
     "PILE-PIER-CASE"
    ],
    "origin": "Repository main",
-   "notes": "D-078 (22 October 2026): portable notebook embedding the ring_wall package (source dc3550977246), D-070 ring moment basis, cad wall geometry (219 x 36 x 194.8625 in, free length 92.4 in from the wall bottom). ring plate 1/2 in by user selection (d-078; 3/4 in before). weld legs in sixteenths, report with overview, design basis and drawings. See coherence/evidence/2026-10-22b-pier-wall/source_receipt.json. Selection is not engineering acceptance. D-075 (22 October 2026): portable notebook embedding the ring_wall package (source 2b8da8c39716), D-070 ring moment basis, cad wall geometry (219 x 36 x 194.8625 in, free length 92.4 in from the wall bottom). weld legs in sixteenths, report with overview, design basis and drawings. See coherence/evidence/2026-10-22-pier-wall/source_receipt.json. Selection is not engineering acceptance. D-071 (21 October 2026): portable notebook embedding the ring_wall package (source 1c7f2db62e90), D-070 ring moment basis, weld legs in sixteenths, report with overview, design basis and drawings. See coherence/evidence/2026-10-21-pier-wall/source_receipt.json. Selection is not engineering acceptance.",
+   "notes": "D-080 (22 October): notebook rebuilt to embed the code-excerpt store extended with the pier cheek wall citations (LRFD Table 3.8.1.1.2-1, 3.8.1.2.3b, 5.10.8.2.1c); calculation package and case handling unchanged. D-078 (22 October 2026): portable notebook embedding the ring_wall package (source dc3550977246), D-070 ring moment basis, cad wall geometry (219 x 36 x 194.8625 in, free length 92.4 in from the wall bottom). ring plate 1/2 in by user selection (d-078; 3/4 in before). weld legs in sixteenths, report with overview, design basis and drawings. See coherence/evidence/2026-10-22b-pier-wall/source_receipt.json. Selection is not engineering acceptance. D-075 (22 October 2026): portable notebook embedding the ring_wall package (source 2b8da8c39716), D-070 ring moment basis, cad wall geometry (219 x 36 x 194.8625 in, free length 92.4 in from the wall bottom). weld legs in sixteenths, report with overview, design basis and drawings. See coherence/evidence/2026-10-22-pier-wall/source_receipt.json. Selection is not engineering acceptance. D-071 (21 October 2026): portable notebook embedding the ring_wall package (source 1c7f2db62e90), D-070 ring moment basis, weld legs in sixteenths, report with overview, design basis and drawings. See coherence/evidence/2026-10-21-pier-wall/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "lf_text",
    "health": "MATCH",
    "checks": [
@@ -11165,7 +11137,8 @@
     "D-070",
     "D-071",
     "D-075",
-    "D-078"
+    "D-078",
+    "D-080"
    ],
    "issues": [],
    "parameters": [],
@@ -11534,7 +11507,7 @@
    "path": "Pile_Design.ipynb",
    "status": "Current tool - bounded verification",
    "scope": "Pile structural and geotechnical checks (LRFD 10th ed., SDG/SDM January 2026, Standard Plans Index 455); reads EB-XML, EB2-XML and PIER-XML with the 18-ton end-bent downdrag",
-   "sha256": "5fbbf05f266ff015ccc133e2253a2cc1eafd0b9d2e3fecb3ec6af912ecb553e2",
+   "sha256": "81d5d5b8e6174ced1f422296cd60f9e0b7b9cc7cc8f6764eeff01ece1c721885",
    "registered_on": "2026-10-22",
    "depends_on": [
     "EB-XML",
@@ -11545,7 +11518,7 @@
     "PIER-CASE"
    ],
    "origin": "Repository main",
-   "notes": "D-077 (22 October 2026): notebook rebuilt embedding the pile package with the re-registered 22 October pier export (pile_design/data/sources.json PIER-XML 420e614aa8b9...); package code unchanged. D-073 (21 October 2026): notebook rebuilt after the pile package change that records the agreement between a registered export's pile material Fy and the design Fy as source-backed evidence for the steel_grade prerequisite (pile_design/sources.py, model.py; Fy input source text) and the re-registration of PIER-XML in pile_design/data/sources.json (21 October pier export, 45 ksi pile material; PIER-CASE hash refreshed). The embedded Mathcad and Blockpad generators are rebuilt in the same chain; no equation or check changed. D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1c6b9162e589. Historical basis: D-050. Portable notebook built by scripts/build_pile_notebook.py with the three D-049 fixed-run exports embedded; distilled Mathcad editions in pile_mathcad/ (scripts/build_pile_mathcad.py). 19 October 2026 run: all numerical checks pass (End Bent 1 structural D/C 0.550, End Bent 2 0.557, Pier 0.457); downdrag source, pile-to-cap connection, steel grade, corrosion, minimum tip, scour and drivability remain pending. A rebuild changes this hash and needs a recorded disposition. Tool revision is distinct from a saved design; selection is not engineering acceptance.",
+   "notes": "D-080 (22 October): notebook rebuilt to embed the code-excerpt store extended with the pier cheek wall citations (LRFD Table 3.8.1.1.2-1, 3.8.1.2.3b, 5.10.8.2.1c); calculation package and case handling unchanged. D-077 (22 October 2026): notebook rebuilt embedding the pile package with the re-registered 22 October pier export (pile_design/data/sources.json PIER-XML 420e614aa8b9...); package code unchanged. D-073 (21 October 2026): notebook rebuilt after the pile package change that records the agreement between a registered export's pile material Fy and the design Fy as source-backed evidence for the steel_grade prerequisite (pile_design/sources.py, model.py; Fy input source text) and the re-registration of PIER-XML in pile_design/data/sources.json (21 October pier export, 45 ksi pile material; PIER-CASE hash refreshed). The embedded Mathcad and Blockpad generators are rebuilt in the same chain; no equation or check changed. D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1c6b9162e589. Historical basis: D-050. Portable notebook built by scripts/build_pile_notebook.py with the three D-049 fixed-run exports embedded; distilled Mathcad editions in pile_mathcad/ (scripts/build_pile_mathcad.py). 19 October 2026 run: all numerical checks pass (End Bent 1 structural D/C 0.550, End Bent 2 0.557, Pier 0.457); downdrag source, pile-to-cap connection, steel grade, corrosion, minimum tip, scour and drivability remain pending. A rebuild changes this hash and needs a recorded disposition. Tool revision is distinct from a saved design; selection is not engineering acceptance.",
    "hash_basis": "lf_text",
    "health": "MATCH",
    "checks": [
@@ -11562,7 +11535,8 @@
     "D-066",
     "D-068",
     "D-073",
-    "D-077"
+    "D-077",
+    "D-080"
    ],
    "issues": [],
    "parameters": [],
@@ -12868,16 +12842,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:BACKWALL-CASE:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "BACKWALL-TOOL->BACKWALL-REPORT",
@@ -12886,16 +12852,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:BACKWALL-REPORT:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "BACKWALL-TOOL->JOURNAL",
@@ -12904,16 +12862,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:JOURNAL:BACKWALL-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "CAD-MODEL->BACKWALL-CASE",
@@ -25220,6 +25170,28 @@
      "CAD-RUNTIME",
      "CAD-REPORT"
     ]
+   }
+  },
+  {
+   "id": "D-080",
+   "date": "2026-10-22",
+   "decision": "Add the pier cap cheek wall design calculation (proposed C018; package `pier_cheek_wall/`, notebook `Pier_Cheek_Wall_Design.ipynb`, standalone Blockpad sheet and report folder) for wind acting directly on the D-059 walls, with the D-059/D-061 CAD reinforcement as its starting case; rebuild the four registered notebooks (CAP-TOOL, PILE-TOOL, BACKWALL-TOOL, PIER-WALL-TOOL) so they embed the code-excerpt store extended with its three new citations, and re-register them.",
+   "basis": "User request, 22 October 2026: \"I need a design for the cheek walls on the pier cap. Load it with the wind according to my wind calc and any other wind requirements from the lrfd. Build me a colab notebook for the calc similar to all my other notebook calcs. Make sure we have good schematics in the report export.\" and \"check the current steel configuration from the cad model in the calc to see if it passes all checks\". Wind basis: LRFD 3.8.1.2.1 with the C001 journal values (V 130 / 80 / 70 mph, K_Z_gov 1.0197 for Strength III and 1.0 otherwise, G 0.85) and the substructure drag coefficient 1.6 of C002; LRFD 3.8.1.2.3b for the pressure on the exposed faces (full pressure normal to the broad face governs every skew; the edge force is reported for the pier); WS = 1.0 in Strength III, Strength V and Service I (LRFD Table 3.4.1-1); 3.8.1.3, 3.8.2 and 3.8.3 not applicable. Strength III pressure 0.0600 ksf; 0.96 kip transverse and 0.24 kip longitudinal per wall (1.92 / 0.48 kip for both, the D-062 figures). Wall as a 48-in-wide cantilever from the cap top with its six #4 verticals (section A at the cap top, section B at the 3/4-in recessed panel, 11.25 in net): flexure 0.07, minimum reinforcement (1.33 Mu governs) 0.10, shear 0.02, interface shear (SDG 1.15 clean joint) 0.01, crack control not triggered (service tension far below 0.8 fr), shrinkage and temperature steel 0.73 with both face requirements carried by the one centred mat (PASS · PENDING the single-mat confirmation, the end-bent D-039 convention), spacing 0.56, clear spacing 0.60, cover 2.0/2.0 = 1.00, thickness 0.67, straight development of the verticals 12.0/12.0 = 1.00: the LRFD 5.10.8.2.1a 12-in floor governs once the excess-reinforcement factor (A_req 0.111 in² of 1.20 in²) is applied; without that credit the straight length for full yield is 12.28 in (l_db 30.7 in × λ_rc 0.4), just above the 12-in embedment of D-061. Every numerical check passes; nothing is registered as a project source by this decision (the calculation number and the journal module are pending the user's selection). The excerpt store gained LRFD Table 3.8.1.1.2-1, 3.8.1.2.3b and 5.10.8.2.1c; the four tool notebooks were rebuilt by their own builders with unchanged packages, their Mathcad and Blockpad editions re-run on the new revisions, and the register rows moved to the new lf_text hashes with this note ([receipt](coherence/evidence/2026-10-22-pier-cheek-walls/source_receipt.json)). Cases, reports, FBMP exports, the journal and tracker responses are unchanged.",
+   "refs": {
+    "sources": [
+     "BACKWALL-TOOL",
+     "CAP-TOOL",
+     "PIER-WALL-TOOL",
+     "PILE-TOOL"
+    ],
+    "decisions": [
+     "D-039",
+     "D-059",
+     "D-061",
+     "D-062"
+    ],
+    "issues": [],
+    "inferred": []
    }
   }
  ],
