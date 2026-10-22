@@ -16,7 +16,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from calc_common import notebook  # noqa: E402
 
-PACKAGES = ['wind_superstructure', 'fence_wind', 'bridge_movement', 'superstructure_uplift', 'pier_wall_fins', 'mse_wall_exclusion', 'bearing_design']
+PACKAGES = ['wind_superstructure', 'fence_wind', 'bridge_movement', 'superstructure_uplift', 'mse_wall_exclusion', 'bearing_design']
+# pier_wall_fins (C006) was sequestered on 2026-10-22 (D-082): sequestered/pier_wall_fins/, not built or tested.
 
 
 def main(argv=None):

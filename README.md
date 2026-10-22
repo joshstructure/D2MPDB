@@ -16,18 +16,20 @@
   [C002 Fence wind and pier loads](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Fence_Wind_Pier_Loads.ipynb) ·
   [C003 Bridge temperature movement](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bridge_Temperature_Movement.ipynb) ·
   [C004 Superstructure uplift](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Superstructure_Uplift.ipynb) ·
-  [C006 Pier wall fins](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Fins.ipynb) ·
   [C015 MSE wall exclusion](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/MSE_Wall_Exclusion.ipynb) ·
   [C016 Bearings and support details](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Bearings_Support_Details.ipynb)
 
 ## Journal calculation notebooks
 
-The seven journal calculations that were hand-authored in Blockpad (C001 wind on the superstructure, C002 fence wind and pier
-node loads, C003 temperature movement, C004 superstructure uplift and bearing reactions, C006 pier wall hairpins and fin
-plates, C015 MSE wall exclusion, C016 bearings and support details) are now notebook packages of the same build as the cap,
-pile and backwall notebooks: `wind_superstructure/`, `fence_wind/`, `bridge_movement/`, `superstructure_uplift/`,
-`pier_wall_fins/`, `mse_wall_exclusion/` and `bearing_design/`, all on the shared [`calc_common/`](calc_common/__init__.py)
-framework (engine, MathML, report with definition and citation cards, exports, Colab UI, Blockpad writer, portable notebook).
+The journal calculations that were hand-authored in Blockpad (C001 wind on the superstructure, C002 fence wind and pier
+node loads, C003 temperature movement, C004 superstructure uplift and bearing reactions, C015 MSE wall exclusion, C016
+bearings and support details) are now notebook packages of the same build as the cap, pile and backwall notebooks:
+`wind_superstructure/`, `fence_wind/`, `bridge_movement/`, `superstructure_uplift/`, `mse_wall_exclusion/` and
+`bearing_design/`, all on the shared [`calc_common/`](calc_common/__init__.py) framework (engine, MathML, report with
+definition and citation cards, exports, Colab UI, Blockpad writer, portable notebook). The seventh package, C006 pier wall
+hairpins and fin plates, was withdrawn from the project on 22 October 2026 (D-082) and kept intact under
+[`sequestered/`](sequestered/README.md); calculation numbers are permanent, so C006 stays retired like C005 and nothing was
+renumbered.
 Each package is data: `data/inputs.json` (every value the module reads from another journal module, with its owner, and the
 module's own literal inputs with their provisions), `data/definitions.json` (the equations in document order, with sections,
 units, captions and cited provisions), `data/checks.json`, `data/tables.json`, `data/sections.json`, `data/text.json` and
@@ -36,15 +38,15 @@ editions with their anchor ids). Each package also carries a hand-drawn `schemat
 under every equation of the report is a QC drawing of that equation from the current case (the fence hoop and its
 pressure band, the pier collecting the forces at the cap reference, the deck section with its bearing lines and wind
 lever arms, the pedestal with the support length, the beam-end rotation stages, the end-bent plan with the pile-face
-gaps, the pier wall with its fins and hairpins, the wall strip and face grid), with the defined quantity in red.
+gaps), with the defined quantity in red.
 
 Open a notebook in Colab and choose **Runtime → Run all**. Cell 1 lists the inputs with their journal module or provision;
 Cell 2 holds the inputs, results, the journal figures, the D/C register with *Equation & values* disclosures, the equations
 and the exports (case JSON, calculation report, checks CSV, **Export distilled Blockpad (.bpad)** with its verification record,
 full bundle). The committed run of each package with the journal values is in `<package>/report/`; its standalone Blockpad
 sheet is `<package>/<Title>.bpad` and its journal edition (live references to Bridge Geometry, Materials, the gravity sheet and
-the other calculations, passed through the coherence gate) is `<package>/bpad/journal/`. The journal modules C001–C004, C006,
-C015 and C016 are those journal editions (task T027). The journal's code-reference modules for C001–C004 were retired with
+the other calculations, passed through the coherence gate) is `<package>/bpad/journal/`. The journal modules C001–C004,
+C015 and C016 are those journal editions (task T027; C006 left the journal with task T040). The journal's code-reference modules for C001–C004 were retired with
 task T031: the citation cards of the reports are the home of the code excerpts, and the Blockpad editions cite provisions as
 plain text (`calc_common/bpad.py` unwraps every link into a `CodeReferences…` module).
 

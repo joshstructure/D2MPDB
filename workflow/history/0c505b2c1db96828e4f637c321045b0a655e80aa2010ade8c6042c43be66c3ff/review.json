@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "0c505b2c1db96828e4f637c321045b0a655e80aa2010ade8c6042c43be66c3ff",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T040/build_components.py; scripts/build_ring_wall_bpad.py build verification: 673 values and 178 statuses evaluated independently to 1e-9)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "No external analysis changed: C006 (PierWallFins) is deleted and kept in the repository under sequestered/; C017 is regenerated from its unchanged starting case with identical definitions and caches; the FBMP exports, the pile and cap cases and their modules are untouched.",
+  "external_analysis_status": "not_applicable",
+  "inherited_issues_disposition": "Unchanged: the C017 grid-clearance failure (RING-GRID) and its five scope items keep their recorded status; the support-concept question is closed by scope (the fin-plate calculation is withdrawn, D-082), not by engineering acceptance of C017.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "728639ce676cff3675c112b9d466221789b69ca5424e3fb0245780b36c418969"
+    }
+  ]
+}

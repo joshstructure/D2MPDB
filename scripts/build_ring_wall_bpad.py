@@ -115,14 +115,15 @@ def build(r: dict) -> dict:
                    'pile-group redistribution; the ring moment is the pile-head compatibility moment shared equally by the ring rows. The former '
                    'R (|e_n| + Δ_p) moment is kept as M_s for comparison. Wall geometry D-075 (22 October 2026): the CAD pier wall, 219 × 36 in from '
                    'EL 24.5264 (1 ft below terrain) to the cap bottom EL 40.76494 (194.8625 in high), 19.5 in from each wall end to the outer pile; the '
-                   'journal gravity sheet row 42 and C006 carry the same wall. Pile stiffness defaults come from the pier pile case (PILE-PIER-CASE): '
+                   'journal gravity sheet row 42 carries the same wall. Pile stiffness defaults come from the pier pile case (PILE-PIER-CASE): '
                    '20 in pipe, 92.4 in from the wall bottom to the equivalent fixity (110.7 in sand depth to fixity below the pile-case ground EL 26.05, '
                    'LRFD C10.7.3.13.4, less the 18.3 in of wall below that ground), 600 in axial spring length as an allowance because the tip elevation '
                    'is pending. The calculation is a tool edition of the notebook; the registered source is the project_current/pier_wall export.')
     for key, text in r['pending']:
         bs.para(notes, f'• {key}: {text}', fontsize='11', spacingafter='4')
-    bs.note(notes, 'C006 (Pier Wall, Hairpins and Fin Plates) sizes the fin-plate and hairpin hanger concept for the same wall; this calculation covers '
-                   'the welded annular-ring concept. Which support concept governs is a pending project decision outside both calculations.', size=9)
+    bs.note(notes, 'This calculation covers the welded annular-ring support concept, the concept of the CAD model (D-076, D-079). The fin-plate and '
+                   'hairpin hanger concept (the former C006 Pier Wall, Hairpins and Fin Plates) was withdrawn from the project on 22 October 2026 '
+                   '(D-082, task T040) and is kept under sequestered/pier_wall_fins/ for revival; calculation numbers are permanent, so C006 is not reused.', size=9)
 
     # ---- visible design basis
     bs.heading(rep, 'Design basis')
@@ -150,8 +151,8 @@ def build(r: dict) -> dict:
                  'full contact and its bearing, plate, weld and base-metal checks read NO CONTACT: their values are trial values until contact is restored.')
     bs.para(rep, 'Outside this calculation: wall flexure, shear and lateral or seismic load paths; concrete splitting, breakout and the transfer below '
                  'the lowest ring; pipe-shell bending and ovalization; global pile interaction, ring-segment splices, fatigue, corrosion and WPS or '
-                 'fabrication acceptance; confirmation of the pile stiffness lengths; the choice between this welded-ring support and the fin-plate '
-                 'and hairpin support of C006.')
+                 'fabrication acceptance; confirmation of the pile stiffness lengths. The fin-plate and hairpin support concept (the former C006) was '
+                 'withdrawn from the project on 22 October 2026 and is not evaluated here.')
 
     # ---- 1. inputs, in the workbench card order
     bs.heading(rep, '1. Inputs')

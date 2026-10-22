@@ -214,8 +214,8 @@ def export(label: str) -> dict:
         'register_rows': ['PIER-WALL-TOOL', 'PIER-WALL-REPORT', 'PIER-WALL-CASE'],
         'limitations': ('Notebook package run and export only. The numerical checks are the notebook\'s; the five scope items (sharing among rows, pile '
                         'stiffness confirmation, wall load paths, connection scope, geometry basis) remain open; the failed checks of the 23-in ring '
-                        f'trial ({", ".join(s["failed"]) or "none"}) remain. Which pier-wall support concept governs (C006 fin plates and hairpins or '
-                        'these welded rings) is not decided by this export. Selection is not engineering acceptance.'
+                        f'trial ({", ".join(s["failed"]) or "none"}) remain. The fin-plate and hairpin concept (C006) was withdrawn from the project on '
+                        '22 October 2026 (D-082); this export carries the welded-ring concept only. Selection is not engineering acceptance.'
                         + (' The CAD rings (D-076) are 3/4 in thick until the model is reconciled to this 1/2-in plate.' if DECISION == 'D-078' else ''))}
     folder = EVIDENCE / f'{YEAR}-{label}-pier-wall'
     receipt['receipt'] = rel(folder / 'source_receipt.json')
@@ -239,7 +239,7 @@ def register_rows(receipt: dict) -> list[dict]:
     note = (f'{DECISION}. Pier wall annular-ring calculation from the ring_wall package (PIER-WALL-TOOL, source {receipt["generator"]["package_source_sha256"][:12]}) '
             f'on its starting case; ring moment basis D-070 with pile stiffness defaults from PILE-PIER-CASE. {geometry}{plate}{s["overall"]}: failed {", ".join(s["failed"]) or "none"}; '
             f'{len(s["pending"])} pending; largest equivalent eccentricity {s["largest_equivalent_eccentricity_in"]:.3f} in against the {s["kern_limit_in"]:.3f} in kern. '
-            f'Open: {", ".join(s["scope_items"])}; support concept (C006 fin plates vs welded rings) undecided. ')
+            f'Open: {", ".join(s["scope_items"])}; support concept welded rings (the C006 fin-plate calculation was withdrawn under D-082). ')
     origin = f'Notebook package run requested by the user, {when} (scripts/export_project_pier_wall_report.py)'
     receipt_note = f'See coherence/evidence/{YEAR}-{label}-pier-wall/source_receipt.json. Selection is not engineering acceptance.'
     tool = ROOT / 'Pier_Wall_Design.ipynb'

@@ -1,6 +1,6 @@
 [
  {
-  "bpad_sha256": "1612f57b3f6e12d6a215950114ecbc9860e582595fd2c3caa944a1b6b10a0563",
+  "bpad_sha256": "bd049002472cb40bf2cadd04f760299f3dbdd1cb096b62fbed8daf1d1c72ec68",
   "case_sha256": "bc5d7e9701d2615a3008a9e7b31b2d15cac017f06b243aa226f800fcc119cf8a",
   "case_title": "D2 I-95 | Wall steel and welded pile rings",
   "cells_and_labels": 1037,
@@ -9,7 +9,7 @@
   "failed_checks": [
    "RING-GRID"
   ],
-  "fragment_sha256": "6cea494ef70b988f81317a84183170b8a673567382378b355c7ad578b602f259",
+  "fragment_sha256": "58746464155a581c0e12e5c7b56fa8b4d7170665f6da6f8aaf31b9c9c2241716",
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": [],
   "ledger_values_compared": 673,

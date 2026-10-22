@@ -1,4 +1,6 @@
-"""The seven journal-calculation packages (C001-C004, C006, C015, C016): engine fidelity, reports, editions, notebooks.
+"""The six journal-calculation packages (C001-C004, C015, C016): engine fidelity, reports, editions, notebooks.
+
+C006 (pier_wall_fins) was sequestered on 2026-10-22 (D-082) to sequestered/pier_wall_fins/ and is not tested.
 
 Each package reproduces the journal module it was ported from (the module's own formulas, evaluated independently at
 import, are the reference), writes a report with cards and QC blocks, exports a verified Blockpad sheet, keeps its
@@ -28,7 +30,7 @@ from calc_common.schematics import schematic, meaning, package_drawer  # noqa: E
 from calc_common.spec import ALL_PASS, FAILURES  # noqa: E402
 from pier_cap.engine import Q  # noqa: E402
 
-PACKAGES = ['wind_superstructure', 'fence_wind', 'bridge_movement', 'superstructure_uplift', 'pier_wall_fins', 'mse_wall_exclusion', 'bearing_design']
+PACKAGES = ['wind_superstructure', 'fence_wind', 'bridge_movement', 'superstructure_uplift', 'mse_wall_exclusion', 'bearing_design']
 TOL = 1e-9
 HOW = 'run scripts/build_journal_calc_notebooks.py, then scripts/build_journal_calc_bpads.py (and --journal)'
 
@@ -77,7 +79,7 @@ class JournalFidelity(unittest.TestCase):
             self.assertEqual(len(missing), dropped.get(package, 0), f'{package}: {missing}')
             self.assertGreater(ok, 10, package)
             total += ok
-        self.assertGreater(total, 650)
+        self.assertGreater(total, 400)          # 697 with C006 before D-082; C006 held 265 definitions
 
     def test_published_names_and_case_name_record_the_journal(self):
         for package in PACKAGES:

@@ -16,7 +16,6 @@
     {"references": "fence_wind/data/references.json"},
     {"references": "bridge_movement/data/references.json"},
     {"references": "superstructure_uplift/data/references.json"},
-    {"references": "pier_wall_fins/data/references.json"},
     {"references": "mse_wall_exclusion/data/references.json"},
     {"references": "bearing_design/data/references.json"},
     {"references": "pier_cheek_wall/data/references.json"}

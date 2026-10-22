@@ -19,9 +19,11 @@ UNIT = r'(?:in|ft|kip|lbf|lb|psi|ksi|psf|ksf|pcf|deg|rad|mm|cm|m|N|kN)(?:\^[+-]?
 QUANTITY = re.compile(r'(' + NUMBER + r')(?:\s+(' + UNIT + r'(?:[*/]' + UNIT + r')*))?')
 ENTRY_IDS = {'FBMPPier': 'JOURNAL-PIER-ENTRY', 'FBMPEndBent': 'JOURNAL-EB-ENTRY'}
 COMPONENTS = {'CapDesignPier': 'Pier', 'CapDesignEndBentOne': 'End Bent 1',
-              'CapDesignEndBentTwo': 'End Bent 2', 'PierWallFins': 'Pier',
+              'CapDesignEndBentTwo': 'End Bent 2', 'PierWallRings': 'Pier',
               'PileDesignPier': 'Pier', 'PileDesignEndBentOne': 'End Bent 1', 'PileDesignEndBentTwo': 'End Bent 2',
               'EndBentBackwallDesign': 'End Bent 1'}
+# PierWallFins (C006) was removed from the journal on 2026-10-22 (D-082); calculation numbers are permanent, so C006 is
+# not reused.
 CALC_NUMBER = re.compile(r'^(C\d{3}) - ')          # the numbered calculation modules, e.g. "C011 - End Bent 1 Pile Design"
 
 
@@ -102,10 +104,11 @@ def extract_calculations(root, path, evidence, entry_modules):
         module_nodes[name] = node_id
         module_evidence = evidence(path, module_path, {'name': name, 'title': title, 'definitions': len(items)},
                                    'Native journal module. Literal inputs and saved results only; no native recalculation.')
-        # The numbered calculations (C001 to C016, journal tasks T022 to T026) are the design calculations that will be
-        # issued as separate review documents: every one of them is a Design-stage node carrying its number.
+        # The numbered calculations (C001 to C017, journal tasks T022 to T028; C005 and C006 retired, numbers never reused)
+        # are the design calculations that will be issued as separate review documents: every one of them is a
+        # Design-stage node carrying its number.
         calc_number = CALC_NUMBER.match(title)
-        stage = ('Design' if calc_number or name.startswith('CapDesign') or name in {'BearingDesign', 'PierWallFins'}
+        stage = ('Design' if calc_number or name.startswith('CapDesign') or name in {'BearingDesign', 'PierWallRings'}
                  else 'Basis' if name in {'Materials', 'BridgeGeometry_2Beam', 'ProjectInfo'} else 'Analysis')
         modules.append({'id': node_id, 'module': name, 'title': 'Journal · ' + title,
                         'short_title': title, 'stage': stage, 'calc_number': calc_number.group(1) if calc_number else None,

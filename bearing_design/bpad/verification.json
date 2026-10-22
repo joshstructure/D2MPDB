@@ -1,13 +1,13 @@
 [
  {
   "bpad_file": "bearing_design/Bearings and Support Details.bpad",
-  "bpad_sha256": "db634f4d6055a7a5088b1883d38ce11efa28c83b5b6c40106ffbdd09d9a99625",
+  "bpad_sha256": "99b0e17fcc924ce8cf67bea28f9214b231e64f846e3522202fcdf6c08110cf70",
   "case_sha256": "f33297a3c17719bf173817cf18ded0cd9ad2b45c5849650d8adead8b8a17fab3",
   "cells_and_labels": 249,
   "definitions": 136,
   "functions": 0,
   "mathcad_values_compared": null,
-  "package_revision": "197db4a6844198acee15a38a792d2ddd27d95455aa4a07240f3c7f321e64ac7f",
+  "package_revision": "30216452eb6b21826bf53d5951f52f99674a19e7ae94757bd991bea66908eb39",
   "report_name": "BearingDesign",
   "status": "✓ All Checks Pass",
   "tool_comparisons": 135

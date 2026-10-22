@@ -1,0 +1,50 @@
+{
+  "task": "T040",
+  "base_sha256": "b582cce60ac3d36015c104401a64d066053ffecec159fa352dcd26f311d59b6f",
+  "decision": "D-082",
+  "deleted": [
+    "PierWallFins"
+  ],
+  "components": {
+    "PierWallFins": {
+      "source": "deleted",
+      "title": "C006 - Pier Wall, Hairpins and Fin Plates",
+      "bytes_before": 262796,
+      "definitions_before": 282,
+      "names_read_by_other_modules": [],
+      "inbound_links": {
+        "report:PedBridge": [
+          "#PierWallFins"
+        ]
+      },
+      "kept_at": "sequestered/pier_wall_fins/bpad/journal/PierWallFins.xml (repository)"
+    },
+    "PierWallRings": {
+      "source": "ring_wall/bpad/journal/PierWallRings.xml",
+      "fragment_sha256": "58746464155a581c0e12e5c7b56fa8b4d7170665f6da6f8aaf31b9c9c2241716",
+      "case_sha256": "bc5d7e9701d2615a3008a9e7b31b2d15cac017f06b243aa226f800fcc119cf8a",
+      "definitions": 859,
+      "status": "1 FAILED CHECKS · LIMITED SCOPE",
+      "failed_checks": [
+        "RING-GRID"
+      ],
+      "definitions_formulas_caches_canvases": "identical to the base module",
+      "visible_sentences_changed": [
+        "Outside this calculation: wall flexure, shear and lateral or seismic load paths; concrete splitting, breakout and the transfer below the lowest ring; pipe-shell bending and ovalization; global pile interaction, ring-segment splices, fatigue, corrosion and WPS or fabrication acceptance; confirmation of the pile stiffness lengths. The fin-plate and hairpin support concept (the former C006) was withdrawn from the project on 22 October 2026 and is not evaluated here."
+      ]
+    },
+    "PedBridge": {
+      "source": "base.bpad + index paragraph removed + revision note",
+      "index_entries_removed": 1
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

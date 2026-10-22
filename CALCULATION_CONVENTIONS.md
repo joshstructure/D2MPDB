@@ -4,14 +4,26 @@ How a calculation package in this repository is built so that its report, portab
 notebook, Mathcad and Blockpad editions and project-record entries match the existing
 ones (backwall `end_bent_walls/`, piles `pile_design/`, cap `pier_cap/`, pier wall
 `ring_wall/`). Follow this list; the tests named at the end enforce most of it.
-Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; report definition and citation cards, D-068; rerun order after a changed analysis export, D-073).
+Last revised 2026-10-22 (permanent calculation numbers and the `sequestered/` folder, D-082; before that: journal-calculation packages on `calc_common`, T027; report definition and citation cards, D-068; rerun order after a changed analysis export, D-073).
+
+## Calculation numbers and withdrawn calculations
+
+- A calculation number (`Cnnn`, the prefix of the journal module title) is a permanent identifier. A new calculation
+  takes the next unused number (C018 is the pier cap cheek walls; C019 is next). Nothing is ever renumbered: a withdrawn
+  calculation keeps its number and the number is not reused (C005 and C006 are retired). The journal index heading
+  simply spans the range in use.
+- A calculation withdrawn from the project is not deleted: its package, notebook, editions and committed run move to
+  `sequestered/` (`git mv`, history kept) and it is removed from every build list, test, the excerpt library, the journal
+  (a `prepare --delete` task) and the atlas maps. `sequestered/README.md` lists what is there and how to revive it.
+  Pattern: D-082 (2026-10-22), task T040.
 
 ## 0. Two ways to build a calculation
 
 - **Hand-written package** (backwall, piles, cap, pier wall): `model.py` holds the definition list in code; the report, exports,
   widgets, Mathcad and Blockpad builders are written for that calculation. Follow sections 1–7.
-- **Data-driven package on `calc_common/`** (the journal calculations C001–C004, C006, C015, C016, and the pier cheek
-  walls C018, `pier_cheek_wall/`, which was authored directly as data rather than imported from the journal): the package is its
+- **Data-driven package on `calc_common/`** (the journal calculations C001–C004, C015, C016, and the pier cheek
+  walls C018, `pier_cheek_wall/`, which was authored directly as data rather than imported from the journal; C006,
+  `sequestered/pier_wall_fins/`, is withdrawn): the package is its
   `data/` folder (`inputs.json`, `definitions.json`, `checks.json`, `tables.json`, `sections.json`, `text.json`,
   `references.json`, `sources.json`, `journal_blocks.xml` when it came from the journal) plus thin modules that bind `calc_common` (the modules
   `scripts/build_journal_calc_data.py` writes) and a hand-drawn `schematics.py`: a few scene functions built on the

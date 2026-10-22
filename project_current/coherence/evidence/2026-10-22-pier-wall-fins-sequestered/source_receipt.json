@@ -1,0 +1,49 @@
+{
+ "decision": "D-082",
+ "date": "2026-10-22",
+ "tools": {
+  "CAP-TOOL": {
+   "path": "Cap_and_Pile_Design.ipynb",
+   "previous_sha256": "d0b7777fed192c6c785c45025c2580538374cfe221fef8819648944652a6c61f",
+   "sha256": "d0b7777fed192c6c785c45025c2580538374cfe221fef8819648944652a6c61f",
+   "hash_basis": "lf_text"
+  },
+  "PILE-TOOL": {
+   "path": "Pile_Design.ipynb",
+   "previous_sha256": "f2b6e669baf04bf0a9449733e8d7eee111cca8c3380851269e8dc36ad28cab18",
+   "sha256": "f2b6e669baf04bf0a9449733e8d7eee111cca8c3380851269e8dc36ad28cab18",
+   "hash_basis": "lf_text"
+  },
+  "BACKWALL-TOOL": {
+   "path": "End_Bent_Backwall_Design.ipynb",
+   "previous_sha256": "2ee060f55deb7d006f3a8e78419ebda2d99cc85825bdb60aadb50211fde76725",
+   "sha256": "2ee060f55deb7d006f3a8e78419ebda2d99cc85825bdb60aadb50211fde76725",
+   "hash_basis": "lf_text"
+  },
+  "PIER-WALL-TOOL": {
+   "path": "Pier_Wall_Design.ipynb",
+   "previous_sha256": "743e67410152b069b9fff37814be57aec0370a0ec4e42ffde7330e6c5c93f9cd",
+   "sha256": "743e67410152b069b9fff37814be57aec0370a0ec4e42ffde7330e6c5c93f9cd",
+   "hash_basis": "lf_text"
+  },
+  "CHEEK-TOOL": {
+   "path": "Pier_Cheek_Wall_Design.ipynb",
+   "previous_sha256": "9507df0b5f04897fef0fdf660d085e5886adfd0ba100ee17460035c9089cb4ea",
+   "sha256": "eb467280765c1efba2195be4473452274dbc86fc9ddb2ce3fdbf68576189f323",
+   "hash_basis": "lf_text"
+  }
+ },
+ "assumptions_rejudged": {
+  "from_journal": "b582cce60ac3d36015c104401a64d066053ffecec159fa352dcd26f311d59b6f",
+  "to_journal": "0c505b2c1db96828e4f637c321045b0a655e80aa2010ade8c6042c43be66c3ff",
+  "entries": [
+   "A-001",
+   "A-002",
+   "A-009",
+   "A-012",
+   "A-013"
+  ],
+  "basis": "The T040 journal change deletes module C006 and regenerates C017 with identical values; no statement depends on C006, dispositions unchanged.",
+  "script": "project_current/coherence/evidence/2026-10-22-pier-wall-fins-sequestered/rejudge_assumptions.py"
+ }
+}

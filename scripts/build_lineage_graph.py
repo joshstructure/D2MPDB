@@ -208,6 +208,7 @@ DECISION_SOURCES = {
     "D-077": ["JOURNAL", "PILE-TOOL"],  # 22 October pier FBMP rerun; PIER-XML, PIER-CASE/REPORT and PILE-PIER-CASE/REPORT are named in the text
     "D-078": ["JOURNAL", "CAD-MODEL"],  # 1/2-in pier wall ring plate; PIER-WALL-REPORT/CASE are named in the text; the CAD rings (D-076) stayed 3/4 in until D-079
     "D-079": ["CAD-RUNTIME", "CAD-REPORT"],  # CAD rings set to the D-078 plate; CAD-MODEL and PIER-WALL-CASE are named in the text
+    "D-082": ["JOURNAL", "CAP-TOOL", "PILE-TOOL", "BACKWALL-TOOL", "PIER-WALL-TOOL"],  # C006 withdrawn (sequestered/); excerpt store rebuilt into the four tool notebooks
 }
 # D-054 (pile reports and cases) and D-055 (backwall vertical coordination) name their
 # register IDs in the decision text, so find_refs attaches them without a hand map.

@@ -34,10 +34,11 @@ The existing site is
   Files follow the latest registered sources in each atlas update; verified public
   repository revisions host larger documents without duplicating them in the Site.
 
-- The numbered calculations of the journal (**C001** to **C016**: wind, fence
-  wind, temperature movement, uplift, pier wall and fins, cap design basis and
-  the three cap designs, the three pile designs, the end-bent backwall, the MSE
-  wall exclusion and the bearings) are the **Design** column of the default
+- The numbered calculations of the journal (**C001** to **C018**: wind, fence
+  wind, temperature movement, uplift, cap design basis and the three cap designs,
+  the three pile designs, the end-bent backwall, the MSE wall exclusion, the
+  bearings, the pier wall rings and the pier cap cheek walls; numbers are
+  permanent, so the retired C005 and C006 stay unused) are the **Design** column of the default
   layout, each carrying its number; they are the calculations that will be
   issued as separate review documents. Search for a number such as **C011**
   to open one. Current named calculation reports and numeric or
