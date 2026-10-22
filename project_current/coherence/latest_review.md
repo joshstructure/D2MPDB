@@ -1,6 +1,6 @@
 # Latest project coherence review
 
-Checked at 2026-10-22T01:13:29.897150+00:00. **15 outstanding items remain.**
+Checked at 2026-10-22T01:29:12.155052+00:00. **14 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
@@ -52,7 +52,6 @@ Automatic results: 2 changed, 9 error, 57 match, 4 missing, 16 review.
 | COH-004 | Open | Complete model load comparison | Compare the exact current model loading with T006 and document needed reruns and convergence evidence. |
 | COH-005 | Open | Wind and wall geometry | Establish remaining wall/fin geometry and compare current model wind loads with the T006 basis. |
 | COH-010 | Deferred | Backwall and cheek-wall quantities | Supply final wall details, then reconcile quantities and dead loads. |
-| COH-013 | Awaiting source | Report-matching FBMP exports | Submit the exact XML exports behind the final selected cap reports, with their native run records. After the COH-028 pile-head reruns these are the rerun exports and regenerated reports. Do not substitute older exports. |
 | COH-014 | Open | Common controlling design basis | Document how the revised End Bent 1 actions bound both end bents. |
 | COH-017 | Open | Mathcad / project comparison | Recalculate with the companion data and compare inputs/outputs. Review the repeated 107.35-ft PSBeam narrative in the Span 2 sheet. |
 | COH-018 | Open | Complete notebook comparison | Reconcile complete saved geometry and derived schedules with accepted T006, documenting conventions. |

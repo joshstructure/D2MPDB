@@ -2,7 +2,7 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "9df0f30d7a220862cccb5506a6ca6da9eaa4686a5b2a2f6d340c05b0588d0c64",
+ "fingerprint": "2c5647e1836b9a382194a4b63b0523cbf11d11edf225467ea1c098e579a15b18",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
@@ -30,15 +30,15 @@
   },
   {
    "path": "project_current/coherence/items_snapshot.csv",
-   "sha256": "55825dd1eddc96969b374bb1cb7d7afbb51d389ce389a3489fdaf7fabe4be7ec"
+   "sha256": "874905151a156728fde0bda01e07d4eb52042e835fba30340f7c3f6be4726ae4"
   },
   {
    "path": "project_current/coherence/machine_checks.json",
-   "sha256": "fd077802c61c1394fcb2f645e2d9e336a375c2ca7dbbb01c028f10b761091235"
+   "sha256": "faa953ff9bafd447490c1b558f3c7a20f995598444d88dc370ec472064881803"
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "425cb542e437d5a7777e0f83652b9b97095a491f4b4f1ecafd375dbaf9abed74"
+   "sha256": "e6db1ad00052f31fe9ca4275286ffde3ec2e20810509262bc76c1b06e6dbc0ca"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -95,7 +95,7 @@
   "available": true,
   "reason": ""
  },
- "checked_at_utc": "2026-10-22T01:13:29.897150+00:00",
+ "checked_at_utc": "2026-10-22T01:29:12.155052+00:00",
  "stages": [
   {
    "id": "inputs",
@@ -4338,7 +4338,6 @@
    ],
    "parameters": [],
    "open_issues": [
-    "COH-013",
     "COH-014",
     "COH-022",
     "COH-028"
@@ -4403,7 +4402,8 @@
     "D-049",
     "D-051",
     "D-057",
-    "D-062"
+    "D-062",
+    "D-074"
    ],
    "issues": [
     "COH-013",
@@ -4430,7 +4430,6 @@
     "case_match": true
    },
    "open_issues": [
-    "COH-013",
     "COH-028"
    ]
   },
@@ -7344,7 +7343,6 @@
    ],
    "parameters": [],
    "open_issues": [
-    "COH-013",
     "COH-028"
    ]
   },
@@ -7404,7 +7402,8 @@
    "decisions": [
     "D-049",
     "D-051",
-    "D-062"
+    "D-062",
+    "D-074"
    ],
    "issues": [
     "COH-013",
@@ -7431,7 +7430,6 @@
     "case_match": true
    },
    "open_issues": [
-    "COH-013",
     "COH-028"
    ]
   },
@@ -11011,7 +11009,6 @@
    ],
    "parameters": [],
    "open_issues": [
-    "COH-013",
     "COH-019",
     "COH-022",
     "COH-028"
@@ -11173,7 +11170,8 @@
     "D-049",
     "D-051",
     "D-062",
-    "D-073"
+    "D-073",
+    "D-074"
    ],
    "issues": [
     "COH-001",
@@ -11203,7 +11201,6 @@
    },
    "open_issues": [
     "COH-004",
-    "COH-013",
     "COH-028"
    ]
   },
@@ -24989,6 +24986,31 @@
     ],
     "inferred": []
    }
+  },
+  {
+   "id": "D-074",
+   "date": "2026-10-21",
+   "decision": "Close tracker item COH-013 (report-matching FBMP exports) and update COH-004 for the D-073 pier export.",
+   "basis": "User direction after the D-073 rerun. Every selected cap report and case now names a registered export: the End Bent 1 and End Bent 2 10-19 reports (D-051) name EB-XML and EB2-XML (D-049), and the 10-21 pier report (D-073) names PIER-XML; the machine checks PIER:analysis-identity and EB:analysis-identity read MATCH. COH-013 is closed with that evidence; its 16 October response is kept verbatim. COH-004 stays Open: the pier export's loads equal the 19 October export (the D-062 load review stands), only the pile material changed, and the full load comparison, native run records and the COH-028 pile-head reruns remain. The workbook is edited in place (two rows and the review date), recalculated in Excel, and the coherence views, lineage and atlas gate are refreshed. No source, case or report changes.",
+   "refs": {
+    "sources": [
+     "EB-XML",
+     "EB2-XML",
+     "PIER-XML"
+    ],
+    "decisions": [
+     "D-049",
+     "D-051",
+     "D-062",
+     "D-073"
+    ],
+    "issues": [
+     "COH-004",
+     "COH-013",
+     "COH-028"
+    ],
+    "inferred": []
+   }
   }
  ],
  "issues": [
@@ -25073,18 +25095,21 @@
    "status": "Open",
    "area": "Pier",
    "item": "Complete model load comparison",
-   "finding": "New Pier_Fixed report/XML fingerprints match and bearing offsets reconcile. Full current wind, below-pad weights, transfer moments, combinations and convergence remain unverified against T006.",
+   "finding": "Pier report/XML fingerprints match (the 10-21 report and case name the registered 21 October export, D-073) and bearing offsets reconcile. The 21 October export carries the same nodal loads as the 19 October one (only the pile material changed to 45 ksi), so the D-062 load review stands. Full current wind, below-pad weights, transfer moments, combinations and convergence remain unverified against T006.",
    "next_action": "Compare the exact current model loading with T006 and document needed reruns and convergence evidence.",
    "response": "",
-   "resolution": "16 Oct: the 12 Oct pier report names export c8420fad..., not the registered PIER-XML (COH-013), and the final runs need the current pile heads (COH-028).",
-   "references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05; tasks/T006/response-disposition.json, item 05; coherence/evidence/2026-10-10/source_update.json; COH-013; COH-028; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
-   "last_reviewed": "2026-10-16",
+   "resolution": "16 Oct: the 12 Oct pier report names export c8420fad..., not the registered PIER-XML (COH-013), and the final runs need the current pile heads (COH-028). 21 Oct (D-073): the pier export rerun with the 45 ksi pile material is registered and the 10-21 report and case name it (COH-013 closed, D-074); its nodal loads equal the 19 October export (coherence/evidence/2026-10-21-fbmp/source_receipt.json, comparison_with_previous). The full load comparison, native run records and the COH-028 pile-head reruns remain open.",
+   "references": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05; tasks/T006/response-disposition.json, item 05; coherence/evidence/2026-10-10/source_update.json; COH-013; COH-028; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json; D-062; D-073; coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md; coherence/evidence/2026-10-21-fbmp/source_receipt.json",
+   "last_reviewed": "2026-10-21",
    "refs": {
     "sources": [
      "JOURNAL",
      "PIER-XML"
     ],
-    "decisions": [],
+    "decisions": [
+     "D-062",
+     "D-073"
+    ],
     "issues": [
      "COH-013",
      "COH-028"
@@ -25291,15 +25316,15 @@
   },
   {
    "id": "COH-013",
-   "status": "Awaiting source",
+   "status": "Closed",
    "area": "FBMP",
    "item": "Report-matching FBMP exports",
-   "finding": "The selected cap reports name exact raw FBMP exports that are not in project_current. Pier (PIER-REPORT, 12 Oct) requires SHA-256 c8420fad...; the user supplied this file on 16 Oct for comparison only. End Bent 1 (EB-REPORT, 14 Oct) requires 23bb3afc... and End Bent 2 (EB2-REPORT, 14 Oct) requires 56f78267...; neither was supplied. Registered PIER-XML and EB-XML are prior exports matching superseded reports only.",
-   "next_action": "Submit the exact XML exports behind the final selected cap reports, with their native run records. After the COH-028 pile-head reruns these are the rerun exports and regenerated reports. Do not substitute older exports.",
+   "finding": "Resolved: every selected cap report and case names a registered export. End Bent 1 and End Bent 2 (10-19 reports and cases, D-051) name EB-XML and EB2-XML (the 19 October fixed exports, D-049); the pier (10-21 report and case, D-073) names PIER-XML, the 21 October rerun with the 45 ksi pile material (SHA-256 8be45bb889f5...). Historical finding (12 to 16 October): the 12 and 14 October reports named exports that were not in project_current (pier c8420fad..., End Bent 1 23bb3afc..., End Bent 2 56f78267...).",
+   "next_action": "None for export identity. Native run records and the pile-head reruns remain under COH-004 and COH-028.",
    "response": "16 Oct: Lets leave the FBMP xml files submittal to the source as an open item.",
-   "resolution": "10 Oct: the supplied EB1 export 8414fb... matched the 10 October report. The 12 and 14 October reports then named new exports. 16 Oct: the supplied pier export c8420fad... was compared (pile heads at EL 41.7717 ft, COH-028) and left unsubmitted by user direction. See coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json.",
-   "references": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json; coherence/evidence/2026-10-10/source_update.json; PIER-REPORT; PIER-XML; EB2-REPORT; EB2-XML; coherence/evidence/2026-10-12/source_update.json; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
-   "last_reviewed": "2026-10-16",
+   "resolution": "10 Oct: the supplied EB1 export 8414fb... matched the 10 October report. The 12 and 14 October reports then named new exports. 16 Oct: the supplied pier export c8420fad... was compared (pile heads at EL 41.7717 ft, COH-028) and left unsubmitted by user direction. See coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json. 19 Oct (D-049, D-051): the three fixed exports were registered and the cap notebook rerun on them, so the 10-19 reports and cases name them. 21 Oct (D-073): the rerun pier export is registered and the pier cap and pile cases were rerun from it; machine checks PIER:analysis-identity and EB:analysis-identity read MATCH. Closed by user direction, 21 Oct (D-074). See coherence/evidence/2026-10-21-fbmp/source_receipt.json, 2026-10-21-cap-rerun/source_receipt.json and 2026-10-21-pile-reports/source_receipt.json.",
+   "references": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json; coherence/evidence/2026-10-10/source_update.json; PIER-REPORT; PIER-XML; EB2-REPORT; EB2-XML; coherence/evidence/2026-10-12/source_update.json; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json; D-049; D-051; D-073; D-074; coherence/evidence/2026-10-21-fbmp/source_receipt.json; coherence/evidence/2026-10-21-cap-rerun/source_receipt.json; coherence/machine_checks.json",
+   "last_reviewed": "2026-10-21",
    "refs": {
     "sources": [
      "EB-REPORT",
@@ -25309,7 +25334,12 @@
      "PIER-REPORT",
      "PIER-XML"
     ],
-    "decisions": [],
+    "decisions": [
+     "D-049",
+     "D-051",
+     "D-073",
+     "D-074"
+    ],
     "issues": []
    },
    "checks": [],
@@ -25582,7 +25612,7 @@
    "response": "I ran the cage designs for the out to out distance and expected the cheek wall steel to coincide with the cap steel.\nFollow-up: Remove one bar of the close left pair, pull outer verticals inside the long bars, and move the first stirrup inside the cheek mats. They can touch; they cannot clash. Bring them just inside.\nFollow-up: Keep the stirrup at its prior position. Shift only the clashing horizontal row vertically and flag the resulting 12 3/8 in spacing. Keep this revision local.",
    "resolution": "D-027: 62 cap bars per end bent modeled from supplied cases. Concrete and cheek steel unchanged. No clash repair or detailing acceptance yet.\nD-028: One vertical removed per cheek, outer verticals moved just inside cap bars, and end hoops moved inward of the mats. 48 cheek bars; 62 cap bars per end. Concrete, other bars and original case files preserved. Eight horizontal-bar intersections remain.\nD-029: Lowered only MH03 by 3/8 in at all four cheeks. All eight cap/cheek intersections resolved. Prior stirrup stations and all other bars preserved. Four spacing checks remain FAIL at 12 3/8 in; no threshold relaxed.\nD-039 (16 Oct): selected report applied to all four cheeks. 64 bars total (5 vertical + 11 horizontal each), 10 in maximum each way. Outer vertical stations retained; inner bars and horizontal phase coordinated with cap steel and WWR. Four spacing failures resolved; no affected overlaps. Cap/backwall/pedestal steel and 180 lug wires preserved.",
    "references": "D-027; CAD-MODEL; EB-CASE; EB2-CASE; geometry/freecad/evidence/2026-10-14-end-caps/; D-028; geometry/freecad/evidence/2026-10-14-cap-cheek-coordination/; D-029; geometry/freecad/evidence/2026-10-14-horizontal-cheek/; D-039; BACKWALL-REPORT; BACKWALL-CASE; geometry/freecad/evidence/2026-10-16-cheek-steel/update-summary.json",
-   "last_reviewed": "2026-10-16T00:00:00.000Z",
+   "last_reviewed": "2026-10-16",
    "refs": {
     "sources": [
      "BACKWALL-CASE",

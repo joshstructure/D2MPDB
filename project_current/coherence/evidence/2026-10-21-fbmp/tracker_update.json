@@ -1,0 +1,60 @@
+{
+  "decision": "D-074",
+  "date": "2026-10-21",
+  "workbook": "project_current/coherence/Coherence_Tracker.xlsx",
+  "sha256_before": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
+  "sha256_after": "a41ceabda4591d478def85249d3ede63b9faf67e12b4a91916cde44197c95da7",
+  "changed_cells": {
+    "COH-013:B21": {
+      "before": "Awaiting source",
+      "after": "Closed"
+    },
+    "COH-013:E21": {
+      "before": "The selected cap reports name exact raw FBMP exports that are not in project_current. Pier (PIER-REPORT, 12 Oct) requires SHA-256 c8420fad...; the user supplied this file on 16 Oct for comparison only. End Bent 1 (EB-REPORT, 14 Oct) requires 23bb3afc... and End Bent 2 (EB2-REPORT, 14 Oct) requires 56f78267...; neither was supplied. Registered PIER-XML and EB-XML are prior exports matching superseded reports only.",
+      "after": "Resolved: every selected cap report and case names a registered export. End Bent 1 and End Bent 2 (10-19 reports and cases, D-051) name EB-XML and EB2-XML (the 19 October fixed exports, D-049); the pier (10-21 report and case, D-073) names PIER-XML, the 21 October rerun with the 45 ksi pile material (SHA-256 8be45bb889f5...). Historical finding (12 to 16 October): the 12 and 14 October reports named exports that were not in project_current (pier c8420fad..., End Bent 1 23bb3afc..., End Bent 2 56f78267...)."
+    },
+    "COH-013:F21": {
+      "before": "Submit the exact XML exports behind the final selected cap reports, with their native run records. After the COH-028 pile-head reruns these are the rerun exports and regenerated reports. Do not substitute older exports.",
+      "after": "None for export identity. Native run records and the pile-head reruns remain under COH-004 and COH-028."
+    },
+    "COH-013:J21": {
+      "before": "10 Oct: the supplied EB1 export 8414fb... matched the 10 October report. The 12 and 14 October reports then named new exports. 16 Oct: the supplied pier export c8420fad... was compared (pile heads at EL 41.7717 ft, COH-028) and left unsubmitted by user direction. See coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json.",
+      "after": "10 Oct: the supplied EB1 export 8414fb... matched the 10 October report. The 12 and 14 October reports then named new exports. 16 Oct: the supplied pier export c8420fad... was compared (pile heads at EL 41.7717 ft, COH-028) and left unsubmitted by user direction. See coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json. 19 Oct (D-049, D-051): the three fixed exports were registered and the cap notebook rerun on them, so the 10-19 reports and cases name them. 21 Oct (D-073): the rerun pier export is registered and the pier cap and pile cases were rerun from it; machine checks PIER:analysis-identity and EB:analysis-identity read MATCH. Closed by user direction, 21 Oct (D-074). See coherence/evidence/2026-10-21-fbmp/source_receipt.json, 2026-10-21-cap-rerun/source_receipt.json and 2026-10-21-pile-reports/source_receipt.json."
+    },
+    "COH-013:K21": {
+      "before": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json; coherence/evidence/2026-10-10/source_update.json; PIER-REPORT; PIER-XML; EB2-REPORT; EB2-XML; coherence/evidence/2026-10-12/source_update.json; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
+      "after": "EB-REPORT; EB-XML; coherence/evidence/end_bent_provenance.json; coherence/evidence/2026-10-10/source_update.json; PIER-REPORT; PIER-XML; EB2-REPORT; EB2-XML; coherence/evidence/2026-10-12/source_update.json; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json; D-049; D-051; D-073; D-074; coherence/evidence/2026-10-21-fbmp/source_receipt.json; coherence/evidence/2026-10-21-cap-rerun/source_receipt.json; coherence/machine_checks.json"
+    },
+    "COH-013:L21": {
+      "before": "2026-10-16 00:00:00",
+      "after": "2026-10-21 00:00:00"
+    },
+    "COH-004:E12": {
+      "before": "New Pier_Fixed report/XML fingerprints match and bearing offsets reconcile. Full current wind, below-pad weights, transfer moments, combinations and convergence remain unverified against T006.",
+      "after": "Pier report/XML fingerprints match (the 10-21 report and case name the registered 21 October export, D-073) and bearing offsets reconcile. The 21 October export carries the same nodal loads as the 19 October one (only the pile material changed to 45 ksi), so the D-062 load review stands. Full current wind, below-pad weights, transfer moments, combinations and convergence remain unverified against T006."
+    },
+    "COH-004:J12": {
+      "before": "16 Oct: the 12 Oct pier report names export c8420fad..., not the registered PIER-XML (COH-013), and the final runs need the current pile heads (COH-028).",
+      "after": "16 Oct: the 12 Oct pier report names export c8420fad..., not the registered PIER-XML (COH-013), and the final runs need the current pile heads (COH-028). 21 Oct (D-073): the pier export rerun with the 45 ksi pile material is registered and the 10-21 report and case name it (COH-013 closed, D-074); its nodal loads equal the 19 October export (coherence/evidence/2026-10-21-fbmp/source_receipt.json, comparison_with_previous). The full load comparison, native run records and the COH-028 pile-head reruns remain open."
+    },
+    "COH-004:K12": {
+      "before": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05; tasks/T006/response-disposition.json, item 05; coherence/evidence/2026-10-10/source_update.json; COH-013; COH-028; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json",
+      "after": "PIER-XML; JOURNAL; coherence/evidence/pier_review_2026-10-09.xlsx, item 05; tasks/T006/response-disposition.json, item 05; coherence/evidence/2026-10-10/source_update.json; COH-013; COH-028; coherence/evidence/2026-10-16-fbmp-pile-heads/pile_heads.json; D-062; D-073; coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md; coherence/evidence/2026-10-21-fbmp/source_receipt.json"
+    },
+    "COH-004:L12": {
+      "before": "2026-10-16 00:00:00",
+      "after": "2026-10-21 00:00:00"
+    },
+    "A3": {
+      "before": "Review updated: 16 October 2026. Source selections, recorded responses and closure evidence are preserved here.",
+      "after": "Review updated: 21 October 2026. Source selections, recorded responses and closure evidence are preserved here."
+    }
+  },
+  "summary_after_recalc": {
+    "Outstanding": 14,
+    "Awaiting source": 0,
+    "Deferred": 2,
+    "Closed / N.A.": 14
+  },
+  "rules": "Edited in place; responses (column G), IDs and formulas untouched; no row added or renumbered; recalculated in Excel."
+}
