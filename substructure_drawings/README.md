@@ -1,5 +1,25 @@
 # End bent and pier DXF (FDOT format)
 
+**Generator 2.8.0 (22 October 2026)** draws the pier wall of model decisions
+D-076 (the wall's reinforcement and annular pile ring plates added to the
+CAD model) and D-079 (the plates 1/2 in thick, matching the selected ring
+calculation D-078): three new pier sheets (STYLE_GUIDE E10), PIER DETAILS
+(4 OF 6) with the PIER WALL ELEVATION (the first and last bar of each run,
+the plates hidden, the flags of sections H-H and J-J), (5 OF 6) with
+SECTION J-J (through a pile, broken between ring rows 2 and 4, the five
+plates cut), the ANNULAR RING PLATE plan and SECTION K-K (the plate on the
+pipe with the two continuous 5/16 in fillets), and (6 OF 6) with SECTION
+H-H (the horizontal cut through ring row 3). The snapshot (schema 3) reads
+the model's `PierWallSteelInputs` and the twenty `PierWallRing*` solids and
+adds the wall's own projections; the wall bars are the pier's G family
+(5G1 verticals, 5G2 horizontals, 5G3 end U returns, 124 bars) and join the
+bar list. The End Bent 2 sheets are now B4-12 to B4-15 and the bar list
+B4-16. The model still carries the controller's PW- identifiers on the
+wall bars ("drawing SDM marks pending", D-076), so the bar list carries a
+MODEL CHECK note until the marks are written back (D-042 pattern); the
+sheets also carry the model's own open items (the RING-GRID check of the
+selected calculation, the verticals stopping inside the wall).
+
 **Generator 2.7.0 (20 October 2026)** rebuilds both DXFs from the model with
 revision D-065 (level as-cast bearing seats: the six pedestal tops level at
 each pedestal's maximum, eight uniform 2 9/16" pads) and applies the
@@ -118,9 +138,12 @@ represent engineering acceptance.
 | B4-5 | Pier plan with the cheek walls; broken elevation (looking ahead station) with the reinforcement, the cheek walls as 1 ft stubs with break lines; end view D-D (the cheek wall face with its recessed panel, cut under the cap); tables, notes | 3/8" |
 | B4-6 | Pier details (1 of 3): sections A-A, B-B, C-C on one row with a common top; notes | 3/4" |
 | B4-7 | Pier details (2 of 3): pedestal plan and elevation; top of pedestal elevations under the elevation; notes | 3/4" |
-| B4-8 | Pier details (3 of 3): view E-E (left cheek wall, the recessed panel and the bars; carries the flags of F-F and G-G), section F-F (vertical, through the panel, the cap stub under the wall with the 1'-0" embedment of the verticals, D-061) and section G-G (horizontal, through the panel); notes | 3/8", 3/4" |
-| B4-9 to B4-12 | End Bent 2, as End Bent 1 (looking ahead station; B4-10 and B4-11 are laid out as the mirror images of B4-2 and B4-3) | |
-| B4-13 | Reinforcing bar list on the FDOT bar list form | |
+| B4-8 | Pier details (3 of 6): view E-E (left cheek wall, the recessed panel and the bars; carries the flags of F-F and G-G), section F-F (vertical, through the panel, the cap stub under the wall with the 1'-0" embedment of the verticals, D-061) and section G-G (horizontal, through the panel); notes | 3/8", 3/4" |
+| B4-9 | Pier details (4 of 6): the pier wall elevation (D-076 / D-079) with the wall reinforcement, the hidden annular ring plates, the piles under the wall and the flags of sections H-H and J-J; notes | 3/8" |
+| B4-10 | Pier details (5 of 6): section J-J (through the wall at a pile, broken; the cut pile with its five plates, the horizontals end-on, the nearest verticals), the annular ring plate plan and section K-K (the plate on the pipe pile with its fillets); notes | 1/2", 1-1/2", 3" |
+| B4-11 | Pier details (6 of 6): section H-H (the horizontal cut through ring row 3: the cut wall, piles and plates, the verticals end-on, the horizontals and the end U returns in plane); notes | 1/2" |
+| B4-12 to B4-15 | End Bent 2, as End Bent 1 (looking ahead station; B4-13 and B4-14 are laid out as the mirror images of B4-2 and B4-3) | |
+| B4-16 | Reinforcing bar list on the FDOT bar list form | |
 
 Model space holds every view at full size (1:1, international feet,
 `$INSUNITS = 2`), with annotation sized for the sheet scale. Each paper-space
@@ -150,7 +173,9 @@ It has no clock time, so rebuilds stay byte-identical.
   has that application; otherwise numbers run from 1 with no gaps. End bents use
   A cap longitudinal, B cap stirrups and hoops, C cap U-bars between piles,
   D backwall, E cheek walls and F pedestals. The pier uses A to C as above, D cap
-  end U-bars, E cheek walls (D-059) and F pedestals (4E1/4E2 before D-060).
+  end U-bars, E cheek walls (D-059), F pedestals (4E1/4E2 before D-060) and
+  G the pier wall mats and end U returns (D-076; the end-face verticals are
+  the same bar as the face verticals, 5G1).
   Backwall verticals that differ only in length with
   the crowned top share one mark (5D1, VARIES). Each length and its count are listed in the bar
   list notes. [`output/bar_mark_register.csv`](output/bar_mark_register.csv)
@@ -392,6 +417,7 @@ snapshot or the generator output no longer match.
 | `strap_loads.py` | The Δ legend text with the tie-back loads from `data/strap_loads.json` (`scripts/export_strap_loads.py`, backwall design calc) |
 | `views.py` | Plan, elevation, sections A-A to C-C, cheek wall views, pedestal views, end view |
 | `details.py` | Cheek wall sections F-F and G-G (end bents, and `pier_cheek_section` for the pier walls), section flags, detail "A" (construction joint) and detail "B" (geotextile) |
+| `pier_wall.py` | The pier wall sheets (D-076 / D-079): wall elevation, sections H-H and J-J, the annular ring plate plan and section K-K, the AWS fillet weld symbol |
 | `sheets.py` | Paper-space border, title block, tables and notes |
 | `build.py` | Sheet composition (E1), layout checks, symbology audit, outputs and manifest |
 | `freecad_marks.py` | Writes the SDM bar marks back into the FreeCAD model |
@@ -414,6 +440,11 @@ with FreeCAD 1.1 `freecadcmd`
   reinforcement straps have role `strap` and are drawn in the sections)
 - the cheek wall sections (`cheek_sections`: for each cheek wall the cut
   positions and the projected `side_edges` and `top_edges` of sections F-F and G-G)
+- the pier wall steel block (`pier_wall`, schema 3): the controller's
+  inputs (`PierWallSteelInputs`, inches), the source case and its failed
+  checks, the twenty ring plates (pile, row, centre, top and bottom), the
+  wall elevation with the hidden plates and piles, the horizontal section
+  through the middle ring row and the transverse section through a pile
 
 Without `--extract`, the DXF is rebuilt from the committed snapshot, and the
 output is byte-identical. `tests/test_substructure_dxf.py` fails when the model hash,
@@ -498,7 +529,15 @@ are not made again:
   the ends and at the crown). The engineer expects a cross slope, so the
   (2 OF 3) sheets carry a "MODEL CHECK" note until the model has it; the
   sections draw the cut top level (D14).
-- The pier wall is provisional and has no modeled reinforcement.
+- The pier wall reinforcement and annular ring plates are the model's
+  (D-076 / D-079) and are drawn on sheets B4-9 to B4-11. The model carries
+  the controller's PW- identifiers on the wall bars ("drawing SDM marks
+  pending"), so the bar list has a MODEL CHECK note until `freecad_marks.py`
+  writes 5G1 to 5G3 into the model (the D-042 / D-060 job pattern). The
+  wall verticals stop 3 5/16" below the cap bottom and above the wall
+  bottom in the model (no anchorage into the cap), and the selected ring
+  calculation's RING-GRID check fails at the 3" placement tolerance; both
+  are MODEL CHECK notes on sheet B4-9.
 - The SDM 12.3.F soil-reinforcement legend carries the tie-back loads of the
   selected backwall case (3.09 kip/ft service, 3.74 kip/ft factored, Strength
   I, from the 19 October evening case), which the backwall design calls

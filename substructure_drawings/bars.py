@@ -47,6 +47,10 @@ FAMILIES = {
         ("D", "cap_end", ["horiz", "vert"]),
         ("E", "cheek", ["vert", "horiz"]),
         ("F", "pedestal", ["x", "y"]),
+        # D-076 / D-079 (2026-10-22): the pier wall mats.  The end-face
+        # verticals are the same bar as the face verticals (one mark, SDM
+        # 4.3.C); the end U returns are the U-bars.
+        ("G", "pier_wall", ["vert", "horiz", "u"]),
     ],
 }
 VARYING = {("EB", "backwall", "vert")}
@@ -66,6 +70,9 @@ DESCRIPTIONS = {
     ("cap_end", "vert"): "CAP END, VERTICAL",
     ("pedestal", "x"): "PEDESTAL, TRANSVERSE",
     ("pedestal", "y"): "PEDESTAL, LONGITUDINAL",
+    ("pier_wall", "vert"): "PIER WALL VERTICAL",
+    ("pier_wall", "horiz"): "PIER WALL HORIZONTAL",
+    ("pier_wall", "u"): "PIER WALL END U RETURN",
 }
 
 
@@ -222,6 +229,16 @@ def classify(kind, bar):
         return "cheek", "vert" if "MV" in n else "horiz"
     if comp == "pedestal":
         return "pedestal", "x" if n[-3] == "X" else "y"
+    if comp == "pier_wall":
+        # PierWallSteel<F1H01 | F1V01 | E1V01 | E1U01>, labelled "Pier wall #5
+        # Face 1 horizontal" / "... vertical" / "End 1 vertical" / "End 1
+        # horizontal U return; 72-in contact lap legs" (pier_wall_rings.layout)
+        if "u return" in lab:
+            return "pier_wall", "u"
+        if "vertical" in lab:
+            return "pier_wall", "vert"
+        if "horizontal" in lab:
+            return "pier_wall", "horiz"
     raise ValueError("Unclassified bar " + n)
 
 

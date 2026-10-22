@@ -20,6 +20,7 @@ ROLE_LAYERS = {
     "pad": ("BearingPadMisc", "BearingPadMisc"),
     "pile_conc": ("PileConc", "PileConc_h"),
     "pile_steel": ("PileSteel", "PileSteel_h"),
+    "ring": ("PileSteel", "PileSteel_h"),                # annular ring plates welded to the pipe piles (D-076 / D-079)
     "mse": ("WallMSEPanel", "WallMSEPanel_h"),
     "coping": ("WallConc", "WallConc_h"),               # MSE wall copings (Wall Coping Concrete)
     "closure": ("SubStrConc2", "SubStrConc2_h"),        # end bent rain closure slab (D-044)
@@ -205,7 +206,28 @@ class Support:
         self.wall_u = sorted((self.u(b[0]), self.u(b[3])))
         self.wall_top, self.wall_bot = b[5], b[2]
         self.wall_thk = b[4] - b[1]
+        self.wall_s = sorted((-b[1], -b[4]))     # the wall faces in the section frame
         self.outer_u = tuple(self.cap_u)   # (the pier cheek walls stand inside the cap ends)
+        # D-076 / D-079: the wall steel block of the snapshot (schema 3; None
+        # for an older snapshot, the sheets then say the steel is not shown)
+        self.wall_steel = self.S.get("pier_wall")
+        self.rings = []
+        if self.wall_steel:
+            for r in self.wall_steel["rings"]:
+                pile = next((p for p in self.piles if p["name"] == r["pile"]), None)
+                self.rings.append(dict(r, u=self.u(r["center_ft"][0]), v=self.v(r["center_ft"][1]),
+                                       s=-r["center_ft"][1], pile_no=pile["no"] if pile else None))
+            self.rings.sort(key=lambda r: (r["pile_no"] or 0, r["row"]))
+
+    def wall_bars(self, subtype=None):
+        return self.bars_of(family="pier_wall", subtype=subtype)
+
+    def ring_rows(self):
+        """The ring rows of one pile, bottom up: [(row, top z, bottom z)]."""
+        rows = OrderedDict()
+        for r in self.rings:
+            rows.setdefault(r["row"], (r["row"], r["top_ft"], r["bot_ft"]))
+        return [rows[k] for k in sorted(rows)]
 
     # ------------------------------------------------------------- reinforcement
     def bars_of(self, mark=None, family=None, subtype=None):

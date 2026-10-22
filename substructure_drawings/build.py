@@ -10,7 +10,7 @@ import math
 from pathlib import Path
 
 from . import bars as barlib
-from . import cad, details, fdot, strap_loads
+from . import cad, details, fdot, pier_wall, strap_loads
 from .sheets import DRAW, MODEL_PITCH_FT, TITLE_TOP, Sheet
 from .support import STATION_FFBW_EB1, Support
 from .views import DELTA, Builder, z_on_edges
@@ -22,7 +22,7 @@ except ModuleNotFoundError as err:   # the annotation checker module is new; bui
         raise
     anno_check = None
 
-GENERATOR_VERSION = "2.7.0"
+GENERATOR_VERSION = "2.8.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {
@@ -55,9 +55,12 @@ MAIN = (DRAW[0], DRAW[1], 12.15, DRAW[3])
 # with the end view), then the details (EB: (1 OF 3) sections A-A and B-B with
 # the pedestal details, (2 OF 3) section C-C and the cheek views D-D and E-E,
 # (3 OF 3) the cheek wall sections F-F and G-G and details "A" and "B"; pier:
-# (1 OF 3) sections, (2 OF 3) the pedestal details, (3 OF 3) the cheek wall
-# view E-E and sections F-F and G-G, D-059), then the bar list.
-SHEETS = (("EB1", 4), ("PIER", 4), ("EB2", 4), ("BARS", 1))
+# (1 OF 6) sections, (2 OF 6) the pedestal details, (3 OF 6) the cheek wall
+# view E-E and sections F-F and G-G, D-059, (4 OF 6) the pier wall
+# elevation with its reinforcement and the annular ring plates, (5 OF 6)
+# section J-J through a pile with the ring plate details, (6 OF 6) the
+# horizontal section H-H, D-076 / D-079), then the bar list.
+SHEETS = (("EB1", 4), ("PIER", 7), ("EB2", 4), ("BARS", 1))
 # TOP OF PEDESTAL ELEVATIONS table: column widths (BEAM NO., corners A-D), in
 PED_COLS = [0.85, 0.7, 0.7, 0.7, 0.7]
 NOTES_W = 5.0     # NOTES column beside a LEGEND column (sample B1-17), in
@@ -351,6 +354,24 @@ class Composer:
     def bar_list_ref(self):
         return "FOR REINFORCING BAR LIST, SEE SHEET %s." % self.numbers["BARS"][0]
 
+    @staticmethod
+    def pier_wall_sheet_numbers(s, nums):
+        """The three pier wall sheets (D-076 / D-079), or None for a snapshot
+        without the wall steel: (elevation, section J-J and ring details,
+        section H-H)."""
+        if not getattr(s, "wall_steel", None):
+            return None
+        first = 4 if s.cheeks else 3
+        return tuple(nums[first:first + 3])
+
+    def pier_wall_ref(self, s, nums):
+        """The plan-sheet and (1 OF n) note about the pier wall: where its
+        reinforcement and ring plates are, or that they are not shown."""
+        w = self.pier_wall_sheet_numbers(s, nums)
+        if not w:
+            return "PIER WALL IS PROVISIONAL (%s THICK); ITS REINFORCEMENT IS NOT SHOWN." % fdot.ft_in(s.wall_thk)
+        return "FOR THE PIER WALL REINFORCEMENT AND THE ANNULAR PILE RING PLATES, SEE SHEETS %s TO %s." % (w[0], w[2])
+
     # --------------------------------------------------- plan + elevation
     def plan_elevation(self, key):
         """Plan above the elevation (with the reinforcement), tables at the
@@ -420,11 +441,11 @@ class Composer:
                          "D-D AND E-E, SEE PLAN." % (nums[1], nums[2], nums[3]))
             notes.append("THE CHEEK WALLS ARE SHOWN BROKEN IN THE ELEVATION AND WHOLE IN VIEW D-D AND ON SHEET %s."
                          % nums[3])
-            notes.append("PIER WALL IS PROVISIONAL (3'-0\" THICK); ITS REINFORCEMENT IS NOT SHOWN.")
+            notes.append(self.pier_wall_ref(s, nums))
         else:
             notes.append("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s. FOR PEDESTAL DETAILS, SEE SHEET %s. FOR "
                          "LOCATION OF VIEW D-D, SEE PLAN." % (nums[1], nums[2]))
-            notes.append("PIER WALL IS PROVISIONAL (3'-0\" THICK); ITS REINFORCEMENT IS NOT SHOWN.")
+            notes.append(self.pier_wall_ref(s, nums))
         notes.append(self.bar_list_ref())
         notes.append("PILE OFFSETS ARE FROM THE PGL, + TO THE RIGHT LOOKING UP-STATION. CUTOFF ELEVATIONS ARE TO THE "
                      "NEAREST 0.1 FT.")
@@ -722,7 +743,8 @@ class Composer:
         s = self.sup["PIER"]
         nums = self.numbers["PIER"]
         b = Builder(s, self.doc)
-        of = "(%%d OF %d)" % (3 if s.cheeks else 2)
+        n_sheets = (3 if s.cheeks else 2) + (3 if getattr(s, "wall_steel", None) else 0)
+        of = "(%%d OF %d)" % n_sheets
         sh = self.new_sheet(nums[1], "PIER DETAILS " + of % 1)
         z = sh.zone(DRAW, "3/4")
         va = b.section(z, "between_piles", "A", "(SECTION BETWEEN PILES)")
@@ -734,7 +756,9 @@ class Composer:
             "ALL BARS ARE SHOWN IN SECTIONS; BARS IN THE SECTION PLANE ARE THE NEAREST BAR OF THEIR SERIES "
             "WITHIN 1'-3\" BEYOND THE CUT.",
             "FOR PEDESTAL DETAILS, SEE SHEET %s." % nums[2],
-            "PIER WALL IS PROVISIONAL; ITS REINFORCEMENT IS NOT SHOWN.",
+            ("THE PIER WALL REINFORCEMENT IS NOT SHOWN IN THE WALL STUBS; SEE SHEETS %s, %s AND %s."
+             % self.pier_wall_sheet_numbers(s, nums)) if self.pier_wall_sheet_numbers(s, nums)
+            else "PIER WALL IS PROVISIONAL; ITS REINFORCEMENT IS NOT SHOWN.",
             self.bar_list_ref()]
         x_n = DRAW[0] + 0.1
         w_n = sh.bridge_block[0] - 0.2 - x_n
@@ -771,14 +795,16 @@ class Composer:
         self.check_block(sh, "notes", (xt, nb, xt + w_n, y - 0.25))
         self.finish(sh)
         if s.cheeks:
-            self._pier_cheek_sheet(s, nums, b)
+            self._pier_cheek_sheet(s, nums, b, of)
+        if getattr(s, "wall_steel", None):
+            self._pier_wall_sheets(s, nums, b, of)
 
-    def _pier_cheek_sheet(self, s, nums, b):
+    def _pier_cheek_sheet(self, s, nums, b, of="(%d OF 3)"):
         # (3 OF 3, D-059): VIEW E-E (the left cheek wall's outside face with
         # its recessed panel and bars, 3/8") at the left carrying the flags
         # of F-F and G-G (D8), the two sections (3/4") beside it, the notes
         # under the sections
-        sh = self.new_sheet(nums[3], "PIER DETAILS (3 OF 3)")
+        sh = self.new_sheet(nums[3], "PIER DETAILS " + of % 3)
         top = DRAW[3] - 0.05
         c = s.cheeks[0]
         z2 = sh.zone(DRAW, "3/8")
@@ -810,6 +836,164 @@ class Composer:
             "MODEL CHECK (REMOVE BEFORE ISSUE): THE CHEEK WALL REINFORCEMENT STOPS AT THE CAP TOP IN THE CAD MODEL "
             "(NO ANCHORAGE INTO THE CAP); DETAIL THE ANCHORAGE AND ADD IT TO THE MODEL.",
             self.bar_list_ref()]
+        nb = sh.notes_bottom(y, items, w_n)
+        sh.notes(x_n, y, "NOTES:", items, width_in=w_n)
+        self.check_block(sh, "notes", (x_n, nb, x_n + w_n, y))
+        self.finish(sh)
+
+    def pier_wall_model_checks(self, s):
+        """MODEL CHECK notes of the pier wall steel (E3): the failed checks
+        the model's controller carries from the selected ring calculation,
+        the controller's own engineering status, the verticals that stop
+        inside the wall (no anchorage into the cap or below the wall in the
+        model) and the pending SDM marks."""
+        W = s.wall_steel
+        out = []
+        for c in W.get("source_failed_checks") or []:
+            out.append("MODEL CHECK (REMOVE BEFORE ISSUE): THE SELECTED RING CALCULATION (%s) REPORTS THE FAILED CHECK %s "
+                       "(%s: %s %s REQUIRED, %s %s AVAILABLE); RESOLVE BEFORE ISSUE."
+                       % (self.pier_wall_source_label(s), c["id"], c["title"].upper(),
+                          "%g" % c["demand"], c["unit"].upper(), "%g" % c["capacity"], c["unit"].upper()))
+        verts = s.wall_bars("vert")
+        if verts:
+            z_lo = min(p[2] for b in verts for p in b["pts"])
+            z_hi = max(p[2] for b in verts for p in b["pts"])
+            if z_hi < s.wall_top - 0.01 and z_lo > s.wall_bot + 0.01:
+                out.append("MODEL CHECK (REMOVE BEFORE ISSUE): THE PIER WALL VERTICALS STOP %s BELOW THE CAP AND %s ABOVE THE "
+                           "BOTTOM OF THE WALL IN THE CAD MODEL (NO ANCHORAGE INTO THE CAP); DETAIL THE WALL-TO-CAP "
+                           "CONNECTION AND ADD IT TO THE MODEL." % (fdot.ft_in(s.wall_top - z_hi), fdot.ft_in(z_lo - s.wall_bot)))
+        status = W["inputs"].get("EngineeringStatus", "")
+        if status and "open" in status.lower():
+            out.append("MODEL CHECK (REMOVE BEFORE ISSUE): CAD MODEL STATUS OF THE PIER WALL STEEL: \"%s\"." % status.upper())
+        return out
+
+    @staticmethod
+    def pier_wall_source_label(s):
+        """The selected ring calculation the model's wall steel transfers, as
+        a note names it: the register id with the decision and date the
+        controller records (its SourcePath ends "(D-078, 22 October 2026)");
+        the file path itself is one unbreakable word too long for a note
+        column."""
+        path = s.wall_steel["inputs"].get("SourcePath", "")
+        tail = path[path.rfind("(") + 1:path.rfind(")")] if "(" in path and ")" in path else ""
+        return ("PIER-WALL-CASE, %s" % tail.upper()) if tail else "PIER-WALL-CASE"
+
+    def pier_wall_marks_pending(self, s):
+        """True while the model's pier wall bars carry the controller's PW-
+        identifiers instead of the SDM marks (D-076: "SDM drawing marks
+        pending"); the bar list says so (C7)."""
+        return any(b["mark_model"] != b["mark"] for b in s.wall_bars())
+
+    def _pier_wall_sheets(self, s, nums, b, of):
+        """The pier wall sheets (D-076 / D-079, E7): (4 OF n) the wall
+        elevation with the reinforcement and the hidden ring plates, notes
+        beside it; (5 OF n) section J-J (the transverse cut through pile 2,
+        broken) with the ring plate plan and section K-K beside it; (6 OF n)
+        section H-H (the horizontal cut through the middle ring row) with
+        the notes under it."""
+        n4, n5, n6 = self.pier_wall_sheet_numbers(s, nums)
+        t = pier_wall._wall_texts(s)
+        mk = pier_wall.marks_of(s)
+        parts = pier_wall._split(s.wall_bars())
+        rows = s.ring_rows()
+        tops = ", ".join(fdot.ft_in(z - s.wall_bot) for _, z, _ in rows)
+        top = DRAW[3] - 0.05
+        # ---- (4 OF n): the elevation, the notes in a column at the right
+        sh = self.new_sheet(n4, "PIER DETAILS " + of % 4)
+        z1 = sh.zone(DRAW, "3/8")
+        ve = pier_wall.wall_elevation(b, z1, ring_sheet=n5)
+        self.place_tl(ve, DRAW[0] + 0.1, top)
+        x_n = self.paper_bbox(ve)[2] + 0.3
+        w_n = DRAW[2] - 0.1 - x_n
+        z1.window = (DRAW[0], DRAW[1], x_n - 0.1, DRAW[3])
+        self.check(sh, ve)
+        items = [
+            "FOR THE LOCATION OF THE PIER WALL, SEE SHEET %s (PLAN AND ELEVATION). SECTIONS H-H AND J-J ARE LOCATED "
+            "IN THE PIER WALL ELEVATION; FOR SECTION J-J AND THE ANNULAR RING PLATE DETAILS, SEE SHEET %s; FOR "
+            "SECTION H-H, SEE SHEET %s." % (nums[0], n5, n6),
+            "PIER WALL REINFORCEMENT: %s BARS AT %s MAXIMUM EACH WAY ON EACH FACE (%s VERTICALS, %s HORIZONTALS), %s "
+            "CLEAR COVER; %s END U RETURNS AT EACH HORIZONTAL WITH %s CONTACT LAP LEGS ALONG THE FACES; %d~%s "
+            "VERTICALS IN EACH END FACE. THE HORIZONTALS ARE THE OUTER LAYER."
+            % (t["bar"], t["pitch"], mk["vert"], mk["horiz"], t["cover"], mk["u"], t["u_leg"],
+               len(parts["end_vert"]) // 2, mk["vert"]),
+            "REINFORCEMENT IS SHOWN REPRESENTATIVELY: THE FIRST AND LAST BAR OF EACH RUN ARE DRAWN.",
+            "ANNULAR RING PLATES: %d PLATES, %s THICK, %s O.D. x %s I.D., %d PER PILE WITH THE PLATE TOPS %s ABOVE "
+            "THE BOTTOM OF THE WALL, CENTERED ON THE PILES AND WELDED TO THEM WITH TWO CONTINUOUS %s FILLETS (TOP "
+            "AND BOTTOM OF EACH PLATE); SEE SHEET %s. THE PLATES ARE SHOWN HIDDEN IN THE ELEVATION."
+            % (len(s.rings), t["ring_t"], t["ring_od"], t["ring_id"], t["n_rings"], tops, t["weld"], n5),
+            "PILES ARE SHOWN AT THEIR NOMINAL LOCATIONS; THE RING PLATES ARE SIZED FOR A %s RADIAL PILE PLACEMENT "
+            "TOLERANCE." % t["tol"],
+            "THE CAP IS SHOWN BROKEN %s ABOVE ITS BOTTOM; FOR THE CAP, SEE SHEETS %s AND %s."
+            % (fdot.ft_in(pier_wall.CAP_STUB_FT), nums[0], nums[1]),
+        ] + self.pier_wall_model_checks(s) + [self.bar_list_ref()]
+        nb = sh.notes_bottom(top, items, w_n)
+        sh.notes(x_n, top, "NOTES:", items, width_in=w_n)
+        self.check_block(sh, "notes", (x_n, nb, x_n + w_n, top))
+        self.finish(sh)
+        # ---- (5 OF n): section J-J at the left, the ring plate plan over
+        # section K-K beside it, the notes in a column at the right
+        sh = self.new_sheet(n5, "PIER DETAILS " + of % 5)
+        z2 = sh.zone(DRAW, "1/2")
+        vj = pier_wall.section_x(b, z2, "J", ring_sheet=None)
+        self.place_tl(vj, DRAW[0] + 0.1, top)
+        xj = self.paper_bbox(vj)[2] + 0.35
+        z2.window = (DRAW[0], DRAW[1], xj - 0.1, DRAW[3])
+        self.check(sh, vj)
+        z3 = sh.zone((xj, DRAW[1], DRAW[2], DRAW[3]), "1-1/2")
+        vp = pier_wall.ring_plan(b, z3, "K")
+        self.place_tl(vp, xj + 0.1, top)
+        self.check(sh, vp)
+        pb = self.paper_bbox(vp)
+        z4 = sh.zone((xj, DRAW[1], DRAW[2], pb[1] - 0.2), "3")
+        vk = pier_wall.ring_section(b, z4, "K")
+        self.place_tl(vk, xj + 0.1, pb[1] - 0.35)
+        self.check(sh, vk)
+        x_n = max(self.paper_bbox(vp)[2], self.paper_bbox(vk)[2]) + 0.3
+        w_n = DRAW[2] - 0.1 - x_n
+        z3.window = (xj, pb[1] - 0.2, x_n - 0.1, DRAW[3])
+        z4.window = (xj, DRAW[1], x_n - 0.1, pb[1] - 0.2)
+        items = [
+            "FOR THE LOCATION OF SECTION J-J, SEE THE PIER WALL ELEVATION, SHEET %s. SECTION K-K IS LOCATED IN THE "
+            "ANNULAR RING PLATE PLAN." % n4,
+            "SECTION J-J IS BROKEN BETWEEN RING ROWS %d AND %d; THE RING PLATE TOPS ARE DIMENSIONED FROM THE BOTTOM "
+            "OF THE WALL AND THE HORIZONTAL BAR SERIES IS GIVEN IN FULL." % (rows[1][0], rows[-2][0]),
+            "ALL BARS ARE SHOWN IN SECTION J-J; BARS IN THE SECTION PLANE ARE THE NEAREST BAR OF THEIR SERIES WITHIN "
+            "1'-3\" BEYOND THE CUT. THE END U RETURNS AND THE END-FACE VERTICALS LIE BEYOND THE CUT AND ARE NOT SHOWN; "
+            "SEE SECTION H-H, SHEET %s." % n6,
+            "ANNULAR RING PLATES: %s THICK, %s O.D. x %s I.D. (%s RADIAL WIDTH), Fy = %s KSI, Fu = %s KSI; WELDED TO THE "
+            "PIPE PILE WITH TWO CONTINUOUS %s FILLET WELDS, E%dXX ELECTRODES, ONE AT THE TOP AND ONE AT THE BOTTOM OF "
+            "EACH PLATE. THE %s RADIAL ROOT GAP IS AN ANALYSIS ALLOWANCE; THE WPS SHALL ACCEPT IT."
+            % (t["ring_t"], t["ring_od"], t["ring_id"], t["ring_w"], "%g" % s.wall_steel["source_case"]["ring_fy_ksi"],
+               "%g" % s.wall_steel["source_case"]["ring_fu_ksi"], t["weld"],
+               int(s.wall_steel["source_case"]["weld_fexx_ksi"]), t["gap"]),
+            "PIPE PILES ARE SHOWN WITH THEIR NOMINAL 20\" OUTSIDE DIAMETER; THE WELD SOLIDS ARE NOT IN THE CAD MODEL.",
+            "THE PLATE AND WELD SIZES ARE THOSE OF THE SELECTED PIER WALL RING CALCULATION (%s)."
+            % self.pier_wall_source_label(s),
+            self.bar_list_ref()]
+        nb = sh.notes_bottom(top, items, w_n)
+        sh.notes(x_n, top, "NOTES:", items, width_in=w_n)
+        self.check_block(sh, "notes", (x_n, nb, x_n + w_n, top))
+        self.finish(sh)
+        # ---- (6 OF n): section H-H, the notes under it
+        sh = self.new_sheet(n6, "PIER DETAILS " + of % 6)
+        z5 = sh.zone(DRAW, "1/2")
+        vh = pier_wall.section_plan(b, z5, "H", ring_sheet=n5)
+        self.place_tl(vh, DRAW[0] + 0.1, top)
+        self.check(sh, vh)
+        items = [
+            "FOR THE LOCATION OF SECTION H-H, SEE THE PIER WALL ELEVATION, SHEET %s." % n4,
+            "ALL BARS ARE SHOWN IN SECTION H-H; BARS IN THE SECTION PLANE ARE THE NEAREST BAR OF THEIR SERIES WITHIN "
+            "1'-3\" BELOW THE CUT. THE CUT IS THROUGH RING ROW %d; THE RING PLATES AND THE PIPE PILES ARE SHOWN CUT."
+            % s.wall_steel["section_plan"]["row"],
+            "THE END U RETURNS LAP THE HORIZONTALS ALONG BOTH FACES; THE U LEG LENGTH IS DIMENSIONED OVER THE BACK "
+            "FACE AT THE LEFT END AND IS THE SAME AT EVERY END U RETURN.",
+            "COVER IS DIMENSIONED TO THE OUTERMOST BAR (THE HORIZONTALS) AT THE FRONT FACE; IT IS %s ON EVERY FACE."
+            % t["cover"],
+            "PILE NUMBERS ARE THOSE OF SHEET %s." % nums[0],
+            self.bar_list_ref()]
+        x_n = DRAW[0] + 0.1
+        w_n = min(10.5, sh.bridge_block[0] - 0.2 - x_n)
+        y = self.paper_bbox(vh)[1] - 0.3
         nb = sh.notes_bottom(y, items, w_n)
         sh.notes(x_n, y, "NOTES:", items, width_in=w_n)
         self.check_block(sh, "notes", (x_n, nb, x_n + w_n, y))
@@ -880,6 +1064,14 @@ class Composer:
         if straight_l:
             notes.insert(3, "MODEL CHECK (REMOVE BEFORE ISSUE): %s ARE STRAIGHT IN THE CAD MODEL AND ARE LISTED AS "
                             "TYPE 1; THEY ARE TO BE TYPE 10 L-BARS. ADD THE LEGS TO THE MODEL." % ", ".join(straight_l))
+        # C7 / D-076: the pier wall bars carry the controller's PW- identifiers
+        # in the model until the SDM marks are written back (D-042 pattern)
+        pier = self.sup["PIER"]
+        if getattr(pier, "wall_steel", None) and self.pier_wall_marks_pending(pier):
+            wall_marks = sorted({b["mark"] for b in pier.wall_bars()}, key=barlib.size_of if False else str)
+            notes.append("MODEL CHECK (REMOVE BEFORE ISSUE): THE PIER WALL BARS %s CARRY THE CAD MODEL'S PW- IDENTIFIERS "
+                         "(\"%s\"); WRITE THESE MARKS INTO THE MODEL (substructure_drawings/freecad_marks.py) BEFORE ISSUE."
+                         % (", ".join(wall_marks), pier.wall_steel["inputs"].get("MarkStatus", "SDM MARKS PENDING").upper()))
         sh.notes(xr, y, "NOTES:", [n for n in notes if n], width_in=7.3)
         self.finish(sh)
 

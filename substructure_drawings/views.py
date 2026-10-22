@@ -2741,6 +2741,8 @@ class Builder:
         dots = OrderedDict()
         nearest = OrderedDict()
         for b in self.s.bars:
+            if b["family"] == "pier_wall":
+                continue   # D-076: the wall steel is detailed on the pier wall sheets, not in the wall stubs
             pts = b["pts"]
             r = b["dia_in"] / 24.0
             if b["transverse"]:

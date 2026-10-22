@@ -760,6 +760,39 @@ symbol at page scale.
   Checked (tests): one box and label per sheet with views, every viewport
   centre inside its sheet's box, no two boxes overlapping.
 
+- **E10 The pier wall has its own sheets (D-076 / D-079, 22 October
+  2026).**  The pier plan and elevation sheet keeps the wall broken under
+  the cap (E7); the wall's reinforcement and the annular pile ring plates
+  go on three sheets of their own, as the cheek walls do: (4 OF 6) the
+  PIER WALL ELEVATION at 3/8" under a 1 ft cap stub (break line), the
+  piles hidden in the wall and cut 0.85 ft under it, the twenty plates
+  hidden, the first and last bar of each run (C3), the horizontal series
+  and the wall height in two columns at the left, the vertical series over
+  the cap stub (its extension lines from the stub's break, B3), the wall
+  length under the pile numbers (A16), the callouts in one column at the
+  right at their tips' heights (level leaders; the U return's slides along
+  its leg, A3), and the flags of sections H-H and J-J; (5 OF 6) SECTION J-J
+  at 1/2" through a pile, broken between ring rows 2 and 4 (the wall is
+  16 ft tall; a dimension spanning the break reads its true value, both
+  dimension columns at the left so no callout leader crosses a rotated
+  value, A23), the ANNULAR RING PLATE plan at 1-1/2" and SECTION K-K at
+  3" = 1'-0" with the plate thickness and width, the root gap and the AWS
+  symbol of the two continuous fillets (one symbol, an arrow to each
+  fillet, the all-around circle at the junction); (6 OF 6) SECTION H-H at
+  1/2" through the middle ring row with the vertical series under the
+  wall, the thickness at the right end, the cover inside the wall in the
+  clear band between piles 1 and 2 (C11) and the U leg length over the
+  back face.  Steel sizes (plates, pipe) are written in inches whatever
+  their length (23" O.D., 20⅛" I.D., `pier_wall.inches`); concrete and bar
+  spacings in feet and inches (B6).  Every size comes from the model's
+  `PierWallSteelInputs`; the wall steel of the cap sections' wall stubs is
+  not drawn (the sheets say where it is).  The notes carry the MODEL CHECK
+  items the model itself records: the selected calculation's failed
+  checks (RING-GRID), the verticals stopping inside the wall (no
+  anchorage into the cap) and, on the bar list, the PW- identifiers the
+  wall bars still carry in the model (C7; the marks test tolerates them
+  while the bar list says so).
+
 ## F. Symbology
 
 Levels, colours, weights, line styles, fonts and text styles are the FDOT

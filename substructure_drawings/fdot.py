@@ -214,7 +214,7 @@ MTEXT_LINE_SPACING = LINE_PITCH / (5.0 / 3.0)
 
 # Drawing scale name (inches per foot, or 1=n for 1" = n') -> scale factor
 # (feet per paper foot).
-SCALES = {"3/8": 32.0, "3/4": 16.0, "1": 12.0, "1/2": 24.0, "1-1/2": 8.0, "1=40": 480.0}
+SCALES = {"3/8": 32.0, "3/4": 16.0, "1": 12.0, "1/2": 24.0, "1-1/2": 8.0, "3": 4.0, "1=40": 480.0}
 
 
 def scale_label(key):

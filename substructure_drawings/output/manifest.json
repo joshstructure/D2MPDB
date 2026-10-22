@@ -1,13 +1,13 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.7.0",
+ "version": "2.8.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "7511661c15be603ea3b151df51e625a55bfd0d8e63cd394457115330a532831f",
+ "dxf_sha256": "4204dd631933046b00b30db04fd32453b979918a4aa0749d8b5a4901d16b4807",
  "dxf_flat": "B4_Substructure_EndBents_Pier_flat.dxf",
- "dxf_flat_sha256": "0f93499b66f7c577e67e481c297a15f732d5e7ffc910131bdc5474defbbdfbe2",
- "dimensions_flattened": 454,
- "snapshot_sha256": "81238eed17856fb2a3ec3db7c5a5d37b694c62422ba19daa72e73ee69b5f3d53",
- "model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+ "dxf_flat_sha256": "90298e02476a3f94d75f0745f62b862f7b945dcc1a368e994e6c4e7736ac37db",
+ "dimensions_flattened": 479,
+ "snapshot_sha256": "b720ff741fa0c7d8a7f61e8ab24ad995e1e2b9430818e6b133a876a9edf7eb06",
+ "model_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
  "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1, one labelled group per sheet 60 ft apart",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -88,8 +88,8 @@
   },
   {
    "number": "B4-6",
-   "title": "PIER DETAILS (1 OF 3)",
-   "layout": "B4-6 PIER DETAILS (1 OF 3)",
+   "title": "PIER DETAILS (1 OF 6)",
+   "layout": "B4-6 PIER DETAILS (1 OF 6)",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -102,8 +102,8 @@
   },
   {
    "number": "B4-7",
-   "title": "PIER DETAILS (2 OF 3)",
-   "layout": "B4-7 PIER DETAILS (2 OF 3)",
+   "title": "PIER DETAILS (2 OF 6)",
+   "layout": "B4-7 PIER DETAILS (2 OF 6)",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -116,8 +116,8 @@
   },
   {
    "number": "B4-8",
-   "title": "PIER DETAILS (3 OF 3)",
-   "layout": "B4-8 PIER DETAILS (3 OF 3)",
+   "title": "PIER DETAILS (3 OF 6)",
+   "layout": "B4-8 PIER DETAILS (3 OF 6)",
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
@@ -131,67 +131,111 @@
   },
   {
    "number": "B4-9",
-   "title": "END BENT 2",
-   "layout": "B4-9 END BENT 2",
+   "title": "PIER DETAILS (4 OF 6)",
+   "layout": "B4-9 PIER DETAILS (4 OF 6)",
    "scales": [
     "3/8\" = 1'-0\""
    ],
    "model_group": [
     479.0,
     -25.6667,
-    521.2667,
+    510.4506,
     1.0
    ]
   },
   {
    "number": "B4-10",
+   "title": "PIER DETAILS (5 OF 6)",
+   "layout": "B4-10 PIER DETAILS (5 OF 6)",
+   "scales": [
+    "1/2\" = 1'-0\"",
+    "1-1/2\" = 1'-0\"",
+    "3\" = 1'-0\""
+   ],
+   "model_group": [
+    539.0,
+    -19.5,
+    562.4606,
+    1.0
+   ]
+  },
+  {
+   "number": "B4-11",
+   "title": "PIER DETAILS (6 OF 6)",
+   "layout": "B4-11 PIER DETAILS (6 OF 6)",
+   "scales": [
+    "1/2\" = 1'-0\""
+   ],
+   "model_group": [
+    599.0,
+    -19.5,
+    631.2,
+    1.0
+   ]
+  },
+  {
+   "number": "B4-12",
+   "title": "END BENT 2",
+   "layout": "B4-12 END BENT 2",
+   "scales": [
+    "3/8\" = 1'-0\""
+   ],
+   "model_group": [
+    659.0,
+    -25.6667,
+    701.2667,
+    1.0
+   ]
+  },
+  {
+   "number": "B4-13",
    "title": "END BENT 2 DETAILS (1 OF 3)",
-   "layout": "B4-10 END BENT 2 DETAILS (1 OF 3)",
+   "layout": "B4-13 END BENT 2 DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\"",
     "1\" = 1'-0\"",
     "1-1/2\" = 1'-0\""
    ],
    "model_group": [
-    539.0,
+    719.0,
     -13.3333,
-    566.4758,
+    746.4758,
     1.0
    ]
   },
   {
-   "number": "B4-11",
+   "number": "B4-14",
    "title": "END BENT 2 DETAILS (2 OF 3)",
-   "layout": "B4-11 END BENT 2 DETAILS (2 OF 3)",
+   "layout": "B4-14 END BENT 2 DETAILS (2 OF 3)",
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
    ],
    "model_group": [
-    599.0,
+    779.0,
     -25.6667,
-    635.3401,
+    815.3401,
     1.0
    ]
   },
   {
-   "number": "B4-12",
+   "number": "B4-15",
    "title": "END BENT 2 DETAILS (3 OF 3)",
-   "layout": "B4-12 END BENT 2 DETAILS (3 OF 3)",
+   "layout": "B4-15 END BENT 2 DETAILS (3 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ],
    "model_group": [
-    659.0,
+    839.0,
     -13.3333,
-    681.1333,
+    861.1333,
     1.0
    ]
   },
   {
-   "number": "B4-13",
+   "number": "B4-16",
    "title": "REINFORCING BAR LIST",
-   "layout": "B4-13 REINFORCING BAR LIST",
+   "layout": "B4-16 REINFORCING BAR LIST",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -201,24 +245,24 @@
  "levels_used": {
   "BaseLineSurveyPGL": 6,
   "BearingPadMisc": 106,
-  "Border": 43,
+  "Border": 54,
   "CL_Major": 26,
-  "CL_Minor": 55,
-  "Dimension": 845,
-  "Leader": 709,
+  "CL_Minor": 59,
+  "Dimension": 886,
+  "Leader": 754,
   "Patterning": 1008,
   "PileConc": 48,
   "PileConc_h": 160,
-  "PileSteel": 29,
-  "PileSteel_h": 147,
-  "Rebar": 1719,
+  "PileSteel": 268,
+  "PileSteel_h": 488,
+  "Rebar": 1905,
   "Rebar2": 102,
-  "SubStrConc": 340,
+  "SubStrConc": 416,
   "SubStrConc2": 372,
   "SubStrConc2_h": 44,
-  "SubStrConc_h": 168,
-  "Symbols": 173,
-  "TextStructures": 454,
+  "SubStrConc_h": 179,
+  "Symbols": 199,
+  "TextStructures": 505,
   "WallConc": 16,
   "WallMSEPanel": 2
  },
@@ -235,7 +279,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 11865,
+  "entities": 13322,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {},
@@ -543,6 +587,36 @@
     "count": 16,
     "lengths_in": {
      "66": 16
+    },
+    "varies": false
+   },
+   "5G1": {
+    "size": 5,
+    "des": "G1",
+    "description": "PIER WALL VERTICAL",
+    "count": 48,
+    "lengths_in": {
+     "188": 48
+    },
+    "varies": false
+   },
+   "5G2": {
+    "size": 5,
+    "des": "G2",
+    "description": "PIER WALL HORIZONTAL",
+    "count": 38,
+    "lengths_in": {
+     "212": 38
+    },
+    "varies": false
+   },
+   "5G3": {
+    "size": 5,
+    "des": "G3",
+    "description": "PIER WALL END U RETURN",
+    "count": 38,
+    "lengths_in": {
+     "176": 38
     },
     "varies": false
    }

@@ -117,13 +117,26 @@ class SubstructureDxfTests(unittest.TestCase):
 
     def test_model_marks_are_the_sdm_marks(self):
         """D-042: the FreeCAD Mark of every bar equals its SDM mark (rerun
-        substructure_drawings/freecad_marks.py after a cage regeneration)."""
+        substructure_drawings/freecad_marks.py after a cage regeneration).
+        D-076: the pier wall bars carry the controller's PW- identifiers
+        until their marks are written back (the model says "drawing SDM
+        marks pending"); while they do, the bar list says so (C7)."""
+        pending = []
         for key, S in self.snap["structures"].items():
             kind = "PIER" if key == "PIER" else "EB"
             sbars = [dict(b) for b in S["bars"]]
             bars.assign_marks(kind, sbars)
-            stale = [(b["name"], b["mark_model"], b["mark"]) for b in sbars if b["mark_model"] != b["mark"]]
+            stale = [(b["name"], b["mark_model"], b["mark"]) for b in sbars if b["mark_model"] != b["mark"]
+                     and not (b["component"] == "pier_wall" and b["mark_model"].startswith("PW-"))]
             self.assertEqual(stale, [], "%s model marks differ from SDM marks" % key)
+            pending += [b for b in sbars if b["component"] == "pier_wall" and b["mark_model"] != b["mark"]]
+        lay = next(lay for lay in self.doc.layouts if lay.name.endswith("REINFORCING BAR LIST"))
+        notes = " ".join(e.text for e in lay.query("MTEXT"))
+        self.assertEqual("CARRY THE CAD MODEL'S PW- IDENTIFIERS" in notes, bool(pending))
+        if pending:
+            self.assertTrue(all(b["mark_model"].startswith("PW-") for b in pending))
+            for mark in sorted({b["mark"] for b in pending}):
+                self.assertIn(mark, notes)
 
     def test_register_covers_every_bar_once(self):
         with (OUT / "bar_mark_register.csv").open(encoding="utf-8") as f:
@@ -320,11 +333,12 @@ class SubstructureDxfTests(unittest.TestCase):
         separate reinforcement sheets), its details (STYLE_GUIDE E1: three
         details sheets per end bent), then the bar list."""
         sheets = self.manifest["sheets"]
-        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 14)])
+        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 17)])
         self.assertEqual([s["title"] for s in sheets], [
             "END BENT 1", "END BENT 1 DETAILS (1 OF 3)", "END BENT 1 DETAILS (2 OF 3)",
             "END BENT 1 DETAILS (3 OF 3)",
-            "PIER", "PIER DETAILS (1 OF 3)", "PIER DETAILS (2 OF 3)", "PIER DETAILS (3 OF 3)",
+            "PIER", "PIER DETAILS (1 OF 6)", "PIER DETAILS (2 OF 6)", "PIER DETAILS (3 OF 6)",
+            "PIER DETAILS (4 OF 6)", "PIER DETAILS (5 OF 6)", "PIER DETAILS (6 OF 6)",
             "END BENT 2", "END BENT 2 DETAILS (1 OF 3)", "END BENT 2 DETAILS (2 OF 3)",
             "END BENT 2 DETAILS (3 OF 3)",
             "REINFORCING BAR LIST"])
@@ -333,12 +347,18 @@ class SubstructureDxfTests(unittest.TestCase):
         self.assertEqual(sheets[1]["scales"], ["3/4\" = 1'-0\"", "1\" = 1'-0\"", "1-1/2\" = 1'-0\""])
         # the cheek wall sections at 3/4", detail "B" at 1", detail "A" at 1 1/2"
         self.assertEqual(sheets[3]["scales"], ["3/4\" = 1'-0\""])
-        self.assertEqual(sheets[3]["scales"], sheets[11]["scales"])
-        self.assertEqual(sheets[1]["scales"], sheets[9]["scales"])
+        self.assertEqual(sheets[3]["scales"], sheets[14]["scales"])
+        self.assertEqual(sheets[1]["scales"], sheets[12]["scales"])
         self.assertEqual(sheets[5]["scales"], ["3/4\" = 1'-0\""])
         self.assertEqual(sheets[6]["scales"], ["3/4\" = 1'-0\""])
         # the pier cheek wall sheet (D-059): view E-E at 3/8", sections F-F and G-G at 3/4"
         self.assertEqual(sheets[7]["scales"], ["3/8\" = 1'-0\"", "3/4\" = 1'-0\""])
+        # the pier wall sheets (D-076 / D-079, E10): the wall elevation at
+        # 3/8"; section J-J at 1/2" with the ring plate plan at 1-1/2" and
+        # section K-K at 3" = 1'-0"; section H-H at 1/2"
+        self.assertEqual(sheets[8]["scales"], ["3/8\" = 1'-0\""])
+        self.assertEqual(sheets[9]["scales"], ["1/2\" = 1'-0\"", "1-1/2\" = 1'-0\"", "3\" = 1'-0\""])
+        self.assertEqual(sheets[10]["scales"], ["1/2\" = 1'-0\""])
 
     def test_cross_references_name_the_sheets_that_carry_the_views(self):
         """Plan-sheet note 3 and the details notes point at the right sheets
@@ -351,42 +371,110 @@ class SubstructureDxfTests(unittest.TestCase):
             if lay.name != "Model":
                 texts[lay.name.split(" ")[0]] = [e.dxf.text if e.dxftype() == "TEXT" else e.text
                                                  for e in lay.query("TEXT MTEXT")]
-        for first, nums in (("B4-1", ("B4-2", "B4-3", "B4-4")), ("B4-9", ("B4-10", "B4-11", "B4-12"))):
+        for first, nums in (("B4-1", ("B4-2", "B4-3", "B4-4")), ("B4-12", ("B4-13", "B4-14", "B4-15"))):
             self.assertTrue(any(
                 "FOR SECTIONS A-A AND B-B AND DETAILS \"A\" AND \"B\", SEE SHEET %s. FOR SECTION C-C AND VIEWS D-D "
                 "AND E-E, SEE SHEET %s. FOR SECTIONS F-F AND G-G AND PEDESTAL DETAILS, SEE SHEET %s." % nums in t
                 for t in texts[first]), first)
         self.assertTrue(any("SEE VIEW D-D, SHEET B4-3" in t for t in texts["B4-4"]))
-        self.assertTrue(any("SEE VIEW D-D, SHEET B4-11" in t for t in texts["B4-12"]))
-        # the pier: sections on (1 OF 3), pedestal details on (2 OF 3), the
-        # cheek wall view E-E and sections F-F and G-G on (3 OF 3) (D-059)
+        self.assertTrue(any("SEE VIEW D-D, SHEET B4-14" in t for t in texts["B4-15"]))
+        # the pier: sections on (1 OF 6), pedestal details on (2 OF 6), the
+        # cheek wall view E-E and sections F-F and G-G on (3 OF 6) (D-059),
+        # the pier wall on (4 OF 6) to (6 OF 6) (D-076 / D-079)
         self.assertTrue(any("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET B4-6. FOR PEDESTAL DETAILS, SEE SHEET B4-7. "
                             "FOR VIEW E-E AND THE CHEEK WALL SECTIONS F-F AND G-G, SEE SHEET B4-8. FOR LOCATION OF "
                             "VIEWS D-D AND E-E, SEE PLAN." in t for t in texts["B4-5"]))
+        self.assertTrue(any("FOR THE PIER WALL REINFORCEMENT AND THE ANNULAR PILE RING PLATES, SEE SHEETS B4-9 TO B4-11."
+                            in t for t in texts["B4-5"]))
         self.assertTrue(any("FOR PEDESTAL DETAILS, SEE SHEET B4-7." in t for t in texts["B4-6"]))
+        self.assertTrue(any("SEE SHEETS B4-9, B4-10 AND B4-11." in t for t in texts["B4-6"]))
         self.assertTrue(any("SEE SHEET B4-6." in t for t in texts["B4-7"]))
         self.assertTrue(any("FOR LOCATION OF VIEW E-E, SEE SHEET B4-5 (PLAN)." in t for t in texts["B4-8"]))
+        self.assertTrue(any("FOR SECTION J-J AND THE ANNULAR RING PLATE DETAILS, SEE SHEET B4-10; FOR SECTION H-H, "
+                            "SEE SHEET B4-11." in t for t in texts["B4-9"]))
+        self.assertTrue(any("SEE THE PIER WALL ELEVATION, SHEET B4-9." in t for t in texts["B4-10"]))
+        self.assertTrue(any("SEE THE PIER WALL ELEVATION, SHEET B4-9." in t for t in texts["B4-11"]))
+        self.assertFalse(any("PROVISIONAL" in t for t in texts["B4-5"] + texts["B4-6"]))
         # (the view titles are model-space text: one VIEW E-E, SECTION F-F
-        # and SECTION G-G per support that has cheek walls, three each)
+        # and SECTION G-G per support that has cheek walls, three each; the
+        # pier wall views once)
         titles = [e.dxf.text for e in self.doc.modelspace().query("TEXT")]
         for name in ("VIEW E-E", "SECTION F-F", "SECTION G-G"):
             self.assertEqual(titles.count(name), 3, name)
-        # the LEGEND is on B4-2 and B4-10 only, once per bent
-        for number in ("B4-2", "B4-10"):
+        for name in ("PIER WALL ELEVATION", "SECTION H-H", "SECTION J-J", "SECTION K-K", "ANNULAR RING PLATE"):
+            self.assertEqual(titles.count(name), 1, name)
+        # the LEGEND is on B4-2 and B4-13 only, once per bent
+        for number in ("B4-2", "B4-13"):
             self.assertIn("LEGEND:", texts[number], number)
             self.assertTrue(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
         for number in sorted(texts):
-            if number not in ("B4-2", "B4-10"):
+            if number not in ("B4-2", "B4-13"):
                 self.assertNotIn("LEGEND:", texts[number], number)
                 self.assertFalse(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
                 self.assertFalse(any("SPECIALTY ENGINEER" in t for t in texts[number]), number)
         # the other sheets that show the strap refer to the legend sheet
         for number, legend_sheet, wording in (
                 ("B4-1", "B4-2", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
-                ("B4-9", "B4-10", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
+                ("B4-12", "B4-13", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
                 ("B4-3", "B4-2", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s."),
-                ("B4-11", "B4-10", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s.")):
+                ("B4-14", "B4-13", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s.")):
             self.assertTrue(any(wording % legend_sheet in t for t in texts[number]), number)
+
+    def test_pier_wall_sheets_follow_the_model(self):
+        """D-076 / D-079 (E10): the snapshot carries the pier wall steel
+        block (the controller's inputs, the twenty ring plates, the wall
+        projections) and the 124 wall bars as the G family; the wall sheets
+        write the plate sizes in inches from the model's inputs, name the
+        marks, carry the MODEL CHECK notes of the source calculation's
+        failed checks and the unanchored verticals, and the pile sections
+        of the pier leave the wall steel to the wall sheets."""
+        from substructure_drawings import pier_wall
+        S = self.snap["structures"]["PIER"]
+        W = S["pier_wall"]
+        inp = W["inputs"]
+        self.assertEqual(len(W["rings"]), inp["RingCount"] * len(S["pile_x_ft"]))
+        self.assertEqual({r["row"] for r in W["rings"]}, set(range(1, inp["RingCount"] + 1)))
+        self.assertAlmostEqual(inp["RingThickness"], 0.5)   # D-079
+        self.assertEqual((inp["RingOD"], inp["RingID"], inp["WeldLeg"]), (23.0, 20.125, 0.3125))
+        for r in W["rings"]:
+            self.assertAlmostEqual(r["top_ft"] - r["bot_ft"], inp["RingThickness"] / 12.0, places=5)
+            self.assertAlmostEqual(r["top_ft"] - W["wall_bb_ft"][2], (inp["FirstRingTop"] + (r["row"] - 1) * inp["RingSpacing"]) / 12.0, places=5)
+        wall = [b for b in S["bars"] if b["component"] == "pier_wall"]
+        self.assertEqual(len(wall), 124)
+        sbars = [dict(b) for b in S["bars"]]
+        table = bars.assign_marks("PIER", sbars)
+        marks = {b["mark"] for b in sbars if b["component"] == "pier_wall"}
+        self.assertEqual(marks, {"5G1", "5G2", "5G3"})
+        self.assertEqual({m: table[m]["count"] for m in marks}, {"5G1": 48, "5G2": 38, "5G3": 38})
+        self.assertEqual(bars.shape_name(table["5G3"]), "U-BAR")
+        self.assertEqual(W["section_plan"]["row"], 3)
+        self.assertIn(W["section_x"]["pile"], [n for n, m in S["concrete"].items() if m["role"] == "pile_steel"])
+        # the inch formatter of the plate sizes
+        self.assertEqual([pier_wall.inches(x) for x in (23.0, 20.125, 0.5, 1.4375, 0.3125, 0.0625)],
+                         ["23\"", "20" + fdot.frac(Fraction(1, 8)) + "\"", fdot.frac(Fraction(1, 2)) + "\"",
+                          "1" + fdot.frac(Fraction(7, 16)) + "\"", fdot.frac(Fraction(5, 16)) + "\"",
+                          fdot.frac(Fraction(1, 16)) + "\""])
+        texts = {}
+        for lay in self.doc.layouts:
+            if lay.name != "Model":
+                texts[lay.name.split(" ")[0]] = " ".join(e.dxf.text if e.dxftype() == "TEXT" else e.text
+                                                         for e in lay.query("TEXT MTEXT"))
+        self.assertIn("23\" O.D. x 20%s\" I.D." % fdot.frac(Fraction(1, 8)), texts["B4-9"])
+        self.assertIn("5G1 VERTICALS, 5G2 HORIZONTALS", texts["B4-9"])
+        self.assertIn("FAILED CHECK RING-GRID", texts["B4-9"])
+        self.assertIn("NO ANCHORAGE INTO THE CAP", texts["B4-9"])
+        self.assertIn("TWO CONTINUOUS %s\" FILLET WELDS" % fdot.frac(Fraction(5, 16)), texts["B4-10"])
+        self.assertIn("Fy = 50 KSI, Fu = 65 KSI", texts["B4-10"])
+        model = [e.dxf.text if e.dxftype() == "TEXT" else e.text for e in self.doc.modelspace().query("TEXT MTEXT")]
+        self.assertTrue(any("ANNULAR RING" in t and "5 PER PILE" in t for t in model))
+        self.assertTrue(any(t.startswith("4~5G1 EA. END") for t in model))
+        self.assertTrue(any("5G3 (EF) END U RETURN" in t for t in model))
+        # the pier's cap sections leave the wall steel to the wall sheets
+        comp = build.Composer(self.snap)
+        b = views.Builder(comp.sup["PIER"], comp.doc)
+        dots, shapes = b._section_bars(self.snap["structures"]["PIER"]["sections"]["at_pile"]["x_global_ft"], 1.25)
+        self.assertFalse(any(m.endswith(("G1", "G2", "G3")) for m in dots))
+        self.assertFalse(any(rb["family"] == "pier_wall" for rb, _ in shapes))
 
     def test_strap_legend_is_current_with_the_backwall_case(self):
         """C1/D6: the Δ legend carries the strap loads of the selected
@@ -795,7 +883,7 @@ class SubstructureDxfTests(unittest.TestCase):
         # mats took E; the cheek mats are straight #4 bars, Type 1)
         for key, want in (("EB1", {"5C": "11", "4E3": "11", "4E4": "10", "6B2": "5", "6B1": "4", "4F1": "11"}),
                           ("PIER", {"5C": "11", "5D1": "11", "5D2": "11", "5B2": "5", "5B1": "4", "4F1": "11",
-                                    "4E1": "1", "4E2": "1"})):
+                                    "4E1": "1", "4E2": "1", "5G1": "1", "5G2": "1", "5G3": "11"})):
             s = comp.sup[key]
             for mark, typ in want.items():
                 e = s.table[mark]

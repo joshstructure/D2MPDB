@@ -302,6 +302,130 @@ PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_left_V3,Pier End left vertical #5 
 PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V1,Pier End right vertical #5 End_right_V1,5D2,45.613,46
 PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V2,Pier End right vertical #5 End_right_V2,5D2,45.613,46
 PIER,5D2,5,D2,"CAP END, VERTICAL",CagePierEnd_right_V3,Pier End right vertical #5 End_right_V3,5D2,45.613,46
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE1V01,Pier wall #5 End 1 vertical,PW-E1V01,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE1V02,Pier wall #5 End 1 vertical001,PW-E1V02,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE1V03,Pier wall #5 End 1 vertical002,PW-E1V03,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE1V04,Pier wall #5 End 1 vertical003,PW-E1V04,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE2V01,Pier wall #5 End 2 vertical,PW-E2V01,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE2V02,Pier wall #5 End 2 vertical001,PW-E2V02,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE2V03,Pier wall #5 End 2 vertical002,PW-E2V03,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelE2V04,Pier wall #5 End 2 vertical003,PW-E2V04,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V01,Pier wall #5 Face 1 vertical,PW-F1V01,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V02,Pier wall #5 Face 1 vertical001,PW-F1V02,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V03,Pier wall #5 Face 1 vertical002,PW-F1V03,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V04,Pier wall #5 Face 1 vertical003,PW-F1V04,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V05,Pier wall #5 Face 1 vertical004,PW-F1V05,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V06,Pier wall #5 Face 1 vertical005,PW-F1V06,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V07,Pier wall #5 Face 1 vertical006,PW-F1V07,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V08,Pier wall #5 Face 1 vertical007,PW-F1V08,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V09,Pier wall #5 Face 1 vertical008,PW-F1V09,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V10,Pier wall #5 Face 1 vertical009,PW-F1V10,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V11,Pier wall #5 Face 1 vertical010,PW-F1V11,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V12,Pier wall #5 Face 1 vertical011,PW-F1V12,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V13,Pier wall #5 Face 1 vertical012,PW-F1V13,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V14,Pier wall #5 Face 1 vertical013,PW-F1V14,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V15,Pier wall #5 Face 1 vertical014,PW-F1V15,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V16,Pier wall #5 Face 1 vertical015,PW-F1V16,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V17,Pier wall #5 Face 1 vertical016,PW-F1V17,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V18,Pier wall #5 Face 1 vertical017,PW-F1V18,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V19,Pier wall #5 Face 1 vertical018,PW-F1V19,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF1V20,Pier wall #5 Face 1 vertical019,PW-F1V20,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V01,Pier wall #5 Face 2 vertical,PW-F2V01,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V02,Pier wall #5 Face 2 vertical001,PW-F2V02,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V03,Pier wall #5 Face 2 vertical002,PW-F2V03,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V04,Pier wall #5 Face 2 vertical003,PW-F2V04,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V05,Pier wall #5 Face 2 vertical004,PW-F2V05,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V06,Pier wall #5 Face 2 vertical005,PW-F2V06,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V07,Pier wall #5 Face 2 vertical006,PW-F2V07,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V08,Pier wall #5 Face 2 vertical007,PW-F2V08,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V09,Pier wall #5 Face 2 vertical008,PW-F2V09,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V10,Pier wall #5 Face 2 vertical009,PW-F2V10,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V11,Pier wall #5 Face 2 vertical010,PW-F2V11,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V12,Pier wall #5 Face 2 vertical011,PW-F2V12,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V13,Pier wall #5 Face 2 vertical012,PW-F2V13,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V14,Pier wall #5 Face 2 vertical013,PW-F2V14,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V15,Pier wall #5 Face 2 vertical014,PW-F2V15,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V16,Pier wall #5 Face 2 vertical015,PW-F2V16,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V17,Pier wall #5 Face 2 vertical016,PW-F2V17,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V18,Pier wall #5 Face 2 vertical017,PW-F2V18,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V19,Pier wall #5 Face 2 vertical018,PW-F2V19,188.237,188
+PIER,5G1,5,G1,PIER WALL VERTICAL,PierWallSteelF2V20,Pier wall #5 Face 2 vertical019,PW-F2V20,188.237,188
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H01,Pier wall #5 Face 1 horizontal,PW-F1H01,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H02,Pier wall #5 Face 1 horizontal001,PW-F1H02,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H03,Pier wall #5 Face 1 horizontal002,PW-F1H03,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H04,Pier wall #5 Face 1 horizontal003,PW-F1H04,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H05,Pier wall #5 Face 1 horizontal004,PW-F1H05,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H06,Pier wall #5 Face 1 horizontal005,PW-F1H06,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H07,Pier wall #5 Face 1 horizontal006,PW-F1H07,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H08,Pier wall #5 Face 1 horizontal007,PW-F1H08,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H09,Pier wall #5 Face 1 horizontal008,PW-F1H09,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H10,Pier wall #5 Face 1 horizontal009,PW-F1H10,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H11,Pier wall #5 Face 1 horizontal010,PW-F1H11,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H12,Pier wall #5 Face 1 horizontal011,PW-F1H12,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H13,Pier wall #5 Face 1 horizontal012,PW-F1H13,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H14,Pier wall #5 Face 1 horizontal013,PW-F1H14,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H15,Pier wall #5 Face 1 horizontal014,PW-F1H15,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H16,Pier wall #5 Face 1 horizontal015,PW-F1H16,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H17,Pier wall #5 Face 1 horizontal016,PW-F1H17,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H18,Pier wall #5 Face 1 horizontal017,PW-F1H18,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF1H19,Pier wall #5 Face 1 horizontal018,PW-F1H19,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H01,Pier wall #5 Face 2 horizontal,PW-F2H01,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H02,Pier wall #5 Face 2 horizontal001,PW-F2H02,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H03,Pier wall #5 Face 2 horizontal002,PW-F2H03,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H04,Pier wall #5 Face 2 horizontal003,PW-F2H04,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H05,Pier wall #5 Face 2 horizontal004,PW-F2H05,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H06,Pier wall #5 Face 2 horizontal005,PW-F2H06,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H07,Pier wall #5 Face 2 horizontal006,PW-F2H07,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H08,Pier wall #5 Face 2 horizontal007,PW-F2H08,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H09,Pier wall #5 Face 2 horizontal008,PW-F2H09,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H10,Pier wall #5 Face 2 horizontal009,PW-F2H10,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H11,Pier wall #5 Face 2 horizontal010,PW-F2H11,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H12,Pier wall #5 Face 2 horizontal011,PW-F2H12,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H13,Pier wall #5 Face 2 horizontal012,PW-F2H13,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H14,Pier wall #5 Face 2 horizontal013,PW-F2H14,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H15,Pier wall #5 Face 2 horizontal014,PW-F2H15,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H16,Pier wall #5 Face 2 horizontal015,PW-F2H16,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H17,Pier wall #5 Face 2 horizontal016,PW-F2H17,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H18,Pier wall #5 Face 2 horizontal017,PW-F2H18,212.375,212
+PIER,5G2,5,G2,PIER WALL HORIZONTAL,PierWallSteelF2H19,Pier wall #5 Face 2 horizontal018,PW-F2H19,212.375,212
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U01,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs,PW-E1U01,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U02,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs001,PW-E1U02,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U03,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs002,PW-E1U03,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U04,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs003,PW-E1U04,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U05,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs004,PW-E1U05,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U06,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs005,PW-E1U06,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U07,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs006,PW-E1U07,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U08,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs007,PW-E1U08,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U09,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs008,PW-E1U09,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U10,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs009,PW-E1U10,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U11,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs010,PW-E1U11,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U12,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs011,PW-E1U12,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U13,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs012,PW-E1U13,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U14,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs013,PW-E1U14,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U15,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs014,PW-E1U15,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U16,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs015,PW-E1U16,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U17,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs016,PW-E1U17,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U18,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs017,PW-E1U18,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE1U19,Pier wall #5 End 1 horizontal U return; 72-in contact lap legs018,PW-E1U19,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U01,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs,PW-E2U01,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U02,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs001,PW-E2U02,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U03,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs002,PW-E2U03,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U04,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs003,PW-E2U04,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U05,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs004,PW-E2U05,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U06,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs005,PW-E2U06,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U07,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs006,PW-E2U07,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U08,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs007,PW-E2U08,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U09,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs008,PW-E2U09,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U10,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs009,PW-E2U10,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U11,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs010,PW-E2U11,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U12,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs011,PW-E2U12,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U13,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs012,PW-E2U13,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U14,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs013,PW-E2U14,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U15,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs014,PW-E2U15,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U16,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs015,PW-E2U16,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U17,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs016,PW-E2U17,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U18,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs017,PW-E2U18,175.872,176
+PIER,5G3,5,G3,PIER WALL END U RETURN,PierWallSteelE2U19,Pier wall #5 End 2 horizontal U return; 72-in contact lap legs018,PW-E2U19,175.872,176
 PIER,6A1,6,A1,CAP TOP,CagePierLong01,Pier Top row 1 #6 Long01,6A1,224.000,224
 PIER,6A1,6,A1,CAP TOP,CagePierLong02,Pier Top row 1 #6 Long02,6A1,224.000,224
 PIER,6A1,6,A1,CAP TOP,CagePierLong03,Pier Top row 1 #6 Long03,6A1,224.000,224

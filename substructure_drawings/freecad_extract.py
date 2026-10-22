@@ -96,9 +96,16 @@ STRUCTURES = {
             "cap": ["CagePierBars"],
             "cheek": ["SteelBridgeCheekPier1Bars", "SteelBridgeCheekPier2Bars"],
             "pedestal": ["PedSteelPierB1Bars", "PedSteelPierB2Bars"],
+            # D-076 / D-079 (2026-10-22): the pier wall mats (#5 at 11 in
+            # maximum each way, both faces, end U returns and end-face
+            # verticals) and the twenty 1/2-in annular ring plates
+            "pier_wall": ["PierWallSteelBars"],
         },
         "wwr": [],
         "pile_clip_ft": None,      # piles drawn to the pier-wall bottom less 2 ft
+        # the pier wall steel controller (PierWallSteelInputs) and its rings
+        # (PierWallRings): read for the pier wall sheets (schema 3)
+        "pier_wall_steel": {"inputs": "PierWallSteelInputs", "rings": "PierWallRings"},
     },
     "EB2": {
         "title": "END BENT 2",
@@ -140,6 +147,103 @@ LOG = []
 
 def log(msg):
     LOG.append(msg)
+
+
+# ------------------------------------------------------------ pier wall
+# D-076 / D-079 (2026-10-22): the pier wall carries two #5 mats, end U
+# returns, end-face verticals and five 1/2-in annular ring plates on each
+# pile (PierWallSteelInputs owns the sizes; PierWallRingP<p>R<r> are the
+# plates).  The pier wall sheets draw the wall whole (its own elevation, a
+# horizontal section through a ring row and a transverse section through a
+# pile with its rings), so the wall gets its own projections here.
+WALL_INPUT_LENGTHS = ("Cover", "MaximumSpacing", "ULeg", "VerticalLapAllowance", "InsideBendDiameter", "FirstRingTop",
+                      "RingSpacing", "RingOD", "RingID", "RingThickness", "WeldLeg", "PlacementTolerance")
+
+
+def pier_wall_block(doc, cfg, conc, cap, origin, e1, up, clip_z):
+    get = doc.getObject
+    names = cfg["pier_wall_steel"]
+    inp = get(names["inputs"])
+    rings_grp = get(names["rings"])
+    if inp is None or rings_grp is None:
+        log("missing pier wall steel " + repr(names))
+        return None
+    wall_name = cfg["concrete"]["pier_wall"][0]
+    wall = get(wall_name).Shape
+    wb = wall.BoundBox
+    block = {"inputs": {k: r6(float(getattr(inp, k).Value) / 25.4) for k in WALL_INPUT_LENGTHS if k in inp.PropertiesList}}
+    block["inputs"].update({"BarNumber": int(inp.BarNumber), "RingCount": int(inp.RingCount)})
+    for k in ("SourceCaseSHA256", "SourcePath", "EngineeringStatus", "MarkStatus", "Limitations"):
+        if k in inp.PropertiesList:
+            block["inputs"][k] = str(getattr(inp, k))
+    try:
+        block["source_case"] = json.loads(inp.SourceCaseJSON)
+        block["source_failed_checks"] = json.loads(inp.SourceFailuresJSON)
+    except Exception as exc:
+        log("pier wall source json: %s" % exc)
+    # the rings: one record each, feet, absolute z
+    rings = []
+    ring_shapes = []
+    for o in rings_grp.Group:
+        if not hasattr(o, "Shape") or o.Shape.isNull():
+            continue
+        b = o.Shape.BoundBox
+        rings.append({"name": o.Name, "label": o.Label, "pile": get(o.Pile.Name).Name if hasattr(o, "Pile") else "",
+                      "row": int(getattr(o, "Row", 0)),
+                      "center_ft": [r6((b.XMin + b.XMax) / 2 / FT), r6((b.YMin + b.YMax) / 2 / FT)],
+                      "top_ft": r6(b.ZMax / FT), "bot_ft": r6(b.ZMin / FT),
+                      "od_ft": r6(b.XLength / FT), "id_ft": r6(float(inp.RingID.Value) / FT),
+                      "weld": str(getattr(o, "WeldDetail", ""))})
+        ring_shapes.append((o.Name, o.Shape))
+    rings.sort(key=lambda r: (r["pile"], r["row"]))
+    block["rings"] = rings
+    block["wall_bb_ft"] = [r6(v / FT) for v in (wb.XMin, wb.YMin, wb.ZMin, wb.XMax, wb.YMax, wb.ZMax)]
+    piles = conc.get("pile_steel") or conc.get("pile_conc") or []
+    cap_stub = [(n, clip_box(s, zmax=cap.ZMin + 1.0 * FT)) for n, s in conc["cap"]]
+    cap_stub = [(n, s) for n, s in cap_stub if s is not None]
+    parts = {"pier_wall": [(wall_name, wall)], "pile_steel": [(n, s) for n, s in piles if s is not None],
+             "ring": ring_shapes, "cap": cap_stub}
+    # ---- the wall elevation (the elevation frame: sheet right = e1, z up)
+    block["elev"] = project(parts, origin, e1, (0, 0, 1))
+    # ---- horizontal section through the middle ring row, looking down (the
+    # plan frame): the kept part is below the cut, so its top faces are the
+    # cut faces of the wall, the pipe piles and the plates
+    mid_row = (int(inp.RingCount) + 1) // 2
+    mid = next((r for r in rings if r["row"] == mid_row), rings[0] if rings else None)
+    if mid is not None:
+        z_cut = (mid["top_ft"] + mid["bot_ft"]) / 2 * FT
+        hparts = {}
+        for role, items in parts.items():
+            if role == "cap":
+                continue
+            lst = []
+            for n, s in items:
+                c = clip_box(s, zmin=clip_z, zmax=z_cut)
+                if c is not None:
+                    lst.append((n, c))
+            if lst:
+                hparts[role] = lst
+        block["section_plan"] = {"z_cut_ft": r6(z_cut / FT), "row": mid["row"],
+                                 "edges": project(hparts, (origin[0], origin[1], z_cut), e1, up)}
+    # ---- transverse section through the second pile (its rings cut), seen
+    # as the support sections are seen (sheet right = station, viewer
+    # looking +X): the cut face and SECTION_DEPTH_FT beyond it
+    pile_x = sorted((((get(n).Shape.BoundBox.XMin + get(n).Shape.BoundBox.XMax) / 2), n) for n, _ in piles)
+    if pile_x:
+        x, pile_name = pile_x[1] if len(pile_x) > 1 else pile_x[0]
+        keep = Part.makeBox(SECTION_DEPTH_FT * FT, 400000.0, 400000.0, V(x, -200000.0, -200000.0))
+        xparts = {}
+        for role, items in parts.items():
+            lst = []
+            for n, s in items:
+                c = s.common(keep)
+                if c.Volume > 1e-3:
+                    lst.append((n, c))
+            if lst:
+                xparts[role] = lst
+        block["section_x"] = {"x_global_ft": r6(x / FT), "x_ft": r6((x - origin[0]) / FT), "pile": pile_name,
+                              "edges": project(xparts, (x, 0, 0), STATION, (0, 0, 1))}
+    return block
 
 
 # (frames, edge records, the hidden-line projection and the clip box are
@@ -443,6 +547,8 @@ def run():
                     except Exception as exc:
                         log("wwr %s: %s" % (o.Name, exc))
         S["wwr"] = wwr
+        if cfg.get("pier_wall_steel"):
+            S["pier_wall"] = pier_wall_block(doc, cfg, conc, cap, origin, e1, up, clip_z)
         snap["structures"][key] = S
         log("%s: %d plan, %d elev edges, %d bars, %d wwr" % (key, len(S["plan"]), len(S["elev"]), len(bars), len(wwr)))
     App.closeDocument(doc.Name)
