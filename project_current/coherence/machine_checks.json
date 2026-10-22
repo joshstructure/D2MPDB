@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-10-21T23:24:55.645605+00:00",
+  "checked_at_utc": "2026-10-22T01:13:29.897150+00:00",
   "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
-  "register_sha256": "673987794eb48cc5d4f62231cbe5e2ef208dabad505eb9e7a3dca099c57bfe20",
+  "register_sha256": "359e4c09764cbecbc5f07389d6faac7a2e6a0f4246e0c0dbba8b1f948bd86a63",
   "tracker_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
-  "assumptions_sha256": "2d7ed24138b1dc2a73581745984cc6f29ce0f59c6aea7fc7bffbbc7ed0b52130",
+  "assumptions_sha256": "73f9d1598bea4b67bc8abf7a1a876f8b5a74cf7b2e6109807cc0b7cafaab5658",
   "source_count": 40,
   "item_count": 28,
   "outstanding_count": 15,
@@ -15,15 +15,15 @@
   },
   "check_counts": {
     "MATCH": 57,
-    "CHANGED": 3,
+    "CHANGED": 2,
     "MISSING": 4,
-    "REVIEW": 21,
+    "REVIEW": 16,
     "ERROR": 9
   },
   "assumption_counts": {
     "count": 11,
-    "open": 3,
-    "stale": 8
+    "open": 2,
+    "stale": 9
   },
   "checks": [
     {
@@ -34,8 +34,8 @@
         "JOURNAL"
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
-      "expected_sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
-      "actual_sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
+      "expected_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+      "actual_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -77,9 +77,9 @@
       "source_ids": [
         "PIER-REPORT"
       ],
-      "path": "project_current/cap_design/pier/Pier Cap Design 10-20.html",
-      "expected_sha256": "4d88de794d684b955a62a2445ed23c49490000f70190aac7e0fbb816762b1925",
-      "actual_sha256": "4d88de794d684b955a62a2445ed23c49490000f70190aac7e0fbb816762b1925"
+      "path": "project_current/cap_design/pier/Pier Cap Design 10-21.html",
+      "expected_sha256": "216c26dd78b4394451c0726b3246bc29fafb646a1b06dc6e73607ca445a0eed2",
+      "actual_sha256": "216c26dd78b4394451c0726b3246bc29fafb646a1b06dc6e73607ca445a0eed2"
     },
     {
       "check_id": "SOURCE:PIER-CASE",
@@ -89,8 +89,8 @@
         "PIER-CASE"
       ],
       "path": "project_current/cap_design/pier/selected_case.json",
-      "expected_sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b",
-      "actual_sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b"
+      "expected_sha256": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5",
+      "actual_sha256": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5"
     },
     {
       "check_id": "SOURCE:PIER-XML",
@@ -100,8 +100,8 @@
         "PIER-XML"
       ],
       "path": "project_current/fbmp/pier/Pier_Fixed.XML",
-      "expected_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-      "actual_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7"
+      "expected_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+      "actual_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6"
     },
     {
       "check_id": "SOURCE:EB-REPORT",
@@ -358,14 +358,14 @@
     },
     {
       "check_id": "SOURCE:PILE-TOOL",
-      "status": "CHANGED",
-      "detail": "File differs from the registered revision; review its consumers before adoption.",
+      "status": "MATCH",
+      "detail": "Registered text content matches after CRLF/LF normalization.",
       "source_ids": [
         "PILE-TOOL"
       ],
       "path": "Pile_Design.ipynb",
-      "expected_sha256": "c34bd1ebc5530acb6a2df76199a8b22d35d8126b753c7586f659154ab486b6f5",
-      "actual_sha256": "c20cb11d4d09d05ad7fd6d14ce09b44ffcaebd5ed155ddc94715359aea9ab49f"
+      "expected_sha256": "e649d760a0be486d311346f3259fd9eb0349a5f2502c138bc70210b141fa37d2",
+      "actual_sha256": "e649d760a0be486d311346f3259fd9eb0349a5f2502c138bc70210b141fa37d2"
     },
     {
       "check_id": "SOURCE:PILE-EB1-REPORT",
@@ -374,9 +374,9 @@
       "source_ids": [
         "PILE-EB1-REPORT"
       ],
-      "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-20.html",
-      "expected_sha256": "0b09cb5517286d72847697a36c3b2fab6a76a9816ae5837c8a8be01d0a75b41b",
-      "actual_sha256": "0b09cb5517286d72847697a36c3b2fab6a76a9816ae5837c8a8be01d0a75b41b"
+      "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-21.html",
+      "expected_sha256": "f294d7e5098796053e3842da314589f872e8a5a6ddb3e1ff90768542996349b1",
+      "actual_sha256": "f294d7e5098796053e3842da314589f872e8a5a6ddb3e1ff90768542996349b1"
     },
     {
       "check_id": "SOURCE:PILE-EB1-CASE",
@@ -386,8 +386,8 @@
         "PILE-EB1-CASE"
       ],
       "path": "project_current/pile_design/end_bent_1/selected_case.json",
-      "expected_sha256": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
-      "actual_sha256": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440"
+      "expected_sha256": "39736d61e1ac9a67cbb8b7baaa6fb783ca1f486f7024db6dfc77b1da87ba347b",
+      "actual_sha256": "39736d61e1ac9a67cbb8b7baaa6fb783ca1f486f7024db6dfc77b1da87ba347b"
     },
     {
       "check_id": "SOURCE:PILE-EB2-REPORT",
@@ -396,9 +396,9 @@
       "source_ids": [
         "PILE-EB2-REPORT"
       ],
-      "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-20.html",
-      "expected_sha256": "8c2240cda3d11f2a544ee45da4126c3d07e32a71666ae5d4a53b0596d9b32816",
-      "actual_sha256": "8c2240cda3d11f2a544ee45da4126c3d07e32a71666ae5d4a53b0596d9b32816"
+      "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-21.html",
+      "expected_sha256": "4cef7d11713815a385d4d9e7dd00ba68955161ddb17267da97f3927e09fdd2b8",
+      "actual_sha256": "4cef7d11713815a385d4d9e7dd00ba68955161ddb17267da97f3927e09fdd2b8"
     },
     {
       "check_id": "SOURCE:PILE-EB2-CASE",
@@ -408,8 +408,8 @@
         "PILE-EB2-CASE"
       ],
       "path": "project_current/pile_design/end_bent_2/selected_case.json",
-      "expected_sha256": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
-      "actual_sha256": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf"
+      "expected_sha256": "af5841086e999398fe3d1df25cd4a70ff64a81563fc444b5cd1b13c30a8ce8a7",
+      "actual_sha256": "af5841086e999398fe3d1df25cd4a70ff64a81563fc444b5cd1b13c30a8ce8a7"
     },
     {
       "check_id": "SOURCE:PILE-PIER-REPORT",
@@ -418,9 +418,9 @@
       "source_ids": [
         "PILE-PIER-REPORT"
       ],
-      "path": "project_current/pile_design/pier/Pier Pile Design 10-20.html",
-      "expected_sha256": "1910578a150b7ae1568e97237f57f30693e61f051399fd050324b3e68d95a07c",
-      "actual_sha256": "1910578a150b7ae1568e97237f57f30693e61f051399fd050324b3e68d95a07c"
+      "path": "project_current/pile_design/pier/Pier Pile Design 10-21.html",
+      "expected_sha256": "cf549c5abad7e4ddf97f378a9cba7f05393b529365a5b9138e99cd758fa36a3b",
+      "actual_sha256": "cf549c5abad7e4ddf97f378a9cba7f05393b529365a5b9138e99cd758fa36a3b"
     },
     {
       "check_id": "SOURCE:PILE-PIER-CASE",
@@ -430,8 +430,8 @@
         "PILE-PIER-CASE"
       ],
       "path": "project_current/pile_design/pier/selected_case.json",
-      "expected_sha256": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
-      "actual_sha256": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
+      "expected_sha256": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
+      "actual_sha256": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8"
     },
     {
       "check_id": "SOURCE:PIER-WALL-TOOL",
@@ -530,63 +530,9 @@
       ]
     },
     {
-      "check_id": "DEP:PILE-EB1-REPORT:PILE-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "PILE-EB1-REPORT",
-        "PILE-TOOL"
-      ]
-    },
-    {
-      "check_id": "DEP:PILE-EB1-CASE:PILE-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "PILE-EB1-CASE",
-        "PILE-TOOL"
-      ]
-    },
-    {
-      "check_id": "DEP:PILE-EB2-REPORT:PILE-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "PILE-EB2-REPORT",
-        "PILE-TOOL"
-      ]
-    },
-    {
-      "check_id": "DEP:PILE-EB2-CASE:PILE-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "PILE-EB2-CASE",
-        "PILE-TOOL"
-      ]
-    },
-    {
-      "check_id": "DEP:PILE-PIER-REPORT:PILE-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "PILE-PIER-REPORT",
-        "PILE-TOOL"
-      ]
-    },
-    {
-      "check_id": "DEP:PILE-PIER-CASE:PILE-TOOL",
-      "status": "REVIEW",
-      "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer.",
-      "source_ids": [
-        "PILE-PIER-CASE",
-        "PILE-TOOL"
-      ]
-    },
-    {
       "check_id": "JOURNAL:acceptance",
       "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T030. Review scope remains as recorded.",
+      "detail": "Journal matches acceptance receipt T033. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]
@@ -922,7 +868,7 @@
     {
       "check_id": "ASSUMPTION:A-009",
       "status": "REVIEW",
-      "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes.",
+      "detail": "Basis moved in the register (PILE-PIER-CASE); re-judge the entry and record new basis hashes.",
       "source_ids": [
         "JOURNAL",
         "PIER-XML",
@@ -942,8 +888,8 @@
     },
     {
       "check_id": "ASSUMPTION:A-011",
-      "status": "MATCH",
-      "detail": "Basis hashes equal the current register.",
+      "status": "REVIEW",
+      "detail": "Basis moved in the register (PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE); re-judge the entry and record new basis hashes.",
       "source_ids": [
         "PILE-EB1-CASE",
         "PILE-EB2-CASE",
@@ -1377,54 +1323,9 @@
   "assumptions": {
     "present": true,
     "count": 11,
-    "open": 3,
-    "stale": 8,
+    "open": 2,
+    "stale": 9,
     "entries": [
-      {
-        "id": "A-009",
-        "kind": "assumption",
-        "statement": "The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design while the FBMP pier model uses 60 ksi; the reconciliation is pending.",
-        "where": "Pier pile design case and report; journal PileDesignPier and FoundationModeling modules; pier FBMP model pile material.",
-        "nodes": [
-          "PILE-PIER-CASE",
-          "PILE-PIER-REPORT",
-          "PIER-XML",
-          "JOURNAL-CALC-PileDesignPier",
-          "JOURNAL-CALC-FoundationModeling"
-        ],
-        "magnitude": {
-          "value": 15,
-          "unit": "ksi",
-          "sized_by": "Difference between the 60 ksi FBMP pile material and the 45 ksi design grade (D-050, D-056)."
-        },
-        "disposition": {
-          "status": "pending",
-          "decision": "D-050",
-          "on": "2026-10-19"
-        },
-        "owner": "Project user",
-        "coherence_items": [],
-        "basis": {
-          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-          "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
-        },
-        "references": [
-          "project_current/decisions.md",
-          "PILE_DESIGN.md"
-        ],
-        "stale": true,
-        "stale_sources": [
-          "JOURNAL"
-        ],
-        "unknown_sources": [],
-        "current_basis": {
-          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
-        },
-        "open": true
-      },
       {
         "id": "A-010",
         "kind": "judgment",
@@ -1464,8 +1365,58 @@
         ],
         "unknown_sources": [],
         "current_basis": {
-          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
           "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9"
+        },
+        "open": true
+      },
+      {
+        "id": "A-011",
+        "kind": "gap",
+        "statement": "The 19 October pile design reports carry pending prerequisites: the downdrag source documentation, scour, the minimum tip elevation and the pile-to-cap connection (with pipe steel grade, corrosion allowance, drivability and environment classification).",
+        "where": "End Bent 1, End Bent 2 and Pier pile design reports and cases; journal pile design modules.",
+        "nodes": [
+          "PILE-EB1-REPORT",
+          "PILE-EB2-REPORT",
+          "PILE-PIER-REPORT",
+          "PILE-EB1-CASE",
+          "PILE-EB2-CASE",
+          "PILE-PIER-CASE"
+        ],
+        "magnitude": {
+          "value": null,
+          "unit": "",
+          "sized_by": "Not a load difference: unconfirmed inputs (15, 15 and 16 pending entries per report under D-054)."
+        },
+        "disposition": {
+          "status": "pending",
+          "decision": "D-054",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-028"
+        ],
+        "basis": {
+          "PILE-EB1-CASE": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
+          "PILE-EB2-CASE": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
+          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-pile-reports/source_receipt.json",
+          "PILE_DESIGN.md"
+        ],
+        "stale": true,
+        "stale_sources": [
+          "PILE-EB1-CASE",
+          "PILE-EB2-CASE",
+          "PILE-PIER-CASE"
+        ],
+        "unknown_sources": [],
+        "current_basis": {
+          "PILE-EB1-CASE": "39736d61e1ac9a67cbb8b7baaa6fb783ca1f486f7024db6dfc77b1da87ba347b",
+          "PILE-EB2-CASE": "af5841086e999398fe3d1df25cd4a70ff64a81563fc444b5cd1b13c30a8ce8a7",
+          "PILE-PIER-CASE": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8"
         },
         "open": true
       },
@@ -1498,7 +1449,7 @@
         "basis": {
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
           "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
         },
         "references": [
@@ -1512,8 +1463,8 @@
         "current_basis": {
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
         },
         "open": false
       },
@@ -1543,7 +1494,7 @@
           "COH-005"
         ],
         "basis": {
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
           "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
           "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
         },
@@ -1558,9 +1509,9 @@
         ],
         "unknown_sources": [],
         "current_basis": {
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
           "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
-          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
         },
         "open": false
       },
@@ -1610,7 +1561,7 @@
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
           "BACKWALL-CASE": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
-          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
         },
         "open": false
       },
@@ -1655,7 +1606,7 @@
         "current_basis": {
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
         },
         "open": false
       },
@@ -1684,7 +1635,7 @@
           "COH-004"
         ],
         "basis": {
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
           "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
         },
         "references": [
@@ -1697,7 +1648,7 @@
         ],
         "unknown_sources": [],
         "current_basis": {
-          "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
           "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9"
         },
         "open": false
@@ -1741,55 +1692,55 @@
         "unknown_sources": [],
         "current_basis": {
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "JOURNAL": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
         },
         "open": false
       },
       {
-        "id": "A-011",
-        "kind": "gap",
-        "statement": "The 19 October pile design reports carry pending prerequisites: the downdrag source documentation, scour, the minimum tip elevation and the pile-to-cap connection (with pipe steel grade, corrosion allowance, drivability and environment classification).",
-        "where": "End Bent 1, End Bent 2 and Pier pile design reports and cases; journal pile design modules.",
+        "id": "A-009",
+        "kind": "assumption",
+        "statement": "The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design. The 19 October FBMP pier model used 60 ksi; the 21 October rerun (D-073) models the pile at 45 ksi, so the Fy reconciliation is closed by the registered export. The grade selection and the corrosion allowance remain design inputs (pile prerequisites corrosion, exposure).",
+        "where": "Pier pile design case and report; journal PileDesignPier, PileProperties and FoundationModeling modules; pier FBMP model pile material.",
         "nodes": [
-          "PILE-EB1-REPORT",
-          "PILE-EB2-REPORT",
+          "PILE-PIER-CASE",
           "PILE-PIER-REPORT",
-          "PILE-EB1-CASE",
-          "PILE-EB2-CASE",
-          "PILE-PIER-CASE"
+          "PIER-XML",
+          "JOURNAL-CALC-PileDesignPier",
+          "JOURNAL-CALC-FoundationModeling"
         ],
         "magnitude": {
-          "value": null,
-          "unit": "",
-          "sized_by": "Not a load difference: unconfirmed inputs (15, 15 and 16 pending entries per report under D-054)."
+          "value": 0,
+          "unit": "ksi",
+          "sized_by": "Difference between the FBMP pile material Fy (45 ksi since D-073; 60 ksi in the D-049 export) and the 45 ksi design grade (D-050, D-056)."
         },
         "disposition": {
-          "status": "pending",
-          "decision": "D-054",
-          "on": "2026-10-19"
+          "status": "closed",
+          "decision": "D-073",
+          "on": "2026-10-21"
         },
         "owner": "Project user",
-        "coherence_items": [
-          "COH-028"
-        ],
+        "coherence_items": [],
         "basis": {
-          "PILE-EB1-CASE": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
-          "PILE-EB2-CASE": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
-          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
+          "PILE-PIER-CASE": "17debf14e4f46991de3b8f6304995330817dedb09e6d7152b8056d31c4fbb211",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
         },
         "references": [
-          "project_current/coherence/evidence/2026-10-19-pile-reports/source_receipt.json",
-          "PILE_DESIGN.md"
+          "project_current/decisions.md",
+          "PILE_DESIGN.md",
+          "project_current/coherence/evidence/2026-10-21-fbmp/source_receipt.json"
         ],
-        "stale": false,
-        "stale_sources": [],
+        "stale": true,
+        "stale_sources": [
+          "PILE-PIER-CASE"
+        ],
         "unknown_sources": [],
         "current_basis": {
-          "PILE-EB1-CASE": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
-          "PILE-EB2-CASE": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
-          "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c"
+          "PILE-PIER-CASE": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
         },
-        "open": true
+        "open": false
       },
       {
         "id": "A-004",

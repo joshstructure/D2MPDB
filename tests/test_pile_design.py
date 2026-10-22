@@ -653,13 +653,35 @@ class SourceReceipts(unittest.TestCase):
         self.assertEqual(other['sources']['EL_cutoff']['status'], 'differs from register')
 
     def test_pier_xml_sets_pipe_family_and_keeps_design_fy(self):
+        """The D-073 export models the pile at the design Fy: the steel_grade prerequisite becomes source-backed."""
         case = model.default_case('Pier', load_xml=False)
         _, receipt = sources.apply_source(case, 'PIER-XML', PIER_XML.read_bytes(), PIER_XML.name)
         self.assertEqual(case['family'], 'pipe')
         self.assertEqual(case['inputs']['D_out'], 20.0)
         self.assertEqual(case['inputs']['t_wall'], 0.48)
         self.assertEqual(case['inputs']['Fy'], 45.0)
-        self.assertTrue(any('60' in n and 'Fy' in n for n in receipt['notes']))
+        self.assertEqual(receipt['analysis']['section']['fy_ksi'] if 'analysis' in receipt else case['analysis']['section']['fy_ksi'], 45.0)
+        self.assertFalse(any('Reconcile' in n for n in receipt['notes']))
+        self.assertTrue(case['confirmations']['steel_grade'])
+        evidence = case['confirmation_evidence']['steel_grade']
+        self.assertIn('45 ksi equals the design Fy 45 ksi', evidence['note'])
+        self.assertEqual(evidence['inputs'], {'Fy': 45.0})
+        self.assertIn('FY_SHELL 45 ksi equals this value', case['sources']['Fy']['source'])
+        # editing Fy withdraws the source-backed confirmation
+        model.edit_input(case, 'Fy', 50.0)
+        self.assertFalse(case['confirmations']['steel_grade'])
+        self.assertTrue(case['confirmation_evidence']['steel_grade']['stale'])
+
+    def test_pier_xml_with_another_fy_keeps_design_fy_and_asks_to_reconcile(self):
+        """The archived 19 October export (60 ksi shell) is readable but leaves steel_grade pending."""
+        archived = ROOT / 'project_current' / 'fbmp' / 'pier' / 'archive' / '2026-10-19' / 'Pier_Fixed.XML'
+        case = model.default_case('Pier', load_xml=False)
+        _, receipt = sources.apply_source(case, 'PIER-XML', archived.read_bytes(), archived.name)
+        self.assertFalse(receipt['matches_register'])
+        self.assertEqual(case['inputs']['Fy'], 45.0)
+        self.assertTrue(any('60' in n and 'Fy' in n and 'Reconcile' in n for n in receipt['notes']))
+        self.assertFalse(case['confirmations']['steel_grade'])
+        self.assertNotIn('steel_grade', case.get('confirmation_evidence', {}))
 
 
 if __name__ == '__main__':

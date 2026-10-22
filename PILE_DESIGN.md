@@ -191,7 +191,7 @@ The pipe section uses D = 20 in and t = 0.48 in from the XML. The inside diamete
 - A = π (D² − d²) / 4 and I = π (D⁴ − d⁴) / 64
 - S = I / (D / 2), Z = (D³ − d³) / 6, r = √(I / A), and D/t
 
-The yield strength default is F_y = 45 ksi, the value for ASTM A252 Grade 3 in Specification 962 Table 962-11. The FBMP pier model uses F_y = 60 ksi. The notebook keeps the 45-ksi default with the source note "reconcile", and `steel_grade` stays pending. API 5L grades X46 to X70 (PSL1 and PSL2) are alternatives. E_s = 29,000 ksi.
+The yield strength default is F_y = 45 ksi, the value for ASTM A252 Grade 3 in Specification 962 Table 962-11. The 19 October FBMP pier model used F_y = 60 ksi; the 21 October rerun (D-073) models the pile at 45 ksi. When the registered export's pile material Fy equals the design Fy, the XML reader records that as source-backed evidence for the `steel_grade` prerequisite (withdrawn automatically if Fy is edited); the grade itself stays a design input. API 5L grades X46 to X70 (PSL1 and PSL2) are alternatives. E_s = 29,000 ksi.
 
 **Corrosion.** The corrosion allowance `t_corr` defaults to 0 in and stays pending under `corrosion`. LRFD 5.12.9.5.2 deducts 0.06 in from shells in corrosive environments, and the environment classification under SDG 1.4 governs.
 
@@ -346,13 +346,13 @@ The tests pin these values from closed-form hand checks. The P_n,max target uses
 
 ## Pending items and confirmations
 
-**Prerequisite confirmations.** `exposure` (environment classification, SDG 1.4; default "Moderately aggressive"), `head_connection` (12-in embedment against SDG 3.5.1.C), `steel_grade` (Fy 45 ksi against the FBMP 60 ksi), `corrosion` (pipe allowance), `downdrag_source` (geotechnical report reference for 18 tons), `analysis_current` (the FBMP export matches the selected cap case and the final rerun, COH-013 and COH-028), `min_tip` (cap notebook handoff), `scour` (net and total scour resistance, scour elevations) and `drivability` (LRFD 10.7.8 and Spec 455 driving stresses, not evaluated).
+**Prerequisite confirmations.** `exposure` (environment classification, SDG 1.4; default "Moderately aggressive"), `head_connection` (12-in embedment against SDG 3.5.1.C), `steel_grade` (Fy 45 ksi against the FBMP pile material; source-backed since the D-073 pier export models 45 ksi), `corrosion` (pipe allowance), `downdrag_source` (geotechnical report reference for 18 tons), `analysis_current` (the FBMP export matches the selected cap case and the final rerun, COH-013 and COH-028), `min_tip` (cap notebook handoff), `scour` (net and total scour resistance, scour elevations) and `drivability` (LRFD 10.7.8 and Spec 455 driving stresses, not evaluated).
 
 **Analysis items.**
 
 - **Pile head elevations (COH-028).** The registered exports give pile cutoffs of 41.2375 ft (End Bent 1), 41.2567 ft (End Bent 2) and 41.7717 ft (Pier), against plan cutoffs of 41.237692 ft, 41.249692 ft and 41.764940 ft. Each agrees within 0.02 ft (End Bent 1 within 0.0002 ft). The ground elevations (top of soil layer 1) are 24.01 ft, 23.59 ft and 26.05 ft. The XML head is used for forces, and both values are shown.
 - **Analysis currency.** The fixed-run XMLs selected on 19 October 2026 (D-049) differ from the hashes recorded in the selected cap-report cases. The `analysis_current` confirmation stays pending until the downstream cases are reconciled.
-- **Steel strength.** The notebook uses F_y = 45 ksi for ASTM A252 Grade 3. The FBMP model uses 60 ksi. Reconciliation is pending (D-050).
+- **Steel strength.** The notebook uses F_y = 45 ksi for ASTM A252 Grade 3. The 19 October FBMP model used 60 ksi (D-050, reconciliation pending); the 21 October pier rerun (D-073) models the pile at 45 ksi, so the Fy reconciliation is closed by the registered export. The grade and the corrosion allowance remain design inputs.
 
 **Input confirmations.**
 

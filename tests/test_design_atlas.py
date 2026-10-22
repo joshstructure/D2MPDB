@@ -249,8 +249,10 @@ class ProjectAtlasTests(unittest.TestCase):
         current={r['source_id']:r['sha256'] for r in self.register_rows()}
         self.assertEqual(entries['A-001']['stale'],any(current[s]!=h for s,h in entries['A-001']['basis'].items()))
         self.assertIn('EB-XML',entries['A-001']['basis'])
-        self.assertEqual(entries['A-009']['disposition']['status'],'pending')
-        self.assertTrue(entries['A-009']['open'])
+        # A-009 (pipe Fy reconciliation) was closed by the 21 October pier export (D-073)
+        self.assertEqual(entries['A-009']['disposition'],{'status':'closed','decision':'D-073','on':'2026-10-21'})
+        self.assertFalse(entries['A-009']['open'])
+        self.assertEqual(entries['A-009']['basis']['PIER-XML'],current['PIER-XML'])
 
     def test_assumption_staleness_follows_register_hashes(self):
         data=copy.deepcopy(self.data)

@@ -284,7 +284,7 @@
    "status": "pending confirmation"
   },
   "Fy": {
-   "source": "Spec 962 Table 962-11, ASTM A252 Gr 3; FBMP model 60 ksi - reconcile",
+   "source": "Spec 962 Table 962-11, ASTM A252 Gr 3; compared with the FBMP pile material Fy when an export is applied",
    "status": "pending confirmation"
   },
   "E_s": {
@@ -23461,7 +23461,7 @@
    "notes": [
     "FBMP section: 18 in square, f'c 6.5 ksi, 16 strands x 0.15 in2 at 140 ksi = 336.0 kip prestress. Standard Plans option 12~0.6\": 12 strands, 336.0 kip after 20% losses."
    ],
-   "loaded_utc": "2026-10-19 20:55:56 UTC",
+   "loaded_utc": "2026-10-22 01:09:03 UTC",
    "applied": [
     "D_pile",
     "EL_cutoff",

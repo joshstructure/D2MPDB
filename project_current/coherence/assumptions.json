@@ -16,7 +16,7 @@
       "basis": {
         "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
         "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-        "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+        "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
         "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
       },
       "references": ["project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md"]
@@ -32,7 +32,7 @@
       "owner": "Project user",
       "coherence_items": ["COH-005"],
       "basis": {
-        "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+        "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
         "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
         "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
       },
@@ -117,7 +117,7 @@
       "owner": "Project user",
       "coherence_items": ["COH-004"],
       "basis": {
-        "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+        "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
         "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
       },
       "references": ["project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md", "project_current/geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json"]
@@ -141,19 +141,19 @@
     {
       "id": "A-009",
       "kind": "assumption",
-      "statement": "The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design while the FBMP pier model uses 60 ksi; the reconciliation is pending.",
-      "where": "Pier pile design case and report; journal PileDesignPier and FoundationModeling modules; pier FBMP model pile material.",
+      "statement": "The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design. The 19 October FBMP pier model used 60 ksi; the 21 October rerun (D-073) models the pile at 45 ksi, so the Fy reconciliation is closed by the registered export. The grade selection and the corrosion allowance remain design inputs (pile prerequisites corrosion, exposure).",
+      "where": "Pier pile design case and report; journal PileDesignPier, PileProperties and FoundationModeling modules; pier FBMP model pile material.",
       "nodes": ["PILE-PIER-CASE", "PILE-PIER-REPORT", "PIER-XML", "JOURNAL-CALC-PileDesignPier", "JOURNAL-CALC-FoundationModeling"],
-      "magnitude": {"value": 15, "unit": "ksi", "sized_by": "Difference between the 60 ksi FBMP pile material and the 45 ksi design grade (D-050, D-056)."},
-      "disposition": {"status": "pending", "decision": "D-050", "on": "2026-10-19"},
+      "magnitude": {"value": 0, "unit": "ksi", "sized_by": "Difference between the FBMP pile material Fy (45 ksi since D-073; 60 ksi in the D-049 export) and the 45 ksi design grade (D-050, D-056)."},
+      "disposition": {"status": "closed", "decision": "D-073", "on": "2026-10-21"},
       "owner": "Project user",
       "coherence_items": [],
       "basis": {
-        "PILE-PIER-CASE": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
-        "PIER-XML": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-        "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50"
+        "PILE-PIER-CASE": "17debf14e4f46991de3b8f6304995330817dedb09e6d7152b8056d31c4fbb211",
+        "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+        "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
       },
-      "references": ["project_current/decisions.md", "PILE_DESIGN.md"]
+      "references": ["project_current/decisions.md", "PILE_DESIGN.md", "project_current/coherence/evidence/2026-10-21-fbmp/source_receipt.json"]
     },
     {
       "id": "A-010",

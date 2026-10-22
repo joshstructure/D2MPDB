@@ -29,7 +29,7 @@ FAMILIES = ('psc', 'pipe')
 CONFIRMATIONS = {
     'exposure': 'Environment classification confirmed for the SDG 1.4 covers, the Table 3.5.1-1 minimum size and the LRFD 5.9.2.3.2b tension limit used.',
     'head_connection': 'Pile-to-cap moment and uplift transfer with 12 in embedment verified in the coordinated detail (SDG 3.5.1.C, SDM 11.6).',
-    'steel_grade': 'Steel pipe grade and Fy reconciled: Spec 962 Table 962-11 A252 Gr 3 (45 ksi) against the 60 ksi used in the FBMP model.',
+    'steel_grade': 'Steel pipe grade and Fy reconciled: Spec 962 Table 962-11 A252 Gr 3 (45 ksi) against the Fy of the FBMP pile material.',
     'corrosion': 'Corrosion allowance and wall loss confirmed for the environment (LRFD 10.7.5, 5.12.9.5.2).',
     'downdrag_source': 'Downdrag of 18 tons per end-bent pile documented by the geotechnical engineer of record (neutral plane, scourable layers).',
     'analysis_current': 'FBMP export matches the selected cap case and the final rerun (COH-013, COH-028).',

@@ -1,0 +1,22 @@
+{
+  "task": "T033",
+  "base_sha256": "92eac1524a269ee4f605b7052e8db10ced432be9a140086396b367d322bb69e5",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "4d855ab80668b465ade38a5cc6a8630ceb820c828ef53bca8ea88f8c773e798f"
+    },
+    "report:CapDesignEndBentOne": {
+      "file": "001.xml",
+      "sha256": "a071f19a138480d1cbfc2606e3d6b300a8dc07f27fcae35238820d46ab65d652"
+    },
+    "report:CapDesignEndBentTwo": {
+      "file": "002.xml",
+      "sha256": "f95525d3516a4e725db9033491e975b53e6c9fa7cd89baee920615090ed0d20e"
+    },
+    "report:DecisionLog": {
+      "file": "003.xml",
+      "sha256": "2a96d7c8fc31afafe496e1b52846882659ddf4358b1e90e5f4852e01dab4d9e3"
+    }
+  }
+}

@@ -1,0 +1,172 @@
+<report title="Project Index" name="PedBridge" unit="in" pagesize="816, 1056" margin="48,48,48,48" collapsemargins="False">
+        <float />
+        <stylerule applytoall="True" type="Any" leftindent="0.25 in" spacingafter="4" />
+        <stylerule type="AnyEquation" name="Required Input" texthighlight="#F7E6B9" />
+        <heading level="0" keepwithnext="True">D2 I-95 Pedestrian Bridge - Project Index</heading>
+        <section name="CurrentRecord20261019" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">Current project record — 19 October 2026</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Geometry: the geometry notebook build e9b41b8eaf (D-036; backwall tops D-053) owns the bridge geometry; the CAD model (D-055) and the CAD tables are built from it. Analysis: the 19 October 2026 fixed-run FB-MultiPier end-bent exports (D-049) and the 21 October 2026 pier export (D-073). Design records: the 10-19 end-bent and 10-21 pier cap design reports (D-051, D-073), pile design reports (D-054, D-073) and the 19 October end-bent backwall, cheek-wall and tie-back strap report (D-057; rerun on the D-049 export and the D-053/D-055 geometry, superseding the 16 October report D-037), all distilled in the journal; the backwall report reads the end-bent geometry, bearing pad data, Span 1 length and material strengths as live references to Bridge Geometry and Materials. Journal tasks T014 to T017.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FoundationModeling.ModelSources20261019">Current model sources (D-049 and D-073 exports)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current end-bent design and coherence record</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPPier.PierSourceModelRecord">Current pier source record</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#PileProperties.PileDesignRecords20261019">Pile design records and section reconciliation</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#MSEWallExclusion">C015 - MSE Wall Exclusion (D-055 wall lines)</link>
+            </paragraph>
+        </section>
+        <section name="CurrentEndBentRecord" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">End-bent data — 8 October 2026 (superseded by the 19 October 2026 record above)</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#BridgeGeometry_2Beam.EndBentCurrentGeometry">Both end bents — cap and square pile geometry</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPEndBent.EBCurrentDesignRecord">Current steel configuration, End Bent 1 forces and coherence register</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">Both end bents follow the controlling End Bent 1 configuration. User responses applied: 30-in end-bent pedestals, nodes 15/34, latest report model, field-adjusted U hooks and Service III N/A. Wall quantities are deferred; remaining design checks are listed in the record.</paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="6" leftindent="0">The former Ped Bridge contents are organized by topic. Use the module list or the links below. Existing geometry, load sources, calculations, notes and reference images are retained; historical alternatives are labeled separately.</paragraph>
+        <heading level="1" keepwithnext="True">Project basis and geometry</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#ProjectInfo">Project information and stamp</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#Notes.TerrainSupportCenterlines20261012">Terrain elevations at support centerlines — 12 October 2026</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#Materials">Materials</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BridgeGeometry_2Beam">Bridge Geometry - 2 Beam</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#AccessGeometry">Access Geometry and ADA</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Loads and FBMP entry</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PedBridgeWeights_2Beams">Gravity Loads - 2 Beam</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#GeneralLoads">General and Collision Loads</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PedBridgeWind">Wind - Design Basis</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#LoadCombinations">Load Combinations</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FBMPPier">FBMP Entry - Pier</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FBMPEndBent">FBMP Entry - End Bent (15 / 34)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PileProperties">Pile Section Properties</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FoundationModeling">Foundation Modeling</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Calculations C001 to C017</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#C001WindLoadOnPedBridgeSuperstructure">C001 - Superstructure Wind</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#FenceWind">C002 - Fence Wind</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BridgeMovement">C003 - Temperature Movement</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#SuperstructureUplift">C004 - Uplift and Bearing Reactions</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PierWallFins">C006 - Pier Wall, Hairpins and Fin Plates</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#CapDesignBasis">C007 - Cap Design Basis (shared factors, 19 October 2026)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#CapDesignEndBentOne">C008 - End Bent 1 Cap Design (19 October 2026 case)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#CapDesignEndBentTwo">C009 - End Bent 2 Cap Design (19 October 2026 case)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#CapDesignPier">C010 - Pier Cap Design (19 October 2026 case)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PileDesignEndBentOne">C011 - End Bent 1 Pile Design (19 October 2026 case)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PileDesignEndBentTwo">C012 - End Bent 2 Pile Design (19 October 2026 case)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PileDesignPier">C013 - Pier Pile Design (19 October 2026 case)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#EndBentBackwallDesign">C014 - End Bent 1 Backwall, Cheek Walls and Tie-Back Straps (19 October 2026 case, live references)</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#MSEWallExclusion">C015 - MSE Wall Exclusion - Both End Bents</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BearingDesign">C016 - Bearings and Support Details</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PierWallRings">C017 - Pier Wall, Annular Pile Rings (21 October 2026 case)</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Quantities, decisions and references</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#QauntitiesBridge">Bridge Quantities</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#QuantitiesMSEWall">MSE Wall Quantities</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#DecisionLog">Decision Log</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#Notes">Project Notes</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#CodeReferencesGeneral">General Reference Index</link>
+        </paragraph>
+        <heading level="1" keepwithnext="True">Archives and utilities</heading>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#BridgeGeometry_3Beam">Archive - 3-Beam Geometry</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#PedBridgeWeights_3Beams">Archive - 3-Beam Weights</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">
+            <link address="#VoidPedBridge">Archive - Previous Ped Bridge</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 21 October 2026, code-reference modules retired (T031): the four modules C001 - References to C004 - References (GetRefs code excerpts) are removed from the journal. Every provision cited by C001 to C004, C006, C015 and C016 now opens as a citation card with the highlighted code excerpt in the calculation report of its notebook package; the journal keeps the distilled calculation editions with their citations as plain text. The General References module keeps its own pages and its index; entries that pointed into the retired modules are listed without links. No formula, cache, value or figure changed.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 21 October 2026, C008 End Bent 1 Cap Design and C009 End Bent 2 Cap Design replaced by their regenerated journal editions (T033): the registered End Bent cap reports are the 20 October re-exports from the unchanged cases (D-068, definition and citation cards), and the editions now name them; every definition, cached value and canvas is identical to the prior modules. Native recalculation, appearance and engineering reviews not performed; no value changed.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 21 October 2026, pier modules follow the 21 October FBMP rerun (T032, D-073): the user’s rerun Pier_Fixed.XML (SHA-256 8be45bb889f5…) changes only the pipe pile material, ASTM A252 Grade 3 at Fy 45 ksi in place of 60 ksi; nodal loads, geometry, pile section, soil and load combinations are those of the 19 October export. C010 Pier Cap Design and C013 Pier Pile Design are replaced by their regenerated journal editions (the cap edition from the 10-21 report with every force envelope, ratio and status unchanged; the pile edition with every demand and resistance unchanged, structural D/C 0.457, and the steel-grade prerequisite source-backed by the export, 11 pending items in place of 16). Pile Section Properties, FBMP Entry - Pier, Foundations and FBMP Modeling and Bridge Geometry record the new export identity and the 45 ksi material. End-bent modules unchanged. Native recalculation, appearance and engineering reviews not performed; no existing definition or cached value changed.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 21 October 2026, C017 Pier Wall, Annular Pile Rings added (T028): the welded annular-ring support concept of the pier wall (minimum wall steel and detailing; full annular contact, concrete bearing, plate bending and shear, two continuous fillets and adjacent base metal at every ring) enters the journal as its own calculation, generated from the Pier Wall Design notebook package (ring_wall) by scripts/build_ring_wall_bpad.py on its starting case: 673 ledger values and 178 check statuses as native definitions, each evaluated independently and compared with the notebook to 1 part in 10⁹, with the live project stamp and hidden working notes. Ring moment basis D-070 (pile-head compatibility moment; placement tolerance as pile-group redistribution; the former tributary-eccentricity moment kept for comparison); pile stiffness defaults from the pier pile case. C006 (fin plates and hairpins) is unchanged; which support concept governs is undecided. The module is appended here and moved after C016 by T029. Native recalculation, appearance and engineering reviews not performed; no existing value changed.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 21 October 2026, notebook editions of C001 to C004, C006, C015 and C016 (T027): the seven calculations that had no Colab notebook are now generated from their notebooks (packages wind_superstructure, fence_wind, bridge_movement, superstructure_uplift, pier_wall_fins, mse_wall_exclusion and bearing_design on the shared calc_common framework). Each notebook was run with the journal values; every definition of the former hand-authored module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before its journal edition was written. The editions keep the report names, the C-number titles, the names other modules read (as live references passed through the coherence gate), the native figures, the design-basis prose with its anchors and the live project stamp; the per-equation notes, step navigation and echoed value displays are distilled out (they remain in the notebook reports). C016 omits the eleven superseded D-064/D-065 status strings (recorded in its working notes); C015 keeps its two knife-edge SHORTFALL rows. Native recalculation, appearance and engineering reviews not performed; no engineering value changed.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 20 October 2026, project stamp and module order (T024): the pile calculations C011 to C013 open with the live project stamp like every other calculation; the modules are ordered basis first, then C001 to C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives; the index groups the calculations the same way.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 20 October 2026, submission formatting (T022): the calculation modules are numbered C007 to C016 (cap design basis C007, cap designs C008 to C010, pile designs C011 to C013, end-bent backwall C014, MSE wall exclusion C015, bearings and support details C016; C005 stays retired); the working language of each calculation (provenance, tool status, pending items, decision and task identifiers) sits in hidden WorkingNotes sections; table text is in multiline cells; "distilled" no longer appears in titles or visible text. No formula, cache or value changed.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 19 October 2026, end-bent backwall report added (T017): EndBentBackwallDesign, the distilled 19 October 2026 backwall, cheek-wall and tie-back strap case (D-057) with live references to BridgeGeometry_2Beam, Materials and ProjectInfo.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 19 October 2026, coherence with the 19 October calculations and CAD model (T016): D-049 exports, D-051 cap reports and D-054 pile reports recorded as current; end-bent design record refreshed; MSE exclusion wall lines re-extracted from the D-055 model; notebook check retargeted to build e9b41b8eaf.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="10" spacingafter="6" leftindent="0">Revision: 8 October 2026, coherence responses. End-bent input uses loaded nodes 15 and 34, 103-in bearing spacing and a 42-in-wide by 36-in-deep cap. Both end bents follow the controlling configuration. End-bent pedestals are 30 in long; pier pedestals remain 48 in. Deferred wall quantities and remaining design checks are identified in the current record.</paragraph>
+        <section name="PierJournalRevision20261009" capture="False" hide="false">
+            <heading level="1" keepwithnext="True">Pier revision — responses applied, 9 October 2026</heading>
+            <paragraph fontfamily="Times New Roman" fontsize="11" leftindent="0" spacingafter="7">Current pier geometry and source references use the replacement Pier_Fixed report. The shared cap length and gross direct-pier wind width are both 230 in; gross cap volume remains 230 ft³ and pier pedestals remain 48 in. The matching raw Pier_Fixed.XML (D-049, 19 October 2026) is now in project_current and confirms the symmetric ±10.50-in bearing rows. The former C005 (removed 19 October 2026) was left unchanged in that revision and reinforcement remains separate. Completed Excel responses and source snapshots are archived under tasks/T006/sources.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#BridgeGeometry_2Beam.PierCurrentGeometry">Current pier cap geometry</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" leftindent="0" spacingafter="7">
+                <link address="#FBMPPier.PierSourceModelRecord">Current report source</link>
+            </paragraph>
+        </section>
+    </report>

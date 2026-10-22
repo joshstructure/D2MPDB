@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "92eac1524a269ee4f605b7052e8db10ced432be9a140086396b367d322bb69e5",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T032/build_components.py; scripts/build_cap_bpad.py --journal and scripts/build_pile_bpad.py build verification)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "Pier FBMP export rerun by the user with the 45 ksi pipe pile material (D-073); C010 and C013 replaced by regenerated editions with every definition, cached value and canvas identical to the base modules (text only); the pier source paragraphs name the new export; no engineering value changed; FBMP not rerun here.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "End-bent modules untouched. The pier cap check failures and pending checks and the pier pile pending items (now 11) remain as recorded in their editions; COH-004, COH-013 and COH-028 keep their status.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "9c94621d51a59d5cd1537bf52b9e9b29f52dc601c31b6fe4f3a663039e6c9583"
+    }
+  ]
+}

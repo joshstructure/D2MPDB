@@ -1,0 +1,68 @@
+{
+  "task": "T032",
+  "base_sha256": "a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610",
+  "decision": "D-073",
+  "pier_xml_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+  "pier_cap_report_sha256": "216c26dd78b4394451c0726b3246bc29fafb646a1b06dc6e73607ca445a0eed2",
+  "pier_pile_report_sha256": "dfae9010e788d2cdc576e92a63e6658450a23d2878fa55eb6bf2bc699b6306f9",
+  "components": {
+    "CapDesignPier": {
+      "source": "cap_bpad/journal/CapDesignPier.xml",
+      "fragment_sha256": "c4505305a7ff2a1b3987e49a8a39afeb87324ceba016c3a92a22f557d262cf37",
+      "fbmp_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+      "definitions_unchanged": 527,
+      "caches_unchanged": true,
+      "canvases_unchanged": true,
+      "paragraphs_removed": [
+        "Distilled from Pier Cap Design 10-19.html (generated 2026-10-19T14:36:18+00:00); same case (canonical SHA-256 868e96bca964) and C005 formula set (327838126d06) as the report; FBMP Pier_Fixed.XML (bb73e6ada6cf). Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹."
+      ],
+      "paragraphs_added": [
+        "Distilled from Pier Cap Design 10-21.html (generated 2026-10-22T00:52:32+00:00); same case (canonical SHA-256 dd02b3a9d524) and C005 formula set (327838126d06) as the report; FBMP Pier_Fixed.XML (8be45bb889f5). Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹."
+      ]
+    },
+    "PileDesignPier": {
+      "source": "pile_bpad/journal/PileDesignPier.xml",
+      "fragment_sha256": "94b26789faa93ff08da090c21a5b767cf028dc6c662e7baf47bc8c558ec63782",
+      "fbmp_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+      "definitions_unchanged": 133,
+      "caches_unchanged": true,
+      "canvases_unchanged": true,
+      "paragraphs_removed": [
+        "Status: All numerical checks pass (largest ratio 1.00) · 16 pending item(s) remain.",
+        "• FBMP source: Pier_Fixed.XML, SHA-256 bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7 (registered export PIER-XML). 4 piles at 5 ft; cutoff elevation 41.7717 ft, ground 26.05 ft.",
+        "The notebook lists 16 PENDING items; the distilled ratios above do not close them: Local buckling class · nonslender (D/t vs 0.11 E/Fy); Slenderness KL/r ≤ 120; Axial compression · maximum Pu / φc Pn; Combined axial load and flexure · Eq. 6.9.2.2.1 (-1); Shear · round tube; Tension · maximum strength uplift; Pile Data Table completeness (SDM 11.4); Steel grade and Fy reconciled; Corrosion allowance; Environment classification; Pile-to-cap connection (12 in embedment); Downdrag source documented; FBMP export current; Minimum tip elevation; Scour resistance and elevations; Drivability.",
+        "FB-MultiPier reports a largest model D/C of 0.29 at combo 2 STRENGTH-III · pile 4 · element 13J · EL 16.55 ft."
+      ],
+      "paragraphs_added": [
+        "Status: All numerical checks pass (largest ratio 1.00) · 11 pending item(s) remain.",
+        "• FBMP source: Pier_Fixed.XML, SHA-256 8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6 (registered export PIER-XML). 4 piles at 5 ft; cutoff elevation 41.7717 ft, ground 26.05 ft.",
+        "The notebook lists 11 PENDING items; the distilled ratios above do not close them: Local buckling class · nonslender (D/t vs 0.11 E/Fy); Tension · maximum strength uplift; Pile Data Table completeness (SDM 11.4); Corrosion allowance; Environment classification; Pile-to-cap connection (12 in embedment); Downdrag source documented; FBMP export current; Minimum tip elevation; Scour resistance and elevations; Drivability.",
+        "FB-MultiPier reports a largest model D/C of 0.39 at combo 2 STRENGTH-III · pile 4 · element 13J · EL 16.55 ft."
+      ]
+    },
+    "PileProperties": {
+      "source": "base.bpad + two paragraphs (45 ksi model material; Fy reconciliation closed)"
+    },
+    "FBMPPier": {
+      "source": "base.bpad + geometry source, report and XML identities, resolved note"
+    },
+    "FoundationModeling": {
+      "source": "base.bpad + heading and current-model paragraph"
+    },
+    "BridgeGeometry_2Beam": {
+      "source": "base.bpad + two sentences (pier export, pier cap report); no value, cache or figure changed"
+    },
+    "PedBridge": {
+      "source": "base.bpad + summary sentence, sources link text, revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

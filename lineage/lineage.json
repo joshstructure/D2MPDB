@@ -2,11 +2,11 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "1200bcc51796834d371441655bc7fb40703ddfa16154ea1915997319ad8fe611",
+ "fingerprint": "9df0f30d7a220862cccb5506a6ca6da9eaa4686a5b2a2f6d340c05b0588d0c64",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
-   "sha256": "a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610"
+   "sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
   },
   {
    "path": "lineage/signoff.json",
@@ -26,7 +26,7 @@
   },
   {
    "path": "project_current/cap_design/pier/selected_case.json",
-   "sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b"
+   "sha256": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5"
   },
   {
    "path": "project_current/coherence/items_snapshot.csv",
@@ -34,11 +34,11 @@
   },
   {
    "path": "project_current/coherence/machine_checks.json",
-   "sha256": "eebf591bffca14f346cdb5cb9792f36343d2caedaa1ec62ca045feefc01662ec"
+   "sha256": "fd077802c61c1394fcb2f645e2d9e336a375c2ca7dbbb01c028f10b761091235"
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "7306eabfd4b38a00154096f51b28b8079c2c74efe4758191bddd3bef1f2beab1"
+   "sha256": "425cb542e437d5a7777e0f83652b9b97095a491f4b4f1ecafd375dbaf9abed74"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -54,7 +54,7 @@
   },
   {
    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
-   "sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7"
+   "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6"
   },
   {
    "path": "project_current/fbmp/pier/Pier_MinTip.XML",
@@ -62,7 +62,7 @@
   },
   {
    "path": "project_current/source_register.csv",
-   "sha256": "3d44d4c74d1d7eb8afc529d9b437c2ebc53db0266bebe20709d79c7009589188"
+   "sha256": "359e4c09764cbecbc5f07389d6faac7a2e6a0f4246e0c0dbba8b1f948bd86a63"
   },
   {
    "path": "scripts/build_lineage_graph.py",
@@ -95,7 +95,7 @@
   "available": true,
   "reason": ""
  },
- "checked_at_utc": "2026-10-21T23:24:55.645605+00:00",
+ "checked_at_utc": "2026-10-22T01:13:29.897150+00:00",
  "stages": [
   {
    "id": "inputs",
@@ -7659,10 +7659,10 @@
    "stage": "inputs",
    "registered": true,
    "path": "journal/D2_I95_Project_Journal.bpad",
-   "status": "Current - calculations C001-C017 in order with project stamps; D-065 as-cast override; final bearing fit unresolved",
+   "status": "Current - calculations C001-C017 in order with project stamps; pier modules on the D-073 export; D-065 as-cast override; final bearing fit unresolved",
    "scope": "Adopted project geometry, assumptions, decisions, live journal quantities and the cap, pile, end-bent backwall and pier-wall ring design calculations",
-   "sha256": "a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610",
-   "registered_on": "2026-10-20",
+   "sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "GEOMETRY",
     "EB-XML",
@@ -7684,7 +7684,7 @@
     "PIER-WALL-TOOL"
    ],
    "origin": "workflow/accepted.json",
-   "notes": "T031 (21 October 2026): C001-C004 code-reference modules retired (citations live in the calculation reports); C001-C004 editions regenerated with plain-text citations; no value changed. T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
+   "notes": "T033 (21 October 2026): C008 and C009 replaced by their regenerated journal editions naming the registered 10-20 End Bent cap reports (D-068); every definition, cached value and canvas identical; PedBridge revision note and DecisionLog entry; no engineering value changed; native recalculation, appearance and engineering reviews not performed. See tasks/T033/verification.json. T032 / D-073 (21 October 2026): pier modules follow the 21 October FBMP rerun (pipe pile material Fy 45 ksi in place of 60 ksi; loads and geometry unchanged): C010 Pier Cap Design and C013 Pier Pile Design replaced by their regenerated journal editions with every definition, cached value and canvas identical to the prior modules (text only: new export identity, 11 pending pile items in place of 16 with the steel-grade prerequisite source-backed); Pile Section Properties, FBMP Entry - Pier, Foundations and FBMP Modeling, Bridge Geometry and the index name the D-073 export; DecisionLog entry. End-bent modules unchanged; no engineering value changed; FBMP rerun by the user, not here; native recalculation, appearance and engineering reviews not performed. See tasks/T032/verification.json. T031 (21 October 2026): C001-C004 code-reference modules retired (citations live in the calculation reports); C001-C004 editions regenerated with plain-text citations; no value changed. T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -7701,7 +7701,7 @@
     {
      "check_id": "JOURNAL:acceptance",
      "status": "MATCH",
-     "detail": "Journal matches acceptance receipt T030. Review scope remains as recorded."
+     "detail": "Journal matches acceptance receipt T033. Review scope remains as recorded."
     },
     {
      "check_id": "ASSUMPTION:A-001",
@@ -7731,7 +7731,7 @@
     {
      "check_id": "ASSUMPTION:A-009",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (PILE-PIER-CASE); re-judge the entry and record new basis hashes."
     },
     {
      "check_id": "ASSUMPTION:A-010",
@@ -7751,10 +7751,12 @@
     "D-065",
     "D-066",
     "D-067",
+    "D-068",
     "D-069",
     "D-070",
     "D-071",
-    "D-072"
+    "D-072",
+    "D-073"
    ],
    "issues": [
     "COH-001",
@@ -8002,13 +8004,13 @@
    "path": "project_current/cap_design/pier/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable cap case using the latest fixed-run forces and the existing adopted cage",
-   "sha256": "0192dc9d9bef7718fc1d8944ce55b90278c46bbf0458decf1e8be6752c7bed9b",
-   "registered_on": "2026-10-19",
+   "sha256": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "PIER-XML"
    ],
-   "origin": "User-requested cap notebook rerun and built-in JSON export, 19 October 2026",
-   "notes": "D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-19.json",
+   "origin": "Cap package rerun with the registered PIER-XML export (scripts/apply_fbmp_to_cap_case.py), 21 October 2026",
+   "notes": "D-073 (21 October 2026). Rerun from the 21 October Pier_Fixed.XML (pipe pile material 45 ksi) with scripts/apply_fbmp_to_cap_case.py: the imported force envelopes and every check ratio and status are unchanged (the cap member forces differ from the 19 October export only by solver noise); geometry, reinforcement, covers and design factors retained; analysis provenance now names the registered PIER-XML SHA-256. Previous case archived under archive/2026-10-21-before-fbmp-rerun/. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-21-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-21.json. D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json. Dated JSON copy: project_current/cap_design/pier/Pier Cap Design 10-19.json",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -8067,7 +8069,8 @@
     "D-003",
     "D-007",
     "D-020",
-    "D-051"
+    "D-051",
+    "D-073"
    ],
    "issues": [
     "COH-019"
@@ -10890,7 +10893,7 @@
     }
    ],
    "case_name": "Pier_Fixed — XML analysis",
-   "analysis_id": "Pier_Fixed.XML · SHA256 bb73e6ada6cf",
+   "analysis_id": "Pier_Fixed.XML · SHA256 8be45bb889f5",
    "formula_trace": {
     "available": true,
     "basis": "pier_cap.model.formula_trace(evaluate(selected_case.json)) with the pier_cap package in the working tree at build time. Formulas are the cap tool's definitions (pier_cap/data/c005_formulas.json); values are the saved case evaluated by that package. This is not the registered report's own calculation and not engineering acceptance.",
@@ -10963,17 +10966,17 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/cap_design/pier/Pier Cap Design 10-20.html",
+   "path": "project_current/cap_design/pier/Pier Cap Design 10-21.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Recalculated cap report using the latest supplied fixed-run XML",
-   "sha256": "4d88de794d684b955a62a2445ed23c49490000f70190aac7e0fbb816762b1925",
-   "registered_on": "2026-10-20",
+   "sha256": "216c26dd78b4394451c0726b3246bc29fafb646a1b06dc6e73607ca445a0eed2",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "PIER-CASE",
     "PIER-XML"
    ],
-   "origin": "Project re-export of Pier Cap Design 10-19.html from the selected saved case, 20 October 2026",
-   "notes": "D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
+   "origin": "Cap package rerun with the registered PIER-XML export (scripts/apply_fbmp_to_cap_case.py), 21 October 2026",
+   "notes": "D-073 (21 October 2026). Rerun from the 21 October Pier_Fixed.XML (pipe pile material 45 ksi) with scripts/apply_fbmp_to_cap_case.py: the imported force envelopes and every check ratio and status are unchanged (the cap member forces differ from the 19 October export only by solver noise); geometry, reinforcement, covers and design factors retained; analysis provenance now names the registered PIER-XML SHA-256. Previous case archived under archive/2026-10-21-before-fbmp-rerun/. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-21-cap-rerun/source_receipt.json. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-051. Recalculated in the portable cap notebook with the 19 October fixed XML; exact report/case/XML identities verified. Existing geometry, reinforcement, covers and design factors retained. All check statuses unchanged; numerical ratios refreshed. Earlier cases archived and reports retained. Existing detailing failures and pending engineering reviews remain. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -10993,7 +10996,8 @@
     "D-008",
     "D-020",
     "D-051",
-    "D-068"
+    "D-068",
+    "D-073"
    ],
    "issues": [
     "COH-002",
@@ -11124,11 +11128,11 @@
    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
    "status": "Current source - cap report and case matched",
    "scope": "Exact fixed-run analysis export used by the current cap report and saved case",
-   "sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-   "registered_on": "2026-10-19",
+   "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+   "registered_on": "2026-10-21",
    "depends_on": [],
-   "origin": "User-supplied Pier_Fixed.XML, 19 October 2026",
-   "notes": "D-049 supplied bytes retained. D-051 recalculated the cap and exported a matching report/case. Native run records, pile-head review and any other downstream calculations retain their separate status. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
+   "origin": "User-supplied Pier_Fixed.XML, 21 October 2026",
+   "notes": "D-073 (21 October 2026). User-supplied rerun of the fixed pier model: the pipe pile material is ASTM A252 Grade 3, Fy 45 ksi, in place of the 60 ksi of the 19 October export; nodal loads, geometry, pile section, soil and load combinations are unchanged, the cap member forces differ only by solver noise below 1e-7 kip, and the pile failure ratios, the interaction diagram and the output summary follow the 45 ksi material. Exact supplied bytes; the 19 October export is archived under fbmp/pier/archive/2026-10-19/. The pier cap case and the pier pile case are rerun from this export the same day (D-073). See coherence/evidence/2026-10-21-fbmp/source_receipt.json. D-049 supplied bytes retained. D-051 recalculated the cap and exported a matching report/case. Native run records, pile-head review and any other downstream calculations retain their separate status. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11160,7 +11164,7 @@
     {
      "check_id": "ASSUMPTION:A-009",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (PILE-PIER-CASE); re-judge the entry and record new basis hashes."
     }
    ],
    "decisions": [
@@ -11168,7 +11172,8 @@
     "D-012",
     "D-049",
     "D-051",
-    "D-062"
+    "D-062",
+    "D-073"
    ],
    "issues": [
     "COH-001",
@@ -11180,20 +11185,20 @@
     {
      "name": "XML identity (SHA-256)",
      "role": "identity",
-     "value": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-     "status": "MATCH: PIER-CASE requires bb73e6ada6cf…, this file is bb73e6ada6cf…",
-     "detail": "registered bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7; PIER-CASE requires bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-     "xml_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7"
+     "value": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+     "status": "MATCH: PIER-CASE requires 8be45bb889f5…, this file is 8be45bb889f5…",
+     "detail": "registered 8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6; PIER-CASE requires 8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+     "xml_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6"
     }
    ],
    "xml_source": {
     "available": true,
     "filename": "Pier_Fixed.XML",
-    "sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-    "registered_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+    "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "registered_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
     "register_match": true,
     "case_id": "PIER-CASE",
-    "case_requires_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+    "case_requires_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
     "case_match": true
    },
    "open_issues": [
@@ -11211,14 +11216,14 @@
    "path": "project_current/pile_design/end_bent_1/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable pile case for the End Bent 1 piles, byte-identical to the dated case beside the report",
-   "sha256": "b733ea1396f5e715920935268f36a11ff20a764ee04c40da4ca0167607666440",
-   "registered_on": "2026-10-19",
+   "sha256": "39736d61e1ac9a67cbb8b7baaa6fb783ca1f486f7024db6dfc77b1da87ba347b",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "EB-XML",
     "PILE-TOOL"
    ],
-   "origin": "Notebook package run requested by the user, 19 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-073. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11228,19 +11233,15 @@
      "detail": "Exact registered bytes are present."
     },
     {
-     "check_id": "DEP:PILE-EB1-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
      "check_id": "ASSUMPTION:A-011",
-     "status": "MATCH",
-     "detail": "Basis hashes equal the current register."
+     "status": "REVIEW",
+     "detail": "Basis moved in the register (PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE); re-judge the entry and record new basis hashes."
     }
    ],
    "decisions": [
     "D-049",
-    "D-054"
+    "D-054",
+    "D-073"
    ],
    "issues": [],
    "parameters": [],
@@ -11252,18 +11253,18 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-20.html",
+   "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-21.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Pile analysis and design calculation report for the End Bent 1 piles (18 in square prestressed concrete, FBMP fixed run)",
-   "sha256": "0b09cb5517286d72847697a36c3b2fab6a76a9816ae5837c8a8be01d0a75b41b",
-   "registered_on": "2026-10-20",
+   "sha256": "f294d7e5098796053e3842da314589f872e8a5a6ddb3e1ff90768542996349b1",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "PILE-EB1-CASE",
     "PILE-TOOL",
     "EB-XML"
    ],
-   "origin": "Project re-export of End Bent 1 Pile Design 10-19.html from the selected saved case, 20 October 2026",
-   "notes": "D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-073. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 1 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB-XML. All numerical checks pass (structural D/C 0.550); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11271,17 +11272,13 @@
      "check_id": "SOURCE:PILE-EB1-REPORT",
      "status": "MATCH",
      "detail": "Exact registered bytes are present."
-    },
-    {
-     "check_id": "DEP:PILE-EB1-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
     }
    ],
    "decisions": [
     "D-049",
     "D-054",
-    "D-068"
+    "D-068",
+    "D-073"
    ],
    "issues": [],
    "parameters": [],
@@ -11296,14 +11293,14 @@
    "path": "project_current/pile_design/end_bent_2/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable pile case for the End Bent 2 piles, byte-identical to the dated case beside the report",
-   "sha256": "a74e7d6078314a87ef96c133a0fbf147cc0c8bbf2caa2002de3259bfeddc77bf",
-   "registered_on": "2026-10-19",
+   "sha256": "af5841086e999398fe3d1df25cd4a70ff64a81563fc444b5cd1b13c30a8ce8a7",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "EB2-XML",
     "PILE-TOOL"
    ],
-   "origin": "Notebook package run requested by the user, 19 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-073. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11313,19 +11310,15 @@
      "detail": "Exact registered bytes are present."
     },
     {
-     "check_id": "DEP:PILE-EB2-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
      "check_id": "ASSUMPTION:A-011",
-     "status": "MATCH",
-     "detail": "Basis hashes equal the current register."
+     "status": "REVIEW",
+     "detail": "Basis moved in the register (PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE); re-judge the entry and record new basis hashes."
     }
    ],
    "decisions": [
     "D-049",
-    "D-054"
+    "D-054",
+    "D-073"
    ],
    "issues": [],
    "parameters": [],
@@ -11337,18 +11330,18 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-20.html",
+   "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-21.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Pile analysis and design calculation report for the End Bent 2 piles (18 in square prestressed concrete, FBMP fixed run)",
-   "sha256": "8c2240cda3d11f2a544ee45da4126c3d07e32a71666ae5d4a53b0596d9b32816",
-   "registered_on": "2026-10-20",
+   "sha256": "4cef7d11713815a385d4d9e7dd00ba68955161ddb17267da97f3927e09fdd2b8",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "PILE-EB2-CASE",
     "PILE-TOOL",
     "EB2-XML"
    ],
-   "origin": "Project re-export of End Bent 2 Pile Design 10-19.html from the selected saved case, 20 October 2026",
-   "notes": "D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-073. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the End Bent 2 piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export EB2-XML. All numerical checks pass (structural D/C 0.557); 15 pending entries remain (9 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile-to-cap moment transfer (embedment below 48 in); Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11356,17 +11349,13 @@
      "check_id": "SOURCE:PILE-EB2-REPORT",
      "status": "MATCH",
      "detail": "Exact registered bytes are present."
-    },
-    {
-     "check_id": "DEP:PILE-EB2-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
     }
    ],
    "decisions": [
     "D-049",
     "D-054",
-    "D-068"
+    "D-068",
+    "D-073"
    ],
    "issues": [],
    "parameters": [],
@@ -11381,14 +11370,14 @@
    "path": "project_current/pile_design/pier/selected_case.json",
    "status": "User-selected current - engineering review retained",
    "scope": "Editable pile case for the Pier piles, byte-identical to the dated case beside the report",
-   "sha256": "9fb36d2b0b8b4232d40545a4f746cd70c4da1f14f9704b249fcba811772fa54c",
-   "registered_on": "2026-10-19",
+   "sha256": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "PIER-XML",
     "PILE-TOOL"
    ],
-   "origin": "Notebook package run requested by the user, 19 October 2026 (scripts/export_project_pile_reports.py)",
-   "notes": "D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-073. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-073 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11398,26 +11387,22 @@
      "detail": "Exact registered bytes are present."
     },
     {
-     "check_id": "DEP:PILE-PIER-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
      "check_id": "ASSUMPTION:A-009",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (PILE-PIER-CASE); re-judge the entry and record new basis hashes."
     },
     {
      "check_id": "ASSUMPTION:A-011",
-     "status": "MATCH",
-     "detail": "Basis hashes equal the current register."
+     "status": "REVIEW",
+     "detail": "Basis moved in the register (PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE); re-judge the entry and record new basis hashes."
     }
    ],
    "decisions": [
     "D-049",
     "D-054",
     "D-070",
-    "D-071"
+    "D-071",
+    "D-073"
    ],
    "issues": [],
    "parameters": [],
@@ -11429,18 +11414,18 @@
    "kind": "report",
    "stage": "reports",
    "registered": true,
-   "path": "project_current/pile_design/pier/Pier Pile Design 10-20.html",
+   "path": "project_current/pile_design/pier/Pier Pile Design 10-21.html",
    "status": "User-selected current - engineering review retained",
    "scope": "Pile analysis and design calculation report for the Pier piles (20 in steel pipe, FBMP fixed run)",
-   "sha256": "1910578a150b7ae1568e97237f57f30693e61f051399fd050324b3e68d95a07c",
-   "registered_on": "2026-10-20",
+   "sha256": "cf549c5abad7e4ddf97f378a9cba7f05393b529365a5b9138e99cd758fa36a3b",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "PILE-PIER-CASE",
     "PILE-TOOL",
     "PIER-XML"
    ],
-   "origin": "Project re-export of Pier Pile Design 10-19.html from the selected saved case, 20 October 2026",
-   "notes": "D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
+   "origin": "Notebook package run requested by the user, 21 October 2026 (scripts/export_project_pile_reports.py)",
+   "notes": "D-073. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 37cc843d9daa) with the D-073 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 11 pending entries remain (9 PENDING, 2 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-21-pile-reports/source_receipt.json. Selection is not engineering acceptance. D-068. Re-exported 20 October 2026 from the unchanged saved case with the current package (repository commit a866e6b), adding definition and citation cards (report_cards; commits 18b47cb and a866e6b). Check register compared with the 19 October report: identical; the prior report is retained unchanged. See coherence/evidence/2026-10-20-report-cards/source_receipt.json. D-054. Pile analysis and design of the Pier piles from the pile design package (PILE-TOOL, package 32d46a79afd4) with the D-049 fixed-run export PIER-XML. All numerical checks pass (structural D/C 0.457); 16 pending entries remain (10 PENDING, 6 PASS resting on an unconfirmed prerequisite). Open: environment classification; pile-to-cap connection; pipe steel grade; corrosion allowance; downdrag source documentation; FBMP export currency; minimum tip elevation; scour resistance and elevations; drivability; Pile Data Table completeness (SDM 11.4). The report embeds its generation time; --check regenerates it from the case. See coherence/evidence/2026-10-19-pile-reports/source_receipt.json. Selection is not engineering acceptance.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -11448,17 +11433,13 @@
      "check_id": "SOURCE:PILE-PIER-REPORT",
      "status": "MATCH",
      "detail": "Exact registered bytes are present."
-    },
-    {
-     "check_id": "DEP:PILE-PIER-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
     }
    ],
    "decisions": [
     "D-049",
     "D-054",
-    "D-068"
+    "D-068",
+    "D-073"
    ],
    "issues": [],
    "parameters": [],
@@ -11473,8 +11454,8 @@
    "path": "Pile_Design.ipynb",
    "status": "Current tool - bounded verification",
    "scope": "Pile structural and geotechnical checks (LRFD 10th ed., SDG/SDM January 2026, Standard Plans Index 455); reads EB-XML, EB2-XML and PIER-XML with the 18-ton end-bent downdrag",
-   "sha256": "c34bd1ebc5530acb6a2df76199a8b22d35d8126b753c7586f659154ab486b6f5",
-   "registered_on": "2026-10-20",
+   "sha256": "e649d760a0be486d311346f3259fd9eb0349a5f2502c138bc70210b141fa37d2",
+   "registered_on": "2026-10-21",
    "depends_on": [
     "EB-XML",
     "EB2-XML",
@@ -11484,44 +11465,14 @@
     "PIER-CASE"
    ],
    "origin": "Repository main",
-   "notes": "D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1c6b9162e589. Historical basis: D-050. Portable notebook built by scripts/build_pile_notebook.py with the three D-049 fixed-run exports embedded; distilled Mathcad editions in pile_mathcad/ (scripts/build_pile_mathcad.py). 19 October 2026 run: all numerical checks pass (End Bent 1 structural D/C 0.550, End Bent 2 0.557, Pier 0.457); downdrag source, pile-to-cap connection, steel grade, corrosion, minimum tip, scour and drivability remain pending. A rebuild changes this hash and needs a recorded disposition. Tool revision is distinct from a saved design; selection is not engineering acceptance.",
+   "notes": "D-073 (21 October 2026): notebook rebuilt after the pile package change that records the agreement between a registered export's pile material Fy and the design Fy as source-backed evidence for the steel_grade prerequisite (pile_design/sources.py, model.py; Fy input source text) and the re-registration of PIER-XML in pile_design/data/sources.json (21 October pier export, 45 ksi pile material; PIER-CASE hash refreshed). The embedded Mathcad and Blockpad generators are rebuilt in the same chain; no equation or check changed. D-068 (20 October): notebook rebuilt to embed definition and citation cards (report_cards; commits 18b47cb and a866e6b) and the calculation's cited code-excerpt pages; reports built from it carry definition and citation cards. Calculation package otherwise as registered earlier today. T022 (20 October 2026): notebook rebuilt for the submission formatting of its Blockpad export (package unknown): the embedded generator scripts changed (numbered titles, hidden WorkingNotes, multiline table cells, no \"distilled\" wording); no calculation code or input changed and the registered reports and cases remain the design records. Previous revision 1c6b9162e589. Historical basis: D-050. Portable notebook built by scripts/build_pile_notebook.py with the three D-049 fixed-run exports embedded; distilled Mathcad editions in pile_mathcad/ (scripts/build_pile_mathcad.py). 19 October 2026 run: all numerical checks pass (End Bent 1 structural D/C 0.550, End Bent 2 0.557, Pier 0.457); downdrag source, pile-to-cap connection, steel grade, corrosion, minimum tip, scour and drivability remain pending. A rebuild changes this hash and needs a recorded disposition. Tool revision is distinct from a saved design; selection is not engineering acceptance.",
    "hash_basis": "lf_text",
-   "health": "CHANGED",
+   "health": "MATCH",
    "checks": [
     {
      "check_id": "SOURCE:PILE-TOOL",
-     "status": "CHANGED",
-     "detail": "File differs from the registered revision; review its consumers before adoption."
-    },
-    {
-     "check_id": "DEP:PILE-EB1-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
-     "check_id": "DEP:PILE-EB1-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
-     "check_id": "DEP:PILE-EB2-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
-     "check_id": "DEP:PILE-EB2-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
-     "check_id": "DEP:PILE-PIER-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    },
-    {
-     "check_id": "DEP:PILE-PIER-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
+     "status": "MATCH",
+     "detail": "Registered text content matches after CRLF/LF normalization."
     }
    ],
    "decisions": [
@@ -11529,7 +11480,8 @@
     "D-050",
     "D-054",
     "D-066",
-    "D-068"
+    "D-068",
+    "D-073"
    ],
    "issues": [],
    "parameters": [],
@@ -17667,8 +17619,8 @@
    ],
    "flags": [],
    "analysis_identity": {
-    "case_requires_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
-    "registered_sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+    "case_requires_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "registered_sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
     "match": true,
     "file_present": true
    },
@@ -17860,16 +17812,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:PILE-EB1-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "PILE-TOOL->PILE-EB1-REPORT",
@@ -17878,16 +17822,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:PILE-EB1-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "PILE-TOOL->PILE-EB2-CASE",
@@ -17896,16 +17832,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:PILE-EB2-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "PILE-TOOL->PILE-EB2-REPORT",
@@ -17914,16 +17842,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:PILE-EB2-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "PILE-TOOL->PILE-PIER-CASE",
@@ -17932,16 +17852,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:PILE-PIER-CASE:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "PILE-TOOL->PILE-PIER-REPORT",
@@ -17950,16 +17862,8 @@
    "kind": "depends_on",
    "label": "feeds",
    "parameters": [],
-   "checks": [
-    {
-     "check_id": "DEP:PILE-PIER-REPORT:PILE-TOOL",
-     "status": "REVIEW",
-     "detail": "A registered dependency is missing, changed or awaiting adoption. Review the consumer."
-    }
-   ],
-   "flags": [
-    "review"
-   ]
+   "checks": [],
+   "flags": []
   },
   {
    "id": "PSB-S1->MCAD-S1",
@@ -24968,6 +24872,7 @@
      "CAP-TOOL",
      "EB-REPORT",
      "EB2-REPORT",
+     "JOURNAL",
      "PIER-REPORT",
      "PILE-EB1-REPORT",
      "PILE-EB2-REPORT",
@@ -25052,6 +24957,37 @@
     "inferred": [
      "JOURNAL"
     ]
+   }
+  },
+  {
+   "id": "D-073",
+   "date": "2026-10-21",
+   "decision": "Select the 21 October fixed-run `Pier_Fixed.XML` (pipe pile material ASTM A252 Grade 3, Fy 45 ksi) as the current pier analysis export, rerun the pier cap case and the pier pile case from it, rebuild the cap and pile editions, and carry the rerun into the journal pier modules.",
+   "basis": "User supplied the rerun and asked for the whole project flow to follow it. Element-wise comparison with the 19 October export (D-049, now archived under fbmp/pier/archive/2026-10-19/): the only model change is the shell steel (FY_SHELL 60 to 45 ksi and its stress-strain curve); nodal loads, geometry, pile section, soil and the four load combinations are identical; the cap member forces differ only by solver noise below 1e-7 kip, so the pier cap case (rerun with `scripts/apply_fbmp_to_cap_case.py`) keeps every force envelope, ratio and status and only its analysis identity moves to the new SHA-256 (8be45bb8...; previous case archived under cap_design/pier/archive/2026-10-21-before-fbmp-rerun/). The pile demands are identical and the pier pile case keeps structural D/C 0.457, while the export's own failure ratios and interaction diagram follow the 45 ksi material (model maximum 0.29 to 0.39). The pile package now records the agreement between the registered export's pile material Fy and the design Fy as source-backed evidence for the `steel_grade` prerequisite (withdrawn automatically if Fy is edited; the grade and the corrosion allowance remain design inputs), so the pier pile pending entries fall from 16 to 11; D-050's pending Fy reconciliation and assumption A-009 are closed by this export. The load-related assumptions A-001, A-002 and A-007 were re-judged against the new export (nodal loads identical) and keep their dispositions with the new PIER-XML basis. End-bent exports and the minimum-tip variants are unchanged; the End Bent 1 and End Bent 2 pile reports and cases are re-exported with the same package for currency (identical checks; the pile package revision moved). Journal task T032 replaces C010 and C013 with the regenerated editions and records the material change in Foundations and FBMP Modeling. FBMP was rerun by the user, not here; native recalculation, appearance and engineering reviews not performed; COH-004, COH-013 and COH-028 keep their recorded status. See [receipt](coherence/evidence/2026-10-21-fbmp/source_receipt.json), [cap rerun](coherence/evidence/2026-10-21-cap-rerun/source_receipt.json) and [pile export](coherence/evidence/2026-10-21-pile-reports/source_receipt.json).",
+   "refs": {
+    "sources": [
+     "JOURNAL",
+     "PIER-CASE",
+     "PIER-REPORT",
+     "PIER-XML",
+     "PILE-EB1-CASE",
+     "PILE-EB1-REPORT",
+     "PILE-EB2-CASE",
+     "PILE-EB2-REPORT",
+     "PILE-PIER-CASE",
+     "PILE-PIER-REPORT",
+     "PILE-TOOL"
+    ],
+    "decisions": [
+     "D-049",
+     "D-050"
+    ],
+    "issues": [
+     "COH-004",
+     "COH-013",
+     "COH-028"
+    ],
+    "inferred": []
    }
   }
  ],

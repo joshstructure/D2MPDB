@@ -4,7 +4,7 @@ How a calculation package in this repository is built so that its report, portab
 notebook, Mathcad and Blockpad editions and project-record entries match the existing
 ones (backwall `end_bent_walls/`, piles `pile_design/`, cap `pier_cap/`, pier wall
 `ring_wall/`). Follow this list; the tests named at the end enforce most of it.
-Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; report definition and citation cards, D-068).
+Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; report definition and citation cards, D-068; rerun order after a changed analysis export, D-073).
 
 ## 0. Two ways to build a calculation
 
@@ -117,6 +117,18 @@ Last revised 2026-10-21 (journal-calculation packages on `calc_common`, T027; re
 - Pile-style reports need the dated case copy, check CSV and data table beside the report
   for their `--check`. Then run `tools/project_coherence.py --write-report`,
   `scripts/build_lineage_graph.py`, and the atlas gate (`design_atlas.refresh status`).
+- When a registered analysis export changes (a new FBMP run), the order is fixed by the
+  scripts' own guards: archive the previous export, move its register row
+  (`scripts/register_update.py`, decision text first in the notes) and write the receipt
+  (`scripts/fbmp_source_receipt.py`, element-wise comparison with the archived export); then
+  rerun each case that reads it (`scripts/apply_fbmp_to_cap_case.py` for a cap case,
+  `scripts/export_project_pile_reports.py --support ... --decision D-0xx` then
+  `--register --replace` for the pile cases) and rebuild the editions. The pile cases carry
+  every input's source text, so any `pile_design/data/inputs.json` edit stales all three
+  saved cases: re-export all three. A regenerated journal edition whose text changed needs a
+  journal task (`tests/test_cap_bpad.py` compares the journal modules with the committed
+  fragments); the pile and cap journal editions are tied to the case, not to the report bytes.
+  Pattern: D-073 (2026-10-21), tasks T032 and T033.
 
 ## 7. Tests that enforce this
 

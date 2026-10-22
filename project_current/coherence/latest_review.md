@@ -1,13 +1,13 @@
 # Latest project coherence review
 
-Checked at 2026-10-21T23:24:55.645605+00:00. **15 outstanding items remain.**
+Checked at 2026-10-22T01:13:29.897150+00:00. **15 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
 Registered sources: 40. Tracker items: 28.
-Automatic results: 3 changed, 9 error, 57 match, 4 missing, 21 review.
+Automatic results: 2 changed, 9 error, 57 match, 4 missing, 16 review.
 
 ## Files and relationships needing attention
 
@@ -19,7 +19,6 @@ Automatic results: 3 changed, 9 error, 57 match, 4 missing, 21 review.
 | SOURCE:MCAD-DAT2 | MISSING | Registered file is absent. |
 | SOURCE:PSB-S2 | MISSING | No source file has been selected. |
 | SOURCE:BACKWALL-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
-| SOURCE:PILE-TOOL | CHANGED | File differs from the registered revision; review its consumers before adoption. |
 | DEP:JOURNAL:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:MCAD-DAT1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:MCAD-S1:PSB-S1 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
@@ -27,12 +26,6 @@ Automatic results: 3 changed, 9 error, 57 match, 4 missing, 21 review.
 | DEP:MCAD-S2:PSB-S2 | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:BACKWALL-REPORT:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | DEP:BACKWALL-CASE:BACKWALL-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:PILE-EB1-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:PILE-EB1-CASE:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:PILE-EB2-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:PILE-EB2-CASE:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:PILE-PIER-REPORT:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
-| DEP:PILE-PIER-CASE:PILE-TOOL | REVIEW | A registered dependency is missing, changed or awaiting adoption. Review the consumer. |
 | TRACKER:10 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:11 | ERROR | Closed / not-applicable item requires resolution evidence. |
 | TRACKER:15 | ERROR | Closed / not-applicable item requires resolution evidence. |
@@ -48,8 +41,9 @@ Automatic results: 3 changed, 9 error, 57 match, 4 missing, 21 review.
 | ASSUMPTION:A-005 | REVIEW | Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes. |
 | ASSUMPTION:A-007 | REVIEW | Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes. |
 | ASSUMPTION:A-008 | REVIEW | Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes. |
-| ASSUMPTION:A-009 | REVIEW | Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes. |
+| ASSUMPTION:A-009 | REVIEW | Basis moved in the register (PILE-PIER-CASE); re-judge the entry and record new basis hashes. |
 | ASSUMPTION:A-010 | REVIEW | Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes. |
+| ASSUMPTION:A-011 | REVIEW | Basis moved in the register (PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE); re-judge the entry and record new basis hashes. |
 
 ## Outstanding items
 
@@ -73,20 +67,20 @@ Automatic results: 3 changed, 9 error, 57 match, 4 missing, 21 review.
 
 ## Assumptions and gaps
 
-The [register](assumptions.json) records 11 entries: **3 open** (pending disposition) and **8 stale** (basis moved in the source register since the judgment).
+The [register](assumptions.json) records 11 entries: **2 open** (pending disposition) and **9 stale** (basis moved in the source register since the judgment).
 Open and stale entries are listed below; accepted entries stay in the register and in the design atlas. This check never re-judges an entry.
 
 | ID | Kind | State | Statement | Magnitude | Decision |
 | --- | --- | --- | --- | --- | --- |
-| A-009 | assumption | stale: JOURNAL / open | The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design while the FBMP pier model uses 60 ksi; the reconciliation is pending. | 15 ksi | pending D-050 2026-10-19 |
 | A-010 | judgment | stale: CAD-MODEL, JOURNAL / open | The MSE exclusion side walls re-extracted from the D-055 model sit at the 24-in criterion within 0.0002 in, so two of four side-wall rows read SHORTFALL by their last digits (T016). | 0.0002 in | pending D-056 2026-10-19 |
+| A-011 | gap | stale: PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE / open | The 19 October pile design reports carry pending prerequisites: the downdrag source documentation, scour, the minimum tip elevation and the pile-to-cap connection (with pipe steel grade, corrosion allowance, drivability and environment classification). | not sized | pending D-054 2026-10-19 |
 | A-001 | gap | stale: JOURNAL | The bearing dead load entered in the three FBMP fixed-run exports is the pre-T014 journal value (92.07 kip per bearing). The post-T014 journal haunch volumes raise End Bent 1 to 92.473 kip (+0.40 kip) and lower End Bent 2 by 0.38 kip, with a net +0.03 kip at the pier. | 0.4 kip | accepted-negligible D-062 2026-10-19 |
 | A-002 | gap | stale: CAD-MODEL, JOURNAL | The D-059 pier cheek walls (48 x 48 x 12 in at each cap end, 4 ft above the cap top) add exposed area outside the 230-in pier face that is not in the pier FBMP model: about +1.92 kip transverse and +0.48 kip longitudinal direct wind at Strength III. | 1.92 kip | accepted-negligible D-062 2026-10-19 |
 | A-003 | judgment | stale: JOURNAL | The end-bent bearing eccentricity and longitudinal-wind moments about the transverse axis (MX = 0 in both end-bent exports; 23.0 kip-ft DC, 7.2 kip-ft PL and up to 31.8 kip-ft wind per bearing in the journal entry table) are carried by the backwall tie-back straps of the backwall design (D-057), not by the pile row. | 31.8 kip*ft | accepted-negligible D-062 2026-10-19 |
 | A-005 | gap | stale: JOURNAL | End-bent direct wind is not modeled; the journal entry table notes it needs end-bent geometry. A fully exposed cap front and backwall face (about 60 + 78 ft2) would give about 8 kip longitudinal at Strength III, but the closure slab and deck end cover most of that strip and the MSE returns shield the ends. | 8 kip | accepted-negligible D-062 2026-10-19 |
 | A-007 | placeholder | stale: CAD-MODEL | The 3.00 kip DC loads at pier nodes 5 and 44 are placeholders that now stand for the D-059 pier cheek walls, 2.34 kip each (31.26 ft3 total), within the placeholder value. | 2.34 kip | accepted-negligible D-062 2026-10-19 |
 | A-008 | gap | stale: JOURNAL | The End Bent 2 export carries the End Bent 1 bearing loads (92.07 / 28.98 kip) instead of the journal's span-2 tributary values (89.967 / 28.323 kip), which is 2.3% conservative. | 2.3 % | accepted-negligible D-062 2026-10-19 |
-| A-011 | gap | open | The 19 October pile design reports carry pending prerequisites: the downdrag source documentation, scour, the minimum tip elevation and the pile-to-cap connection (with pipe steel grade, corrosion allowance, drivability and environment classification). | not sized | pending D-054 2026-10-19 |
+| A-009 | assumption | stale: PILE-PIER-CASE | The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design. The 19 October FBMP pier model used 60 ksi; the 21 October rerun (D-073) models the pile at 45 ksi, so the Fy reconciliation is closed by the registered export. The grade selection and the corrosion allowance remain design inputs (pile prerequisites corrosion, exposure). | 0 ksi | closed D-073 2026-10-21 |
 
 ## Verified scope
 

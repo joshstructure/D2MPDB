@@ -1,0 +1,36 @@
+{
+  "task": "T033",
+  "base_sha256": "92eac1524a269ee4f605b7052e8db10ced432be9a140086396b367d322bb69e5",
+  "components": {
+    "CapDesignEndBentOne": {
+      "source": "cap_bpad/journal/CapDesignEndBentOne.xml",
+      "fragment_sha256": "a071f19a138480d1cbfc2606e3d6b300a8dc07f27fcae35238820d46ab65d652",
+      "report_file": "End Bent 1 Cap Design 10-20.html",
+      "case_sha256": "0a29c474da90eb4062de01eeebde4a841d5ba9ab64f44ee57609ddd15c9d0657",
+      "definitions_unchanged": 527,
+      "paragraph_removed": "Distilled from End Bent 1 Cap Design 10-19.html (generated 2026-10-19T14:37:01+00:00); same case (canonical SHA-256 0a29c474da90) and C005 formula set (327838126d06) as the report; FBMP End Bent 1_Fixed.XML (c1a4afa13886). Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹.",
+      "paragraph_added": "Distilled from End Bent 1 Cap Design 10-20.html (generated 2026-10-20T17:50:08+00:00); same case (canonical SHA-256 0a29c474da90) and C005 formula set (327838126d06) as the report; FBMP End Bent 1_Fixed.XML (c1a4afa13886). Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹."
+    },
+    "CapDesignEndBentTwo": {
+      "source": "cap_bpad/journal/CapDesignEndBentTwo.xml",
+      "fragment_sha256": "f95525d3516a4e725db9033491e975b53e6c9fa7cd89baee920615090ed0d20e",
+      "report_file": "End Bent 2 Cap Design 10-20.html",
+      "case_sha256": "8a08d9d2856826806c8538616ba31da3e52848b102991a109f621a6abd60b144",
+      "definitions_unchanged": 527,
+      "paragraph_removed": "Distilled from End Bent 2 Cap Design 10-19.html (generated 2026-10-19T14:37:53+00:00); same case (canonical SHA-256 8a08d9d28568) and C005 formula set (327838126d06) as the report; FBMP End Bent 2_Fixed.XML (3543df298b92). Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹.",
+      "paragraph_added": "Distilled from End Bent 2 Cap Design 10-20.html (generated 2026-10-20T17:50:19+00:00); same case (canonical SHA-256 8a08d9d28568) and C005 formula set (327838126d06) as the report; FBMP End Bent 2_Fixed.XML (3543df298b92). Blockpad edition written by scripts/build_cap_bpad.py from the same case; every definition was evaluated independently and compared with the cap tool to 1 part in 10⁹."
+    },
+    "PedBridge": {
+      "source": "base.bpad + revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

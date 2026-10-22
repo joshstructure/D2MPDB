@@ -1,0 +1,29 @@
+{
+  "task": "T033",
+  "journal_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+  "previous_sha256": "92eac1524a269ee4f605b7052e8db10ced432be9a140086396b367d322bb69e5",
+  "promoted": "2026-10-22T01:12:58.852424+00:00",
+  "review": {
+    "candidate_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T033/build_components.py; scripts/build_cap_bpad.py --journal build verification)",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "C008 and C009 replaced by the regenerated editions naming the registered 10-20 End Bent cap reports (D-068); every definition, cached value and canvas identical; no engineering value changed; FBMP not rerun.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "End-bent cap check failures and pending checks remain as recorded in the editions; nothing else touched.",
+    "evidence_files": [
+      {
+        "path": "verification.json",
+        "sha256": "337729f90042c82ea35b507a0db406ee1ca107ad975c3fe73e526b91216a9432"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+}

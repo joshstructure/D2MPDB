@@ -455,7 +455,7 @@
   "unit": "ksi",
   "group": "Steel pipe pile",
   "caption": "Steel yield strength",
-  "source": "Spec 962 Table 962-11, ASTM A252 Gr 3; FBMP model 60 ksi - reconcile",
+  "source": "Spec 962 Table 962-11, ASTM A252 Gr 3; compared with the FBMP pile material Fy when an export is applied",
   "status": "pending confirmation",
   "family": "pipe"
  },

@@ -1,0 +1,266 @@
+{
+  "date": "2026-10-21",
+  "decision": "D-073",
+  "authorization": "User supplied Pier_Fixed.XML on 21 October 2026 and requested: New FBMP run. Update my whole project flow with it.",
+  "scope": "Re-register the pier fixed-run export (pipe pile material 45 ksi); archive the 19 October export; rerun the pier cap case and the pier pile case; rebuild the cap and pile editions; update the journal pier modules and the project record.",
+  "register_row": {
+    "source_id": "PIER-XML",
+    "topic": "Pier FBMP fixed results",
+    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+    "status": "Current source - cap report and case matched",
+    "scope": "Exact fixed-run analysis export used by the current cap report and saved case",
+    "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "registered_on": "2026-10-21",
+    "depends_on": "",
+    "origin": "User-supplied Pier_Fixed.XML, 21 October 2026",
+    "notes": "D-073 (21 October 2026). User-supplied rerun of the fixed pier model: the pipe pile material is ASTM A252 Grade 3, Fy 45 ksi, in place of the 60 ksi of the 19 October export; nodal loads, geometry, pile section, soil and load combinations are unchanged, the cap member forces differ only by solver noise below 1e-7 kip, and the pile failure ratios, the interaction diagram and the output summary follow the 45 ksi material. Exact supplied bytes; the 19 October export is archived under fbmp/pier/archive/2026-10-19/. The pier cap case and the pier pile case are rerun from this export the same day (D-073). See coherence/evidence/2026-10-21-fbmp/source_receipt.json. D-049 supplied bytes retained. D-051 recalculated the cap and exported a matching report/case. Native run records, pile-head review and any other downstream calculations retain their separate status. See coherence/evidence/2026-10-19-cap-rerun/source_receipt.json.",
+    "hash_basis": "exact_bytes"
+  },
+  "supplied_path": "C:\\Users\\joshs\\Downloads\\Pier_Fixed.XML",
+  "file": {
+    "path": "project_current/fbmp/pier/Pier_Fixed.XML",
+    "sha256": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+    "bytes": 2069987,
+    "project": "D2 I95 MPDB",
+    "software_version": "6.1.0",
+    "project_date": "05/13/26",
+    "units": "English",
+    "analysis": "Static",
+    "load_combinations": [
+      {
+        "number": "1",
+        "limitstate": "STRENGTH-I"
+      },
+      {
+        "number": "2",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "3",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "4",
+        "limitstate": "SERVICE-I"
+      }
+    ],
+    "pier_node_count": 40,
+    "pier_node_z_in": [
+      -501.26
+    ],
+    "pile_material_props_ksi": {
+      "FPC": "0.00000",
+      "E_CONCRETE": "0.00000",
+      "FY_MILD": "0.00000",
+      "E_STEEL": "0.00000",
+      "FY_PS": "0.00000",
+      "E_PS": "0.00000",
+      "FY_HPILE": "60.00",
+      "E_HPILE": "29000.00",
+      "FY_SHELL": "45.00",
+      "E_SHELL": "29000.00"
+    }
+  },
+  "archived_previous": {
+    "path": "project_current/fbmp/pier/archive/2026-10-19/Pier_Fixed.XML",
+    "sha256": "bb73e6ada6cf35ebb80b512cee315075807fc8ccab7878406d81ff381ae40fe7",
+    "bytes": 2070343,
+    "project": "D2 I95 MPDB",
+    "software_version": "6.1.0",
+    "project_date": "05/13/26",
+    "units": "English",
+    "analysis": "Static",
+    "load_combinations": [
+      {
+        "number": "1",
+        "limitstate": "STRENGTH-I"
+      },
+      {
+        "number": "2",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "3",
+        "limitstate": "STRENGTH-III"
+      },
+      {
+        "number": "4",
+        "limitstate": "SERVICE-I"
+      }
+    ],
+    "pier_node_count": 40,
+    "pier_node_z_in": [
+      -501.26
+    ],
+    "pile_material_props_ksi": {
+      "FPC": "0.00000",
+      "E_CONCRETE": "0.00000",
+      "FY_MILD": "0.00000",
+      "E_STEEL": "0.00000",
+      "FY_PS": "0.00000",
+      "E_PS": "0.00000",
+      "FY_HPILE": "60.00",
+      "E_HPILE": "29000.00",
+      "FY_SHELL": "60.00",
+      "E_SHELL": "29000.00"
+    }
+  },
+  "comparison_with_previous": {
+    "elements_with_text": {
+      "previous": 32516,
+      "current": 32516
+    },
+    "only_in_previous": 0,
+    "only_in_current": 0,
+    "changed": 1205,
+    "changed_by_section": {
+      "MODEL_INFO#4/SUBSTRUCTURE/LOAD_CASE_RESULTS": 1149,
+      "MODEL_INFO#5/SUBSTRUCTURE/INTERACTION_DIAGRAM_DATA": 48,
+      "MODEL_INFO/SUBSTRUCTURE/PILE_GEOMETRY": 7,
+      "MODEL_INFO#6/SUBSTRUCTURE/OUTPUT_SUMMARY": 1
+    },
+    "changed_by_leaf_tag": {
+      "FY_SHELL": {
+        "count": 1,
+        "largest_abs_change": 15.0,
+        "example": {
+          "path": "MODEL_INFO/SUBSTRUCTURE[@number=1]/PILE_GEOMETRY/SEGMENT[@number=1][@pileset=1]/MATERIAL_PROPS/FY_SHELL",
+          "before": "60.00",
+          "after": "45.00"
+        }
+      },
+      "STRESS": {
+        "count": 4,
+        "largest_abs_change": 15.0,
+        "example": {
+          "path": "MODEL_INFO/SUBSTRUCTURE[@number=1]/PILE_GEOMETRY/SEGMENT[@number=1][@pileset=1]/STRESS-STRAIN_CURVES/SHELL_STEEL/POINT[@number=1]/STRESS",
+          "before": "-60.00",
+          "after": "-45.00"
+        }
+      },
+      "STRAIN": {
+        "count": 2,
+        "largest_abs_change": 0.0005173,
+        "example": {
+          "path": "MODEL_INFO/SUBSTRUCTURE[@number=1]/PILE_GEOMETRY/SEGMENT[@number=1][@pileset=1]/STRESS-STRAIN_CURVES/SHELL_STEEL/POINT[@number=2]/STRAIN",
+          "before": "-0.20690E-02",
+          "after": "-0.15517E-02"
+        }
+      },
+      "FAILURE-RATIO": {
+        "count": 988,
+        "largest_abs_change": 0.10000000000000003,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/PILE_INTERNAL_FORCES/PILE[@number=4]/ELEMENT[@number=13]/PILE_ELEMENT_J_END/FAILURE-RATIO",
+          "before": "0.29",
+          "after": "0.39"
+        }
+      },
+      "SHEAR-3": {
+        "count": 80,
+        "largest_abs_change": 4.7439e-08,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/STRUCTURE_INTERNAL_FORCES/PIER_CAP/ELEMENT[@number=43]/STRUCTURE_ELEMENT_I_END/SHEAR-3",
+          "before": "0.13417E-07",
+          "after": "-0.34022E-07"
+        }
+      },
+      "MOMENT-3": {
+        "count": 10,
+        "largest_abs_change": 9.1677e-10,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=1][@number=8]/TIME_STEP[@number=1]/STRUCTURE_INTERNAL_FORCES/PIER_CAP/ELEMENT[@number=43]/STRUCTURE_ELEMENT_J_END/MOMENT-3",
+          "before": "-0.42999E-09",
+          "after": "0.48678E-09"
+        }
+      },
+      "MOMENT-2": {
+        "count": 69,
+        "largest_abs_change": 1.6521300000000002e-08,
+        "example": {
+          "path": "MODEL_INFO#4/SUBSTRUCTURE[@number=1]/LOAD_CASE_RESULTS/LOAD_CASE[@combination=2][@number=9]/TIME_STEP[@number=1]/STRUCTURE_INTERNAL_FORCES/PIER_CAP/ELEMENT[@number=43]/STRUCTURE_ELEMENT_I_END/MOMENT-2",
+          "before": "-0.79211E-08",
+          "after": "0.86002E-08"
+        }
+      },
+      "AXIAL": {
+        "count": 13,
+        "largest_abs_change": 349.6299999999999,
+        "example": {
+          "path": "MODEL_INFO#5/SUBSTRUCTURE[@number=1]/INTERACTION_DIAGRAM_DATA/DIAGRAM[@number=1]/INTERACTION_POINTS/POINT[@number=1]/AXIAL",
+          "before": "1398.54",
+          "after": "1048.91"
+        }
+      },
+      "MAX_TENSION_FORCE": {
+        "count": 1,
+        "largest_abs_change": 349.6299999999999,
+        "example": {
+          "path": "MODEL_INFO#5/SUBSTRUCTURE[@number=1]/INTERACTION_DIAGRAM_DATA/DIAGRAM[@number=1]/MAX_TENSION_FORCE",
+          "before": "1398.54",
+          "after": "1048.91"
+        }
+      },
+      "MOMENT_3_POS": {
+        "count": 9,
+        "largest_abs_change": 227.0,
+        "example": {
+          "path": "MODEL_INFO#5/SUBSTRUCTURE[@number=1]/INTERACTION_DIAGRAM_DATA/DIAGRAM[@number=1]/INTERACTION_POINTS/POINT[@number=6]/MOMENT_3_POS",
+          "before": "908.00",
+          "after": "681.00"
+        }
+      },
+      "MOMENT_2_NEG": {
+        "count": 9,
+        "largest_abs_change": 227.0,
+        "example": {
+          "path": "MODEL_INFO#5/SUBSTRUCTURE[@number=1]/INTERACTION_DIAGRAM_DATA/DIAGRAM[@number=1]/INTERACTION_POINTS/POINT[@number=6]/MOMENT_2_NEG",
+          "before": "908.00",
+          "after": "681.00"
+        }
+      },
+      "MOMENT_3_NEG": {
+        "count": 9,
+        "largest_abs_change": 227.0,
+        "example": {
+          "path": "MODEL_INFO#5/SUBSTRUCTURE[@number=1]/INTERACTION_DIAGRAM_DATA/DIAGRAM[@number=1]/INTERACTION_POINTS/POINT[@number=6]/MOMENT_3_NEG",
+          "before": "908.00",
+          "after": "681.00"
+        }
+      },
+      "MOMENT_2_POS": {
+        "count": 9,
+        "largest_abs_change": 227.0,
+        "example": {
+          "path": "MODEL_INFO#5/SUBSTRUCTURE[@number=1]/INTERACTION_DIAGRAM_DATA/DIAGRAM[@number=1]/INTERACTION_POINTS/POINT[@number=6]/MOMENT_2_POS",
+          "before": "908.00",
+          "after": "681.00"
+        }
+      },
+      "ITEM_VALUE": {
+        "count": 1,
+        "largest_abs_change": 0.10000000000000003,
+        "example": {
+          "path": "MODEL_INFO#6/SUBSTRUCTURE[@number=1]/OUTPUT_SUMMARY/PILE_MAX/MAX_ITEM#13/ITEM_VALUE",
+          "before": "0.29",
+          "after": "0.39"
+        }
+      }
+    }
+  },
+  "direct_consumers": [
+    "JOURNAL",
+    "PIER-CASE",
+    "PIER-REPORT",
+    "PILE-PIER-CASE",
+    "PILE-PIER-REPORT",
+    "PILE-TOOL"
+  ],
+  "downstream_disposition": "Cap and pile cases rerun from this export the same day (D-073): the cap force envelopes and every cap check are unchanged; the pile demands are unchanged and the steel_grade prerequisite is source-backed (model Fy equals the 45 ksi design Fy). End-bent exports, cases and reports are untouched.",
+  "verification": {
+    "exact_supplied_bytes": true,
+    "registered_sha256_matches_file": true,
+    "archived_bytes_present": true,
+    "native_recalculation_performed": false
+  }
+}

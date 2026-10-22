@@ -1,22 +1,22 @@
 {
-  "task": "T031",
-  "journal_sha256": "a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610",
-  "previous_sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
-  "promoted": "2026-10-22T00:02:58.970407+00:00",
+  "task": "T033",
+  "journal_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+  "previous_sha256": "92eac1524a269ee4f605b7052e8db10ced432be9a140086396b367d322bb69e5",
+  "promoted": "2026-10-22T01:12:58.852424+00:00",
   "review": {
-    "candidate_sha256": "a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610",
-    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T031/build_components.py; calc_common/bpad.py build verification)",
+    "candidate_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T033/build_components.py; scripts/build_cap_bpad.py --journal build verification)",
     "native_recalculation": false,
     "native_visual_review": false,
     "engineering_review": false,
     "design_outcome": "unreviewed",
-    "external_analysis_disposition": "Four code-reference modules deleted; their citations live in the calculation reports; C001-C004 editions regenerated with the same definitions and caches; no numerical change; FBMP not rerun.",
+    "external_analysis_disposition": "C008 and C009 replaced by the regenerated editions naming the registered 10-20 End Bent cap reports (D-068); every definition, cached value and canvas identical; no engineering value changed; FBMP not rerun.",
     "external_analysis_status": "unreviewed",
-    "inherited_issues_disposition": "C015 keeps its knife-edge SHORTFALL rows (unchanged, not registered); other components untouched.",
+    "inherited_issues_disposition": "End-bent cap check failures and pending checks remain as recorded in the editions; nothing else touched.",
     "evidence_files": [
       {
         "path": "verification.json",
-        "sha256": "c5fe620bbb023a378087f42b934322d8ebaeb62d3ec82a510bb7093977ff0174"
+        "sha256": "337729f90042c82ea35b507a0db406ee1ca107ad975c3fe73e526b91216a9432"
       }
     ]
   },
@@ -25,5 +25,5 @@
     "effective_date": "2026-10-16",
     "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
   },
-  "history": "workflow/history/a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610"
+  "history": "workflow/history/82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
 }

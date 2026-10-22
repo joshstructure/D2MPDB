@@ -1,12 +1,15 @@
 """Export the project pile design reports and cases from the pile analysis and design package.
 
     .venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --date 10-19
-    .venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --register
+    .venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --register --date 10-19
     .venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --check
+    .venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --date 10-21 --support Pier --decision D-073 \\
+        --xml-decision D-073 --authorization "..."                     # one support, a later decision
+    .venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --register --replace --date 10-21
 
-For each support (End Bent 1, End Bent 2, Pier) the preset case `default_case(support)` (the
-D-049 FB-MultiPier fixed-run exports registered in pile_design/data/sources.json, 18 tons of
-downdrag at the end bents) is evaluated and written under project_current/pile_design/<folder>/:
+For each support (End Bent 1, End Bent 2, Pier; `--support` narrows the list) the preset case `default_case(support)`
+(the FB-MultiPier fixed-run exports registered in pile_design/data/sources.json, 18 tons of downdrag at the end
+bents) is evaluated and written under project_current/pile_design/<folder>/:
 
     <Support> Pile Design <m-d>.html        calculation report (pile_design.report.build_report)
     <Support> Pile Design <m-d>.json        case (pile_design.exports.case_json)
@@ -16,8 +19,10 @@ downdrag at the end bents) is evaluated and written under project_current/pile_d
     README.md                               what was run and the results
 
 and a source receipt under project_current/coherence/evidence/2026-<m-d>-pile-reports/.
-`--register` appends the six register rows (PILE-EB1-REPORT ... PILE-PIER-CASE) when absent;
-it never changes an existing row.
+`--register` appends the register rows of the receipt (PILE-EB1-REPORT ... PILE-PIER-CASE) when absent and
+never changes an existing row; `--register --replace` moves existing rows to the receipt's files, putting the
+new decision text in front of the row's notes (scripts/register_update.py), which is the recorded disposition
+project_current/AGENTS.md asks for when a registered hash changes.
 
 The report embeds its generation time and random figure ids, and a saved case holds the load
 time of its FBMP receipt, so a rerun gives new bytes. The report does not embed the case or
@@ -42,7 +47,8 @@ sys.path.insert(0, str(ROOT))
 PILE_DESIGN = ROOT / 'project_current' / 'pile_design'
 REGISTER = ROOT / 'project_current' / 'source_register.csv'
 EVIDENCE = ROOT / 'project_current' / 'coherence' / 'evidence'
-DECISION = 'D-054'
+DECISION = 'D-054'                      # defaults of the first export (19 October 2026); later exports pass their own
+XML_DECISION = 'D-049'                  # the decision that selected the FBMP exports the preset cases read
 YEAR = '2026'
 AUTHORIZATION = ('User instruction, 19 October 2026: "Run the pile design analysis for both end bents and pier and export '
                  'the calculation reports and save to the source and then export the bpad distills and add to the journal."')
@@ -133,7 +139,14 @@ def summary(e) -> dict:
         'pile_data_table_row': e.data_table}
 
 
-def readme(support: str, e, s: dict, files: dict[str, Path], label: str) -> str:
+def _day(label: str) -> str:
+    """'10-21' -> '21 October'."""
+    from datetime import date
+    d = date(int(YEAR), int(label.split('-')[0]), int(label.split('-')[1]))
+    return f'{d.day} {d.strftime("%B")}'
+
+
+def readme(support: str, e, s: dict, files: dict[str, Path], label: str, decision: str = DECISION, xml_decision: str = XML_DECISION) -> str:
     from pile_design.mathcad import package_revision
     from urllib.parse import quote
     a = e.case['analysis']
@@ -142,16 +155,20 @@ def readme(support: str, e, s: dict, files: dict[str, Path], label: str) -> str:
     other = '; '.join(s['other_pending_checks'])
     pile = ('18 in square prestressed concrete piles (Standard Plans Index 455-018, 12 x 0.6 in strands) with 18 tons of downdrag per pile'
             if e.family == 'psc' else '20 in x 0.48 in steel pipe piles (noncomposite), no downdrag')
+    confirmed = [k for k, v in e.case['confirmations'].items() if v]
+    evidence = e.case.get('confirmation_evidence', {})
+    backed = ''.join(f'\n- `{k}`: {evidence.get(k, {}).get("note", "confirmed in the saved case")}' for k in confirmed)
+    backed = f'\nSource-backed confirmations in the preset case:{backed}\n' if backed else ''
     return f"""# {support} current pile design
 
-The [19 October report]({link('report')}) and [dated JSON]({link('dated_case')}) are selected under {DECISION}.
+The [{_day(label)} report]({link('report')}) and [dated JSON]({link('dated_case')}) are selected under {decision}.
 `selected_case.json` is byte-identical to the dated JSON. The [check register]({link('checks_csv')})
 and [Pile Data Table]({link('data_table_xlsx')}) come from the same case.
 
 The pile analysis and design package (`pile_design`, revision `{package_revision()[:16]}`, the engine of
 `Pile_Design.ipynb`) evaluated its preset case for {support}: {pile}. The FB-MultiPier export is
-`{a['filename']}` ({a['registered_id']}, SHA-256 `{a['sha256']}`), the D-049 fixed run; the case's receipt records that it
-matches the register. No input was changed by hand.
+`{a['filename']}` ({a['registered_id']}, SHA-256 `{a['sha256']}`), the {xml_decision} fixed run; the case's receipt records that it
+matches the register. No input was changed by hand.{backed}
 
 Results: all numerical checks pass. The largest structural demand/capacity ratio is {s['strength_dc']:.3f}; the largest
 ratio of any check is {s['max_ratio']:.2f} (the pile spacing check, exactly 3 diameters). Nominal Bearing Resistance
@@ -163,22 +180,39 @@ The report counts {s['pending_items']} pending entries: {s['PENDING']} PENDING a
 prerequisite. Open prerequisites: {unconfirmed}. Other pending checks: {other}.
 The report's section 13 lists them. Selection is not engineering acceptance.
 
-The Blockpad edition of this report is in the journal under task T015
-(`pile_bpad/{support} Pile Design.bpad`). Regenerate with `scripts/export_project_pile_reports.py --date {label}`; the report
+The Blockpad edition of this report is the journal module written by `scripts/build_pile_bpad.py`
+(`pile_bpad/journal/`, standalone copy `pile_bpad/{support} Pile Design.bpad`). Regenerate with
+`scripts/export_project_pile_reports.py --date {label} --support "{support}" --decision {decision} --xml-decision {xml_decision}`; the report
 embeds its generation time, so a rerun gives new bytes. `--check` regenerates the report from the saved case and compares.
 Calculation, source and preservation checks are in the
 [receipt](../../coherence/evidence/{YEAR}-{label}-pile-reports/source_receipt.json).
 """
 
 
-def export(label: str) -> dict:
+def xml_decision_for(xml_id: str, override: str | None = None) -> str:
+    """The decision that selected a registered export: the first D-### in its register notes (or the override)."""
+    if override:
+        return override
+    with REGISTER.open(newline='', encoding='utf-8-sig') as f:
+        row = next(r for r in csv.DictReader(f) if r['source_id'] == xml_id)
+    m = re.search(r'\bD-\d{3}\b', row['notes'])
+    if not m:
+        raise ValueError(f'{xml_id}: no decision id in its register notes; pass --xml-decision')
+    return m.group(0)
+
+
+def export(label: str, supports=None, decision: str = DECISION, authorization: str = AUTHORIZATION, xml_decision: str | None = None) -> dict:
     """Write the reports, cases, tables, READMEs and the receipt; return the receipt."""
     import openpyxl
     import plotly
     from pile_design.mathcad import package_revision
     from pile_design.model import PRESETS
+    chosen = [t for t in SUPPORTS if supports is None or t[0] in supports]
+    if supports is not None and len(chosen) != len(set(supports)):
+        raise ValueError(f'Unknown support in {supports}; choose from {[t[0] for t in SUPPORTS]}.')
     reports = []
-    for support, folder, prefix in SUPPORTS:
+    xml_decisions = {}
+    for support, folder, prefix in chosen:
         e = evaluate_preset(support)
         data = outputs(e)
         files = names(support, folder, label)
@@ -186,24 +220,27 @@ def export(label: str) -> dict:
         for key, path in files.items():
             path.write_bytes(data[key])
         s = summary(e)
-        (files['selected_case'].parent / 'README.md').write_text(readme(support, e, s, files, label), encoding='utf-8', newline='\n')
-        a = e.case['analysis']
         xml_id = PRESETS[support]['xml']
+        xml_decisions[support] = xml_decision_for(xml_id, xml_decision)
+        (files['selected_case'].parent / 'README.md').write_text(readme(support, e, s, files, label, decision, xml_decisions[support]), encoding='utf-8', newline='\n')
+        a = e.case['analysis']
         reports.append({
             'support': support, 'family': e.family, 'case_name': e.case['name'], 'schema_version': e.case['schema_version'],
-            'source_ids': {'report': f'{prefix}-REPORT', 'case': f'{prefix}-CASE', 'fbmp_export': xml_id},
+            'source_ids': {'report': f'{prefix}-REPORT', 'case': f'{prefix}-CASE', 'fbmp_export': xml_id}, 'xml_decision': xml_decisions[support],
             'files': {key: {'path': rel(files[key]), 'sha256': sha256(data[key]), 'bytes': len(data[key])} for key in files},
             'selected_case_equals_dated_case': data['selected_case'] == data['dated_case'],
             'case_sha256': sha256(data['selected_case']),
             'fbmp_export': {'id': xml_id, 'filename': a['filename'], 'sha256': a['sha256'], 'matches_register': a['matches_register']},
             'check_register': {k: v for k, v in s.items() if k != 'pile_data_table_row'},
             'pile_data_table_row': s['pile_data_table_row']})
+    xml_label = ', '.join(sorted(set(xml_decisions.values())))
     receipt = {
-        'date': f'{YEAR}-{label}', 'decision': DECISION, 'authorization': AUTHORIZATION,
-        'scope': ('Pile analysis and design reports and cases for End Bent 1, End Bent 2 and Pier exported to project_current/pile_design/ '
-                  'from the preset cases of the pile_design package (D-049 FBMP fixed-run exports, 18 tons end-bent downdrag, D-050). '
+        'date': f'{YEAR}-{label}', 'decision': decision, 'authorization': authorization, 'xml_decisions': xml_decisions,
+        'supports': [t[0] for t in chosen],
+        'scope': (f'Pile analysis and design reports and cases for {", ".join(t[0] for t in chosen)} exported to project_current/pile_design/ '
+                  f'from the preset cases of the pile_design package ({xml_label} FBMP fixed-run exports, 18 tons end-bent downdrag, D-050). '
                   'No cap design, FBMP export, geometry, journal, tracker row or engineering disposition changed in this step. '
-                  'The Blockpad editions go to the journal under T015.'),
+                  'The Blockpad editions go to the journal through the BPAD workflow.'),
         'generator': {
             'script': 'scripts/export_project_pile_reports.py', 'command': f'.venv\\Scripts\\python.exe scripts\\export_project_pile_reports.py --date {label}',
             'package': 'pile_design', 'package_revision': package_revision(),
@@ -225,18 +262,21 @@ def export(label: str) -> dict:
 
 
 def register_rows(receipt: dict) -> list[dict]:
-    """The six source-register rows of an export receipt."""
+    """The source-register rows (report and case per support) of an export receipt."""
     rows = []
+    decision = receipt.get('decision', DECISION)
+    label = receipt['date'][5:]
     for r in receipt['reports']:
         support, ids, xml, files = r['support'], r['source_ids'], r['fbmp_export']['id'], r['files']
+        xml_decision = r.get('xml_decision') or receipt.get('xml_decision') or XML_DECISION
         s = r['check_register']
         pending = '; '.join(SHORT[k] for k in s['unconfirmed_prerequisites'])
         what = {'End Bent 1': 'End Bent 1', 'End Bent 2': 'End Bent 2', 'Pier': 'Pier'}[support]
-        note = (f'{DECISION}. Pile analysis and design of the {what} piles from the pile design package (PILE-TOOL, package '
-                f'{receipt["generator"]["package_revision"][:12]}) with the D-049 fixed-run export {xml}. All numerical checks pass '
+        note = (f'{decision}. Pile analysis and design of the {what} piles from the pile design package (PILE-TOOL, package '
+                f'{receipt["generator"]["package_revision"][:12]}) with the {xml_decision} fixed-run export {xml}. All numerical checks pass '
                 f'(structural D/C {s["strength_dc"]:.3f}); {s["pending_items"]} pending entries remain ({s["PENDING"]} PENDING, {s["PASS_with_pending_input"]} PASS resting on '
                 f'an unconfirmed prerequisite). Open: {pending}; {"; ".join(s["other_pending_checks"])}. ')
-        origin = 'Notebook package run requested by the user, 19 October 2026 (scripts/export_project_pile_reports.py)'
+        origin = f'Notebook package run requested by the user, {_day(label)} {YEAR} (scripts/export_project_pile_reports.py)'
         receipt_note = f'See coherence/evidence/{receipt["date"]}-pile-reports/source_receipt.json. Selection is not engineering acceptance.'
         rows.append({
             'source_id': ids['report'], 'topic': f'{what} pile design report', 'path': files['report']['path'], 'status': STATUS,
@@ -251,8 +291,8 @@ def register_rows(receipt: dict) -> list[dict]:
     return rows
 
 
-def register(receipt: dict) -> list[str]:
-    """Append rows that are absent; refuse to alter or contradict an existing row."""
+def register(receipt: dict, replace: bool = False) -> list[str]:
+    """Append rows that are absent; with `replace`, move existing rows to the receipt's files (decision text first in the notes)."""
     text = REGISTER.read_bytes()
     with REGISTER.open(newline='', encoding='utf-8-sig') as f:
         existing = {row['source_id']: row for row in csv.DictReader(f)}
@@ -261,14 +301,22 @@ def register(receipt: dict) -> list[str]:
     if b'\r\n' in text:
         raise ValueError('The register is expected to use LF line endings.')
     rows = register_rows(receipt)
-    new, added = [], []
+    new, added, replaced = [], [], {}
     for row in rows:
         old = existing.get(row['source_id'])
         if old is None:
             new.append(row)
             added.append(row['source_id'])
         elif old != row:
-            raise ValueError(f'{row["source_id"]} is registered with different content; record a disposition before replacing it.')
+            if not replace:
+                raise ValueError(f'{row["source_id"]} is registered with different content; record a disposition before replacing it.')
+            if old['sha256'] == row['sha256']:
+                continue
+            replaced[row['source_id']] = {k: row[k] for k in ('path', 'sha256', 'registered_on', 'depends_on', 'origin', 'notes', 'scope')}
+    if replaced:
+        from scripts.register_update import update_rows
+        update_rows(replaced, prepend_notes=True)
+        added += [f'{sid} (replaced)' for sid in replaced]
     if new:
         import io
         buffer = io.StringIO()
@@ -345,7 +393,12 @@ def check() -> list[str]:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('--date', help='m-d suffix for the new file names, for example 10-19')
-    parser.add_argument('--register', action='store_true', help='append the six source-register rows from the receipt of --date')
+    parser.add_argument('--support', action='append', help='export only this support (repeatable); default: all three')
+    parser.add_argument('--decision', default=DECISION, help=f'decision id recorded in the receipt and rows (default {DECISION})')
+    parser.add_argument('--xml-decision', default=None, help='decision that selected the FBMP exports read by the presets (default: the first D-### in each export\'s register notes)')
+    parser.add_argument('--authorization', default=AUTHORIZATION, help='the user request that authorizes the export (quoted)')
+    parser.add_argument('--register', action='store_true', help='append the source-register rows from the receipt of --date')
+    parser.add_argument('--replace', action='store_true', help='with --register: move existing rows to the receipt files (decision text first in the notes)')
     parser.add_argument('--check', action='store_true', help='verify the registered reports instead of exporting')
     args = parser.parse_args(argv)
     sys.stdout.reconfigure(encoding='utf-8')
@@ -357,12 +410,12 @@ def main(argv=None) -> int:
         if not args.date:
             parser.error('--date is required to register')
         receipt = json.loads((EVIDENCE / f'{YEAR}-{args.date}-pile-reports' / 'source_receipt.json').read_text(encoding='utf-8'))
-        added = register(receipt)
-        print('Appended ' + ', '.join(added) if added else 'All pile rows are already registered.')
+        added = register(receipt, replace=args.replace)
+        print('Registered ' + ', '.join(added) if added else 'All pile rows are already registered.')
         return 0
     if not args.date:
         parser.error('--date is required to export')
-    receipt = export(args.date)
+    receipt = export(args.date, args.support, args.decision, args.authorization, args.xml_decision)
     for r in receipt['reports']:
         for key, info in r['files'].items():
             print(f'Wrote {info["path"]} ({info["bytes"]:,} bytes)')

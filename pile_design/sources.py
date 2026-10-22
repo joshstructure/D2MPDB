@@ -83,6 +83,7 @@ def read_fbmp_xml(content, filename='End Bent 1_Fixed.XML', case=None):
     kind = section['kind']
     family = 'psc' if kind == 'concrete' else 'pipe'
     label = f'{registered_id or "FBMP-XML upload"} {filename}'
+    evidence = {}
     if kind == 'concrete':
         updates['D_pile'] = section['width_in']
         updates['fc'] = section['fc_ksi']
@@ -103,9 +104,17 @@ def read_fbmp_xml(content, filename='End Bent 1_Fixed.XML', case=None):
         updates['t_wall'] = section['shell_in']
         notes.append(f'FBMP pipe: {section["width_in"]:g} in diameter, shell {section["shell_in"]:g} in, A {section["area_in2"]:g} in2, '
                      f'I {section["i3_in4"]:g} in4, Fy {section["fy_ksi"]:g} ksi in the model.')
-        if section.get('fy_ksi') and abs(section['fy_ksi'] - inputs.get('Fy', 45.0)) > 1e-9:
-            notes.append(f'FBMP model Fy = {section["fy_ksi"]:g} ksi; the design Fy input ({inputs.get("Fy", 45.0):g} ksi, '
+        design_fy = float(inputs.get('Fy', 45.0))
+        if section.get('fy_ksi') and abs(section['fy_ksi'] - design_fy) > 1e-9:
+            notes.append(f'FBMP model Fy = {section["fy_ksi"]:g} ksi; the design Fy input ({design_fy:g} ksi, '
                          'Spec 962 Table 962-11 A252 Gr 3) is not overwritten. Reconcile (confirmation steel_grade).')
+        elif section.get('fy_ksi') and registered_id:
+            # The registered export models the pile with the design yield strength: the Fy half of the
+            # steel_grade prerequisite is source-backed. reconcile_confirmations withdraws it if Fy is edited.
+            evidence = {'steel_grade': {
+                'note': (f'FBMP pile material Fy {section["fy_ksi"]:g} ksi equals the design Fy {design_fy:g} ksi (Spec 962 Table 962-11, ASTM A252 '
+                         f'Grade 3) in the registered export {registered_id} {filename} (SHA-256 {digest[:12]}). The grade itself remains the design input.'),
+                'inputs': {'Fy': design_fy}, 'source': f'{registered_id} {filename}', 'stale': False}}
     if not registered_id:
         notes.append('Not a registered export - new upload. Record it in the source register before relying on the results.')
     elif registered_id.endswith('MINTIP-XML'):
@@ -113,6 +122,9 @@ def read_fbmp_xml(content, filename='End Bent 1_Fixed.XML', case=None):
     sources = {k: f'{label}: ' + {'N_pile': 'PILE_GROUP piles', 'S_pile': 'pile head coordinates', 'EL_cutoff': 'minus pile-head Z / 12',
                                   'EL_ground': 'top of soil layer 1', 'L_unsupported': 'cutoff - ground', 'L_v': 'cutoff - ground (default shear span)',
                                   'D_pile': 'section WIDTH', 'fc': 'FPC', 'D_out': 'section WIDTH', 't_wall': 'SHELL_THICK'}[k] for k in updates}
+    if evidence:
+        # The design Fy is not overwritten, but its source now names the export whose pile material carries the same value.
+        sources['Fy'] = f'Spec 962 Table 962-11, ASTM A252 Gr 3; {label} pile material FY_SHELL {section["fy_ksi"]:g} ksi equals this value'
     dc_value, dc_record = loads.model_dc_max(records)
     analysis = dict(filename=review['filename'], sha256=digest, registered_id=registered_id, matches_register=registered_id is not None,
                     project=review['project'], family=family, combinations=review['combinations'],
@@ -122,6 +134,8 @@ def read_fbmp_xml(content, filename='End Bent 1_Fixed.XML', case=None):
                     soil_top_elevations_ft=tops, cutoff_ft=cutoff, model_dc_max=dc_value, records=records)
     receipt = _receipt('FBMP-XML', filename, content, registered_id, notes)
     receipt['analysis'] = analysis
+    if evidence:
+        receipt['confirmation_evidence'] = evidence
     return updates, sources, receipt
 
 
@@ -166,6 +180,10 @@ def apply_source(case, source_id, content, filename):
         case['analysis'] = analysis
     for name, value in updates.items():
         edit_input(case, name, value)
+    for key, record in receipt.pop('confirmation_evidence', {}).items():
+        # Source-backed confirmation: the evidence names the registered export and the inputs it rests on.
+        case.setdefault('confirmation_evidence', {})[key] = dict(record)
+        case['confirmations'][key] = True
     status = 'project source' if receipt['matches_register'] else 'differs from register'
     for name, text in sources.items():
         case['sources'][name] = {'source': text, 'status': status}
