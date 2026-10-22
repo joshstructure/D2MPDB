@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "digest": "97eb4cb08cb919d01215e667b3b0a5a4b14a155e7092269473c1eba8d7f83854",
+    "digest": "27f1933b2f7111e949111da343640e1f8683473db65eab0f9216c872eb115dcb",
     "files": {
       "Bridge_Geometry_2 Beam_V2.ipynb": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
       "Cap_and_Pile_Design.ipynb": "18346df762b1636b0265c466618851bb896165addcd9bd455f5e840e40ad8e19",
@@ -37,7 +37,7 @@
       "project_current/cap_design/pier/Pier Cap Design 10-21.html": "216c26dd78b4394451c0726b3246bc29fafb646a1b06dc6e73607ca445a0eed2",
       "project_current/cap_design/pier/selected_case.json": "d649563b94af250fc790e88b481b4a3c8710de22593107e8691ac5582a5696a5",
       "project_current/coherence/Coherence_Tracker.xlsx": "a41ceabda4591d478def85249d3ede63b9faf67e12b4a91916cde44197c95da7",
-      "project_current/coherence/assumptions.json": "683ffee4d1a0f19cf79f4b7cb2e05102b5199df8fb9ce46560d91b72fb4be9da",
+      "project_current/coherence/assumptions.json": "258badcd4c1919045d7665e071066636e2f74b6f18a3a7af264dfe4f3e6facfe",
       "project_current/fbmp/end_bents/End Bent 1_Fixed.XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
       "project_current/fbmp/end_bents/End Bent 1_Min_tip.XML": "739f44c1d542464cfd536493ce1ed6cb240f98a75ed3e1188c6f6812742d6fe2",
       "project_current/fbmp/end_bents/End Bent 2_Fixed.XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
@@ -66,17 +66,17 @@
     }
   },
   "artifacts": {
-    "atlas-data.json": "4ff663a540a3fb4c79d9c4086dea1d130728b52aad640ca7b7ab448c01d23543",
+    "atlas-data.json": "25afcad8e83a28b6a6301ebd18d24d3460b62d5e7179b339cffa36a95c8a5679",
     "atlas.css": "0ca17b6e0bea69700937258025d0a2ab4766b8d8dba4bc27ea80c0764acb9291",
     "atlas.js": "ca764d226381dda08b570de28e89f2a15ba480d9fb062b2685e2dbeb7b78f802",
-    "dataset.js": "1019ca964af8e73e451965256848227aa83a09af6e7cb457f88819c95cf1ae1d",
+    "dataset.js": "63b0305d5c84dce9498749ecbe34e1f1d45310b6fb170046a5543928f3f049fb",
     "downloads.js": "d4e5a74e86a7fbf0387a39b4edd3d1ca3e582a864861b25a07edb6d91d344a79",
     "downloads/0096257d626d2f84d40902ff403d18e70e21595e1a4d72510908f0be4dd8a0d8/0000.bin": "0096257d626d2f84d40902ff403d18e70e21595e1a4d72510908f0be4dd8a0d8",
     "downloads/18346df762b1636b0265c466618851bb896165addcd9bd455f5e840e40ad8e19/0000.bin": "18346df762b1636b0265c466618851bb896165addcd9bd455f5e840e40ad8e19",
+    "downloads/258badcd4c1919045d7665e071066636e2f74b6f18a3a7af264dfe4f3e6facfe/0000.bin": "258badcd4c1919045d7665e071066636e2f74b6f18a3a7af264dfe4f3e6facfe",
     "downloads/26c14e48e80bc93e68342712a3101955a1f18d80e618633ca8e1c5463b75d175/0000.bin": "8f182a374064f8a669141b853b1e28e03f6689c92dfc440a3eac0fb945680898",
     "downloads/26c14e48e80bc93e68342712a3101955a1f18d80e618633ca8e1c5463b75d175/0001.bin": "faebac591bb2eefc2f92bf85d400b020e810ee9a54cecff974c696eb7791d882",
     "downloads/349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751/0000.bin": "349d464afddc653dfe52808be44faea951f874ac6199026ea771f176f3e02751",
-    "downloads/683ffee4d1a0f19cf79f4b7cb2e05102b5199df8fb9ce46560d91b72fb4be9da/0000.bin": "683ffee4d1a0f19cf79f4b7cb2e05102b5199df8fb9ce46560d91b72fb4be9da",
     "index.html": "a72fa744d283509cc45da6089c998179abd822086dfce222279b3ee23072bc73",
     "layouts.js": "96c48408d9fa1526a1a83f7c45f06c1b24ad52e58e808f733f9f95f72c973dc4"
   },
@@ -102,10 +102,10 @@
       "flagged": 10
     }
   },
-  "commit_sha": "388e0862d8c0f69ffea95381b82246df2948dbb5",
+  "commit_sha": "08361cf0e8cf9f5805c05d8e5a35e2afe86cc75b",
   "project_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5",
-  "deployment_id": "appgdep_6ad9fb32d25081919d7f3772b34566ff",
-  "version_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5~appgver_fe58b553d7d48191b3c09f82cfd9d54f",
-  "published_at": "2026-10-22T12:02:49.733878+00:00",
+  "deployment_id": "appgdep_6ada0e9d7bc48191b96663a8b9b43fbe",
+  "version_id": "appgprj_6ad3a58e2f6481918bbe0d09bd7007f5~appgver_691d13d6b6fc8191b4843b4317a8d617",
+  "published_at": "2026-10-22T13:25:26.645355+00:00",
   "url": "https://d2-pier-cap-design-atlas.ochrebee15.chatgpt.site"
 }
