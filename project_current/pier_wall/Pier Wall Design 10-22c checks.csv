@@ -1,0 +1,179 @@
+﻿id,title,demand,capacity,unit,ratio,status,ref,note,demand_node,capacity_node
+GRID-A,"Minimum steel, both directions / each face",0.33494117647058824,0.33818181818181814,in²/ft,0.990417457305503,PASS,LRFD 5.10.6-1/-2,,steel_required,steel_provided
+GRID-S,Grid center spacing,11.0,12.0,in,0.9166666666666666,PASS,LRFD 5.10.3.2 / 5.10.6; conservative envelope; project cap,,selected_pitch,pitch_limit
+GRID-CLEAR,Same-layer clear spacing,1.5,10.375,in,0.14457831325301204,PASS,LRFD 5.10.3.1.1,,clear_required,clear_provided
+COVER,Concrete clear cover,3.0,3.0,in,1.0,PASS,Entered project exposure/cover requirement,,required_cover_in,cover_in
+U-LAP,End U-bar straight leg / Class B lap,25.94226316615068,27.0,in,0.9608245617092845,PASS,LRFD 5.10.8.2.1; 5.10.8.4.3,,lap_horizontal,u_leg_in
+U-FIT,U-bar leg fits wall,27.0,211.75,in,0.12750885478158205,PASS,Geometric envelope,,u_leg_in,u_leg_available
+U-BEND,U-bar bend fits thickness,5.0,30.0,in,0.16666666666666666,PASS,LRFD 5.10.2,,bend_envelope,u_width
+V-LAP,Vertical Class B lap allowance,19.95558705088514,60.0,in,0.33259311751475235,PASS,LRFD 5.10.8.2.1; 5.10.8.4.3,,lap_vertical,vertical_lap_in
+V-FIT,Vertical lap fits height,60.0,187.6125,in,0.31980811513092144,PASS,Geometric envelope,,vertical_lap_in,vertical_available
+WELD-MIN,Minimum fillet plus fit-up allowance,0.25,0.3125,in,0.8,PASS,LRFD Table 6.13.3.4-1; conservative gap allowance,,weld_min_gap,weld_leg_in
+WELD-MAX,Maximum fillet at ring edge,0.3125,0.4375,in,0.7142857142857143,PASS,LRFD 6.13.3.4,,weld_leg_in,weld_maximum
+WELD-LENGTH,Minimum effective weld length,1.5,62.83185307179586,in,0.023873241463784303,PASS,LRFD 6.13.3.5,,weld_length_min,weld_length
+RING-END,Ring edge / end cover at tolerance,3.0,5.0,in,0.6,PASS,Entered cover and tolerance,,required_cover_in,end_clear
+RING-FACE,Ring edge / face cover at tolerance,3.0,3.5,in,0.8571428571428571,PASS,Entered cover and tolerance,,required_cover_in,face_clear
+RING-GRID,Ring clearance to inner face-grid layer,1.125,-0.75,in,,FAIL,Placement envelope,Two orthogonal layers per face; no weaving credit.,ring_grid_required,grid_gap
+RING-BOTTOM,Bottom weld / bottom cover,3.0,5.1875,in,0.5783132530120482,PASS,Entered cover envelope,,required_cover_in,bottom_ring_cover
+RING-TOP,Top weld / top cover,3.0,44.55000000000001,in,0.06734006734006732,PASS,Entered cover envelope,,required_cover_in,top_ring_cover
+RING-SPACING,Adjacent pile rings / placement clearance,1.125,31.0,in,0.036290322580645164,PASS,Worst relative pile-placement tolerance,,ring_grid_required,between_rings
+R1-P1-CONTACT,Full annular compression contact,0.012785508352299762,0.05999571337998205,ksi,0.21310703101941492,PASS,Elastic annulus; qmin ≥ 0,,ring_1_1_qmoment,ring_1_1_qavg
+R1-P1-BEAR,Concrete bearing,0.07278122173228181,3.2725,ksi,0.022240251102301548,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_1_1_qmax,bearing_limit
+R1-P1-PLATE,Ring elastic bending,0.08643895441396054,2.0833333333333335,kip-in/in,0.041490698118701055,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_1_1_root_moment,plate_capacity
+R1-P1-SHEAR,Ring shear yielding,0.09426021119272669,14.499999999999998,kip/in,0.006500704220188049,PASS,LRFD 6.13.5.2,,ring_1_1_root_shear,plate_shear_capacity
+R1-P1-WELD,Each top/bottom continuous fillet,0.17918710392837806,5.939696961966999,kip/in,0.03016771816403209,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_1_1_weld_resultant,weld_capacity
+R1-P1-RING-BASE,Ring base metal at weld,0.17918710392837806,15.079999999999998,kip/in,0.011882433947505178,PASS,LRFD 6.13.5.3,,ring_1_1_weld_resultant,ring_base_capacity
+R1-P1-PIPE-YIELD,Pipe shear yielding at weld,0.17918710392837806,13.774999999999997,kip/in,0.013008138216216195,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_1_1_weld_resultant,pipe_yield_capacity
+R1-P1-PIPE-BASE,Pipe base metal at weld,0.17918710392837806,14.325999999999997,kip/in,0.012507825207900189,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_1_1_weld_resultant,pipe_base_capacity
+R1-P2-CONTACT,Full annular compression contact,0.012785508352299762,0.07011401693813368,ksi,0.18235310014517178,PASS,Elastic annulus; qmin ≥ 0,,ring_1_2_qmoment,ring_1_2_qavg
+R1-P2-BEAR,Concrete bearing,0.08289952529043344,3.2725,ksi,0.025332169683860487,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_1_2_qmax,bearing_limit
+R1-P2-PLATE,Ring elastic bending,0.09845600440560352,2.0833333333333335,kip-in/in,0.04725888211468969,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_1_2_root_moment,plate_capacity
+R1-P2-SHEAR,Ring shear yielding,0.10736460003923128,14.499999999999998,kip/in,0.007404455175119399,PASS,LRFD 6.13.5.2,,ring_1_2_root_shear,plate_shear_capacity
+R1-P2-WELD,Each top/bottom continuous fillet,0.20409833058959817,5.939696961966999,kip/in,0.034361741330656816,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_1_2_weld_resultant,weld_capacity
+R1-P2-RING-BASE,Ring base metal at weld,0.20409833058959817,15.079999999999998,kip/in,0.013534372055013143,PASS,LRFD 6.13.5.3,,ring_1_2_weld_resultant,ring_base_capacity
+R1-P2-PIPE-YIELD,Pipe shear yielding at weld,0.20409833058959817,13.774999999999997,kip/in,0.01481657572338281,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_1_2_weld_resultant,pipe_yield_capacity
+R1-P2-PIPE-BASE,Pipe base metal at weld,0.20409833058959817,14.325999999999997,kip/in,0.014246707426329625,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_1_2_weld_resultant,pipe_base_capacity
+R1-P3-CONTACT,Full annular compression contact,0.012785508352299762,0.07011401693813368,ksi,0.18235310014517178,PASS,Elastic annulus; qmin ≥ 0,,ring_1_3_qmoment,ring_1_3_qavg
+R1-P3-BEAR,Concrete bearing,0.08289952529043344,3.2725,ksi,0.025332169683860487,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_1_3_qmax,bearing_limit
+R1-P3-PLATE,Ring elastic bending,0.09845600440560352,2.0833333333333335,kip-in/in,0.04725888211468969,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_1_3_root_moment,plate_capacity
+R1-P3-SHEAR,Ring shear yielding,0.10736460003923128,14.499999999999998,kip/in,0.007404455175119399,PASS,LRFD 6.13.5.2,,ring_1_3_root_shear,plate_shear_capacity
+R1-P3-WELD,Each top/bottom continuous fillet,0.20409833058959817,5.939696961966999,kip/in,0.034361741330656816,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_1_3_weld_resultant,weld_capacity
+R1-P3-RING-BASE,Ring base metal at weld,0.20409833058959817,15.079999999999998,kip/in,0.013534372055013143,PASS,LRFD 6.13.5.3,,ring_1_3_weld_resultant,ring_base_capacity
+R1-P3-PIPE-YIELD,Pipe shear yielding at weld,0.20409833058959817,13.774999999999997,kip/in,0.01481657572338281,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_1_3_weld_resultant,pipe_yield_capacity
+R1-P3-PIPE-BASE,Pipe base metal at weld,0.20409833058959817,14.325999999999997,kip/in,0.014246707426329625,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_1_3_weld_resultant,pipe_base_capacity
+R1-P4-CONTACT,Full annular compression contact,0.012785508352299762,0.05999571337998205,ksi,0.21310703101941492,PASS,Elastic annulus; qmin ≥ 0,,ring_1_4_qmoment,ring_1_4_qavg
+R1-P4-BEAR,Concrete bearing,0.07278122173228181,3.2725,ksi,0.022240251102301548,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_1_4_qmax,bearing_limit
+R1-P4-PLATE,Ring elastic bending,0.08643895441396054,2.0833333333333335,kip-in/in,0.041490698118701055,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_1_4_root_moment,plate_capacity
+R1-P4-SHEAR,Ring shear yielding,0.09426021119272669,14.499999999999998,kip/in,0.006500704220188049,PASS,LRFD 6.13.5.2,,ring_1_4_root_shear,plate_shear_capacity
+R1-P4-WELD,Each top/bottom continuous fillet,0.17918710392837806,5.939696961966999,kip/in,0.03016771816403209,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_1_4_weld_resultant,weld_capacity
+R1-P4-RING-BASE,Ring base metal at weld,0.17918710392837806,15.079999999999998,kip/in,0.011882433947505178,PASS,LRFD 6.13.5.3,,ring_1_4_weld_resultant,ring_base_capacity
+R1-P4-PIPE-YIELD,Pipe shear yielding at weld,0.17918710392837806,13.774999999999997,kip/in,0.013008138216216195,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_1_4_weld_resultant,pipe_yield_capacity
+R1-P4-PIPE-BASE,Pipe base metal at weld,0.17918710392837806,14.325999999999997,kip/in,0.012507825207900189,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_1_4_weld_resultant,pipe_base_capacity
+R2-P1-CONTACT,Full annular compression contact,0.012785508352299762,0.08999357006997308,ksi,0.14207135401294327,PASS,Elastic annulus; qmin ≥ 0,,ring_2_1_qmoment,ring_2_1_qavg
+R2-P1-BEAR,Concrete bearing,0.10277907842227284,3.2725,ksi,0.03140689944148903,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_2_1_qmax,bearing_limit
+R2-P1-PLATE,Ring elastic bending,0.12206604757379615,2.0833333333333335,kip-in/in,0.058591702835422144,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_2_1_root_moment,plate_capacity
+R2-P1-SHEAR,Ring shear yielding,0.13311095098009593,14.499999999999998,kip/in,0.009180065584834203,PASS,LRFD 6.13.5.2,,ring_2_1_root_shear,plate_shear_capacity
+R2-P1-WELD,Each top/bottom continuous fillet,0.25304171829731836,5.939696961966999,kip/in,0.04260178926931664,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_2_1_weld_resultant,weld_capacity
+R2-P1-RING-BASE,Ring base metal at weld,0.25304171829731836,15.079999999999998,kip/in,0.016779954794251883,PASS,LRFD 6.13.5.3,,ring_2_1_weld_resultant,ring_base_capacity
+R2-P1-PIPE-YIELD,Pipe shear yielding at weld,0.25304171829731836,13.774999999999997,kip/in,0.01836963472212838,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_2_1_weld_resultant,pipe_yield_capacity
+R2-P1-PIPE-BASE,Pipe base metal at weld,0.25304171829731836,14.325999999999997,kip/in,0.017663110309738824,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_2_1_weld_resultant,pipe_base_capacity
+R2-P2-CONTACT,Full annular compression contact,0.012785508352299762,0.10517102540720052,ksi,0.12156873343011451,PASS,Elastic annulus; qmin ≥ 0,,ring_2_2_qmoment,ring_2_2_qavg
+R2-P2-BEAR,Concrete bearing,0.11795653375950028,3.2725,ksi,0.036044777313827436,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_2_2_qmax,bearing_limit
+R2-P2-PLATE,Ring elastic bending,0.14009162256126062,2.0833333333333335,kip-in/in,0.0672439788294051,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_2_2_root_moment,plate_capacity
+R2-P2-SHEAR,Ring shear yielding,0.15276753424985282,14.499999999999998,kip/in,0.01053569201723123,PASS,LRFD 6.13.5.2,,ring_2_2_root_shear,plate_shear_capacity
+R2-P2-WELD,Each top/bottom continuous fillet,0.2904085582891486,5.939696961966999,kip/in,0.048892824019253746,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_2_2_weld_resultant,weld_capacity
+R2-P2-RING-BASE,Ring base metal at weld,0.2904085582891486,15.079999999999998,kip/in,0.019257861955513832,PASS,LRFD 6.13.5.3,,ring_2_2_weld_resultant,ring_base_capacity
+R2-P2-PIPE-YIELD,Pipe shear yielding at weld,0.2904085582891486,13.774999999999997,kip/in,0.021082290982878303,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_2_2_weld_resultant,pipe_yield_capacity
+R2-P2-PIPE-BASE,Pipe base metal at weld,0.2904085582891486,14.325999999999997,kip/in,0.020271433637382985,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_2_2_weld_resultant,pipe_base_capacity
+R2-P3-CONTACT,Full annular compression contact,0.012785508352299762,0.10517102540720052,ksi,0.12156873343011451,PASS,Elastic annulus; qmin ≥ 0,,ring_2_3_qmoment,ring_2_3_qavg
+R2-P3-BEAR,Concrete bearing,0.11795653375950028,3.2725,ksi,0.036044777313827436,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_2_3_qmax,bearing_limit
+R2-P3-PLATE,Ring elastic bending,0.14009162256126062,2.0833333333333335,kip-in/in,0.0672439788294051,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_2_3_root_moment,plate_capacity
+R2-P3-SHEAR,Ring shear yielding,0.15276753424985282,14.499999999999998,kip/in,0.01053569201723123,PASS,LRFD 6.13.5.2,,ring_2_3_root_shear,plate_shear_capacity
+R2-P3-WELD,Each top/bottom continuous fillet,0.2904085582891486,5.939696961966999,kip/in,0.048892824019253746,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_2_3_weld_resultant,weld_capacity
+R2-P3-RING-BASE,Ring base metal at weld,0.2904085582891486,15.079999999999998,kip/in,0.019257861955513832,PASS,LRFD 6.13.5.3,,ring_2_3_weld_resultant,ring_base_capacity
+R2-P3-PIPE-YIELD,Pipe shear yielding at weld,0.2904085582891486,13.774999999999997,kip/in,0.021082290982878303,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_2_3_weld_resultant,pipe_yield_capacity
+R2-P3-PIPE-BASE,Pipe base metal at weld,0.2904085582891486,14.325999999999997,kip/in,0.020271433637382985,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_2_3_weld_resultant,pipe_base_capacity
+R2-P4-CONTACT,Full annular compression contact,0.012785508352299762,0.08999357006997308,ksi,0.14207135401294327,PASS,Elastic annulus; qmin ≥ 0,,ring_2_4_qmoment,ring_2_4_qavg
+R2-P4-BEAR,Concrete bearing,0.10277907842227284,3.2725,ksi,0.03140689944148903,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_2_4_qmax,bearing_limit
+R2-P4-PLATE,Ring elastic bending,0.12206604757379615,2.0833333333333335,kip-in/in,0.058591702835422144,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_2_4_root_moment,plate_capacity
+R2-P4-SHEAR,Ring shear yielding,0.13311095098009593,14.499999999999998,kip/in,0.009180065584834203,PASS,LRFD 6.13.5.2,,ring_2_4_root_shear,plate_shear_capacity
+R2-P4-WELD,Each top/bottom continuous fillet,0.25304171829731836,5.939696961966999,kip/in,0.04260178926931664,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_2_4_weld_resultant,weld_capacity
+R2-P4-RING-BASE,Ring base metal at weld,0.25304171829731836,15.079999999999998,kip/in,0.016779954794251883,PASS,LRFD 6.13.5.3,,ring_2_4_weld_resultant,ring_base_capacity
+R2-P4-PIPE-YIELD,Pipe shear yielding at weld,0.25304171829731836,13.774999999999997,kip/in,0.01836963472212838,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_2_4_weld_resultant,pipe_yield_capacity
+R2-P4-PIPE-BASE,Pipe base metal at weld,0.25304171829731836,14.325999999999997,kip/in,0.017663110309738824,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_2_4_weld_resultant,pipe_base_capacity
+R3-P1-CONTACT,Full annular compression contact,0.012785508352299762,0.08999357006997308,ksi,0.14207135401294327,PASS,Elastic annulus; qmin ≥ 0,,ring_3_1_qmoment,ring_3_1_qavg
+R3-P1-BEAR,Concrete bearing,0.10277907842227284,3.2725,ksi,0.03140689944148903,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_3_1_qmax,bearing_limit
+R3-P1-PLATE,Ring elastic bending,0.12206604757379615,2.0833333333333335,kip-in/in,0.058591702835422144,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_3_1_root_moment,plate_capacity
+R3-P1-SHEAR,Ring shear yielding,0.13311095098009593,14.499999999999998,kip/in,0.009180065584834203,PASS,LRFD 6.13.5.2,,ring_3_1_root_shear,plate_shear_capacity
+R3-P1-WELD,Each top/bottom continuous fillet,0.25304171829731836,5.939696961966999,kip/in,0.04260178926931664,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_3_1_weld_resultant,weld_capacity
+R3-P1-RING-BASE,Ring base metal at weld,0.25304171829731836,15.079999999999998,kip/in,0.016779954794251883,PASS,LRFD 6.13.5.3,,ring_3_1_weld_resultant,ring_base_capacity
+R3-P1-PIPE-YIELD,Pipe shear yielding at weld,0.25304171829731836,13.774999999999997,kip/in,0.01836963472212838,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_3_1_weld_resultant,pipe_yield_capacity
+R3-P1-PIPE-BASE,Pipe base metal at weld,0.25304171829731836,14.325999999999997,kip/in,0.017663110309738824,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_3_1_weld_resultant,pipe_base_capacity
+R3-P2-CONTACT,Full annular compression contact,0.012785508352299762,0.10517102540720052,ksi,0.12156873343011451,PASS,Elastic annulus; qmin ≥ 0,,ring_3_2_qmoment,ring_3_2_qavg
+R3-P2-BEAR,Concrete bearing,0.11795653375950028,3.2725,ksi,0.036044777313827436,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_3_2_qmax,bearing_limit
+R3-P2-PLATE,Ring elastic bending,0.14009162256126062,2.0833333333333335,kip-in/in,0.0672439788294051,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_3_2_root_moment,plate_capacity
+R3-P2-SHEAR,Ring shear yielding,0.15276753424985282,14.499999999999998,kip/in,0.01053569201723123,PASS,LRFD 6.13.5.2,,ring_3_2_root_shear,plate_shear_capacity
+R3-P2-WELD,Each top/bottom continuous fillet,0.2904085582891486,5.939696961966999,kip/in,0.048892824019253746,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_3_2_weld_resultant,weld_capacity
+R3-P2-RING-BASE,Ring base metal at weld,0.2904085582891486,15.079999999999998,kip/in,0.019257861955513832,PASS,LRFD 6.13.5.3,,ring_3_2_weld_resultant,ring_base_capacity
+R3-P2-PIPE-YIELD,Pipe shear yielding at weld,0.2904085582891486,13.774999999999997,kip/in,0.021082290982878303,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_3_2_weld_resultant,pipe_yield_capacity
+R3-P2-PIPE-BASE,Pipe base metal at weld,0.2904085582891486,14.325999999999997,kip/in,0.020271433637382985,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_3_2_weld_resultant,pipe_base_capacity
+R3-P3-CONTACT,Full annular compression contact,0.012785508352299762,0.10517102540720052,ksi,0.12156873343011451,PASS,Elastic annulus; qmin ≥ 0,,ring_3_3_qmoment,ring_3_3_qavg
+R3-P3-BEAR,Concrete bearing,0.11795653375950028,3.2725,ksi,0.036044777313827436,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_3_3_qmax,bearing_limit
+R3-P3-PLATE,Ring elastic bending,0.14009162256126062,2.0833333333333335,kip-in/in,0.0672439788294051,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_3_3_root_moment,plate_capacity
+R3-P3-SHEAR,Ring shear yielding,0.15276753424985282,14.499999999999998,kip/in,0.01053569201723123,PASS,LRFD 6.13.5.2,,ring_3_3_root_shear,plate_shear_capacity
+R3-P3-WELD,Each top/bottom continuous fillet,0.2904085582891486,5.939696961966999,kip/in,0.048892824019253746,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_3_3_weld_resultant,weld_capacity
+R3-P3-RING-BASE,Ring base metal at weld,0.2904085582891486,15.079999999999998,kip/in,0.019257861955513832,PASS,LRFD 6.13.5.3,,ring_3_3_weld_resultant,ring_base_capacity
+R3-P3-PIPE-YIELD,Pipe shear yielding at weld,0.2904085582891486,13.774999999999997,kip/in,0.021082290982878303,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_3_3_weld_resultant,pipe_yield_capacity
+R3-P3-PIPE-BASE,Pipe base metal at weld,0.2904085582891486,14.325999999999997,kip/in,0.020271433637382985,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_3_3_weld_resultant,pipe_base_capacity
+R3-P4-CONTACT,Full annular compression contact,0.012785508352299762,0.08999357006997308,ksi,0.14207135401294327,PASS,Elastic annulus; qmin ≥ 0,,ring_3_4_qmoment,ring_3_4_qavg
+R3-P4-BEAR,Concrete bearing,0.10277907842227284,3.2725,ksi,0.03140689944148903,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_3_4_qmax,bearing_limit
+R3-P4-PLATE,Ring elastic bending,0.12206604757379615,2.0833333333333335,kip-in/in,0.058591702835422144,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_3_4_root_moment,plate_capacity
+R3-P4-SHEAR,Ring shear yielding,0.13311095098009593,14.499999999999998,kip/in,0.009180065584834203,PASS,LRFD 6.13.5.2,,ring_3_4_root_shear,plate_shear_capacity
+R3-P4-WELD,Each top/bottom continuous fillet,0.25304171829731836,5.939696961966999,kip/in,0.04260178926931664,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_3_4_weld_resultant,weld_capacity
+R3-P4-RING-BASE,Ring base metal at weld,0.25304171829731836,15.079999999999998,kip/in,0.016779954794251883,PASS,LRFD 6.13.5.3,,ring_3_4_weld_resultant,ring_base_capacity
+R3-P4-PIPE-YIELD,Pipe shear yielding at weld,0.25304171829731836,13.774999999999997,kip/in,0.01836963472212838,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_3_4_weld_resultant,pipe_yield_capacity
+R3-P4-PIPE-BASE,Pipe base metal at weld,0.25304171829731836,14.325999999999997,kip/in,0.017663110309738824,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_3_4_weld_resultant,pipe_base_capacity
+R4-P1-CONTACT,Full annular compression contact,0.012785508352299762,0.08999357006997308,ksi,0.14207135401294327,PASS,Elastic annulus; qmin ≥ 0,,ring_4_1_qmoment,ring_4_1_qavg
+R4-P1-BEAR,Concrete bearing,0.10277907842227284,3.2725,ksi,0.03140689944148903,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_4_1_qmax,bearing_limit
+R4-P1-PLATE,Ring elastic bending,0.12206604757379615,2.0833333333333335,kip-in/in,0.058591702835422144,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_4_1_root_moment,plate_capacity
+R4-P1-SHEAR,Ring shear yielding,0.13311095098009593,14.499999999999998,kip/in,0.009180065584834203,PASS,LRFD 6.13.5.2,,ring_4_1_root_shear,plate_shear_capacity
+R4-P1-WELD,Each top/bottom continuous fillet,0.25304171829731836,5.939696961966999,kip/in,0.04260178926931664,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_4_1_weld_resultant,weld_capacity
+R4-P1-RING-BASE,Ring base metal at weld,0.25304171829731836,15.079999999999998,kip/in,0.016779954794251883,PASS,LRFD 6.13.5.3,,ring_4_1_weld_resultant,ring_base_capacity
+R4-P1-PIPE-YIELD,Pipe shear yielding at weld,0.25304171829731836,13.774999999999997,kip/in,0.01836963472212838,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_4_1_weld_resultant,pipe_yield_capacity
+R4-P1-PIPE-BASE,Pipe base metal at weld,0.25304171829731836,14.325999999999997,kip/in,0.017663110309738824,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_4_1_weld_resultant,pipe_base_capacity
+R4-P2-CONTACT,Full annular compression contact,0.012785508352299762,0.10517102540720052,ksi,0.12156873343011451,PASS,Elastic annulus; qmin ≥ 0,,ring_4_2_qmoment,ring_4_2_qavg
+R4-P2-BEAR,Concrete bearing,0.11795653375950028,3.2725,ksi,0.036044777313827436,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_4_2_qmax,bearing_limit
+R4-P2-PLATE,Ring elastic bending,0.14009162256126062,2.0833333333333335,kip-in/in,0.0672439788294051,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_4_2_root_moment,plate_capacity
+R4-P2-SHEAR,Ring shear yielding,0.15276753424985282,14.499999999999998,kip/in,0.01053569201723123,PASS,LRFD 6.13.5.2,,ring_4_2_root_shear,plate_shear_capacity
+R4-P2-WELD,Each top/bottom continuous fillet,0.2904085582891486,5.939696961966999,kip/in,0.048892824019253746,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_4_2_weld_resultant,weld_capacity
+R4-P2-RING-BASE,Ring base metal at weld,0.2904085582891486,15.079999999999998,kip/in,0.019257861955513832,PASS,LRFD 6.13.5.3,,ring_4_2_weld_resultant,ring_base_capacity
+R4-P2-PIPE-YIELD,Pipe shear yielding at weld,0.2904085582891486,13.774999999999997,kip/in,0.021082290982878303,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_4_2_weld_resultant,pipe_yield_capacity
+R4-P2-PIPE-BASE,Pipe base metal at weld,0.2904085582891486,14.325999999999997,kip/in,0.020271433637382985,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_4_2_weld_resultant,pipe_base_capacity
+R4-P3-CONTACT,Full annular compression contact,0.012785508352299762,0.10517102540720052,ksi,0.12156873343011451,PASS,Elastic annulus; qmin ≥ 0,,ring_4_3_qmoment,ring_4_3_qavg
+R4-P3-BEAR,Concrete bearing,0.11795653375950028,3.2725,ksi,0.036044777313827436,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_4_3_qmax,bearing_limit
+R4-P3-PLATE,Ring elastic bending,0.14009162256126062,2.0833333333333335,kip-in/in,0.0672439788294051,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_4_3_root_moment,plate_capacity
+R4-P3-SHEAR,Ring shear yielding,0.15276753424985282,14.499999999999998,kip/in,0.01053569201723123,PASS,LRFD 6.13.5.2,,ring_4_3_root_shear,plate_shear_capacity
+R4-P3-WELD,Each top/bottom continuous fillet,0.2904085582891486,5.939696961966999,kip/in,0.048892824019253746,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_4_3_weld_resultant,weld_capacity
+R4-P3-RING-BASE,Ring base metal at weld,0.2904085582891486,15.079999999999998,kip/in,0.019257861955513832,PASS,LRFD 6.13.5.3,,ring_4_3_weld_resultant,ring_base_capacity
+R4-P3-PIPE-YIELD,Pipe shear yielding at weld,0.2904085582891486,13.774999999999997,kip/in,0.021082290982878303,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_4_3_weld_resultant,pipe_yield_capacity
+R4-P3-PIPE-BASE,Pipe base metal at weld,0.2904085582891486,14.325999999999997,kip/in,0.020271433637382985,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_4_3_weld_resultant,pipe_base_capacity
+R4-P4-CONTACT,Full annular compression contact,0.012785508352299762,0.08999357006997308,ksi,0.14207135401294327,PASS,Elastic annulus; qmin ≥ 0,,ring_4_4_qmoment,ring_4_4_qavg
+R4-P4-BEAR,Concrete bearing,0.10277907842227284,3.2725,ksi,0.03140689944148903,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_4_4_qmax,bearing_limit
+R4-P4-PLATE,Ring elastic bending,0.12206604757379615,2.0833333333333335,kip-in/in,0.058591702835422144,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_4_4_root_moment,plate_capacity
+R4-P4-SHEAR,Ring shear yielding,0.13311095098009593,14.499999999999998,kip/in,0.009180065584834203,PASS,LRFD 6.13.5.2,,ring_4_4_root_shear,plate_shear_capacity
+R4-P4-WELD,Each top/bottom continuous fillet,0.25304171829731836,5.939696961966999,kip/in,0.04260178926931664,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_4_4_weld_resultant,weld_capacity
+R4-P4-RING-BASE,Ring base metal at weld,0.25304171829731836,15.079999999999998,kip/in,0.016779954794251883,PASS,LRFD 6.13.5.3,,ring_4_4_weld_resultant,ring_base_capacity
+R4-P4-PIPE-YIELD,Pipe shear yielding at weld,0.25304171829731836,13.774999999999997,kip/in,0.01836963472212838,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_4_4_weld_resultant,pipe_yield_capacity
+R4-P4-PIPE-BASE,Pipe base metal at weld,0.25304171829731836,14.325999999999997,kip/in,0.017663110309738824,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_4_4_weld_resultant,pipe_base_capacity
+R5-P1-CONTACT,Full annular compression contact,0.012785508352299762,0.1571450221812134,ksi,0.0813612049229025,PASS,Elastic annulus; qmin ≥ 0,,ring_5_1_qmoment,ring_5_1_qavg
+R5-P1-BEAR,Concrete bearing,0.16993053053351317,3.2725,ksi,0.051926823692441004,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_5_1_qmax,bearing_limit
+R5-P1-PLATE,Ring elastic bending,0.20181878007430312,2.0833333333333335,kip-in/in,0.0968730144356655,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_5_1_root_moment,plate_capacity
+R5-P1-SHEAR,Ring shear yielding,0.22007995077494646,14.499999999999998,kip/in,0.015177927639651482,PASS,LRFD 6.13.5.2,,ring_5_1_root_shear,plate_shear_capacity
+R5-P1-WELD,Each top/bottom continuous fillet,0.41836834983779,5.939696961966999,kip/in,0.07043597552479218,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_5_1_weld_resultant,weld_capacity
+R5-P1-RING-BASE,Ring base metal at weld,0.41836834983779,15.079999999999998,kip/in,0.027743259273063,PASS,LRFD 6.13.5.3,,ring_5_1_weld_resultant,ring_base_capacity
+R5-P1-PIPE-YIELD,Pipe shear yielding at weld,0.41836834983779,13.774999999999997,kip/in,0.03037156804630055,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_5_1_weld_resultant,pipe_yield_capacity
+R5-P1-PIPE-BASE,Pipe base metal at weld,0.41836834983779,14.325999999999997,kip/in,0.029203430813750528,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_5_1_weld_resultant,pipe_base_capacity
+R5-P2-CONTACT,Full annular compression contact,0.012785508352299762,0.18364759957389293,ksi,0.06961979564102798,PASS,Elastic annulus; qmin ≥ 0,,ring_5_2_qmoment,ring_5_2_qavg
+R5-P2-BEAR,Concrete bearing,0.1964331079261927,3.2725,ksi,0.06002539585215973,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_5_2_qmax,bearing_limit
+R5-P2-PLATE,Ring elastic bending,0.2332946886201223,2.0833333333333335,kip-in/in,0.11198145053765869,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_5_2_root_moment,plate_capacity
+R5-P2-SHEAR,Ring shear yielding,0.2544038942692547,14.499999999999998,kip/in,0.017545096156500326,PASS,LRFD 6.13.5.2,,ring_5_2_root_shear,plate_shear_capacity
+R5-P2-WELD,Each top/bottom continuous fillet,0.4836175992540799,5.939696961966999,kip/in,0.08142125807945669,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_5_2_weld_resultant,weld_capacity
+R5-P2-RING-BASE,Ring base metal at weld,0.4836175992540799,15.079999999999998,kip/in,0.0320701325765305,PASS,LRFD 6.13.5.3,,ring_5_2_weld_resultant,ring_base_capacity
+R5-P2-PIPE-YIELD,Pipe shear yielding at weld,0.4836175992540799,13.774999999999997,kip/in,0.03510835566272813,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_5_2_weld_resultant,pipe_yield_capacity
+R5-P2-PIPE-BASE,Pipe base metal at weld,0.4836175992540799,14.325999999999997,kip/in,0.03375803429108474,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_5_2_weld_resultant,pipe_base_capacity
+R5-P3-CONTACT,Full annular compression contact,0.012785508352299762,0.18364759957389293,ksi,0.06961979564102798,PASS,Elastic annulus; qmin ≥ 0,,ring_5_3_qmoment,ring_5_3_qavg
+R5-P3-BEAR,Concrete bearing,0.1964331079261927,3.2725,ksi,0.06002539585215973,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_5_3_qmax,bearing_limit
+R5-P3-PLATE,Ring elastic bending,0.2332946886201223,2.0833333333333335,kip-in/in,0.11198145053765869,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_5_3_root_moment,plate_capacity
+R5-P3-SHEAR,Ring shear yielding,0.2544038942692547,14.499999999999998,kip/in,0.017545096156500326,PASS,LRFD 6.13.5.2,,ring_5_3_root_shear,plate_shear_capacity
+R5-P3-WELD,Each top/bottom continuous fillet,0.4836175992540799,5.939696961966999,kip/in,0.08142125807945669,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_5_3_weld_resultant,weld_capacity
+R5-P3-RING-BASE,Ring base metal at weld,0.4836175992540799,15.079999999999998,kip/in,0.0320701325765305,PASS,LRFD 6.13.5.3,,ring_5_3_weld_resultant,ring_base_capacity
+R5-P3-PIPE-YIELD,Pipe shear yielding at weld,0.4836175992540799,13.774999999999997,kip/in,0.03510835566272813,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_5_3_weld_resultant,pipe_yield_capacity
+R5-P3-PIPE-BASE,Pipe base metal at weld,0.4836175992540799,14.325999999999997,kip/in,0.03375803429108474,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_5_3_weld_resultant,pipe_base_capacity
+R5-P4-CONTACT,Full annular compression contact,0.012785508352299762,0.1571450221812134,ksi,0.0813612049229025,PASS,Elastic annulus; qmin ≥ 0,,ring_5_4_qmoment,ring_5_4_qavg
+R5-P4-BEAR,Concrete bearing,0.16993053053351317,3.2725,ksi,0.051926823692441004,PASS,"LRFD 5.6.5; 5.5.4.2, m = 1",,ring_5_4_qmax,bearing_limit
+R5-P4-PLATE,Ring elastic bending,0.20181878007430312,2.0833333333333335,kip-in/in,0.0968730144356655,PASS,Radial cantilever mechanics; LRFD 6.5.4.2,,ring_5_4_root_moment,plate_capacity
+R5-P4-SHEAR,Ring shear yielding,0.22007995077494646,14.499999999999998,kip/in,0.015177927639651482,PASS,LRFD 6.13.5.2,,ring_5_4_root_shear,plate_shear_capacity
+R5-P4-WELD,Each top/bottom continuous fillet,0.41836834983779,5.939696961966999,kip/in,0.07043597552479218,PASS,LRFD 6.13.3.2.4; 6.5.4.2,,ring_5_4_weld_resultant,weld_capacity
+R5-P4-RING-BASE,Ring base metal at weld,0.41836834983779,15.079999999999998,kip/in,0.027743259273063,PASS,LRFD 6.13.5.3,,ring_5_4_weld_resultant,ring_base_capacity
+R5-P4-PIPE-YIELD,Pipe shear yielding at weld,0.41836834983779,13.774999999999997,kip/in,0.03037156804630055,PASS,LRFD 6.13.5.2; effective pipe wall,,ring_5_4_weld_resultant,pipe_yield_capacity
+R5-P4-PIPE-BASE,Pipe base metal at weld,0.41836834983779,14.325999999999997,kip/in,0.029203430813750528,PASS,LRFD 6.13.5.3; effective pipe wall,,ring_5_4_weld_resultant,pipe_base_capacity

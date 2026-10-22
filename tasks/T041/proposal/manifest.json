@@ -1,0 +1,18 @@
+{
+  "task": "T041",
+  "base_sha256": "0c505b2c1db96828e4f637c321045b0a655e80aa2010ade8c6042c43be66c3ff",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "065d902658a2d1a966043b59ce6aa196c061b1408bbd30f73363ef7833ae2c52"
+    },
+    "report:PierWallRings": {
+      "file": "001.xml",
+      "sha256": "5c5f72ff05e7d0dde782b1727e640cbe0d3dee7252b224f252376e73ddb64cec"
+    },
+    "report:DecisionLog": {
+      "file": "002.xml",
+      "sha256": "c00a11a8f08715a3b3ee165c34200d522b8c788c4d167a3b15f83c773e90be5d"
+    }
+  }
+}

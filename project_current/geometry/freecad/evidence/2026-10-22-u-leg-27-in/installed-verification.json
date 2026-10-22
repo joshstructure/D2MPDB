@@ -1,0 +1,20 @@
+{
+  "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
+  "objects": 2464,
+  "bars": 124,
+  "u_returns": 38,
+  "u_length_in": [
+    85.872
+  ],
+  "marks": [
+    "5G1",
+    "5G2",
+    "5G3"
+  ],
+  "steel_weight_lb": 1770.3876678397378,
+  "rings": 20,
+  "validation": "PASS",
+  "source_path": "project_current/pier_wall/selected_case.json (D-084, 22 October 2026)",
+  "engineering_status": "CAD end U return legs 27 in and ring plates 1/2 in match the selected D-084 case (LRFD 10th 5.10.8.2.1 development, 26-in Class B lap); wall dimensions match D-075 within 0.001 in; RING-GRID tolerance failure remains; engineering acceptance open",
+  "status": "PASS"
+}

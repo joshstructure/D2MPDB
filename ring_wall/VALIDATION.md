@@ -1,3 +1,22 @@
+# Verification record — 22 October 2026 (LRFD 10th edition development, 27-in U legs, D-084)
+
+The user asked why the end U returns are 6 ft long and whether that is the LRFD lap. They were not: the first editions developed the bars with a basic length `0.17 db [fy / (1.97 f′c^¼)]²` (42.0 in for the #5 bars) without confinement credit, a 1.3 top-bar factor (54.6 in) and the 1.3 Class B factor (71.0 in), and the 72-in U leg input was set to clear that check. The tension development now follows LRFD 10th edition 5.10.8.2.1: `ldb = 2.4 db fy / √f′c` = 38.38 in (Eq. 5.10.8.2.1a-2), the reinforcement location factor 1.3 for the horizontals with the coating product at most 1.7 (5.10.8.2.1b), and the confinement factor `λrc = db / (cb + ktr)` floored at 0.4 (5.10.8.2.1c) with `cb = min(c + db/2, s/2)` = 3.3125 in and no transverse reinforcement credited, so `ld,h` = 19.96 in and the Class B lap (5.10.8.4.3) is 25.95 in; `ld,v` = 15.35 in (12-in minimum) and the vertical Class B lap 19.96 in against the unchanged 60-in allowance. The user chose 27-in (2 ft 3 in) U legs. Two ledger values were added (`cb_in`, `lambda_rc`; the report has 115 equations); no other input changed. Decision D-084 in `project_current/decisions.md`; third project export of the day under label `10-22c`. The CAD wall steel (its ULeg input) and the substructure drawings follow under their own records.
+
+## Automated verification
+
+`python -m unittest discover -s tests -p 'test_ring_wall*.py'` passes **31 tests** locally (ipywidgets 8.1.9, Plotly 6.9.0); the detailing-gate test now asserts the LRFD values (38.38 in, λrc 0.4, 19.96 in, 25.95 in; the 27-in leg passes and a 25-in leg fails; λrc capped at 1 and the location × coating product at 1.7) and uses 20-in / 15-in allowances to exercise the lap failures. `tests.test_report_cards` passes with the rebuilt excerpt store. The Colab-pinned environment and native application recalculation were not rerun. The journal edition verified **675 values and 178 statuses** to 1e-9 (861 definitions, fragment `5c5f72ff05e7`).
+
+Embedded package SHA-256:
+
+`edf9fb0ab4efb27d819cfa138cb879d708eb839fb7c3639abf3ef9b91435b446`
+
+## Starting-case results (22 October 2026, LRFD development)
+
+- Wall, piles, rings, fillets, tolerance and stiffness inputs unchanged from the D-078 record below: service weight **133.359 kip**, wall rotation **1.547 × 10⁻⁵ rad**, **5.397 kip-in** per ring, largest equivalent eccentricity **1.105 in** against the **5.187-in** kern, all rings in contact, the ring strength ratios as before.
+- U-LAP **25.95 in** required against the 27-in leg (0.96); V-LAP 19.96 in against 60 in (0.33); U-FIT 27 in against 211.75 in.
+- Grid unchanged: **#5 at 11 in each way each face**.
+- **1 failed check** (RING-GRID, unchanged); no pending strength check; five scope items open.
+
 # Verification record — 22 October 2026 (ring plate 1/2 in, D-078)
 
 The annular ring plate of the starting case is **1/2 in** thick in place of 3/4 in, by user direction ("Lets update the design to 1/2 thick plate") after the question of the thinnest ring with no check above 0.95 of its limit. The answer, from sweeping `ring_t_in` through the engine with every other input held: the strength checks (plate bending, shear, fillets, base metal, bearing, contact) reach 0.95 of capacity only at about 0.17 in (row-5 plate bending); with the 5/16-in fillet held, the maximum fillet at the ring edge (leg ≤ plate thickness − 1/16 in, LRFD 6.13.3.4) governs, so 7/16 in is the thinnest standard plate (0.83) and 3/8 in sits at exactly 1.00. The 3/4-in plate was never strength-governed (plate bending 0.05 of capacity). No equation changed; the default, the BASIS scope text, the design-basis table rows and the notebook text changed. Decision D-078 in `project_current/decisions.md`; second project export of the day under label `10-22b` (`scripts/export_project_pier_wall_report.py --date 10-22b --decision D-078`, which now accepts a trailing letter for a same-day export). The CAD rings added under D-076 are 3/4 in thick until the model is reconciled.

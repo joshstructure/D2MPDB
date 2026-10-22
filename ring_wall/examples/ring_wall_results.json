@@ -31,7 +31,7 @@
     "grid_spacing_in": 6.0,
     "spacing_increment_in": 0.5,
     "project_max_spacing_in": 12.0,
-    "u_leg_in": 72.0,
+    "u_leg_in": 27.0,
     "vertical_lap_in": 60.0,
     "coating": "uncoated",
     "ring_id_in": 20.125,
@@ -91,12 +91,12 @@
     "spacing": 11.0,
     "provided": 0.33818181818181814,
     "development_h": {
-      "ld": 54.63374794909805,
-      "lap_b": 71.02387233382747
+      "ld": 19.95558705088514,
+      "lap_b": 25.94226316615068
     },
     "development_v": {
-      "ld": 42.02595996084465,
-      "lap_b": 54.63374794909805
+      "ld": 15.350451577603952,
+      "lap_b": 19.95558705088514
     }
   },
   "rows": [
@@ -924,10 +924,10 @@
     {
       "id": "U-LAP",
       "title": "End U-bar straight leg / Class B lap",
-      "demand": 71.02387233382747,
-      "capacity": 72.0,
+      "demand": 25.94226316615068,
+      "capacity": 27.0,
       "unit": "in",
-      "ratio": 0.9864426713031593,
+      "ratio": 0.9608245617092845,
       "status": "PASS",
       "ref": "LRFD 5.10.8.2.1; 5.10.8.4.3",
       "note": "",
@@ -937,10 +937,10 @@
     {
       "id": "U-FIT",
       "title": "U-bar leg fits wall",
-      "demand": 72.0,
+      "demand": 27.0,
       "capacity": 211.75,
       "unit": "in",
-      "ratio": 0.3400236127508855,
+      "ratio": 0.12750885478158205,
       "status": "PASS",
       "ref": "Geometric envelope",
       "note": "",
@@ -963,10 +963,10 @@
     {
       "id": "V-LAP",
       "title": "Vertical Class B lap allowance",
-      "demand": 54.63374794909805,
+      "demand": 19.95558705088514,
       "capacity": 60.0,
       "unit": "in",
-      "ratio": 0.9105624658183008,
+      "ratio": 0.33259311751475235,
       "status": "PASS",
       "ref": "LRFD 5.10.8.2.1; 5.10.8.4.3",
       "note": "",
@@ -3390,8 +3390,8 @@
     },
     {
       "name": "u_leg_in",
-      "expr": "72.0",
-      "value": 72.0,
+      "expr": "27.0",
+      "value": 27.0,
       "unit": "in",
       "label": "u leg in"
     },
@@ -3579,36 +3579,50 @@
     },
     {
       "name": "ld_basic",
-      "expr": "0.17*bar_diameter*(fy_ksi/(1.97*fc_ksi**0.25))**2",
-      "value": 42.02595996084465,
+      "expr": "2.4*bar_diameter*fy_ksi/sqrt(fc_ksi)",
+      "value": 38.37612894400988,
       "unit": "in",
-      "label": "Normalweight; no confinement credit"
+      "label": "Basic length of LRFD 5.10.8.2.1a, normal weight concrete"
+    },
+    {
+      "name": "cb_in",
+      "expr": "min(cover_in+bar_diameter/2,selected_pitch/2)",
+      "value": 3.3125,
+      "unit": "in",
+      "label": "Smaller of the cover to the bar center and half the bar spacing (LRFD 5.10.8.2.1c)"
+    },
+    {
+      "name": "lambda_rc",
+      "expr": "max(0.4,min(1,bar_diameter/cb_in))",
+      "value": 0.4,
+      "unit": "—",
+      "label": "Reinforcement confinement factor, no transverse reinforcement credited (LRFD 5.10.8.2.1c)"
     },
     {
       "name": "ld_horizontal",
-      "expr": "max(12,ld_basic*min(1.7,1.3*coating_factor))",
-      "value": 54.63374794909805,
+      "expr": "max(12,ld_basic*min(1.7,1.3*coating_factor)*lambda_rc)",
+      "value": 19.95558705088514,
       "unit": "in",
-      "label": "Conservative top-cast factor"
+      "label": "Horizontal bars with more than 12 in of concrete below: location factor 1.3, the product with the coating factor at most 1.7 (LRFD 5.10.8.2.1b)"
     },
     {
       "name": "ld_vertical",
-      "expr": "max(12,ld_basic*coating_factor)",
-      "value": 42.02595996084465,
+      "expr": "max(12,ld_basic*coating_factor*lambda_rc)",
+      "value": 15.350451577603952,
       "unit": "in",
       "label": "ld vertical"
     },
     {
       "name": "lap_horizontal",
       "expr": "1.3*ld_horizontal",
-      "value": 71.02387233382747,
+      "value": 25.94226316615068,
       "unit": "in",
       "label": "lap horizontal"
     },
     {
       "name": "lap_vertical",
       "expr": "1.3*ld_vertical",
-      "value": 54.63374794909805,
+      "value": 19.95558705088514,
       "unit": "in",
       "label": "lap vertical"
     },

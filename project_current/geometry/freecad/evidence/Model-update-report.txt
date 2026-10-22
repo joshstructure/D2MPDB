@@ -1,3 +1,15 @@
+D-085 - 27-IN END U RETURN LEGS, 22 OCTOBER 2026
+
+Set the end U return legs of the pier wall reinforcement in the CAD model to 27 in (2 ft 3 in; 72 in under D-076), matching the selected D-084 calculation case (LRFD 10th edition 5.10.8.2.1 development, 26-in Class B lap).
+
+Live input ULeg 27 in; the controller regenerated the wall steel: the 38 end U returns (5G3) keep their bends, faces and levels and lose 45 in from each straight leg (bar length 175.9 in to 85.9 in), the 86 face and end-face bars, their SDM marks (D-083), the twenty 1/2-in ring plates, the wall, the piles and all 2385 unrelated objects are unchanged. Nominal reinforcement 1770.4 lb (2067.6 lb before). The immutable case snapshot on PierWallSteelInputs now names the D-084 case (5f8c42d5; only u_leg_in differs from the D-078 snapshot; the RING-GRID failure unchanged).
+
+The legs were produced by the ordinary native regenerate of the ULeg input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; drawing exports follow under the substructure DXF generator; fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes in this step.
+
+437 checks PASS, 1274 candidate pairs, zero positive steel overlaps. Native edit round trip, ordinary regenerate, cold reopen and 2385 protected existing objects verified. Nominal rebar 1770.388 lb (2067.643 lb before).
+
+PREVIOUS UPDATES (historical)
+
 D-083 - SDM BAR MARKS FOR THE PIER WALL, 22 OCTOBER 2026
 
 Write the FDOT SDM 4.3 bar marks of the D-076 pier wall reinforcement into the Mark property of its 124 native rebars (controller identifiers PW-<id> to 5G1 for the 48 face and end-face verticals, 5G2 for the 38 horizontals and 5G3 for the 38 end U returns), into their schedule, and record on PierWallSteelInputs that the drawing marks are written; the pier uses G for the wall as the end bent and pier DXF (generator 2.8.0) lists it.

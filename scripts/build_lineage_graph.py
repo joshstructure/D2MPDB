@@ -210,6 +210,8 @@ DECISION_SOURCES = {
     "D-079": ["CAD-RUNTIME", "CAD-REPORT"],  # CAD rings set to the D-078 plate; CAD-MODEL and PIER-WALL-CASE are named in the text
     "D-082": ["JOURNAL", "CAP-TOOL", "PILE-TOOL", "BACKWALL-TOOL", "PIER-WALL-TOOL"],  # C006 withdrawn (sequestered/); excerpt store rebuilt into the four tool notebooks
     "D-083": ["CAD-RUNTIME", "CAD-REPORT"],  # pier wall SDM bar marks written into the model; CAD-MODEL is named in the text
+    "D-084": ["JOURNAL", "CAD-MODEL"],  # LRFD 10th development and 27-in U legs in the ring calculation; PIER-WALL-REPORT/CASE are named in the text; the CAD legs follow under D-085
+    "D-085": ["CAD-RUNTIME", "CAD-REPORT"],  # CAD U legs set to the D-084 case; CAD-MODEL and PIER-WALL-CASE are named in the text
 }
 # D-054 (pile reports and cases) and D-055 (backwall vertical coordination) name their
 # register IDs in the decision text, so find_refs attaches them without a hand map.

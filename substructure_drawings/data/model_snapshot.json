@@ -4,7 +4,7 @@
   "PIER: 144 plan, 296 elev edges, 270 bars, 0 wwr",
   "EB2: 149 plan, 243 elev edges, 174 bars, 90 wwr"
  ],
- "model_sha256": "1ccba7cd720f894052fefc2b12657fc6efbb63dee55ef692a3b90c27b8e5daef",
+ "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
  "schema": 2,
  "station_direction": [
   0,
@@ -108912,8 +108912,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          24.854525
         ],
         [
@@ -109009,8 +109009,8 @@
          24.854525
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          24.854525
         ]
        ],
@@ -109018,8 +109018,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U01"
     },
@@ -109033,8 +109033,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          25.725995
         ],
         [
@@ -109130,8 +109130,8 @@
          25.725995
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          25.725995
         ]
        ],
@@ -109139,8 +109139,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs001",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs001",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U02"
     },
@@ -109154,8 +109154,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          26.597465
         ],
         [
@@ -109251,8 +109251,8 @@
          26.597465
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          26.597465
         ]
        ],
@@ -109260,8 +109260,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs002",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs002",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U03"
     },
@@ -109275,8 +109275,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          27.468934
         ],
         [
@@ -109372,8 +109372,8 @@
          27.468934
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          27.468934
         ]
        ],
@@ -109381,8 +109381,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs003",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs003",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U04"
     },
@@ -109396,8 +109396,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          28.340404
         ],
         [
@@ -109493,8 +109493,8 @@
          28.340404
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          28.340404
         ]
        ],
@@ -109502,8 +109502,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs004",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs004",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U05"
     },
@@ -109517,8 +109517,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          29.211874
         ],
         [
@@ -109614,8 +109614,8 @@
          29.211874
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          29.211874
         ]
        ],
@@ -109623,8 +109623,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs005",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs005",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U06"
     },
@@ -109638,8 +109638,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          30.083344
         ],
         [
@@ -109735,8 +109735,8 @@
          30.083344
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          30.083344
         ]
        ],
@@ -109744,8 +109744,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs006",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs006",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U07"
     },
@@ -109759,8 +109759,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          30.954814
         ],
         [
@@ -109856,8 +109856,8 @@
          30.954814
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          30.954814
         ]
        ],
@@ -109865,8 +109865,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs007",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs007",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U08"
     },
@@ -109880,8 +109880,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          31.826283
         ],
         [
@@ -109977,8 +109977,8 @@
          31.826283
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          31.826283
         ]
        ],
@@ -109986,8 +109986,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs008",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs008",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U09"
     },
@@ -110001,8 +110001,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          32.697753
         ],
         [
@@ -110098,8 +110098,8 @@
          32.697753
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          32.697753
         ]
        ],
@@ -110107,8 +110107,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs009",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs009",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U10"
     },
@@ -110122,8 +110122,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          33.569223
         ],
         [
@@ -110219,8 +110219,8 @@
          33.569223
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          33.569223
         ]
        ],
@@ -110228,8 +110228,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs010",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs010",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U11"
     },
@@ -110243,8 +110243,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          34.440693
         ],
         [
@@ -110340,8 +110340,8 @@
          34.440693
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          34.440693
         ]
        ],
@@ -110349,8 +110349,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs011",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs011",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U12"
     },
@@ -110364,8 +110364,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          35.312163
         ],
         [
@@ -110461,8 +110461,8 @@
          35.312163
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          35.312163
         ]
        ],
@@ -110470,8 +110470,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs012",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs012",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U13"
     },
@@ -110485,8 +110485,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          36.183633
         ],
         [
@@ -110582,8 +110582,8 @@
          36.183633
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          36.183633
         ]
        ],
@@ -110591,8 +110591,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs013",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs013",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U14"
     },
@@ -110606,8 +110606,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          37.055102
         ],
         [
@@ -110703,8 +110703,8 @@
          37.055102
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          37.055102
         ]
        ],
@@ -110712,8 +110712,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs014",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs014",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U15"
     },
@@ -110727,8 +110727,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          37.926572
         ],
         [
@@ -110824,8 +110824,8 @@
          37.926572
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          37.926572
         ]
        ],
@@ -110833,8 +110833,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs015",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs015",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U16"
     },
@@ -110848,8 +110848,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          38.798042
         ],
         [
@@ -110945,8 +110945,8 @@
          38.798042
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          38.798042
         ]
        ],
@@ -110954,8 +110954,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs016",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs016",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U17"
     },
@@ -110969,8 +110969,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          39.669512
         ],
         [
@@ -111066,8 +111066,8 @@
          39.669512
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          39.669512
         ]
        ],
@@ -111075,8 +111075,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs017",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs017",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U18"
     },
@@ -111090,8 +111090,8 @@
       {
        "p": [
         [
-         -96.3033,
-         -104.502294,
+         -100.0533,
+         -104.502371,
          40.436815
         ],
         [
@@ -111187,8 +111187,8 @@
          40.436815
         ],
         [
-         -96.30335,
-         -102.054377,
+         -100.05335,
+         -102.054454,
          40.436815
         ]
        ],
@@ -111196,8 +111196,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 1 horizontal U return; 72-in contact lap legs018",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 1 horizontal U return; 27-in contact lap legs018",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE1U19"
     },
@@ -111327,8 +111327,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          24.854525
         ],
         [
@@ -111424,8 +111424,8 @@
          24.854525
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          24.854525
         ]
        ],
@@ -111433,8 +111433,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U01"
     },
@@ -111448,8 +111448,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          25.725995
         ],
         [
@@ -111545,8 +111545,8 @@
          25.725995
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          25.725995
         ]
        ],
@@ -111554,8 +111554,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs001",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs001",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U02"
     },
@@ -111569,8 +111569,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          26.597465
         ],
         [
@@ -111666,8 +111666,8 @@
          26.597465
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          26.597465
         ]
        ],
@@ -111675,8 +111675,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs002",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs002",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U03"
     },
@@ -111690,8 +111690,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          27.468934
         ],
         [
@@ -111787,8 +111787,8 @@
          27.468934
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          27.468934
         ]
        ],
@@ -111796,8 +111796,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs003",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs003",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U04"
     },
@@ -111811,8 +111811,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          28.340404
         ],
         [
@@ -111908,8 +111908,8 @@
          28.340404
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          28.340404
         ]
        ],
@@ -111917,8 +111917,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs004",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs004",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U05"
     },
@@ -111932,8 +111932,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          29.211874
         ],
         [
@@ -112029,8 +112029,8 @@
          29.211874
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          29.211874
         ]
        ],
@@ -112038,8 +112038,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs005",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs005",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U06"
     },
@@ -112053,8 +112053,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          30.083344
         ],
         [
@@ -112150,8 +112150,8 @@
          30.083344
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          30.083344
         ]
        ],
@@ -112159,8 +112159,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs006",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs006",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U07"
     },
@@ -112174,8 +112174,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          30.954814
         ],
         [
@@ -112271,8 +112271,8 @@
          30.954814
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          30.954814
         ]
        ],
@@ -112280,8 +112280,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs007",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs007",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U08"
     },
@@ -112295,8 +112295,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          31.826283
         ],
         [
@@ -112392,8 +112392,8 @@
          31.826283
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          31.826283
         ]
        ],
@@ -112401,8 +112401,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs008",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs008",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U09"
     },
@@ -112416,8 +112416,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          32.697753
         ],
         [
@@ -112513,8 +112513,8 @@
          32.697753
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          32.697753
         ]
        ],
@@ -112522,8 +112522,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs009",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs009",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U10"
     },
@@ -112537,8 +112537,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          33.569223
         ],
         [
@@ -112634,8 +112634,8 @@
          33.569223
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          33.569223
         ]
        ],
@@ -112643,8 +112643,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs010",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs010",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U11"
     },
@@ -112658,8 +112658,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          34.440693
         ],
         [
@@ -112755,8 +112755,8 @@
          34.440693
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          34.440693
         ]
        ],
@@ -112764,8 +112764,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs011",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs011",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U12"
     },
@@ -112779,8 +112779,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          35.312163
         ],
         [
@@ -112876,8 +112876,8 @@
          35.312163
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          35.312163
         ]
        ],
@@ -112885,8 +112885,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs012",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs012",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U13"
     },
@@ -112900,8 +112900,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          36.183633
         ],
         [
@@ -112997,8 +112997,8 @@
          36.183633
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          36.183633
         ]
        ],
@@ -113006,8 +113006,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs013",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs013",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U14"
     },
@@ -113021,8 +113021,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          37.055102
         ],
         [
@@ -113118,8 +113118,8 @@
          37.055102
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          37.055102
         ]
        ],
@@ -113127,8 +113127,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs014",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs014",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U15"
     },
@@ -113142,8 +113142,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          37.926572
         ],
         [
@@ -113239,8 +113239,8 @@
          37.926572
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          37.926572
         ]
        ],
@@ -113248,8 +113248,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs015",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs015",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U16"
     },
@@ -113263,8 +113263,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          38.798042
         ],
         [
@@ -113360,8 +113360,8 @@
          38.798042
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          38.798042
         ]
        ],
@@ -113369,8 +113369,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs016",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs016",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U17"
     },
@@ -113384,8 +113384,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          39.669512
         ],
         [
@@ -113481,8 +113481,8 @@
          39.669512
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          39.669512
         ]
        ],
@@ -113490,8 +113490,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs017",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs017",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U18"
     },
@@ -113505,8 +113505,8 @@
       {
        "p": [
         [
-         -90.969966,
-         -104.502183,
+         -87.219966,
+         -104.502106,
          40.436815
         ],
         [
@@ -113602,8 +113602,8 @@
          40.436815
         ],
         [
-         -90.970017,
-         -102.054267,
+         -87.220017,
+         -102.054189,
          40.436815
         ]
        ],
@@ -113611,8 +113611,8 @@
       }
      ],
      "group": "PierWallSteelBars",
-     "label": "Pier wall #5 End 2 horizontal U return; 72-in contact lap legs018",
-     "length_in": 175.872234,
+     "label": "Pier wall #5 End 2 horizontal U return; 27-in contact lap legs018",
+     "length_in": 85.872234,
      "mark_model": "5G3",
      "name": "PierWallSteelE2U19"
     }
@@ -137791,7 +137791,7 @@
     "inputs": {
      "BarNumber": 5,
      "Cover": 3.0,
-     "EngineeringStatus": "CAD ring plates 1/2 in match the selected D-078 case; wall dimensions match D-075 within 0.001 in; RING-GRID tolerance failure remains; engineering acceptance open",
+     "EngineeringStatus": "CAD end U return legs 27 in and ring plates 1/2 in match the selected D-084 case (LRFD 10th 5.10.8.2.1 development, 26-in Class B lap); wall dimensions match D-075 within 0.001 in; RING-GRID tolerance failure remains; engineering acceptance open",
      "FirstRingTop": 6.0,
      "InsideBendDiameter": 3.75,
      "Limitations": "CAD wall retained by user direction, 22 October 2026. The source calculation snapshot and its failed checks are retained, not rejudged. U bends and contact lap routing are CAD detailing assumptions; fabrication, anchorage and engineering acceptance remain open. Continuous vertical bars; the source 60-in vertical lap allowance is recorded, not a modeled splice. Ring welds are properties, not physical weld solids. Nominal pile positions only; 3-in placement envelope is not resolved.",
@@ -137803,9 +137803,9 @@
      "RingOD": 23.0,
      "RingSpacing": 36.0,
      "RingThickness": 0.5,
-     "SourceCaseSHA256": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
-     "SourcePath": "project_current/pier_wall/selected_case.json (D-078, 22 October 2026)",
-     "ULeg": 72.0,
+     "SourceCaseSHA256": "5f8c42d54d38f21d7117582289abcc6233d446cb41cc2be8e3addf4e7451911f",
+     "SourcePath": "project_current/pier_wall/selected_case.json (D-084, 22 October 2026)",
+     "ULeg": 27.0,
      "VerticalLapAllowance": 60.0,
      "WeldLeg": 0.3125
     },
@@ -200039,7 +200039,7 @@
      "spacing_increment_in": 0.5,
      "thickness_in": 36.0,
      "title": "D2 I-95 | Wall steel and welded pile rings",
-     "u_leg_in": 72.0,
+     "u_leg_in": 27.0,
      "vertical_lap_in": 60.0,
      "weld_fexx_ksi": 70.0,
      "weld_leg_in": 0.3125

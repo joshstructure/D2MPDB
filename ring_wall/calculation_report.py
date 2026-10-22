@@ -34,8 +34,8 @@ GROUPS = [
  ('cover','Concrete cover',('COVER',),
   'Compare the provided cover with the entered project exposure requirement.',[]),
  ('development','Development and Class B laps',('U-LAP','V-LAP'),
-  'Develop bar force through the surrounding concrete and provide the corresponding horizontal/vertical lap allowance.',
-  ['ld_basic','ld_horizontal','ld_vertical','lap_horizontal','lap_vertical']),
+  'Develop bar force through the surrounding concrete (LRFD 5.10.8.2.1: the basic length with the location, coating and confinement factors) and provide the corresponding horizontal/vertical Class B lap allowance.',
+  ['ld_basic','cb_in','lambda_rc','ld_horizontal','ld_vertical','lap_horizontal','lap_vertical']),
  ('bar-fit','U-bar and vertical-lap fit',('U-FIT','U-BEND','V-FIT'),
   'Fit the selected straight legs, lap allowance and bend envelope within the concrete cover lines.',
   ['u_leg_available','bend_envelope','u_width','vertical_available']),
@@ -254,7 +254,7 @@ def overview_html(r):
 def basis_html(r):
     p=r['case'];t=r['totals']
     codes=('<p>AASHTO LRFD Bridge Design Specifications, 10th edition (2024): concrete bearing LRFD 5.6.5 with the resistance factor of 5.5.4.2 and no supporting-area enhancement (m = 1); '
-        'minimum shrinkage and temperature reinforcement LRFD 5.10.6; bar spacing and clear spacing 5.10.3.1.1 and 5.10.3.2; bend diameter 5.10.2; development and Class B laps 5.10.8.2.1 and 5.10.8.4.3; '
+        'minimum shrinkage and temperature reinforcement LRFD 5.10.6; bar spacing and clear spacing 5.10.3.1.1 and 5.10.3.2; bend diameter 5.10.2; development and Class B laps LRFD 5.10.8.2.1 (the basic length of 5.10.8.2.1a, the location and coating factors of 5.10.8.2.1b and the confinement factor of 5.10.8.2.1c) and LRFD 5.10.8.4.3; '
         'fillet weld resistance, minimum and maximum size and length LRFD 6.13.3.2.4, 6.13.3.4 and 6.13.3.5; shear yielding and rupture of the adjacent ring and pipe metal 6.13.5.2 and 6.13.5.3; '
         'steel resistance factors LRFD 6.5.4.2; depth to fixity of the default pile free length LRFD 10.7.3.13.4. Project cover, grid pitch cap and exposure follow the entered values and the FDOT Structures Manual.</p>'
         '<p>Units are inches, kip and ksi; concrete density in kip/ft³; rotations in radians. Ring elevations locate the plate top above the wall bottom. Bearing excludes the footprint of the upper fillet; '

@@ -1,18 +1,18 @@
 [
  {
-  "bpad_sha256": "bd049002472cb40bf2cadd04f760299f3dbdd1cb096b62fbed8daf1d1c72ec68",
-  "case_sha256": "bc5d7e9701d2615a3008a9e7b31b2d15cac017f06b243aa226f800fcc119cf8a",
+  "bpad_sha256": "0fd2669a4254711ef2935a6906fda9b41e4ab311bc5b7aca49af056b95edb501",
+  "case_sha256": "73184c71272af3a19e0130306188430681c7420fdb2ca09e497fa110d6ed6575",
   "case_title": "D2 I-95 | Wall steel and welded pile rings",
-  "cells_and_labels": 1037,
+  "cells_and_labels": 1039,
   "check_statuses_compared": 178,
-  "definitions": 859,
+  "definitions": 861,
   "failed_checks": [
    "RING-GRID"
   ],
-  "fragment_sha256": "58746464155a581c0e12e5c7b56fa8b4d7170665f6da6f8aaf31b9c9c2241716",
+  "fragment_sha256": "5c5f72ff05e7d0dde782b1727e640cbe0d3dee7252b224f252376e73ddb64cec",
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": [],
-  "ledger_values_compared": 673,
+  "ledger_values_compared": 675,
   "native_application_recalculation": false,
   "number": "C017",
   "pending_checks": 0,
@@ -21,7 +21,7 @@
    "owner": "ProjectInfo"
   },
   "report_name": "PierWallRings",
-  "source_sha256": "dc3550977246aa0511f7b5cbe389f7cd4662c1c5cc147f9b2c259b9cd0ff55b6",
+  "source_sha256": "30d46e56fff658e2f422a8d638cbbdf145d95071b300e47a0f8a0d016bb4c266",
   "status": "1 FAILED CHECKS · LIMITED SCOPE",
   "status_words": {
    "FAIL": "FAIL",

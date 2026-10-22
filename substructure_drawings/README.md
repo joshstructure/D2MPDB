@@ -20,7 +20,13 @@ MODEL CHECK note until the marks were written back (D-042 pattern): D-083
 (22 October 2026) wrote 5G1 to 5G3 into the model with `freecad_marks.py`
 and the snapshots were re-extracted, so the note is silent; the sheets
 still carry the model's own open items (the RING-GRID check of the
-selected calculation, the verticals stopping inside the wall).
+selected calculation, the verticals stopping inside the wall). The same
+day D-084 put the ring calculation's tension development on LRFD 10th
+edition 5.10.8.2.1 (the 72-in end U return legs had answered a 71-in lap
+computed without confinement credit; the code lap is 26 in) and D-085 set
+the model's legs to 27 in (2 ft 3 in); the snapshots were re-extracted
+again without a generator change, so sheet B4-11 dimensions the legs at
+2'-3" and the bar list shows 5G3 at 7'-2".
 
 **Generator 2.7.0 (20 October 2026)** rebuilds both DXFs from the model with
 revision D-065 (level as-cast bearing seats: the six pedestal tops level at

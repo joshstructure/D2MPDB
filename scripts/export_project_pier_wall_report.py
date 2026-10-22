@@ -62,6 +62,9 @@ AUTHORIZATIONS = {
     'D-078': ('User instruction, 22 October 2026: "Lets update the design to 1/2 thick plate", after asking what the thinnest annular ring can be '
               'with no check above 0.95 of its limit (7/16 in with the 5/16-in fillet, set by the maximum fillet at the ring edge; strength alone '
               'would allow 3/16 in).'),
+    'D-084': ('User instruction, 22 October 2026, after asking why the end U returns are 6 ft long and whether that is the LRFD lap: "fix the ring '
+              'wall notebook\'s development length to LRFD 10th 5.10.8.2.1 (2.4 db fy/sqrt(f\'c) with the confinement factor), set the U leg to '
+              '2\'-3\", rerun the case and record, regenerate the CAD wall steel and rebuild the drawings".'),
 }
 # What the starting geometry is, per decision (README and receipt text).
 GEOMETRY_NOTES = {
@@ -74,6 +77,11 @@ GEOMETRY_NOTES = {
               'EL 40.76494 ft, 194.8625 in high; free length to fixity 92.4 in from the wall bottom). The ring plate is 1/2 in by user selection (D-078) '
               'in place of the 3/4 in of the first editions; the ring diameters (23 / 20.125 in), the 5/16-in fillets and every other input are unchanged. '
               'The CAD rings added under D-076 are 3/4 in thick until the model is reconciled.'),
+    'D-084': ('The starting dimensions follow the CAD pier wall (D-075: 219 × 36 × 194.8625 in; free length to fixity 92.4 in) with the 1/2-in ring '
+              'plate of D-078 (in the CAD model since D-079). The tension development length is LRFD 10th edition 5.10.8.2.1 (Eq. 5.10.8.2.1a-2 with '
+              'the location, coating and confinement factors; the basic length of the first editions, 0.17 d_b (f_y / 1.97 f′c^¼)² without '
+              'confinement credit, is withdrawn) and the end U return legs are 27 in (2 ft 3 in) against the 26-in Class B lap, in place of 72 in. '
+              'Every other input is unchanged.'),
 }
 FIGURE_ID = re.compile(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')
 LABEL = re.compile(r'^(\d\d)-(\d\d)([a-z]?)$')
@@ -342,6 +350,22 @@ def add_decision(receipt: dict) -> bool:
                f'3/4 in thick (reconciliation pending), the C006 fin-plate concept (support concept still undecided), the FBMP export and the pile cases. '
                f'Native recalculation, appearance and engineering reviews not performed; selection is not engineering acceptance. See '
                f'[receipt]({receipt["receipt"].replace("project_current/", "", 1)}). |')
+    if DECISION == 'D-084':
+        row = (f'| {DECISION} | {receipt["date"]} | Put the pier wall ring calculation\'s tension development length on LRFD 10th edition 5.10.8.2.1 '
+               f'and shorten the end U return legs from 72 in to 27 in (2 ft 3 in); the ring wall starting case, its project export '
+               f'({date_phrase(receipt["label"])} report, PIER-WALL-REPORT, and case, PIER-WALL-CASE; label {receipt["label"]}), the journal edition '
+               f'C017, the CAD wall steel and the substructure drawings follow. | {AUTHORIZATIONS[DECISION]} The first editions developed the bars '
+               f'with a basic length 0.17 d_b (f_y / 1.97 f′c^¼)² without confinement credit: 42.0 in for the #5 bars, 54.6 in with the 1.3 '
+               f'top-bar factor, a 71.0-in Class B lap, and the 72-in U leg input was set to clear it. LRFD 10th edition 5.10.8.2.1 gives '
+               f'l_db = 2.4 d_b f_y / √f′c = 38.4 in (Eq. 5.10.8.2.1a-2), the reinforcement location factor 1.3 for horizontal bars with more '
+               f'than 12 in of concrete below (5.10.8.2.1b), the confinement factor λ_rc = d_b / (c_b + k_tr) floored at 0.4 with c_b = 3.3125 in '
+               f'(cover to the bar center; half the 11-in pitch is larger) and no transverse reinforcement credited (5.10.8.2.1c), so l_d = 20.0 in '
+               f'and the Class B lap (5.10.8.4.3) is 26.0 in; the user chose 27-in legs. The vertical lap allowance input (60 in) is unchanged '
+               f'against a 15.4-in (12-in minimum) development; the verticals are continuous in the model. The package gained the ledger values '
+               f'c_b and λ_rc (115 report equations). Results of this case: {results} Not changed: the ring plates, fillets, wall and pile inputs; '
+               f'the CAD model (its U legs are regenerated from this leg under a decision of its own) and the drawings follow. Native '
+               f'recalculation, appearance and engineering reviews not performed; selection is not engineering acceptance. See '
+               f'[receipt]({receipt["receipt"].replace("project_current/", "", 1)}). |')
     lines = text.split('\n')
     idx = max(i for i, line in enumerate(lines) if re.match(r'\| D-\d{3} \|', line))
     lines.insert(idx + 1, row)
@@ -361,6 +385,10 @@ def add_readme_row(receipt: dict) -> bool:
         row = (f'| Pier wall on annular pile rings | [Report]({report}), [saved case](pier_wall/selected_case.json) — welded-ring support concept, '
                f'D-070 moment basis, CAD wall geometry (219 × 36 × 194.8625 in, D-075), 1/2-in ring plate ({DECISION}), second {when} run; Blockpad edition '
                f'C017 in the journal (T028/T029/T034/T037); the CAD rings (D-076) are still 3/4 in; the C006 fin-plate concept is not superseded |')
+    elif DECISION == 'D-084':
+        row = (f'| Pier wall on annular pile rings | [Report]({report}), [saved case](pier_wall/selected_case.json) — welded-ring support concept, '
+               f'D-070 moment basis, CAD wall geometry (219 × 36 × 194.8625 in, D-075), 1/2-in ring plate (D-078), LRFD 10th development and 27-in '
+               f'U legs ({DECISION}), third {when} run; Blockpad edition C017 in the journal (T028/T029/T034/T037/T041) |')
     else:
         row = (f'| Pier wall on annular pile rings | [Report]({report}), [saved case](pier_wall/selected_case.json) — welded-ring support concept, '
                f'D-070 moment basis, CAD wall geometry (219 × 36 × 194.8625 in, {DECISION}), {when} run; Blockpad edition C017 in the journal (T028/T029/T034); '

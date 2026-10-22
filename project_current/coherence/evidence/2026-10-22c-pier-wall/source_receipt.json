@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-22",
+  "label": "10-22c",
+  "decision": "D-084",
+  "authorization": "User instruction, 22 October 2026, after asking why the end U returns are 6 ft long and whether that is the LRFD lap: \"fix the ring wall notebook's development length to LRFD 10th 5.10.8.2.1 (2.4 db fy/sqrt(f'c) with the confinement factor), set the U leg to 2'-3\", rerun the case and record, regenerate the CAD wall steel and rebuild the drawings\".",
+  "scope": "Pier wall annular-ring calculation report and case exported to project_current/pier_wall/ from the starting case of the ring_wall package (D-070 ring moment basis; pile stiffness defaults from PILE-PIER-CASE). The starting dimensions follow the CAD pier wall (D-075: 219 × 36 × 194.8625 in; free length to fixity 92.4 in) with the 1/2-in ring plate of D-078 (in the CAD model since D-079). The tension development length is LRFD 10th edition 5.10.8.2.1 (Eq. 5.10.8.2.1a-2 with the location, coating and confinement factors; the basic length of the first editions, 0.17 d_b (f_y / 1.97 f′c^¼)² without confinement credit, is withdrawn) and the end U return legs are 27 in (2 ft 3 in) against the 26-in Class B lap, in place of 72 in. Every other input is unchanged. No other case, FBMP export, CAD geometry, tracker row or engineering disposition changed in this step. The Blockpad edition goes to the journal as C017.",
+  "geometry_basis": "The starting dimensions follow the CAD pier wall (D-075: 219 × 36 × 194.8625 in; free length to fixity 92.4 in) with the 1/2-in ring plate of D-078 (in the CAD model since D-079). The tension development length is LRFD 10th edition 5.10.8.2.1 (Eq. 5.10.8.2.1a-2 with the location, coating and confinement factors; the basic length of the first editions, 0.17 d_b (f_y / 1.97 f′c^¼)² without confinement credit, is withdrawn) and the end U return legs are 27 in (2 ft 3 in) against the 26-in Class B lap, in place of 72 in. Every other input is unchanged.",
+  "generator": {
+    "script": "scripts/export_project_pier_wall_report.py",
+    "command": ".venv\\Scripts\\python.exe scripts\\export_project_pier_wall_report.py --date 10-22c",
+    "package": "ring_wall",
+    "package_source_sha256": "30d46e56fff658e2f422a8d638cbbdf145d95071b300e47a0f8a0d016bb4c266",
+    "case_sha256": "73184c71272af3a19e0130306188430681c7420fdb2ca09e497fa110d6ed6575",
+    "git_head": "b5540c9",
+    "git_head_note": "Read from .git/HEAD and the ref file; the working tree was not inspected for uncommitted changes.",
+    "python": "3.12.14",
+    "plotly": "6.9.0",
+    "note": "The report embeds random Plotly figure ids, so a rerun gives new bytes; --check regenerates it from the saved case and compares with the ids masked."
+  },
+  "files": {
+    "report": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22c.html",
+      "sha256": "4d2e84ce27aac4dd90608462c3e371d9a98b48cd6b0bfef33bd22f82280815c1",
+      "bytes": 8571842
+    },
+    "dated_case": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22c.json",
+      "sha256": "5f8c42d54d38f21d7117582289abcc6233d446cb41cc2be8e3addf4e7451911f",
+      "bytes": 1158
+    },
+    "selected_case": {
+      "path": "project_current/pier_wall/selected_case.json",
+      "sha256": "5f8c42d54d38f21d7117582289abcc6233d446cb41cc2be8e3addf4e7451911f",
+      "bytes": 1158
+    },
+    "checks_csv": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22c checks.csv",
+      "sha256": "732875abe59f38e55a05f2f229a151e27925fd0d8674f780c24659f02df3f6c4",
+      "bytes": 30694
+    },
+    "ring_forces_csv": {
+      "path": "project_current/pier_wall/Pier Wall Design 10-22c ring forces.csv",
+      "sha256": "ef9533daf54a31c72d12e13deb72a96213d763d332edf300080848375da082e8",
+      "bytes": 8171
+    }
+  },
+  "selected_case_equals_dated_case": true,
+  "results": {
+    "checks": 178,
+    "status_counts": {
+      "FAIL": 1,
+      "PASS": 177
+    },
+    "failed": [
+      "RING-GRID"
+    ],
+    "pending": [],
+    "overall": "1 FAILED CHECKS · LIMITED SCOPE",
+    "service_weight_kip": 133.35902343749999,
+    "factored_weight_kip": 166.698779296875,
+    "wall_rotation_rad": 1.5470903713465155e-05,
+    "pile_head_moment_kip_in": 26.9826923385866,
+    "ring_moment_kip_in": 5.39653846771732,
+    "kern_limit_in": 5.186905570652174,
+    "largest_equivalent_eccentricity_in": 1.1053660463397488,
+    "largest_equivalent_eccentricity_ring": "R1-P1",
+    "rings_without_contact": 0,
+    "largest_design_ring_load_kip": 14.944252313541758,
+    "largest_qmax_ksi": 0.1964331079261927,
+    "grid": "#5 at 11 in",
+    "weld_leg_provided_in": 0.3125,
+    "largest_trial_weld_leg_in": 0.25,
+    "scope_items": [
+      "SHARING",
+      "STIFFNESS",
+      "SCOPE",
+      "CONNECTION",
+      "BASIS"
+    ]
+  },
+  "register_rows": [
+    "PIER-WALL-TOOL",
+    "PIER-WALL-REPORT",
+    "PIER-WALL-CASE"
+  ],
+  "limitations": "Notebook package run and export only. The numerical checks are the notebook's; the five scope items (sharing among rows, pile stiffness confirmation, wall load paths, connection scope, geometry basis) remain open; the failed checks of the 23-in ring trial (RING-GRID) remain. The fin-plate and hairpin concept (C006) was withdrawn from the project on 22 October 2026 (D-082); this export carries the welded-ring concept only. Selection is not engineering acceptance.",
+  "receipt": "project_current/coherence/evidence/2026-10-22c-pier-wall/source_receipt.json"
+}

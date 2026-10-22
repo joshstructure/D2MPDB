@@ -174,7 +174,7 @@ def build(r: dict) -> dict:
 
     # ---- 2..: the global ledger in evaluation order, grouped by subject
     SUBJECTS = [('2. Minimum wall reinforcement and detailing', lambda n: n in ('steel_L', 'steel_H', 'steel_required', 'code_pitch', 'pitch_limit', 'steel_provided',
-                                                                               'clear_required', 'clear_provided', 'ld_basic', 'ld_horizontal', 'ld_vertical',
+                                                                               'clear_required', 'clear_provided', 'ld_basic', 'cb_in', 'lambda_rc', 'ld_horizontal', 'ld_vertical',
                                                                                'lap_horizontal', 'lap_vertical', 'bend_envelope', 'u_width', 'u_leg_available',
                                                                                'vertical_available')),
                 ('3. Ring geometry, bearing annulus and fillet weld detailing', lambda n: n in ('pipe_radius', 'inner_radius', 'outer_radius', 'root_gap', 'bearing_inner',

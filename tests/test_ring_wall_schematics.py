@@ -36,7 +36,7 @@ class RingWallSchematicTests(unittest.TestCase):
                     self.assertEqual(len(root.xpath('.//*[local-name()="svg"]')), 1)
                 seen += 1
             self.assertGreaterEqual(seen, 95 if p['pile_count'] > 1 else 85)
-        self.assertEqual(sum(1 for _ in dropdowns(analyze())), 113)
+        self.assertEqual(sum(1 for _ in dropdowns(analyze())), 115)   # (D-084: c_b and λ_rc joined the development family)
 
     def test_unknown_kind_and_inactive_sketch(self):
         r = analyze(); ex = r['rings'][0]

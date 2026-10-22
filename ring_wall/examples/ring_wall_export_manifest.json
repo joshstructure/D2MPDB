@@ -1,16 +1,16 @@
 {
-  "case_sha256": "bc5d7e9701d2615a3008a9e7b31b2d15cac017f06b243aa226f800fcc119cf8a",
-  "source_sha256": "dc3550977246aa0511f7b5cbe389f7cd4662c1c5cc147f9b2c259b9cd0ff55b6",
+  "case_sha256": "73184c71272af3a19e0130306188430681c7420fdb2ca09e497fa110d6ed6575",
+  "source_sha256": "30d46e56fff658e2f422a8d638cbbdf145d95071b300e47a0f8a0d016bb4c266",
   "files": {
-    "ring_wall_case.json": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
-    "ring_wall_results.json": "e82e7703f6c3459b314f51c26269cfe790f160ffa139300ed39483671b8f42d6",
-    "ring_wall_checks.csv": "309dba77461562b5749a69f740f1e433868272982294d8b587bb7d3244888b2f",
+    "ring_wall_case.json": "5f8c42d54d38f21d7117582289abcc6233d446cb41cc2be8e3addf4e7451911f",
+    "ring_wall_results.json": "b62e9bcb3e85fc73148d3efe796648924425516476fa50a5866285bf665883a1",
+    "ring_wall_checks.csv": "732875abe59f38e55a05f2f229a151e27925fd0d8674f780c24659f02df3f6c4",
     "ring_wall_ring_forces.csv": "ef9533daf54a31c72d12e13deb72a96213d763d332edf300080848375da082e8",
-    "ring_wall_report.html": "3412f5b70f3e8d7282e0e359694790b8c994d47885edaaf0fd46c322d2aeca9e",
+    "ring_wall_report.html": "21f5d051d60f025e16bf9177cdbfe741e5a73cf25fe81d2ae69fe9aa9eeb4c28",
     "ring_spacing_study.json": "8c09bf275504a4efe29bd5d46744f3505371bc9a428418014db0ee13a5fdb1e0",
-    "ring_wall_design.xmcd": "0e70d3a1886314a50101ea0e075c85003290ad879528ddad88b9519deeda0b4a",
-    "Ring Supported Wall Design.bpad": "4c7016f810faa0233d18a6187b659c147206d1c63831f6ba51a756a45e5ea1d7",
-    "ring_wall_sheet_verification.json": "7c1d6fcf192d1fe6fff9a57d27831bdc1fdc0c60e0fdfd25ff41b85a9cdba365",
-    "ring_wall_source.zip": "643dafd52def91272dfdaeba03e4154501f3945ff6675b417d9ad25f6b9077af"
+    "ring_wall_design.xmcd": "9098272eb1e2e961b4d6034d6ede59b043fac42ed8ff6d1bb7a1fb8ffe870069",
+    "Ring Supported Wall Design.bpad": "a35e511c723bc75e277ada80498d51ad39e9dc8bcbd706d554ad4db30a14f8e2",
+    "ring_wall_sheet_verification.json": "614de7e75b8ce2ddff8f6413e774c06c9c85c56002c0f21707ac003336ea46cc",
+    "ring_wall_source.zip": "94015e25087d89ff770013243f5e501e9d9a8e4458fa0dc306e89c22edbf265e"
   }
 }

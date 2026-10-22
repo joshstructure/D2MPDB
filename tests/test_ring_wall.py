@@ -130,9 +130,20 @@ class RingWallTests(unittest.TestCase):
         r=analyze();c={x['id']:x for x in r['checks']}
         self.assertEqual(c['RING-END']['status'],'PASS');self.assertEqual(c['RING-GRID']['status'],'FAIL')  # CAD wall: 19.5 in end distance (D-075)
         c={x['id']:x for x in analyze(default_case()|dict(length_in=213.))['checks']};self.assertEqual(c['RING-END']['status'],'FAIL')  # former 213-in wall: 2 in end cover at tolerance
-        p=default_case();p.update(auto_grid_spacing=False,grid_spacing_in=12.,u_leg_in=50.,vertical_lap_in=40.,cover_in=2.5)
+        p=default_case();p.update(auto_grid_spacing=False,grid_spacing_in=12.,u_leg_in=20.,vertical_lap_in=15.,cover_in=2.5)
         c={x['id']:x for x in analyze(p)['checks']}
         for key in ('GRID-A','U-LAP','V-LAP','COVER'):self.assertEqual(c[key]['status'],'FAIL')
+        # D-084: LRFD 10th 5.10.8.2.1 development of the #5 horizontals (f'c 5.5 ksi, 3 in cover, 11 in pitch):
+        # l_db = 2.4 d_b f_y / sqrt(f'c) = 38.38 in, lambda_rc = 0.4 (d_b / c_b = 0.625 / 3.3125, floored), top bars
+        # 1.3 -> l_d,h = 19.96 in, Class B 25.95 in; the 27-in U leg passes, a 25-in leg fails
+        r=analyze();vals={x['name']:x['value'] for x in r['nodes']};c={x['id']:x for x in r['checks']}
+        self.assertAlmostEqual(vals['ld_basic'],2.4*.625*60/sqrt(5.5));self.assertAlmostEqual(vals['cb_in'],3.3125);self.assertEqual(vals['lambda_rc'],.4)
+        self.assertAlmostEqual(vals['ld_horizontal'],vals['ld_basic']*1.3*.4);self.assertAlmostEqual(vals['lap_horizontal'],1.3*vals['ld_horizontal'])
+        self.assertAlmostEqual(vals['ld_vertical'],max(12,vals['ld_basic']*.4));self.assertEqual(c['U-LAP']['status'],'PASS');self.assertEqual(r['case']['u_leg_in'],27.)
+        self.assertEqual({x['id']:x['status'] for x in analyze(default_case()|dict(u_leg_in=25.))['checks']}['U-LAP'],'FAIL')
+        # the confinement factor is capped at 1 (a bar closer to the surface than its diameter) and the product with the coating factor at 1.7
+        vals={x['name']:x['value'] for x in analyze(default_case()|dict(cover_in=.5,required_cover_in=.5,coating='epoxy'))['nodes']}
+        self.assertAlmostEqual(vals['lambda_rc'],min(1,.625/(.5+.3125)));self.assertAlmostEqual(vals['ld_horizontal'],vals['ld_basic']*1.7*vals['lambda_rc'])
         for thickness,expected in [(0.25,.125),(.5,.1875),(.75,.25),(.751,.3125)]:
             p=default_case();p.update(ring_t_in=thickness,pile_t_effective_in=.20)
             vals={x['name']:x['value'] for x in analyze(p)['nodes']}

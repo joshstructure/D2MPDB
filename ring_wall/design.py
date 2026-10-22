@@ -25,7 +25,10 @@ SCHEMA=3
 # Ring plate 1/2 in (D-078, 22 October 2026): the 3/4-in plate of the first editions was not
 # strength-governed (plate bending 0.05 of capacity); the thinnest plate with every check at or
 # under 0.95 of its limit is 7/16 in, set by the maximum fillet at the ring edge (leg <= t - 1/16),
-# and the user selected 1/2 in. The CAD rings (D-076) are still 3/4 in until reconciled.
+# and the user selected 1/2 in. The CAD rings followed under D-079.
+# U leg 27 in (D-084, 22 October 2026): the Class B lap of the #5 horizontals is 26 in by LRFD 10th
+# edition 5.10.8.2.1 (the former 72-in leg answered a 71-in lap from a basic length without
+# confinement credit); the user chose a 2 ft 3 in leg.
 STIFFNESS_DEFAULTS=dict(pile_e_ksi=29000.,pile_free_length_in=92.4,pile_axial_length_in=600.,imposed_rotation_rad=0.)
 ZERO_ALLOWED={'placement_tolerance_in','imposed_rotation_rad'}
 D070_NOTE='Ring moment basis D-070: the ring moment now follows pile-head stiffness against wall rotation, with the tolerance as a pile-group redistribution. Pile stiffness inputs use visible defaults from the pier pile case. Review and Recalc.'
@@ -37,7 +40,7 @@ def default_case():
         pile_t_effective_in=.475,pile_fy_ksi=50.,pile_fu_ksi=65.,placement_tolerance_in=3.,**STIFFNESS_DEFAULTS,
         cover_in=3.,required_cover_in=3.,aggregate_in=.75,fc_ksi=5.5,fy_ksi=60.,density_kcf=.150,gamma_dc=1.25,
         first_ring_in=6.,ring_spacing_in=36.,ring_count=5,grid_bar=5,auto_grid_spacing=True,grid_spacing_in=6.,
-        spacing_increment_in=.5,project_max_spacing_in=12.,u_leg_in=72.,vertical_lap_in=60.,coating='uncoated',
+        spacing_increment_in=.5,project_max_spacing_in=12.,u_leg_in=27.,vertical_lap_in=60.,coating='uncoated',
         ring_id_in=20.125,ring_od_in=23.,ring_t_in=.5,ring_fy_ksi=50.,ring_fu_ksi=65.,weld_leg_in=.3125,
         weld_fexx_ksi=70.,phi_concrete=.70,phi_plate=1.,phi_weld=.80,phi_shear_yield=1.,phi_shear_rupture=.80)
 
@@ -146,9 +149,16 @@ def analyze(case=None):
     n('clear_required','max(1.5,1.5*bar_diameter,1.5*aggregate_in)','in')
     n('clear_provided','selected_pitch-bar_diameter','in')
     n('coating_factor',repr(1. if p['coating']=='uncoated' else 1.5))
-    n('ld_basic','0.17*bar_diameter*(fy_ksi/(1.97*fc_ksi**0.25))**2','in','Normalweight; no confinement credit')
-    n('ld_horizontal','max(12,ld_basic*min(1.7,1.3*coating_factor))','in','Conservative top-cast factor')
-    n('ld_vertical','max(12,ld_basic*coating_factor)','in')
+    # D-084 (22 October 2026): LRFD 10th edition tension development, Eq. 5.10.8.2.1a-2 with the
+    # reinforcement location, coating and confinement factors of 5.10.8.2.1b and 5.10.8.2.1c (no
+    # transverse reinforcement credited, k_tr = 0; normal weight, lambda = 1). The former basic length
+    # 0.17 d_b (f_y / 1.97 f'c^1/4)^2 without confinement credit gave a 71-in Class B lap for the #5
+    # horizontals and the 72-in U legs; the code gives 26 in.
+    n('ld_basic','2.4*bar_diameter*fy_ksi/sqrt(fc_ksi)','in','Basic length of LRFD 5.10.8.2.1a, normal weight concrete')
+    n('cb_in','min(cover_in+bar_diameter/2,selected_pitch/2)','in','Smaller of the cover to the bar center and half the bar spacing (LRFD 5.10.8.2.1c)')
+    n('lambda_rc','max(0.4,min(1,bar_diameter/cb_in))','—','Reinforcement confinement factor, no transverse reinforcement credited (LRFD 5.10.8.2.1c)')
+    n('ld_horizontal','max(12,ld_basic*min(1.7,1.3*coating_factor)*lambda_rc)','in','Horizontal bars with more than 12 in of concrete below: location factor 1.3, the product with the coating factor at most 1.7 (LRFD 5.10.8.2.1b)')
+    n('ld_vertical','max(12,ld_basic*coating_factor*lambda_rc)','in')
     n('lap_horizontal','1.3*ld_horizontal','in');n('lap_vertical','1.3*ld_vertical','in')
     n('bend_envelope','IF(grid_bar<=8,6,8)*bar_diameter+2*bar_diameter','in')
     n('u_width','thickness_in-2*cover_in','in')

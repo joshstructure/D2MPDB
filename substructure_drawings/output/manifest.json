@@ -2,12 +2,12 @@
  "generator": "substructure_drawings.build",
  "version": "2.8.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "a98e4274425140b2dafdc9dcc67bb14c5e0d702e05e8a7f32901f41501bf6df6",
+ "dxf_sha256": "c171da483a0c11877628e4c2dde6d6e888e55f4ce577660fc6c8183764d10bdf",
  "dxf_flat": "B4_Substructure_EndBents_Pier_flat.dxf",
- "dxf_flat_sha256": "a5507cbdd835d779c4867edac756192d8f1fd928a732aadf8bc974cc607b7175",
+ "dxf_flat_sha256": "c3847096ea31f7b6b88e320b9aab12b40db93f4c7cc33ee88f83d4235ef2709d",
  "dimensions_flattened": 479,
- "snapshot_sha256": "618a2145b73e6cc24a7500a53bbd550c63175ef31b06270b6df77f7d92f02a2c",
- "model_sha256": "1ccba7cd720f894052fefc2b12657fc6efbb63dee55ef692a3b90c27b8e5daef",
+ "snapshot_sha256": "7f4657754bccfe1d74ea768e21b76c15e0a2a2ed681edaec022c67f5f4273daa",
+ "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
  "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1, one labelled group per sheet 60 ft apart",
  "station_reference": {
   "FFBW End Bent 1": 1593.22
@@ -616,7 +616,7 @@
     "description": "PIER WALL END U RETURN",
     "count": 38,
     "lengths_in": {
-     "176": 38
+     "86": 38
     },
     "varies": false
    }

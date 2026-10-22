@@ -3,10 +3,10 @@ GRID-A,"Minimum steel, both directions / each face",0.33494117647058824,0.338181
 GRID-S,Grid center spacing,11.0,12.0,in,0.9166666666666666,PASS,LRFD 5.10.3.2 / 5.10.6; conservative envelope; project cap,,selected_pitch,pitch_limit
 GRID-CLEAR,Same-layer clear spacing,1.5,10.375,in,0.14457831325301204,PASS,LRFD 5.10.3.1.1,,clear_required,clear_provided
 COVER,Concrete clear cover,3.0,3.0,in,1.0,PASS,Entered project exposure/cover requirement,,required_cover_in,cover_in
-U-LAP,End U-bar straight leg / Class B lap,71.02387233382747,72.0,in,0.9864426713031593,PASS,LRFD 5.10.8.2.1; 5.10.8.4.3,,lap_horizontal,u_leg_in
-U-FIT,U-bar leg fits wall,72.0,211.75,in,0.3400236127508855,PASS,Geometric envelope,,u_leg_in,u_leg_available
+U-LAP,End U-bar straight leg / Class B lap,25.94226316615068,27.0,in,0.9608245617092845,PASS,LRFD 5.10.8.2.1; 5.10.8.4.3,,lap_horizontal,u_leg_in
+U-FIT,U-bar leg fits wall,27.0,211.75,in,0.12750885478158205,PASS,Geometric envelope,,u_leg_in,u_leg_available
 U-BEND,U-bar bend fits thickness,5.0,30.0,in,0.16666666666666666,PASS,LRFD 5.10.2,,bend_envelope,u_width
-V-LAP,Vertical Class B lap allowance,54.63374794909805,60.0,in,0.9105624658183008,PASS,LRFD 5.10.8.2.1; 5.10.8.4.3,,lap_vertical,vertical_lap_in
+V-LAP,Vertical Class B lap allowance,19.95558705088514,60.0,in,0.33259311751475235,PASS,LRFD 5.10.8.2.1; 5.10.8.4.3,,lap_vertical,vertical_lap_in
 V-FIT,Vertical lap fits height,60.0,187.6125,in,0.31980811513092144,PASS,Geometric envelope,,vertical_lap_in,vertical_available
 WELD-MIN,Minimum fillet plus fit-up allowance,0.25,0.3125,in,0.8,PASS,LRFD Table 6.13.3.4-1; conservative gap allowance,,weld_min_gap,weld_leg_in
 WELD-MAX,Maximum fillet at ring edge,0.3125,0.4375,in,0.7142857142857143,PASS,LRFD 6.13.3.4,,weld_leg_in,weld_maximum
