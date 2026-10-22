@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+  "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T035/build_components.py; scripts/build_journal_calc_bpads.py build verification)",
+  "native_recalculation": false,
+  "native_visual_review": false,
+  "engineering_review": false,
+  "design_outcome": "unreviewed",
+  "external_analysis_disposition": "Provenance text of C006 and C004 only (the journal whose values the inputs equal is the T034 revision); every definition, cache and canvas equals the T034 modules; FBMP not rerun.",
+  "external_analysis_status": "unreviewed",
+  "inherited_issues_disposition": "Unchanged: the C006 fin-plate failure and open confirmations stay in the module; the C004 result is unchanged.",
+  "evidence_files": [
+    {
+      "path": "verification.json",
+      "sha256": "480c88e470658f23421479f4b0656bda83af0c740c26095d01587d6b5d95843a"
+    }
+  ]
+}

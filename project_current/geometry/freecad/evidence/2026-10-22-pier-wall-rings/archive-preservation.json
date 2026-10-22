@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "existing_native_objects_preserved": 2188,
+  "existing_views_preserved": 2189,
+  "only_existing_record_changed": "BridgeAssembly: add PierWallSteel group",
+  "new_shapes_geometrically_equal_to_checked_candidate": 268,
+  "view_resource_payloads_byte_identical": true,
+  "candidate_sha256": "89ca5312a13020bdca06501106c609e98c2b27a81f2767a3517511758595cb55"
+}

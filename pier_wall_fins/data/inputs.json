@@ -1,7 +1,7 @@
 [
  {
   "name": "L_w",
-  "value": 17.75,
+  "value": 18.25,
   "unit": "ft",
   "kind": "number",
   "group": "Geometry and materials",
@@ -23,7 +23,7 @@
  },
  {
   "name": "H_w",
-  "value": 14.364583333333,
+  "value": 16.238541666666666,
   "unit": "ft",
   "kind": "number",
   "group": "Geometry and materials",

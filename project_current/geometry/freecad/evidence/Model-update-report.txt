@@ -1,3 +1,15 @@
+D-076 - PIER WALL REINFORCEMENT AND ANNULAR RINGS, 22 OCTOBER 2026
+
+Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details.
+
+124 native #5 bars at 11 in maximum each way, both broad faces, including 38 end U returns with 72-in straight lap legs and eight end-face verticals; 3-in cover. Twenty annular plates, 23-in OD x 20.125-in ID x 0.75-in thick, centered on the four existing piles. Five ring tops per pile at 6, 42, 78, 114 and 150 in above the retained wall bottom. Two 5/16-in fillets recorded as properties; weld solids not modeled. Live inputs, analytic paths, native Arch bars and quantities/schedule.
+
+The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes.
+
+437 checks PASS, 1620 candidate pairs, zero positive steel overlaps. Native edits and ordinary recompute, cold reopen and 2188 protected existing objects verified. Nominal rebar 2067.643 lb; rings 414.191 lb (490 pcf).
+
+PREVIOUS UPDATES (historical)
+
 D-065 - LEVEL AS-CAST BEARING SEATS, 20 OCTOBER 2026
 
 All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064.

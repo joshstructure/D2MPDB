@@ -17,17 +17,19 @@ LEGACY = {'arch_rise_in','arch_panels','tie_offset_in','node_height_in','node_wi
 
 SCHEMA=3
 # Schema 3 (D-070): pile stiffness inputs for the compatibility ring moment.
-# Defaults follow the pier pile case: 20-in pipe, 16.3 in exposed below the wall plus
-# 110.7 in sand depth to fixity (LRFD C10.7.3.13.4); tip elevation pending, so the axial
-# spring length is a stated 600-in allowance (softer spring = larger rotation = conservative moment).
-STIFFNESS_DEFAULTS=dict(pile_e_ksi=29000.,pile_free_length_in=127.,pile_axial_length_in=600.,imposed_rotation_rad=0.)
+# Defaults follow the pier pile case and the CAD wall (D-075, 22 October 2026): 20-in pipe,
+# 110.7 in sand depth to fixity below the pile-case ground EL 26.05 (LRFD C10.7.3.13.4) less
+# the 18.3 in of wall below that ground (wall bottom EL 24.5264, 1 ft below terrain) = 92.4 in
+# from the wall bottom to fixity; tip elevation pending, so the axial spring length is a
+# stated 600-in allowance (softer spring = larger rotation = conservative moment).
+STIFFNESS_DEFAULTS=dict(pile_e_ksi=29000.,pile_free_length_in=92.4,pile_axial_length_in=600.,imposed_rotation_rad=0.)
 ZERO_ALLOWED={'placement_tolerance_in','imposed_rotation_rad'}
 D070_NOTE='Ring moment basis D-070: the ring moment now follows pile-head stiffness against wall rotation, with the tolerance as a pile-group redistribution. Pile stiffness inputs use visible defaults from the pier pile case. Review and Recalc.'
 
 
 def default_case():
     return dict(schema_version=SCHEMA,title='D2 I-95 | Wall steel and welded pile rings',
-        length_in=213.,thickness_in=36.,height_in=172.375,pile_count=4,pile_spacing_in=60.,pile_od_in=20.,
+        length_in=219.,thickness_in=36.,height_in=194.8625,pile_count=4,pile_spacing_in=60.,pile_od_in=20.,
         pile_t_effective_in=.475,pile_fy_ksi=50.,pile_fu_ksi=65.,placement_tolerance_in=3.,**STIFFNESS_DEFAULTS,
         cover_in=3.,required_cover_in=3.,aggregate_in=.75,fc_ksi=5.5,fy_ksi=60.,density_kcf=.150,gamma_dc=1.25,
         first_ring_in=6.,ring_spacing_in=36.,ring_count=5,grid_bar=5,auto_grid_spacing=True,grid_spacing_in=6.,
@@ -272,7 +274,7 @@ def analyze(case=None):
         ('STIFFNESS','Ring moments follow pile-head rotational stiffness against the rigid-wall rotation (D-070). The free length to fixity and the axial spring length are entered values (defaults from the pier pile case with sand depth to fixity, LRFD 10.7.3.13.4; tip elevation pending). Lateral, thermal, unsymmetric and construction-stage rotations enter only through the imposed rotation input.'),
         ('SCOPE','Wall checks cover minimum shrinkage/temperature steel and detailing only. Wall flexure, shear, lateral loads, seismic and strength load paths are outside this calculation.'),
         ('CONNECTION','Local plate and double-fillet checks do not establish pipe-shell bending/ovalization, global pile interaction, ring-segment splices, fatigue, corrosion or WPS/fabrication adequacy.'),
-        ('BASIS','Confirm geometry, exposure/cover, material grades, construction joints and bar anchorage routing. Starting dimensions are the earlier study snapshot, not a current CAD import.')]
+        ('BASIS','Confirm exposure/cover, material grades, construction joints and bar anchorage routing. Starting dimensions follow the CAD pier wall (219 x 36 in, bottom 1 ft below terrain at EL 24.5264, top at the cap bottom); the geometry notebook does not yet own the pier wall.')]
     failed=sum(c['status']=='FAIL' for c in checks)
     return dict(case=p,migration=migration,geometry=g,grid=steel,rows=rows,rings=rings,checks=checks,nodes=nodes,pending=pending,
         totals=dict(service_weight=service,factored_weight=factored,force_error=sum(r['R'] for r in rings)-factored,

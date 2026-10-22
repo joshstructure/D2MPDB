@@ -23,17 +23,17 @@ ROOT=Path(__file__).resolve().parents[1]
 class RingWallTests(unittest.TestCase):
     def test_default_weight_grid_and_no_stm(self):
         r=analyze();p=r['case']
-        self.assertAlmostEqual(r['totals']['service_weight'],213*36*172.375*.150/1728)
+        self.assertAlmostEqual(r['totals']['service_weight'],219*36*194.8625*.150/1728)
         self.assertEqual(r['grid']['spacing'],11.)
-        self.assertAlmostEqual(r['grid']['required'],1.3*36*213/(2*(36+213)*60))
+        self.assertAlmostEqual(r['grid']['required'],1.3*36*219/(2*(36+219)*60))
         self.assertNotIn('arch',r['rows'][0]);self.assertNotIn('stm',r['grid'])
         self.assertFalse(any('strut' in c['title'].lower() or 'tie' in c['title'].lower() for c in r['checks']))
         self.assertEqual(p['schema_version'],3)
 
     def test_midplanes_edges_and_each_cell_centroid_equilibrium(self):
         r=analyze();p=r['case']
-        self.assertEqual(r['geometry']['x_bounds'],[0,46.5,106.5,166.5,213.])
-        self.assertEqual(r['geometry']['z_bounds'],[0,24,60,96,132,172.375])
+        self.assertEqual(r['geometry']['x_bounds'],[0,49.5,109.5,169.5,219.])
+        self.assertEqual(r['geometry']['z_bounds'],[0,24,60,96,132,194.8625])
         for a in r['rings']:
             W=(a['xhi']-a['xlo'])*(a['hi']-a['lo'])*p['thickness_in']*.150*1.25/1728
             self.assertAlmostEqual(a['R'],W)
@@ -88,18 +88,18 @@ class RingWallTests(unittest.TestCase):
     def test_bearing_annulus_excludes_top_weld_and_compatibility_moment(self):
         r=analyze();p=r['case'];a=r['rings'][0];rp=p['pile_od_in']/2;rb=rp+p['weld_leg_in'];ro=p['ring_od_in']/2
         A=pi*(ro**2-rb**2);I=pi/4*(ro**4-rb**4)
-        self.assertAlmostEqual(a['e_nominal'],6.75)
-        self.assertAlmostEqual(a['M_superseded'],a['R']*9.75)  # former D-070 basis, kept for comparison only
+        self.assertAlmostEqual(a['e_nominal'],5.25)
+        self.assertAlmostEqual(a['M_superseded'],a['R']*8.25)  # former D-070 basis, kept for comparison only
         # Independent solution: rigid wall on axial/rotational pile springs, pile group displaced by the tolerance.
         ri=rp-p['pile_t_effective_in'];Ap=pi*(rp**2-ri**2);Ip=pi/4*(rp**4-ri**4)
         kv=Ap*p['pile_e_ksi']/p['pile_axial_length_in'];kt=4*p['pile_e_ksi']*Ip/p['pile_free_length_in']
-        xs=[16.5+60*i for i in range(4)];xbar=sum(xs)/4;Sx=sum((x-xbar)**2 for x in xs)
+        xs=[19.5+60*i for i in range(4)];xbar=sum(xs)/4;Sx=sum((x-xbar)**2 for x in xs)
         W=r['totals']['factored_weight'];theta=W*3/(kv*Sx+4*kt)
         self.assertAlmostEqual(r['totals']['wall_rotation'],theta);self.assertAlmostEqual(a['M'],kt*theta/5)
-        self.assertAlmostEqual(a['dR'],(24/172.375)*kv*theta*90);self.assertAlmostEqual(a['R_design'],a['R']+a['dR'])
+        self.assertAlmostEqual(a['dR'],(24/194.8625)*kv*theta*90);self.assertAlmostEqual(a['R_design'],a['R']+a['dR'])
         self.assertAlmostEqual(a['qmax'],a['R_design']/A+a['M']*ro/I);self.assertAlmostEqual(a['e_equivalent'],a['M']/a['R_design'])
         self.assertAlmostEqual(r['totals']['kern_limit'],I/(A*ro));self.assertLess(a['e_equivalent'],r['totals']['kern_limit'])
-        self.assertTrue(all(x['contact_ok'] for x in r['rings']));self.assertLess(a['M'],a['M_superseded']/10)
+        self.assertTrue(all(x['contact_ok'] for x in r['rings']));self.assertLess(a['M'],a['M_superseded']/5)
         p['placement_tolerance_in']=0;b=analyze(p);keys=('service_weight','factored_weight','force_error','moment_error')
         self.assertEqual({k:r['totals'][k] for k in keys},{k:b['totals'][k] for k in keys})
         self.assertEqual(b['rings'][0]['M'],0);self.assertEqual(b['rings'][0]['dR'],0);self.assertGreater(a['qmax'],b['rings'][0]['qmax'])
@@ -114,7 +114,7 @@ class RingWallTests(unittest.TestCase):
         self.assertGreater(r['totals']['wall_rotation'],.001);self.assertAlmostEqual(r['totals']['pile_head_moment'],kt*r['totals']['wall_rotation'])
 
     def test_contact_failure_blocks_local_strength_pass(self):
-        base=analyze();self.assertTrue(all(c['status']=='PASS' for c in base['checks'] if c['id'] not in ('RING-END','RING-GRID')))
+        base=analyze();self.assertTrue(all(c['status']=='PASS' for c in base['checks'] if c['id']!='RING-GRID'))
         p=default_case();p.update(imposed_rotation_rad=.002);r=analyze(p);checks={c['id']:c for c in r['checks']}
         self.assertEqual(checks['R1-P1-CONTACT']['status'],'FAIL')
         for key in ('BEAR','PLATE','SHEAR','WELD','RING-BASE','PIPE-BASE','PIPE-YIELD'):
@@ -127,7 +127,8 @@ class RingWallTests(unittest.TestCase):
 
     def test_detailing_gates_and_minimum_weld_table_boundaries(self):
         r=analyze();c={x['id']:x for x in r['checks']}
-        self.assertEqual(c['RING-END']['status'],'FAIL');self.assertEqual(c['RING-GRID']['status'],'FAIL')
+        self.assertEqual(c['RING-END']['status'],'PASS');self.assertEqual(c['RING-GRID']['status'],'FAIL')  # CAD wall: 19.5 in end distance (D-075)
+        c={x['id']:x for x in analyze(default_case()|dict(length_in=213.))['checks']};self.assertEqual(c['RING-END']['status'],'FAIL')  # former 213-in wall: 2 in end cover at tolerance
         p=default_case();p.update(auto_grid_spacing=False,grid_spacing_in=12.,u_leg_in=50.,vertical_lap_in=40.,cover_in=2.5)
         c={x['id']:x for x in analyze(p)['checks']}
         for key in ('GRID-A','U-LAP','V-LAP','COVER'):self.assertEqual(c[key]['status'],'FAIL')

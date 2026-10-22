@@ -1,11 +1,11 @@
 {
  "format": "d2mpdb-pier-wall-fins",
  "schema_version": 1,
- "name": "C006 - Pier Wall, Hairpins and Fin Plates (journal values, feb1bb316d08)",
+ "name": "C006 - Pier Wall, Hairpins and Fin Plates (journal values, 82e7d3e1246f)",
  "inputs": {
-  "L_w": 17.75,
+  "L_w": 18.25,
   "t_w": 36.0,
-  "H_w": 14.364583333333,
+  "H_w": 16.238541666666666,
   "γ_c": 150.0,
   "N_p": 4.0,
   "S_p": 5.0,

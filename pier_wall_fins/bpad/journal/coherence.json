@@ -3,8 +3,8 @@
   {
    "input": "L_w",
    "owner": "PedBridgeWeights_2Beams.E42",
-   "journal_value": 17.75,
-   "case_value": 17.75,
+   "journal_value": 18.25,
+   "case_value": 18.25,
    "status": "reference",
    "note": "shared value — PedBridgeWeights_2Beams.E42 (ft)"
   },
@@ -19,8 +19,8 @@
   {
    "input": "H_w",
    "owner": "PedBridgeWeights_2Beams.G42",
-   "journal_value": 14.364583333333,
-   "case_value": 14.364583333333,
+   "journal_value": 16.238541666667,
+   "case_value": 16.238541666667,
    "status": "reference",
    "note": "shared value — PedBridgeWeights_2Beams.G42 (ft)"
   },

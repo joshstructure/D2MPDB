@@ -1,0 +1,30 @@
+{
+  "task": "T034",
+  "base_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "65e031d30722d156c91c680439efb84c25e3d6b4ed416a0256c46d3834a5a061"
+    },
+    "spreadsheet:PedBridgeWeights_2Beams": {
+      "file": "001.xml",
+      "sha256": "6e4a9527394f00588450d58cb2eeda689be44d1c2c445ea339c098697e8fab77"
+    },
+    "report:SuperstructureUplift": {
+      "file": "002.xml",
+      "sha256": "dc4be4cd3e7edd3336e60a8f5b030b6a419790f0cec191baf418d92bde1f18e9"
+    },
+    "report:PierWallFins": {
+      "file": "003.xml",
+      "sha256": "c44329b64ccd8382713820a8e7b2211b1589ea75206b0398914a49f52fec240b"
+    },
+    "report:PierWallRings": {
+      "file": "004.xml",
+      "sha256": "1a7a76873cd3e3002203aa674324d2c72de207edc0b78e82ea0fc60137e7fea2"
+    },
+    "report:DecisionLog": {
+      "file": "005.xml",
+      "sha256": "2b1671de999173fe3cb980bf3414f1757a97b7965e62267408cb9181d5b9395d"
+    }
+  }
+}

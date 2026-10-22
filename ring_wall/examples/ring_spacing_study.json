@@ -1,57 +1,57 @@
 [
   {
     "spacing_in": 24.0,
-    "ring_count": 7,
+    "ring_count": 8,
     "grid_spacing_in": 11.0,
-    "max_ring_kip": 8.056640625,
+    "max_ring_kip": 7.702148437500003,
     "max_t_in": 0.375,
     "max_weld_in": 0.3125,
-    "max_weld_dc": 0.030688373690625288,
+    "max_weld_dc": 0.02995425785285728,
     "contact_failures": 0,
-    "status": "2 FAILED CHECKS · LIMITED SCOPE"
+    "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
   {
     "spacing_in": 30.0,
-    "ring_count": 6,
+    "ring_count": 7,
     "grid_spacing_in": 11.0,
-    "max_ring_kip": 7.353515625,
+    "max_ring_kip": 7.03125,
     "max_t_in": 0.375,
     "max_weld_in": 0.3125,
-    "max_weld_dc": 0.02845436709894526,
+    "max_weld_dc": 0.027874375244053184,
     "contact_failures": 0,
-    "status": "2 FAILED CHECKS · LIMITED SCOPE"
+    "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
   {
     "spacing_in": 36.0,
-    "ring_count": 5,
+    "ring_count": 6,
     "grid_spacing_in": 11.0,
-    "max_ring_kip": 9.462890625,
+    "max_ring_kip": 8.4375,
     "max_t_in": 0.375,
     "max_weld_in": 0.3125,
-    "max_weld_dc": 0.03643930879712902,
+    "max_weld_dc": 0.0333615682720851,
     "contact_failures": 0,
-    "status": "2 FAILED CHECKS · LIMITED SCOPE"
+    "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
   {
     "spacing_in": 42.0,
-    "ring_count": 4,
+    "ring_count": 5,
     "grid_spacing_in": 11.0,
-    "max_ring_kip": 14.384765625,
+    "max_ring_kip": 9.84375,
     "max_t_in": 0.375,
     "max_weld_in": 0.3125,
-    "max_weld_dc": 0.054730670734481804,
+    "max_weld_dc": 0.03902412534167446,
     "contact_failures": 0,
-    "status": "2 FAILED CHECKS · LIMITED SCOPE"
+    "status": "1 FAILED CHECKS · LIMITED SCOPE"
   },
   {
     "spacing_in": 48.0,
     "ring_count": 4,
     "grid_spacing_in": 11.0,
-    "max_ring_kip": 11.25,
+    "max_ring_kip": 16.139648437500004,
     "max_t_in": 0.375,
     "max_weld_in": 0.3125,
-    "max_weld_dc": 0.04347079432217755,
+    "max_weld_dc": 0.06254860844312853,
     "contact_failures": 0,
-    "status": "2 FAILED CHECKS · LIMITED SCOPE"
+    "status": "1 FAILED CHECKS · LIMITED SCOPE"
   }
 ]

@@ -1,0 +1,1913 @@
+{
+  "status": "PASS",
+  "candidate": "C:\\github\\D2MPDB\\.validation\\pier-wall\\candidate-v5.FCStd",
+  "candidate_sha256": "89ca5312a13020bdca06501106c609e98c2b27a81f2767a3517511758595cb55",
+  "source_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+  "protected_objects": 2188,
+  "native_gui_views": true,
+  "ordinary_native_recompute": true,
+  "cold_gui_reopen": true,
+  "objects": 2464,
+  "validation": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "PierWallSteelF1H01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H01_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999999999996
+      },
+      {
+        "name": "PierWallSteelF1H01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H02_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H03_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H04_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H05_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H05_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H05_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H06_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H06_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H06_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H07_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H07_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H07_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H08_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H08_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H08_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H09_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H09_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H09_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H10_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H10_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H10_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H11_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H11_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H11_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H12_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H12_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H12_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H13_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H13_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H13_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H14_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H14_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H14_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H15_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H15_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H15_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H16_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H16_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H16_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H17_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H17_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H17_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H18_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H18_cover",
+        "status": "PASS",
+        "minimum_in": 3.0000000000259575
+      },
+      {
+        "name": "PierWallSteelF1H18_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H19_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1H19_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999999999993
+      },
+      {
+        "name": "PierWallSteelF1H19_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V01_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V02_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V03_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V04_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V05_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V05_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V05_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V06_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V06_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V06_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V07_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V07_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V07_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V08_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V08_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V08_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V09_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V09_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V09_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V10_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V10_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V10_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V11_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V11_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V11_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V12_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V12_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V12_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V13_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V13_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V13_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V14_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V14_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V14_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V15_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V15_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V15_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V16_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V16_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V16_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V17_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V17_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V17_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V18_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V18_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V18_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V19_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V19_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V19_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V20_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF1V20_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF1V20_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H01_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H02_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H03_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H04_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H05_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H05_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H05_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H06_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H06_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H06_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H07_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H07_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H07_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H08_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H08_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H08_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H09_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H09_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H09_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H10_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H10_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H10_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H11_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H11_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H11_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H12_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H12_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H12_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H13_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H13_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H13_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H14_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H14_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H14_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H15_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H15_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H15_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H16_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H16_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H16_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H17_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H17_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H17_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H18_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H18_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H18_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H19_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2H19_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999983098142
+      },
+      {
+        "name": "PierWallSteelF2H19_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V01_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V02_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V03_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V04_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V05_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V05_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V05_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V06_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V06_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V06_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V07_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V07_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V07_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V08_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V08_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V08_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V09_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V09_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V09_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V10_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V10_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V10_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V11_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V11_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V11_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V12_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V12_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V12_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V13_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V13_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V13_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V14_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V14_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V14_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V15_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V15_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V15_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V16_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V16_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V16_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V17_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V17_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V17_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V18_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V18_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V18_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V19_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V19_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V19_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V20_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelF2V20_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelF2V20_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V01_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE1V01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V02_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE1V02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V03_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE1V03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1V04_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE1V04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U01_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U02_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U03_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U04_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U05_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U05_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U05_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U06_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U06_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U06_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U07_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U07_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U07_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U08_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U08_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U08_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U09_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U09_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U09_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U10_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U10_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U10_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U11_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U11_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U11_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U12_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U12_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U12_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U13_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U13_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U13_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U14_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U14_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U14_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U15_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U15_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U15_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U16_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U16_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U16_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U17_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U17_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U17_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U18_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U18_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U18_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U19_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE1U19_cover",
+        "status": "PASS",
+        "minimum_in": 2.999999995965039
+      },
+      {
+        "name": "PierWallSteelE1U19_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V01_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE2V01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V02_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE2V02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V03_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE2V03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2V04_cover",
+        "status": "PASS",
+        "minimum_in": 3.312499999999993
+      },
+      {
+        "name": "PierWallSteelE2V04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U01_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U01_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U01_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U02_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U02_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U02_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U03_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U03_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U03_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U04_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U04_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U04_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U05_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U05_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U05_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U06_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U06_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U06_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U07_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U07_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U07_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U08_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U08_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U08_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U09_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U09_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U09_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U10_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U10_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U10_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U11_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U11_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U11_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U12_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U12_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U12_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U13_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U13_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U13_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U14_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U14_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U14_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U15_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U15_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U15_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U16_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U16_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U16_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U17_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U17_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U17_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U18_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U18_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U18_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U19_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallSteelE2U19_cover",
+        "status": "PASS",
+        "minimum_in": 2.9999999943899414
+      },
+      {
+        "name": "PierWallSteelE2U19_native_links",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R1_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R1_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R1_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R2_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R2_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R2_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R3_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R3_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R3_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R4_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R4_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R4_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R5_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R5_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP1R5_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R1_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R1_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R1_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R2_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R2_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R2_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R3_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R3_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R3_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R4_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R4_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R4_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R5_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R5_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP2R5_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R1_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R1_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R1_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R2_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R2_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R2_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R3_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R3_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R3_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R4_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R4_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R4_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R5_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R5_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP3R5_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R1_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R1_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R1_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R2_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R2_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R2_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R3_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R3_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R3_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R4_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R4_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R4_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R5_solid",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R5_position",
+        "status": "PASS"
+      },
+      {
+        "name": "PierWallRingP4R5_plate_dimensions",
+        "status": "PASS"
+      },
+      {
+        "name": "live_quantities",
+        "status": "PASS"
+      },
+      {
+        "name": "Face 1 horizontal_spacing",
+        "status": "PASS",
+        "maximum_in": 10.457637717617104
+      },
+      {
+        "name": "Face 1 vertical_spacing",
+        "status": "PASS",
+        "maximum_in": 10.881578947368439
+      },
+      {
+        "name": "End 1 vertical_spacing",
+        "status": "PASS",
+        "maximum_in": 7.916666666666686
+      }
+    ],
+    "bar_count": 124,
+    "rings": 20,
+    "minimum_bar_cover_in": 2.9999999943899414,
+    "steel_length_ft": 1982.3994897792288,
+    "steel_weight_lb": 2067.6426678397374,
+    "ring_weight_lb": 414.1907916956571,
+    "cad_dimensions": {
+      "length": 219.0,
+      "thickness": 36.00000000000006,
+      "height": 194.86247891710713,
+      "center_x": 1288.1999999999991,
+      "start_y": -109.49999999999972,
+      "bottom": 294.31679999999994
+    },
+    "source_case_sha256": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c",
+    "engineering_status": "CALCULATION RECONCILIATION PENDING",
+    "limitations": "CAD wall retained by user direction, 22 October 2026. Calculation geometry reconciliation is being performed separately. Source RING-END and RING-GRID failures are retained, not rejudged. U bends and contact lap routing are CAD detailing assumptions; fabrication, anchorage and engineering acceptance remain open. Continuous vertical bars; the source 60-in vertical lap allowance is recorded, not a modeled splice. Ring welds are properties, not physical weld solids. Nominal pile positions only; 3-in placement envelope is not resolved."
+  },
+  "archive": {
+    "status": "STAGED",
+    "source_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+    "output_sha256": "3b76093a8c874e4ad2e025371974fb182588fc97564b69a16bb98eb7a2652ed4",
+    "retained_objects": 2188,
+    "native_resources_copied": 3767,
+    "view_count": 2464,
+    "source_unchanged": true
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "task": "T035",
+  "base_sha256": "82e7d3e1246fbb0f9d61360b958b21777287e7efb9e8a6c4f3d3057b5ffb753e",
+  "decision": "D-075",
+  "components": {
+    "PierWallFins": {
+      "source": "pier_wall_fins/bpad/journal/PierWallFins.xml",
+      "fragment_sha256": "e4978f69eba892f642686869f7d8cb798de8db50bac131f7656ebc7ec3985d3e",
+      "journal_references": 17,
+      "status": "⊗ There are FAILURES",
+      "definitions_unchanged": 282,
+      "caches_unchanged": true,
+      "canvases_unchanged": true,
+      "paragraphs_removed": [
+        "Journal edition written by calc_common/bpad.py (pier_wall_fins) from the notebook case f8dc42505674. Every definition was evaluated independently and compared with the notebook to 1 part in 10⁹; the inputs the journal owns are live references, compared with the case by the coherence gate before the build.",
+        "The calculation was ported from the journal module PierWallFins (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+      ],
+      "paragraphs_added": [
+        "Journal edition written by calc_common/bpad.py (pier_wall_fins) from the notebook case 6558c335150d. Every definition was evaluated independently and compared with the notebook to 1 part in 10⁹; the inputs the journal owns are live references, compared with the case by the coherence gate before the build.",
+        "The calculation was ported from the journal module PierWallFins (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written. The pier wall length and height follow the journal of 22 October 2026 (82e7d3e1246f), whose gravity sheet carries the CAD pier wall (18 ft 3 in by 3 ft by 16 ft 2.8625 in, bottom 1 ft below terrain, top at the cap bottom); the former module's formulas re-evaluated with those values are the fidelity reference."
+      ]
+    },
+    "SuperstructureUplift": {
+      "source": "superstructure_uplift/bpad/journal/SuperstructureUplift.xml",
+      "fragment_sha256": "e37376ac945ba8b63f8706f73d4f433f2d2b9c2624fb46a1cad0b9cb546aac1f",
+      "journal_references": 39,
+      "status": "✓ All Checks Pass",
+      "definitions_unchanged": 122,
+      "caches_unchanged": true,
+      "canvases_unchanged": true,
+      "paragraphs_removed": [
+        "Journal edition written by calc_common/bpad.py (superstructure_uplift) from the notebook case 4486f30c7f31. Every definition was evaluated independently and compared with the notebook to 1 part in 10⁹; the inputs the journal owns are live references, compared with the case by the coherence gate before the build.",
+        "The calculation was ported from the journal module SuperstructureUplift (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+      ],
+      "paragraphs_added": [
+        "Journal edition written by calc_common/bpad.py (superstructure_uplift) from the notebook case 692349139c38. Every definition was evaluated independently and compared with the notebook to 1 part in 10⁹; the inputs the journal owns are live references, compared with the case by the coherence gate before the build.",
+        "The calculation was ported from the journal module SuperstructureUplift (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written. The pier wall weight shown for information follows the journal of 22 October 2026 (82e7d3e1246f), whose gravity sheet carries the CAD pier wall; no result depends on it."
+      ]
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

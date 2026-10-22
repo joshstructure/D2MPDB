@@ -1,0 +1,1074 @@
+<spreadsheet unit="in" pagesize="816, 1056" colwidths="7:91.85333333333334, 11:86.86666666666667, 12:76.97333333333333, 13:100, 14:100, 15:100, 16:100" margin="48,48,48,48" name="PedBridgeWeights_2Beams" title="Loads - Gravity - 2 Beam">
+        <stylerule range="F41:G41" fontweight="bold" />
+        <stylerule range="F36:G36" fontweight="bold" />
+        <stylerule range="F32:G32" fontweight="bold" />
+        <stylerule range="D31:D32" fontweight="bold" />
+        <stylerule range="F26:G26" fontweight="bold" />
+        <stylerule range="D25:D26" fontweight="bold" />
+        <stylerule range="F20:G20" fontweight="bold" />
+        <stylerule range="D17:F17" fontweight="bold" />
+        <stylerule range="D8:E9" fontweight="bold" />
+        <stylerule range="A29:A30" fontweight="bold" />
+        <stylerule range="A21:C21" fontweight="bold" />
+        <stylerule range="A8:B9" fontweight="bold" />
+        <float>
+            <rectangle origin="0.49, 2.23, 0" dir="0.8299999999999983, 0, 0" normal="0, 0, -0.3485999999999998" height="0.41999999999999993" shapetype="Fill" fillcolor="#FFFFFF">
+                <textbox capture="False" name="Textbox2">
+                    <section name="Section1" capture="True" hide="false">
+                        <paragraph>
+                            <image source="Resource165" />
+                        </paragraph>
+                        <paragraph />
+                        <paragraph>
+                            <image source="Resource166" />
+                        </paragraph>
+                        <paragraph />
+                        <paragraph fontweight="bold">
+                            <image source="Resource167" />
+                        </paragraph>
+                        <paragraph fontweight="bold" />
+                        <paragraph fontfamily="Times New Roman" fontsize="11" spacingafter="5">PRIOR PEDESTAL SECTION — measured area/perimeter establish the inferred footprint; the current height is 6 in. Use live quantity cells.</paragraph>
+                        <paragraph fontweight="bold">
+                            <image source="Resource168" />
+                        </paragraph>
+                        <paragraph fontweight="bold" />
+                        <paragraph fontweight="bold">
+                            <image source="Resource3" />
+                        </paragraph>
+                        <paragraph fontweight="bold" />
+                        <paragraph fontweight="bold">
+                            <image source="Resource170" />
+                        </paragraph>
+                        <paragraph fontweight="bold">
+                            <image source="Resource171" />
+                        </paragraph>
+                    </section>
+                </textbox>
+            </rectangle>
+        </float>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell fontweight="bold" textdecoration="underline" />
+            <cell />
+            <cell fontweight="bold" />
+            <c fontweight="bold" textdecoration="underline"><textvalue>FIB 36</textvalue></c>
+            <cell />
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Length</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Number</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>1</num></c>
+            <cell />
+            <c><num>5.6012 ft^2</num></c>
+            <c formula="BridgeGeometry_2Beam.Pier_tributaryLength"><num>106 ft 1.5 in</num></c>
+            <c formula="F4*G4"><num>594.42735 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H4*I4"><num>89164.10250000001 lbf</num></c>
+            <c formula="J4 to kip"><num>89.16410250000001 kip</num></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Maximum individual cap-node load (envelope)</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c formula="Max(DC_cap_B1,DC_cap_B2,DC_cap_B3,DC_cap_B4)"><num>94.49585260448872 kip</num></c>
+            <cell />
+            <c><textvalue>Gravity</textvalue></c>
+            <c><textvalue>Dead</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c formula="BridgeGeometry_2Beam.Beam_count"><num>2</num></c>
+            <cell />
+            <c formula="D6*F4"><num>11.2024 ft^2</num></c>
+            <c formula="BridgeGeometry_2Beam.Pier_tributaryLength"><num>106 ft 1.5 in</num></c>
+            <c formula="F6*G6"><num>1188.8547 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H6*I6"><num>178328.20500000002 lbf</num></c>
+            <c formula="J6 to kip"><num>178.32820500000003 kip</num></c>
+            <c showidentifier="True" name="FIB36_HalfSpan_per_bearing" formula="K6/BearingNodeCount"><num>44.582051250000006 kip</num></c>
+            <c formula="K6*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>45.09666149999997 kip</num></c>
+            <c formula="K6*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>45.09666149999997 kip</num></c>
+            <c formula="K6*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>44.067441000000045 kip</num></c>
+            <c formula="K6*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>44.067441000000045 kip</num></c>
+            <c formula="Max(PL_B1,PL_B2,PL_B3,PL_B4)"><num>28.984499999999976 kip</num></c>
+            <cell />
+            <c><textvalue>Gravity</textvalue></c>
+            <c><textvalue>Live</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell textdecoration="underline" />
+            <cell />
+            <cell />
+            <c textdecoration="underline"><textvalue>Fencing</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Linear Weight</textvalue></c>
+            <cell />
+            <c fontweight="bold"><textvalue>Length</textvalue></c>
+            <cell />
+            <cell />
+            <c><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+            <c formula="Max(DC_cap_B1+PL_B1,DC_cap_B2+PL_B2,DC_cap_B3+PL_B3,DC_cap_B4+PL_B4)"><num>123.4803526044887 kip</num></c>
+            <c><textvalue>Maximum DC + PL; use individual rows below for application</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><num>150 plf</num></c>
+            <cell />
+            <c formula="BridgeGeometry_2Beam.Pier_tributaryLength"><num>106 ft 1.5 in</num></c>
+            <cell />
+            <cell />
+            <c formula="E10*G10"><num>15918.75 lbf</num></c>
+            <c formula="J10 to kip"><num>15.91875 kip</num></c>
+            <c formula="K10/BearingNodeCount"><num>3.9796875 kip</num></c>
+            <c formula="K10*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>4.025624999999996 kip</num></c>
+            <c formula="K10*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>4.025624999999996 kip</num></c>
+            <c formula="K10*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>3.9337500000000025 kip</num></c>
+            <c formula="K10*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>3.9337500000000025 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Per Matt</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c fontweight="bold" textdecoration="underline"><textvalue>Parapet</textvalue></c>
+            <cell />
+            <c fontweight="bold"><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Length</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+            <c name="BearingNodeCount" showidentifier="False" formula="2*BridgeGeometry_2Beam.Beam_count"><num>4</num></c>
+            <c><textvalue>Four physical bearings at the pier</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>1</num></c>
+            <cell />
+            <c><num>1.5005 ft^2</num></c>
+            <c formula="BridgeGeometry_2Beam.Pier_tributaryLength"><num>106 ft 1.5 in</num></c>
+            <c formula="F13*G13"><num>159.24056249999998 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H13*I13"><num>23886.084375 lbf</num></c>
+            <c formula="J13 to kip"><num>23.886084375 kip</num></c>
+            <cell />
+        </row>
+        <row>
+            <cell textdecoration="underline" fontweight="bold" />
+            <cell />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>M:P use the individual span tributaries; L is an average, not an application load.</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>2</num></c>
+            <cell />
+            <c formula="D15*F13"><num>3.001 ft^2</num></c>
+            <c formula="BridgeGeometry_2Beam.Pier_tributaryLength"><num>106 ft 1.5 in</num></c>
+            <c formula="F15*G15"><num>318.48112499999996 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H15*I15"><num>47772.16875 lbf</num></c>
+            <c formula="J15 to kip"><num>47.77216875 kip</num></c>
+            <c formula="K15/BearingNodeCount"><num>11.9430421875 kip</num></c>
+            <c formula="K15*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>12.080900624999991 kip</num></c>
+            <c formula="K15*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>12.080900624999991 kip</num></c>
+            <c formula="K15*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>11.80518375000001 kip</num></c>
+            <c formula="K15*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>11.80518375000001 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Cap and pier-wall self-weight excluded: FBMP includes it.</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c textdecoration="underline"><textvalue>Deck</textvalue></c>
+            <cell />
+            <c><textvalue>Area</textvalue></c>
+            <c fontweight="bold"><textvalue>Length</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c formula="BridgeGeometry_2Beam.Deck_area"><num>6.791666666666666 ft^2</num></c>
+            <c formula="BridgeGeometry_2Beam.Pier_tributaryLength"><num>106 ft 1.5 in</num></c>
+            <c formula="F18*G18"><num>720.7656249999999 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H18*I18"><num>108114.84374999999 lbf</num></c>
+            <c formula="J18 to kip"><num>108.11484374999999 kip</num></c>
+            <c formula="K18/BearingNodeCount"><num>27.028710937499998 kip</num></c>
+            <c formula="K18*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>27.340703124999976 kip</num></c>
+            <c formula="K18*BridgeGeometry_2Beam.PierTrib_1/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>27.340703124999976 kip</num></c>
+            <c formula="K18*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_minus/BridgeGeometry_2Beam.Deck_out2out)"><num>26.71671875000002 kip</num></c>
+            <c formula="K18*BridgeGeometry_2Beam.PierTrib_2/BridgeGeometry_2Beam.Pier_tributaryLength*(BridgeGeometry_2Beam.DeckTrib_plus/BridgeGeometry_2Beam.Deck_out2out)"><num>26.71671875000002 kip</num></c>
+            <c><textvalue>Normal slab only. Haunch concrete is excluded from F18 and counted once in row 33. Local thickened deck ends require separate quantities.</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell textdecoration="underline" />
+            <cell />
+            <cell />
+            <c textdecoration="underline" fontweight="bold"><textvalue>Cheek Wall</textvalue></c>
+            <cell />
+            <c><textvalue>Area</textvalue></c>
+            <c><textvalue>Length</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+            <c><textvalue>Cheek-wall/pedestal weight is below the pads. Equal four-node allocation is a global cap-model equivalent only.</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>1</num></c>
+            <cell />
+            <c><num>4.9961 ft^2</num></c>
+            <c><num>4 ft</num></c>
+            <c formula="F21*G21"><num>19.9844 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H21*I21"><num>2997.6600000000003 lbf</num></c>
+            <c formula="J21 to kip"><num>2.99766 kip</num></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>K = component total at pier; M:P = four contributions. Use actual cheek-wall/pedestal locations for local cap design.</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>2</num></c>
+            <cell />
+            <c formula="D23*F21"><num>9.9922 ft^2</num></c>
+            <c><num>4 ft</num></c>
+            <c formula="F23*G23"><num>39.9688 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H23*I23"><num>5995.320000000001 lbf</num></c>
+            <c formula="J23 to kip"><num>5.99532 kip</num></c>
+            <c formula="K23/BearingNodeCount"><num>1.49883 kip</num></c>
+            <c formula="K23/BearingNodeCount"><num>1.49883 kip</num></c>
+            <c formula="K23/BearingNodeCount"><num>1.49883 kip</num></c>
+            <c formula="K23/BearingNodeCount"><num>1.49883 kip</num></c>
+            <c formula="K23/BearingNodeCount"><num>1.49883 kip</num></c>
+        </row>
+        <row>
+            <cell textdecoration="underline" fontweight="bold" />
+            <cell />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Pedestal section: live 6-in height; inferred 42-in width and 3/4-in top chamfers. Verify final footprint.</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c textdecoration="underline"><textvalue>Pedestal</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>6-in pedestal</textvalue></c>
+            <cell />
+            <c><textvalue>Area</textvalue></c>
+            <c><textvalue>Length</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>1</num></c>
+            <cell />
+            <c formula="BridgeGeometry_2Beam.Pedestal_area"><num>1.74609375 ft^2</num></c>
+            <c formula="BridgeGeometry_2Beam.Pedestal_length_pier"><num>4 ft</num></c>
+            <c formula="F27*G27"><num>6.984375 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H27*I27"><num>1047.65625 lbf</num></c>
+            <c formula="J27 to kip"><num>1.04765625 kip</num></c>
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell textdecoration="underline" />
+            <cell />
+            <cell />
+            <c formula="BridgeGeometry_2Beam.Pedestal_count_pier"><num>2</num></c>
+            <cell />
+            <c formula="D29*F27"><num>3.4921875 ft^2</num></c>
+            <c formula="BridgeGeometry_2Beam.Pedestal_length_pier"><num>4 ft</num></c>
+            <c formula="F29*G29"><num>13.96875 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H29*I29"><num>2095.3125 lbf</num></c>
+            <c formula="J29 to kip"><num>2.0953125 kip</num></c>
+            <c formula="K29/BearingNodeCount"><num>0.523828125 kip</num></c>
+            <c formula="K29/BearingNodeCount"><num>0.523828125 kip</num></c>
+            <c formula="K29/BearingNodeCount"><num>0.523828125 kip</num></c>
+            <c formula="K29/BearingNodeCount"><num>0.523828125 kip</num></c>
+            <c formula="K29/BearingNodeCount"><num>0.523828125 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c textdecoration="underline"><textvalue>Haunch</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell textdecoration="underline" fontweight="bold" />
+            <cell />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>2</num></c>
+            <cell />
+            <cell />
+            <cell />
+            <c formula="BridgeGeometry_2Beam.Haunch_totalVolume/2 to ft^3"><num>93.2687548903471 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H33*I33"><num>13990.313233552064 lbf</num></c>
+            <c formula="J33 to kip"><num>13.990313233552063 kip</num></c>
+            <c formula="K33/BearingNodeCount"><num>3.497578308388016 kip</num></c>
+            <c formula="BridgeGeometry_2Beam.Haunch_volume_span1*I33/(2*BridgeGeometry_2Beam.Beam_count) to kip"><num>3.929304229488777 kip</num></c>
+            <c formula="BridgeGeometry_2Beam.Haunch_volume_span1*I33/(2*BridgeGeometry_2Beam.Beam_count) to kip"><num>3.929304229488777 kip</num></c>
+            <c formula="BridgeGeometry_2Beam.Haunch_volume_span2*I33/(2*BridgeGeometry_2Beam.Beam_count) to kip"><num>3.065852387287255 kip</num></c>
+            <c formula="BridgeGeometry_2Beam.Haunch_volume_span2*I33/(2*BridgeGeometry_2Beam.Beam_count) to kip"><num>3.065852387287255 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c fontweight="bold" textdecoration="underline"><textvalue>Cap</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell fontweight="bold" textdecoration="underline" />
+            <c fontweight="bold"><textvalue>Length</textvalue></c>
+            <c><textvalue>Width</textvalue></c>
+            <c><textvalue>Height</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell textdecoration="underline" />
+            <cell />
+            <cell />
+            <c><num>1</num></c>
+            <c formula="BridgeGeometry_2Beam.PierCap_length"><num>19 ft 2 in</num></c>
+            <c fontweight="regular" formula="BridgeGeometry_2Beam.PierCap_width"><num>4 ft</num></c>
+            <c formula="BridgeGeometry_2Beam.PierCap_ht"><num>3 ft 0 in</num></c>
+            <c formula="D37*E37*F37*G37"><num>229.99999999999994 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H37*I37"><num>34499.99999999999 lbf</num></c>
+            <c formula="J37 to kip"><num>34.49999999999999 kip</num></c>
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c fontweight="bold" textdecoration="underline"><textvalue>Pier Wall</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell fontweight="bold" textdecoration="underline" />
+            <c fontweight="bold"><textvalue>Length</textvalue></c>
+            <c><textvalue>Width</textvalue></c>
+            <c><textvalue>Height</textvalue></c>
+            <c fontweight="bold"><textvalue>Volume</textvalue></c>
+            <c fontweight="bold"><textvalue>Density</textvalue></c>
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>1</num></c>
+            <c><num>18 ft 3 in</num></c>
+            <c fontweight="regular"><num>3 ft</num></c>
+            <c><num>16 ft 2.8625 in</num></c>
+            <c formula="D42*E42*F42*G42"><num>889.06015625 ft^3</num></c>
+            <c><num>150 pcf</num></c>
+            <c formula="H42*I42"><num>133359.0234375 lbf</num></c>
+            <c formula="J42 to kip"><num>133.3590234375 kip</num></c>
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c textdecoration="underline" fontweight="bold"><textvalue>Live Load</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c fontweight="bold"><textvalue>Width</textvalue></c>
+            <c fontweight="bold"><textvalue>Length</textvalue></c>
+            <cell />
+            <cell />
+            <c fontweight="bold"><textvalue>Weight (lbf)</textvalue></c>
+            <c><textvalue>Weight (kip)</textvalue></c>
+            <c><textvalue>Average only (kip)</textvalue></c>
+            <c><textvalue>B1 / S1−</textvalue></c>
+            <c><textvalue>B2 / S1+</textvalue></c>
+            <c><textvalue>B3 / S2−</textvalue></c>
+            <c><textvalue>B4 / S2+</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><num>90 psf</num></c>
+            <cell />
+            <c formula="BridgeGeometry_2Beam.Bridge_clearWidth"><num>12 ft</num></c>
+            <c formula="BridgeGeometry_2Beam.Pier_tributaryLength"><num>106 ft 1.5 in</num></c>
+            <cell />
+            <cell />
+            <c formula="D46*F46*G46"><num>114615 lbf</num></c>
+            <c formula="J46 to kip"><num>114.615 kip</num></c>
+            <c formula="K46/BearingNodeCount"><num>28.65375 kip</num></c>
+            <c formula="D46*BridgeGeometry_2Beam.WalkTrib_minus*BridgeGeometry_2Beam.PierTrib_1 to kip"><num>28.984499999999976 kip</num></c>
+            <c formula="D46*BridgeGeometry_2Beam.WalkTrib_plus*BridgeGeometry_2Beam.PierTrib_1 to kip"><num>28.984499999999976 kip</num></c>
+            <c formula="D46*BridgeGeometry_2Beam.WalkTrib_minus*BridgeGeometry_2Beam.PierTrib_2 to kip"><num>28.323000000000025 kip</num></c>
+            <c formula="D46*BridgeGeometry_2Beam.WalkTrib_plus*BridgeGeometry_2Beam.PierTrib_2 to kip"><num>28.323000000000025 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell fontweight="bold" textdecoration="underline" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell textdecoration="underline" fontweight="bold" />
+            <cell />
+            <cell fontweight="bold" />
+            <cell fontweight="bold" textdecoration="underline" />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell fontweight="bold" />
+            <cell fontweight="bold" />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell fontweight="regular" />
+            <c><textvalue>C004 — Superstructure / substructure load classification</textvalue></c>
+            <cell />
+            <cell fontweight="regular" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>DC above bearings at pier; both spans / all beams</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c name="DC_super_pier" showidentifier="True" formula="K6+K10+K15+K18+K33"><num>364.12428073355204 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>DC cheek walls + pedestals below bearings</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c name="DC_sub_pier" showidentifier="True" formula="K23+K29"><num>8.0906325 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Equivalent uniform superstructure DC</textvalue></c>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c name="w_DC_super" showidentifier="True" formula="DC_super_pier/BridgeGeometry_2Beam.Pier_tributaryLength"><num>3.4310886288202784 kip/ft</num></c>
+        </row>
+        <row>
+            <cell textdecoration="underline" fontweight="bold" />
+            <cell />
+            <cell fontweight="bold" />
+            <c><textvalue>DW credited in C004 (no stabilizing credit unless entered)</textvalue></c>
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell fontweight="bold" />
+            <cell fontweight="bold" />
+            <cell fontweight="bold" />
+            <c name="w_DW_super" showidentifier="True" formula="0 kip/ft" texthighlight="#F7E6B9"><num>0 kip/ft</num></c>
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Pier-node reconciliation: source total = super + sub</textvalue></c>
+            <cell />
+            <cell fontweight="regular" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <c name="Check_DC_classification" showidentifier="False" formula="If(Abs(DC_cap_B1+DC_cap_B2+DC_cap_B3+DC_cap_B4-DC_super_pier-DC_sub_pier)&lt;0.000001 kip, &quot;✓ PASS&quot;, &quot;⊗ FAIL&quot;)"><textvalue>✓ PASS</textvalue></c>
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>DC super: beams, fence, parapets, deck, haunch. No cheek wall, pedestal, cap or pier-wall stabilizing credit.</textvalue></c>
+            <cell />
+        </row>
+        <row>
+            <cell fontweight="bold" textdecoration="underline" />
+            <cell />
+            <cell />
+            <c><textvalue>Equivalent line weight retains the source tributary model; span allocation assumes the same uniform section and haunch weight.</textvalue></c>
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell fontweight="bold" />
+            <c><textvalue>DW is separate from DC. Enter only the assured minimum wearing-surface / utility weight for uplift; no future removable weight credit.</textvalue></c>
+            <cell />
+            <cell fontweight="bold" />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+            <cell fontweight="bold" />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell fontweight="regular" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </row>
+        <row />
+        <row />
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Bearing</textvalue></c>
+            <c><textvalue>Trib. length</textvalue></c>
+            <c><textvalue>DC at pad</textvalue></c>
+            <c><textvalue>Below pad</textvalue></c>
+            <c><textvalue>DC at cap node</textvalue></c>
+            <c><textvalue>PL</textvalue></c>
+            <c><textvalue>DW</textvalue></c>
+            <c><textvalue>DC + PL</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>B1 — Span 1, beam −</textvalue></c>
+            <c name="Ltrib_B1" showidentifier="False" formula="BridgeGeometry_2Beam.PierTrib_1"><num>53 ft 8.100000000000023 in</num></c>
+            <c name="DC_super_B1" showidentifier="False" formula="M6+M10+M15+M18+M33"><num>92.47319447948871 kip</num></c>
+            <c name="DC_sub_B1" showidentifier="False" formula="M23+M29"><num>2.022658125 kip</num></c>
+            <c name="DC_cap_B1" showidentifier="False" formula="F63+G63"><num>94.49585260448872 kip</num></c>
+            <c name="PL_B1" showidentifier="False" formula="M46"><num>28.984499999999976 kip</num></c>
+            <c name="DW_B1" showidentifier="False" formula="w_DW_super*Ltrib_B1/2"><num>0 kip</num></c>
+            <c formula="H63+I63"><num>123.4803526044887 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>B2 — Span 1, beam +</textvalue></c>
+            <c name="Ltrib_B2" showidentifier="False" formula="BridgeGeometry_2Beam.PierTrib_1"><num>53 ft 8.100000000000023 in</num></c>
+            <c name="DC_super_B2" showidentifier="False" formula="N6+N10+N15+N18+N33"><num>92.47319447948871 kip</num></c>
+            <c name="DC_sub_B2" showidentifier="False" formula="N23+N29"><num>2.022658125 kip</num></c>
+            <c name="DC_cap_B2" showidentifier="False" formula="F64+G64"><num>94.49585260448872 kip</num></c>
+            <c name="PL_B2" showidentifier="False" formula="N46"><num>28.984499999999976 kip</num></c>
+            <c name="DW_B2" showidentifier="False" formula="w_DW_super*Ltrib_B2/2"><num>0 kip</num></c>
+            <c formula="H64+I64"><num>123.4803526044887 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>B3 — Span 2, beam −</textvalue></c>
+            <c name="Ltrib_B3" showidentifier="False" formula="BridgeGeometry_2Beam.PierTrib_2"><num>52 ft 5.399999999999977 in</num></c>
+            <c name="DC_super_B3" showidentifier="False" formula="O6+O10+O15+O18+O33"><num>89.58894588728732 kip</num></c>
+            <c name="DC_sub_B3" showidentifier="False" formula="O23+O29"><num>2.022658125 kip</num></c>
+            <c name="DC_cap_B3" showidentifier="False" formula="F65+G65"><num>91.61160401228733 kip</num></c>
+            <c name="PL_B3" showidentifier="False" formula="O46"><num>28.323000000000025 kip</num></c>
+            <c name="DW_B3" showidentifier="False" formula="w_DW_super*Ltrib_B3/2"><num>0 kip</num></c>
+            <c formula="H65+I65"><num>119.93460401228735 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>B4 — Span 2, beam +</textvalue></c>
+            <c name="Ltrib_B4" showidentifier="False" formula="BridgeGeometry_2Beam.PierTrib_2"><num>52 ft 5.399999999999977 in</num></c>
+            <c name="DC_super_B4" showidentifier="False" formula="P6+P10+P15+P18+P33"><num>89.58894588728732 kip</num></c>
+            <c name="DC_sub_B4" showidentifier="False" formula="P23+P29"><num>2.022658125 kip</num></c>
+            <c name="DC_cap_B4" showidentifier="False" formula="F66+G66"><num>91.61160401228733 kip</num></c>
+            <c name="PL_B4" showidentifier="False" formula="P46"><num>28.323000000000025 kip</num></c>
+            <c name="DW_B4" showidentifier="False" formula="w_DW_super*Ltrib_B4/2"><num>0 kip</num></c>
+            <c formula="H66+I66"><num>119.93460401228735 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>TOTAL AT PIER</textvalue></c>
+            <cell />
+            <c formula="F63+F64+F65+F66"><num>364.12428073355204 kip</num></c>
+            <c formula="G63+G64+G65+G66"><num>8.0906325 kip</num></c>
+            <c formula="H63+H64+H65+H66"><num>372.2149132335521 kip</num></c>
+            <c formula="I63+I64+I65+I66"><num>114.615 kip</num></c>
+            <c formula="J63+J64+J65+J66"><num>0 kip</num></c>
+            <c formula="K63+K64+K65+K66"><num>486.82991323355213 kip</num></c>
+        </row>
+        <row />
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Pad reactions exclude below-pad weight. Cap-node DC includes its equal equivalent allocation once; do not add it again.</textvalue></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>For local cap analysis, use DC at pad plus separate cheek-wall/pedestal loads at their actual locations.</textvalue></c>
+        </row>
+        <row />
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Unfactored gravity loads. PL is the existing full-width uniform pedestrian load; load patterning remains a separate analysis case.</textvalue></c>
+        </row>
+        <row />
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>DEAD-LOAD ROW IMBALANCE</textvalue></c>
+            <cell />
+            <c name="ΔDC_rows" showidentifier="False" formula="DC_cap_B1+DC_cap_B2-DC_cap_B3-DC_cap_B4"><num>5.768497184402776 kip</num></c>
+        </row>
+        <row>
+            <cell />
+            <cell />
+            <cell />
+            <c><textvalue>Gravity pitch about transverse axis at cap center</textvalue></c>
+            <cell />
+            <c name="MT_DC_pier" showidentifier="False" formula="BridgeGeometry_2Beam.PierCL_bearingCL*ΔDC_rows to kip*ft"><num>5.047435036352428 kip*ft</num></c>
+        </row>
+        <stylerule range="M2:P46" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" />
+        <stylerule range="D62:K67" fontfamily="Times New Roman" fontsize="10" valueformat="RoundedNumber(3, 3, {PriorityUnits: []})" background="#EFF7F1" />
+        <stylerule range="D62:K62" fontweight="bold" background="#DCECE0" />
+        <stylerule range="D67:K67" fontweight="bold" background="#DCECE0" />
+    </spreadsheet>

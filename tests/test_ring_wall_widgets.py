@@ -45,7 +45,7 @@ class RingWallWorkbenchTests(unittest.TestCase):
     def test_filtering_preserves_complete_results(self):
         a=self.app;r=deepcopy(a.current);a.row_filter.value=2
         self.assertIn('<td>2 / 1</td>',a.ring_values.value);self.assertNotIn('<td>1 / 1</td>',a.ring_values.value)
-        a.check_view.value='fail';self.assertIn('RING-END',a.checks_panel.value);self.assertNotIn('>PASS<',a.checks_panel.value)
+        a.check_view.value='fail';self.assertIn('RING-GRID',a.checks_panel.value);self.assertNotIn('>PASS<',a.checks_panel.value)
         a.check_view.value='pending';self.assertIn('SHARING',a.checks_panel.value);self.assertNotIn('R1-P1-WELD',a.checks_panel.value)
         self.assertEqual(a.current,r)
         a.controls['imposed_rotation_rad'].value=.002;a.recalc_button.click();a.check_view.value='pending'

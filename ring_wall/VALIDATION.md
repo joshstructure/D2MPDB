@@ -1,3 +1,19 @@
+# Verification record — 22 October 2026 (CAD wall geometry, D-075)
+
+The starting case now follows the CAD pier wall: length 219 in (18 ft 3 in, 19.5 in from each wall end to the outer pile), thickness 36 in, height 194.8625 in (bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom EL 40.76494 ft), and the pile free length to fixity 92.4 in measured from that bottom (110.7 in sand depth to fixity below the pile-case ground EL 26.05 less 18.3 in of wall below it). The former 213 × 36 × 172.375 in snapshot and the 127-in free length (taken from the pile cutoff) were not tied to any registered elevation. No equation changed; the defaults, the BASIS scope text and the design-basis table caption changed. Decision D-075 in `project_current/decisions.md`.
+
+## Automated verification
+
+`python -m unittest discover -s tests -p 'test_ring_wall*.py'` passes **31 tests** locally (ipywidgets 8.1.9, Plotly 6.9.0); the tests that pinned the former geometry (weight, grid, tributary bounds, nominal eccentricity, end distance, the end-cover failure) were updated, and the end-cover failure is now exercised on a 213-in case. The Colab-pinned environment and native application recalculation were not rerun.
+
+## Starting-case results (22 October 2026)
+
+- Service weight **133.359023438 kip**; factored **166.698779297 kip**.
+- Wall rotation **1.547 × 10⁻⁵ rad**; pile-head moment **26.983 kip-in**; **5.397 kip-in** per ring.
+- Largest equivalent eccentricity **1.105 in** (row 1, end piles) against the **5.187-in** kern; all twenty rings in full contact.
+- Grid unchanged: **#5 at 11 in each way each face** (0.338182 in²/ft against 0.334941 in²/ft required).
+- **1 failed check** (RING-GRID); RING-END passes with 5.0 in of end cover at tolerance against 3.0 in required; no pending strength check; five scope items open.
+
 # Verification record — 21 October 2026 (ring moment basis, D-070)
 
 The ring moment basis changed from the tributary-eccentricity convention `M = R (|e_n| + Δ_p)` to a pile-head compatibility moment: the rigid wall rotates on axial springs `k_v = A_p E_p / L_a` and rotational springs `k_θ = 4 E_p I_p / L_f` with the pile group displaced by the placement tolerance, every pile head carries `M_p = k_θ θ_w`, the ring rows share it equally, and the axial redistribution `ΔR` is added to each tributary reaction. Four schema 3 inputs were added (pipe E, free length to fixity, axial spring length, imposed rotation) with defaults from the pier pile case; schema 2 cases migrate with a visible notice. The superseded moment stays in the ledger as `M_s` for comparison. Decision D-070 in `project_current/decisions.md`; basis in [RING_WALL_STM.md](../RING_WALL_STM.md).

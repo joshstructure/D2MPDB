@@ -1,6 +1,6 @@
 # Pier Wall Design
 
-[Open in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb). The 19 October 2026 revision replaces the former strut-and-tie and cone-transfer study with minimum wall reinforcement, detailing and local annular-ring connection checks. The 21 October 2026 revision (decision D-070) changes the ring moment basis: tributaries assign vertical force only, the placement tolerance redistributes the pile-group reactions, and the ring moment follows the pile-head rotational stiffness against the rigid-wall rotation. The superseded basis is kept in the ledger for comparison.
+[Open in Colab](https://colab.research.google.com/github/joshstructure/D2MPDB/blob/main/Pier_Wall_Design.ipynb). The 19 October 2026 revision replaces the former strut-and-tie and cone-transfer study with minimum wall reinforcement, detailing and local annular-ring connection checks. The 21 October 2026 revision (decision D-070) changes the ring moment basis: tributaries assign vertical force only, the placement tolerance redistributes the pile-group reactions, and the ring moment follows the pile-head rotational stiffness against the rigid-wall rotation. The superseded basis is kept in the ledger for comparison. The 22 October 2026 revision (decision D-075) reconciles the starting wall to the CAD pier wall: 219 × 36 in, bottom 1 ft below terrain at EL 24.5264 ft and top at the cap bottom (194.8625 in high), with the pile free length to fixity measured from that bottom (92.4 in).
 
 ## Workflow and drawings
 
@@ -22,7 +22,7 @@ Five open items remain in every result:
 - Ring moments follow pile-head rotational stiffness against the rigid-wall rotation (D-070). The free length to fixity and the axial spring length are entered values whose defaults come from the pier pile case (sand depth to fixity, LRFD C10.7.3.13.4; tip elevation pending). Lateral, thermal, unsymmetric and construction-stage rotations enter only through the imposed rotation input.
 - Wall checks cover minimum shrinkage/temperature steel and detailing, not wall flexure, shear, lateral/seismic resistance or strength load paths.
 - Local plate, weld and adjacent-metal checks do not establish pipe-shell bending/ovalization, global pile interaction, segment splices, fatigue, corrosion or WPS/fabrication adequacy.
-- Confirm geometry, exposure/cover, materials, joints and anchorage routing. Defaults remain the earlier study snapshot, not a current CAD import.
+- Confirm exposure/cover, materials, joints and anchorage routing. The starting dimensions follow the CAD pier wall (D-075); the geometry notebook does not yet own the pier wall, so a notebook-owned wall remains a reconciliation item.
 
 ## Tributary concrete weight
 
@@ -74,20 +74,21 @@ Minimum weld size follows the thicker-part table (1/8, 3/16, 1/4, 5/16 in at the
 
 ## Starting case
 
-The retained wall is 213 × 36 × 172.375 in with four 20-in piles at 60 in; five rows start 6 in above bottom at 36-in pitch. Rings are 23-in OD × 20.125-in ID × 3/4-in thick with two 5/16-in E70 fillets. Radial pile tolerance is 3 in. Pile stiffness inputs: E 29,000 ksi, 127 in from the wall bottom to fixity (16.3 in exposed plus 110.7 in sand depth to fixity from the pier pile case), 600-in axial spring length (tip elevation pending), no imposed rotation.
+The wall is the CAD pier wall (D-075): 219 × 36 × 194.8625 in (bottom 1 ft below terrain at EL 24.5264 ft, top at the cap bottom EL 40.76494 ft) with four 20-in piles at 60 in, 19.5 in from each wall end; five rows start 6 in above bottom at 36-in pitch. Rings are 23-in OD × 20.125-in ID × 3/4-in thick with two 5/16-in E70 fillets. Radial pile tolerance is 3 in. Pile stiffness inputs: E 29,000 ksi, 92.4 in from the wall bottom to fixity (110.7 in sand depth to fixity below the pile-case ground EL 26.05 less the 18.3 in of wall below that ground), 600-in axial spring length (tip elevation pending), no imposed rotation.
 
-- Service weight **114.737109375 kip**; factored **143.421386719 kip**.
-- Maximum tributary ring reaction **9.462890625 kip** (top row, interior pile); the tolerance redistribution adds at most **0.420 kip** at the end piles (top row).
-- Wall rotation **1.414 × 10⁻⁵ rad**; pile-head moment **17.95 kip-in**; ring moment **3.589 kip-in** per ring against a superseded end-pile moment of 42.5 kip-in (row 1).
-- Largest equivalent eccentricity **0.779 in** against the **5.187-in** kern: all twenty rings keep full contact.
-- Minimum grid **#5 at 11 in each way each face**, providing 0.338182 in²/ft against 0.333614 in²/ft required.
-- **2 failed checks:** end cover and grid clearance. No local strength check is pending; five scope items remain open.
+- Service weight **133.359023438 kip**; factored **166.698779297 kip** (gross prism; the pile bores are not deducted).
+- Wall rotation **1.547 × 10⁻⁵ rad**; pile-head moment **26.98 kip-in**; ring moment **5.397 kip-in** per ring.
+- Largest equivalent eccentricity **1.105 in** (row 1, end piles) against the **5.187-in** kern: all twenty rings keep full contact.
+- Minimum grid **#5 at 11 in each way each face**, providing 0.338182 in²/ft against 0.334941 in²/ft required.
+- **1 failed check:** grid clearance (the inner face-grid layer meets the 23-in ring). The ring end cover passes with the 19.5-in end distance (it failed at 2 in with the former 213-in wall). No local strength check is pending; five scope items remain open.
 
 Default failures have not been tuned away. Increasing ring diameter also affects end/grid clearance; a changed pile layout needs coordinated geometry review. Entering an imposed rotation of 0.002 rad reproduces the former full-contact failures across all rings, which shows the contact gate still operates.
 
+Until 22 October 2026 the starting wall was the earlier study snapshot, 213 × 36 × 172.375 in (16.5 in from the wall end to the outer pile), with the free length 127 in taken from the pile cutoff rather than the wall bottom; those dimensions were not tied to any registered elevation. The CAD wall is 6 in longer and 22.5 in taller, so the service weight rises from 114.737 to 133.359 kip; the gravity sheet of the journal, C006 and this calculation now agree with the CAD model and the drawings.
+
 ## Superseded basis (D-070)
 
-Until 21 October 2026 each ring carried `M = R (|en| + Δp)`: the tributary cell's own weight at the offset of its centroid from the nominal pile center plus the radial tolerance. That convention failed full contact at the ten end-pile rings (equivalent eccentricity 9.75 in against the 5.19-in kern) and made their 70 local strength checks pending. It was replaced because the wall is a continuous stiff body that carries the centroid offset internally, while the flexible pile head follows the wall, so the ring sees only the compatibility moment. Plate ductility does not relieve the former statics demand; the basis, not the ring, was the issue. The superseded moment stays in the ledger, the report table and the native sheets as `Ms` for comparison, and the decision is recorded in `project_current/decisions.md`.
+Until 21 October 2026 each ring carried `M = R (|en| + Δp)`: the tributary cell's own weight at the offset of its centroid from the nominal pile center plus the radial tolerance. That convention failed full contact at the ten end-pile rings of the 213-in wall of the time (equivalent eccentricity 9.75 in against the 5.19-in kern) and made their 70 local strength checks pending. It was replaced because the wall is a continuous stiff body that carries the centroid offset internally, while the flexible pile head follows the wall, so the ring sees only the compatibility moment. Plate ductility does not relieve the former statics demand; the basis, not the ring, was the issue. The superseded moment stays in the ledger, the report table and the native sheets as `Ms` for comparison, and the decision is recorded in `project_current/decisions.md`.
 
 ## Exports and reproducibility
 
@@ -105,6 +106,6 @@ Code is in `ring_wall/`. Export helpers are vendored from the commit in `ring_wa
 
 ## Project record and journal edition
 
-The 21 October 2026 run of the starting case is a selected project source (decision D-071): `project_current/pier_wall/` holds the report, the dated and selected case, the check register and the ring forces, registered as PIER-WALL-TOOL, PIER-WALL-REPORT and PIER-WALL-CASE by `scripts/export_project_pier_wall_report.py` (`--date`, `--register`, `--check`). The journal edition is calculation **C017 - Pier Wall, Annular Pile Rings** (report `PierWallRings`), written by `scripts/build_ring_wall_bpad.py` to `ring_wall/bpad/journal/` with every ledger value and check status as a native definition, the live project stamp and hidden working notes, verified against the package to 1e-9 (`--check` compares the committed fragment with a fresh build); tasks T028 (addition), T029 (order after C016) and T030 (caption corrections) put it in the journal. The notebook's lost-contact status PENDING reads NO CONTACT in the journal edition. C006 (fin plates and hairpins) remains in the journal: the choice of pier-wall support concept is undecided.
+The run of the starting case is a selected project source (decision D-071 on 21 October 2026; the 22 October 2026 rerun on the CAD wall under D-075 replaced it): `project_current/pier_wall/` holds the report, the dated and selected case, the check register and the ring forces, registered as PIER-WALL-TOOL, PIER-WALL-REPORT and PIER-WALL-CASE by `scripts/export_project_pier_wall_report.py` (`--date`, `--decision`, `--register [--replace]`, `--check`). The journal edition is calculation **C017 - Pier Wall, Annular Pile Rings** (report `PierWallRings`), written by `scripts/build_ring_wall_bpad.py` to `ring_wall/bpad/journal/` with every ledger value and check status as a native definition, the live project stamp and hidden working notes, verified against the package to 1e-9 (`--check` compares the committed fragment with a fresh build); tasks T028 (addition), T029 (order after C016), T030 (caption corrections) and T034 (CAD wall geometry) put it in the journal. The notebook's lost-contact status PENDING reads NO CONTACT in the journal edition. C006 (fin plates and hairpins) remains in the journal: the choice of pier-wall support concept is undecided.
 
 Rebuild with `.venv\Scripts\python.exe scripts\build_ring_wall_notebook.py`; regenerate examples with `.venv\Scripts\python.exe scripts\build_ring_wall_examples.py`; rebuild the journal edition with `.venv\Scripts\python.exe scripts\build_ring_wall_bpad.py` (a changed fragment needs a new journal task). Run `.venv\Scripts\python.exe -m unittest discover -s tests -p 'test_ring_wall*.py' -v`. See [validation](ring_wall/VALIDATION.md) and the [example report](ring_wall/examples/ring_wall_report.html).

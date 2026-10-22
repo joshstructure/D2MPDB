@@ -3,9 +3,9 @@
   "authority": "Current editable FreeCAD geometry and modeled quantities; engineering acceptance remains separate",
   "model": {
     "path": "B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-    "sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
-    "bytes": 7336742,
-    "objects": 2189
+    "sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+    "bytes": 4984491,
+    "objects": 2464
   },
   "source_revision": "01a1fcc34d6345ceacf96245bcf0c931d118a1ab",
   "tracker_used_sha256": "58210442277fc31e92a18ab60d375990c631cd951318a93df53b3c8dfcc10aad",
@@ -33,10 +33,11 @@
     "D-055: native optional vertical omissions and unit-bearing station overrides; guarded spacing, physical clearance, cover and cold-reopen verification.",
     "D-059: native pier_cheeks parametric solid walls, shallow outward beveled relief, continuous centered mats, live quantities and strict physical checks.",
     "D-061: native straight vertical development with selected LRFD inputs, signed mat offsets, coordinated stations, live quantities and BRep anchorage/cover/clash checks.",
-    "D-065: native level_seats host/pad dependencies and fixed pre-grinding cage elevation reference; independent rigid-fit failures remain visible."
+    "D-065: native level_seats host/pad dependencies and fixed pre-grinding cage elevation reference; independent rigid-fit failures remain visible.",
+    "D-076: pier_wall_rings native steel/ring controllers; existing geometry retained; immutable calculation snapshot updated to the separately selected D-075 case without changing details."
   ],
   "runtime_files": {
-    "runtime/API.md": "be21d85df8d1923ef041a65ffb431d6dfb5880b41f5eb46ae7adca078f61511a",
+    "runtime/API.md": "21283e91cc3d1644005f2479f6e59b3426c319b99bc9d8fbcba26687a6c8debb",
     "runtime/freecad_tools/__init__.py": "54fc72e62296f90ef30d4395023d10589142c7979df962a5fa1669cf01886a32",
     "runtime/freecad_tools/adopt_drainage.py": "df2e4d293383aa5de9e425a8af75b7640524d07e71eebd541d42d2e81342eb07",
     "runtime/freecad_tools/api.py": "4f5d129384cf8b68bf10564f59141a31bd83921d47e8e477754ad2ea3ade71ca",
@@ -170,9 +171,10 @@
     "runtime/freecad_tools/backwall_extensions.py": "c40d3ce61a6fa05297943168b8349230a46ad95880fa98d8022c95587e6cc424",
     "runtime/freecad_tools/backwall_top.py": "8361bb753d77de4623af10712eefed70e3ec7caba2911afd2e6eda9d80bd4092",
     "runtime/freecad_tools/pier_cheeks.py": "d7f97999105514680eadd464626e0c6162a457016ebe554826bd52ed375e5047",
-    "runtime/freecad_tools/level_seats.py": "ca210151902c8144cc407b3258a1c405614aefb464ee97cd990c210295214e61"
+    "runtime/freecad_tools/level_seats.py": "ca210151902c8144cc407b3258a1c405614aefb464ee97cd990c210295214e61",
+    "runtime/freecad_tools/pier_wall_rings.py": "caa36256b5edca4ed07ba38acbeff79b94f8739db64642c8c83480db50a90697"
   },
-  "opener_sha256": "d8137d9757cd832af839165ee544c26f9fc2c1accccd4bd788f131ed61697914",
+  "opener_sha256": "e06084a02ebc7ccb81ff84baa3d95c28e18bb3c729de54a6afd0f5cfa5c4f7f4",
   "evidence_files": {
     "evidence/bridge-current-cages-20261010-v1.json": "5daf358f8b140a1b5c8db4b1d33df5ab565d4299e9c1fb90d0aa15cd679ce1ee",
     "evidence/bridge-current-proxies-20261010-v1.json": "bc8d1595534050f961bece023cae100958064388e1b2e7d45ddd424666c834ba",
@@ -181,7 +183,7 @@
     "evidence/delivery-helper-fingerprints.json": "2eda36676cc40916485c708e385818c6e99ead3be41e5754a55bc5e772e58c62",
     "evidence/final-reopen-verification.json": "fde89e9b9c8bb47433a964e3d0b3faedcb00c201b8ada10b348c086e4bfaeec9",
     "evidence/final-save.json": "7767f925bccdf426225cf1d4269ce59919cdcf71267f7c56c7484547f758e946",
-    "evidence/Model-update-report.txt": "f4899b16c22c832bcfbf5d3d6ce9d31e17e9a3f9ad4de840af4ec6bb4a86fc1c",
+    "evidence/Model-update-report.txt": "40392ff40caf3e6098ec5508e74eb0ace814b37172c924dde1c2ecaf51769741",
     "evidence/opener-verification.json": "7cfd370f32a419bd160ce2f914df4e861372addcab97d9e64896fb6135d40fdf",
     "evidence/portable-verification.json": "5daa7dfc49c7f7b11c641a51d2e425ce853dc08ee134356c02746d93d028ec36",
     "evidence/session-checkpoint.json": "c22fc947838b3ed99425beeab12c10e80b62b12be04d01444f2a0677135096c5",
@@ -436,18 +438,36 @@
     "evidence/2026-10-20-level-bearing-seats/adopt_candidate.py": "d1cbe455c116e20d16008ac09d248f19f7e4bd992e0982d0425b5156df506c56",
     "evidence/2026-10-20-level-bearing-seats/build_candidate.py": "bbc351a67605555efd3a263d204e8779bd259b4b7d89ee60adda24db8ba464f2",
     "evidence/2026-10-20-level-bearing-seats/geometry-verification.json": "542e86c200d85137daf4a84be5446f15b24f9ff7f75948d3e41c76d436bfc2f3",
-    "evidence/2026-10-20-level-bearing-seats/source-elevations.json": "1b4ed42fd7add78f09b87c7eeb115b9411175896c0be77ff4855d56a27cb83d5"
+    "evidence/2026-10-20-level-bearing-seats/source-elevations.json": "1b4ed42fd7add78f09b87c7eeb115b9411175896c0be77ff4855d56a27cb83d5",
+    "evidence/2026-10-22-pier-wall-rings/adoption-summary.json": "f836e3d18ff553bd6b9a64115746d9c7ce7ce5321da9335491a9adc2461198a4",
+    "evidence/2026-10-22-pier-wall-rings/adopt_candidate.py": "c03b3bcfde60f7d06d34b5f298db149c890e878c194e45a98c4d6f0f473a7a2e",
+    "evidence/2026-10-22-pier-wall-rings/archive-preservation.json": "3f4ee8fa236ada5fc913d9d76c035e74e888b598d571c3957048ffa0a991f2cc",
+    "evidence/2026-10-22-pier-wall-rings/build_candidate.py": "4548f62a048a8711acc750780c9268cd1804d4b248d8567361af366999e94b1b",
+    "evidence/2026-10-22-pier-wall-rings/build_native_gui.py": "3c0d452cfc64cfac69c040872a9046c727b7de76ab903c8f8891b5f130cde8b0",
+    "evidence/2026-10-22-pier-wall-rings/calculation-snapshot.json": "576cf3e2455efb1ce43ca847a7a982fc65833a00b760e94827cb074291382bbc",
+    "evidence/2026-10-22-pier-wall-rings/current-calculation-snapshot.json": "49ff8ce78c73d463f18e63d69fa0dea5fc815d0c53517baffb2309d9c2cb3731",
+    "evidence/2026-10-22-pier-wall-rings/geometry-verification.json": "9a75482d2e8d6261995acd10cada069c3e02e92db5b8225d3d4f6f34b054e494",
+    "evidence/2026-10-22-pier-wall-rings/initial-case-snapshot.json": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c",
+    "evidence/2026-10-22-pier-wall-rings/native-gui-verification.json": "c7d3fc673f7d7495a761617e7a7c199d1e030325ad4d2678b1468e4819ddb6f3",
+    "evidence/2026-10-22-pier-wall-rings/native-render.json": "b853ed9b017942ba59079ef64f9b8af8c45af10d1bf610c57d0e4a2d24a50112",
+    "evidence/2026-10-22-pier-wall-rings/Pier_Wall_Steel_Elevation.png": "ecf9a5863f078412bbd28b242f22c5fd2b10f719d4eceb414ff0290256069baf",
+    "evidence/2026-10-22-pier-wall-rings/Pier_Wall_Steel_Isometric.png": "91cc3039b4ce5f5b3d3ed21cad1fac72b8dc44acca5dcb16a5f0994fc4d211df",
+    "evidence/2026-10-22-pier-wall-rings/provenance-update.json": "5d28f12bfc133aba075e18f31a4d86b6d4e4e1598347526e1c038b1f750d6557",
+    "evidence/2026-10-22-pier-wall-rings/render_candidate.py": "1037c70ea7f1a5f8ae6048df524b96d9f2e42cf13d852f3f9ef7294df7194d42",
+    "evidence/2026-10-22-pier-wall-rings/selected-case-at-transfer.json": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c",
+    "evidence/2026-10-22-pier-wall-rings/update_provenance.py": "913c139e488db87182da80d6603a37e8a8c1b25da1e1c7eec99b0c9bfea3f2d8",
+    "evidence/2026-10-22-pier-wall-rings/verify_archive.py": "7d74295ed0bde1fad1dc9fefdfddb74c79e6cf4bccdf4e36065d89ab4a7e09c4"
   },
-  "known_review_status": "D-065: level as-cast geometry PASS; final pad/beam fit FAIL at all eight pads. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Prior recorded review status: 0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
+  "known_review_status": "D-076: nominal CAD geometry PASS; source RING-GRID tolerance failure remains. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: level as-cast geometry PASS; final pad/beam fit FAIL at all eight pads. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Prior recorded review status: 0 new WWR overlaps; 14 existing U-bar/hoop pairs Deferred in COH-025. Four cheek spacing findings Open in COH-024; 29 cap/backwall and 4 backwall internal overlaps and other existing findings retained.",
   "portability_verification": "Cold native reopen and live dependency test PASS; 172 accepted-trial solid matches; all 1677 prior native object/view records exact. Previous standalone GUI loader limitation retained.",
-  "updated_on": "2026-10-20",
+  "updated_on": "2026-10-22",
   "current_update": {
-    "date": "2026-10-20",
-    "decision": "D-065",
-    "scope": "All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064.",
-    "summary": "evidence/2026-10-20-level-bearing-seats/adoption-summary.json",
-    "previous_model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
-    "follow_up": "As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain."
+    "date": "2026-10-22",
+    "decision": "D-076",
+    "scope": "Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details.",
+    "summary": "evidence/2026-10-22-pier-wall-rings/adoption-summary.json",
+    "previous_model_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+    "follow_up": "The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes."
   },
   "archive_files": {
     "archive/B4-before-pedestal-ubars-20261012.FCStd": "e0c6abea3e86540cb96213f9a47f2c5d810eb4243c41f274e11a920abc1b5118",
@@ -497,15 +517,17 @@
     "archive/B4-before-pier-cheek-development-20261019.FCStd": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
     "archive/B4-before-pier-cheek-development-record-20261019.zip": "9c2df45a959670cef89be92808f3b1f2f6cb5ffd4e0de69c8f51dff31872add2",
     "archive/B4-before-level-bearing-seats-20261020.FCStd": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
-    "archive/B4-before-level-bearing-seats-record-20261020.zip": "715850dbb0d99903effe5065dcc73a8a46dec5941386d5d85f1343dcd040c86a"
+    "archive/B4-before-level-bearing-seats-record-20261020.zip": "715850dbb0d99903effe5065dcc73a8a46dec5941386d5d85f1343dcd040c86a",
+    "archive/B4-before-pier-wall-rings-20261022.FCStd": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+    "archive/B4-before-pier-wall-rings-record-20261022.zip": "1addfc1eb5c988a219c4b4623e1e0a5ecb692a84c244c5b288654515ea418971"
   },
   "previous_update": {
-    "date": "2026-10-19",
-    "decision": "D-061",
-    "scope": "Develop all twelve #4 pier cheek verticals straight 12 in into the cap; coordinate mat stations with existing cap reinforcement.",
-    "summary": "evidence/2026-10-19-pier-cheek-development/adoption-summary.json",
-    "previous_model_sha256": "4f85c1fe05f8715462856ba1874e38de52b6a30dcdef4536f8aaf184abfb8725",
-    "follow_up": "Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged."
+    "date": "2026-10-20",
+    "decision": "D-065",
+    "scope": "All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064.",
+    "summary": "evidence/2026-10-20-level-bearing-seats/adoption-summary.json",
+    "previous_model_sha256": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
+    "follow_up": "As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain."
   },
   "extra_macros": {
     "Show_Elevations.FCMacro": "f27415eb7d8fe05a5ff8d05a01a5298b36ac1d3cf987ec8738ed541d085a3fc4",

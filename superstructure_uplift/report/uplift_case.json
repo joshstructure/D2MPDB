@@ -1,7 +1,7 @@
 {
  "format": "d2mpdb-superstructure-uplift",
  "schema_version": 1,
- "name": "C004 - Superstructure Uplift and Bearing Reactions (journal values, feb1bb316d08)",
+ "name": "C004 - Superstructure Uplift and Bearing Reactions (journal values, 82e7d3e1246f)",
  "inputs": {
   "Beam_spacing": 103.0,
   "Deck_out2out": 163.0,
@@ -25,7 +25,7 @@
   "W_haunch_pier": 13.990313233552,
   "DC_sub_pier": 8.0906325,
   "W_cap": 34.5,
-  "W_wall": 114.737109375,
+  "W_wall": 133.3590234375,
   "w_DC": 3.43108862882,
   "w_DW": 0.0,
   "DC_sub": 8.0906325,

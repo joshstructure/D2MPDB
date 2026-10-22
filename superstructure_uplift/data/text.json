@@ -6,7 +6,7 @@
  "bpad_file": "Superstructure Uplift.bpad",
  "notebook": "Superstructure_Uplift.ipynb",
  "tool_prefix": "uplift-tool-",
- "case_name": "C004 - Superstructure Uplift and Bearing Reactions (journal values, feb1bb316d08)",
+ "case_name": "C004 - Superstructure Uplift and Bearing Reactions (journal values, 82e7d3e1246f)",
  "intro": [
   "**What it does.** Global superstructure uplift, bearing reactions and the pier load transfer for Strength III: the C001 vertical wind and perpendicular concrete wind, the C002 fence wind and the minimum factored permanent load are resolved into windward and leeward beam-line reactions, individual bearing reactions, contact and overturning checks, the required hold-down demand, and the signed pier-node loads and residual moments for FB-MultiPier."
  ],
@@ -187,7 +187,7 @@
   ]
  },
  "working_notes": [
-  "The calculation was ported from the journal module SuperstructureUplift (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+  "The calculation was ported from the journal module SuperstructureUplift (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written. The pier wall weight shown for information follows the journal of 22 October 2026 (82e7d3e1246f), whose gravity sheet carries the CAD pier wall; no result depends on it."
  ],
  "pending": [],
  "symbols": {},

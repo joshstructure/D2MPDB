@@ -113,10 +113,12 @@ def build(r: dict) -> dict:
                    f'notebook writes that status as PENDING, this edition as NO CONTACT (the word is reserved by the submission text rule).')
     bs.para(notes, 'Ring moment basis D-070 (21 October 2026): tributaries assign vertical force only; the radial placement tolerance is a rigid-body '
                    'pile-group redistribution; the ring moment is the pile-head compatibility moment shared equally by the ring rows. The former '
-                   'R (|e_n| + Δ_p) moment is kept as M_s for comparison. Pile stiffness defaults come from the pier pile case (PILE-PIER-CASE): '
-                   '20 in pipe, 127 in from the wall bottom to the equivalent fixity (16.3 in exposed plus 110.7 in sand depth to fixity, '
-                   'LRFD C10.7.3.13.4), 600 in axial spring length as an allowance because the tip elevation is pending. The calculation is a tool '
-                   'edition of the notebook, not a registered source until adopted under project_current.')
+                   'R (|e_n| + Δ_p) moment is kept as M_s for comparison. Wall geometry D-075 (22 October 2026): the CAD pier wall, 219 × 36 in from '
+                   'EL 24.5264 (1 ft below terrain) to the cap bottom EL 40.76494 (194.8625 in high), 19.5 in from each wall end to the outer pile; the '
+                   'journal gravity sheet row 42 and C006 carry the same wall. Pile stiffness defaults come from the pier pile case (PILE-PIER-CASE): '
+                   '20 in pipe, 92.4 in from the wall bottom to the equivalent fixity (110.7 in sand depth to fixity below the pile-case ground EL 26.05, '
+                   'LRFD C10.7.3.13.4, less the 18.3 in of wall below that ground), 600 in axial spring length as an allowance because the tip elevation '
+                   'is pending. The calculation is a tool edition of the notebook; the registered source is the project_current/pier_wall export.')
     for key, text in r['pending']:
         bs.para(notes, f'• {key}: {text}', fontsize='11', spacingafter='4')
     bs.note(notes, 'C006 (Pier Wall, Hairpins and Fin Plates) sizes the fin-plate and hairpin hanger concept for the same wall; this calculation covers '

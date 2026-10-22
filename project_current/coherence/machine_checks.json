@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-10-22T01:29:12.155052+00:00",
+  "checked_at_utc": "2026-10-22T11:32:51.815907+00:00",
   "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
-  "register_sha256": "359e4c09764cbecbc5f07389d6faac7a2e6a0f4246e0c0dbba8b1f948bd86a63",
+  "register_sha256": "34ef05b1579d0a37d211c3037e0ba60a672946c2d8179a988df91eb6d0c62083",
   "tracker_sha256": "a41ceabda4591d478def85249d3ede63b9faf67e12b4a91916cde44197c95da7",
-  "assumptions_sha256": "73f9d1598bea4b67bc8abf7a1a876f8b5a74cf7b2e6109807cc0b7cafaab5658",
+  "assumptions_sha256": "173ca1c490a77236158c830eb8066b192e1ad079ca14fcf3df0aef691e3ddfd2",
   "source_count": 40,
   "item_count": 28,
   "outstanding_count": 14,
@@ -16,13 +16,13 @@
     "MATCH": 57,
     "CHANGED": 2,
     "MISSING": 4,
-    "REVIEW": 16,
+    "REVIEW": 18,
     "ERROR": 9
   },
   "assumption_counts": {
-    "count": 11,
-    "open": 2,
-    "stale": 9
+    "count": 13,
+    "open": 3,
+    "stale": 11
   },
   "checks": [
     {
@@ -33,8 +33,8 @@
         "JOURNAL"
       ],
       "path": "journal/D2_I95_Project_Journal.bpad",
-      "expected_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
-      "actual_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+      "expected_sha256": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+      "actual_sha256": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
     },
     {
       "check_id": "SOURCE:GEOMETRY",
@@ -231,8 +231,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
-      "actual_sha256": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9"
+      "expected_sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+      "actual_sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -242,8 +242,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "f24b5ed2d718284d05613f551b3815b1f1771fcc2346c9414d81c5a7ac317782",
-      "actual_sha256": "f24b5ed2d718284d05613f551b3815b1f1771fcc2346c9414d81c5a7ac317782"
+      "expected_sha256": "c9e7866e497d99d4fc0997282416dd98b836bfd97f84076fea832f380d65b356",
+      "actual_sha256": "c9e7866e497d99d4fc0997282416dd98b836bfd97f84076fea832f380d65b356"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -253,8 +253,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "f4899b16c22c832bcfbf5d3d6ce9d31e17e9a3f9ad4de840af4ec6bb4a86fc1c",
-      "actual_sha256": "f4899b16c22c832bcfbf5d3d6ce9d31e17e9a3f9ad4de840af4ec6bb4a86fc1c"
+      "expected_sha256": "40392ff40caf3e6098ec5508e74eb0ace814b37172c924dde1c2ecaf51769741",
+      "actual_sha256": "40392ff40caf3e6098ec5508e74eb0ace814b37172c924dde1c2ecaf51769741"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -440,8 +440,8 @@
         "PIER-WALL-TOOL"
       ],
       "path": "Pier_Wall_Design.ipynb",
-      "expected_sha256": "03e4d0c66be4f18df630ad5266dd7b639acbfaa776deca704a4d157cc9f3bb18",
-      "actual_sha256": "03e4d0c66be4f18df630ad5266dd7b639acbfaa776deca704a4d157cc9f3bb18"
+      "expected_sha256": "718ae708298728295681a611f7e647fd1f2dca040d87fe73eeac8d3ea27f9e3b",
+      "actual_sha256": "718ae708298728295681a611f7e647fd1f2dca040d87fe73eeac8d3ea27f9e3b"
     },
     {
       "check_id": "SOURCE:PIER-WALL-REPORT",
@@ -450,9 +450,9 @@
       "source_ids": [
         "PIER-WALL-REPORT"
       ],
-      "path": "project_current/pier_wall/Pier Wall Design 10-21.html",
-      "expected_sha256": "12266ff4ac074e905a537f4910b5381400f37663cf6d1d73cdc1e61a813dda25",
-      "actual_sha256": "12266ff4ac074e905a537f4910b5381400f37663cf6d1d73cdc1e61a813dda25"
+      "path": "project_current/pier_wall/Pier Wall Design 10-22.html",
+      "expected_sha256": "f7a1c6b2865fef14835b397fcdd48e03741156aab329aac8b7919a7248e957df",
+      "actual_sha256": "f7a1c6b2865fef14835b397fcdd48e03741156aab329aac8b7919a7248e957df"
     },
     {
       "check_id": "SOURCE:PIER-WALL-CASE",
@@ -462,8 +462,8 @@
         "PIER-WALL-CASE"
       ],
       "path": "project_current/pier_wall/selected_case.json",
-      "expected_sha256": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c",
-      "actual_sha256": "52a82857521e0a5f6c2b8c7ad8c1555f36751d19c2e5b09e3fa32d295e97259c"
+      "expected_sha256": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c",
+      "actual_sha256": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c"
     },
     {
       "check_id": "DEP:JOURNAL:BACKWALL-TOOL",
@@ -531,7 +531,7 @@
     {
       "check_id": "JOURNAL:acceptance",
       "status": "MATCH",
-      "detail": "Journal matches acceptance receipt T033. Review scope remains as recorded.",
+      "detail": "Journal matches acceptance receipt T035. Review scope remains as recorded.",
       "source_ids": [
         "JOURNAL"
       ]
@@ -867,7 +867,7 @@
     {
       "check_id": "ASSUMPTION:A-009",
       "status": "REVIEW",
-      "detail": "Basis moved in the register (PILE-PIER-CASE); re-judge the entry and record new basis hashes.",
+      "detail": "Basis moved in the register (JOURNAL, PILE-PIER-CASE); re-judge the entry and record new basis hashes.",
       "source_ids": [
         "JOURNAL",
         "PIER-XML",
@@ -895,6 +895,32 @@
         "PILE-PIER-CASE"
       ],
       "entry_id": "A-011"
+    },
+    {
+      "check_id": "ASSUMPTION:A-012",
+      "status": "REVIEW",
+      "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes.",
+      "source_ids": [
+        "CAD-MODEL",
+        "JOURNAL",
+        "PIER-WALL-CASE",
+        "PIER-XML",
+        "PILE-PIER-CASE"
+      ],
+      "entry_id": "A-012"
+    },
+    {
+      "check_id": "ASSUMPTION:A-013",
+      "status": "REVIEW",
+      "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes.",
+      "source_ids": [
+        "CAD-MODEL",
+        "JOURNAL",
+        "PIER-WALL-CASE",
+        "PIER-XML",
+        "PILE-PIER-CASE"
+      ],
+      "entry_id": "A-013"
     }
   ],
   "items": [
@@ -1321,9 +1347,9 @@
   ],
   "assumptions": {
     "present": true,
-    "count": 11,
-    "open": 2,
-    "stale": 9,
+    "count": 13,
+    "open": 3,
+    "stale": 11,
     "entries": [
       {
         "id": "A-010",
@@ -1364,8 +1390,8 @@
         ],
         "unknown_sources": [],
         "current_basis": {
-          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
-          "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9"
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
         },
         "open": true
       },
@@ -1420,6 +1446,58 @@
         "open": true
       },
       {
+        "id": "A-012",
+        "kind": "gap",
+        "statement": "The pile-row wall loads of the pier FBMP model were entered from the former 114.737 kip pier wall (213 x 36 x 172.375 in). Under D-075 the wall is the CAD wall, 219 x 36 x 194.8625 in: 133.359 kip gross (112.1 kip net of the four pile bores), +18.6 kip (+16%) on the pier pile group, about +4.7 kip per pile. The export is unchanged pending the next FBMP rerun decision.",
+        "where": "Pier FBMP nodal loads at the pile rows (pier wall self-weight split per the FBMP entry note); journal gravity sheet row 42 (W_wall) and the C004 information row; pier pile case demands.",
+        "nodes": [
+          "PIER-XML",
+          "PIER-WALL-CASE",
+          "PILE-PIER-CASE",
+          "JOURNAL-PIER-ENTRY",
+          "CAD-MODEL"
+        ],
+        "magnitude": {
+          "value": 18.6,
+          "unit": "kip",
+          "sized_by": "CAD wall gross weight 889.06 ft3 x 0.150 kcf = 133.36 kip against the 114.74 kip entered (16%); about 2% of the factored pier pile group load of the D-073 export."
+        },
+        "disposition": {
+          "status": "pending",
+          "decision": "D-075",
+          "on": "2026-10-22"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004",
+          "COH-028"
+        ],
+        "basis": {
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+          "PIER-WALL-CASE": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c",
+          "PILE-PIER-CASE": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+          "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-22-pier-wall/source_receipt.json",
+          "project_current/decisions.md"
+        ],
+        "stale": true,
+        "stale_sources": [
+          "CAD-MODEL"
+        ],
+        "unknown_sources": [],
+        "current_basis": {
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+          "PIER-WALL-CASE": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c",
+          "PILE-PIER-CASE": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287",
+          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
+        },
+        "open": true
+      },
+      {
         "id": "A-001",
         "kind": "gap",
         "statement": "The bearing dead load entered in the three FBMP fixed-run exports is the pre-T014 journal value (92.07 kip per bearing). The post-T014 journal haunch volumes raise End Bent 1 to 92.473 kip (+0.40 kip) and lower End Bent 2 by 0.38 kip, with a net +0.03 kip at the pier.",
@@ -1463,7 +1541,7 @@
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
           "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
         },
         "open": false
       },
@@ -1509,8 +1587,8 @@
         "unknown_sources": [],
         "current_basis": {
           "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-          "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
-          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
         },
         "open": false
       },
@@ -1560,7 +1638,7 @@
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
           "BACKWALL-CASE": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597",
-          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
         },
         "open": false
       },
@@ -1605,7 +1683,7 @@
         "current_basis": {
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
         },
         "open": false
       },
@@ -1648,7 +1726,7 @@
         "unknown_sources": [],
         "current_basis": {
           "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-          "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9"
+          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
         },
         "open": false
       },
@@ -1691,7 +1769,7 @@
         "unknown_sources": [],
         "current_basis": {
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
-          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
         },
         "open": false
       },
@@ -1731,13 +1809,63 @@
         ],
         "stale": true,
         "stale_sources": [
+          "JOURNAL",
           "PILE-PIER-CASE"
         ],
         "unknown_sources": [],
         "current_basis": {
           "PILE-PIER-CASE": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
           "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
-          "JOURNAL": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e"
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
+        },
+        "open": false
+      },
+      {
+        "id": "A-013",
+        "kind": "assumption",
+        "statement": "The pier pile case and the FBMP pier model use ground EL 26.05 ft; the journal (Terrain_elev) and the CAD model use terrain EL 25.5264 ft at the pier, 6.3 in lower. The D-075 pier wall free length to fixity (92.4 in) subtracts the 18.3 in of wall below the pile-case ground; with the CAD terrain it would be 98.4 in, which changes the ring moment by about 6% (5.40 to about 5.1 kip-in per ring) with every ring still in full contact (equivalent eccentricity about 1.1 in against the 5.19 in kern).",
+        "where": "Pier pile case EL_ground; FBMP pier soil top; journal BridgeGeometry_2Beam Terrain_elev; CAD pier wall bottom (GroundElevation - WallBurial); ring wall case pile_free_length_in.",
+        "nodes": [
+          "PILE-PIER-CASE",
+          "PIER-XML",
+          "PIER-WALL-CASE",
+          "CAD-MODEL",
+          "JOURNAL-PIER-ENTRY"
+        ],
+        "magnitude": {
+          "value": 6.3,
+          "unit": "in",
+          "sized_by": "EL 26.05 (pile case / FBMP) less EL 25.5264 (journal / CAD terrain) = 0.5236 ft; effect on the C017 ring moment about 6%, no status change."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-075",
+          "on": "2026-10-22"
+        },
+        "owner": "Project user",
+        "coherence_items": [],
+        "basis": {
+          "PILE-PIER-CASE": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+          "PIER-WALL-CASE": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c",
+          "CAD-MODEL": "f1633d0fc4d059366cd73d82228c00a165589c32afe17c09004d15ec422d91b9",
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-22-pier-wall/source_receipt.json",
+          "ring_wall/VALIDATION.md"
+        ],
+        "stale": true,
+        "stale_sources": [
+          "CAD-MODEL"
+        ],
+        "unknown_sources": [],
+        "current_basis": {
+          "PILE-PIER-CASE": "b7e949a4f753146a06ae4639005f7c3b527b23281d0ea3ca83b90497897c35d8",
+          "PIER-XML": "8be45bb889f5c955d0547ce6a538118bbce87600d40a65b094255e6b9b76e3b6",
+          "PIER-WALL-CASE": "216b28ca0ef434984865c467ee6dce07100401f1c7a613304349a09a61c5cb9c",
+          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+          "JOURNAL": "c58e7b3fe0e178864b2ad96cde773336e2c157c564dbf1c014ac12d1cf232287"
         },
         "open": false
       },

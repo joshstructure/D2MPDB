@@ -6,7 +6,7 @@
  "bpad_file": "Pier Wall Fins.bpad",
  "notebook": "Pier_Wall_Fins.ipynb",
  "tool_prefix": "fins-tool-",
- "case_name": "C006 - Pier Wall, Hairpins and Fin Plates (journal values, feb1bb316d08)",
+ "case_name": "C006 - Pier Wall, Hairpins and Fin Plates (journal values, 82e7d3e1246f)",
  "intro": [
   "**What it does.** Sizes the fin plates and designated hairpins that hang the pier wall on the four pipe piles for the wall gravity, checks the fin plate, the hairpin development, the out-of-plane wall strip for direct wind, the distributed reinforcement and detailing limits, and exports the fin-root actions for the separate weld calculation and the receiving-pile interface."
  ],
@@ -114,7 +114,7 @@
   ]
  },
  "working_notes": [
-  "The calculation was ported from the journal module PierWallFins (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written."
+  "The calculation was ported from the journal module PierWallFins (journal feb1bb316d08); every definition of the module was evaluated independently from the journal file and reproduced by the notebook to 1 part in 10⁹ before this edition was written. The pier wall length and height follow the journal of 22 October 2026 (82e7d3e1246f), whose gravity sheet carries the CAD pier wall (18 ft 3 in by 3 ft by 16 ft 2.8625 in, bottom 1 ft below terrain, top at the cap bottom); the former module's formulas re-evaluated with those values are the fidelity reference."
  ],
  "pending": [],
  "symbols": {},

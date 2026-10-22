@@ -1,0 +1,179 @@
+{
+  "task": "T034",
+  "base_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+  "decision": "D-075",
+  "components": {
+    "PedBridgeWeights_2Beams": {
+      "source": "base.bpad + row 42 (E42, G42 and the H42/J42/K42 caches)",
+      "changed_cells": [
+        [
+          [
+            null,
+            "17 ft 9 in"
+          ],
+          [
+            null,
+            "18 ft 3 in"
+          ]
+        ],
+        [
+          [
+            null,
+            "14 ft 4 3/8 in"
+          ],
+          [
+            null,
+            "16 ft 2.8625 in"
+          ]
+        ],
+        [
+          [
+            "D42*E42*F42*G42",
+            "764.9140625 ft^3"
+          ],
+          [
+            "D42*E42*F42*G42",
+            "889.06015625 ft^3"
+          ]
+        ],
+        [
+          [
+            "H42*I42",
+            "114737.109375 lbf"
+          ],
+          [
+            "H42*I42",
+            "133359.0234375 lbf"
+          ]
+        ],
+        [
+          [
+            "J42 to kip",
+            "114.737109375 kip"
+          ],
+          [
+            "J42 to kip",
+            "133.3590234375 kip"
+          ]
+        ]
+      ],
+      "old_inputs_in": [
+        213.0,
+        36.0,
+        172.375
+      ],
+      "new_inputs_in": [
+        219.0,
+        36.0,
+        194.8625
+      ]
+    },
+    "PierWallFins": {
+      "source": "pier_wall_fins/bpad/journal/PierWallFins.xml",
+      "fragment_sha256": "c44329b64ccd8382713820a8e7b2211b1589ea75206b0398914a49f52fec240b",
+      "definitions": 282,
+      "journal_references": 17,
+      "status": "⊗ There are FAILURES",
+      "gravity_sheet_references": {
+        "PedBridgeWeights_2Beams.E42": [
+          18.25,
+          18.25
+        ],
+        "PedBridgeWeights_2Beams.F42": [
+          36.0,
+          36.0
+        ],
+        "PedBridgeWeights_2Beams.G42": [
+          16.238541666667,
+          16.238541666667
+        ],
+        "PedBridgeWeights_2Beams.I42": [
+          150.0,
+          150.0
+        ]
+      },
+      "built_against": "tasks/T034/scratch-row42.bpad (base journal + the registered row 42 fragment)"
+    },
+    "SuperstructureUplift": {
+      "source": "superstructure_uplift/bpad/journal/SuperstructureUplift.xml",
+      "fragment_sha256": "dc4be4cd3e7edd3336e60a8f5b030b6a419790f0cec191baf418d92bde1f18e9",
+      "definitions": 102,
+      "journal_references": 39,
+      "status": "✓ All Checks Pass",
+      "gravity_sheet_references": {
+        "PedBridgeWeights_2Beams.K6": [
+          178.328205,
+          178.328205
+        ],
+        "PedBridgeWeights_2Beams.K10": [
+          15.91875,
+          15.91875
+        ],
+        "PedBridgeWeights_2Beams.K15": [
+          47.77216875,
+          47.77216875
+        ],
+        "PedBridgeWeights_2Beams.K18": [
+          108.11484375,
+          108.11484375
+        ],
+        "PedBridgeWeights_2Beams.K33": [
+          13.990313233552,
+          13.990313233552
+        ],
+        "PedBridgeWeights_2Beams.DC_sub_pier": [
+          8.0906325,
+          8.0906325
+        ],
+        "PedBridgeWeights_2Beams.K37": [
+          34.5,
+          34.5
+        ],
+        "PedBridgeWeights_2Beams.K42": [
+          133.3590234375,
+          133.3590234375
+        ],
+        "PedBridgeWeights_2Beams.w_DC_super": [
+          3.43108862882,
+          3.43108862882
+        ],
+        "PedBridgeWeights_2Beams.w_DW_super": [
+          0.0,
+          0.0
+        ],
+        "PedBridgeWeights_2Beams.BearingNodeCount": [
+          4.0,
+          4.0
+        ],
+        "PedBridgeWeights_2Beams.Check_DC_classification": [
+          "✓ PASS",
+          "✓ PASS"
+        ]
+      },
+      "built_against": "tasks/T034/scratch-row42.bpad (base journal + the registered row 42 fragment)"
+    },
+    "PierWallRings": {
+      "source": "ring_wall/bpad/journal/PierWallRings.xml",
+      "fragment_sha256": "1a7a76873cd3e3002203aa674324d2c72de207edc0b78e82ea0fc60137e7fea2",
+      "case_sha256": "bcca7f0914179905c43dddf9c269c3667f7a9023d506acc1956e6c45faec88c9",
+      "definitions": 859,
+      "status": "1 FAILED CHECKS · LIMITED SCOPE",
+      "failed_checks": [
+        "RING-GRID"
+      ],
+      "definitions_with_changed_formula_or_cache": 402
+    },
+    "PedBridge": {
+      "source": "base.bpad + revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

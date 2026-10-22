@@ -1,0 +1,14 @@
+{
+  "task": "T035",
+  "base_sha256": "82e7d3e1246fbb0f9d61360b958b21777287e7efb9e8a6c4f3d3057b5ffb753e",
+  "components": {
+    "report:SuperstructureUplift": {
+      "file": "000.xml",
+      "sha256": "e37376ac945ba8b63f8706f73d4f433f2d2b9c2624fb46a1cad0b9cb546aac1f"
+    },
+    "report:PierWallFins": {
+      "file": "001.xml",
+      "sha256": "e4978f69eba892f642686869f7d8cb798de8db50bac131f7656ebc7ec3985d3e"
+    }
+  }
+}

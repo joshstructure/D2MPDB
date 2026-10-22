@@ -1,0 +1,29 @@
+{
+  "task": "T034",
+  "journal_sha256": "82e7d3e1246fbb0f9d61360b958b21777287e7efb9e8a6c4f3d3057b5ffb753e",
+  "previous_sha256": "82638510c8534f2917a969b32f2c7e7984aed873b7f7d504b9d2fcd8e5cc9e1e",
+  "promoted": "2026-10-22T11:22:50.828801+00:00",
+  "review": {
+    "candidate_sha256": "82e7d3e1246fbb0f9d61360b958b21777287e7efb9e8a6c4f3d3057b5ffb753e",
+    "reviewer": "Claude (Fable 5.1) — bounded file-integrity verification only (tasks/T034/build_components.py; package build verifications of scripts/build_journal_calc_bpads.py and scripts/build_ring_wall_bpad.py)",
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false,
+    "design_outcome": "unreviewed",
+    "external_analysis_disposition": "Pier wall geometry reconciled to the CAD model (D-075): gravity row 42, C006, C004 and C017 follow the CAD wall; the FBMP pier export is unchanged and its pile-row wall load (from the 114.7 kip wall) is recorded as an open assumption; FBMP not rerun.",
+    "external_analysis_status": "unreviewed",
+    "inherited_issues_disposition": "Unchanged: the five open scope items of C017 and its grid-clearance failure, the C006 fin-plate failure and open confirmations, and the undecided choice between the fin-plate and welded-ring support concepts stay in the modules.",
+    "evidence_files": [
+      {
+        "path": "verification.json",
+        "sha256": "c54a9b4fe3f9ee4998b5479eeb00bc316cfa5c2afb676a36e12279a01c3e1888"
+      }
+    ]
+  },
+  "promotion_policy": {
+    "reviews_required": false,
+    "effective_date": "2026-10-16",
+    "basis": "User instructed that BPAD changes may proceed without mandatory native recalculation, appearance review or engineering review, until the user reinstates those requirements. Scope, dependency, exact-byte, reference-integrity and evidence checks remain mandatory."
+  },
+  "history": "workflow/history/82e7d3e1246fbb0f9d61360b958b21777287e7efb9e8a6c4f3d3057b5ffb753e"
+}
