@@ -4,13 +4,13 @@
   "cells_and_labels": 56,
   "definitions": 44,
   "fragment": "wind_superstructure/bpad/journal/C001WindLoadOnPedBridgeSuperstructure.xml",
-  "fragment_sha256": "b7d7a26913f6eafd555e9560814fedea09e0e046068974a22897063e4f01ddfe",
+  "fragment_sha256": "3b617db8cb877ce8269799dab3d0823ad3b2df92dde9138bf387bcc0c0333a75",
   "functions": 0,
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": 7,
   "literals_kept": [],
   "mathcad_values_compared": null,
-  "package_revision": "73f3461cfe6bbadf11483e30d456c27812245179c68cf5ded309489130ae37cd",
+  "package_revision": "95789076bc86ddc7e524c62907ba83d6d6fc7efd12e361d0c069b331f25259f1",
   "project_stamp": {
    "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
    "CheckDate": "",
@@ -33,7 +33,7 @@
   ],
   "report_name": "C001WindLoadOnPedBridgeSuperstructure",
   "review_document": "wind_superstructure/bpad/journal/Wind Load on Ped Bridge Superstructure - Journal Edition (review).bpad",
-  "review_sha256": "7dac8d49cd8cbbd39bf57b76c0fd3495b612dd6e5ace27907dbeb7d8290c0d4d",
+  "review_sha256": "bf82eb3486b87b81b4540189cfbfca08a35785c094a730970941e59e09856cc7",
   "status": "✓ All Checks Pass",
   "tool_comparisons": 35
  }

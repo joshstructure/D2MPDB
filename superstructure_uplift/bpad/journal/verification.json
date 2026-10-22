@@ -4,13 +4,13 @@
   "cells_and_labels": 189,
   "definitions": 102,
   "fragment": "superstructure_uplift/bpad/journal/SuperstructureUplift.xml",
-  "fragment_sha256": "f2b6a29d3974d936056ef79f687e2d874044cfddd2ede5b24e84ceb72f792c3e",
+  "fragment_sha256": "eab8cd458a528ed63315f0581a60cf2bd64ef87c841a0dd5dba1ba4245d97523",
   "functions": 0,
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": 39,
   "literals_kept": [],
   "mathcad_values_compared": null,
-  "package_revision": "943a4f4fdd9f222620969e00eb8917e56add4d1ea333a688c819f693c39cb8d6",
+  "package_revision": "cfde3803e0905b094df1367525eb2fd9e6dcef85fa0fd0e126059bd907ddd8c2",
   "project_stamp": {
    "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
    "CheckDate": "",
@@ -61,7 +61,7 @@
   ],
   "report_name": "SuperstructureUplift",
   "review_document": "superstructure_uplift/bpad/journal/Superstructure Uplift and Bearing Reactions - Journal Edition (review).bpad",
-  "review_sha256": "0a5df5f0aa48a0b246367d8698035aac721389836aa739b8f9667869cbbe7fb9",
+  "review_sha256": "6e831d714bb178a4fded37c9b204774f53f77657bae5ba876418acefe276ba6d",
   "status": "✓ All Checks Pass",
   "tool_comparisons": 93
  }

@@ -1,0 +1,50 @@
+{
+  "task": "T031",
+  "base_sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
+  "components": {
+    "report:PedBridge": {
+      "file": "000.xml",
+      "sha256": "3c85f6b3246c10c0c3bef93a5c48db882270a99d5859d3eaeb872d0dbabc6cef"
+    },
+    "report:C001WindLoadOnPedBridgeSuperstructure": {
+      "file": "001.xml",
+      "sha256": "3b617db8cb877ce8269799dab3d0823ad3b2df92dde9138bf387bcc0c0333a75"
+    },
+    "report:CodeReferencesC001": {
+      "deleted": true,
+      "before_sha256": "2d19664b0e6a69849397b3847576c9f57581f6c277ebbcf3a780486f3ca44870"
+    },
+    "report:FenceWind": {
+      "file": "003.xml",
+      "sha256": "8f6c0e5424d80525403c7ab6fd0fe471221e11f46eb8cec41793ae859c6aa89a"
+    },
+    "report:CodeReferencesC002": {
+      "deleted": true,
+      "before_sha256": "1b1dca23bc30f72aa0aa80e06590557e38f90189514d0c4b1d4f57329501e9d4"
+    },
+    "report:BridgeMovement": {
+      "file": "005.xml",
+      "sha256": "66b20de23919ad2d7bf2422616fc7c9e7c90ffbbeed523ca0fbef38324baa1f2"
+    },
+    "report:CodeReferencesC003": {
+      "deleted": true,
+      "before_sha256": "6ba3ce6945d2d663d2c009f3e14e55be61ba931df8db02ec5070763f04ebbe3f"
+    },
+    "report:SuperstructureUplift": {
+      "file": "007.xml",
+      "sha256": "eab8cd458a528ed63315f0581a60cf2bd64ef87c841a0dd5dba1ba4245d97523"
+    },
+    "report:CodeReferencesC004": {
+      "deleted": true,
+      "before_sha256": "1c826d2f23a4500eb98e7825a7bcb0c1e58951cceeda34f0be24e61094f25d13"
+    },
+    "report:DecisionLog": {
+      "file": "009.xml",
+      "sha256": "f693637d04369a3d77c4f59a9225deddf0752e68ff4a7ab69f328d4a5baa3d5f"
+    },
+    "report:CodeReferencesGeneral": {
+      "file": "010.xml",
+      "sha256": "49f57a89bc6aa1a6e839782d74bb658c89168518118623b0c12db7ca98c8de04"
+    }
+  }
+}

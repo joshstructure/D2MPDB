@@ -203,6 +203,7 @@ DECISION_SOURCES = {
     "D-066": ["JOURNAL"],
     "D-069": ["JOURNAL"],
     "D-070": ["PILE-PIER-CASE"],  # pier-wall ring moment basis; stiffness defaults from the pier pile case
+    "D-072": ["JOURNAL"],
 }
 # D-054 (pile reports and cases) and D-055 (backwall vertical coordination) name their
 # register IDs in the decision text, so find_refs attaches them without a hand map.

@@ -43,7 +43,9 @@ and the exports (case JSON, calculation report, checks CSV, **Export distilled B
 full bundle). The committed run of each package with the journal values is in `<package>/report/`; its standalone Blockpad
 sheet is `<package>/<Title>.bpad` and its journal edition (live references to Bridge Geometry, Materials, the gravity sheet and
 the other calculations, passed through the coherence gate) is `<package>/bpad/journal/`. The journal modules C001–C004, C006,
-C015 and C016 are those journal editions (task T027).
+C015 and C016 are those journal editions (task T027). The journal's code-reference modules for C001–C004 were retired with
+task T031: the citation cards of the reports are the home of the code excerpts, and the Blockpad editions cite provisions as
+plain text (`calc_common/bpad.py` unwraps every link into a `CodeReferences…` module).
 
 How the packages were made and how to keep them current: `scripts/import_journal_calc.py` snapshots a journal module
 (definitions, captions, equation notes, figures, inbound names and links, the module's own formulas evaluated independently)

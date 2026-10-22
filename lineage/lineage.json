@@ -2,11 +2,11 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "23d19ad70b42f3e4fc16afbcb7ca294a6f60215d8a02e8994951205f274bcc37",
+ "fingerprint": "1200bcc51796834d371441655bc7fb40703ddfa16154ea1915997319ad8fe611",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
-   "sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810"
+   "sha256": "a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610"
   },
   {
    "path": "lineage/signoff.json",
@@ -38,7 +38,7 @@
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "56b47d90802439afd27a16af46cb117f26d596906eb0b62069eb403bdc35a0e0"
+   "sha256": "7306eabfd4b38a00154096f51b28b8079c2c74efe4758191bddd3bef1f2beab1"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -62,11 +62,11 @@
   },
   {
    "path": "project_current/source_register.csv",
-   "sha256": "673987794eb48cc5d4f62231cbe5e2ef208dabad505eb9e7a3dca099c57bfe20"
+   "sha256": "3d44d4c74d1d7eb8afc529d9b437c2ebc53db0266bebe20709d79c7009589188"
   },
   {
    "path": "scripts/build_lineage_graph.py",
-   "sha256": "16be5be1d764ede8631ce29738eeb052b0c9311d66198af005487fae420dc57b"
+   "sha256": "224369fe0bb0451640947d953e65ed6aaace39e63284351d3f0a088ed4517553"
   }
  ],
  "derived": [
@@ -7661,7 +7661,7 @@
    "path": "journal/D2_I95_Project_Journal.bpad",
    "status": "Current - calculations C001-C017 in order with project stamps; D-065 as-cast override; final bearing fit unresolved",
    "scope": "Adopted project geometry, assumptions, decisions, live journal quantities and the cap, pile, end-bent backwall and pier-wall ring design calculations",
-   "sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
+   "sha256": "a55f05bd6b76d6046b5cc72fc4a0d43d6ddbc48911d009403e3f8389d3427610",
    "registered_on": "2026-10-20",
    "depends_on": [
     "GEOMETRY",
@@ -7684,7 +7684,7 @@
     "PIER-WALL-TOOL"
    ],
    "origin": "workflow/accepted.json",
-   "notes": "T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
+   "notes": "T031 (21 October 2026): C001-C004 code-reference modules retired (citations live in the calculation reports); C001-C004 editions regenerated with plain-text citations; no value changed. T030 (21 October 2026): C017 captions corrected (unit repeated, basis title); definitions and caches unchanged. T028-T029 / D-071 (21 October 2026): C017 Pier Wall, Annular Pile Rings (report PierWallRings) added from the Pier Wall Design notebook package (ring_wall, starting case; 673 values and 178 statuses evaluated independently to 1e-9; live project stamp; D-070 ring moment basis) and placed after C016; PedBridge index and DecisionLog entry; no existing value changed; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. T027 (21 October 2026): C001-C004, C006, C015 and C016 replaced by their notebook-generated journal editions (calc_common packages); every former definition reproduced to 1e-9; no value changed. T026 (20 October 2026): the pile calculations C011-C013 re-promoted with their journal edition tied to the case alone (hidden provenance without the package revision); no value changed. D-067 / T024-T025 (20 October 2026): every calculation opens with the live project stamp in multiline cells (the pile designs C011-C013 through the journal edition of their generator; C001-C004, C006, C015, C016 converted from value cells); the modules are ordered basis first, then C001-C016 in numerical order (reference packets after their calculations), then quantities, decisions, notes, references and archives (registered order, tools/bpad_workflow.py prepare --order); the index lists the calculations the same way. Only Stamp_* definitions added; every other formula and cache unchanged; FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T024/verification.json and tasks/T025/verification.json. Historical basis: T023 (20 October 2026): EndBentBackwallDesign (C014) re-promoted with the final generator edition (hidden provenance without the package revision); no value changed. D-066 / T022 (20 October 2026): submission formatting of the design and analysis calculations. Modules numbered C007 (CapDesignBasis), C008-C010 (cap designs), C011-C013 (pile designs), C014 (EndBentBackwallDesign), C015 (MSEWallExclusion), C016 (BearingDesign); C005 stays retired. Working language (provenance, hashes, tool status, pending items, decision/task identifiers, superseded history) moved into hidden sections; table text in multiline cells; \"distilled\" removed from titles and visible text; live project stamp as result-only Stamp_* definitions. Every formula and cache value unchanged (result-only caches without the \"= \" prefix); FBMP not rerun; native recalculation, appearance and engineering reviews not performed. See tasks/T022/verification.json. Historical basis: D-065 / T021: under Bearing Pads, adopt all six level as-cast pedestal tops at their individual prior maxima (EB1 43.74578111249233 ft; Pier 44.26686320063029 ft; EB2 43.75994652287092 ft). Eight level uniform 2.5625-in pads modeled; 84 pedestal bars retain prior elevations. CAD implemented and native geometry/edit/reopen verified. D-064 superseded. Final pad/beam fit FAIL in undeformed geometry; grinding/seat setting, cover/contact, construction stages and final bearing checks remain open. Notebook, B4 geometry table and drawings pending reconciliation. All prior calculations/caches preserved; no native journal recalculation or engineering acceptance claimed. See tasks/T021/verification.json. Historical basis: D-064 / T020 (20 October 2026): user adopts level tops for the two pier pedestals, zero longitudinal and transverse slope, based on the conditional T019 check. Recorded under Bearing Pads / PierLevelSeatOverride. Notebook, B4 geometry table, CAD and drawings are unchanged and pending coordinated implementation; no new numeric top elevation is selected. Reconcile a common top elevation per pedestal and pad/beam interfaces. End bents excluded. Existing calculation, all cached results and other journal components preserved exactly; combined shear, uplift/contact, analysis currency/load reconciliation and final details remain open. No new native recalculation, visual or engineering review. See tasks/T020/verification.json and workflow/completed/T020.json. Prior calculation basis: D-063. T019 adds the conditional level pier bearing-seat check under BearingDesign / Bearing Pads. Native Blockpad recalculation and independent arithmetic agree: static 0.009624091 rad <= 0.0125 rad, cyclic 0.002470058 rad <= 0.004 rad, conservative longitudinal thermal/creep movement 0.983620672 in <= 1 in. Uses selected MCAD-S1/S2 saved end slopes and shortenings, live profile/pad/thermal inputs; source solver currency/load reconciliation, combined lateral shear, uplift/contact and final details remain open. No pedestal geometry or end-bent approval. COH-017/018 and all workbook statuses/responses are preserved. Inherits accepted T018 native full-journal recalculation (542fba20): it exposed FBMPPier.NB_checkUplift and FBMPEndBent.EB_CheckGravity failures; those and all other existing results remain byte exact. T018 is a native cache refresh, not external-analysis rerun or engineering acceptance. Exact T019 evidence: tasks/T019/native-verification.json, independent-check.json and workflow/completed/T019.json. Prior selected revision T017 and its source/authority history: D-058, workflow/completed/T017.json. Only BearingDesign changes from T018; prior journal resources and all other components are preserved.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -7753,7 +7753,8 @@
     "D-067",
     "D-069",
     "D-070",
-    "D-071"
+    "D-071",
+    "D-072"
    ],
    "issues": [
     "COH-001",
@@ -25035,6 +25036,22 @@
     ],
     "issues": [],
     "inferred": []
+   }
+  },
+  {
+   "id": "D-072",
+   "date": "2026-10-21",
+   "decision": "Retire the journal's calculation reference modules C001 - References to C004 - References and register journal revision a55f05bd (task T031) as the current journal: the journal keeps the distilled calculation editions, every citation in C001 to C004 is plain text, and the code excerpts live in the calculation reports as citation cards.",
+   "basis": "User direction. The four GetRefs excerpt modules duplicated what the notebook reports now carry (report_cards over code_excerpts); the Project Index entries for them are removed, the General References catalogue keeps every entry as plain text and its own pages 10, 11, 14 and 16 (read by Loads - General and Collision, Loads - Combinations and FBMP Entry - Pier), and the C001 to C004 editions are regenerated by their packages with the citation links unwrapped and the reference-packet pointer paragraphs dropped (calc_common/bpad.py). Definitions, caches, units, figures and the names other modules read are unchanged (10208 formulas before and after, 0 stored errors); the References folder and the registered reference PDFs stay beside the journal. Native recalculation, appearance and engineering reviews not performed; no engineering value changed. See [task](../tasks/T031/plan.md) and [verification](../tasks/T031/verification.json).",
+   "refs": {
+    "sources": [
+     "JOURNAL"
+    ],
+    "decisions": [],
+    "issues": [],
+    "inferred": [
+     "JOURNAL"
+    ]
    }
   }
  ],

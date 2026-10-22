@@ -1,0 +1,325 @@
+<report name="CodeReferencesGeneral" title="General References - Catch-All and Index" unit="in" pagesize="1200,1056" margin="0,0,0,0" bordermargin="0,0,0,0" collapsemargins="False">
+        <stylerule applytoall="True" type="AnySection" pagebreakafter="break" />
+        <float>
+            <rectangle origin="0, 11, 0" dir="8.5, 0, 0" normal="0, 0, -1" height="11" shapetype="Fill">
+                <textbox capture="False" name="PDFDisplay10">
+                    <paragraph spacingbefore="0" spacingafter="0">
+                        <image source="ReferencePDF10" />
+                    </paragraph>
+                </textbox>
+            </rectangle>
+            <rectangle origin="0, 22, 0" dir="8.5, 0, 0" normal="0, 0, -1" height="11" shapetype="Fill">
+                <textbox capture="False" name="PDFDisplay11">
+                    <paragraph spacingbefore="0" spacingafter="0">
+                        <image source="ReferencePDF11" />
+                    </paragraph>
+                </textbox>
+            </rectangle>
+            <rectangle origin="0, 33, 0" dir="8.5, 0, 0" normal="0, 0, -1" height="11" shapetype="Fill">
+                <textbox capture="False" name="PDFDisplay14">
+                    <paragraph spacingbefore="0" spacingafter="0">
+                        <image source="ReferencePDF14" />
+                    </paragraph>
+                </textbox>
+            </rectangle>
+            <rectangle origin="0, 44, 0" dir="8.5, 0, 0" normal="0, 0, -1" height="11" shapetype="Fill">
+                <textbox capture="False" name="PDFDisplay16">
+                    <paragraph spacingbefore="0" spacingafter="0">
+                        <image source="ReferencePDF16" />
+                    </paragraph>
+                </textbox>
+            </rectangle>
+        </float>
+        <paragraph fontfamily="Times New Roman" fontsize="16" spacingbefore="0" spacingafter="7" id="paragraphreferenceindex" fontweight="bold" leftindent="0.3 in" rightindent="0.3 in">CALCULATION CODE REFERENCES</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">C001 - Superstructure wind; C002 - Fence and pier wind; C003 - Temperature movement; C004 - Uplift and bearing reactions.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">Keep the References folder beside this journal. The C001 to C004 reference modules were retired on 21 October 2026 (T031): the provisions they held now open as citation cards with the highlighted excerpt in the calculation reports of the notebook packages. This module holds the full index and the references used outside those calculations; index entries without a link name excerpts that live in the calculation reports. Shared excerpts reuse the same named external PDF.</paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            01 | RFQ - Governing Regulations | Printed 24
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            02 | RFQ - Listed governing documents | Printed 25
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            03 | FDOT SDG 2.4.1.A | Printed 2-5
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            04 | FDOT SDG Table 2.4.1-1 | Printed 2-6
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            05 | FDOT SDG 2.4.1.B-C | Printed 2-7
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            06 | LRFD 3.8.1.1.2; Table 3.8.1.1.2-1 | Printed 3-46
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            07 | LRFD 3.8.1.1.5; Eq. 3.8.1.2.1-1 | Printed 3-50
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            08 | LRFD Eqs. 3.8.1.2.1-2 through -4 | Printed 3-52
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            09 | LRFD 3.8.1.2.1; Table 3.8.1.2.1-2 | Printed 3-53
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            <link address="#CodeReferencesGeneral.CodePage10;paragraphprojectcoderef10General">10 | LRFD 3.8.1.2.3a-b; Table 3.8.1.2.3a-1 | Printed 3-54</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            <link address="#CodeReferencesGeneral.CodePage11;paragraphprojectcoderef11General">11 | LRFD 3.8.2 - Vertical wind | Printed 3-56</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            12 | FDOT SDG 10.3.A-D | Printed 10-3
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            13 | FDOT SDG 10.10.B/F | Printed 10-6
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            <link address="#CodeReferencesGeneral.CodePage14;paragraphprojectcoderef14General">14 | LRFD Table 3.4.1-1 | Printed 3-16</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            15 | LRFD 3.8.1.1.1 | Printed 3-45
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">16 | LRFD 13.8.2 - Metal-fabric fence wind | Printed 13-10</link>
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            17 | FDOT Structures Manual I.6.B.5 | Printed I-4
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            18 | FDOT SDG 2.7.1; Table 2.7.1-1 | Printed 2-15
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            19 | FDOT SDG 6.3 - Temperature movement | Printed 6-1
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            20 | LRFD 5.4.2.2 | Printed 5-18
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            21 | LRFD Table 3.4.1-6 | Printed 3-18
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            22 | LRFD C3.4.1 | Printed 3-13
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            23 | LRFD Eq. 3.12.2.3-1 | Printed 3-123
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            24 | RFQ structural criteria, item 8 | Printed 98
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            25 | RFQ Structures Manual modification, item 66 | Printed 101
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            26 | LRFD 3.4.1 - Stabilizing permanent loads | Printed 3-12
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            27 | LRFD Table 3.4.1-2 | Printed 3-17
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            28 | FDOT SDG 2.10.A.1 | Printed 2-18
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            29 | FDOT SDG 2.10.B | Printed 2-19
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            30 | FDOT SDG 6.5.F/H | Printed 6-6
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="0" spacingafter="7" leftindent="0.3 in" rightindent="0.3 in">
+            31 | FDOT SDG 6.5.3 | Printed 6-8
+        </paragraph>
+        <paragraph fontfamily="Times New Roman" fontsize="1" spacingbefore="0" spacingafter="0" pagebreakafter="break"> </paragraph>
+        <section name="CodePage10" capture="True" hide="false">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="40" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" id="paragraphprojectcoderef10General" textcolor="#155731" texthighlight="#DDEFE3">
+                <link address="#CodeReferencesGeneral.CodePage10;paragraphprojectcoderef10General">REFERENCE 10 | LRFD 3.8.1.2.3a-b; Table 3.8.1.2.3a-1</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral.CodePage10;paragraphprojectcoderef10General">LRFD Bridge Design Specifications, 10th Edition (2024)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" textcolor="#536575">Printed 3-54 | Source PDF page 111</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">USED FOR</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">Supports skew coefficients, the mid-depth line of action, qualifying simplified bridge components, and direct-pier wind concurrency. C004 uses perpendicular horizontal wind with uplift.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">Variables: C_T_gir; C_L_gir; w_T0_III; w_T0_SIV; Check_simplified; h_c; m_H_III</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">SCOPE / REVIEW NOTE</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">C002 simplified components and C004 perpendicular uplift cases remain distinct. Direct-pier loads must represent the same wind direction.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral.CodePage11;paragraphprojectcoderef11General">Related: LRFD 3.8.2 - Vertical wind</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">RETURN TO CALCULATIONS</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#PedBridgeWind;paragraphrefreturn0003">Wind loads | 3. Wind Load Sets</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0004">C001 | 1.1. Bridge Geometry</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0018">C001 | 5. WIND LOADS ON SUPERSTRUCTURE</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0019">C001 | 5.1. Skew Coefficients — Girders</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0020">C001 | 5.2. Strength III — Superstructure Wind Line Loads</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind;paragraphrefreturn0021">C002 | Design basis</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWStrategyWork04;paragraphfwstrategywork04">C002 | Simplified superstructure wind components</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWStrategyWork05;paragraphfwstrategywork05">C002 | Wind acting directly on the pier</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift.UpliftStrategyWork01;headingSuperstructureUplift1">C004 | Model, sign convention and live inputs</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift.UpliftStrategyWork03;headingSuperstructureUplift3">C004 | Concurrent wind and bearing equilibrium (upstream basis)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral;paragraphreferenceindex">Reference index</link>
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="1" spacingbefore="0" spacingafter="0" pagebreakafter="break"> </paragraph>
+        <section name="CodePage11" capture="True" hide="false">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="40" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" id="paragraphprojectcoderef11General" textcolor="#155731" texthighlight="#DDEFE3">
+                <link address="#CodeReferencesGeneral.CodePage11;paragraphprojectcoderef11General">REFERENCE 11 | LRFD 3.8.2 - Vertical wind</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral.CodePage11;paragraphprojectcoderef11General">LRFD Bridge Design Specifications, 10th Edition (2024)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" textcolor="#536575">Printed 3-56 | Source PDF page 113</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">USED FOR</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">C001 generates upward line loads from prescribed pressures and the live deck width. C004 applies the windward-quarter-point eccentricity with concurrent horizontal wind to determine bearing reactions and stability.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">Variables: p_V_III; w_V_III; e_V; w_U_III; m_U_III; m_OT_III</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">SCOPE / REVIEW NOTE</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">The source article includes Strength III and Service IV vertical wind. Only Strength III is used in the current pier load sets. Moments and bearing reactions are derived equilibrium results; C002 does not perform the uplift check.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral.CodePage10;paragraphprojectcoderef10General">Related: LRFD 3.8.1.2.3a-b; Table 3.8.1.2.3a-1</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral.CodePage14;paragraphprojectcoderef14General">Related: LRFD Table 3.4.1-1</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                Related: LRFD Table 3.4.1-2
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">RETURN TO CALCULATIONS</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#C001WindLoadOnPedBridgeSuperstructure;paragraphrefreturn0004">C001 | 1.1. Bridge Geometry</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#C001WindLoadOnPedBridgeSuperstructure;headingC001WindLoadOnPedBridgeSuperstructure8">C001 | 8. VERTICAL WIND AND PERPENDICULAR COMPANION LOADS — LRFD 3.8.2</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWCodeBasis;paragraphfwcodec16">C002 | Design basis</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWStrategyWork07;paragraphfwstrategywork07">C002 | Check the simplified method and complete the design handoff</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift;paragraphrefreturn0034">C004 | Design basis</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift.UpliftStrategyWork01;headingSuperstructureUplift1">C004 | Model, sign convention and live inputs</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift.UpliftStrategyWork03;headingSuperstructureUplift3">C004 | Concurrent wind and bearing equilibrium</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral;paragraphreferenceindex">Reference index</link>
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="1" spacingbefore="0" spacingafter="0" pagebreakafter="break"> </paragraph>
+        <section name="CodePage14" capture="True" hide="false">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="40" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" id="paragraphprojectcoderef14General" textcolor="#155731" texthighlight="#DDEFE3">
+                <link address="#CodeReferencesGeneral.CodePage14;paragraphprojectcoderef14General">REFERENCE 14 | LRFD Table 3.4.1-1</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral.CodePage14;paragraphprojectcoderef14General">LRFD Bridge Design Specifications, 10th Edition (2024)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" textcolor="#536575">Printed 3-16 | Source PDF page 73</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">USED FOR</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">Supports the wind load-combination factors in C002/C004 and the TU cross-reference in C003. Permanent-load minima and displacement factors are supplied by the related tables.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">Variables: γ_WS_III; γ_DC_SIV; γ_DW_SIV; γ_WS_SIV; γ_TU</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">SCOPE / REVIEW NOTE</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                Read with
+                LRFD Table 3.4.1-2
+                for stabilizing dead load and
+                Table 3.4.1-6
+                for TU displacement.
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                Related: LRFD Table 3.4.1-2
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                Related: LRFD Table 3.4.1-6
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">RETURN TO CALCULATIONS</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWCodeBasis;paragraphfwcodec14">C002 | Design basis</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWStrategyWork04;paragraphfwstrategywork04">C002 | Simplified superstructure wind components</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWStrategyWork06;paragraphfwstrategywork06">C002 | Prepare the transfer to analysis nodes</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#BridgeMovement;paragraphrefreturn0029">C003 | 1. DESIGN BASIS AND ASSUMPTIONS</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift;paragraphrefreturn0034">C004 | Design basis</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift.UpliftStrategyWork02;headingSuperstructureUplift2">C004 | Gravity classification and load combinations</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral;paragraphreferenceindex">Reference index</link>
+            </paragraph>
+        </section>
+        <paragraph fontfamily="Times New Roman" fontsize="1" spacingbefore="0" spacingafter="0" pagebreakafter="break"> </paragraph>
+        <section name="CodePage16" capture="True" hide="false">
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="40" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" id="paragraphprojectcoderef16General" textcolor="#155731" texthighlight="#DDEFE3">
+                <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">REFERENCE 16 | LRFD 13.8.2 - Metal-fabric fence wind</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral.CodePage16;paragraphprojectcoderef16General">LRFD Bridge Design Specifications, 10th Edition (2024)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" textcolor="#536575">Printed 13-10 | Source PDF page 1753</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">USED FOR</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">Supplies the prescribed pressure normal to the gross metal-fabric fence surface. C002 develops the global fence resultant and centroid; C004 receives those live loads.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">Variables: p_fence; w_fence; F_fence; M_fence; w_f_III; w_f_SIV</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">SCOPE / REVIEW NOTE</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">The projected resultant for the curved enclosure is a project modeling choice. The fence wind/live-load statement does not replace global bridge load combinations.</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="11" spacingbefore="10" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in" fontweight="bold" textcolor="#154E79" texthighlight="#EAF1F7">RETURN TO CALCULATIONS</paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#PedBridgeWind;paragraphrefreturn0001">Wind loads | 1.2. Fencing</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#PedBridgeWind;paragraphrefreturn0002">Wind loads | 1.3. Fencing and Superstructure Combined</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind;paragraphrefreturn0021">C002 | Design basis</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWStrategyWork03;paragraphfwstrategywork03">C002 | Prescribed LRFD 13.8.2 fence load</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind;paragraphrefreturn0023">C002 | Simplified superstructure wind components</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind;paragraphrefreturn0026">C002 | Wind acting directly on the pier</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind.FWStrategyWork06;paragraphfwstrategywork06">C002 | Prepare the transfer to analysis nodes</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#FenceWind;paragraphrefreturn0027">C002 | Check balance and complete the design handoff</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#SuperstructureUplift.UpliftStrategyWork03;headingSuperstructureUplift3">C004 | Concurrent wind and bearing equilibrium (upstream basis)</link>
+            </paragraph>
+            <paragraph fontfamily="Times New Roman" fontsize="10" spacingbefore="4" spacingafter="0" leftindent="8.65 in" rightindent="0.25 in">
+                <link address="#CodeReferencesGeneral;paragraphreferenceindex">Reference index</link>
+            </paragraph>
+        </section>
+    </report>

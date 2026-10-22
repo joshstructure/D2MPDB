@@ -1,0 +1,130 @@
+{
+  "task": "T031",
+  "base_sha256": "26e599368adfc2df27540d3bb2dabdf0a6243f1d6f8f46a6dd5ad435b27f5810",
+  "deleted": [
+    "CodeReferencesC001",
+    "CodeReferencesC002",
+    "CodeReferencesC003",
+    "CodeReferencesC004"
+  ],
+  "components": {
+    "CodeReferencesC001": {
+      "source": "deleted",
+      "bytes_before": 47270
+    },
+    "CodeReferencesC002": {
+      "source": "deleted",
+      "bytes_before": 82550
+    },
+    "CodeReferencesC003": {
+      "source": "deleted",
+      "bytes_before": 35682
+    },
+    "CodeReferencesC004": {
+      "source": "deleted",
+      "bytes_before": 111587
+    },
+    "C001WindLoadOnPedBridgeSuperstructure": {
+      "source": "wind_superstructure/bpad/journal/C001WindLoadOnPedBridgeSuperstructure.xml",
+      "fragment_sha256": "3b617db8cb877ce8269799dab3d0823ad3b2df92dde9138bf387bcc0c0333a75",
+      "definitions": 44,
+      "journal_references": 7,
+      "status": "✓ All Checks Pass",
+      "names_read_by_other_modules": [
+        "G_fac",
+        "K_Z_gov",
+        "P_Z_III",
+        "P_Z_SI",
+        "V_III",
+        "V_SI",
+        "e_V",
+        "w_T0_III",
+        "w_V_III",
+        "w_deck"
+      ],
+      "inbound_links_from_surviving_modules": 6,
+      "reference_links_before": 6,
+      "reference_links_after": 0
+    },
+    "FenceWind": {
+      "source": "fence_wind/bpad/journal/FenceWind.xml",
+      "fragment_sha256": "8f6c0e5424d80525403c7ab6fd0fe471221e11f46eb8cec41793ae859c6aa89a",
+      "definitions": 66,
+      "journal_references": 21,
+      "status": "✓ All Checks Pass",
+      "names_read_by_other_modules": [
+        "F_c_III",
+        "F_cap_T_III",
+        "F_fence",
+        "F_wall_L_III",
+        "F_wall_L_SI",
+        "F_wall_T_III",
+        "F_wall_T_SI",
+        "M_c_III",
+        "M_cap_L_III",
+        "M_fence",
+        "p_fence",
+        "p_sub_III",
+        "p_sub_SI",
+        "w_fence",
+        "z_eff",
+        "z_mid"
+      ],
+      "inbound_links_from_surviving_modules": 12,
+      "reference_links_before": 16,
+      "reference_links_after": 0
+    },
+    "BridgeMovement": {
+      "source": "bridge_movement/bpad/journal/BridgeMovement.xml",
+      "fragment_sha256": "66b20de23919ad2d7bf2422616fc7c9e7c90ffbbeed523ca0fbef38324baa1f2",
+      "definitions": 26,
+      "journal_references": 2,
+      "status": "✓ All Checks Pass",
+      "names_read_by_other_modules": [
+        "T_high",
+        "T_low",
+        "α_T"
+      ],
+      "inbound_links_from_surviving_modules": 2,
+      "reference_links_before": 9,
+      "reference_links_after": 0
+    },
+    "SuperstructureUplift": {
+      "source": "superstructure_uplift/bpad/journal/SuperstructureUplift.xml",
+      "fragment_sha256": "eab8cd458a528ed63315f0581a60cf2bd64ef87c841a0dd5dba1ba4245d97523",
+      "definitions": 102,
+      "journal_references": 39,
+      "status": "✓ All Checks Pass",
+      "names_read_by_other_modules": [
+        "R_L1_III",
+        "R_L2_III",
+        "R_W1_III",
+        "R_W2_III",
+        "γ_DC_III",
+        "γ_DW_III",
+        "γ_WS_III",
+        "η_bearing"
+      ],
+      "inbound_links_from_surviving_modules": 5,
+      "reference_links_before": 9,
+      "reference_links_after": 0
+    },
+    "PedBridge": {
+      "source": "base.bpad + index paragraphs removed + revision note",
+      "index_entries_removed": 4
+    },
+    "CodeReferencesGeneral": {
+      "source": "base.bpad + links into the deleted modules unwrapped + intro paragraph",
+      "links_unwrapped": 32
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}

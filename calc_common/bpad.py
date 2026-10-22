@@ -32,6 +32,17 @@ JOURNAL_PATH = bs.REPO_ROOT / 'journal' / 'D2_I95_Project_Journal.bpad'
 UNIT_TEXT = {'ksf*ft': 'kip/ft'}
 
 
+CODE_REFERENCES = 'CodeReferences'        # journal module-name prefix of the retired code-excerpt modules (T031)
+
+
+def _is_reference_packet_note(el):
+    """A journal paragraph that only points at a calculation's reference packet (retired with the packets, T031)."""
+    if el.tag != 'paragraph':
+        return False
+    text = re.sub(r'\s+', ' ', ''.join(el.itertext())).strip()
+    return text.startswith('Reference packet:')
+
+
 class BuildError(AssertionError):
     pass
 
@@ -202,16 +213,26 @@ class Sheet:
                     node.text = self.rewrite_formula(node.text)
                 if node.get('valuedef'):
                     raise BuildError(f'journal block {block_id} holds a native value field; write it as an input instead')
-            if self.journal is None:
-                for link in list(el.iter('link')):
-                    parent = link.getparent()
-                    text = (link.text or '') + (link.tail or '')
-                    prev = link.getprevious()
-                    if prev is not None:
-                        prev.tail = (prev.tail or '') + text
-                    else:
-                        parent.text = (parent.text or '') + text
-                    parent.remove(link)
+            # Links into the journal's code-reference modules become plain citations in every edition: the excerpts travel
+            # with the calculation report (citation cards), not the journal (T028). The standalone edition keeps no link at all.
+            for link in list(el.iter('link')):
+                if self.journal is not None and not (link.get('address') or '').startswith('#' + CODE_REFERENCES):
+                    continue
+                parent = link.getparent()
+                text = (link.text or '') + (link.tail or '')
+                prev = link.getprevious()
+                if prev is not None:
+                    prev.tail = (prev.tail or '') + text
+                else:
+                    parent.text = (parent.text or '') + text
+                parent.remove(link)
+                for node in (parent, *parent.iter()):
+                    for attr in ('text', 'tail'):
+                        value = getattr(node, attr)
+                        if value:
+                            setattr(node, attr, re.sub(r'\(\s+', '(', re.sub(r'\s+([.,;:)])', r'\1', value)))
+            if _is_reference_packet_note(el):
+                continue
             if el.tag == 'canvas':
                 self.canvases[el.get('name')] = el
                 embed = ET.SubElement(self.cur, 'embed', spacingbefore='4', spacingafter='5')
