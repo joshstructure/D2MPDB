@@ -1,13 +1,13 @@
 # Latest project coherence review
 
-Checked at 2026-10-22T11:32:51.815907+00:00. **14 outstanding items remain.**
+Checked at 2026-10-22T11:46:28.435300+00:00. **14 outstanding items remain.**
 
 The [workbook](Coherence_Tracker.xlsx) owns item status and responses. This report is a generated view.
 The initial findings were carried forward from the latest adopted pier/end-bent reviews plus source-inventory gaps.
 Previously resolved decisions were excluded. This run did not perform native calculations or a complete engineering review.
 
 Registered sources: 40. Tracker items: 28.
-Automatic results: 2 changed, 9 error, 57 match, 4 missing, 18 review.
+Automatic results: 2 changed, 9 error, 59 match, 4 missing, 16 review.
 
 ## Files and relationships needing attention
 
@@ -44,8 +44,6 @@ Automatic results: 2 changed, 9 error, 57 match, 4 missing, 18 review.
 | ASSUMPTION:A-009 | REVIEW | Basis moved in the register (JOURNAL, PILE-PIER-CASE); re-judge the entry and record new basis hashes. |
 | ASSUMPTION:A-010 | REVIEW | Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes. |
 | ASSUMPTION:A-011 | REVIEW | Basis moved in the register (PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE); re-judge the entry and record new basis hashes. |
-| ASSUMPTION:A-012 | REVIEW | Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes. |
-| ASSUMPTION:A-013 | REVIEW | Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes. |
 
 ## Outstanding items
 
@@ -68,14 +66,13 @@ Automatic results: 2 changed, 9 error, 57 match, 4 missing, 18 review.
 
 ## Assumptions and gaps
 
-The [register](assumptions.json) records 13 entries: **3 open** (pending disposition) and **11 stale** (basis moved in the source register since the judgment).
+The [register](assumptions.json) records 13 entries: **3 open** (pending disposition) and **9 stale** (basis moved in the source register since the judgment).
 Open and stale entries are listed below; accepted entries stay in the register and in the design atlas. This check never re-judges an entry.
 
 | ID | Kind | State | Statement | Magnitude | Decision |
 | --- | --- | --- | --- | --- | --- |
 | A-010 | judgment | stale: CAD-MODEL, JOURNAL / open | The MSE exclusion side walls re-extracted from the D-055 model sit at the 24-in criterion within 0.0002 in, so two of four side-wall rows read SHORTFALL by their last digits (T016). | 0.0002 in | pending D-056 2026-10-19 |
 | A-011 | gap | stale: PILE-EB1-CASE, PILE-EB2-CASE, PILE-PIER-CASE / open | The 19 October pile design reports carry pending prerequisites: the downdrag source documentation, scour, the minimum tip elevation and the pile-to-cap connection (with pipe steel grade, corrosion allowance, drivability and environment classification). | not sized | pending D-054 2026-10-19 |
-| A-012 | gap | stale: CAD-MODEL / open | The pile-row wall loads of the pier FBMP model were entered from the former 114.737 kip pier wall (213 x 36 x 172.375 in). Under D-075 the wall is the CAD wall, 219 x 36 x 194.8625 in: 133.359 kip gross (112.1 kip net of the four pile bores), +18.6 kip (+16%) on the pier pile group, about +4.7 kip per pile. The export is unchanged pending the next FBMP rerun decision. | 18.6 kip | pending D-075 2026-10-22 |
 | A-001 | gap | stale: JOURNAL | The bearing dead load entered in the three FBMP fixed-run exports is the pre-T014 journal value (92.07 kip per bearing). The post-T014 journal haunch volumes raise End Bent 1 to 92.473 kip (+0.40 kip) and lower End Bent 2 by 0.38 kip, with a net +0.03 kip at the pier. | 0.4 kip | accepted-negligible D-062 2026-10-19 |
 | A-002 | gap | stale: CAD-MODEL, JOURNAL | The D-059 pier cheek walls (48 x 48 x 12 in at each cap end, 4 ft above the cap top) add exposed area outside the 230-in pier face that is not in the pier FBMP model: about +1.92 kip transverse and +0.48 kip longitudinal direct wind at Strength III. | 1.92 kip | accepted-negligible D-062 2026-10-19 |
 | A-003 | judgment | stale: JOURNAL | The end-bent bearing eccentricity and longitudinal-wind moments about the transverse axis (MX = 0 in both end-bent exports; 23.0 kip-ft DC, 7.2 kip-ft PL and up to 31.8 kip-ft wind per bearing in the journal entry table) are carried by the backwall tie-back straps of the backwall design (D-057), not by the pile row. | 31.8 kip*ft | accepted-negligible D-062 2026-10-19 |
@@ -83,7 +80,7 @@ Open and stale entries are listed below; accepted entries stay in the register a
 | A-007 | placeholder | stale: CAD-MODEL | The 3.00 kip DC loads at pier nodes 5 and 44 are placeholders that now stand for the D-059 pier cheek walls, 2.34 kip each (31.26 ft3 total), within the placeholder value. | 2.34 kip | accepted-negligible D-062 2026-10-19 |
 | A-008 | gap | stale: JOURNAL | The End Bent 2 export carries the End Bent 1 bearing loads (92.07 / 28.98 kip) instead of the journal's span-2 tributary values (89.967 / 28.323 kip), which is 2.3% conservative. | 2.3 % | accepted-negligible D-062 2026-10-19 |
 | A-009 | assumption | stale: JOURNAL, PILE-PIER-CASE | The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design. The 19 October FBMP pier model used 60 ksi; the 21 October rerun (D-073) models the pile at 45 ksi, so the Fy reconciliation is closed by the registered export. The grade selection and the corrosion allowance remain design inputs (pile prerequisites corrosion, exposure). | 0 ksi | closed D-073 2026-10-21 |
-| A-013 | assumption | stale: CAD-MODEL | The pier pile case and the FBMP pier model use ground EL 26.05 ft; the journal (Terrain_elev) and the CAD model use terrain EL 25.5264 ft at the pier, 6.3 in lower. The D-075 pier wall free length to fixity (92.4 in) subtracts the 18.3 in of wall below the pile-case ground; with the CAD terrain it would be 98.4 in, which changes the ring moment by about 6% (5.40 to about 5.1 kip-in per ring) with every ring still in full contact (equivalent eccentricity about 1.1 in against the 5.19 in kern). | 6.3 in | accepted-negligible D-075 2026-10-22 |
+| A-012 | gap | open | The pile-row wall loads of the pier FBMP model were entered from the former 114.737 kip pier wall (213 x 36 x 172.375 in). Under D-075 the wall is the CAD wall, 219 x 36 x 194.8625 in: 133.359 kip gross (112.1 kip net of the four pile bores), +18.6 kip (+16%) on the pier pile group, about +4.7 kip per pile. The export is unchanged pending the next FBMP rerun decision. Re-checked the same day against the D-076 CAD revision (pier wall steel and rings added; wall geometry unchanged). | 18.6 kip | pending D-075 2026-10-22 |
 
 ## Verified scope
 

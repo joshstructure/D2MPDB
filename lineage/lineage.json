@@ -2,7 +2,7 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "7c80bac9848e132d32c45f1c4a272703db954188aa5defbbf4f5a8b171375c4e",
+ "fingerprint": "5bc0277cfe8e73c4d1105f5d327d475ae9c5791b0fcf34e1e5437948b98ed954",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
@@ -34,7 +34,7 @@
   },
   {
    "path": "project_current/coherence/machine_checks.json",
-   "sha256": "ca6b1755c539f6ea71e548eca1e77dcfd28b8ac436df20299a69c0941e436fe8"
+   "sha256": "6a68517ca5111bd63b3769a16df177244da0fe261b3c409a76c0779bbe94763d"
   },
   {
    "path": "project_current/decisions.md",
@@ -95,7 +95,7 @@
   "available": true,
   "reason": ""
  },
- "checked_at_utc": "2026-10-22T11:32:51.815907+00:00",
+ "checked_at_utc": "2026-10-22T11:46:28.435300+00:00",
  "stages": [
   {
    "id": "inputs",
@@ -1159,13 +1159,13 @@
     },
     {
      "check_id": "ASSUMPTION:A-012",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-013",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     }
    ],
    "decisions": [
@@ -7754,13 +7754,13 @@
     },
     {
      "check_id": "ASSUMPTION:A-012",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-013",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     }
    ],
    "decisions": [
@@ -11068,13 +11068,13 @@
     },
     {
      "check_id": "ASSUMPTION:A-012",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-013",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     }
    ],
    "decisions": [
@@ -11205,13 +11205,13 @@
     },
     {
      "check_id": "ASSUMPTION:A-012",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-013",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     }
    ],
    "decisions": [
@@ -11445,13 +11445,13 @@
     },
     {
      "check_id": "ASSUMPTION:A-012",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-013",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     }
    ],
    "decisions": [

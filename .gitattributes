@@ -25,6 +25,8 @@ cap_bpad/verification.json -text
 pile_bpad/fragments/*.xml -text
 pile_bpad/preview/*.json -text
 pile_bpad/verification.json -text
+# Journal-calculation packages (calc_common): fragments and journal editions are hashed by their verification records.
+*/bpad/** -text
 # Substructure DXF: snapshot and outputs are hashed by the staleness test.
 substructure_drawings/data/** -text
 substructure_drawings/output/** -text
