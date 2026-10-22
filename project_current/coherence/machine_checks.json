@@ -1,9 +1,9 @@
 {
-  "checked_at_utc": "2026-10-22T13:49:31.966617+00:00",
+  "checked_at_utc": "2026-10-22T14:10:36.258141+00:00",
   "scope": "Exact source identity, file relationships, selected geometry, issue-log completeness and the assumptions register; no native design reruns.",
-  "register_sha256": "e7c13de3b7782ed544d70c29c5cb89f06095237f5a0f8c4e8cfd7b0b332f7fd4",
+  "register_sha256": "c765c8accc10c11fab7559eabfc066202fce11af1643539edf12540d7461f12c",
   "tracker_sha256": "a41ceabda4591d478def85249d3ede63b9faf67e12b4a91916cde44197c95da7",
-  "assumptions_sha256": "a0ad18700c0fddbcb617db42d951c2daed17006fbf74106240d0b99192e6fa0e",
+  "assumptions_sha256": "6def1d2e2d0396d06f35c7667ce7568bb665411a167b6a3ab13b615254ef2877",
   "source_count": 40,
   "item_count": 28,
   "outstanding_count": 14,
@@ -13,16 +13,16 @@
     "Deferred": 2
   },
   "check_counts": {
-    "MATCH": 61,
+    "MATCH": 63,
     "CHANGED": 2,
     "MISSING": 4,
-    "REVIEW": 14,
+    "REVIEW": 12,
     "ERROR": 9
   },
   "assumption_counts": {
     "count": 13,
     "open": 3,
-    "stale": 7
+    "stale": 5
   },
   "checks": [
     {
@@ -231,8 +231,8 @@
         "CAD-MODEL"
       ],
       "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-      "expected_sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
-      "actual_sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
+      "expected_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+      "actual_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
     },
     {
       "check_id": "SOURCE:CAD-RUNTIME",
@@ -242,8 +242,8 @@
         "CAD-RUNTIME"
       ],
       "path": "project_current/geometry/freecad/manifest.json",
-      "expected_sha256": "c9e7866e497d99d4fc0997282416dd98b836bfd97f84076fea832f380d65b356",
-      "actual_sha256": "c9e7866e497d99d4fc0997282416dd98b836bfd97f84076fea832f380d65b356"
+      "expected_sha256": "fa6ead10d964dc618107ae2cd110396e661f2c6eae876438077ee5ba3b998496",
+      "actual_sha256": "fa6ead10d964dc618107ae2cd110396e661f2c6eae876438077ee5ba3b998496"
     },
     {
       "check_id": "SOURCE:CAD-REPORT",
@@ -253,8 +253,8 @@
         "CAD-REPORT"
       ],
       "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
-      "expected_sha256": "40392ff40caf3e6098ec5508e74eb0ace814b37172c924dde1c2ecaf51769741",
-      "actual_sha256": "40392ff40caf3e6098ec5508e74eb0ace814b37172c924dde1c2ecaf51769741"
+      "expected_sha256": "e9bef3578287c5c273d7c2d49f7d6054ed3640a7eaf61a05232a9ef37bd6bf32",
+      "actual_sha256": "e9bef3578287c5c273d7c2d49f7d6054ed3640a7eaf61a05232a9ef37bd6bf32"
     },
     {
       "check_id": "SOURCE:BACKWALL-TOOL",
@@ -791,8 +791,8 @@
     },
     {
       "check_id": "ASSUMPTION:A-002",
-      "status": "REVIEW",
-      "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes.",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
       "source_ids": [
         "CAD-MODEL",
         "JOURNAL",
@@ -846,8 +846,8 @@
     },
     {
       "check_id": "ASSUMPTION:A-007",
-      "status": "REVIEW",
-      "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes.",
+      "status": "MATCH",
+      "detail": "Basis hashes equal the current register.",
       "source_ids": [
         "CAD-MODEL",
         "PIER-XML"
@@ -878,7 +878,7 @@
     {
       "check_id": "ASSUMPTION:A-010",
       "status": "REVIEW",
-      "detail": "Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes.",
+      "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes.",
       "source_ids": [
         "CAD-MODEL",
         "JOURNAL"
@@ -1349,12 +1349,12 @@
     "present": true,
     "count": 13,
     "open": 3,
-    "stale": 7,
+    "stale": 5,
     "entries": [
       {
         "id": "A-010",
         "kind": "judgment",
-        "statement": "The MSE exclusion side walls re-extracted from the D-055 model sit at the 24-in criterion within 0.0002 in, so two of four side-wall rows read SHORTFALL by their last digits (T016).",
+        "statement": "The MSE exclusion side walls re-extracted from the D-055 model sit at the 24-in criterion within 0.0002 in, so two of four side-wall rows read SHORTFALL by their last digits (T016). Re-judged 22 October 2026 against the D-079 CAD model (pier wall ring plates 1/2 in; the MSE wall lines and the end-bent pile rows are unchanged, so the 114-in offsets and the last-digit shortfall stand).",
         "where": "Journal MSE Wall Exclusion module; CAD model MSE wall lines; MSE detail drawing.",
         "nodes": [
           "JOURNAL-CALC-MSEWallExclusion",
@@ -1377,7 +1377,7 @@
         ],
         "basis": {
           "JOURNAL": "d3aa9a62939cd82634196c97361ea85d2b8abf2d4fce1c72ab0b86a2510c9b50",
-          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
         },
         "references": [
           "project_current/decisions.md",
@@ -1385,13 +1385,12 @@
         ],
         "stale": true,
         "stale_sources": [
-          "CAD-MODEL",
           "JOURNAL"
         ],
         "unknown_sources": [],
         "current_basis": {
           "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
-          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
         },
         "open": true
       },
@@ -1444,52 +1443,6 @@
           "PILE-PIER-CASE": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e"
         },
         "open": true
-      },
-      {
-        "id": "A-002",
-        "kind": "gap",
-        "statement": "The D-059 pier cheek walls (48 x 48 x 12 in at each cap end, 4 ft above the cap top) add exposed area outside the 230-in pier face that is not in the pier FBMP model: about +1.92 kip transverse and +0.48 kip longitudinal direct wind at Strength III. Re-judged 22 October 2026 against the D-077 export (pier wall members corrected to end at the soil surface; nodal loads identical). Re-judged again the same day against the T037 journal (C017 ring plate 1/2 in, D-078; no other module changed).",
-        "where": "Pier FBMP direct-wind nodal loads (node 49 transverse, nodes 117/83 longitudinal); journal FenceWind direct-pier terms; CAD model pier cheek walls.",
-        "nodes": [
-          "PIER-XML",
-          "CAD-MODEL",
-          "JOURNAL-CALC-FenceWind",
-          "JOURNAL-PIER-ENTRY"
-        ],
-        "magnitude": {
-          "value": 1.92,
-          "unit": "kip",
-          "sized_by": "2 x 16 ft2 transverse (and 2 x 4 ft2 longitudinal) cheek-wall area at p_sub_III = 0.060 ksf; about 3% of the 56.5 kip total transverse wind on the pier."
-        },
-        "disposition": {
-          "status": "accepted-negligible",
-          "decision": "D-062",
-          "on": "2026-10-19"
-        },
-        "owner": "Project user",
-        "coherence_items": [
-          "COH-005"
-        ],
-        "basis": {
-          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
-          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43",
-          "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
-        },
-        "references": [
-          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
-          "project_current/geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json"
-        ],
-        "stale": true,
-        "stale_sources": [
-          "CAD-MODEL"
-        ],
-        "unknown_sources": [],
-        "current_basis": {
-          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
-          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
-          "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
-        },
-        "open": false
       },
       {
         "id": "A-003",
@@ -1587,49 +1540,6 @@
         "open": false
       },
       {
-        "id": "A-007",
-        "kind": "placeholder",
-        "statement": "The 3.00 kip DC loads at pier nodes 5 and 44 are placeholders that now stand for the D-059 pier cheek walls, 2.34 kip each (31.26 ft3 total), within the placeholder value. Re-judged 22 October 2026 against the D-077 export (pier wall members corrected to end at the soil surface; nodal loads identical). Re-judged again the same day against the T037 journal (C017 ring plate 1/2 in, D-078; no other module changed).",
-        "where": "Pier FBMP nodal loads (nodes 5 and 44); CAD model pier cheek walls.",
-        "nodes": [
-          "PIER-XML",
-          "CAD-MODEL",
-          "JOURNAL-PIER-ENTRY"
-        ],
-        "magnitude": {
-          "value": 2.34,
-          "unit": "kip",
-          "sized_by": "Cheek-wall weight from the D-059 adoption summary (15.63 ft3 x 0.150 kcf each) against the 3.00 kip placeholder."
-        },
-        "disposition": {
-          "status": "accepted-negligible",
-          "decision": "D-062",
-          "on": "2026-10-19"
-        },
-        "owner": "Project user",
-        "coherence_items": [
-          "COH-004"
-        ],
-        "basis": {
-          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
-          "CAD-MODEL": "7de4f5dbeba60c95cd1f383d6474d1b9e79299dd68dd095b00395b6fa21f0f43"
-        },
-        "references": [
-          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
-          "project_current/geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json"
-        ],
-        "stale": true,
-        "stale_sources": [
-          "CAD-MODEL"
-        ],
-        "unknown_sources": [],
-        "current_basis": {
-          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
-          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
-        },
-        "open": false
-      },
-      {
         "id": "A-008",
         "kind": "gap",
         "statement": "The End Bent 2 export carries the End Bent 1 bearing loads (92.07 / 28.98 kip) instead of the journal's span-2 tributary values (89.967 / 28.323 kip), which is 2.3% conservative.",
@@ -1675,7 +1585,7 @@
       {
         "id": "A-012",
         "kind": "assumption",
-        "statement": "The pier FBMP export (Pier_Fixed.XML, D-077, 22 October 2026) models the pier wall as extra members hung between pile nodes: four vertical 36 x 60 in concrete members (library section 5, 150 pcf), one per pile, from pile point 2 (EL 40.20, 18.9 in below the cap axis) to pile point 11 at the soil surface (EL 26.05), 169.8 in long, 31.83 kip each (127.3 kip in all), plus 30 weightless 36 x 20.52 in ties (section 4, 1 pcf) between adjacent piles at ten levels; direct wind is applied at the mid-height wall nodes 49, 83 and 117. The 21 October export (D-073) had the members running to pile point 13 (EL 19.72, 184.4 kip), 6 ft below the soil surface, because they had followed earlier soil elevation changes; the user reran the model to correct them. Against the CAD wall (219 x 36 x 194.86 in, EL 24.53 to 40.76, 133.4 kip): the model wall is 240 in long, 6.1 kip lighter (4.6%), its top 6.8 in below the cap bottom and its bottom 18.3 in above the CAD wall bottom. Traced down each pile the axial drops below the head (the wall members take the load) and returns at point 11 with the wall weight; the pier pile structural checks govern there (Pu 252.0 kip, Strength III, pile 4, element 11), while the Factored Design Load of the Pile Data Table is the pile-head compression (226.1 kip, Strength I), which excludes the wall weight that enters below the head (the pile-head sums balance only the applied loads plus the cap self-weight). Re-judged 22 October 2026 against the D-078 ring wall case (ring plate 1/2 in; wall, forces and free length unchanged) and the T037 journal.",
+        "statement": "The pier FBMP export (Pier_Fixed.XML, D-077, 22 October 2026) models the pier wall as extra members hung between pile nodes: four vertical 36 x 60 in concrete members (library section 5, 150 pcf), one per pile, from pile point 2 (EL 40.20, 18.9 in below the cap axis) to pile point 11 at the soil surface (EL 26.05), 169.8 in long, 31.83 kip each (127.3 kip in all), plus 30 weightless 36 x 20.52 in ties (section 4, 1 pcf) between adjacent piles at ten levels; direct wind is applied at the mid-height wall nodes 49, 83 and 117. The 21 October export (D-073) had the members running to pile point 13 (EL 19.72, 184.4 kip), 6 ft below the soil surface, because they had followed earlier soil elevation changes; the user reran the model to correct them. Against the CAD wall (219 x 36 x 194.86 in, EL 24.53 to 40.76, 133.4 kip): the model wall is 240 in long, 6.1 kip lighter (4.6%), its top 6.8 in below the cap bottom and its bottom 18.3 in above the CAD wall bottom. Traced down each pile the axial drops below the head (the wall members take the load) and returns at point 11 with the wall weight; the pier pile structural checks govern there (Pu 252.0 kip, Strength III, pile 4, element 11), while the Factored Design Load of the Pile Data Table is the pile-head compression (226.1 kip, Strength I), which excludes the wall weight that enters below the head (the pile-head sums balance only the applied loads plus the cap self-weight). Re-judged 22 October 2026 against the D-078 ring wall case (ring plate 1/2 in; wall, forces and free length unchanged) and the T037 journal. Re-judged the same day against the D-079 CAD model (ring plates 1/2 in; the CAD wall concrete, 133.4 kip, is unchanged, and the ring steel, 276 lb in place of 414 lb, is in neither weight, so the 6.1 kip gap stands).",
         "where": "Pier FBMP structure elements 44 to 77 (four vertical wall members and thirty ties between pile nodes); journal gravity sheet row 42 (W_wall, marked FBMP-supplied) and the Foundations modeling note; pier pile case station records (element 11) and the Pile Data Table FDL.",
         "nodes": [
           "PIER-XML",
@@ -1704,7 +1614,7 @@
           "PIER-WALL-CASE": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
           "PILE-PIER-CASE": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
           "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
-          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
         },
         "references": [
           "project_current/coherence/evidence/2026-10-22b-pier-wall/source_receipt.json",
@@ -1718,7 +1628,7 @@
           "PIER-WALL-CASE": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
           "PILE-PIER-CASE": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
           "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360",
-          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936"
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
         },
         "open": true
       },
@@ -1764,6 +1674,50 @@
           "EB-XML": "c1a4afa138865b3f10cc968ce7daef767a4d96e8bc2ccf175c1a5ebd150d912d",
           "EB2-XML": "3543df298b92593ce9bac14f9228ffacf5b0ce7e76b5e1d887ae228ef811a90e",
           "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+          "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
+        },
+        "open": false
+      },
+      {
+        "id": "A-002",
+        "kind": "gap",
+        "statement": "The D-059 pier cheek walls (48 x 48 x 12 in at each cap end, 4 ft above the cap top) add exposed area outside the 230-in pier face that is not in the pier FBMP model: about +1.92 kip transverse and +0.48 kip longitudinal direct wind at Strength III. Re-judged 22 October 2026 against the D-077 export (pier wall members corrected to end at the soil surface; nodal loads identical). Re-judged again the same day against the T037 journal (C017 ring plate 1/2 in, D-078; no other module changed). Re-judged the same day against the D-079 CAD model (pier wall ring plates 1/2 in; the cheek walls and every exposed concrete face are unchanged, so the unmodeled wind area is the same).",
+        "where": "Pier FBMP direct-wind nodal loads (node 49 transverse, nodes 117/83 longitudinal); journal FenceWind direct-pier terms; CAD model pier cheek walls.",
+        "nodes": [
+          "PIER-XML",
+          "CAD-MODEL",
+          "JOURNAL-CALC-FenceWind",
+          "JOURNAL-PIER-ENTRY"
+        ],
+        "magnitude": {
+          "value": 1.92,
+          "unit": "kip",
+          "sized_by": "2 x 16 ft2 transverse (and 2 x 4 ft2 longitudinal) cheek-wall area at p_sub_III = 0.060 ksf; about 3% of the 56.5 kip total transverse wind on the pier."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-005"
+        ],
+        "basis": {
+          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+          "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
+          "project_current/geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
           "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
         },
         "open": false
@@ -1858,6 +1812,47 @@
         "open": false
       },
       {
+        "id": "A-007",
+        "kind": "placeholder",
+        "statement": "The 3.00 kip DC loads at pier nodes 5 and 44 are placeholders that now stand for the D-059 pier cheek walls, 2.34 kip each (31.26 ft3 total), within the placeholder value. Re-judged 22 October 2026 against the D-077 export (pier wall members corrected to end at the soil surface; nodal loads identical). Re-judged again the same day against the T037 journal (C017 ring plate 1/2 in, D-078; no other module changed). Re-judged the same day against the D-079 CAD model (pier wall ring plates 1/2 in; the cheek walls are unchanged, 15.63 ft3 each, so the placeholder comparison stands).",
+        "where": "Pier FBMP nodal loads (nodes 5 and 44); CAD model pier cheek walls.",
+        "nodes": [
+          "PIER-XML",
+          "CAD-MODEL",
+          "JOURNAL-PIER-ENTRY"
+        ],
+        "magnitude": {
+          "value": 2.34,
+          "unit": "kip",
+          "sized_by": "Cheek-wall weight from the D-059 adoption summary (15.63 ft3 x 0.150 kcf each) against the 3.00 kip placeholder."
+        },
+        "disposition": {
+          "status": "accepted-negligible",
+          "decision": "D-062",
+          "on": "2026-10-19"
+        },
+        "owner": "Project user",
+        "coherence_items": [
+          "COH-004"
+        ],
+        "basis": {
+          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
+        },
+        "references": [
+          "project_current/coherence/evidence/2026-10-19-fbmp-load-review/fbmp_load_review.md",
+          "project_current/geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json"
+        ],
+        "stale": false,
+        "stale_sources": [],
+        "unknown_sources": [],
+        "current_basis": {
+          "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e"
+        },
+        "open": false
+      },
+      {
         "id": "A-009",
         "kind": "assumption",
         "statement": "The pier pipe pile is checked with ASTM A252 Grade 3 (Fy = 45 ksi) in the pile design. The 19 October FBMP pier model used 60 ksi; the 21 October rerun (D-073) models the pile at 45 ksi, so the Fy reconciliation is closed by the registered export. The grade selection and the corrosion allowance remain design inputs (pile prerequisites corrosion, exposure). Re-judged 22 October 2026 against the D-077 export (pier wall members corrected to end at the soil surface; nodal loads identical). Re-judged again the same day against the T037 journal (C017 ring plate 1/2 in, D-078; no other module changed).",
@@ -1904,7 +1899,7 @@
       {
         "id": "A-013",
         "kind": "assumption",
-        "statement": "The pier pile case and the FBMP pier model use ground EL 26.05 ft; the journal (Terrain_elev) and the CAD model use terrain EL 25.5264 ft at the pier, 6.3 in lower. The D-075 pier wall free length to fixity (92.4 in) subtracts the 18.3 in of wall below the pile-case ground; with the CAD terrain it would be 98.4 in, which changes the ring moment by about 6% (5.40 to about 5.1 kip-in per ring) with every ring still in full contact (equivalent eccentricity about 1.1 in against the 5.19 in kern). Re-checked the same day against the D-076 CAD revision (wall geometry unchanged). Re-judged 22 October 2026 against the D-077 export (pier wall members corrected to end at the soil surface; nodal loads identical). Re-judged again the same day against the T037 journal (C017 ring plate 1/2 in, D-078; no other module changed).",
+        "statement": "The pier pile case and the FBMP pier model use ground EL 26.05 ft; the journal (Terrain_elev) and the CAD model use terrain EL 25.5264 ft at the pier, 6.3 in lower. The D-075 pier wall free length to fixity (92.4 in) subtracts the 18.3 in of wall below the pile-case ground; with the CAD terrain it would be 98.4 in, which changes the ring moment by about 6% (5.40 to about 5.1 kip-in per ring) with every ring still in full contact (equivalent eccentricity about 1.1 in against the 5.19 in kern). Re-checked the same day against the D-076 CAD revision (wall geometry unchanged). Re-judged 22 October 2026 against the D-077 export (pier wall members corrected to end at the soil surface; nodal loads identical). Re-judged again the same day against the T037 journal (C017 ring plate 1/2 in, D-078; no other module changed). Re-judged the same day against the D-079 CAD model (ring plates 1/2 in; the wall bottom and the terrain elevation are unchanged, so the 6.3-in difference and the free length stand).",
         "where": "Pier pile case EL_ground; FBMP pier soil top; journal BridgeGeometry_2Beam Terrain_elev; CAD pier wall bottom (GroundElevation - WallBurial); ring wall case pile_free_length_in.",
         "nodes": [
           "PILE-PIER-CASE",
@@ -1929,7 +1924,7 @@
           "PILE-PIER-CASE": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
           "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
           "PIER-WALL-CASE": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
-          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
           "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
         },
         "references": [
@@ -1943,7 +1938,7 @@
           "PILE-PIER-CASE": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e",
           "PIER-XML": "420e614aa8b9784b5f0e8160689f90d7480fec7dc3541ee7c687c5eadfd355e6",
           "PIER-WALL-CASE": "2cc93e91477c162f91bb67465249621e427ee52a72a5b52d2fb6979206aaca10",
-          "CAD-MODEL": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+          "CAD-MODEL": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
           "JOURNAL": "ceeb8ebb42ee414d0be12a699d3627943523554f84022d014625cbb69fa1d360"
         },
         "open": false

@@ -2,7 +2,7 @@
  "schema": "d2mpdb.lineage-graph",
  "schema_version": 1,
  "generator_version": "1.3.0",
- "fingerprint": "9e14126227143a4f8825d4fc1b30263c176fcb10092627c3b22e2a12f9f7e21a",
+ "fingerprint": "b057b9fb699486dcccfe25e3af419802d8f3048a935390a0df992d12cf256456",
  "inputs": [
   {
    "path": "journal/D2_I95_Project_Journal.bpad",
@@ -34,11 +34,11 @@
   },
   {
    "path": "project_current/coherence/machine_checks.json",
-   "sha256": "60291a9f132cb44b98b988a3a1b463a283636c089c05cfa9bf161483a46f8833"
+   "sha256": "3d092603ab1215a11593a41e9b1aa4bc899c3a2c43d0ef6cb208e68f65e3a980"
   },
   {
    "path": "project_current/decisions.md",
-   "sha256": "5d124907686210bb7132a5c675da47f1097d680edf6535d1f80c45d53eb055a6"
+   "sha256": "b016562b33f4ac917a6645b070a202f051a4c4d092992c4ee58268af92695c31"
   },
   {
    "path": "project_current/fbmp/end_bents/End Bent 1_Fixed.XML",
@@ -62,11 +62,11 @@
   },
   {
    "path": "project_current/source_register.csv",
-   "sha256": "e7c13de3b7782ed544d70c29c5cb89f06095237f5a0f8c4e8cfd7b0b332f7fd4"
+   "sha256": "c765c8accc10c11fab7559eabfc066202fce11af1643539edf12540d7461f12c"
   },
   {
    "path": "scripts/build_lineage_graph.py",
-   "sha256": "bd507fc1c75f5571da3d69fe92ad2e9373bdca72bf0baf1be51a897dd1d20bf2"
+   "sha256": "6db2702b0a7ec3b51f1f02432f28e0f5f6eecd124d705ac3546b1d7df74cbba3"
   }
  ],
  "derived": [
@@ -95,7 +95,7 @@
   "available": true,
   "reason": ""
  },
- "checked_at_utc": "2026-10-22T13:49:31.966617+00:00",
+ "checked_at_utc": "2026-10-22T14:10:36.258141+00:00",
  "stages": [
   {
    "id": "inputs",
@@ -1117,9 +1117,9 @@
    "stage": "cad",
    "registered": true,
    "path": "project_current/geometry/freecad/B4 Pedestrian Bridge and Ramps - Pond14D - Source Update 20261010.FCStd",
-   "status": "Current - pier wall steel/rings; ring-grid tolerance and bearing fit unresolved",
-   "scope": "Authoritative native bridge geometry and quantities; D-046 standard horizontal cheek hooks where cover and retained steel allow; D-047 accepted pedestal reinforcement; D-048 backwall extensions and added end verticals; D-055 coordinated backwall verticals; D-059 solid pier cheeks with shallow relief; D-060 pier cheek wall SDM bar marks; D-061 straight pier cheek vertical development; D-065 all-support level as-cast bearing seats; D-076 pier wall reinforcement and annular rings; CAD wall geometry retained",
-   "sha256": "90bd9703f8e8aff0032e70f8b6f6b5a997751653f1f73a216ef01ec89eabe936",
+   "status": "Current - pier wall steel with 1/2-in rings; ring-grid tolerance and bearing fit unresolved",
+   "scope": "Authoritative native bridge geometry and quantities; D-046 standard horizontal cheek hooks where cover and retained steel allow; D-047 accepted pedestal reinforcement; D-048 backwall extensions and added end verticals; D-055 coordinated backwall verticals; D-059 solid pier cheeks with shallow relief; D-060 pier cheek wall SDM bar marks; D-061 straight pier cheek vertical development; D-065 all-support level as-cast bearing seats; D-076 pier wall reinforcement and annular rings; CAD wall geometry retained; D-079 1/2-in ring plates matching the D-078 case",
+   "sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
    "registered_on": "2026-10-22",
    "depends_on": [
     "JOURNAL",
@@ -1133,7 +1133,7 @@
     "BACKWALL-CASE"
    ],
    "origin": "Verified CAD_AI saved delivery; user-selected GitHub source home",
-   "notes": "D-076: Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details. 124 native #5 bars at 11 in maximum each way, both broad faces, including 38 end U returns with 72-in straight lap legs and eight end-face verticals; 3-in cover. Twenty annular plates, 23-in OD x 20.125-in ID x 0.75-in thick, centered on the four existing piles. Five ring tops per pile at 6, 42, 78, 114 and 150 in above the retained wall bottom. Two 5/16-in fillets recorded as properties; weld solids not modeled. Live inputs, analytic paths, native Arch bars and quantities/schedule. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Geometry/native edit/cold reopen verified; prior evidence: D-053. Two planar 2% backwall tops at both end bents, level through their 12-in thickness; 4-1/4 in below FFBW deck-top lines. Ramp slabs thicken locally with walking faces preserved. Notebook model e9b41b8eaf and B4 live workbook agree with CAD. Native solids/contact/cover/spacing/quantities/new-overlap checks and notebook/workbook checks pass. Downstream slab/backwall design, takeoffs and drawings remain; tracker statuses/responses unchanged. Earlier provenance retained in decisions. See coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json. D-055: four doubled #5 verticals removed, end pairs inside cheek hooks, vertical stations clear cap stirrups. 88 retained verticals; zero physical steel overlaps; cover/spacing/native-edit/cold-reopen checks pass. Broader review remains. See geometry/freecad/evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json. D-059: user-approved solid pier cheeks, 48 x 48 x 12 in, 3-in cap-end inset, 30-in square exterior panel with 3/4-in depth/chamfer; continuous centered #4 at 10 in maximum each way, 24 bars total. 99 scoped checks, native edit and cold reopen pass. Cap anchorage/structural design unconfigured; downstream reconciliation remains. See geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json. D-060 writes the SDM marks of the 24 pier cheek wall bars (4E1/4E2) and re-letters the 32 pier pedestal bars 4F1/4F2 (schedules follow). Geometry, quantities, controllers and saved view records preserved; cold reopen verified. D-061: 12 pier cheek #4 verticals developed straight 12 in into cap, selected LRFD 2024 basis; coordinated with existing cap steel, 3-in cap cover/2-in wall cover/10-in max spacing. 139 scoped checks, native edit and cold reopen pass. Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.",
+   "notes": "D-079: Set the twenty pier wall annular ring plates of the CAD model to 1/2 in thick (3/4 in under D-076), matching the selected D-078 calculation case. Live input RingThickness 0.5 in; every ring solid 23-in OD x 20.125-in ID x 0.5-in thick with its bottom face raised 1/4 in. Ring tops stay at 6, 42, 78, 114 and 150 in above the retained wall bottom; diameters, the two recorded 5/16-in fillets, the 124 bars, the wall, the piles and all 2442 unrelated objects are unchanged. Ring steel 276.1 lb (414.2 lb before, 490 pcf). The immutable case snapshot on PierWallSteelInputs now names the D-078 case (2cc93e91; only ring_t_in differs from the D-075 snapshot; grid #5 at 11 in and the RING-GRID failure unchanged). The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-076: Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details. 124 native #5 bars at 11 in maximum each way, both broad faces, including 38 end U returns with 72-in straight lap legs and eight end-face verticals; 3-in cover. Twenty annular plates, 23-in OD x 20.125-in ID x 0.75-in thick, centered on the four existing piles. Five ring tops per pile at 6, 42, 78, 114 and 150 in above the retained wall bottom. Two 5/16-in fillets recorded as properties; weld solids not modeled. Live inputs, analytic paths, native Arch bars and quantities/schedule. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Geometry/native edit/cold reopen verified; prior evidence: D-053. Two planar 2% backwall tops at both end bents, level through their 12-in thickness; 4-1/4 in below FFBW deck-top lines. Ramp slabs thicken locally with walking faces preserved. Notebook model e9b41b8eaf and B4 live workbook agree with CAD. Native solids/contact/cover/spacing/quantities/new-overlap checks and notebook/workbook checks pass. Downstream slab/backwall design, takeoffs and drawings remain; tracker statuses/responses unchanged. Earlier provenance retained in decisions. See coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json. D-055: four doubled #5 verticals removed, end pairs inside cheek hooks, vertical stations clear cap stirrups. 88 retained verticals; zero physical steel overlaps; cover/spacing/native-edit/cold-reopen checks pass. Broader review remains. See geometry/freecad/evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json. D-059: user-approved solid pier cheeks, 48 x 48 x 12 in, 3-in cap-end inset, 30-in square exterior panel with 3/4-in depth/chamfer; continuous centered #4 at 10 in maximum each way, 24 bars total. 99 scoped checks, native edit and cold reopen pass. Cap anchorage/structural design unconfigured; downstream reconciliation remains. See geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json. D-060 writes the SDM marks of the 24 pier cheek wall bars (4E1/4E2) and re-letters the 32 pier pedestal bars 4F1/4F2 (schedules follow). Geometry, quantities, controllers and saved view records preserved; cold reopen verified. D-061: 12 pier cheek #4 verticals developed straight 12 in into cap, selected LRFD 2024 basis; coordinated with existing cap steel, 3-in cap cover/2-in wall cover/10-in max spacing. 139 scoped checks, native edit and cold reopen pass. Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -1144,18 +1144,18 @@
     },
     {
      "check_id": "ASSUMPTION:A-002",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-007",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-010",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
     },
     {
      "check_id": "ASSUMPTION:A-012",
@@ -1197,7 +1197,8 @@
     "D-065",
     "D-075",
     "D-076",
-    "D-078"
+    "D-078",
+    "D-079"
    ],
    "issues": [
     "COH-023",
@@ -1223,13 +1224,13 @@
    "path": "project_current/geometry/freecad/evidence/Model-update-report.txt",
    "status": "User-selected current - review limitations retained",
    "scope": "Model scope, quantities, tests and unresolved detailing/coordination failures",
-   "sha256": "40392ff40caf3e6098ec5508e74eb0ace814b37172c924dde1c2ecaf51769741",
+   "sha256": "e9bef3578287c5c273d7c2d49f7d6054ed3640a7eaf61a05232a9ef37bd6bf32",
    "registered_on": "2026-10-22",
    "depends_on": [
     "CAD-MODEL"
    ],
    "origin": "Verified CAD_AI saved delivery; user-selected GitHub source home",
-   "notes": "D-076: Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details. 124 native #5 bars at 11 in maximum each way, both broad faces, including 38 end U returns with 72-in straight lap legs and eight end-face verticals; 3-in cover. Twenty annular plates, 23-in OD x 20.125-in ID x 0.75-in thick, centered on the four existing piles. Five ring tops per pile at 6, 42, 78, 114 and 150 in above the retained wall bottom. Two 5/16-in fillets recorded as properties; weld solids not modeled. Live inputs, analytic paths, native Arch bars and quantities/schedule. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Geometry/native edit/cold reopen verified; prior evidence: D-053. Two planar 2% backwall tops at both end bents, level through their 12-in thickness; 4-1/4 in below FFBW deck-top lines. Ramp slabs thicken locally with walking faces preserved. Notebook model e9b41b8eaf and B4 live workbook agree with CAD. Native solids/contact/cover/spacing/quantities/new-overlap checks and notebook/workbook checks pass. Downstream slab/backwall design, takeoffs and drawings remain; tracker statuses/responses unchanged. Earlier provenance retained in decisions. See coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json. D-055: four doubled #5 verticals removed, end pairs inside cheek hooks, vertical stations clear cap stirrups. 88 retained verticals; zero physical steel overlaps; cover/spacing/native-edit/cold-reopen checks pass. Broader review remains. See geometry/freecad/evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json. D-059: user-approved solid pier cheeks, 48 x 48 x 12 in, 3-in cap-end inset, 30-in square exterior panel with 3/4-in depth/chamfer; continuous centered #4 at 10 in maximum each way, 24 bars total. 99 scoped checks, native edit and cold reopen pass. Cap anchorage/structural design unconfigured; downstream reconciliation remains. See geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json. D-060 records the pier cheek wall bar marks. D-061: 12 pier cheek #4 verticals developed straight 12 in into cap, selected LRFD 2024 basis; coordinated with existing cap steel, 3-in cap cover/2-in wall cover/10-in max spacing. 139 scoped checks, native edit and cold reopen pass. Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.",
+   "notes": "D-079: Set the twenty pier wall annular ring plates of the CAD model to 1/2 in thick (3/4 in under D-076), matching the selected D-078 calculation case. Live input RingThickness 0.5 in; every ring solid 23-in OD x 20.125-in ID x 0.5-in thick with its bottom face raised 1/4 in. Ring tops stay at 6, 42, 78, 114 and 150 in above the retained wall bottom; diameters, the two recorded 5/16-in fillets, the 124 bars, the wall, the piles and all 2442 unrelated objects are unchanged. Ring steel 276.1 lb (414.2 lb before, 490 pcf). The immutable case snapshot on PierWallSteelInputs now names the D-078 case (2cc93e91; only ring_t_in differs from the D-075 snapshot; grid #5 at 11 in and the RING-GRID failure unchanged). The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-076: Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details. 124 native #5 bars at 11 in maximum each way, both broad faces, including 38 end U returns with 72-in straight lap legs and eight end-face verticals; 3-in cover. Twenty annular plates, 23-in OD x 20.125-in ID x 0.75-in thick, centered on the four existing piles. Five ring tops per pile at 6, 42, 78, 114 and 150 in above the retained wall bottom. Two 5/16-in fillets recorded as properties; weld solids not modeled. Live inputs, analytic paths, native Arch bars and quantities/schedule. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Geometry/native edit/cold reopen verified; prior evidence: D-053. Two planar 2% backwall tops at both end bents, level through their 12-in thickness; 4-1/4 in below FFBW deck-top lines. Ramp slabs thicken locally with walking faces preserved. Notebook model e9b41b8eaf and B4 live workbook agree with CAD. Native solids/contact/cover/spacing/quantities/new-overlap checks and notebook/workbook checks pass. Downstream slab/backwall design, takeoffs and drawings remain; tracker statuses/responses unchanged. Earlier provenance retained in decisions. See coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json. D-055: four doubled #5 verticals removed, end pairs inside cheek hooks, vertical stations clear cap stirrups. 88 retained verticals; zero physical steel overlaps; cover/spacing/native-edit/cold-reopen checks pass. Broader review remains. See geometry/freecad/evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json. D-059: user-approved solid pier cheeks, 48 x 48 x 12 in, 3-in cap-end inset, 30-in square exterior panel with 3/4-in depth/chamfer; continuous centered #4 at 10 in maximum each way, 24 bars total. 99 scoped checks, native edit and cold reopen pass. Cap anchorage/structural design unconfigured; downstream reconciliation remains. See geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json. D-060 records the pier cheek wall bar marks. D-061: 12 pier cheek #4 verticals developed straight 12 in into cap, selected LRFD 2024 basis; coordinated with existing cap steel, 3-in cap cover/2-in wall cover/10-in max spacing. 139 scoped checks, native edit and cold reopen pass. Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -1249,7 +1250,9 @@
     "D-064",
     "D-065",
     "D-075",
-    "D-076"
+    "D-076",
+    "D-078",
+    "D-079"
    ],
    "issues": [],
    "parameters": [],
@@ -1264,11 +1267,11 @@
    "path": "project_current/geometry/freecad/manifest.json",
    "status": "User-selected current - review limitations retained",
    "scope": "Exact controller and evidence fingerprints; preserve with model",
-   "sha256": "c9e7866e497d99d4fc0997282416dd98b836bfd97f84076fea832f380d65b356",
+   "sha256": "fa6ead10d964dc618107ae2cd110396e661f2c6eae876438077ee5ba3b998496",
    "registered_on": "2026-10-22",
    "depends_on": [],
    "origin": "Verified CAD_AI saved delivery; user-selected GitHub source home",
-   "notes": "D-076: Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details. 124 native #5 bars at 11 in maximum each way, both broad faces, including 38 end U returns with 72-in straight lap legs and eight end-face verticals; 3-in cover. Twenty annular plates, 23-in OD x 20.125-in ID x 0.75-in thick, centered on the four existing piles. Five ring tops per pile at 6, 42, 78, 114 and 150 in above the retained wall bottom. Two 5/16-in fillets recorded as properties; weld solids not modeled. Live inputs, analytic paths, native Arch bars and quantities/schedule. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Geometry/native edit/cold reopen verified; prior evidence: D-053. Two planar 2% backwall tops at both end bents, level through their 12-in thickness; 4-1/4 in below FFBW deck-top lines. Ramp slabs thicken locally with walking faces preserved. Notebook model e9b41b8eaf and B4 live workbook agree with CAD. Native solids/contact/cover/spacing/quantities/new-overlap checks and notebook/workbook checks pass. Downstream slab/backwall design, takeoffs and drawings remain; tracker statuses/responses unchanged. Earlier provenance retained in decisions. See coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json. D-055: four doubled #5 verticals removed, end pairs inside cheek hooks, vertical stations clear cap stirrups. 88 retained verticals; zero physical steel overlaps; cover/spacing/native-edit/cold-reopen checks pass. Broader review remains. See geometry/freecad/evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json. D-059: user-approved solid pier cheeks, 48 x 48 x 12 in, 3-in cap-end inset, 30-in square exterior panel with 3/4-in depth/chamfer; continuous centered #4 at 10 in maximum each way, 24 bars total. 99 scoped checks, native edit and cold reopen pass. Cap anchorage/structural design unconfigured; downstream reconciliation remains. See geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json. D-060 records the pier cheek wall bar marks; runtime files unchanged. D-061: 12 pier cheek #4 verticals developed straight 12 in into cap, selected LRFD 2024 basis; coordinated with existing cap steel, 3-in cap cover/2-in wall cover/10-in max spacing. 139 scoped checks, native edit and cold reopen pass. Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.",
+   "notes": "D-079: Set the twenty pier wall annular ring plates of the CAD model to 1/2 in thick (3/4 in under D-076), matching the selected D-078 calculation case. Live input RingThickness 0.5 in; every ring solid 23-in OD x 20.125-in ID x 0.5-in thick with its bottom face raised 1/4 in. Ring tops stay at 6, 42, 78, 114 and 150 in above the retained wall bottom; diameters, the two recorded 5/16-in fillets, the 124 bars, the wall, the piles and all 2442 unrelated objects are unchanged. Ring steel 276.1 lb (414.2 lb before, 490 pcf). The immutable case snapshot on PierWallSteelInputs now names the D-078 case (2cc93e91; only ring_t_in differs from the D-075 snapshot; grid #5 at 11 in and the RING-GRID failure unchanged). The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-076: Retain existing CAD wall (219 x 36 x 194.862478917107 in) and add the selected calculation reinforcement and annular-ring details. 124 native #5 bars at 11 in maximum each way, both broad faces, including 38 end U returns with 72-in straight lap legs and eight end-face verticals; 3-in cover. Twenty annular plates, 23-in OD x 20.125-in ID x 0.75-in thick, centered on the four existing piles. Five ring tops per pile at 6, 42, 78, 114 and 150 in above the retained wall bottom. Two 5/16-in fillets recorded as properties; weld solids not modeled. Live inputs, analytic paths, native Arch bars and quantities/schedule. The user separately reconciled the calculation geometry under D-075 during this CAD task. The final model references that selected 22 October case; its dimensions match the retained CAD within 0.001 in and its bar/ring details are unchanged from the initial snapshot. RING-GRID and all source scope limitations remain open without rejudgment; the superseded RING-END failure is retained in the initial snapshot only. U bends (6db inside diameter) and contact lap routing are CAD detailing assumptions. Vertical bars are continuous; the 60-in vertical lap allowance is recorded, not a modeled splice. PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. Prior: D-065: All six pedestal tops level at their own previous maximum elevations; eight uniform 2.5625-in pads level on the tops. D-065 supersedes D-064. As-cast stock only: all eight pads intersect the unchanged beams in undeformed geometry; final bearing fit FAIL. Final seat/grinding elevations, cover, contact, construction stages and bearing acceptance remain open. Notebook, B4 geometry table and drawings pending reconciliation. T019 is a conditional pier check, not end-bent approval; all prior analysis/combined-load limitations and D-047 steel disposition remain. Geometry/native edit/cold reopen verified; prior evidence: D-053. Two planar 2% backwall tops at both end bents, level through their 12-in thickness; 4-1/4 in below FFBW deck-top lines. Ramp slabs thicken locally with walking faces preserved. Notebook model e9b41b8eaf and B4 live workbook agree with CAD. Native solids/contact/cover/spacing/quantities/new-overlap checks and notebook/workbook checks pass. Downstream slab/backwall design, takeoffs and drawings remain; tracker statuses/responses unchanged. Earlier provenance retained in decisions. See coherence/evidence/2026-10-19-simple-backwall-tops/source_receipt.json. D-055: four doubled #5 verticals removed, end pairs inside cheek hooks, vertical stations clear cap stirrups. 88 retained verticals; zero physical steel overlaps; cover/spacing/native-edit/cold-reopen checks pass. Broader review remains. See geometry/freecad/evidence/2026-10-19-backwall-vertical-coordination/adoption-summary.json. D-059: user-approved solid pier cheeks, 48 x 48 x 12 in, 3-in cap-end inset, 30-in square exterior panel with 3/4-in depth/chamfer; continuous centered #4 at 10 in maximum each way, 24 bars total. 99 scoped checks, native edit and cold reopen pass. Cap anchorage/structural design unconfigured; downstream reconciliation remains. See geometry/freecad/evidence/2026-10-19-pier-cheek-relief/adoption-summary.json. D-060 records the pier cheek wall bar marks; runtime files unchanged. D-061: 12 pier cheek #4 verticals developed straight 12 in into cap, selected LRFD 2024 basis; coordinated with existing cap steel, 3-in cap cover/2-in wall cover/10-in max spacing. 139 scoped checks, native edit and cold reopen pass. Straight tension development checked for the selected 5.5-ksi concrete and uncoated Grade 60 bars. Joint transfer and wall capacity are separate checks. Notebook, calculation, journal-quantity and drawing reconciliation remain downstream; tracker responses and unrelated sources are unchanged. The proposed Type 10 hook for pier 4E1 in the D-060 drawing schedule is superseded by this straight model detail; other supports are unchanged.",
    "hash_basis": "exact_bytes",
    "health": "MATCH",
    "checks": [
@@ -1289,7 +1292,9 @@
     "D-064",
     "D-065",
     "D-075",
-    "D-076"
+    "D-076",
+    "D-078",
+    "D-079"
    ],
    "issues": [],
    "parameters": [],
@@ -7725,8 +7730,8 @@
     },
     {
      "check_id": "ASSUMPTION:A-002",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-003",
@@ -7751,7 +7756,7 @@
     {
      "check_id": "ASSUMPTION:A-010",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
     },
     {
      "check_id": "ASSUMPTION:A-012",
@@ -11087,7 +11092,8 @@
     "D-070",
     "D-071",
     "D-075",
-    "D-078"
+    "D-078",
+    "D-079"
    ],
    "issues": [],
    "parameters": [],
@@ -11199,13 +11205,13 @@
     },
     {
      "check_id": "ASSUMPTION:A-002",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-007",
-     "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL); re-judge the entry and record new basis hashes."
+     "status": "MATCH",
+     "detail": "Basis hashes equal the current register."
     },
     {
      "check_id": "ASSUMPTION:A-009",
@@ -13126,7 +13132,7 @@
     {
      "check_id": "ASSUMPTION:A-010",
      "status": "REVIEW",
-     "detail": "Basis moved in the register (CAD-MODEL, JOURNAL); re-judge the entry and record new basis hashes."
+     "detail": "Basis moved in the register (JOURNAL); re-judge the entry and record new basis hashes."
     }
    ],
    "flags": []
@@ -25174,6 +25180,8 @@
    "refs": {
     "sources": [
      "CAD-MODEL",
+     "CAD-REPORT",
+     "CAD-RUNTIME",
      "JOURNAL",
      "PIER-WALL-CASE",
      "PIER-WALL-REPORT",
@@ -25187,6 +25195,30 @@
     "inferred": [
      "JOURNAL",
      "CAD-MODEL"
+    ]
+   }
+  },
+  {
+   "id": "D-079",
+   "date": "2026-10-22",
+   "decision": "Set the CAD model pier wall annular ring plates to 1/2 in thick, matching the selected D-078 case; D-076 had placed them at 3/4 in.",
+   "basis": "Follows the user's D-078 selection of the 1/2-in plate (the 3/4-in plate was not strength-governed; 7/16 in is the thinnest standard plate with every check at or under 0.95 of its limit). The CAD model (CAD-MODEL) and the ring wall case (PIER-WALL-CASE) disagreed on plate thickness since D-078; this closes that gap. Live input RingThickness 0.5 in; every ring solid 23-in OD x 20.125-in ID x 0.5-in thick with its bottom face raised 1/4 in. Ring tops stay at 6, 42, 78, 114 and 150 in above the retained wall bottom; diameters, the two recorded 5/16-in fillets, the 124 bars, the wall, the piles and all 2442 unrelated objects are unchanged. Ring steel 276.1 lb (414.2 lb before, 490 pcf). The immutable case snapshot on PierWallSteelInputs now names the D-078 case (2cc93e91; only ring_t_in differs from the D-075 snapshot; grid #5 at 11 in and the RING-GRID failure unchanged). The plates were produced by the ordinary native recompute of the thickness input (the user workflow); native edit round trip, file-level record preservation and cold reopen verified. RING-GRID and all source scope limitations remain open without rejudgment; U bends and contact lap routing remain CAD detailing assumptions; weld solids are not modeled; PW marks are instance identifiers; SDM drawing marks, drawing exports, fabrication and engineering acceptance remain pending. Existing bearing-fit and other project findings remain. No calculation, journal or tracker changes. 437 geometry/cover/link/spacing/intersection checks PASS before saving and 437 after cold reopen; 2442 existing objects preserved. See [CAD adoption](geometry/freecad/evidence/2026-10-22-ring-plate-half-inch/adoption-summary.json).",
+   "refs": {
+    "sources": [
+     "CAD-MODEL",
+     "CAD-REPORT",
+     "CAD-RUNTIME",
+     "PIER-WALL-CASE"
+    ],
+    "decisions": [
+     "D-075",
+     "D-076",
+     "D-078"
+    ],
+    "issues": [],
+    "inferred": [
+     "CAD-RUNTIME",
+     "CAD-REPORT"
     ]
    }
   }

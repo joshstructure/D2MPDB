@@ -1,0 +1,21 @@
+{
+  "model_sha256": "224de2676a92a2668ea7acb3e1d0fe76fcb7f6d6146e0b96565c8ba73c920c8e",
+  "objects": 2464,
+  "rings": 20,
+  "ring_tops_in": [
+    6.0,
+    42.0,
+    78.0,
+    114.0,
+    150.0
+  ],
+  "ring_thickness_in": [
+    0.5
+  ],
+  "ring_weight_lb": 276.12719446377804,
+  "bars": 124,
+  "validation": "PASS",
+  "source_path": "project_current/pier_wall/selected_case.json (D-078, 22 October 2026)",
+  "engineering_status": "CAD ring plates 1/2 in match the selected D-078 case; wall dimensions match D-075 within 0.001 in; RING-GRID tolerance failure remains; engineering acceptance open",
+  "status": "PASS"
+}
