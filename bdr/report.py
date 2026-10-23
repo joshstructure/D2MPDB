@@ -531,7 +531,7 @@ crest at the pier and falls at the same grade to End Bridge; the deck crossfall 
 {c.figure(fig_elev, "Bridge elevation on the PGL with the existing ground and the approach ramps, from the registered model and survey (Appendix D sections A-2 and B-2).")}
 <h3>4.2 Typical section</h3>
 {xsec}
-{fig_section}
+{typsec_figure(c)}
 <h3>4.3 Approaches</h3>
 <p>Ramp A (west) and Ramp B (east) are MSE-walled fill ramps that bring the walkway down to grade with switchback runs; the journal Access Geometry
 module sizes the runs at 5% (1:20) so that the walkways are not ramps under ADA 403 and shows the switchback length needed on the east side.
@@ -990,7 +990,7 @@ def render(bundle, version: str):
     c = Ctx(bundle)
     g = derived(c)
     fig_elev = figures.elevation_svg(bundle["geotech"], bundle["geotech"]["stations"], {})
-    fig_section = typsec_figure(c)      # sheet S-1, cut from the model (after fig_elev: Figure 1 is the elevation)
+    fig_section = None      # the typical section (sheet S-1) is numbered where Section 4 places it, after the elevation
 
     sections = [
         cover(c, g),
