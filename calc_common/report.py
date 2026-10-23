@@ -115,6 +115,12 @@ def _box(kind, title, body):
     return f'<div class="box {kind}"><div class="hd">{html.escape(title)}</div><div class="bd">{body}</div></div>'
 
 
+def _heading(title):
+    """Section title without its number ('1.2 Wind speed and exposure' -> 'Wind speed and exposure', 'Step 2. Fence
+    geometry' -> 'Fence geometry'), so an input group written as the bare heading lands in its own section."""
+    return re.sub(r'^(?:Step\s+)?\d+(\.\d+)*\.?\s+', '', title, flags=re.I) if isinstance(title, str) else title
+
+
 def _report_section(key, title, body):
     return (f'<details class="report-section" id="section-{key}" open><summary><h2>{html.escape(title)}</h2></summary>'
             f'<div class="section-body">{body}</div></details>')
@@ -229,9 +235,10 @@ class ReportBuilder:
         for d in defs:
             if 'function' not in d:
                 names_in(parse(d['expr']), names)
-        titles = {s['title'] for s in spec.sections} | {s['key'] for s in spec.sections}
-        inputs = [n for n in names if n in spec.inputs and n not in self.used_inputs and spec.inputs[n].get('group') not in titles]
-        inputs += [d['name'] for d in spec.input_spec if d.get('group') in (section['title'], key) and d['name'] not in self.used_inputs and d['name'] not in inputs]
+        titles = {_heading(s['title']) for s in spec.sections} | {s['key'] for s in spec.sections}
+        own = (_heading(section['title']), key)
+        inputs = [n for n in names if n in spec.inputs and n not in self.used_inputs and _heading(spec.inputs[n].get('group')) not in titles]
+        inputs += [d['name'] for d in spec.input_spec if _heading(d.get('group')) in own and d['name'] not in self.used_inputs and d['name'] not in inputs]
         order = [d['name'] for d in spec.input_spec]
         inputs.sort(key=order.index)
         self.used_inputs.update(inputs)
