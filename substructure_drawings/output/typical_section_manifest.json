@@ -1,0 +1,150 @@
+{
+ "generator": "substructure_drawings.typical_section",
+ "version": "1.0.0",
+ "dxf": "B4_Typical_Section.dxf",
+ "dxf_sha256": "692265702f951f07ccf9241e4ed1aa2305e46068b1ca529a98321702d891851e",
+ "dxf_flat": "B4_Typical_Section_flat.dxf",
+ "dxf_flat_sha256": "2cb771a3dad56ac36e03c8da04628dfb8f6c96eacdc2a043347c65bafd86e216",
+ "dimensions_flattened": 7,
+ "snapshot_sha256": "fbeda492af3263d0356725d6046213d5fbd57cfaad2a2020939aad0523932038",
+ "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
+ "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the section frame",
+ "frame": {
+  "e1": [
+   -1,
+   0,
+   0
+  ],
+  "e2": [
+   0,
+   0,
+   1
+  ],
+  "note": "u = -x, z of the model, feet; looking ahead station (sheet right = -X, south)"
+ },
+ "cut": {
+  "ffbw_eb1_y_ft": 4.071518,
+  "pier_cl_y_ft": -103.27828,
+  "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline",
+  "y_ft": -49.603381
+ },
+ "sheet": {
+  "number": "S-1",
+  "title": "TYPICAL SECTION",
+  "layout": "S-1 TYPICAL SECTION",
+  "scale": "1/2\" = 1'-0\""
+ },
+ "section": {
+  "station": "16+46.89",
+  "station_ft": 1646.8949,
+  "deck_out_to_out_ft": 13.583334,
+  "clear_between_barriers_ft": 12.0,
+  "slab_thickness_at_pgl_ft": 0.5,
+  "deck_top_el_at_pgl": 47.929291,
+  "beam_spacing_ft": 8.583334,
+  "beam_depth_ft": 3.0,
+  "overhang_ft": {
+   "L": 2.5,
+   "R": 2.5
+  },
+  "barrier_height_ft": 3.5,
+  "barrier_width_ft": 0.666667,
+  "crossfall": {
+   "L": 0.02,
+   "R": 0.01999
+  },
+  "drip_grooves": 2
+ },
+ "objects_by_role": {
+  "barrier": [
+   "BarrierDeckS1LCorrected",
+   "BarrierDeckS1RCorrected"
+  ],
+  "beam": [
+   "BridgeBeamS1B1",
+   "BridgeBeamS1B2"
+  ],
+  "deck": [
+   "BridgeDeckS1"
+  ],
+  "haunch": [
+   "BridgeHaunchS1B1",
+   "BridgeHaunchS1B2"
+  ]
+ },
+ "levels_used": {
+  "BeamConc": 4,
+  "Border": 3,
+  "CL_Major": 1,
+  "CL_Minor": 2,
+  "Dimension": 8,
+  "Leader": 14,
+  "SupstrConc": 1,
+  "Symbols": 4,
+  "TextStructures": 12,
+  "TrafBarrierConc": 2
+ },
+ "level_source": {
+  "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
+  "url": "https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/cadd/downloads/publications/caddmanualfdm/levels/fdotcaddstandardleveltable-10-25-2023.xlsx?sfvrsn=5c1b90b4_2",
+  "file": "fdotcaddstandardleveltable-10-25-2023.xlsx",
+  "sha256": "8d2ac22a556721927c11af15c3d9ea73f5b809806a100cd4b982b4328b735d50"
+ },
+ "cadd_manual": {
+  "source": "FDOT CADD Manual, Topic No. 625-050-001, publish date November 1, 2024",
+  "file": "caddmanual2025.pdf",
+  "sha256": "3074d0027748686d38bababae898e1f9f1cf0b13d0fe241b2fb4cdbcf07de222",
+  "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
+ },
+ "symbology_audit": {
+  "entities": 160,
+  "not_on_fdot_level": [],
+  "not_by_level": [],
+  "documented_overrides": {},
+  "layers": [
+   "0",
+   "AppSlabConc",
+   "AppSlabConc_h",
+   "BaseLineSurveyPGL",
+   "BeamConc",
+   "BeamConc_h",
+   "BearingPadMisc",
+   "Border",
+   "CL_Major",
+   "CL_Minor",
+   "ClipBorder_dp",
+   "Dimension",
+   "Leader",
+   "Patterning",
+   "PileConc",
+   "PileConc_h",
+   "PileSteel",
+   "PileSteel_h",
+   "Rebar",
+   "Rebar2",
+   "Rebar_h",
+   "SubStrConc",
+   "SubStrConc2",
+   "SubStrConc2_h",
+   "SubStrConc_h",
+   "SupstrConc",
+   "SupstrConc3_h",
+   "SupstrConc_h",
+   "Symbols",
+   "Tables",
+   "TextStructShtNo",
+   "TextStructures",
+   "TrafBarrierConc",
+   "WallConc",
+   "WallConc_h",
+   "WallMSEPanel",
+   "WallMSEPanel_h"
+  ]
+ },
+ "layout_warnings": [],
+ "annotation_overlaps": [],
+ "extraction_log": [
+  "14 superstructure objects selected",
+  "7 objects cut at Y = -49.603 ft"
+ ]
+}

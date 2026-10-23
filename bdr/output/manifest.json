@@ -142,15 +142,23 @@
    "path": "substructure_drawings/output/bar_mark_register.csv",
    "sha256": "c7459e1485fa5b2be92c4fe85870a2ed055407569dbf9d969e8d70d9eb90ac57"
   },
+  "TYPSEC-MANIFEST": {
+   "path": "substructure_drawings/output/typical_section_manifest.json",
+   "sha256": "e21c89cfd540ec890af3e8f685044305fbf9306d7ea84cbaf6acbff2648ac931"
+  },
+  "TYPSEC-PNG": {
+   "path": "substructure_drawings/output/B4_Typical_Section.png",
+   "sha256": "d437aa251743cdabde508f324be9cab530344b293d96c4d42936589bee40272e"
+  },
   "FACTS": {
    "path": "bdr/data/facts.json",
-   "sha256": "c02614ea5ee9093eb151ecd461460e51d5fb917019bae99f1d46d5d8df5be873"
+   "sha256": "9ec3207718510f63b7c5725e1a67f96483ff973e1ce328953e50502bdcd03b02"
   }
  },
  "outputs": {
-  "B4_Bridge_Development_Report.html": "e9e6af08b0104464ffbfd077e9eafb3abdb950eb405fd35c4fe70c7ffc5787a2",
-  "bdr_data.json": "bf63192bab89d302a8f87944b8ea38164be5a7d8ed50ba01dc496218f11b2f67"
+  "B4_Bridge_Development_Report.html": "856065d5f5ea2e0ae813e418841eb7377736a6bf66f3a4202de29a378dd6e8ee",
+  "bdr_data.json": "42fce6c05e4200243d595c37547d4c4af94f2a9cfb0b3879311fc6740fae7820"
  },
- "open_items": 37,
+ "open_items": 36,
  "pdf": "C:\\github\\D2MPDB\\bdr\\output\\B4_Bridge_Development_Report.pdf"
 }

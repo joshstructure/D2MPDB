@@ -60,6 +60,8 @@ SOURCES = {
     "PLAN-MANIFEST": ROOT / "substructure_drawings" / "output" / "model_plan_manifest.json",
     "PLAN-PNG": ROOT / "substructure_drawings" / "output" / "B4_Model_Plan.png",
     "BAR-REGISTER": ROOT / "substructure_drawings" / "output" / "bar_mark_register.csv",
+    "TYPSEC-MANIFEST": ROOT / "substructure_drawings" / "output" / "typical_section_manifest.json",
+    "TYPSEC-PNG": ROOT / "substructure_drawings" / "output" / "B4_Typical_Section.png",
     "FACTS": PKG / "data" / "facts.json",
 }
 PREVIEWS = ROOT / "substructure_drawings" / "output" / "previews"
@@ -335,6 +337,14 @@ def mathcad_beams():
 
 
 # -------------------------------------------------------------- drawings --
+def typical_section_sheet():
+    """Sheet S-1, the superstructure typical section cut from the model."""
+    man = read_json(SOURCES["TYPSEC-MANIFEST"])
+    return {"number": man["sheet"]["number"], "title": man["sheet"]["title"], "scales": [man["sheet"]["scale"]],
+            "png": SOURCES["TYPSEC-PNG"], "generator": f"{man['generator']} {man['version']}",
+            "model_sha256": man["model_sha256"], "dxf": man["dxf"], "section": man["section"], "cut": man["cut"]}
+
+
 def drawing_sheets():
     man = read_json(SOURCES["DXF-MANIFEST"])
     sheets = []
@@ -371,6 +381,7 @@ def collect():
     geotech = read_json(SOURCES["GEOTECH-SNAPSHOT"])
     geotech_manifest = read_json(SOURCES["GEOTECH-MANIFEST"])
     drawings = drawing_sheets()
+    typsec = typical_section_sheet()
     plan = read_json(SOURCES["PLAN-MANIFEST"])
 
     fbmp_readme = FBMP_README.read_text(encoding="utf-8") if FBMP_README.exists() else ""
@@ -380,7 +391,8 @@ def collect():
         "assumptions": assumptions, "review": review, "cases": cases, "pile_tables": pile_tables,
         "pile_checks": pile_checks, "wall_checks": wall_checks, "cheek_checks": cheek_checks, "caps": caps,
         "backwall_readme": backwall_readme, "strap": strap, "beams": beams, "geotech": geotech,
-        "geotech_manifest": geotech_manifest, "drawings": drawings, "plan": plan, "fbmp_readme": fbmp_readme,
+        "geotech_manifest": geotech_manifest, "drawings": drawings, "typsec": typsec, "plan": plan,
+        "fbmp_readme": fbmp_readme,
     }
 
 

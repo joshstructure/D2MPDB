@@ -554,11 +554,6 @@
   {
    "kind": "To be supplied",
    "section": "14 30% plans",
-   "text": "typical section of Figure 2 from the journal geometry; superstructure sheets (framing plan, typical section, beam details) not drawn"
-  },
-  {
-   "kind": "To be supplied",
-   "section": "14 30% plans",
    "text": "MSE wall geometry in the CAD model and MSE-DETAIL-DXF; control drawings not prepared"
   },
   {
@@ -902,6 +897,38 @@
   "outstanding": 14,
   "registered_sources": 43,
   "tracker_items": 28
+ },
+ "typical_section": {
+  "cut": {
+   "ffbw_eb1_y_ft": 4.071518,
+   "pier_cl_y_ft": -103.27828,
+   "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline",
+   "y_ft": -49.603381
+  },
+  "generator": "substructure_drawings.typical_section 1.0.0",
+  "number": "S-1",
+  "section": {
+   "barrier_height_ft": 3.5,
+   "barrier_width_ft": 0.666667,
+   "beam_depth_ft": 3.0,
+   "beam_spacing_ft": 8.583334,
+   "clear_between_barriers_ft": 12.0,
+   "crossfall": {
+    "L": 0.02,
+    "R": 0.01999
+   },
+   "deck_out_to_out_ft": 13.583334,
+   "deck_top_el_at_pgl": 47.929291,
+   "drip_grooves": 2,
+   "overhang_ft": {
+    "L": 2.5,
+    "R": 2.5
+   },
+   "slab_thickness_at_pgl_ft": 0.5,
+   "station": "16+46.89",
+   "station_ft": 1646.8949
+  },
+  "title": "TYPICAL SECTION"
  },
  "version": "bdr 1.0.0",
  "wall_checks": {

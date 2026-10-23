@@ -50,10 +50,14 @@ and that every flagged item reaches the appendix.
 
 ## Figures
 
-`figures.py` draws the typical section from the journal values (schematic FIB-36 shape)
-and the elevation on the PGL from the geotechnical sections A-2 and B-2 (model components,
-existing ground, Pond 14D). Both are record drawings, not contract drawings. The
-sixteen substructure sheets and the general plan are the generator's PNG previews.
+The typical section (Figure 2, Appendix B) is sheet S-1 of the substructure drawings
+generator, cut from the registered FreeCAD model at mid-span 1
+(`substructure_drawings/typical_section.py`, `output/B4_Typical_Section.png`); its
+measured values (out to out, clear width, beam spacing, slab, crossfall) are read from
+`typical_section_manifest.json`. `figures.py` draws the elevation on the PGL from the
+geotechnical sections A-2 and B-2 (model components, existing ground, Pond 14D). Both
+are record drawings, not contract drawings. The sixteen substructure sheets and the
+general plan are the generator's PNG previews.
 
 ## Not engineering acceptance
 

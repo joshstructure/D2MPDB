@@ -49,7 +49,7 @@
     "historical": {"status": "inferred", "text": "FDM 121.9.5 applies to rehabilitation or replacement of an older bridge; not applicable."}
   },
   "checklist_fdm_121_10": [
-    {"item": "Typical Sections for Roadway and Bridge", "status": "partial", "note": "Bridge typical section drawn from the registered geometry (Exhibit B); approved roadway typical sections not in the record"},
+    {"item": "Typical Sections for Roadway and Bridge", "status": "partial", "note": "Bridge typical section cut from the registered model (sheet S-1, Appendix B); approved roadway typical sections not in the record"},
     {"item": "Roadway Plans (bridge vicinity)", "status": "partial", "note": "General plan of the model (Exhibit A) and the roadway profile XML; preliminary roadway plans not in the record"},
     {"item": "Maintenance of Traffic Requirements", "status": "missing", "note": "See Section 10"},
     {"item": "Bridge Hydraulics Report and Recommendation Sheet", "status": "missing", "note": "Grade separation; District Drainage Engineer concurrence not in the record"},

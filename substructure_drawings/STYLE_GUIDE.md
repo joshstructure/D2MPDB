@@ -260,7 +260,10 @@ symbol at page scale.
 - **A27 An arrowhead points at a drawn line; an area is named with the
   area leader.**  A leader with an arrowhead ends on an edge, a bar, a
   centerline, a dot or a break lobe (the skew angle's tip on its arc), never
-  inside the member it names: the PIER CAP of View E-E points at the cap
+  inside the member it names (the drawn lines are the concrete levels of the
+  substructure and, since the typical section sheet S-1 of 2026-10-23, the
+  superstructure levels SupstrConc, BeamConc and TrafBarrierConc; every tip
+  of that sheet is snapped onto the model's cut outline): the PIER CAP of View E-E points at the cap
   stub's side edge, level from its column, and that of Section F-F at the
   cap's end face beyond the wall, level from the outer side (both had stood
   inside the cap, the F-F leader rising through the stub's break line); the

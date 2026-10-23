@@ -82,8 +82,9 @@ class BdrTests(unittest.TestCase):
         self.assertGreaterEqual(len(items), len(missing))
 
     def test_figures_are_embedded(self):
-        self.assertGreaterEqual(self.html.count("<svg"), 3)             # typical section and elevation, each twice
-        self.assertGreaterEqual(self.html.count("data:image/png;base64,"), 17)   # P-1 and the 16 substructure sheets
+        self.assertGreaterEqual(self.html.count("<svg"), 2)             # the elevation, twice
+        self.assertGreaterEqual(self.html.count("data:image/png;base64,"), 19)   # P-1, S-1 twice and the 16 substructure sheets
+        self.assertEqual(self.data["typical_section"]["number"], "S-1")
 
     def test_no_placeholders_leak(self):
         text = re.sub(r"<style>.*?</style>", " ", self.html, flags=re.S)

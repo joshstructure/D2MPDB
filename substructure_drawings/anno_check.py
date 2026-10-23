@@ -161,7 +161,8 @@ SUB_NEAR_TH = 3.0        # a parenthesised text this close (text heights) under 
 # levels
 LINEWORK_SKIP = ("Patterning", "Symbols")         # hatch patterns; symbols drawn around their own letters
 LEADER_LAYERS = ("Leader", "Dimension")           # layers whose segments may not run through a symbol (A13)
-CONCRETE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel", "WallConc", "WallMSEPanel", "AppSlabConc")
+CONCRETE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel", "WallConc", "WallMSEPanel", "AppSlabConc",
+                     "SupstrConc", "BeamConc", "TrafBarrierConc")   # (the superstructure levels: the typical section sheet)
 LEADER_LINE_EXACT = ("Rebar", "Rebar2", "BearingPadMisc")   # with the prefixes: the levels of A14
 CLIP_EXACT = ("Rebar2",)                                    # with the prefixes: the levels of D12
 OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13

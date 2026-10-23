@@ -491,6 +491,19 @@ per end-bent pile (D-050); its documentation (neutral plane, scourable layers) i
 </section>"""
 
 
+def typsec_figure(c: Ctx):
+    """Sheet S-1: the typical section cut from the registered model."""
+    t = c.b["typsec"]
+    sec = t["section"]
+    return c.figure(
+        f'<img class="sheet" src="{img_data(t["png"])}" alt="Sheet S-1 typical section">',
+        f'Sheet {esc(t["number"])}, {esc(t["title"].title())}: the superstructure cut from the registered FreeCAD model at '
+        f'Sta. {esc(sec["station"])} (mid-span 1), looking ahead station, in FDOT CADD symbology ({esc(t["generator"])}). '
+        f'Measured on the model: {ftin(sec["deck_out_to_out_ft"] * 12)} out to out, {ftin(sec["clear_between_barriers_ft"] * 12)} clear, '
+        f'beams at {ftin(sec["beam_spacing_ft"] * 12)}, {ftin(sec["slab_thickness_at_pgl_ft"] * 12)} slab, {sec["crossfall"]["L"] * 100:.1f}% crossfall. '
+        f'The fence enclosure is not in the model and is not drawn.')
+
+
 def s4_geometry(c: Ctx, g, fig_section, fig_elev):
     c.section = "4 Geometry"
     f = c.b["facts"]
@@ -518,7 +531,7 @@ crest at the pier and falls at the same grade to End Bridge; the deck crossfall 
 {c.figure(fig_elev, "Bridge elevation on the PGL with the existing ground and the approach ramps, from the registered model and survey (Appendix D sections A-2 and B-2).")}
 <h3>4.2 Typical section</h3>
 {xsec}
-{c.figure(fig_section, "Bridge typical section at a support, drawn from the journal geometry values (schematic).")}
+{fig_section}
 <h3>4.3 Approaches</h3>
 <p>Ramp A (west) and Ramp B (east) are MSE-walled fill ramps that bring the walkway down to grade with switchback runs; the journal Access Geometry
 module sizes the runs at 5% (1:20) so that the walkways are not ramps under ADA 403 and shows the switchback length needed on the east side.
@@ -813,13 +826,16 @@ concrete, MSE copings and barriers, fence hardware and the earthwork of the ramp
 def s14_plans(c: Ctx, g):
     c.section = "14 30% plans"
     dr = c.b["drawings"]
+    t = c.b["typsec"]
     rows = [[esc(s["number"]), esc(s["title"]), esc(", ".join(s["scales"]))] for s in dr["sheets"]]
-    tbl = c.table(["Sheet", "Title", "Scales"], [["P-1", "GENERAL PLAN (whole model, 1\" = 40')", "1\" = 40'"]] + rows, "Preliminary FDOT-format sheets generated from the registered model (Appendix C)")
+    tbl = c.table(["Sheet", "Title", "Scales"], [["P-1", "GENERAL PLAN (whole model, 1\" = 40')", "1\" = 40'"],
+                                                 [esc(t["number"]), esc(t["title"]) + " (superstructure, mid-span 1)", esc(t["scales"][0])]] + rows,
+                  "Preliminary FDOT-format sheets generated from the registered model (Appendix C)")
     req = c.table(["30% Structures Plans item (FDM 121.9.9)", "Status in the record"], [
         ["General Notes sheet", c.tbs("not in the record; the design-basis notes of the journal and the sheet notes of B4-1 to B4-16 are the material for it")],
         ["Plan and Elevation sheet", c.tbs("general plan P-1 and the record elevation of Figure 1 exist; the SDM plan-and-elevation sheet with the profile, clearances and bridge limits is not drawn")],
         ["Substructures: elements, sizes, foundation type and pile arrangement", '<span class="flag ok">Provided</span>End bent and pier plans, elevations, sections, details and bar list, sheets B4-1 to B4-16'],
-        ["Superstructure: cross section with railings, slab thickness, beam type and spacing", c.tbs("typical section of Figure 2 from the journal geometry; superstructure sheets (framing plan, typical section, beam details) not drawn")],
+        ["Superstructure: cross section with railings, slab thickness, beam type and spacing", f'<span class="flag ok">Provided</span>Typical section cut from the model, sheet {esc(t["number"])} (Figure 2; the fence enclosure is not modelled); framing plan and beam details not drawn'],
         ["Retaining walls: preliminary control drawings", c.tbs("MSE wall geometry in the CAD model and MSE-DETAIL-DXF; control drawings not prepared")],
         ["Bridge Hydraulics Recommendation Sheet", '<span class="flag inf">Inferred</span>Not applicable to a grade separation, subject to drainage concurrence'],
         ["Report of core borings", c.tbs("no borings in the record")],
@@ -830,8 +846,9 @@ def s14_plans(c: Ctx, g):
         ["Design Exceptions and Design Variations", c.tbs("none identified in the record; confirm (FDM 122)")],
     ], "FDM 121.9.9 minimum contents of the 30% Structures Plans")
     return f"""<section id="s14"><h2>14. 30% Structures Plans (FDM 121.9.9)</h2>
-<p>The record holds a 17-sheet preliminary set generated from the registered FreeCAD model in FDOT CADD symbology ({esc(dr["generator"])}): the
-general plan of the whole model and the substructure plans, elevations, sections, details and reinforcing bar list of both end bents and the pier.
+<p>The record holds an 18-sheet preliminary set generated from the registered FreeCAD model in FDOT CADD symbology ({esc(dr["generator"])};
+{esc(t["generator"])} for the typical section): the general plan of the whole model, the superstructure typical section, and the substructure plans,
+elevations, sections, details and reinforcing bar list of both end bents and the pier.
 The sheets are review copies, not contract drawings: the border is an approximation of the FDOT cell, the bridge number, FPID, county and EOR fields
 are blank, and the sheets carry MODEL CHECK notes where the model and the calculations are not yet reconciled.</p>
 {tbl}
@@ -881,8 +898,11 @@ Sta. {figures._fmt_sta(c.b["geotech"]["stations"]["EB1"])}.</p>
 
 def app_b_figures(c: Ctx, fig_section, fig_elev):
     c.section = "Appendix B"
+    t = c.b["typsec"]
     return f"""<section id="appB" class="pb"><h2>Appendix B. Typical section and elevation</h2>
-{fig_section}<p class="note">Typical section at a support from the journal Bridge Geometry - 2 Beam values (Figure 2 of Section 4).</p>
+<p class="note">Sheet {esc(t["number"])} ({esc(t["generator"])}, <code>{esc(t["dxf"])}</code>), the typical section cut from the registered
+FreeCAD model (SHA-256 {esc(t["model_sha256"][:12])}…) at Sta. {esc(t["section"]["station"])}; Figure 2 of Section 4.</p>
+<img class="sheet" src="{img_data(t["png"])}" alt="Sheet S-1 typical section">
 {fig_elev}{figures.legend_html()}<p class="note">Elevation on the PGL from the geotechnical sections A-2 and B-2 (Figure 1 of Section 4).</p>
 </section>"""
 
@@ -890,9 +910,11 @@ def app_b_figures(c: Ctx, fig_section, fig_elev):
 def app_c_sheets(c: Ctx):
     c.section = "Appendix C"
     dr = c.b["drawings"]
+    t = c.b["typsec"]
     parts = [f'<section id="appC" class="pb"><h2>Appendix C. Preliminary substructure sheets</h2>'
              f'<p class="note">{esc(dr["generator"])}, generated from the registered FreeCAD model (SHA-256 {esc(dr["model_sha256"][:12])}…) in FDOT CADD '
-             f'symbology; review copies of <code>{esc(dr["dxf"])}</code>. Preliminary, not for construction.</p>']
+             f'symbology; review copies of <code>{esc(dr["dxf"])}</code> (the typical section, <code>{esc(t["dxf"])}</code>, is in Appendix B). '
+             f'Preliminary, not for construction.</p>']
     for s in dr["sheets"]:
         if s["png"]:
             parts.append(f'<figure><img class="sheet" src="{img_data(s["png"])}" alt="Sheet {esc(s["number"])}"><figcaption>Sheet {esc(s["number"])} — {esc(s["title"])}</figcaption></figure>')
@@ -967,16 +989,8 @@ def app_h_open(c: Ctx):
 def render(bundle, version: str):
     c = Ctx(bundle)
     g = derived(c)
-    pw = bundle["cases"]["PIER-WALL-CASE"]
-    sec_geom = dict(deck_w=g["deck_w_in"], slab_t=g["slab_in"], parapet_w=g["parapet_w_in"], parapet_h=g["parapet_h_in"],
-                    edge_offset=g["edge_offset_in"], beam_spacing=g["beam_spacing_in"], beam_depth=g["beam_depth_in"],
-                    top_flange_w=g["flange_in"], clear_w=g["clear_w_in"], fence_straight=g["fence_straight_in"],
-                    fence_radius=g["fence_radius_in"], crossfall=g["crossfall"], haunch_min=g["haunch_min_in"],
-                    pedestal_h=g["pedestal_h_in"], pedestal_w=g["pedestal_w_in"], pad_t=g["pad_t_in"], cap_len=g["pier_cap_len_in"],
-                    cap_h=g["pier_cap_h_in"], beam_name="FIB-36", handrail_h=34.0,
-                    cap_label=f'Pier cap {ftin(g["pier_cap_w_in"])} × {ftin(g["pier_cap_h_in"])}, {ftin(g["pier_cap_len_in"])} long, on {g["pier_piles"]} ~ {ftin(g["pier_pile_d_in"])} pipe piles at {ftin(g["pier_pile_s_in"])} (pier wall below)')
-    fig_section = figures.typical_section_svg(sec_geom)
     fig_elev = figures.elevation_svg(bundle["geotech"], bundle["geotech"]["stations"], {})
+    fig_section = typsec_figure(c)      # sheet S-1, cut from the model (after fig_elev: Figure 1 is the elevation)
 
     sections = [
         cover(c, g),
@@ -1033,5 +1047,6 @@ def render(bundle, version: str):
         "pile_tables": {k: {"columns": v["columns"], "row": v["row"]} for k, v in bundle["pile_tables"].items()},
         "pile_checks": bundle["pile_checks"], "wall_checks": bundle["wall_checks"], "cheek_checks": bundle["cheek_checks"],
         "caps": bundle["caps"], "review": bundle["review"], "calc_modules": c.J.calc_modules(),
+        "typical_section": {k: bundle["typsec"][k] for k in ("number", "title", "generator", "section", "cut")},
     }
     return html, data
