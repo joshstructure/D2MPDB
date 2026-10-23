@@ -22,7 +22,7 @@ except ModuleNotFoundError as err:   # the annotation checker module is new; bui
         raise
     anno_check = None
 
-GENERATOR_VERSION = "2.8.0"
+GENERATOR_VERSION = "2.9.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
 INFO = {
@@ -453,13 +453,13 @@ class Composer:
             if q["status"] != "PASS" and s.title in q["check"].upper():
                 notes.append("MODEL CHECK (REMOVE BEFORE ISSUE): %s IS %.3f IN THE CAD MODEL AND %.3f IN THE SELECTED "
                              "GEOMETRY CAD TABLES; RECONCILE BEFORE ISSUE." % (q["check"].upper(), q["model"], q["reference"]))
-        sh.notes(x, y - 0.3, "NOTES:", notes, width_in=3.7)
+        sh.notes(x, y - 0.25, "NOTES:", notes, width_in=3.7)
         # the pier end view stands under the notes (D-059: with the cheek
         # wall face it is taller than before): it keeps 0.2 in under them
         # (the end bent plans' right-end labels run close to the column by
         # design, so this is not a general block check)
         if ev is not None:
-            nb = sh.notes_bottom(y - 0.3, notes, 3.7)
+            nb = sh.notes_bottom(y - 0.25, notes, 3.7)
             top_ev = self.paper_bbox(ev)[3]
             if top_ev > nb - 0.2:
                 self.warnings.append("%s / %s runs within 0.2 in of the notes (top %.2f, notes bottom %.2f)" %
@@ -616,7 +616,7 @@ class Composer:
         for v in (da, db):
             self.check(sh, v)
         area = (DRAW[0], TITLE_TOP + 0.1, DRAW[2], DRAW[3])
-        y = min(b0[1] for v in (va, vb) for b0 in v.paper_boxes()) - 0.06
+        y = min(b0[1] for v in (va, vb) for b0 in v.paper_boxes()) - 0.055
         if DELTA in b.legend:
             leg = [DELTA + "  " + b.legend[DELTA]]
             yl, wl = self.paper_bbox(db)[1] - 0.3, xd1 - xd0 - 0.1

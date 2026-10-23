@@ -698,9 +698,9 @@ class SubstructureDxfTests(unittest.TestCase):
 
     def test_centerline_linetypes_are_dashes_not_dots(self):
         """Rule D3: DGN4 and DGN7 are long dash, short dash with no element
-        shorter than 0.005 ft (a dot), plotted at 0.25 (minor) and 0.35
-        (major) x the scale factor so a short centerline still shows its
-        dashes (one pattern 0.34 in and 0.63 in on paper)."""
+        shorter than 0.005 in (a dot): FDOT's plotted line codes in inches at
+        one paper inch per unit (sf / 12), one pattern 0.336 in and 0.726 in
+        on paper; hidden lines (DGN2) 0.08 in dash, 0.04 in gap."""
         for style in (4, 7):
             pattern = fdot.LINETYPE_PATTERNS[style]       # total length, then the elements
             self.assertFalse([v for v in pattern if 0 < abs(v) < 0.005], pattern)
@@ -709,9 +709,10 @@ class SubstructureDxfTests(unittest.TestCase):
             self.assertGreater(dashes[0], dashes[1])
             self.assertAlmostEqual(pattern[0], sum(abs(v) for v in pattern[1:]), places=9)
             self.assertIn("DGN%d" % style, self.doc.linetypes)
-        self.assertEqual(fdot.LTSCALE_PER_SF["DGN4"], 0.25)
-        self.assertEqual(fdot.LTSCALE_PER_SF["DGN7"], 0.35)
-        self.assertAlmostEqual(fdot.pattern_length("DGN4", 32.0) / 32.0 * 12.0, 0.1125 * 0.25 * 12, places=9)
+        self.assertEqual(fdot.LINETYPE_PATTERNS[2], [0.12, 0.08, -0.04])
+        self.assertEqual(set(fdot.LTSCALE_PER_SF.values()), {1.0 / 12.0})
+        self.assertAlmostEqual(fdot.pattern_length("DGN4", 32.0) / 32.0 * 12.0, 0.336, places=9)
+        self.assertAlmostEqual(fdot.pattern_length("DGN7", 32.0) / 32.0 * 12.0, 0.726, places=9)
 
     def test_offset_polyline_mitres_corners_to_the_left_and_right(self):
         """C4/B3: ``cad.offset_polyline`` offsets to the left for a positive

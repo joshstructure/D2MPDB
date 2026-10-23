@@ -1,10 +1,10 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.8.0",
+ "version": "2.9.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "c171da483a0c11877628e4c2dde6d6e888e55f4ce577660fc6c8183764d10bdf",
+ "dxf_sha256": "0a586affa0852dc74e6e11daa3381a8ca1887a7d9f4280a3ad1bf7e65f79e0d9",
  "dxf_flat": "B4_Substructure_EndBents_Pier_flat.dxf",
- "dxf_flat_sha256": "c3847096ea31f7b6b88e320b9aab12b40db93f4c7cc33ee88f83d4235ef2709d",
+ "dxf_flat_sha256": "5c9b13b922564dd87919e182c3c010c0adf509503634301e47ad05f2558bcd5a",
  "dimensions_flattened": 479,
  "snapshot_sha256": "7f4657754bccfe1d74ea768e21b76c15e0a2a2ed681edaec022c67f5f4273daa",
  "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",

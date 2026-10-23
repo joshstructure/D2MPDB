@@ -57,14 +57,7 @@ def preview(dxf_path, png_path):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    import dataclasses
-    from substructure_drawings import fdot
-    doc, cfg = bents.preview_doc(dxf_path, {fdot.LINETYPE_NAME % n: 1.0 / 12.0 for n in fdot.LINETYPE_PATTERNS})
-    # the renderer clamps each dash and gap, in the rescaled entity units of
-    # preview_doc, to min_dash_length: at 2.5e-5 every FDOT dash and gap of
-    # the plan came out as one equal ~0.14 in length; 1e-8 lets them plot at
-    # their sizes (0.08 in dash, 0.04 in gap for DGN2)
-    cfg = dataclasses.replace(cfg, min_dash_length=1e-8)
+    doc, cfg = bents.preview_doc(dxf_path)
     name = [n for n in doc.layout_names_in_taborder() if n != "Model"][0]
     fig = plt.figure(figsize=(17, 11))
     ax = fig.add_axes([0, 0, 1, 1])

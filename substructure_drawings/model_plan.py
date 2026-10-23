@@ -150,37 +150,6 @@ def drop_coincident_hidden_fast(edges, tol=0.004, cell=4.0):
     return out
 
 
-def apply_fdot_linetypes(doc, sf):
-    """Write every patterned DGNn linetype of ``doc`` with FDOT's plotted
-    definition of line code n (``fdot.FDOT_LINE_CODES_IN``, paper inches) and
-    give each element drawn in it the linetype scale of one paper inch: model
-    feet at drawing scale factor ``sf`` (sf / 12) in model space, paper feet
-    (1 / 12) on the sheets.  The dashes then plot at FDOT's sizes, e.g. the
-    hidden line (DGN2) 0.08 in dash, 0.04 in gap; the shared substructure
-    patterns (``fdot.LINETYPE_PATTERNS``) plot half as long again."""
-    names = {fdot.LINETYPE_NAME % n: n for n in fdot.LINETYPE_PATTERNS}
-    for name, n in names.items():
-        desc = doc.linetypes.get(name).dxf.description
-        doc.linetypes.remove(name)
-        doc.linetypes.add(name, pattern=fdot.fdot_linetype(n), description=desc)
-    by_layer = {lay.dxf.name: lay.dxf.linetype for lay in doc.layers}
-    for layout in doc.layouts:
-        scale = sf / 12.0 if layout.is_modelspace else 1.0 / 12.0
-        for e in layout:
-            lt = e.dxf.get("linetype", "BYLAYER")
-            if lt.upper() == "BYLAYER":
-                lt = by_layer.get(e.dxf.layer, "Continuous")
-            if lt in names:
-                e.dxf.ltscale = scale
-
-
-def fdot_pattern_length(linetype_name, sf):
-    """``fdot.pattern_length`` for the FDOT line codes of this plan, feet of
-    model space at drawing scale factor ``sf``."""
-    n = {fdot.LINETYPE_NAME % k: k for k in fdot.LINETYPE_PATTERNS}.get(linetype_name)
-    return 0.0 if n is None else sum(fdot.FDOT_LINE_CODES_IN[n]) * sf / 12.0
-
-
 class PlanComposer:
     def __init__(self, snap, info=build.INFO, variant="plan"):
         self.snap = snap
@@ -282,13 +251,6 @@ class PlanComposer:
         comp.warnings, comp.__dict__["placed"] = self.warnings, {}
         comp.check(sh, v)
         self.overlaps = comp.__dict__.get("annotation_overlaps", [])
-        # D3 with the FDOT line codes this plan is written in: every
-        # centerline at least 1.5 patterns long, so it shows its dashes
-        for pa, pb, layer, length in v.centerlines:
-            pat = fdot_pattern_length(fdot.level_attrs(layer)["linetype"], v.sf)
-            if pat and length < 1.5 * pat:
-                self.warnings.append("[D3] %s centerline (%.1f, %.1f)-(%.1f, %.1f) shorter than 1.5 FDOT patterns"
-                                     % (layer, pa[0], pa[1], pb[0], pb[1]))
         xn = DRAW[0] + 0.25 + pw + 0.4
         if var["hidden"]:
             shown = ("THE FINISHED COMPONENTS OF THE MODEL ARE DRAWN: DECKS, BEAMS, HAUNCHES, BEARINGS, PEDESTALS, "
@@ -321,7 +283,6 @@ class PlanComposer:
         if "Layout1" in self.doc.layouts:   # ezdxf's default layout: the sheet is the only layout
             self.doc.layouts.delete("Layout1")
         build.dimension_blocks_by_level(self.doc)
-        apply_fdot_linetypes(self.doc, v.sf)
         self.sheet, self.view, self.labels, self.extents = sh, v, labels, ex
         return self.doc
 
@@ -381,7 +342,7 @@ def _write_outputs(snap, snapshot_path, out_dir, variant):
         "linetypes": {"source": "FDOT CADD Manual line codes, plotted inches (fdot.FDOT_LINE_CODES_IN)",
                       "patterns_in": {fdot.LINETYPE_NAME % n: list(fdot.FDOT_LINE_CODES_IN[n])
                                       for n in fdot.LINETYPE_PATTERNS},
-                      "entity_ltscale_model": round(comp.view.sf / 12.0, 6)},
+                      "entity_ltscale_model": round(fdot.LTSCALE_PER_SF[fdot.HIDDEN_LINETYPE] * comp.view.sf, 6)},
         "stations": comp.labels,
         "objects_by_role": snap["roles"],
         "skipped_objects": snap["skipped"],

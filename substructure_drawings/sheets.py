@@ -173,8 +173,15 @@ class Sheet:
             boxes.append(z.footprint())
             x += w + ZONE_GAP_FT
         msp = self.doc.modelspace()
-        bx0, by0 = min(b[0] for b in boxes) - BOX_MARGIN_FT, min(b[1] for b in boxes) - BOX_MARGIN_FT
-        bx1, by1 = max(b[2] for b in boxes) + BOX_MARGIN_FT, max(b[3] for b in boxes) + BOX_MARGIN_FT
+        # the scale labels and the box stand outside the viewports' clip
+        # (CLIP_MARGIN beyond the window, in paper inches): just under a zone
+        # they plotted on the sheet, e.g. over the last note of B4-2 and at
+        # the bottom of the 1" = 40' plan (2026-10-23)
+        pads = [(CLIP_MARGIN + 0.04) * z.sf / 12.0 for z in zones]
+        hns = [fdot.TEXT_STYLES[fdot.TEXT_STYLE][1] * z.sf for z in zones]
+        m = max([BOX_MARGIN_FT] + [p + 1.5 * hn for p, hn in zip(pads, hns)])
+        bx0, by0 = min(b[0] for b in boxes) - m, min(b[1] for b in boxes) - m
+        bx1, by1 = max(b[2] for b in boxes) + m, max(b[3] for b in boxes) + m
         self.group_box = (bx0, by0, bx1, by1)
         msp.add_lwpolyline([(bx0, by0), (bx1, by0), (bx1, by1), (bx0, by1)], close=True,
                            dxfattribs={"layer": "Border"})
@@ -182,11 +189,10 @@ class Sheet:
         h = fdot.TEXT_STYLES[fdot.TITLE_STYLE][1] * max(z.sf for z in zones)
         e = msp.add_text(label, height=h, dxfattribs={"layer": "Border", "style": fdot.TITLE_STYLE})
         e.set_placement((bx0, by1 + 0.4 * h), align=TextEntityAlignment.BOTTOM_LEFT)
-        for z, b in zip(zones, boxes):
+        for z, b, pad, hn in zip(zones, boxes, pads, hns):
             note = fdot.font_text(fdot.scale_label(z.scale_key))
-            hn = fdot.TEXT_STYLES[fdot.TEXT_STYLE][1] * z.sf
             e = msp.add_text(note, height=hn, dxfattribs={"layer": "Border", "style": fdot.TEXT_STYLE})
-            e.set_placement((b[0], b[1] - 0.4 * hn), align=TextEntityAlignment.TOP_LEFT)
+            e.set_placement((b[0], b[1] - pad), align=TextEntityAlignment.TOP_LEFT)
 
     # ---------------------------------------------------------- viewports
     def add_viewports(self):

@@ -1,5 +1,10 @@
 # End bent and pier DXF (FDOT format)
 
+**Generator 2.9.0 (23 October 2026)** writes the dashed linetypes with
+FDOT's plotted line code sizes (hidden 0.08 in dash, 0.04 in gap; see
+Symbology), and the PNG/PDF previews plot those dashes at their size (the
+renderer's dash clamp had drawn every dash and gap one equal length).
+
 **Generator 2.8.0 (22 October 2026)** draws the pier wall of model decisions
 D-076 (the wall's reinforcement and annular pile ring plates added to the
 CAD model) and D-079 (the plates 1/2 in thick, matching the selected ring
@@ -313,8 +318,13 @@ Both are recorded in [`fdot.py`](fdot.py) and in the manifest.
   ACI 7, 5, 3, 1, 2, 6, 30, 4, as in the FDOT-workspace DXF export.
 - **Line styles (5.10.3.2, p. 49).** Bentley line style n is the Autodesk
   linetype `DGNn` (FDOT.LIN): `Continuous`, `DGN2` hidden, `DGN4` and
-  `DGN7` centerlines, `DGN6` baseline/PGL. The pattern lengths are those of
-  the FDOT-workspace export. A MicroStation DWG/DXF export names the same
+  `DGN7` centerlines, `DGN6` baseline/PGL. The patterns are FDOT's plotted
+  line code definitions in inches (CADD Manual 2017 update p. 3-12 and FDM
+  edition 5.9.3: DGN2 0.08 in dash, 0.04 in gap; DGN4 0.200/0.053/0.03/0.053;
+  DGN6 0.32/0.056/0.048/0.056/0.048/0.056; DGN7 0.59/0.053/0.03/0.053;
+  `fdot.FDOT_LINE_CODES_IN`), each element at a linetype scale of one paper
+  inch in model feet (scale factor / 12; generator 2.9.0, 2026-10-23, the
+  hidden dash was 0.12 in with a 0.08 in gap before). A MicroStation DWG/DXF export names the same
   linetypes `DGN Style n`. To write those names for a round trip to
   MicroStation line codes, change the one line `LINETYPE_NAME = "DGN%d"` in
   `fdot.py` to `"DGN Style %d"` and rebuild.

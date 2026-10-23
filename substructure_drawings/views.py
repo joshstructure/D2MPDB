@@ -2131,7 +2131,9 @@ class Builder:
         # under the bottom row that the centerline label points to is made a
         # full pattern long (the label drops to suit)
         pat_major = fdot.pattern_length(fdot.level_attrs("CL_Major")["linetype"], v.sf)
-        z_cll = min(z_cll, yb1 + 0.09 * k - 1.05 * pat_major)
+        # (1.01 patterns: the FDOT DGN7 pattern is 0.726 in, so every
+        # hundredth of a pattern is height off the notes under the sections)
+        z_cll = min(z_cll, yb1 + 0.09 * k - 1.01 * pat_major)
         vline_gapped(v, ccl, yb1 + 0.35 * k, z_ccl, gaps, "CL_Major")
         v.line((ccl, z_cll - 0.12 * k), (ccl, yb1 - 0.03 * k), "CL_Major")
         v.leader([(ccl, z_cll), (ccl + fs * 0.3 * k, z_cll)], self.cl_name(), al_f, cl=True)
@@ -3313,7 +3315,7 @@ class Builder:
         # the two dimension text bands: a piece left shorter than a pattern (the
         # one under the wall-width band) is dropped
         pat_major = fdot.pattern_length(fdot.level_attrs("CL_Major")["linetype"], v.sf)
-        z_cl_top = max(y_cw + 0.77 * k, y_cw + 0.32 * k + 1.05 * pat_major)
+        z_cl_top = max(y_cw + 0.77 * k, y_cw + 0.32 * k + 1.01 * pat_major)
         bands = [(y_cw - 0.03 * k, y_cw + 0.32 * k)] + ([(y_wd - 0.03 * k, y_wd + 0.32 * k)] if y_wd is not None else [])
         vline_gapped(v, ccl, zcd - 0.2 * k, z_cl_top, bands, "CL_Major")
         v.xform = keep

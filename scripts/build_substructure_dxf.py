@@ -99,7 +99,7 @@ def plain_glyphs(doc):
                 e.text = s
 
 
-def preview_doc(dxf_path, ltscale_per_sf=None):
+def preview_doc(dxf_path):
     """Read the DXF for review rendering, adjusted so the ezdxf renderer shows
     it as a plotted sheet would look.
 
@@ -113,9 +113,11 @@ def preview_doc(dxf_path, ltscale_per_sf=None):
       scale, while the DXF carries per-entity model-space scales for
       PSLTSCALE = 0 (``fdot.LTSCALE_PER_SF`` x drawing scale factor).  Each
       entity scale is divided by the square of its scale factor so the
-      dashes plot at the intended paper size.  ``ltscale_per_sf`` replaces
-      ``fdot.LTSCALE_PER_SF`` for a DXF written with other factors (the
-      whole-model plan: FDOT line codes in inches, 1/12 per scale factor).
+      dashes plot at the intended paper size.  The renderer then clamps each
+      dash and gap, in those rescaled units, to ``min_dash_length``: at the
+      former 2.5e-5 every dash and gap came out one equal length (~0.14 in at
+      1" = 40'), so it is 1e-8 and the FDOT line codes plot at their sizes
+      (DGN2 0.08 in dash, 0.04 in gap; 2026-10-23).
     - Everything plots black at the level lineweights (CADD Manual 5.10:
       0.09 mm for annotation, 0.15 mm reinforcement, 0.30 mm concrete), true
       size on the 17 x 11 PDF page.  The matplotlib backend takes the
@@ -141,7 +143,6 @@ def preview_doc(dxf_path, ltscale_per_sf=None):
     if missing:
         plain_glyphs(doc)
     layer_lt = {layer.dxf.name: layer.dxf.linetype for layer in doc.layers}
-    per_sf = fdot.LTSCALE_PER_SF if ltscale_per_sf is None else ltscale_per_sf
 
     def fix(entities):
         for e in entities:
@@ -150,11 +151,11 @@ def preview_doc(dxf_path, ltscale_per_sf=None):
             lt = e.dxf.get("linetype", "BYLAYER")
             if lt.upper() == "BYLAYER":
                 lt = layer_lt.get(e.dxf.layer, "Continuous")
-            if lt in per_sf and e.dxf.ltscale > 0:
-                e.dxf.ltscale = per_sf[lt] ** 2 / e.dxf.ltscale
+            if lt in fdot.LTSCALE_PER_SF and e.dxf.ltscale > 0:
+                e.dxf.ltscale = fdot.LTSCALE_PER_SF[lt] ** 2 / e.dxf.ltscale
     fix(doc.modelspace())
     cfg = Configuration(background_policy=BackgroundPolicy.WHITE, color_policy=ColorPolicy.BLACK,
-                        lineweight_scaling=72.0 / 25.4, min_lineweight=0.25, min_dash_length=2.5e-5)
+                        lineweight_scaling=72.0 / 25.4, min_lineweight=0.25, min_dash_length=1e-8)
     return doc, cfg
 
 

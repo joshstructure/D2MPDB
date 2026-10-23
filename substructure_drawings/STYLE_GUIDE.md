@@ -546,10 +546,13 @@ symbol at page scale.
   of a pile outside the window is no reason for a break.  Markup on pier
   Section C-C: "Remove break line if there is nothing to break".
 - **D3 Centerlines are long dash, short dash**, never dash-dot with dots
-  (`fdot.LINETYPE_PATTERNS` DGN4 and DGN7, dashes of plotted size on every
+  (`fdot.LINETYPE_PATTERNS` DGN4 and DGN7, FDOT's plotted line codes in
+  inches, `fdot.FDOT_LINE_CODES_IN`, at one paper inch per unit on every
   sheet via `LTSCALE_PER_SF`), and every centerline is long enough to show
   its dashes: at least 1.5 patterns (a line shorter than its pattern plots
-  solid; checked), so the minor pattern plots 0.34" and the major 0.63".
+  solid; checked); the minor pattern plots 0.336" and the major 0.726".
+  Hidden lines (DGN2) plot 0.08" dash, 0.04" gap (2026-10-23, "the dashed
+  lines are coming in with the dashes too large").
   Markups: "Centerlines should have dashes not dots", 2026-10-19 (round 2)
   "All centerlines should be dashed".
 - **D12 Everything the view clips gets a break line, each stub its

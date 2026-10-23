@@ -86,44 +86,17 @@ BENTLEY_WEIGHT_TO_LW.update({w: 211 for w in range(19, 31)})
 # same line codes; set LINETYPE_NAME = "DGN Style %d" to write those names for a
 # round trip to MicroStation line codes.
 LINETYPE_NAME = "DGN%d"
-# Pattern lengths (feet).  Styles 2 and 6 are as in the FDOT-workspace DXF
-# export (style 6, dash-dot-dot, is not in that file and is defined to the
-# same scale).  Styles 4 and 7 are the two centerline styles and are long
-# dash, short dash (never dash-dot with a dot; STYLE_GUIDE D3, markup
-# "Centerlines should have dashes not dots"): each pattern is the long dash,
-# a gap, the short dash (a tenth of the long dash) and a gap.  With
-# LTSCALE_PER_SF = 0.25 (style 4) and 0.35 (style 7) one pattern plots 0.34 in
-# long with a 0.225 in long dash (style 4, CL_Minor) and 0.63 in long with a
-# 0.42 in long dash (style 7, CL_Major) on paper, so that the short beam
-# centerlines of the plan (about an inch) still show their dashes: a line
-# shorter than one pattern plots solid (markup 2026-10-19, "All centerlines
-# should be dashed"; ``pattern_length``, STYLE_GUIDE D3).
-LINETYPE_PATTERNS = {
-    2: [0.895099, 0.53706, -0.35804],
-    4: [0.1125, 0.075, -0.015, 0.0075, -0.015],
-    6: [0.176696, 0.064252, -0.032126, 0.000079, -0.024094, 0.000079, -0.032126],
-    7: [0.15, 0.1, -0.02, 0.01, -0.02],
-}
-STYLE_TO_LINETYPE = {0: "Continuous"}
-STYLE_TO_LINETYPE.update({n: LINETYPE_NAME % n for n in LINETYPE_PATTERNS})
-LINETYPES = {LINETYPE_NAME % n: ("DGN line code %d" % n, p) for n, p in LINETYPE_PATTERNS.items()}
-HIDDEN_LINETYPE = STYLE_TO_LINETYPE[2]
-# Per-entity linetype scale per unit of drawing scale factor (so patterns plot
-# at a consistent size in every view): hidden dash ~0.12 in, centerline long
-# dash 0.225 in (style 4) and 0.42 in (style 7) with a short dash a tenth as
-# long between them (whole pattern 0.34 in and 0.63 in).
-LTSCALE_PER_SF = {LINETYPE_NAME % n: s for n, s in {2: 0.0186, 4: 0.25, 6: 0.25, 7: 0.35}.items()}
-
-
-# FDOT's own plotted definitions of the line codes, inches on paper, dash and
-# gap alternating (CADD Manual, Topic No. 625-050-001, December 2017 update,
+# FDOT's plotted definitions of the line codes, inches on paper, dash and gap
+# alternating (CADD Manual, Topic No. 625-050-001, December 2017 update,
 # "Line Styles / Linetypes", p. 3-12, and the FDM edition 5.9.3, p. 54:
 # "style(2) = (0.08, 0.04), for ACAD - DGN2" ...; the 2025 manual keeps the
 # style n = DGNn table, 5.10.3.2, and points to FDOT.LIN for the patterns).
-# Sheets that follow them write each DGNn with these values and an entity
-# linetype scale of one paper inch in model units (``fdot_linetype``); the
-# whole-model plan does (2026-10-23 markup, "the dashed lines are coming in
-# with the dashes too large").
+# Every sheet writes each DGNn with these values (2026-10-23 markup, "the
+# dashed lines are coming in with the dashes too large"; the hidden dash was
+# 0.12 in with a 0.08 in gap before).  Styles 4 and 7, the two centerline
+# styles, are long dash, short dash (never a dot; STYLE_GUIDE D3): one
+# pattern plots 0.336 in (style 4, CL_Minor) and 0.726 in (style 7,
+# CL_Major); a line shorter than one pattern plots solid (``pattern_length``).
 FDOT_LINE_CODES_IN = {
     1: (0.02, 0.04),
     2: (0.08, 0.04),
@@ -140,6 +113,18 @@ def fdot_linetype(n):
     -gap, dash, -gap, ...]."""
     els = [v if i % 2 == 0 else -v for i, v in enumerate(FDOT_LINE_CODES_IN[n])]
     return [round(sum(FDOT_LINE_CODES_IN[n]), 6)] + els
+
+
+# the line codes the sheets use: hidden, minor centerline, PGL, major centerline
+LINETYPE_PATTERNS = {n: fdot_linetype(n) for n in (2, 4, 6, 7)}
+STYLE_TO_LINETYPE = {0: "Continuous"}
+STYLE_TO_LINETYPE.update({n: LINETYPE_NAME % n for n in LINETYPE_PATTERNS})
+LINETYPES = {LINETYPE_NAME % n: ("DGN line code %d" % n, p) for n, p in LINETYPE_PATTERNS.items()}
+HIDDEN_LINETYPE = STYLE_TO_LINETYPE[2]
+# Per-entity linetype scale per unit of drawing scale factor: one paper inch
+# in model feet (sf / 12), so the inch patterns plot at FDOT's sizes in every
+# view (PSLTSCALE = 0).
+LTSCALE_PER_SF = {LINETYPE_NAME % n: 1.0 / 12.0 for n in LINETYPE_PATTERNS}
 
 
 def pattern_length(linetype_name, sf):
