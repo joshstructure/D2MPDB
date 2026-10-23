@@ -4,13 +4,13 @@
   "cells_and_labels": 133,
   "definitions": 66,
   "fragment": "fence_wind/bpad/journal/FenceWind.xml",
-  "fragment_sha256": "8f6c0e5424d80525403c7ab6fd0fe471221e11f46eb8cec41793ae859c6aa89a",
+  "fragment_sha256": "9aaa2b40fb1abb782c8cd98cefe3405806f9242a014b46f962bb72afad6ffda2",
   "functions": 0,
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": 21,
   "literals_kept": [],
   "mathcad_values_compared": null,
-  "package_revision": "887aaee9f9de80ce54e09fe905b626bba202a9c87ec90430b3e1e6d3544d1908",
+  "package_revision": "d441d591dbb4f4092a0d82c3c087d42549ee0484f23fe03ffb236db7fbeb4691",
   "project_stamp": {
    "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
    "CheckDate": "",
@@ -47,7 +47,7 @@
   ],
   "report_name": "FenceWind",
   "review_document": "fence_wind/bpad/journal/Fence Wind and Pier Node Loads - Journal Edition (review).bpad",
-  "review_sha256": "a6831e3470ef24a7c4cda92cf23db9c300cd0d8b368f4418a8d3ab2ab5c3ecea",
+  "review_sha256": "0ae26f53a66af7893b6dc7c292825a4f3bbae353b5eb3810c233a3333b5c511a",
   "status": "✓ All Checks Pass",
   "tool_comparisons": 57
  }

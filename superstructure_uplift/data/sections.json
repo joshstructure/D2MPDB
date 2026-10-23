@@ -161,21 +161,33 @@
   "level": 1,
   "title": "Deck and beam-bearing geometry",
   "text": [],
-  "blocks": []
+  "blocks": [],
+  "extra_inputs": [
+   "Beam_spacing",
+   "Deck_out2out",
+   "Pier_bearingCL_spacing"
+  ]
  },
  {
   "key": "spans_and_tributary_lengths",
   "level": 1,
   "title": "Spans and tributary lengths",
   "text": [],
-  "blocks": []
+  "blocks": [],
+  "extra_inputs": [
+   "L_1",
+   "L_2"
+  ]
  },
  {
   "key": "wind_eccentricity_and_reference_elevatio",
   "level": 1,
   "title": "Wind eccentricity and reference elevations",
   "text": [],
-  "blocks": []
+  "blocks": [],
+  "extra_inputs": [
+   "e_V"
+  ]
  },
  {
   "key": "step_2_gravity_classification_and_load_c",
@@ -215,6 +227,16 @@
     "name": "UpliftGravitySources",
     "at": "start"
    }
+  ],
+  "extra_inputs": [
+   "W_beams_pier",
+   "W_fence_pier",
+   "W_parapets_pier",
+   "W_deck_pier",
+   "W_haunch_pier",
+   "DC_sub_pier",
+   "W_cap",
+   "W_wall"
   ]
  },
  {
@@ -556,6 +578,10 @@
     "id": "p54",
     "at": "start"
    }
+  ],
+  "extra_inputs": [
+   "PierCap_ht",
+   "BearingPlane_aboveCap"
   ]
  }
 ]

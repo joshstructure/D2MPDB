@@ -4,13 +4,13 @@
   "cells_and_labels": 34,
   "definitions": 26,
   "fragment": "bridge_movement/bpad/journal/BridgeMovement.xml",
-  "fragment_sha256": "66b20de23919ad2d7bf2422616fc7c9e7c90ffbbeed523ca0fbef38324baa1f2",
+  "fragment_sha256": "5e2796ab027566f24117cf451de929a591f72128c6e70c471873c26708da3952",
   "functions": 0,
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": 2,
   "literals_kept": [],
   "mathcad_values_compared": null,
-  "package_revision": "7f7f8e7a987a9daaeeb3021e2a673efa95aece5aa31e67a3d32085ba5b26a9a4",
+  "package_revision": "53ebd4a92c9ca1f959c2def8efafc65cbd2f49faaa5879779a26c9d1b0f11f0f",
   "project_stamp": {
    "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
    "CheckDate": "",
@@ -28,7 +28,7 @@
   ],
   "report_name": "BridgeMovement",
   "review_document": "bridge_movement/bpad/journal/Bridge Temperature Movement - Journal Edition (review).bpad",
-  "review_sha256": "1f92c38437aaa49b99ecced5edc29fc862a65e58e6208c4debe3db7375958156",
+  "review_sha256": "7a839c2510fc7d2316bf3bc5fcf24715ce438a81c20dc1be901cd2349fddf21f",
   "status": "✓ All Checks Pass",
   "tool_comparisons": 17
  }

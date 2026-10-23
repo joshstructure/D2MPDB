@@ -17,7 +17,7 @@ from pathlib import Path
 from lxml import etree as ET
 
 from scripts import bpad_sheet as bs
-from .spec import PASS, FAIL, ALL_PASS, FAILURES
+from .spec import PASS, FAIL, ALL_PASS, FAILURES, bare_heading as _heading
 
 TOL = 1e-9
 INPUT_TOL = 1e-12
@@ -352,12 +352,12 @@ class Sheet:
             if 'function' not in d:
                 names_in(parse(d['expr']), used_by_defs)
         by_group = {}
-        titles = {s['title'] for s in spec.sections} | {s['key'] for s in spec.sections}
+        titles = {_heading(s['title']) for s in spec.sections} | {s['key'] for s in spec.sections}
         for d in spec.input_spec:
             # an input sits under the section named like its group (the journal's own input headings), else at first use
-            if d['name'] not in used_by_defs or d.get('group') in titles:
-                by_group.setdefault(d.get('group'), []).append(d['name'])
-        grouped = {n for names in by_group.values() for n in names if spec.inputs[n].get('group') in titles}
+            if d['name'] not in used_by_defs or _heading(d.get('group')) in titles:
+                by_group.setdefault(_heading(d.get('group')), []).append(d['name'])
+        grouped = {n for names in by_group.values() for n in names if _heading(spec.inputs[n].get('group')) in titles}
         # a journal section may span several sheet sections: one wrapper per name, open until its last use
         last_use = {}
         for si, section in enumerate(spec.sections):
@@ -399,7 +399,7 @@ class Sheet:
                 if 'function' not in d:
                     names_in(parse(d['expr']), names)
             inputs = [n for n in sorted(names, key=lambda n: order.index(n) if n in order else 1e9) if n in spec.inputs and n not in used and n not in grouped]
-            for n in section.get('extra_inputs', []) + by_group.get(section['title'], []) + by_group.get(key, []):
+            for n in section.get('extra_inputs', []) + by_group.get(_heading(section['title']), []) + by_group.get(key, []):
                 if n not in used and n in spec.inputs and n not in inputs:
                     inputs.append(n)
             for n in inputs:

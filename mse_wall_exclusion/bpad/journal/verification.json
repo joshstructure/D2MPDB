@@ -4,13 +4,13 @@
   "cells_and_labels": 297,
   "definitions": 192,
   "fragment": "mse_wall_exclusion/bpad/journal/MSEWallExclusion.xml",
-  "fragment_sha256": "5726db79ee204f9d3d2e5f1d226079716a4effb4ecaf610d6937c5abb06131cc",
+  "fragment_sha256": "7354f4b3fb339703b3088d4c4efd38eb617a4fa77bc02161d49fe9bb51604c21",
   "functions": 0,
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": 5,
   "literals_kept": [],
   "mathcad_values_compared": null,
-  "package_revision": "41e0a54b0459af0e9069e207c92321eb2bf22cecb86d34c302e0e3ff73e41ad6",
+  "package_revision": "b9f9115de955d3684cad88cf6bd453bae557f28af7e62e7c5771a8671aaa514c",
   "project_stamp": {
    "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
    "CheckDate": "",
@@ -31,7 +31,7 @@
   ],
   "report_name": "MSEWallExclusion",
   "review_document": "mse_wall_exclusion/bpad/journal/MSE Wall Exclusion - Both End Bents - Journal Edition (review).bpad",
-  "review_sha256": "0d430a8f1f20a62a8de3e6ea9ae452f3bbb9e464d7a157f12171c67b7ff645ee",
+  "review_sha256": "d7248011a878bdf71ce30c50ac2b6631d59ac64aed17f97294bba87e11e267af",
   "status": "⊗ There are FAILURES",
   "tool_comparisons": 183
  }

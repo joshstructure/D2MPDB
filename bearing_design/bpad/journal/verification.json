@@ -4,13 +4,13 @@
   "cells_and_labels": 257,
   "definitions": 144,
   "fragment": "bearing_design/bpad/journal/BearingDesign.xml",
-  "fragment_sha256": "c957d3f6558e384dd36bcacd67a63f55c0e12b3bad7be41d97d9dae9731ba270",
+  "fragment_sha256": "b467e611bb1d0080da05a7af6a9a4b4a82082c7c672dc711609399311feba334",
   "functions": 0,
   "journal_file": "journal/D2_I95_Project_Journal.bpad",
   "journal_references": 39,
   "literals_kept": [],
   "mathcad_values_compared": null,
-  "package_revision": "0ab15f7108bb59fe06a3b739186360eeb37ba4d0f6b95f6b5d8a13c038c446ea",
+  "package_revision": "63ce040744c26cbbf53fac2580107d8de0b483c4454bca9da91f1cd9d12a08f1",
   "project_stamp": {
    "Address": "1203 Governors Square Blvd, Suite 201, Tallahassee FL 32301",
    "CheckDate": "",
@@ -64,7 +64,7 @@
   ],
   "report_name": "BearingDesign",
   "review_document": "bearing_design/bpad/journal/Bearings and Support Details - Journal Edition (review).bpad",
-  "review_sha256": "88c22f0dba199d6fea7a17d834e1f4d9f84005e700686e9f624c306d9584d432",
+  "review_sha256": "377056da31156834c477010e749f8247b678205de33f59751962c1912464b768",
   "status": "✓ All Checks Pass",
   "tool_comparisons": 135
  }

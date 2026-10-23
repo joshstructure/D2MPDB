@@ -41,6 +41,12 @@
     "name": "PedestalGeometrySummary",
     "at": "start"
    }
+  ],
+  "extra_inputs": [
+   "Pedestal_width",
+   "Pedestal_chamfer",
+   "Pier_beamEndGap",
+   "Bearing_pad_skew"
   ]
  },
  {
@@ -106,6 +112,11 @@
     "name": "TypeFPropertySummary",
     "at": "Check_TypeF_B4"
    }
+  ],
+  "extra_inputs": [
+   "Bearing_supportBuildup",
+   "Bearing_pad_count",
+   "Bearing_pad_totalVolume"
   ]
  },
  {
@@ -219,6 +230,15 @@
     ],
     "at": "start"
    }
+  ],
+  "extra_inputs": [
+   "BP_all_seat_scope",
+   "BP_all_seat_longitudinal_slope",
+   "BP_all_seat_transverse_slope",
+   "BP_EB1_level_seat_elevation",
+   "BP_pier_level_seat_elevation",
+   "BP_EB2_level_seat_elevation",
+   "BP_all_seat_pad_thickness"
   ]
  }
 ]

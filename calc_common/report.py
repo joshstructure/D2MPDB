@@ -13,6 +13,7 @@ from .model import formula_trace, names_in, evaluate_expression, UNIT_LABELS
 from .notation import Notation
 from .reviews import review_html
 from .schematics import schematic, meaning
+from .spec import bare_heading as _heading
 from . import figures as fig
 
 STYLE = '''
@@ -113,12 +114,6 @@ QC_NOTE = ('Under every equation: <b>What it represents</b> is always visible. O
 
 def _box(kind, title, body):
     return f'<div class="box {kind}"><div class="hd">{html.escape(title)}</div><div class="bd">{body}</div></div>'
-
-
-def _heading(title):
-    """Section title without its number ('1.2 Wind speed and exposure' -> 'Wind speed and exposure', 'Step 2. Fence
-    geometry' -> 'Fence geometry'), so an input group written as the bare heading lands in its own section."""
-    return re.sub(r'^(?:Step\s+)?\d+(\.\d+)*\.?\s+', '', title, flags=re.I) if isinstance(title, str) else title
 
 
 def _report_section(key, title, body):
@@ -239,6 +234,8 @@ class ReportBuilder:
         own = (_heading(section['title']), key)
         inputs = [n for n in names if n in spec.inputs and n not in self.used_inputs and _heading(spec.inputs[n].get('group')) not in titles]
         inputs += [d['name'] for d in spec.input_spec if _heading(d.get('group')) in own and d['name'] not in self.used_inputs and d['name'] not in inputs]
+        # inputs no equation reads (values behind tables and figures, published names) are placed by sections.json
+        inputs += [n for n in section.get('extra_inputs', []) if n in spec.inputs and n not in self.used_inputs and n not in inputs]
         order = [d['name'] for d in spec.input_spec]
         inputs.sort(key=order.index)
         self.used_inputs.update(inputs)

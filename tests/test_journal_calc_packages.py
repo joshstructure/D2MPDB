@@ -115,6 +115,16 @@ class ReportsAndChecks(unittest.TestCase):
                 ET.fromstring(svg)
                 self.assertTrue(meaning(spec, d['name']), f'{package}: {d["name"]}')
 
+    def test_every_input_appears_in_an_inputs_box(self):
+        """Inputs no equation reads would otherwise vanish: they need a matching group or a section's `extra_inputs`."""
+        for package in PACKAGES:
+            spec = spec_of(package)
+            html = build_report(spec, evaluate(spec))
+            boxes = re.findall(r'<div class="box inputs"><div class="hd">Inputs</div>.*?</table>', html, re.S)
+            shown = set(re.findall(r'data-var="([^"]+)"', ''.join(boxes)))
+            missing = [d['name'] for d in spec.input_spec if d['name'] not in shown and d['name'] not in spec.text.get('unused_inputs', [])]
+            self.assertEqual(missing, [], f'{package}: inputs missing from the report')
+
     def test_checks_follow_the_journal_flags(self):
         for package in PACKAGES:
             spec = spec_of(package)

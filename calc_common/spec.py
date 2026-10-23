@@ -1,10 +1,17 @@
 """The calculation specification: everything a package's data folder says about one journal calculation."""
 import json
+import re
 from pathlib import Path
 
 PASS, FAIL = '✓ PASS', '⊗ FAIL'
 ALL_PASS, FAILURES = '✓ All Checks Pass', '⊗ There are FAILURES'
 SCHEMA_VERSION = 1
+
+
+def bare_heading(title):
+    """Section title without its number ('1.2 Wind speed and exposure' -> 'Wind speed and exposure', 'Step 2. Fence
+    geometry' -> 'Fence geometry'), so an input group written as the bare heading lands in its own section."""
+    return re.sub(r'^(?:Step\s+)?\d+(\.\d+)*\.?\s+', '', title, flags=re.I) if isinstance(title, str) else title
 
 
 class CalcSpec:

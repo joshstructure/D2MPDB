@@ -117,7 +117,10 @@
     "at": "SideExtent"
    }
   ],
-  "hidden_title": "Frame geometry (hidden): cap extents, validity, drawing scales."
+  "hidden_title": "Frame geometry (hidden): cap extents, validity, drawing scales.",
+  "extra_inputs": [
+   "PanelThickness"
+  ]
  },
  {
   "key": "bent1",
