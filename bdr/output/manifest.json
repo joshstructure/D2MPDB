@@ -1,0 +1,156 @@
+{
+ "generator": "bdr 1.0.0",
+ "as_of": "2026-10-22",
+ "sources": {
+  "JOURNAL": {
+   "path": "journal/D2_I95_Project_Journal.bpad",
+   "sha256": "d8b814ad940258e321bb29b0af69424771a524bb359d4efd0952da33bea567b0"
+  },
+  "REGISTER": {
+   "path": "project_current/source_register.csv",
+   "sha256": "012ab96772f5c9abb9991b345585f4c113559547f1f804c6278423456b3e18ca"
+  },
+  "DECISIONS": {
+   "path": "project_current/decisions.md",
+   "sha256": "9554e46519135f916df7b7f73390afe23ec33370f7af98b177065d8a8172e2f9"
+  },
+  "ASSUMPTIONS": {
+   "path": "project_current/coherence/assumptions.json",
+   "sha256": "b62b4091a0966a6eb8dacce04c6f499f1ba8cd605a7419ed15c75ca0497ffb4d"
+  },
+  "LATEST-REVIEW": {
+   "path": "project_current/coherence/latest_review.md",
+   "sha256": "23bac30ae6a8f727c28c4dbc08538c0657f0740bc3f5e8f094ae113ba241a050"
+  },
+  "PIER-CASE": {
+   "path": "project_current/cap_design/pier/selected_case.json",
+   "sha256": "926886b5efc310be979c065b2016aa445fd19c9987356cb3158ea4980c981e3a"
+  },
+  "EB-CASE": {
+   "path": "project_current/cap_design/end_bents/selected_case.json",
+   "sha256": "898b3e134b286b7a5a8f3eaf96f3c2996e1400e11206195dc0ea2448d750274f"
+  },
+  "EB2-CASE": {
+   "path": "project_current/cap_design/end_bent_2/selected_case.json",
+   "sha256": "4592c02435231cd9d9e4bb2c0682062a6613196e99c69d7fd046fda4d58372f5"
+  },
+  "BACKWALL-CASE": {
+   "path": "project_current/cap_design/backwall/selected_case.json",
+   "sha256": "01e76c5a263af986e0d7e154039cec4c351bea29403dd9bfd2cbee7b16bab597"
+  },
+  "PIER-WALL-CASE": {
+   "path": "project_current/pier_wall/selected_case.json",
+   "sha256": "5f8c42d54d38f21d7117582289abcc6233d446cb41cc2be8e3addf4e7451911f"
+  },
+  "CHEEK-CASE": {
+   "path": "project_current/pier_cheek_wall/selected_case.json",
+   "sha256": "df28e0523354eeaeaf08a90b04c38da9bd7439ab13faadd3b39d0c3045e6063c"
+  },
+  "PILE-EB1-CASE": {
+   "path": "project_current/pile_design/end_bent_1/selected_case.json",
+   "sha256": "df58bf43457c516618d12001c151e928c43da6cc97cf9d30f1f78210f7f1afb6"
+  },
+  "PILE-EB2-CASE": {
+   "path": "project_current/pile_design/end_bent_2/selected_case.json",
+   "sha256": "1a2b6aa148151df0c869e9cdd4db990d1c1eb7767e88b496480a86b3c204a950"
+  },
+  "PILE-PIER-CASE": {
+   "path": "project_current/pile_design/pier/selected_case.json",
+   "sha256": "34176820545a3f8119b31879fb280b048ace093252cc499871e5a1337fbaab4e"
+  },
+  "PILE-EB1-TABLE": {
+   "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Data Table 10-22.xlsx",
+   "sha256": "1755d866657fb17a8ae987df335a56eb0884c6d4a0a55d82c34172fae2234d65"
+  },
+  "PILE-EB2-TABLE": {
+   "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Data Table 10-22.xlsx",
+   "sha256": "19c650b506136650f23172df7a8551c52f58d26894862a5555d2dbf4c29b2c3a"
+  },
+  "PILE-PIER-TABLE": {
+   "path": "project_current/pile_design/pier/Pier Pile Data Table 10-22.xlsx",
+   "sha256": "9192e04a999574665112d5bf7acb8e3604a5f59f8deb9e81ac8033014af2e45e"
+  },
+  "PILE-EB1-CHECKS": {
+   "path": "project_current/pile_design/end_bent_1/End Bent 1 Pile Design 10-22 checks.csv",
+   "sha256": "f172579a606be4e9ff86fa5e6359e638c91f936077b3c5e7ff3b64e5bbbfe2b9"
+  },
+  "PILE-EB2-CHECKS": {
+   "path": "project_current/pile_design/end_bent_2/End Bent 2 Pile Design 10-22 checks.csv",
+   "sha256": "a843962c2b6e867f48564a32e7c7396224f1713f2ebc5c4af1c38c0194adae9d"
+  },
+  "PILE-PIER-CHECKS": {
+   "path": "project_current/pile_design/pier/Pier Pile Design 10-22 checks.csv",
+   "sha256": "59047d020332948131d71a9a00e9bb9aa9690ca7a0dab17b1f9e7cd43f1f23bb"
+  },
+  "PIER-WALL-CHECKS": {
+   "path": "project_current/pier_wall/Pier Wall Design 10-22c checks.csv",
+   "sha256": "732875abe59f38e55a05f2f229a151e27925fd0d8674f780c24659f02df3f6c4"
+  },
+  "CHEEK-CHECKS": {
+   "path": "project_current/pier_cheek_wall/Pier Cheek Wall Design 10-22 checks.csv",
+   "sha256": "0c52d8b07694ccbd4f6f221c8c4828ad449d7c54cffabc81124b8c7e54bf9bd1"
+  },
+  "PIER-README": {
+   "path": "project_current/cap_design/pier/README.md",
+   "sha256": "9003ee443e09bbc25485d1f0ccc951025c0b1ab920e71522d5e00016df154701"
+  },
+  "EB-README": {
+   "path": "project_current/cap_design/end_bents/README.md",
+   "sha256": "0e6dd2bdd38ba4dade53077fc2919cca041243153d7357559b7090c4652eb095"
+  },
+  "EB2-README": {
+   "path": "project_current/cap_design/end_bent_2/README.md",
+   "sha256": "a6cdc71300ad1d7066de73f31e2a7ab1e56db16f00d169815b894ecdbedbe570"
+  },
+  "BACKWALL-README": {
+   "path": "project_current/cap_design/backwall/README.md",
+   "sha256": "e8b6a2d3c589b32e4613424f40addc3cfe52d6788a2ecd33dff1eae34e4fd4a2"
+  },
+  "STRAP-LOADS": {
+   "path": "substructure_drawings/data/strap_loads.json",
+   "sha256": "98d4bc06a7c1df1caa41e2628d043b95950a005790f2b7f2d4afd0b091bfb9e5"
+  },
+  "MCAD-S1": {
+   "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span1.xmcd",
+   "sha256": "a6b0f967d271c193591d477e219ac66f98b72309d19958a04c6cd08e575a8dcd"
+  },
+  "MCAD-S2": {
+   "path": "project_current/mathcad/PrestressedBeamV6.2_Pedestrian_2Beam_Span2.xmcd",
+   "sha256": "182e3471f169d3a379c437ad12f359d567813bd4631bcc0b82e78ad860fa91b8"
+  },
+  "GEOTECH-SNAPSHOT": {
+   "path": "geotech_sections/data/sections_snapshot.json",
+   "sha256": "8041168ae826b5b861aef6290574ec97f7eee66fd38eb76397e4fced359dfc03"
+  },
+  "GEOTECH-MANIFEST": {
+   "path": "geotech_sections/output/manifest.json",
+   "sha256": "3c2b5a7c80b9eb6679595c4eb39d111151062a73a112e60cce41170a3b48f84b"
+  },
+  "DXF-MANIFEST": {
+   "path": "substructure_drawings/output/manifest.json",
+   "sha256": "059042ab4218e12d90fd671a93d7c657c24bf269db0b6497cfcc9364bcb03c8b"
+  },
+  "PLAN-MANIFEST": {
+   "path": "substructure_drawings/output/model_plan_manifest.json",
+   "sha256": "a906f6507fa0a8df98cc50ae426151794b4b66511da826180c65ddf053c0ad35"
+  },
+  "PLAN-PNG": {
+   "path": "substructure_drawings/output/B4_Model_Plan.png",
+   "sha256": "029e98321d167df912a8e9fdd5711af8e8d2cb2e87176c84ac463b2a1fc00602"
+  },
+  "BAR-REGISTER": {
+   "path": "substructure_drawings/output/bar_mark_register.csv",
+   "sha256": "c7459e1485fa5b2be92c4fe85870a2ed055407569dbf9d969e8d70d9eb90ac57"
+  },
+  "FACTS": {
+   "path": "bdr/data/facts.json",
+   "sha256": "c02614ea5ee9093eb151ecd461460e51d5fb917019bae99f1d46d5d8df5be873"
+  }
+ },
+ "outputs": {
+  "B4_Bridge_Development_Report.html": "e9e6af08b0104464ffbfd077e9eafb3abdb950eb405fd35c4fe70c7ffc5787a2",
+  "bdr_data.json": "bf63192bab89d302a8f87944b8ea38164be5a7d8ed50ba01dc496218f11b2f67"
+ },
+ "open_items": 37,
+ "pdf": "C:\\github\\D2MPDB\\bdr\\output\\B4_Bridge_Development_Report.pdf"
+}

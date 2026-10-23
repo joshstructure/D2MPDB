@@ -37,3 +37,6 @@ substructure_drawings/output/*.dxf binary
 geotech_sections/data/** -text
 geotech_sections/output/** -text
 geotech_sections/output/*.dxf binary
+# Bridge Development Report outputs are hashed by their manifest (tests/test_bdr.py).
+bdr/output/** -text
+bdr/data/** -text

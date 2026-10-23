@@ -1,0 +1,921 @@
+{
+ "as_of": "2026-10-22",
+ "calc_modules": [
+  {
+   "module": "C001WindLoadOnPedBridgeSuperstructure",
+   "number": "C001",
+   "title": "Wind Load on Ped Bridge Superstructure"
+  },
+  {
+   "module": "FenceWind",
+   "number": "C002",
+   "title": "Fence Wind and Pier Node Loads"
+  },
+  {
+   "module": "BridgeMovement",
+   "number": "C003",
+   "title": "Bridge Temperature Movement"
+  },
+  {
+   "module": "SuperstructureUplift",
+   "number": "C004",
+   "title": "Superstructure Uplift and Bearing Reactions"
+  },
+  {
+   "module": "CapDesignBasis",
+   "number": "C007",
+   "title": "Cap Design Basis (shared factors)"
+  },
+  {
+   "module": "CapDesignEndBentOne",
+   "number": "C008",
+   "title": "End Bent 1 Cap Design"
+  },
+  {
+   "module": "CapDesignEndBentTwo",
+   "number": "C009",
+   "title": "End Bent 2 Cap Design"
+  },
+  {
+   "module": "CapDesignPier",
+   "number": "C010",
+   "title": "Pier Cap Design"
+  },
+  {
+   "module": "PileDesignEndBentOne",
+   "number": "C011",
+   "title": "End Bent 1 Pile Design"
+  },
+  {
+   "module": "PileDesignEndBentTwo",
+   "number": "C012",
+   "title": "End Bent 2 Pile Design"
+  },
+  {
+   "module": "PileDesignPier",
+   "number": "C013",
+   "title": "Pier Pile Design"
+  },
+  {
+   "module": "EndBentBackwallDesign",
+   "number": "C014",
+   "title": "End Bent 1 Backwall, Cheek Walls and Tie-Back Straps"
+  },
+  {
+   "module": "MSEWallExclusion",
+   "number": "C015",
+   "title": "MSE Wall Exclusion - Both End Bents"
+  },
+  {
+   "module": "BearingDesign",
+   "number": "C016",
+   "title": "Bearings and Support Details"
+  },
+  {
+   "module": "PierWallRings",
+   "number": "C017",
+   "title": "Pier Wall, Annular Pile Rings"
+  },
+  {
+   "module": "PierCheekWalls",
+   "number": "C018",
+   "title": "Pier Cap Cheek Wall Design"
+  }
+ ],
+ "caps": {
+  "EB": {
+   "decision": "D-051",
+   "fail": 6,
+   "pending": 47,
+   "report_date": "20 October",
+   "report_file": "End Bent 1 Cap Design 10-20.html"
+  },
+  "EB2": {
+   "decision": "D-051",
+   "fail": 6,
+   "pending": 47,
+   "report_date": "20 October",
+   "report_file": "End Bent 2 Cap Design 10-20.html"
+  },
+  "PIER": {
+   "decision": "D-077",
+   "fail": 2,
+   "pending": 67,
+   "report_date": "22 October",
+   "report_file": "Pier Cap Design 10-22.html"
+  }
+ },
+ "cheek_checks": {
+  "counts": {
+   "PASS": 20
+  },
+  "failed": [],
+  "max_pass": [
+   1.0,
+   "Straight development of the verticals into the cap"
+  ],
+  "pending": [
+   "Shrinkage and temperature steel, vertical",
+   "Shrinkage and temperature steel, horizontal"
+  ]
+ },
+ "derived": {
+  "algn_terrain": 22.671,
+  "backwall_H": 4.069141189303664,
+  "backwall_H_edge": 3.873307767781874,
+  "backwall_drop_in": 4.25,
+  "backwall_t_in": 12.0,
+  "backwall_vol_ft3": 77.7698127047959,
+  "beam_depth_in": 36.0,
+  "beam_spacing_in": 103.0,
+  "bearing": {
+   "cyclic": "0.002470058",
+   "move": "0.983620672",
+   "static": "0.009624091"
+  },
+  "cap_bot_pier": 40.769,
+  "cap_top_pier": 43.769,
+  "cheek_H": 5.031352523880976,
+  "cheek_t_in": 8.0,
+  "clear_w_in": 144.0,
+  "closure_ft3": 123.684362,
+  "crossfall": 0.02,
+  "deck_w_in": 163.0,
+  "deckend_add_in": 4.0,
+  "deckend_len_in": 30.0,
+  "eb_cap_h_in": 36.0,
+  "eb_cap_len_in": 235.0,
+  "eb_cap_w_in": 42.0,
+  "eb_pile_s_in": 54.0,
+  "eb_pile_w_in": 18.0,
+  "eb_piles": 4,
+  "edge_offset_in": 1.5,
+  "fence_ht_in": 116.3125,
+  "fence_post_in": 152.0,
+  "fence_radius_in": 77.75,
+  "fence_straight_in": 38.5625,
+  "flange_in": 48.0,
+  "grade": 0.005,
+  "haunch_min_in": 0.5,
+  "haunch_total_ft3": 186.538,
+  "mat": {
+   "Beam_fc": "8.5 ksi",
+   "Deck_fc": "4.5 ksi",
+   "Railing_fc": "3.4 ksi",
+   "Rebar_Es": "29000 ksi",
+   "Rebar_fy": "60 ksi",
+   "Substructure_fc": "5.5 ksi"
+  },
+  "mse_totals": {
+   "area_ft2": 23698.2501
+  },
+  "p_z_iii": "0.049 ksf",
+  "pad_l_in": 10.0,
+  "pad_t_in": 2.5625,
+  "pad_w_in": 32.0,
+  "parapet_h_in": 42.0,
+  "parapet_w_in": 8.0,
+  "pedestal_h_in": 6.0,
+  "pedestal_w_in": 42.0,
+  "pgl_end": 47.673,
+  "pgl_pier": 48.198,
+  "pgl_start": 47.661,
+  "pier_cap_h_in": 36.0,
+  "pier_cap_len_in": 230.0,
+  "pier_cap_w_in": 48.0,
+  "pier_pile_d_in": 20.0,
+  "pier_pile_s_in": 60.0,
+  "pier_piles": 4,
+  "pier_wall_kip": "133.3590234375 kip",
+  "pier_wall_vol_ft3": 889.06015625,
+  "pier_wind_face_in": 230.0,
+  "pile_cols": [
+   "Pier / Bent",
+   "Pile Size & Type",
+   "Nominal Bearing Resistance (tons)",
+   "Tension Resistance (tons)",
+   "Minimum Tip Elevation (ft)",
+   "Test Pile Length / Pile Order Length (ft)",
+   "Required Jet Elevation (ft)",
+   "Required Preform Elevation (ft)",
+   "Factored Design Load (tons)",
+   "Downdrag (tons)",
+   "Total Scour Resistance (tons)",
+   "Net Scour Resistance (tons)",
+   "100-Year Scour Elevation (ft)",
+   "Design Scour Elevation (temporary bridges)",
+   "Long-Term Scour Elevation (ft)",
+   "Resistance Factor",
+   "Pile Cut-Off Elevation (ft)"
+  ],
+  "pile_rows": {
+   "EB1": [
+    "End Bent 1",
+    "18\" Sq. Prestr. Conc.",
+    90,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    50,
+    18,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    0.75,
+    41.2
+   ],
+   "EB2": [
+    "End Bent 2",
+    "18\" Sq. Prestr. Conc.",
+    90,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    50,
+    18,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    0.75,
+    41.3
+   ],
+   "PIER": [
+    "Pier",
+    "20\" Ø Pipe",
+    151,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    114,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    0.75,
+    41.8
+   ]
+  },
+  "pile_trial_ft": 90,
+  "pipe": {
+   "A_eff": "29.136 in^2",
+   "Sacrificial_thk": "0.15 in",
+   "t_actual": "5/8 in",
+   "t_eff": "0.475 in"
+  },
+  "rebar_count": {
+   "END BENT 1": 174,
+   "END BENT 2": 174,
+   "PIER": 270
+  },
+  "rebar_lb": {
+   "END BENT 1": 1787.8457499999993,
+   "END BENT 2": 1787.1777499999992,
+   "PIER": 3244.1750833333253
+  },
+  "slab_in": 6.0,
+  "span1": 107.35,
+  "span2": 104.9,
+  "sta_eb1": 1593.22,
+  "sta_eb2": 1805.47,
+  "sta_pier": 1700.57,
+  "super_depth_in": 85.0,
+  "terrain_pier": 25.5264,
+  "total": 212.25,
+  "wind": {
+   "Wind_CG_Cap_moment": "429.128 kip*ft",
+   "Wind_CG_Cap_pointLoad": "52.075 kip",
+   "Wind_conc_superstrc_lineload": "0.345 ksf*ft",
+   "Wind_fence_pointload": "15.430 kip",
+   "Wind_perpPierWall": "20.979 kip",
+   "Wind_pierWall_pointload": "4.378 kip",
+   "q_z_fencing": "0.015 ksf"
+  }
+ },
+ "gravity": {
+  "beam_kip": 89.16410250000001,
+  "fence_plf": "150 plf",
+  "ll_psf": "90 psf",
+  "ll_total": "114.615 kip",
+  "pier_DC_node": "372.2149132335521 kip",
+  "pier_DC_pad": "364.12428073355204 kip",
+  "pier_PL": "114.615 kip",
+  "pier_below": "8.0906325 kip"
+ },
+ "mse_walls": [
+  {
+   "area_ft2": 4206.1659,
+   "base_length": "349 ft 1 5/32 in",
+   "wall": "A1"
+  },
+  {
+   "area_ft2": 2072.332,
+   "base_length": "148 ft 5 9/16 in",
+   "wall": "A2"
+  },
+  {
+   "area_ft2": 1512.0722,
+   "base_length": "188 ft 1 9/16 in",
+   "wall": "A3"
+  },
+  {
+   "area_ft2": 3319.1377,
+   "base_length": "143 ft 7 9/16 in",
+   "wall": "A4"
+  },
+  {
+   "area_ft2": 351.1919,
+   "base_length": "18 ft 3 in",
+   "wall": "A5"
+  },
+  {
+   "area_ft2": 564.9938,
+   "base_length": "23ft 0 1in",
+   "wall": "A6"
+  },
+  {
+   "area_ft2": 223.5833,
+   "base_length": "10 ft 1 1/2 in",
+   "wall": "A7"
+  },
+  {
+   "area_ft2": 528.083,
+   "base_length": "26 ft 4 1/2 in",
+   "wall": "A8"
+  },
+  {
+   "area_ft2": 351.1919,
+   "base_length": "18 ft 3 in",
+   "wall": "B1"
+  },
+  {
+   "area_ft2": 3334.5225,
+   "base_length": "146 ft 2 1/2 in",
+   "wall": "B2"
+  },
+  {
+   "area_ft2": 2002.3988,
+   "base_length": "150 ft 6 49/64 in",
+   "wall": "B3"
+  },
+  {
+   "area_ft2": 2005.2736,
+   "base_length": "150 ft 1 19/64 in",
+   "wall": "B4"
+  },
+  {
+   "area_ft2": 1366.4161,
+   "base_length": "150 ft 1 19/64 in",
+   "wall": "B5"
+  },
+  {
+   "area_ft2": 791.6614,
+   "base_length": "45 ft 4 in",
+   "wall": "B6"
+  },
+  {
+   "area_ft2": 122.4226,
+   "base_length": "6 ft 5 1/2 in",
+   "wall": "B7"
+  },
+  {
+   "area_ft2": 178.5737,
+   "base_length": "40 ft 9 19/64 in",
+   "wall": "B8"
+  },
+  {
+   "area_ft2": 768.2297,
+   "base_length": "40 ft 9 19/64 in",
+   "wall": "B9"
+  }
+ ],
+ "open_items": [
+  {
+   "kind": "To be supplied",
+   "section": "Cover",
+   "text": "Financial Project ID: no project source gives it"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "Cover",
+   "text": "Bridge number: no project source gives it (blank on the generated FDOT sheets)"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "Executive summary",
+   "text": "unit costs and the total construction cost are not in the project record"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "Executive summary",
+   "text": "construction time requirement not in the project record"
+  },
+  {
+   "kind": "Pending",
+   "section": "2 Design criteria",
+   "text": "Environmental classification (SDG 1.4) for covers, pile minimum size and strand tension limits: pending in every registered calculation (A-011); the beam runs assume 'Moderately' aggressive. Bridge Corrosion Environment Report required (FDM 121.10)."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "3 Site conditions",
+   "text": "FDM 121.9 / 121.10: the Phase I Geotechnical Report accompanies the BDR. The record holds the FB-MultiPier soil profiles of the registered exports, the 18-ton downdrag given by the geotechnical engineer (D-050) and the four longitudinal sections prepared for the geotechnical engineer; no borings, minimum tip elevations or scour values."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "3 Site conditions",
+   "text": "Deck drainage and the Bridge Hydraulics Report / Recommendation Sheet (FDM 121.10): the structure is a grade separation; concurrence that no BHR is required, and the deck drainage scheme, are not in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "3 Site conditions",
+   "text": "FDM 121.10 checklist item: existing and proposed utilities in the vicinity and any attachments are not in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "3 Site conditions",
+   "text": "FDM 121.10 checklist item: lighting on or under the structure is not in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "3 Site conditions",
+   "text": "FDM 121.10 checklist item: not addressed in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "5 Structure type",
+   "text": "The project record documents the selected two-span, two-beam FIB-36 layout and the superseded three-beam layout (journal archive modules). A comparison of other viable superstructure and substructure types with costs, if the District requires one for this Category 1 structure, is not in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "5 Structure type",
+   "text": "FDM 121.9.1(5) requires a statement on the feasibility of GRS abutments. The project record has no GRS assessment; the end bents are pile-supported caps within MSE walls."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "5 Structure type",
+   "text": "FDM 121.9.1(9): the superstructure beams and the end-bent piles are prestressed precast elements and the pier piles are steel pipe; the deck, caps, backwalls, cheek walls and pier wall are cast in place. A feasibility assessment of further prefabrication (FDM 121.19 questions, assessment matrix, direct and indirect costs) is not in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "6 Superstructure",
+   "text": "FDM 121.10 checklist item: lighting on or under the structure is not in the record."
+  },
+  {
+   "kind": "Pending",
+   "section": "8 Foundations",
+   "text": "Phase I Geotechnical Report with borings, minimum tip elevations (SDG 3.5.9), test-pile or pile-order lengths, downdrag documentation and the pipe-pile driving limit (FDM 121.10)."
+  },
+  {
+   "kind": "Pending",
+   "section": "8 Foundations",
+   "text": "Scour: concurrence that the grade separation has no scour design (Pile Data Table columns K to O) from the drainage and geotechnical engineers."
+  },
+  {
+   "kind": "Pending",
+   "section": "8 Foundations",
+   "text": "Environment classification and the corrosion allowance of the pipe piles (A-011)."
+  },
+  {
+   "kind": "Pending",
+   "section": "8 Foundations",
+   "text": "Drivability and driving stresses (LRFD 10.7.8, Spec. 455) and the pile-to-cap connection with 12-in embedment (SDG 3.5.1.C, SDM 11.6)."
+  },
+  {
+   "kind": "Pending",
+   "section": "8 Foundations",
+   "text": "Final FB-MultiPier reruns with the pile heads at the notebook cutoffs (COH-028) and the complete load comparison (COH-004)."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "8 Foundations",
+   "text": "FDM 121.9.1(5) requires a statement on the feasibility of GRS abutments. The project record has no GRS assessment; the end bents are pile-supported caps within MSE walls."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "9 Retaining walls",
+   "text": "FDM 121.9.1(13) and FDM 262: MSE walls A1 to A8 and B1 to B9 retain the approach ramps; the wall study (wall type selection, control drawings) is not in the record. The record holds the wall geometry (CAD), the MSE exclusion-zone check (C015) and the backwall tie-back basis (C014)."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "10 Construction",
+   "text": "FDM 121.9.1(8) and FDM 240: the bridge spans I-95, so beam erection, pile driving at the pier and falsework-free deck construction over live traffic must be shown with lane closures, stability tower locations and user-impact comparison. No TTC plan is in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "10 Construction",
+   "text": "FDM 121.9.2: construction time requirements and the effect of site constraints on them are not in the record."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "12 Aesthetics",
+   "text": "FDM 121.9.3: the District establishes the level of aesthetics. Pedestrian bridges are named among the sites where aesthetics may play a more important role (121.9.3(1)(c))."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "12 Aesthetics",
+   "text": "FDM 121.9.3(2): an estimate of the cost to implement the recommended aesthetic treatments."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "13 Quantities and cost",
+   "text": "FDM 121.9.1(11): unit costs from the BDR Estimating Section of the Structures Manual (Long Range Estimating) are not in the record; the quantity table below carries blank unit-cost and amount columns."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "13 Quantities and cost",
+   "text": "Cost curves (FDM 121.9.1(12)): with a single viable span arrangement (median pier) no span-arrangement cost curve was developed; a statement to that effect, or the curve, is required."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "13 Quantities and cost",
+   "text": "Total estimated construction cost of the recommended design (FDM 121.9.8)."
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "not in the record; the design-basis notes of the journal and the sheet notes of B4-1 to B4-16 are the material for it"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "general plan P-1 and the record elevation of Figure 1 exist; the SDM plan-and-elevation sheet with the profile, clearances and bridge limits is not drawn"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "typical section of Figure 2 from the journal geometry; superstructure sheets (framing plan, typical section, beam details) not drawn"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "MSE wall geometry in the CAD model and MSE-DETAIL-DXF; control drawings not prepared"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "no borings in the record"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "see Section 10"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "pier cheek wall panels (B4-8); see Section 12"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "ramp walking slabs and landings in the CAD model; accessible-element details not drawn"
+  },
+  {
+   "kind": "To be supplied",
+   "section": "14 30% plans",
+   "text": "none identified in the record; confirm (FDM 122)"
+  }
+ ],
+ "pile_checks": {
+  "EB1": {
+   "counts": {
+    "INFO": 5,
+    "PASS": 12,
+    "PENDING": 9
+   },
+   "governing_check": "Service I concrete compression (0.60 f'c)",
+   "governing_note": "Governing record: combo 4 SERVICE-I · pile 4 · element 12J · EL 18.60 ft.",
+   "max_structural_ratio": 0.5503,
+   "pending": [
+    "Axial compression · maximum Pu / φPn,max",
+    "Axial + biaxial flexure · LRFD Eq. 5.6.4.5-3",
+    "Axial + flexure · resultant bending axis (strain compatibility)",
+    "Shear · general procedure",
+    "Service I concrete tension",
+    "Minimum square pile size (Table 3.5.1-1)",
+    "Pile-to-cap moment transfer (embedment below 48 in)",
+    "Pile Data Table completeness (SDM 11.4)",
+    "Environment classification",
+    "Pile-to-cap connection (12 in embedment)",
+    "Downdrag source documented",
+    "FBMP export current",
+    "Minimum tip elevation",
+    "Scour resistance and elevations",
+    "Drivability"
+   ]
+  },
+  "EB2": {
+   "counts": {
+    "INFO": 5,
+    "PASS": 12,
+    "PENDING": 9
+   },
+   "governing_check": "Service I concrete compression (0.60 f'c)",
+   "governing_note": "Governing record: combo 4 SERVICE-I · pile 4 · element 12J · EL 18.23 ft.",
+   "max_structural_ratio": 0.5568,
+   "pending": [
+    "Axial compression · maximum Pu / φPn,max",
+    "Axial + biaxial flexure · LRFD Eq. 5.6.4.5-3",
+    "Axial + flexure · resultant bending axis (strain compatibility)",
+    "Shear · general procedure",
+    "Service I concrete tension",
+    "Minimum square pile size (Table 3.5.1-1)",
+    "Pile-to-cap moment transfer (embedment below 48 in)",
+    "Pile Data Table completeness (SDM 11.4)",
+    "Environment classification",
+    "Pile-to-cap connection (12 in embedment)",
+    "Downdrag source documented",
+    "FBMP export current",
+    "Minimum tip elevation",
+    "Scour resistance and elevations",
+    "Drivability"
+   ]
+  },
+  "PIER": {
+   "counts": {
+    "CONFIRMED": 1,
+    "INFO": 5,
+    "PASS": 7,
+    "PENDING": 9
+   },
+   "governing_check": "Combined axial load and flexure · Eq. 6.9.2.2.1 (-1)",
+   "governing_note": "Governing record: combo 2 STRENGTH-III · pile 4 · element 13J · EL 16.55 ft. Second-order effects come from the FBMP P-delta analysis; the LRFD column check uses K(Lu + Lf).",
+   "max_structural_ratio": 0.4643,
+   "pending": [
+    "Local buckling class · nonslender (D/t vs 0.11 E/Fy)",
+    "Tension · maximum strength uplift",
+    "Pile Data Table completeness (SDM 11.4)",
+    "Corrosion allowance",
+    "Environment classification",
+    "Pile-to-cap connection (12 in embedment)",
+    "Downdrag source documented",
+    "FBMP export current",
+    "Minimum tip elevation",
+    "Scour resistance and elevations",
+    "Drivability"
+   ]
+  }
+ },
+ "pile_tables": {
+  "EB1": {
+   "columns": [
+    "Pier / Bent",
+    "Pile Size & Type",
+    "Nominal Bearing Resistance (tons)",
+    "Tension Resistance (tons)",
+    "Minimum Tip Elevation (ft)",
+    "Test Pile Length / Pile Order Length (ft)",
+    "Required Jet Elevation (ft)",
+    "Required Preform Elevation (ft)",
+    "Factored Design Load (tons)",
+    "Downdrag (tons)",
+    "Total Scour Resistance (tons)",
+    "Net Scour Resistance (tons)",
+    "100-Year Scour Elevation (ft)",
+    "Design Scour Elevation (temporary bridges)",
+    "Long-Term Scour Elevation (ft)",
+    "Resistance Factor",
+    "Pile Cut-Off Elevation (ft)"
+   ],
+   "row": [
+    "End Bent 1",
+    "18\" Sq. Prestr. Conc.",
+    90,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    50,
+    18,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    0.75,
+    41.2
+   ]
+  },
+  "EB2": {
+   "columns": [
+    "Pier / Bent",
+    "Pile Size & Type",
+    "Nominal Bearing Resistance (tons)",
+    "Tension Resistance (tons)",
+    "Minimum Tip Elevation (ft)",
+    "Test Pile Length / Pile Order Length (ft)",
+    "Required Jet Elevation (ft)",
+    "Required Preform Elevation (ft)",
+    "Factored Design Load (tons)",
+    "Downdrag (tons)",
+    "Total Scour Resistance (tons)",
+    "Net Scour Resistance (tons)",
+    "100-Year Scour Elevation (ft)",
+    "Design Scour Elevation (temporary bridges)",
+    "Long-Term Scour Elevation (ft)",
+    "Resistance Factor",
+    "Pile Cut-Off Elevation (ft)"
+   ],
+   "row": [
+    "End Bent 2",
+    "18\" Sq. Prestr. Conc.",
+    90,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    50,
+    18,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    0.75,
+    41.3
+   ]
+  },
+  "PIER": {
+   "columns": [
+    "Pier / Bent",
+    "Pile Size & Type",
+    "Nominal Bearing Resistance (tons)",
+    "Tension Resistance (tons)",
+    "Minimum Tip Elevation (ft)",
+    "Test Pile Length / Pile Order Length (ft)",
+    "Required Jet Elevation (ft)",
+    "Required Preform Elevation (ft)",
+    "Factored Design Load (tons)",
+    "Downdrag (tons)",
+    "Total Scour Resistance (tons)",
+    "Net Scour Resistance (tons)",
+    "100-Year Scour Elevation (ft)",
+    "Design Scour Elevation (temporary bridges)",
+    "Long-Term Scour Elevation (ft)",
+    "Resistance Factor",
+    "Pile Cut-Off Elevation (ft)"
+   ],
+   "row": [
+    "Pier",
+    "20\" Ø Pipe",
+    151,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    114,
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    0.75,
+    41.8
+   ]
+  }
+ },
+ "quantities": {
+  "2 Barriers": 899.30325,
+  "2 End Bents": 411.25,
+  "2 FIB 36": 2377.7094,
+  "2 Pier Cheek Walls": 33.1924,
+  "2 Pier Pedestals": 13.96875,
+  "4 Cheek Walls": 28.593866666666663,
+  "4 End Bent Pedestals": 17.4609375,
+  "Area": 205.625,
+  "Beam 1 Haunch": 93.2687548903471,
+  "Beam 2 Haunch": 93.2687548903471,
+  "Bridge Barrier": 449.651625,
+  "Bridge Deck": 1441.5312499999998,
+  "Crash Wall": 841.067675,
+  "End Bent Cheek Wall": 7.148466666666666,
+  "End Bent Pedestals": 4.365234375,
+  "FIB 36": 1188.8547,
+  "Pier Cap": 230.0,
+  "Pier Cheek Wall": 16.5962,
+  "Pier Pedestals": 6.984375,
+  "Unused - two-beam layout": 0.0
+ },
+ "review": {
+  "checked_at": "2026-10-22T18:45:55.914428+00:00",
+  "items": [
+   {
+    "id": "COH-004",
+    "next": "Compare the exact current model loading with T006 and document needed reruns and convergence evidence.",
+    "status": "Open",
+    "subject": "Complete model load comparison"
+   },
+   {
+    "id": "COH-005",
+    "next": "Establish remaining wall/fin geometry and compare current model wind loads with the T006 basis.",
+    "status": "Open",
+    "subject": "Wind and wall geometry"
+   },
+   {
+    "id": "COH-010",
+    "next": "Supply final wall details, then reconcile quantities and dead loads.",
+    "status": "Deferred",
+    "subject": "Backwall and cheek-wall quantities"
+   },
+   {
+    "id": "COH-014",
+    "next": "Document how the revised End Bent 1 actions bound both end bents.",
+    "status": "Open",
+    "subject": "Common controlling design basis"
+   },
+   {
+    "id": "COH-017",
+    "next": "Recalculate with the companion data and compare inputs/outputs. Review the repeated 107.35-ft PSBeam narrative in the Span 2 sheet.",
+    "status": "Open",
+    "subject": "Mathcad / project comparison"
+   },
+   {
+    "id": "COH-018",
+    "next": "Reconcile complete saved geometry and derived schedules with accepted T006, documenting conventions.",
+    "status": "Open",
+    "subject": "Complete notebook comparison"
+   },
+   {
+    "id": "COH-019",
+    "next": "Review and revise the end-face U-grid detail against pile envelopes and fabrication tolerances; regenerate and verify the report.",
+    "status": "Open",
+    "subject": "End-face U-grid pile clearance"
+   },
+   {
+    "id": "COH-021",
+    "next": "Identify the report-generating tool revision, review its changes and consumers, then record an explicit adoption.",
+    "status": "Open",
+    "subject": "Unregistered tool revisions"
+   },
+   {
+    "id": "COH-022",
+    "next": "Refresh journal source references through the bounded BPAD workflow when directed; preserve C005 and distinguish selected sources from accepted calculations.",
+    "status": "Open",
+    "subject": "Current cap source references"
+   },
+   {
+    "id": "COH-023",
+    "next": "Reconcile cap/wall calculations, loads and quantities with adopted CAD. Review anchorage, lug steel and strap interfaces before issuing details.",
+    "status": "Open",
+    "subject": "Reconcile adopted MSE and cheek revision"
+   },
+   {
+    "id": "COH-024",
+    "next": "Review remaining cap/backwall cover, pile clearance, anchorage and fabrication findings. Cheek spacing and cap/cheek overlap findings are resolved. Keep the separate COH-025 U-bar/hoop deferral.",
+    "status": "Open",
+    "subject": "Coordinate cap and cheek steel"
+   },
+   {
+    "id": "COH-025",
+    "next": "Review the U-bar / hoop intersections later and agree revisions. Recheck affected steel, cover, spacing, piles and WWR before closing. Leave current stirrups and U-bars unchanged.",
+    "status": "Deferred",
+    "subject": "End-bent U-bar / hoop overlaps"
+   },
+   {
+    "id": "COH-026",
+    "next": "Agree concrete ownership and trim the coping/wall interfaces. Recheck concrete quantities and contact geometry.",
+    "status": "Open",
+    "subject": "Coping and MSE wall overlaps"
+   },
+   {
+    "id": "COH-028",
+    "next": "Rerun the final pier, End Bent 1 and End Bent 2 FBMP analyses with pile-head nodes at the notebook cutoffs: pier 41.764940 ft (Z -501.18 in), EB1 41.237692 ft (Z -494.85 in), EB2 41.249692 ft (Z -495.00 in). Confirm pile length, tip and soil inputs, and rerun minimum-tip variants still in use. Regenerate the cap reports and cases, then submit the exports under COH-013.",
+    "status": "Open",
+    "subject": "Rerun final FBMP with current pile heads"
+   }
+  ],
+  "outstanding": 14,
+  "registered_sources": 43,
+  "tracker_items": 28
+ },
+ "version": "bdr 1.0.0",
+ "wall_checks": {
+  "counts": {
+   "FAIL": 1,
+   "PASS": 177
+  },
+  "failed": [
+   "Ring clearance to inner face-grid layer"
+  ],
+  "max_pass": [
+   1.0,
+   "Concrete clear cover"
+  ],
+  "pending": []
+ }
+}

@@ -1,0 +1,70 @@
+{
+  "note": "Hand-maintained facts for the Bridge Development Report that no registered project source supplies, plus the BDR items the FDM requires that the project record does not yet answer. Every entry carries a status: 'project source' (read from a registered file; the generator overwrites it), 'inferred' (derived from a registered file, named in 'basis'; confirm before issue), or 'to be supplied' (not in the project record; the report prints the placeholder and lists the item in the open-items appendix). Edit this file, then rebuild with .venv\\Scripts\\python.exe scripts\\build_bdr.py.",
+  "report": {
+    "title": "Bridge Development Report",
+    "structure": "B4 Pedestrian Bridge over I-95",
+    "revision": "Draft for review",
+    "fdm_edition": "FDOT Design Manual, Topic No. 625-000-002, January 1, 2026, Chapter 121 Bridge Project Development (121.9 BDR / 30% Structures Plans; 121.10 BDR Submittal Checklist)",
+    "fdm_260_clearance_ft": 17.5,
+    "fdm_260_clearance_basis": "FDM 260, Table 260.6.1 (new construction): pedestrian bridge over roadway 17.5 ft"
+  },
+  "geometry": {
+    "min_vertical_clearance_ft": {"value": 18.361569, "status": "inferred", "basis": "Geometry notebook (GEOMETRY, model e9b41b8eaf): default minimum vertical clearance over the covered roadway region, as recorded in README.md; roadway coverage is partial, so no full-bridge clearance pass is implied"},
+    "journal_vertical_clearance_ft": {"value": 18.211, "status": "project source", "basis": "Journal Access Geometry and ADA: VerticalClearance = Distance_Algn2Terrain - 4.46 ft (an earlier FIB-45 slab-to-soffit distance; superseded by the notebook value)"},
+    "trial_pile_length_ft": {"value": 90, "status": "inferred", "basis": "CAD model TrialPileLength (bridge_geometry/project_source.json, 27432 mm); tips pending the geotechnical handoff"}
+  },
+  "identification": {
+    "district": {"value": "District Two", "status": "inferred", "basis": "Project name prefix D2 in the journal (ProjectInfo.Project, journal title D2 I-95 Project Journal)"},
+    "county": {"value": "Duval", "status": "inferred", "basis": "Backwall case input V_III: 'SDG Table 2.4.1-1 Duval County' (project_current/cap_design/backwall/selected_case.json)"},
+    "road": {"value": "I-95 (limited access), South of SR 152 to South of SR 126", "status": "inferred", "basis": "ProjectInfo.Project in the journal"},
+    "bridge_number": {"value": null, "status": "to be supplied", "basis": "no project source gives it (blank on the generated FDOT sheets)"},
+    "fpid": {"value": null, "status": "to be supplied", "basis": "no project source gives it"},
+    "structure_category": {"value": "Category 1 (assumed)", "status": "inferred", "basis": "SDG 1.1 lists the Category 2 structure types; a two-span prestressed-beam pedestrian bridge is not among them. Confirm with the District Structures Design Engineer, who sets the BDR scope (FDM 121.9)"},
+    "crossing": {"value": "Grade separation over I-95; no waterway, railroad or navigation channel in the project record", "status": "inferred", "basis": "Roadway XML (Geometry Report.xml) supplies the roadway profile under the bridge; no hydraulic, railroad or vessel-collision source is registered"}
+  },
+  "bdr_items": {
+    "alternatives_statement": {"status": "to be supplied", "text": "The project record documents the selected two-span, two-beam FIB-36 layout and the superseded three-beam layout (journal archive modules). A comparison of other viable superstructure and substructure types with costs, if the District requires one for this Category 1 structure, is not in the record."},
+    "grs_abutments": {"status": "to be supplied", "text": "FDM 121.9.1(5) requires a statement on the feasibility of GRS abutments. The project record has no GRS assessment; the end bents are pile-supported caps within MSE walls."},
+    "precast_feasibility": {"status": "to be supplied", "text": "FDM 121.9.1(9): the superstructure beams and the end-bent piles are prestressed precast elements and the pier piles are steel pipe; the deck, caps, backwalls, cheek walls and pier wall are cast in place. A feasibility assessment of further prefabrication (FDM 121.19 questions, assessment matrix, direct and indirect costs) is not in the record."},
+    "temporary_traffic_control": {"status": "to be supplied", "text": "FDM 121.9.1(8) and FDM 240: the bridge spans I-95, so beam erection, pile driving at the pier and falsework-free deck construction over live traffic must be shown with lane closures, stability tower locations and user-impact comparison. No TTC plan is in the record."},
+    "construction_time": {"status": "to be supplied", "text": "FDM 121.9.2: construction time requirements and the effect of site constraints on them are not in the record."},
+    "unit_costs": {"status": "to be supplied", "text": "FDM 121.9.1(11): unit costs from the BDR Estimating Section of the Structures Manual (Long Range Estimating) are not in the record; the quantity table below carries blank unit-cost and amount columns."},
+    "aesthetics_level": {"status": "to be supplied", "text": "FDM 121.9.3: the District establishes the level of aesthetics. Pedestrian bridges are named among the sites where aesthetics may play a more important role (121.9.3(1)(c))."},
+    "aesthetics_cost": {"status": "to be supplied", "text": "FDM 121.9.3(2): an estimate of the cost to implement the recommended aesthetic treatments."},
+    "retaining_wall_study": {"status": "to be supplied", "text": "FDM 121.9.1(13) and FDM 262: MSE walls A1 to A8 and B1 to B9 retain the approach ramps; the wall study (wall type selection, control drawings) is not in the record. The record holds the wall geometry (CAD), the MSE exclusion-zone check (C015) and the backwall tie-back basis (C014)."},
+    "wildlife_connectivity": {"status": "to be supplied", "text": "FDM 121.10 checklist item: not addressed in the record."},
+    "utilities": {"status": "to be supplied", "text": "FDM 121.10 checklist item: existing and proposed utilities in the vicinity and any attachments are not in the record."},
+    "lighting": {"status": "to be supplied", "text": "FDM 121.10 checklist item: lighting on or under the structure is not in the record."},
+    "drainage": {"status": "to be supplied", "text": "Deck drainage and the Bridge Hydraulics Report / Recommendation Sheet (FDM 121.10): the structure is a grade separation; concurrence that no BHR is required, and the deck drainage scheme, are not in the record."},
+    "corrosion_report": {"status": "to be supplied", "text": "FDM 121.10 Bridge Corrosion Environment Report: the environment classification is pending in every registered calculation (assumption A-011); the span Mathcad runs assume 'Moderately' aggressive."},
+    "geotechnical_report": {"status": "to be supplied", "text": "FDM 121.9 / 121.10: the Phase I Geotechnical Report accompanies the BDR. The record holds the FB-MultiPier soil profiles of the registered exports, the 18-ton downdrag given by the geotechnical engineer (D-050) and the four longitudinal sections prepared for the geotechnical engineer; no borings, minimum tip elevations or scour values."},
+    "seismic": {"status": "inferred", "text": "Florida is in AASHTO Seismic Zone 1; per SDG 2.3 no seismic analysis is required and the minimum support-length provisions apply. Confirm in the design criteria."},
+    "vessel_collision": {"status": "inferred", "text": "Not applicable: the bridge is a grade separation over I-95 with no navigable waterway in the record (FDM 121.9.1(6))."},
+    "scour": {"status": "inferred", "text": "No waterway crossing in the record; the Pile Data Table carries N/A for the scour columns pending the drainage and geotechnical concurrence (FDM 121.9.1(7); SDG 3.5)."},
+    "movable_bridge": {"status": "inferred", "text": "Not applicable (fixed bridge)."},
+    "existing_bridge": {"status": "inferred", "text": "New structure on a new alignment: no existing bridge plans, inspection report or load rating apply (FDM 121.10)."},
+    "railroad": {"status": "inferred", "text": "No railroad in the record (FDM 121.10)."},
+    "bridge_security": {"status": "inferred", "text": "FDM 121.9.6 applies to Category 2 bridges identified as critical, landmark or signature bridges; not applicable to this structure as categorised."},
+    "alternative_designs": {"status": "inferred", "text": "FDM 121.9.7: alternative (steel versus concrete) contract designs are considered for structures over $25 million; not warranted for this structure."},
+    "historical": {"status": "inferred", "text": "FDM 121.9.5 applies to rehabilitation or replacement of an older bridge; not applicable."}
+  },
+  "checklist_fdm_121_10": [
+    {"item": "Typical Sections for Roadway and Bridge", "status": "partial", "note": "Bridge typical section drawn from the registered geometry (Exhibit B); approved roadway typical sections not in the record"},
+    {"item": "Roadway Plans (bridge vicinity)", "status": "partial", "note": "General plan of the model (Exhibit A) and the roadway profile XML; preliminary roadway plans not in the record"},
+    {"item": "Maintenance of Traffic Requirements", "status": "missing", "note": "See Section 10"},
+    {"item": "Bridge Hydraulics Report and Recommendation Sheet", "status": "missing", "note": "Grade separation; District Drainage Engineer concurrence not in the record"},
+    {"item": "Geotechnical Report (Phase I)", "status": "missing", "note": "Downdrag value and FBMP soil profiles only; see Section 8"},
+    {"item": "Bridge Corrosion Environment Report", "status": "missing", "note": "Environment classification pending (A-011)"},
+    {"item": "GRS Feasibility Assessment", "status": "missing", "note": "Statement required by FDM 121.9.1(5)"},
+    {"item": "Precast Feasibility Assessment", "status": "missing", "note": "See Section 5"},
+    {"item": "Existing Bridge Plans", "status": "n/a", "note": "New structure"},
+    {"item": "Existing Bridge Inspection Report", "status": "n/a", "note": "New structure"},
+    {"item": "Existing Bridge Load Rating", "status": "n/a", "note": "New structure"},
+    {"item": "Wildlife Connectivity", "status": "missing", "note": "Not addressed in the record"},
+    {"item": "Utility Requirements", "status": "missing", "note": "Not addressed in the record"},
+    {"item": "Railroad Requirements", "status": "n/a", "note": "No railroad in the record"},
+    {"item": "Retaining Wall and Bulkhead Requirements", "status": "partial", "note": "MSE wall geometry and exclusion check in the record; wall study (FDM 262) missing"},
+    {"item": "Lighting Requirements", "status": "missing", "note": "Not addressed in the record"},
+    {"item": "ADA Access Requirements", "status": "partial", "note": "Journal Access Geometry and ADA module; ramp slopes and landings in the CAD model (Section 11)"}
+  ]
+}
