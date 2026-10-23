@@ -33,3 +33,7 @@ sequestered/** -text
 substructure_drawings/data/** -text
 substructure_drawings/output/** -text
 substructure_drawings/output/*.dxf binary
+# Geotechnical sections: snapshot and outputs are hashed by the staleness test.
+geotech_sections/data/** -text
+geotech_sections/output/** -text
+geotech_sections/output/*.dxf binary

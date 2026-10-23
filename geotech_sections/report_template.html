@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B4 Geotechnical Sections</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1d2430;--muted:#5d6877;--grid:#e3e6ea;--gridtext:#8a94a3;--line:#d5dae0;--accent:#c0392b;--tip:#ffffffee}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14181e;--card:#1c222a;--ink:#e6e9ee;--muted:#9aa5b4;--grid:#2a313b;--gridtext:#6f7b8b;--line:#333c48;--accent:#ff7b6b;--tip:#232a33f2}}
+:root[data-theme="dark"]{--bg:#14181e;--card:#1c222a;--ink:#e6e9ee;--muted:#9aa5b4;--grid:#2a313b;--gridtext:#6f7b8b;--line:#333c48;--accent:#ff7b6b;--tip:#232a33f2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:20px 16px 8px;max-width:1500px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0}
+main{max-width:1500px;margin:0 auto;padding:8px 16px 40px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+nav button,.ctl button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px;border-radius:6px;cursor:pointer;font:inherit}
+nav button.on,.ctl button.on{border-color:var(--accent);color:var(--accent);font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:18px}
+.card h2{font-size:17px;margin:0}
+.meta{color:var(--muted);font-size:13px;margin:2px 0 8px}
+.ctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-bottom:6px}
+.wrap{position:relative;width:100%;overflow:hidden;border:1px solid var(--line);border-radius:6px;touch-action:none}
+svg{display:block;width:100%;height:auto;cursor:crosshair;user-select:none}
+.tip{position:absolute;pointer-events:none;background:var(--tip);border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:12.5px;line-height:1.35;min-width:220px;max-width:340px;box-shadow:0 4px 14px #0003;display:none;z-index:2}
+.tip b{font-weight:600}.tip .k{color:var(--muted)}.tip table{border-collapse:collapse;margin-top:4px}.tip td{padding:1px 6px 1px 0;white-space:nowrap}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--muted);margin-top:8px}
+details{margin-top:8px}summary{cursor:pointer;color:var(--muted)}
+table.el{border-collapse:collapse;width:100%;font-size:12.5px;margin-top:6px}
+table.el th,table.el td{border-bottom:1px solid var(--line);padding:3px 8px;text-align:left;white-space:nowrap}
+table.el td.n{text-align:right;font-variant-numeric:tabular-nums}
+table.el tr:hover{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.notes{color:var(--muted);font-size:12.5px}
+.notes li{margin:2px 0}
+</style>
+</head>
+<body>
+<header>
+<h1>B4 Pedestrian Bridge &mdash; geotechnical sections</h1>
+<p class="sub">Vertical planes parallel to stationing, through the registered FreeCAD model and the existing-ground survey. Hover a section to read station and elevations; scroll to zoom, drag to pan, double-click to reset.</p>
+</header>
+<main>
+<nav id="nav"></nav>
+<div id="secs"></div>
+<div class="card notes">
+<b>Sources and limits</b>
+<ul>
+<li>Structure: registered FreeCAD model, SHA-256 <!--MODEL-->&hellip; (finished components, MSE leveling pads and piles). Piles within 15 ft of a plane are drawn dashed as projected.</li>
+<!--SOURCES-->
+<li>Terrain profiles are exact cuts of the supplied LandXML triangles placed by the verified registration of the CAD tooling; no re-triangulation or smoothing. Gaps in a profile are gaps in the survey.</li>
+<li>Elevations in feet as carried by the model and the surveys. No soil layers, borings or water table are shown. Preliminary &mdash; not for construction.</li>
+</ul>
+</div>
+</main>
+<script>
+const D=/*DATA*/null;
+const fmtSta=s=>{s=Math.round(s*100)/100;const h=Math.floor(s/100),r=s-h*100;return h+"+"+(r<10?"0":"")+r.toFixed(2)};
+const NS="http://www.w3.org/2000/svg";
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+function interp(pieces,x){for(const p of pieces){if(x<p[0][0]||x>p[p.length-1][0])continue;for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i];if(x>=a[0]&&x<=b[0]){return b[0]===a[0]?Math.max(a[1],b[1]):a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0])}}}return null}
+function crossings(loop,closed,x){const z=[];const n=loop.length;const m=closed?n:n-1;for(let i=0;i<m;i++){const a=loop[i],b=loop[(i+1)%n];if((a[0]<=x&&b[0]>=x)||(b[0]<=x&&a[0]>=x)){if(a[0]===b[0]){z.push(a[1],b[1])}else z.push(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))}}return z}
+function inside(loop,x,y){let c=false;for(let i=0,j=loop.length-1;i<loop.length;j=i++){const a=loop[i],b=loop[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])c=!c}return c}
+const nav=document.getElementById("nav"),host=document.getElementById("secs");
+D.sections.forEach((S,i)=>{
+ const b=document.createElement("button");b.textContent=S.id;b.onclick=()=>document.getElementById("s"+i).scrollIntoView({behavior:"smooth"});nav.appendChild(b);
+ const card=document.createElement("section");card.className="card";card.id="s"+i;host.appendChild(card);
+ const off=S.offset===0?"on the bridge PGL":Math.abs(S.offset).toFixed(1)+" ft "+(S.offset>0?"north":"south")+" of the bridge PGL";
+ card.innerHTML=`<h2>${S.title}</h2><div class="meta">Plane ${off} &middot; Sta. ${fmtSta(S.window[0])} to ${fmtSta(S.window[1])} &middot; ${S.clearance.toFixed(1)} ft beyond the outermost project element (${S.exterior} end) &middot; existing-ground survey on this plane: Sta. ${fmtSta(S.eg[0][0][0])} to ${fmtSta(S.eg[S.eg.length-1][S.eg[S.eg.length-1].length-1][0])}</div>
+ <div class="ctl">Vertical exaggeration <button data-ve="1" class="on">1&times;</button><button data-ve="2">2&times;</button><button data-ve="4">4&times;</button><span style="margin-left:10px">Grid: 5 ft elevation, 20 ft station</span></div>
+ <div class="wrap"><svg></svg><div class="tip"></div></div><div class="legend"></div>
+ <details><summary>Elements cut by the section (${S.table.length})</summary><table class="el"><thead><tr><th>Element</th><th>Type</th><th>From sta.</th><th>To sta.</th><th>Top el.</th><th>Bottom el.</th></tr></thead><tbody>${S.table.map(r=>`<tr><td>${r.name}</td><td>${D.roles[r.role].name}</td><td class="n">${fmtSta(r.sta[0])}</td><td class="n">${fmtSta(r.sta[1])}</td><td class="n">${r.top.toFixed(2)}</td><td class="n">${r.bottom.toFixed(2)}</td></tr>`).join("")}</tbody></table></details>`;
+ const svg=card.querySelector("svg"),tip=card.querySelector(".tip"),wrap=card.querySelector(".wrap");
+ const used=new Set(S.objects.map(o=>o.r));if(S.piles.length)used.add("pile");
+ card.querySelector(".legend").innerHTML=`<span><span class="sw" style="background:${D.eg_color}"></span>Existing ground</span>`+(S.pond.length?`<span><span class="sw" style="background:${D.pond_color}"></span>Pond 14D (proposed)</span>`:"")+[...used].map(r=>`<span><span class="sw" style="background:${D.roles[r].color}"></span>${D.roles[r].name}</span>`).join("")+(S.piles.length?`<span>dashed = projected pile</span>`:"");
+ let ve=1,view=null;const W=S.window[1]-S.window[0],H=S.z[1]-S.z[0];const PAD=14;
+ function full(){const x0=S.window[0]-PAD,x1=S.window[1]+PAD*.6,s0=(x1-x0)/Math.max(wrap.clientWidth,300);return{x0,x1,z0:S.z[0]-26*s0/ve,z1:S.z[1]+20*s0/ve}}
+ function draw(){
+  if(!view)view=full();
+  const vw=view.x1-view.x0,vh=(view.z1-view.z0)*ve;svg.setAttribute("viewBox",`0 0 ${vw} ${vh}`);
+  svg.style.aspectRatio=`${vw} / ${vh}`;svg.innerHTML="";
+  const X=x=>x-view.x0,Y=z=>(view.z1-z)*ve;const sc=vw/Math.max(wrap.clientWidth,300);
+  const pth=pts=>"M"+pts.map(p=>X(p[0]).toFixed(3)+" "+Y(p[1]).toFixed(3)).join("L");
+  const g=el("g",{},svg);
+  const fs=11*sc;
+  const zlab=[5,10,20].find(k=>k*ve/sc>=14)||20;
+  for(let z=S.z[0];z<=S.z[1];z+=5){el("line",{x1:X(S.window[0]),x2:X(S.window[1]),y1:Y(z),y2:Y(z),stroke:"var(--grid)","stroke-width":sc},g);if(z%zlab)continue;const t=el("text",{x:X(S.window[0])-3*sc,y:Y(z)+fs*.35,"font-size":fs,fill:"var(--gridtext)","text-anchor":"end"},g);t.textContent=z}
+  const lab=[20,40,100,200].find(k=>k/sc>=72)||200;
+  for(let s=Math.ceil(S.window[0]/20)*20;s<=S.window[1];s+=20){el("line",{x1:X(s),x2:X(s),y1:Y(S.z[0]),y2:Y(S.z[1]),stroke:"var(--grid)","stroke-width":sc},g);if(s%lab)continue;const t=el("text",{x:X(s),y:Y(S.z[0])+fs*1.3,"font-size":fs,fill:"var(--gridtext)","text-anchor":"middle"},g);t.textContent=fmtSta(s)}
+  const P=D.stations.PIER;if(P>=S.window[0]-1e-6&&P<=S.window[1]+1e-6){el("line",{x1:X(P),x2:X(P),y1:Y(S.z[0]),y2:Y(S.z[1]),stroke:"var(--accent)","stroke-width":1.2*sc,"stroke-dasharray":`${8*sc} ${3*sc} ${2*sc} ${3*sc}`},g);const t=el("text",{x:X(P)+(P>=S.window[1]?-4:4)*sc,y:Y(S.z[1])+fs*1.2,"font-size":fs,fill:"var(--accent)","text-anchor":P>=S.window[1]?"end":"start"},g);t.textContent="℄ Pier (match line)"}
+  for(const k of ["EB1","EB2"]){const s=D.stations[k];if(s>S.window[0]&&s<S.window[1]){el("line",{x1:X(s),x2:X(s),y1:Y(S.z[1]),y2:Y(S.z[1]-6),stroke:"var(--muted)","stroke-width":sc},g);const t=el("text",{x:X(s)+3*sc,y:Y(S.z[1])+fs,"font-size":fs,fill:"var(--muted)"},g);t.textContent="FFBW "+k+" "+fmtSta(s)}}
+  S.objects.forEach((o,j)=>{const c=D.roles[o.r].color;o.l.forEach((lp,k)=>{const closed=o.c[k];const e=el("path",{d:pth(lp)+(closed?"Z":""),fill:closed&&o.r!=="strap"?c:"none","fill-opacity":.55,stroke:c,"stroke-width":(o.r==="strap"?2:1)*sc,"data-o":j},g)})});
+  S.piles.forEach(p=>{el("rect",{x:X(p.sta[0]),y:Y(p.z[1]),width:p.sta[1]-p.sta[0],height:(p.z[1]-p.z[0])*ve,fill:"none",stroke:D.roles.pile.color,"stroke-width":sc,"stroke-dasharray":`${4*sc} ${3*sc}`},g)});
+  S.limits.forEach(([s,z])=>{el("line",{x1:X(s),x2:X(s),y1:Y(z-3),y2:Y(z+6),stroke:D.eg_color,"stroke-width":1.2*sc,"stroke-dasharray":`${3*sc} ${2*sc}`},g);const t=el("text",{x:X(s),y:Y(z+7),"font-size":fs*.9,fill:D.eg_color,"text-anchor":s<(S.window[0]+S.window[1])/2?"end":"start"},g);t.textContent="limit of existing-ground survey"});
+  S.pond.forEach(p=>el("path",{d:pth(p),fill:"none",stroke:D.pond_color,"stroke-width":1.8*sc},g));
+  S.eg.forEach(p=>el("path",{d:pth(p),fill:"none",stroke:D.eg_color,"stroke-width":2*sc},g));
+  el("rect",{x:X(S.window[0]),y:Y(S.z[1]),width:W,height:H*ve,fill:"none",stroke:"var(--line)","stroke-width":sc},g);
+  svg._cur=el("line",{y1:0,y2:vh,stroke:"var(--accent)","stroke-width":sc,visibility:"hidden"},svg);
+  svg._dots=el("g",{},svg);svg._hl=el("g",{},svg);svg._X=X;svg._Y=Y;svg._sc=sc;
+ }
+ function world(ev){const r=svg.getBoundingClientRect();const vw=view.x1-view.x0,vh=(view.z1-view.z0);return{x:view.x0+(ev.clientX-r.left)/r.width*vw,z:view.z1-(ev.clientY-r.top)/r.height*vh,r}}
+ let drag=null;
+ svg.addEventListener("mousemove",ev=>{
+  if(drag){const w=world(ev);const dx=w.x-drag.x,dz=w.z-drag.z;view.x0-=dx;view.x1-=dx;view.z0-=dz;view.z1-=dz;draw();return}
+  const w=world(ev);const x=w.x;if(x<S.window[0]||x>S.window[1]){hide();return}
+  const X=svg._X,Y=svg._Y,sc=svg._sc;svg._cur.setAttribute("x1",X(x));svg._cur.setAttribute("x2",X(x));svg._cur.setAttribute("visibility","visible");
+  svg._dots.innerHTML="";svg._hl.innerHTML="";
+  const dot=(z,c)=>el("circle",{cx:X(x),cy:Y(z),r:3.2*sc,fill:c,stroke:"var(--card)","stroke-width":sc},svg._dots);
+  let rows=[];const eg=interp(S.eg,x),pd=interp(S.pond,x);
+  if(eg!==null){rows.push(`<tr><td><span class="sw" style="background:${D.eg_color}"></span>Existing ground</td><td><b>${eg.toFixed(2)}</b></td></tr>`);dot(eg,D.eg_color)}
+  else rows.push(`<tr><td class="k" colspan=2>No existing-ground survey here</td></tr>`);
+  if(pd!==null){rows.push(`<tr><td><span class="sw" style="background:${D.pond_color}"></span>Pond 14D</td><td><b>${pd.toFixed(2)}</b></td></tr>`);dot(pd,D.pond_color)}
+  let under=null;
+  S.objects.forEach((o,j)=>{let zs=[];o.l.forEach((lp,k)=>{zs=zs.concat(crossings(lp,o.c[k],x))});if(!zs.length)return;const t=Math.max(...zs),b=Math.min(...zs);const c=D.roles[o.r].color;
+   rows.push(`<tr><td><span class="sw" style="background:${c}"></span>${o.n}</td><td>top <b>${t.toFixed(2)}</b>${o.r==="strap"?"":` &middot; bot <b>${b.toFixed(2)}</b>`}</td></tr>`);dot(t,c);if(o.r!=="strap")dot(b,c);
+   o.l.forEach((lp,k)=>{if(o.c[k]&&inside(lp,x,w.z))under=o})});
+  S.piles.forEach(p=>{if(x>=p.sta[0]&&x<=p.sta[1])rows.push(`<tr><td><span class="sw" style="background:${D.roles.pile.color}"></span>${p.name} <span class="k">(proj. ${p.offset_ft>0?"+":""}${p.offset_ft.toFixed(1)} ft)</span></td><td>top <b>${p.z[1].toFixed(2)}</b> &middot; tip <b>${p.z[0].toFixed(2)}</b></td></tr>`)});
+  if(under){under.l.forEach((lp,k)=>el("path",{d:"M"+lp.map(p=>X(p[0])+" "+Y(p[1])).join("L")+(under.c[k]?"Z":""),fill:"none",stroke:"var(--accent)","stroke-width":2.2*sc},svg._hl))}
+  tip.innerHTML=`<div><b>Sta. ${fmtSta(x)}</b> <span class="k">&middot; cursor el. ${w.z.toFixed(2)}</span></div>`+(under?`<div>Over <b>${under.n}</b> <span class="k">(${D.roles[under.r].name})</span></div>`:"")+`<table>${rows.join("")}</table>`;
+  tip.style.display="block";const r=wrap.getBoundingClientRect();let lx=ev.clientX-r.left+16,ly=ev.clientY-r.top+12;
+  if(lx+tip.offsetWidth>r.width)lx=ev.clientX-r.left-tip.offsetWidth-16;if(ly+tip.offsetHeight>r.height)ly=Math.max(0,r.height-tip.offsetHeight-4);tip.style.left=lx+"px";tip.style.top=ly+"px";
+ });
+ function hide(){tip.style.display="none";if(svg._cur)svg._cur.setAttribute("visibility","hidden");if(svg._dots)svg._dots.innerHTML="";if(svg._hl)svg._hl.innerHTML=""}
+ svg.addEventListener("mouseleave",()=>{hide();drag=null});
+ svg.addEventListener("mousedown",ev=>{drag=world(ev);svg.style.cursor="grabbing"});
+ window.addEventListener("mouseup",()=>{drag=null;svg.style.cursor="crosshair"});
+ svg.addEventListener("wheel",ev=>{ev.preventDefault();const w=world(ev);const f=ev.deltaY<0?0.8:1.25;view={x0:w.x-(w.x-view.x0)*f,x1:w.x+(view.x1-w.x)*f,z0:w.z-(w.z-view.z0)*f,z1:w.z+(view.z1-w.z)*f};draw()},{passive:false});
+ svg.addEventListener("dblclick",()=>{view=null;draw()});
+ card.querySelectorAll("[data-ve]").forEach(bt=>bt.onclick=()=>{card.querySelectorAll("[data-ve]").forEach(x=>x.classList.remove("on"));bt.classList.add("on");ve=+bt.dataset.ve;view=null;draw()});
+ window.addEventListener("resize",draw);draw();
+});
+</script>
+</body>
+</html>

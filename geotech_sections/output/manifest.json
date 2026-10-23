@@ -1,0 +1,66 @@
+{
+ "files": {
+  "B4_Geotech_Section_A-1.dxf": "23555578632b0f82a724b160acb225906fd6b17084caaaf124cdec38932ec45b",
+  "B4_Geotech_Section_A-2.dxf": "b67bf445fea3340f20f5bd685b342dcf6cc5e3a1db17226043e41aa6cdff26b8",
+  "B4_Geotech_Section_B-1.dxf": "c165a6615c12930fafb2fa7f7fa06b94ad324bc2277b34e8d713cc5bfe03caa3",
+  "B4_Geotech_Section_B-2.dxf": "a6ae996a9e1821874f4e7781ee4cfbdc41ba2751ac6a046c493668ea5eaf6d32",
+  "B4_Geotech_Sections.html": "4a9e3acdd294ea79314f0f203b8d6472da5996404b36d309d422b2d0a8820d42"
+ },
+ "generator": "geotech_sections 1.0.0",
+ "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
+ "sections": [
+  {
+   "clearance_ft": 101.464,
+   "eg_coverage": 0.768,
+   "eg_survey_limits": [
+    "15+15.86"
+   ],
+   "elements": 14,
+   "from": "14+60.00",
+   "id": "A-1",
+   "offset_ft": 70.0,
+   "projected_piles": 0,
+   "to": "17+00.57"
+  },
+  {
+   "clearance_ft": 101.464,
+   "eg_coverage": 0.792,
+   "eg_survey_limits": [
+    "15+10.16"
+   ],
+   "elements": 21,
+   "from": "14+60.00",
+   "id": "A-2",
+   "offset_ft": 0.0,
+   "projected_piles": 8,
+   "to": "17+00.57"
+  },
+  {
+   "clearance_ft": 102.468,
+   "eg_coverage": 0.816,
+   "eg_survey_limits": [
+    "21+08.13"
+   ],
+   "elements": 19,
+   "from": "17+00.57",
+   "id": "B-1",
+   "offset_ft": 57.0,
+   "projected_piles": 0,
+   "to": "22+00.00"
+  },
+  {
+   "clearance_ft": 104.745,
+   "eg_coverage": 0.816,
+   "eg_survey_limits": [
+    "21+08.10"
+   ],
+   "elements": 21,
+   "from": "17+00.57",
+   "id": "B-2",
+   "offset_ft": 0.0,
+   "projected_piles": 8,
+   "to": "22+00.00"
+  }
+ ],
+ "snapshot_sha256": "8041168ae826b5b861aef6290574ec97f7eee66fd38eb76397e4fced359dfc03"
+}

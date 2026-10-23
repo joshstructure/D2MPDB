@@ -1,0 +1,12 @@
+{
+  "note": "Longitudinal geotechnical sections marked by the user on the general plan (2026-10-23). Each cut is a vertical plane parallel to the stationing (model Y) at a constant offset from the bridge PGL; positive offsets are north (model +X, up on the plan). Sections run from the pier centerline (match line) to clearance_ft beyond the outermost project element on the exterior side. Offsets of A-1/B-1 were scaled from the marked plan (2.72 px/ft) and rounded; A-2/B-2 were drawn about 2 ft off the PGL and are taken on the PGL.",
+  "clearance_ft": 100.0,
+  "round_ends_to_ft": 5.0,
+  "projected_pile_band_ft": 15.0,
+  "cuts": [
+    {"id": "A-1", "title": "SECTION A-1 - RAMP A", "offset_ft": 70.0, "exterior": "west"},
+    {"id": "A-2", "title": "SECTION A-2 - END BENT 1 ON PGL", "offset_ft": 0.0, "exterior": "west"},
+    {"id": "B-1", "title": "SECTION B-1 - RAMP B", "offset_ft": 57.0, "exterior": "east"},
+    {"id": "B-2", "title": "SECTION B-2 - END BENT 2 ON PGL", "offset_ft": 0.0, "exterior": "east"}
+  ]
+}
