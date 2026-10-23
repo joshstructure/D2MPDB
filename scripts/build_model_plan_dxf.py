@@ -6,7 +6,8 @@
             folder and run FreeCAD 1.1 ``freecadcmd`` on the copy
             (substructure_drawings/freecad_plan_extract.py, read-only) to
             refresh substructure_drawings/data/model_plan_snapshot.json
---previews  also render the sheet to substructure_drawings/output/B4_Model_Plan.png
+--previews  also render the sheets to substructure_drawings/output/B4_Model_Plan.png
+            and B4_Model_Plan_Top.png (the visible-line top view)
 
 Without --extract the DXF is rebuilt from the committed snapshot, so the
 output is reproducible without FreeCAD.
@@ -56,7 +57,14 @@ def preview(dxf_path, png_path):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    doc, cfg = bents.preview_doc(dxf_path)
+    import dataclasses
+    from substructure_drawings import fdot
+    doc, cfg = bents.preview_doc(dxf_path, {fdot.LINETYPE_NAME % n: 1.0 / 12.0 for n in fdot.LINETYPE_PATTERNS})
+    # the renderer clamps each dash and gap, in the rescaled entity units of
+    # preview_doc, to min_dash_length: at 2.5e-5 every FDOT dash and gap of
+    # the plan came out as one equal ~0.14 in length; 1e-8 lets them plot at
+    # their sizes (0.08 in dash, 0.04 in gap for DGN2)
+    cfg = dataclasses.replace(cfg, min_dash_length=1e-8)
     name = [n for n in doc.layout_names_in_taborder() if n != "Model"][0]
     fig = plt.figure(figsize=(17, 11))
     ax = fig.add_axes([0, 0, 1, 1])
@@ -75,21 +83,21 @@ def main():
     a = ap.parse_args()
     if a.extract:
         extract()
-    dxf, manifest = model_plan.write_outputs(SNAPSHOT, OUT)
-    print("dxf:", dxf)
-    print("flat dxf (for the DGN import, %d dimensions exploded):" % manifest["dimensions_flattened"],
-          OUT / manifest["dxf_flat"])
-    for w in manifest["layout_warnings"]:
-        print("WARNING:", w)
-    for w in manifest["annotation_overlaps"]:
-        print("NOTE (annotation check):", w)
-    audit = manifest["symbology_audit"]
-    for w in audit["not_on_fdot_level"] + audit["not_by_level"]:
-        print("WARNING (symbology):", w)
+    for dxf, manifest in model_plan.write_outputs(SNAPSHOT, OUT).values():
+        print("dxf:", dxf)
+        print("flat dxf (for the DGN import, %d dimensions exploded):" % manifest["dimensions_flattened"],
+              OUT / manifest["dxf_flat"])
+        for w in manifest["layout_warnings"]:
+            print("WARNING:", w)
+        for w in manifest["annotation_overlaps"]:
+            print("NOTE (annotation check):", w)
+        audit = manifest["symbology_audit"]
+        for w in audit["not_on_fdot_level"] + audit["not_by_level"]:
+            print("WARNING (symbology):", w)
+        if a.previews:
+            print("preview:", preview(dxf, dxf.with_suffix(".png")))
     for line in manifest["extraction_log"]:
         print("extract:", line)
-    if a.previews:
-        print("preview:", preview(dxf, OUT / "B4_Model_Plan.png"))
 
 
 if __name__ == "__main__":

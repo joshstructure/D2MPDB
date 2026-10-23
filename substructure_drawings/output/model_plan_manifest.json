@@ -1,12 +1,14 @@
 {
  "generator": "substructure_drawings.model_plan",
- "version": "1.0.0",
+ "version": "1.1.0",
+ "variant": "plan",
+ "hidden_lines": true,
  "dxf": "B4_Model_Plan.dxf",
- "dxf_sha256": "083f2f90f77be89173e662f56dd93fdc61de711e8dfe08cc03f6ec89878cd7ed",
+ "dxf_sha256": "3cffd52be52cc8468e87f27c09067d98bd35df331c04a461817252657e077fa1",
  "dxf_flat": "B4_Model_Plan_flat.dxf",
- "dxf_flat_sha256": "ca2d898b1a922cf0b32959f3307990dc16ce911cc406ae2a86aae0119825d3be",
+ "dxf_flat_sha256": "13cb6ba860640b67a893d82eba6f2027938c75161577fcb5e7c72923fdd06da4",
  "dimensions_flattened": 0,
- "snapshot_sha256": "110adbefc6b6a6210aa531e411072d6851c9886ba9c0b45687f8b2d0b7ec8a0d",
+ "snapshot_sha256": "001f407ad10f509e5b2c63655f47a3cd1d79faeaa0b13e980f2a3ad1a506ef1a",
  "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
  "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the plan frame",
  "frame": {
@@ -42,6 +44,36 @@
   "title": "GENERAL PLAN",
   "layout": "P-1 GENERAL PLAN",
   "scale": "1\" = 40'"
+ },
+ "linetypes": {
+  "source": "FDOT CADD Manual line codes, plotted inches (fdot.FDOT_LINE_CODES_IN)",
+  "patterns_in": {
+   "DGN2": [
+    0.08,
+    0.04
+   ],
+   "DGN4": [
+    0.2,
+    0.053,
+    0.03,
+    0.053
+   ],
+   "DGN6": [
+    0.32,
+    0.056,
+    0.048,
+    0.056,
+    0.048,
+    0.056
+   ],
+   "DGN7": [
+    0.59,
+    0.053,
+    0.03,
+    0.053
+   ]
+  },
+  "entity_ltscale_model": 40.0
  },
  "stations": [
   {
@@ -266,33 +298,33 @@
   "PlinthReturnEB2R"
  ],
  "levels_used": {
-  "AppSlabConc": 25,
+  "AppSlabConc": 15,
   "AppSlabConc_h": 14,
   "BaseLineSurveyPGL": 2,
   "BeamConc": 1,
-  "BeamConc_h": 80,
+  "BeamConc_h": 64,
   "BearingPadMisc": 32,
   "Border": 3,
   "CL_Major": 3,
   "Leader": 2,
   "PileConc": 10,
-  "PileConc_h": 19,
+  "PileConc_h": 22,
   "PileSteel_h": 8,
   "Rebar_h": 55,
   "SubStrConc": 18,
   "SubStrConc2": 34,
-  "SubStrConc2_h": 67,
-  "SubStrConc_h": 19,
+  "SubStrConc2_h": 72,
+  "SubStrConc_h": 25,
   "SupstrConc": 14,
-  "SupstrConc3_h": 21,
+  "SupstrConc3_h": 24,
   "SupstrConc_h": 12,
   "Symbols": 2,
   "TextStructures": 10,
-  "TrafBarrierConc": 396,
-  "WallConc": 149,
-  "WallConc_h": 33,
-  "WallMSEPanel": 148,
-  "WallMSEPanel_h": 127
+  "TrafBarrierConc": 321,
+  "WallConc": 98,
+  "WallConc_h": 36,
+  "WallMSEPanel": 121,
+  "WallMSEPanel_h": 132
  },
  "level_source": {
   "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
@@ -307,7 +339,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 1371,
+  "entities": 1217,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
@@ -359,7 +391,17 @@
   "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
   "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
   "138 objects chosen, 28 skipped",
-  "projection 56 s (4028 edges)",
-  "total 62 s"
+  "pour weather closure EB1: 4 pieces fused (ClosureCopingA5, ClosureCopingA6, ClosureCopingA7, ClosureSlabEB1)",
+  "pour weather closure EB2: 4 pieces fused (ClosureCopingB1, ClosureCopingB6, ClosureCopingB7, ClosureSlabEB2)",
+  "pour wall panels A: 8 pieces fused (WallA1Mitred, WallA2Mitred, WallA3Mitred, WallA4Mitred, WallA5Mitred, WallA6Mitred, WallA7Mitred, WallA8Mitred)",
+  "pour wall panels B: 9 pieces fused (WallB1Mitred, WallB2Mitred, WallB3Mitred, WallB4Mitred, WallB5Mitred, WallB6Mitred, WallB7Mitred, WallB8Mitred, WallB9Mitred)",
+  "pour walking slabs A: 4 pieces fused (A_ApproachSlab, A_TurnLandingSlab, A_ReturnRunSlabFinished, A_BridgeLandingAtReturns)",
+  "pour walking slabs B: 8 pieces fused (B_ApproachSlab, B_LowerEastLandingSlabFinished, B_LowerRunSlabFinished, B_WestTurnLandingSlabFinished, B_MiddleRunSlabFinished, B_UpperEastLandingSlab, B_UpperRunSlabBentJoint, B_BridgeLandingAtReturns)",
+  "pour copings and barriers A: 16 pieces fused (CopingA1, BarrierA1, CopingA2Corrected, BarrierA2, CopingA3, BarrierA3, CopingA4, BarrierA4, CopingA8, BarrierA8, CopingA6AtCheek, BarrierA6AtCheek, CopingA7AtCheek, BarrierA7AtCheek, BarrierReturnEB1LCorrected, BarrierReturnEB1R)",
+  "pour copings and barriers B: 18 pieces fused (CopingB2BentJoint, BarrierB2AtReturn, CopingB3Corrected, BarrierB3, CopingB4Corrected, BarrierB4, CopingB6AtCheek, BarrierB6AtCheek, CopingB9, BarrierB9, CopingB5, BarrierB5, CopingB7BentJoint, BarrierB7BentJoint, CopingB8, BarrierB8, BarrierReturnEB2L, BarrierReturnEB2R)",
+  "pours and seams 23 s",
+  "517 modelling seam lines dropped (faces meeting within 1.0 degrees)",
+  "projection 87 s (3082 edges)",
+  "total 94 s"
  ]
 }

@@ -115,6 +115,33 @@ HIDDEN_LINETYPE = STYLE_TO_LINETYPE[2]
 LTSCALE_PER_SF = {LINETYPE_NAME % n: s for n, s in {2: 0.0186, 4: 0.25, 6: 0.25, 7: 0.35}.items()}
 
 
+# FDOT's own plotted definitions of the line codes, inches on paper, dash and
+# gap alternating (CADD Manual, Topic No. 625-050-001, December 2017 update,
+# "Line Styles / Linetypes", p. 3-12, and the FDM edition 5.9.3, p. 54:
+# "style(2) = (0.08, 0.04), for ACAD - DGN2" ...; the 2025 manual keeps the
+# style n = DGNn table, 5.10.3.2, and points to FDOT.LIN for the patterns).
+# Sheets that follow them write each DGNn with these values and an entity
+# linetype scale of one paper inch in model units (``fdot_linetype``); the
+# whole-model plan does (2026-10-23 markup, "the dashed lines are coming in
+# with the dashes too large").
+FDOT_LINE_CODES_IN = {
+    1: (0.02, 0.04),
+    2: (0.08, 0.04),
+    3: (0.15, 0.05),
+    4: (0.200, 0.053, 0.03, 0.053),
+    5: (0.056, 0.056),
+    6: (0.32, 0.056, 0.048, 0.056, 0.048, 0.056),
+    7: (0.59, 0.053, 0.03, 0.053),
+}
+
+
+def fdot_linetype(n):
+    """ezdxf pattern of FDOT line code ``n`` in paper inches: [total, dash,
+    -gap, dash, -gap, ...]."""
+    els = [v if i % 2 == 0 else -v for i, v in enumerate(FDOT_LINE_CODES_IN[n])]
+    return [round(sum(FDOT_LINE_CODES_IN[n]), 6)] + els
+
+
 def pattern_length(linetype_name, sf):
     """Plotted length, feet of model space, of one pattern repeat of a
     linetype (``"DGN4"``) at drawing scale factor ``sf``: the pattern's total

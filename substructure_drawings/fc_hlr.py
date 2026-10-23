@@ -55,12 +55,15 @@ def edge_record(edge, scale=1.0 / FT):
     return {"t": "P", "p": [[r6(p.x * scale), r6(p.y * scale)] for p in pts]}
 
 
-def project(shapes_by_role, origin, e1, e2):
+def project(shapes_by_role, origin, e1, e2, hlr_shapes=None):
     """Hidden-line projection of all shapes together; each edge tagged with a role.
 
     Visible/hidden comes from one HLR pass over the compound so that every
     object hides the others.  Role assignment matches each result edge to the
     per-object projections (the edge lies on that object's projected outline).
+    ``hlr_shapes`` (global frame), when given, is what the HLR pass sees in
+    place of the objects themselves: the same solids fused where they are
+    one pour, so the faces the model split them into leave no seam lines.
     """
     roles, shapes = [], []
     for role, items in shapes_by_role.items():
@@ -69,7 +72,8 @@ def project(shapes_by_role, origin, e1, e2):
             shapes.append(to_view(shp, origin, e1, e2))
     if not shapes:
         return []
-    allres = TechDraw.projectEx(Part.makeCompound(shapes), V(0, 0, 1))
+    hlr = shapes if hlr_shapes is None else [to_view(s, origin, e1, e2) for s in hlr_shapes]
+    allres = TechDraw.projectEx(Part.makeCompound(hlr), V(0, 0, 1))
     per, boxes = [], []
     for shp in shapes:
         res = TechDraw.projectEx(shp, V(0, 0, 1))

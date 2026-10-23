@@ -1,0 +1,393 @@
+{
+ "generator": "substructure_drawings.model_plan",
+ "version": "1.1.0",
+ "variant": "top",
+ "hidden_lines": false,
+ "dxf": "B4_Model_Plan_Top.dxf",
+ "dxf_sha256": "a1a15d2440593bfd8c21abb3827eb693c78367b640e714a12b11ade848a4e3e0",
+ "dxf_flat": "B4_Model_Plan_Top_flat.dxf",
+ "dxf_flat_sha256": "f29f13e9f3324c6b8dab07ac30050d049bcba6f9b94fd43bd63dfa3dcb718a61",
+ "dimensions_flattened": 0,
+ "snapshot_sha256": "001f407ad10f509e5b2c63655f47a3cd1d79faeaa0b13e980f2a3ad1a506ef1a",
+ "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
+ "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the plan frame",
+ "frame": {
+  "e1": [
+   0,
+   -1,
+   0
+  ],
+  "e2": [
+   1,
+   0,
+   0
+  ],
+  "note": "u = -y (increasing station), v = x of the model, feet; looking down",
+  "origin_ft": [
+   0.0,
+   0.0,
+   0.0
+  ]
+ },
+ "plan_extents_ft": {
+  "u": [
+   -35.556,
+   288.818
+  ],
+  "v": [
+   -290.436,
+   61.263
+  ]
+ },
+ "sheet": {
+  "number": "P-2",
+  "title": "GENERAL PLAN - TOP VIEW",
+  "layout": "P-2 GENERAL PLAN - TOP VIEW",
+  "scale": "1\" = 40'"
+ },
+ "linetypes": {
+  "source": "FDOT CADD Manual line codes, plotted inches (fdot.FDOT_LINE_CODES_IN)",
+  "patterns_in": {
+   "DGN2": [
+    0.08,
+    0.04
+   ],
+   "DGN4": [
+    0.2,
+    0.053,
+    0.03,
+    0.053
+   ],
+   "DGN6": [
+    0.32,
+    0.056,
+    0.048,
+    0.056,
+    0.048,
+    0.056
+   ],
+   "DGN7": [
+    0.59,
+    0.053,
+    0.03,
+    0.053
+   ]
+  },
+  "entity_ltscale_model": 40.0
+ },
+ "stations": [
+  {
+   "support": "EB1",
+   "station": "15+93.22",
+   "u_ft": -4.0715
+  },
+  {
+   "support": "PIER",
+   "station": "17+00.57",
+   "u_ft": 103.2783
+  },
+  {
+   "support": "EB2",
+   "station": "18+05.47",
+   "u_ft": 208.1781
+  }
+ ],
+ "objects_by_role": {
+  "backwall": [
+   "BridgeBackwallEB1",
+   "BridgeBackwallEB2"
+  ],
+  "barrier": [
+   "BarrierDeckS1LCorrected",
+   "BarrierDeckS1RCorrected",
+   "BarrierDeckS2LCorrected",
+   "BarrierDeckS2RCorrected",
+   "BarrierA1",
+   "BarrierA2",
+   "BarrierA3",
+   "BarrierA4",
+   "BarrierA8",
+   "BarrierA6AtCheek",
+   "BarrierA7AtCheek",
+   "BarrierB2AtReturn",
+   "BarrierB3",
+   "BarrierB4",
+   "BarrierB6AtCheek",
+   "BarrierB9",
+   "BarrierB5",
+   "BarrierB7BentJoint",
+   "BarrierB8",
+   "BarrierReturnEB1LCorrected",
+   "BarrierReturnEB1R",
+   "BarrierReturnEB2L",
+   "BarrierReturnEB2R"
+  ],
+  "beam": [
+   "BridgeBeamS1B1",
+   "BridgeBeamS1B2",
+   "BridgeBeamS2B1",
+   "BridgeBeamS2B2"
+  ],
+  "cap": [
+   "BridgeCapEB1",
+   "BridgeCapPier",
+   "BridgeCapEB2"
+  ],
+  "cheek": [
+   "BridgeCheekEB11",
+   "BridgeCheekEB12",
+   "BridgeCheekEB21",
+   "BridgeCheekEB22",
+   "BridgeCheekPier1",
+   "BridgeCheekPier2"
+  ],
+  "closure": [
+   "ClosureSlabEB1",
+   "ClosureSlabEB2"
+  ],
+  "coping": [
+   "ClosureCopingA5",
+   "ClosureCopingA6",
+   "ClosureCopingA7",
+   "ClosureCopingB1",
+   "ClosureCopingB6",
+   "ClosureCopingB7",
+   "CopingA1",
+   "CopingA2Corrected",
+   "CopingA3",
+   "CopingA4",
+   "CopingA8",
+   "CopingA6AtCheek",
+   "CopingA7AtCheek",
+   "CopingB2BentJoint",
+   "CopingB3Corrected",
+   "CopingB4Corrected",
+   "CopingB6AtCheek",
+   "CopingB9",
+   "CopingB5",
+   "CopingB7BentJoint",
+   "CopingB8"
+  ],
+  "deck": [
+   "BridgeDeckS1",
+   "BridgeDeckS2"
+  ],
+  "haunch": [
+   "BridgeHaunchS1B1",
+   "BridgeHaunchS1B2",
+   "BridgeHaunchS2B1",
+   "BridgeHaunchS2B2"
+  ],
+  "mse": [
+   "WallA1Mitred",
+   "WallA2Mitred",
+   "WallA3Mitred",
+   "WallA4Mitred",
+   "WallA5Mitred",
+   "WallA6Mitred",
+   "WallA7Mitred",
+   "WallA8Mitred",
+   "WallB1Mitred",
+   "WallB2Mitred",
+   "WallB3Mitred",
+   "WallB4Mitred",
+   "WallB5Mitred",
+   "WallB6Mitred",
+   "WallB7Mitred",
+   "WallB8Mitred",
+   "WallB9Mitred"
+  ],
+  "pad": [
+   "BridgePadEB1S1B1",
+   "BridgePadEB1S1B2",
+   "BridgePadPierS1B1",
+   "BridgePadPierS2B1",
+   "BridgePadPierS1B2",
+   "BridgePadPierS2B2",
+   "BridgePadEB2S2B1",
+   "BridgePadEB2S2B2"
+  ],
+  "pedestal": [
+   "BridgePedestalEB1B1",
+   "BridgePedestalEB1B2",
+   "BridgePedestalPierB1",
+   "BridgePedestalPierB2",
+   "BridgePedestalEB2B1",
+   "BridgePedestalEB2B2"
+  ],
+  "pgl": [
+   "BridgePGL"
+  ],
+  "pier_wall": [
+   "BridgePierWallSolid"
+  ],
+  "pile_conc": [
+   "BridgePileEB1P1",
+   "BridgePileEB1P2",
+   "BridgePileEB1P3",
+   "BridgePileEB1P4",
+   "BridgePileEB2P1",
+   "BridgePileEB2P2",
+   "BridgePileEB2P3",
+   "BridgePileEB2P4"
+  ],
+  "pile_steel": [
+   "BridgePilePierP1",
+   "BridgePilePierP2",
+   "BridgePilePierP3",
+   "BridgePilePierP4"
+  ],
+  "slab": [
+   "A_ApproachSlab",
+   "A_TurnLandingSlab",
+   "A_ReturnRunSlabFinished",
+   "A_BridgeLandingAtReturns",
+   "B_ApproachSlab",
+   "B_LowerEastLandingSlabFinished",
+   "B_LowerRunSlabFinished",
+   "B_WestTurnLandingSlabFinished",
+   "B_MiddleRunSlabFinished",
+   "B_UpperEastLandingSlab",
+   "B_UpperRunSlabBentJoint",
+   "B_BridgeLandingAtReturns"
+  ],
+  "strap": [
+   "GeotechnicalStrapEB1",
+   "GeotechnicalStrapEB2",
+   "GeotechnicalStrapEB1S1",
+   "GeotechnicalStrapEB1S2",
+   "GeotechnicalStrapEB1S3",
+   "GeotechnicalStrapEB1S5",
+   "GeotechnicalStrapEB1S6",
+   "GeotechnicalStrapEB1S7",
+   "GeotechnicalStrapEB2S1",
+   "GeotechnicalStrapEB2S2",
+   "GeotechnicalStrapEB2S3",
+   "GeotechnicalStrapEB2S5",
+   "GeotechnicalStrapEB2S6",
+   "GeotechnicalStrapEB2S7"
+  ]
+ },
+ "skipped_objects": [
+  "BarrierB7AtCheek",
+  "ClosureEB1Inputs",
+  "ClosureEB2Inputs",
+  "CopingB7AtCheek",
+  "EndBentClosureSchedule",
+  "FootingA1",
+  "FootingA2",
+  "FootingA3",
+  "FootingA4",
+  "FootingA5",
+  "FootingA6Finished",
+  "FootingA7Finished",
+  "FootingA8Corrected",
+  "FootingB1",
+  "FootingB2",
+  "FootingB3",
+  "FootingB4",
+  "FootingB5Finished",
+  "FootingB6Finished",
+  "FootingB7Finished",
+  "FootingB8Finished",
+  "FootingB9Finished",
+  "PlinthReturnEB1L",
+  "PlinthReturnEB1LCorrected",
+  "PlinthReturnEB1R",
+  "PlinthReturnEB2L",
+  "PlinthReturnEB2R"
+ ],
+ "levels_used": {
+  "AppSlabConc": 15,
+  "BaseLineSurveyPGL": 2,
+  "BeamConc": 1,
+  "Border": 3,
+  "CL_Major": 3,
+  "Leader": 2,
+  "PileConc": 10,
+  "SubStrConc": 18,
+  "SubStrConc2": 34,
+  "SupstrConc": 14,
+  "Symbols": 2,
+  "TextStructures": 10,
+  "TrafBarrierConc": 321,
+  "WallConc": 98,
+  "WallMSEPanel": 121
+ },
+ "level_source": {
+  "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
+  "url": "https://fdotwww.blob.core.windows.net/sitefinity/docs/default-source/cadd/downloads/publications/caddmanualfdm/levels/fdotcaddstandardleveltable-10-25-2023.xlsx?sfvrsn=5c1b90b4_2",
+  "file": "fdotcaddstandardleveltable-10-25-2023.xlsx",
+  "sha256": "8d2ac22a556721927c11af15c3d9ea73f5b809806a100cd4b982b4328b735d50"
+ },
+ "cadd_manual": {
+  "source": "FDOT CADD Manual, Topic No. 625-050-001, publish date November 1, 2024",
+  "file": "caddmanual2025.pdf",
+  "sha256": "3074d0027748686d38bababae898e1f9f1cf0b13d0fe241b2fb4cdbcf07de222",
+  "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
+ },
+ "symbology_audit": {
+  "entities": 721,
+  "not_on_fdot_level": [],
+  "not_by_level": [],
+  "documented_overrides": {},
+  "layers": [
+   "0",
+   "AppSlabConc",
+   "AppSlabConc_h",
+   "BaseLineSurveyPGL",
+   "BeamConc",
+   "BeamConc_h",
+   "BearingPadMisc",
+   "Border",
+   "CL_Major",
+   "CL_Minor",
+   "ClipBorder_dp",
+   "Dimension",
+   "Leader",
+   "Patterning",
+   "PileConc",
+   "PileConc_h",
+   "PileSteel",
+   "PileSteel_h",
+   "Rebar",
+   "Rebar2",
+   "Rebar_h",
+   "SubStrConc",
+   "SubStrConc2",
+   "SubStrConc2_h",
+   "SubStrConc_h",
+   "SupstrConc",
+   "SupstrConc3_h",
+   "SupstrConc_h",
+   "Symbols",
+   "Tables",
+   "TextStructShtNo",
+   "TextStructures",
+   "TrafBarrierConc",
+   "WallConc",
+   "WallConc_h",
+   "WallMSEPanel",
+   "WallMSEPanel_h"
+  ]
+ },
+ "layout_warnings": [],
+ "annotation_overlaps": [],
+ "extraction_log": [
+  "CopingB7AtCheek has no valid shape; CopingB7BentJoint is drawn in its place",
+  "BarrierB7AtCheek has no valid shape; BarrierB7BentJoint is drawn in its place",
+  "138 objects chosen, 28 skipped",
+  "pour weather closure EB1: 4 pieces fused (ClosureCopingA5, ClosureCopingA6, ClosureCopingA7, ClosureSlabEB1)",
+  "pour weather closure EB2: 4 pieces fused (ClosureCopingB1, ClosureCopingB6, ClosureCopingB7, ClosureSlabEB2)",
+  "pour wall panels A: 8 pieces fused (WallA1Mitred, WallA2Mitred, WallA3Mitred, WallA4Mitred, WallA5Mitred, WallA6Mitred, WallA7Mitred, WallA8Mitred)",
+  "pour wall panels B: 9 pieces fused (WallB1Mitred, WallB2Mitred, WallB3Mitred, WallB4Mitred, WallB5Mitred, WallB6Mitred, WallB7Mitred, WallB8Mitred, WallB9Mitred)",
+  "pour walking slabs A: 4 pieces fused (A_ApproachSlab, A_TurnLandingSlab, A_ReturnRunSlabFinished, A_BridgeLandingAtReturns)",
+  "pour walking slabs B: 8 pieces fused (B_ApproachSlab, B_LowerEastLandingSlabFinished, B_LowerRunSlabFinished, B_WestTurnLandingSlabFinished, B_MiddleRunSlabFinished, B_UpperEastLandingSlab, B_UpperRunSlabBentJoint, B_BridgeLandingAtReturns)",
+  "pour copings and barriers A: 16 pieces fused (CopingA1, BarrierA1, CopingA2Corrected, BarrierA2, CopingA3, BarrierA3, CopingA4, BarrierA4, CopingA8, BarrierA8, CopingA6AtCheek, BarrierA6AtCheek, CopingA7AtCheek, BarrierA7AtCheek, BarrierReturnEB1LCorrected, BarrierReturnEB1R)",
+  "pour copings and barriers B: 18 pieces fused (CopingB2BentJoint, BarrierB2AtReturn, CopingB3Corrected, BarrierB3, CopingB4Corrected, BarrierB4, CopingB6AtCheek, BarrierB6AtCheek, CopingB9, BarrierB9, CopingB5, BarrierB5, CopingB7BentJoint, BarrierB7BentJoint, CopingB8, BarrierB8, BarrierReturnEB2L, BarrierReturnEB2R)",
+  "pours and seams 23 s",
+  "517 modelling seam lines dropped (faces meeting within 1.0 degrees)",
+  "projection 87 s (3082 edges)",
+  "total 94 s"
+ ]
+}

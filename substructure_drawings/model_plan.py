@@ -18,10 +18,19 @@ from .sheets import DRAW, Sheet
 from .support import STATION_FFBW_EB1
 from .views import _covered
 
-GENERATOR_VERSION = "1.0.0"
+GENERATOR_VERSION = "1.1.0"
 DXF_NAME = "B4_Model_Plan.dxf"
 MANIFEST_NAME = "model_plan_manifest.json"
 SHEET_SCALE = "1=40"
+# the two plans of the model: the general plan with the hidden lines of what
+# lies under the deck and the slabs, and the top view, the same plan with the
+# visible lines only (2026-10-23, "Let do a non-hidden line top view as well")
+VARIANTS = OrderedDict([
+    ("plan", {"dxf": DXF_NAME, "manifest": MANIFEST_NAME, "sheet": "P-1", "sheet_title": "GENERAL PLAN",
+              "title": "PLAN", "hidden": True}),
+    ("top", {"dxf": "B4_Model_Plan_Top.dxf", "manifest": "model_plan_top_manifest.json", "sheet": "P-2",
+             "sheet_title": "GENERAL PLAN - TOP VIEW", "title": "TOP VIEW", "hidden": False}),
+])
 # role -> (level of visible edges, level of hidden edges); a role whose two
 # levels are one has no hidden twin in the level table and takes the hidden
 # linetype as an override (build.LINETYPE_OVERRIDES)
@@ -141,11 +150,43 @@ def drop_coincident_hidden_fast(edges, tol=0.004, cell=4.0):
     return out
 
 
+def apply_fdot_linetypes(doc, sf):
+    """Write every patterned DGNn linetype of ``doc`` with FDOT's plotted
+    definition of line code n (``fdot.FDOT_LINE_CODES_IN``, paper inches) and
+    give each element drawn in it the linetype scale of one paper inch: model
+    feet at drawing scale factor ``sf`` (sf / 12) in model space, paper feet
+    (1 / 12) on the sheets.  The dashes then plot at FDOT's sizes, e.g. the
+    hidden line (DGN2) 0.08 in dash, 0.04 in gap; the shared substructure
+    patterns (``fdot.LINETYPE_PATTERNS``) plot half as long again."""
+    names = {fdot.LINETYPE_NAME % n: n for n in fdot.LINETYPE_PATTERNS}
+    for name, n in names.items():
+        desc = doc.linetypes.get(name).dxf.description
+        doc.linetypes.remove(name)
+        doc.linetypes.add(name, pattern=fdot.fdot_linetype(n), description=desc)
+    by_layer = {lay.dxf.name: lay.dxf.linetype for lay in doc.layers}
+    for layout in doc.layouts:
+        scale = sf / 12.0 if layout.is_modelspace else 1.0 / 12.0
+        for e in layout:
+            lt = e.dxf.get("linetype", "BYLAYER")
+            if lt.upper() == "BYLAYER":
+                lt = by_layer.get(e.dxf.layer, "Continuous")
+            if lt in names:
+                e.dxf.ltscale = scale
+
+
+def fdot_pattern_length(linetype_name, sf):
+    """``fdot.pattern_length`` for the FDOT line codes of this plan, feet of
+    model space at drawing scale factor ``sf``."""
+    n = {fdot.LINETYPE_NAME % k: k for k in fdot.LINETYPE_PATTERNS}.get(linetype_name)
+    return 0.0 if n is None else sum(fdot.FDOT_LINE_CODES_IN[n]) * sf / 12.0
+
+
 class PlanComposer:
-    def __init__(self, snap, info=build.INFO):
+    def __init__(self, snap, info=build.INFO, variant="plan"):
         self.snap = snap
+        self.var = VARIANTS[variant]
         self.info = dict(info)
-        self.info["stamp"] = ["%s  (%s %s)" % (DXF_NAME, "substructure_drawings.model_plan", GENERATOR_VERSION),
+        self.info["stamp"] = ["%s  (%s %s)" % (self.var["dxf"], "substructure_drawings.model_plan", GENERATOR_VERSION),
                               "FREECAD MODEL SHA-256 %s" % snap["model_sha256"][:16].upper()]
         self.doc = cad.new_document()
         self.warnings = []
@@ -158,11 +199,14 @@ class PlanComposer:
 
     def build(self):
         snap = self.snap
-        sh = Sheet(self.doc, 0, "P-1", "GENERAL PLAN", self.info)
+        var = self.var
+        sh = Sheet(self.doc, 0, var["sheet"], var["sheet_title"], self.info)
         zone = sh.zone(DRAW, SHEET_SCALE)
-        v = cad.View(self.doc, zone, "MODEL PLAN")
+        v = cad.View(self.doc, zone, "MODEL " + var["title"])
         th, k = v.th, v.sf / 12.0   # k: one paper inch in feet
         edges = drop_coincident_hidden_fast(dedupe(snap["edges"]))
+        if not var["hidden"]:
+            edges = [r for r in edges if r["vis"]]
         # the model's PGL comes as a chain of short line edges; drawn as
         # single lines each would restart the dash pattern (D3): chain them
         # into polylines first
@@ -192,7 +236,7 @@ class PlanComposer:
             y = s.get("ffbw_y_ft", s.get("cl_y_ft"))
             cb = s["cap_bb_ft"]
             u = self.u(y)
-            # 20 ft beyond the cap each way: two dash patterns at 1" = 40' (D3)
+            # 20 ft beyond the cap each way: over two FDOT DGN7 patterns at 1" = 40' (D3)
             v0, v1 = cb[0] - 20.0, cb[3] + 20.0
             v.line((u, v0), (u, v1), "CL_Major")
             sta = fdot.station(STATION_FFBW_EB1 + (ffbw1 - y))
@@ -216,7 +260,7 @@ class PlanComposer:
         cap_lo = min(sup[k2]["cap_bb_ft"][0] for k2 in sup)
         y_lab = cap_lo - 20.0 - 0.12 * k - (1 + fdot.LINE_PITCH) * th   # bottom of the two-line labels
         v.stationing_arrow((um - 0.6 * k, y_lab - 0.45 * k), (1.0, 0.0))
-        v.title((um + 0.6 * k, y_lab - 1.1 * k), "PLAN", "(SCALE %s)" % fdot.scale_label(SHEET_SCALE),
+        v.title((um + 0.6 * k, y_lab - 1.1 * k), var["title"], "(SCALE %s)" % fdot.scale_label(SHEET_SCALE),
                 subject_cx=um + 0.6 * k)
         for ramp, letter in (("A", "A"), ("B", "B")):
             walls = [o["bb_ft"] for n, o in snap["objects"].items() if o["role"] == "mse" and n.startswith("Wall" + letter)]
@@ -238,14 +282,29 @@ class PlanComposer:
         comp.warnings, comp.__dict__["placed"] = self.warnings, {}
         comp.check(sh, v)
         self.overlaps = comp.__dict__.get("annotation_overlaps", [])
+        # D3 with the FDOT line codes this plan is written in: every
+        # centerline at least 1.5 patterns long, so it shows its dashes
+        for pa, pb, layer, length in v.centerlines:
+            pat = fdot_pattern_length(fdot.level_attrs(layer)["linetype"], v.sf)
+            if pat and length < 1.5 * pat:
+                self.warnings.append("[D3] %s centerline (%.1f, %.1f)-(%.1f, %.1f) shorter than 1.5 FDOT patterns"
+                                     % (layer, pa[0], pa[1], pb[0], pb[1]))
         xn = DRAW[0] + 0.25 + pw + 0.4
+        if var["hidden"]:
+            shown = ("THE FINISHED COMPONENTS OF THE MODEL ARE DRAWN: DECKS, BEAMS, HAUNCHES, BEARINGS, PEDESTALS, "
+                     "CAPS, PILES, PIER WALL, END BENT WALLS, WEATHER CLOSURES, MSE WALL PANELS, COPINGS, BARRIERS, "
+                     "RETURNS, WALKING SLABS AND THE SCHEMATIC SOIL REINFORCING STRAPS. HIDDEN LINES SHOW WHAT LIES "
+                     "UNDER THE DECK AND THE SLABS.")
+        else:
+            shown = ("TOP VIEW: THE VISIBLE EDGES OF THE FINISHED COMPONENTS ONLY, AS SEEN FROM ABOVE; WHAT LIES "
+                     "UNDER THE DECK AND THE SLABS IS SHOWN ON SHEET P-1.")
         notes = [
             "PLAN OF THE REGISTERED FREECAD MODEL (SHA-256 %s), LOOKING DOWN, WITH STATIONING INCREASING LEFT TO "
             "RIGHT; MODEL SPACE IS AT FULL SIZE IN FEET." % snap["model_sha256"][:16].upper(),
-            "THE FINISHED COMPONENTS OF THE MODEL ARE DRAWN: DECKS, BEAMS, HAUNCHES, BEARINGS, PEDESTALS, CAPS, "
-            "PILES, PIER WALL, END BENT WALLS, WEATHER CLOSURES, MSE WALL PANELS, COPINGS, BARRIERS, RETURNS, "
-            "WALKING SLABS AND THE SCHEMATIC SOIL REINFORCING STRAPS. HIDDEN LINES SHOW WHAT LIES UNDER THE DECK "
-            "AND THE SLABS.",
+            shown,
+            "PIECES THE MODEL BUILDS SEPARATELY BUT THAT ARE CAST AS ONE (EACH RAMP'S COPINGS AND BARRIERS, WALL "
+            "PANELS AND WALKING SLABS, EACH END BENT'S WEATHER CLOSURE) ARE DRAWN WITHOUT THEIR MODELLING JOINTS; "
+            "JOINTS BETWEEN THE SPANS, THE END BENTS AND THE RAMPS ARE SHOWN.",
             "NOT SHOWN: REINFORCEMENT, WWR, MSE WALL LEVELING FOOTINGS, FILL ENVELOPES AND MODEL SOURCES, CHECKS "
             "AND SCHEDULES.",
             "STATIONS ARE FROM FFBW END BENT 1 = %s (SELECTED GEOMETRY CAD TABLES, D-041); THE PIER WALL IS "
@@ -262,6 +321,7 @@ class PlanComposer:
         if "Layout1" in self.doc.layouts:   # ezdxf's default layout: the sheet is the only layout
             self.doc.layouts.delete("Layout1")
         build.dimension_blocks_by_level(self.doc)
+        apply_fdot_linetypes(self.doc, v.sf)
         self.sheet, self.view, self.labels, self.extents = sh, v, labels, ex
         return self.doc
 
@@ -280,41 +340,48 @@ def sha256(path):
 
 
 def write_outputs(snapshot_path, out_dir):
+    """Write both plans (``VARIANTS``); returns {variant: (dxf path, manifest)}."""
     import ezdxf
     keep = ezdxf.options.write_fixed_meta_data_for_testing
     ezdxf.options.write_fixed_meta_data_for_testing = True
     try:
-        return _write_outputs(snapshot_path, out_dir)
+        snap = json.loads(Path(snapshot_path).read_text(encoding="utf-8"))
+        return OrderedDict((name, _write_outputs(snap, snapshot_path, out_dir, name)) for name in VARIANTS)
     finally:
         ezdxf.options.write_fixed_meta_data_for_testing = keep
 
 
-def _write_outputs(snapshot_path, out_dir):
-    snap = json.loads(Path(snapshot_path).read_text(encoding="utf-8"))
-    comp = PlanComposer(snap)
+def _write_outputs(snap, snapshot_path, out_dir, variant):
+    var = VARIANTS[variant]
+    comp = PlanComposer(snap, variant=variant)
     doc = comp.build()
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    dxf_path = out_dir / DXF_NAME
+    dxf_path = out_dir / var["dxf"]
     doc.classes.add_required_classes(doc.dxfversion)
     doc.classes.classes = OrderedDict(sorted(doc.classes.classes.items()))
     doc.saveas(dxf_path)
-    flat_path = out_dir / build.flat_name(DXF_NAME)
+    flat_path = out_dir / build.flat_name(var["dxf"])
     n_flat = build.write_flat(dxf_path, flat_path)
     layers = {}
     for e in doc.modelspace():
         layers[e.dxf.layer] = layers.get(e.dxf.layer, 0) + 1
     manifest = {
-        "generator": "substructure_drawings.model_plan", "version": GENERATOR_VERSION,
-        "dxf": DXF_NAME, "dxf_sha256": sha256(dxf_path),
-        "dxf_flat": build.flat_name(DXF_NAME), "dxf_flat_sha256": sha256(flat_path), "dimensions_flattened": n_flat,
+        "generator": "substructure_drawings.model_plan", "version": GENERATOR_VERSION, "variant": variant,
+        "hidden_lines": var["hidden"],
+        "dxf": var["dxf"], "dxf_sha256": sha256(dxf_path),
+        "dxf_flat": build.flat_name(var["dxf"]), "dxf_flat_sha256": sha256(flat_path), "dimensions_flattened": n_flat,
         "snapshot_sha256": sha256(snapshot_path), "model_sha256": snap["model_sha256"],
         "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the plan frame",
         "frame": snap["frame"],
         "plan_extents_ft": {"u": [round(comp.extents[0], 3), round(comp.extents[2], 3)],
                             "v": [round(comp.extents[1], 3), round(comp.extents[3], 3)]},
-        "sheet": {"number": "P-1", "title": "GENERAL PLAN", "layout": comp.sheet.layout.name,
+        "sheet": {"number": var["sheet"], "title": var["sheet_title"], "layout": comp.sheet.layout.name,
                   "scale": fdot.scale_label(SHEET_SCALE)},
+        "linetypes": {"source": "FDOT CADD Manual line codes, plotted inches (fdot.FDOT_LINE_CODES_IN)",
+                      "patterns_in": {fdot.LINETYPE_NAME % n: list(fdot.FDOT_LINE_CODES_IN[n])
+                                      for n in fdot.LINETYPE_PATTERNS},
+                      "entity_ltscale_model": round(comp.view.sf / 12.0, 6)},
         "stations": comp.labels,
         "objects_by_role": snap["roles"],
         "skipped_objects": snap["skipped"],
@@ -326,5 +393,5 @@ def _write_outputs(snapshot_path, out_dir):
         "annotation_overlaps": comp.overlaps,
         "extraction_log": snap.get("log", []),
     }
-    (out_dir / MANIFEST_NAME).write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
+    (out_dir / var["manifest"]).write_text(json.dumps(manifest, indent=1) + "\n", encoding="utf-8")
     return dxf_path, manifest

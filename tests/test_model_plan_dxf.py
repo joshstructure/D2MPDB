@@ -44,14 +44,57 @@ class ModelPlanDxfTests(unittest.TestCase):
                          "The FreeCAD model changed. " + REBUILD + " --extract")
 
     def test_outputs_are_current_with_snapshot_and_generator(self):
-        self.assertEqual(self.manifest["snapshot_sha256"], sha(SNAPSHOT), REBUILD)
-        self.assertEqual(self.manifest["dxf_sha256"], sha(DXF), REBUILD)
-        flat = DXF.parent / self.manifest["dxf_flat"]
-        self.assertEqual(self.manifest["dxf_flat_sha256"], sha(flat), REBUILD)
         with tempfile.TemporaryDirectory() as tmp:
-            dxf, manifest = model_plan.write_outputs(SNAPSHOT, tmp)
-            self.assertEqual(sha(dxf), sha(DXF), "Generator output differs from the committed DXF. " + REBUILD)
-            self.assertEqual(sha(Path(tmp) / manifest["dxf_flat"]), sha(flat), "The flat DXF differs. " + REBUILD)
+            built = model_plan.write_outputs(SNAPSHOT, tmp)
+            for name, var in model_plan.VARIANTS.items():
+                committed = json.loads((OUT / var["manifest"]).read_text(encoding="utf-8"))
+                self.assertEqual(committed["snapshot_sha256"], sha(SNAPSHOT), REBUILD)
+                self.assertEqual(committed["dxf_sha256"], sha(OUT / var["dxf"]), REBUILD)
+                flat = OUT / committed["dxf_flat"]
+                self.assertEqual(committed["dxf_flat_sha256"], sha(flat), REBUILD)
+                dxf, manifest = built[name]
+                self.assertEqual(sha(dxf), sha(OUT / var["dxf"]),
+                                 "Generator output differs from the committed %s. " % var["dxf"] + REBUILD)
+                self.assertEqual(sha(Path(tmp) / manifest["dxf_flat"]), sha(flat), "The flat DXF differs. " + REBUILD)
+
+    def test_fdot_line_codes(self):
+        """Dashed lines plot at FDOT's line code sizes (CADD Manual: DGN2 =
+        0.08 in dash, 0.04 in gap): each DGNn pattern in paper inches with an
+        entity linetype scale of one paper inch (40 ft at 1" = 40')."""
+        self.assertEqual(fdot.fdot_linetype(2), [0.12, 0.08, -0.04])
+        for var in model_plan.VARIANTS.values():
+            doc = ezdxf.readfile(OUT / var["dxf"])
+            lt = doc.linetypes.get("DGN2")
+            self.assertEqual([round(t.value, 6) for t in lt.pattern_tags.tags if t.code in (40, 49)],
+                             [0.12, 0.08, -0.04])
+            by_layer = {lay.dxf.name: lay.dxf.linetype for lay in doc.layers}
+            for e in doc.modelspace():
+                t = e.dxf.get("linetype", "BYLAYER")
+                t = by_layer.get(e.dxf.layer) if t.upper() == "BYLAYER" else t
+                if t != "Continuous":
+                    self.assertAlmostEqual(e.dxf.ltscale, 40.0, places=6, msg=str(e))
+
+    def test_top_view_has_no_hidden_lines(self):
+        doc = ezdxf.readfile(OUT / model_plan.VARIANTS["top"]["dxf"])
+        hidden = {n for n in fdot.LEVELS if n.endswith("_h")}
+        on_hidden = [e for e in doc.modelspace() if e.dxf.layer in hidden
+                     or e.dxf.get("linetype", "BYLAYER") == fdot.HIDDEN_LINETYPE]
+        self.assertEqual(on_hidden, [])
+        top = json.loads((OUT / model_plan.VARIANTS["top"]["manifest"]).read_text(encoding="utf-8"))
+        self.assertEqual(top["layout_warnings"], [])
+        self.assertEqual(top["annotation_overlaps"], [])
+        self.assertEqual(top["sheet"]["number"], "P-2")
+
+    def test_pours_are_fused(self):
+        """The model's mitred and butted pieces of one pour leave no joint
+        lines (snapshot schema 2: the hidden-line pass over the pours)."""
+        self.assertEqual(self.snap["schema"], 2)
+        fused = [m for m in self.snap["log"] if m.startswith("pour ")]
+        self.assertTrue(fused)
+        self.assertFalse([m for m in fused if "not fused" in m], fused)
+        seams = [m for m in self.snap["log"] if "modelling seam lines dropped" in m]
+        self.assertEqual(len(seams), 1)
+        self.assertGreater(int(seams[0].split()[0]), 0)
 
     def test_flat_dxf_has_no_dimension_entities(self):
         """B13: the flat variant for the DGN import carries the dimensions as
