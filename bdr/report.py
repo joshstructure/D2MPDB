@@ -498,9 +498,12 @@ def typsec_figure(c: Ctx):
     return c.figure(
         f'<img class="sheet" src="{img_data(t["png"])}" alt="Sheet S-1 typical section">',
         f'Sheet {esc(t["number"])}, {esc(t["title"].title())}: the superstructure cut from the registered FreeCAD model at '
-        f'Sta. {esc(sec["station"])} (mid-span 1), looking ahead station, in FDOT CADD symbology ({esc(t["generator"])}). '
+        f'Sta. {esc(sec["station"])} (mid-span 1) and, below it, the section at the Span 1 bearing line at the pier '
+        f'(Sta. {esc(t["pier"]["station"])}: the beams on their pads and pedestals, the pier cap and the pier wall stub), both looking ahead station, '
+        f'in FDOT CADD symbology ({esc(t["generator"])}). '
         f'Measured on the model: {ftin(sec["deck_out_to_out_ft"] * 12)} out to out, {ftin(sec["clear_between_barriers_ft"] * 12)} clear, '
-        f'beams at {ftin(sec["beam_spacing_ft"] * 12)}, {ftin(sec["slab_thickness_at_pgl_ft"] * 12)} slab, {sec["crossfall"]["L"] * 100:.1f}% crossfall. '
+        f'beams at {ftin(sec["beam_spacing_ft"] * 12)}, {ftin(sec["slab_thickness_at_pgl_ft"] * 12)} slab, {sec["crossfall"]["L"] * 100:.1f}% crossfall; '
+        f'pier cap {ftin(t["pier"]["cap_length_ft"] * 12)} × {ftin(t["pier"]["cap_depth_ft"] * 12)}, top EL {t["pier"]["cap_top_el"]:.3f}. '
         f'The fence enclosure is not in the model and is not drawn.')
 
 
@@ -829,7 +832,7 @@ def s14_plans(c: Ctx, g):
     t = c.b["typsec"]
     rows = [[esc(s["number"]), esc(s["title"]), esc(", ".join(s["scales"]))] for s in dr["sheets"]]
     tbl = c.table(["Sheet", "Title", "Scales"], [["P-1", "GENERAL PLAN (whole model, 1\" = 40')", "1\" = 40'"],
-                                                 [esc(t["number"]), esc(t["title"]) + " (superstructure, mid-span 1)", esc(t["scales"][0])]] + rows,
+                                                 [esc(t["number"]), esc(t["title"]) + " (superstructure at mid-span 1; section at the pier bearing line)", esc(", ".join(t["scales"]))]] + rows,
                   "Preliminary FDOT-format sheets generated from the registered model (Appendix C)")
     req = c.table(["30% Structures Plans item (FDM 121.9.9)", "Status in the record"], [
         ["General Notes sheet", c.tbs("not in the record; the design-basis notes of the journal and the sheet notes of B4-1 to B4-16 are the material for it")],
@@ -1047,6 +1050,6 @@ def render(bundle, version: str):
         "pile_tables": {k: {"columns": v["columns"], "row": v["row"]} for k, v in bundle["pile_tables"].items()},
         "pile_checks": bundle["pile_checks"], "wall_checks": bundle["wall_checks"], "cheek_checks": bundle["cheek_checks"],
         "caps": bundle["caps"], "review": bundle["review"], "calc_modules": c.J.calc_modules(),
-        "typical_section": {k: bundle["typsec"][k] for k in ("number", "title", "generator", "section", "cut")},
+        "typical_section": {k: bundle["typsec"][k] for k in ("number", "title", "generator", "section", "pier", "cuts")},
     }
     return html, data

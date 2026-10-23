@@ -1,12 +1,12 @@
 {
  "generator": "substructure_drawings.typical_section",
- "version": "1.0.0",
+ "version": "1.1.0",
  "dxf": "B4_Typical_Section.dxf",
- "dxf_sha256": "692265702f951f07ccf9241e4ed1aa2305e46068b1ca529a98321702d891851e",
+ "dxf_sha256": "713cb74b4e10cfe991629cde17d364f2746ecf816c605a8825b4012d5a2d5d4b",
  "dxf_flat": "B4_Typical_Section_flat.dxf",
- "dxf_flat_sha256": "2cb771a3dad56ac36e03c8da04628dfb8f6c96eacdc2a043347c65bafd86e216",
- "dimensions_flattened": 7,
- "snapshot_sha256": "fbeda492af3263d0356725d6046213d5fbd57cfaad2a2020939aad0523932038",
+ "dxf_flat_sha256": "2572307e4e8328accbd45c64ba88429e30ad5d9f7a260617b4f262429740e83a",
+ "dimensions_flattened": 9,
+ "snapshot_sha256": "dd2604ee4868e4f3ecb51c6e513d835e1a7474971a4055c671446827b2a4fb15",
  "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
  "units": "US survey feet ($INSUNITS=21; the model's feet, for the DGN import); model space 1:1 in the section frame",
  "frame": {
@@ -22,21 +22,34 @@
   ],
   "note": "u = -x, z of the model, feet; looking ahead station (sheet right = -X, south)"
  },
- "cut": {
-  "ffbw_eb1_y_ft": 4.071518,
-  "pier_cl_y_ft": -103.27828,
-  "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline",
-  "y_ft": -49.603381
+ "cuts": {
+  "pier": {
+   "y_ft": -102.403369,
+   "where": "the Span 1 bearing line at the pier (centre of the Span 1 pads)"
+  },
+  "typical": {
+   "y_ft": -49.603381,
+   "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline"
+  }
  },
  "sheet": {
   "number": "S-1",
   "title": "TYPICAL SECTION",
   "layout": "S-1 TYPICAL SECTION",
-  "scale": "1/2\" = 1'-0\""
+  "scale": "3/8\" = 1'-0\"",
+  "scales": [
+   "3/8\" = 1'-0\"",
+   "1/4\" = 1'-0\""
+  ],
+  "views": [
+   "TYPICAL SECTION",
+   "SECTION AT PIER"
+  ]
  },
  "section": {
   "station": "16+46.89",
   "station_ft": 1646.8949,
+  "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline",
   "deck_out_to_out_ft": 13.583334,
   "clear_between_barriers_ft": 12.0,
   "slab_thickness_at_pgl_ft": 0.5,
@@ -55,34 +68,107 @@
   },
   "drip_grooves": 2
  },
+ "section_at_pier": {
+  "station": "16+99.69",
+  "station_ft": 1699.6949,
+  "where": "the Span 1 bearing line at the pier (centre of the Span 1 pads)",
+  "deck_out_to_out_ft": 13.583333,
+  "clear_between_barriers_ft": 12.0,
+  "slab_thickness_at_pgl_ft": 0.500001,
+  "deck_top_el_at_pgl": 48.193251,
+  "beam_spacing_ft": 8.583333,
+  "beam_depth_ft": 3.000001,
+  "overhang_ft": {
+   "L": 2.5,
+   "R": 2.5
+  },
+  "barrier_height_ft": 3.5,
+  "barrier_width_ft": 0.666666,
+  "crossfall": {
+   "L": 0.02,
+   "R": 0.02
+  },
+  "drip_grooves": 2,
+  "cap_length_ft": 19.166667,
+  "cap_depth_ft": 3.0,
+  "cap_top_el": 43.76494,
+  "pedestal_height_ft": {
+   "BridgePedestalPierB2": 0.501923,
+   "BridgePedestalPierB1": 0.501923
+  },
+  "pedestal_top_el": {
+   "BridgePedestalPierB2": 44.266863,
+   "BridgePedestalPierB1": 44.266863
+  },
+  "pad_thickness_ft": 0.213542,
+  "pad_width_ft": 2.666667,
+  "pier_wall_length_ft": 18.25,
+  "pier_wall_bottom_el": 24.5264
+ },
  "objects_by_role": {
-  "barrier": [
-   "BarrierDeckS1LCorrected",
-   "BarrierDeckS1RCorrected"
-  ],
-  "beam": [
-   "BridgeBeamS1B1",
-   "BridgeBeamS1B2"
-  ],
-  "deck": [
-   "BridgeDeckS1"
-  ],
-  "haunch": [
-   "BridgeHaunchS1B1",
-   "BridgeHaunchS1B2"
-  ]
+  "typical": {
+   "barrier": [
+    "BarrierDeckS1LCorrected",
+    "BarrierDeckS1RCorrected"
+   ],
+   "beam": [
+    "BridgeBeamS1B1",
+    "BridgeBeamS1B2"
+   ],
+   "deck": [
+    "BridgeDeckS1"
+   ],
+   "haunch": [
+    "BridgeHaunchS1B1",
+    "BridgeHaunchS1B2"
+   ]
+  },
+  "pier": {
+   "barrier": [
+    "BarrierDeckS1LCorrected",
+    "BarrierDeckS1RCorrected"
+   ],
+   "beam": [
+    "BridgeBeamS1B1",
+    "BridgeBeamS1B2"
+   ],
+   "cap": [
+    "BridgeCapPier"
+   ],
+   "deck": [
+    "BridgeDeckS1"
+   ],
+   "haunch": [
+    "BridgeHaunchS1B1",
+    "BridgeHaunchS1B2"
+   ],
+   "pad": [
+    "BridgePadPierS1B1",
+    "BridgePadPierS1B2"
+   ],
+   "pedestal": [
+    "BridgePedestalPierB1",
+    "BridgePedestalPierB2"
+   ],
+   "pier_wall": [
+    "BridgePierWallSolid"
+   ]
+  }
  },
  "levels_used": {
-  "BeamConc": 4,
-  "Border": 3,
-  "CL_Major": 1,
+  "BeamConc": 8,
+  "BearingPadMisc": 2,
+  "Border": 4,
+  "CL_Major": 2,
   "CL_Minor": 2,
-  "Dimension": 8,
-  "Leader": 14,
-  "SupstrConc": 1,
-  "Symbols": 4,
-  "TextStructures": 12,
-  "TrafBarrierConc": 2
+  "Dimension": 10,
+  "Leader": 22,
+  "SubStrConc": 2,
+  "SubStrConc2": 2,
+  "SupstrConc": 2,
+  "Symbols": 5,
+  "TextStructures": 19,
+  "TrafBarrierConc": 4
  },
  "level_source": {
   "source": "FDOT CADD Standard Level Table, 10-25-2023, worksheet 'Level Definition Details'",
@@ -97,7 +183,7 @@
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
  "symbology_audit": {
-  "entities": 160,
+  "entities": 206,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {},
@@ -144,7 +230,8 @@
  "layout_warnings": [],
  "annotation_overlaps": [],
  "extraction_log": [
-  "14 superstructure objects selected",
-  "7 objects cut at Y = -49.603 ft"
+  "32 objects selected",
+  "typical: 7 objects cut at Y = -49.603 ft",
+  "pier: 13 objects cut at Y = -102.403 ft"
  ]
 }

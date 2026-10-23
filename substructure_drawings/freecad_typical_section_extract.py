@@ -1,11 +1,16 @@
-"""FreeCAD-side cut of the superstructure for the typical section sheet
+"""FreeCAD-side cuts of the superstructure for the typical section sheet
 (``typical_section.py``).
 
 Run with FreeCAD 1.1 ``freecadcmd`` (never the GUI) on a *copy* of the
-registered model.  Read-only: opens the copy, slices the finished
-superstructure components of Span 1 (deck, haunches, beams and the deck
-barriers) with the vertical plane normal to the stationing at mid-span,
-writes one JSON snapshot and closes the document without saving.
+registered model.  Read-only: opens the copy, slices the finished components
+with two vertical planes normal to the stationing, writes one JSON snapshot
+and closes the document without saving:
+
+* ``typical``: mid-span 1, through the deck, the haunches, the two FIB-36
+  beams and the deck barriers;
+* ``pier``: the Span 1 bearing line at the pier, through the same
+  superstructure plus the bearing pads, the pedestals, the pier cap and the
+  pier wall (the pier cheek walls, piles and ring plates lie beyond the cut).
 
 Inputs are environment variables so the call works with ``freecadcmd``:
 
@@ -15,9 +20,8 @@ Inputs are environment variables so the call works with ``freecadcmd``:
 * ``SUBDWG_OUT``     JSON snapshot to write
 
 The bridge runs along -Y (stationing increases toward -Y) and +X is north.
-The section looks ahead station (SDM 2.8.B), so sheet right is -X and sheet
-up is +Z: the wires are written as (u, z) feet with u = -x.  The cut plane
-is Y = y_cut, midway between the FFBW of End Bent 1 and the pier centreline.
+The sections look ahead station (SDM 2.8.B), so sheet right is -X and sheet
+up is +Z: the wires are written as (u, z) feet with u = -x.
 """
 import json
 import os
@@ -38,9 +42,12 @@ import FreeCAD as App  # noqa: E402
 from fc_hlr import FT, r6, model_hash, bb_ft  # noqa: E402
 
 DEFLECTION = 0.2    # mm, discretization of curved slice edges (the drip grooves and chamfers are straight)
-SKIP = ("Envelope", "Check", "Schedule", "Source", "JointTools", "Nominal")
-GROUPS = ["BridgeDecks", "BridgeHaunches", "BridgeBeams", "BridgeRailings"]
-ROLE_PREFIXES = [("BridgeDeck", "deck"), ("BridgeHaunch", "haunch"), ("BridgeBeam", "beam"), ("Barrier", "barrier")]
+SKIP = ("Envelope", "Check", "Schedule", "Source", "JointTools", "Nominal", "Inputs", "Ring")
+GROUPS = ["BridgeDecks", "BridgeHaunches", "BridgeBeams", "BridgeRailings", "BridgeBearings", "BridgePedestals",
+          "BridgeCaps", "BridgePierWall"]
+ROLE_PREFIXES = [("BridgeDeck", "deck"), ("BridgeHaunch", "haunch"), ("BridgeBeam", "beam"), ("Barrier", "barrier"),
+                 ("BridgePad", "pad"), ("BridgePedestal", "pedestal"), ("BridgePierWall", "pier_wall"),
+                 ("BridgeCap", "cap")]
 LOG = []
 
 
@@ -67,7 +74,7 @@ def members(obj):
 def wires_at(shape, y_mm):
     """Slice wires of ``shape`` with the plane Y = y_mm, as (u, z) feet, u = -x."""
     bb = shape.BoundBox
-    if not (bb.YMin - 1e-6 <= y_mm <= bb.YMax + 1e-6):
+    if not (bb.YMin + 1e-6 < y_mm < bb.YMax - 1e-6):
         return []
     out = []
     for w in shape.slice(App.Vector(0, 1, 0), y_mm):
@@ -98,7 +105,8 @@ def run():
             continue
         for o in members(grp):
             n = o.Name
-            if n in chosen or any(s in n for s in SKIP) or "Shape" not in o.PropertiesList:
+            if n in chosen or any(s in n for s in SKIP) or "Shape" not in o.PropertiesList \
+                    or "Diameter" in o.PropertiesList:   # (bars and WWR carry a Diameter)
                 continue
             try:
                 shp = o.Shape
@@ -108,30 +116,37 @@ def run():
             if shp is None or shp.isNull() or not shp.Solids:
                 continue
             chosen[n] = o
-    log("%d superstructure objects selected" % len(chosen))
+    log("%d objects selected" % len(chosen))
     bw1 = get("BridgeBackwallEB1").Shape.BoundBox
     pier = get("BridgeCapPier").Shape.BoundBox
     cap1, cap2 = get("BridgeCapEB1").Shape.BoundBox, get("BridgeCapEB2").Shape.BoundBox
+    pad = get("BridgePadPierS1B1").Shape.BoundBox
     ffbw_y = bw1.YMin
     pier_y = (pier.YMin + pier.YMax) / 2
-    y_cut = (ffbw_y + pier_y) / 2            # mid-span 1 (mm)
     pgl_x = ((cap1.XMin + cap1.XMax) / 2 + (cap2.XMin + cap2.XMax) / 2) / 2
-    objects = OrderedDict()
-    for n, o in chosen.items():
-        ws = wires_at(o.Shape, y_cut)
-        if not ws:
-            continue
-        objects[n] = {"role": role_of(n), "label": o.Label, "bb_ft": bb_ft(o.Shape), "wires": ws}
-    log("%d objects cut at Y = %.3f ft" % (len(objects), y_cut / FT))
+    cuts = OrderedDict([
+        ("typical", {"y_mm": (ffbw_y + pier_y) / 2,
+                     "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline"}),
+        ("pier", {"y_mm": (pad.YMin + pad.YMax) / 2,
+                  "where": "the Span 1 bearing line at the pier (centre of the Span 1 pads)"}),
+    ])
+    sections = OrderedDict()
+    for key, c in cuts.items():
+        objects = OrderedDict()
+        for n, o in chosen.items():
+            ws = wires_at(o.Shape, c["y_mm"])
+            if ws:
+                objects[n] = {"role": role_of(n), "label": o.Label, "bb_ft": bb_ft(o.Shape), "wires": ws}
+        sections[key] = {"y_ft": r6(c["y_mm"] / FT), "where": c["where"], "objects": objects}
+        log("%s: %d objects cut at Y = %.3f ft" % (key, len(objects), c["y_mm"] / FT))
     App.closeDocument(doc.Name)
     snap = {
-        "schema": 1, "units": "ft", "model_sha256": SOURCE_SHA or model_hash(MODEL),
+        "schema": 2, "units": "ft", "model_sha256": SOURCE_SHA or model_hash(MODEL),
         "frame": {"e1": [-1, 0, 0], "e2": [0, 0, 1],
                   "note": "u = -x, z of the model, feet; looking ahead station (sheet right = -X, south)"},
-        "cut": {"y_ft": r6(y_cut / FT), "ffbw_eb1_y_ft": r6(ffbw_y / FT), "pier_cl_y_ft": r6(pier_y / FT),
-                "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline"},
+        "ffbw_eb1_y_ft": r6(ffbw_y / FT), "pier_cl_y_ft": r6(pier_y / FT),
         "pgl_u_ft": r6(-pgl_x / FT),
-        "objects": objects,
+        "sections": sections,
         "log": LOG,
     }
     with open(OUT, "w", encoding="utf-8") as f:

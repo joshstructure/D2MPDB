@@ -340,9 +340,10 @@ def mathcad_beams():
 def typical_section_sheet():
     """Sheet S-1, the superstructure typical section cut from the model."""
     man = read_json(SOURCES["TYPSEC-MANIFEST"])
-    return {"number": man["sheet"]["number"], "title": man["sheet"]["title"], "scales": [man["sheet"]["scale"]],
+    return {"number": man["sheet"]["number"], "title": man["sheet"]["title"], "scales": man["sheet"]["scales"],
             "png": SOURCES["TYPSEC-PNG"], "generator": f"{man['generator']} {man['version']}",
-            "model_sha256": man["model_sha256"], "dxf": man["dxf"], "section": man["section"], "cut": man["cut"]}
+            "model_sha256": man["model_sha256"], "dxf": man["dxf"], "section": man["section"],
+            "pier": man["section_at_pier"], "cuts": man["cuts"]}
 
 
 def drawing_sheets():

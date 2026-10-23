@@ -161,15 +161,15 @@ SUB_NEAR_TH = 3.0        # a parenthesised text this close (text heights) under 
 # levels
 LINEWORK_SKIP = ("Patterning", "Symbols")         # hatch patterns; symbols drawn around their own letters
 LEADER_LAYERS = ("Leader", "Dimension")           # layers whose segments may not run through a symbol (A13)
-CONCRETE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel", "WallConc", "WallMSEPanel", "AppSlabConc",
-                     "SupstrConc", "BeamConc", "TrafBarrierConc")   # (the superstructure levels: the typical section sheet)
+CONCRETE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel", "WallConc", "WallMSEPanel", "AppSlabConc")
+SUPERSTRUCTURE_PREFIXES = ("SupstrConc", "BeamConc", "TrafBarrierConc")   # the typical section sheet (S-1): tips stand on them (A27)
 LEADER_LINE_EXACT = ("Rebar", "Rebar2", "BearingPadMisc")   # with the prefixes: the levels of A14
 CLIP_EXACT = ("Rebar2",)                                    # with the prefixes: the levels of D12
 OUTLINE_PREFIXES = ("SubStrConc", "PileConc", "PileSteel")  # the concrete outline levels of D13
 
 RULES = ("A1", "A2", "A3", "A10", "A11", "A12", "A13", "A14", "A21", "A23", "A24", "A25", "A26", "A27", "B9",
          "B11", "B12", "D3", "D12", "D13", "D15", "E5", "E8")
-TIP_ON_PREFIXES = CONCRETE_PREFIXES + ("BearingPadMisc",)   # the levels a tip may stand on (A27), with the bar levels
+TIP_ON_PREFIXES = CONCRETE_PREFIXES + SUPERSTRUCTURE_PREFIXES + ("BearingPadMisc",)   # the levels a tip may stand on (A27), with the bar levels
 
 
 # ------------------------------------------------------------------ geometry

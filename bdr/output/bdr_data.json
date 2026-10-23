@@ -899,14 +899,55 @@
   "tracker_items": 28
  },
  "typical_section": {
-  "cut": {
-   "ffbw_eb1_y_ft": 4.071518,
-   "pier_cl_y_ft": -103.27828,
-   "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline",
-   "y_ft": -49.603381
+  "cuts": {
+   "pier": {
+    "where": "the Span 1 bearing line at the pier (centre of the Span 1 pads)",
+    "y_ft": -102.403369
+   },
+   "typical": {
+    "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline",
+    "y_ft": -49.603381
+   }
   },
-  "generator": "substructure_drawings.typical_section 1.0.0",
+  "generator": "substructure_drawings.typical_section 1.1.0",
   "number": "S-1",
+  "pier": {
+   "barrier_height_ft": 3.5,
+   "barrier_width_ft": 0.666666,
+   "beam_depth_ft": 3.000001,
+   "beam_spacing_ft": 8.583333,
+   "cap_depth_ft": 3.0,
+   "cap_length_ft": 19.166667,
+   "cap_top_el": 43.76494,
+   "clear_between_barriers_ft": 12.0,
+   "crossfall": {
+    "L": 0.02,
+    "R": 0.02
+   },
+   "deck_out_to_out_ft": 13.583333,
+   "deck_top_el_at_pgl": 48.193251,
+   "drip_grooves": 2,
+   "overhang_ft": {
+    "L": 2.5,
+    "R": 2.5
+   },
+   "pad_thickness_ft": 0.213542,
+   "pad_width_ft": 2.666667,
+   "pedestal_height_ft": {
+    "BridgePedestalPierB1": 0.501923,
+    "BridgePedestalPierB2": 0.501923
+   },
+   "pedestal_top_el": {
+    "BridgePedestalPierB1": 44.266863,
+    "BridgePedestalPierB2": 44.266863
+   },
+   "pier_wall_bottom_el": 24.5264,
+   "pier_wall_length_ft": 18.25,
+   "slab_thickness_at_pgl_ft": 0.500001,
+   "station": "16+99.69",
+   "station_ft": 1699.6949,
+   "where": "the Span 1 bearing line at the pier (centre of the Span 1 pads)"
+  },
   "section": {
    "barrier_height_ft": 3.5,
    "barrier_width_ft": 0.666667,
@@ -926,7 +967,8 @@
    },
    "slab_thickness_at_pgl_ft": 0.5,
    "station": "16+46.89",
-   "station_ft": 1646.8949
+   "station_ft": 1646.8949,
+   "where": "mid-span 1, midway between FFBW End Bent 1 and the pier centreline"
   },
   "title": "TYPICAL SECTION"
  },

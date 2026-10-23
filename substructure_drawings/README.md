@@ -422,11 +422,14 @@ snapshot or the generator output no longer match.
 ## Superstructure typical section (B4_Typical_Section.dxf)
 
 [`output/B4_Typical_Section.dxf`](output/B4_Typical_Section.dxf) is a third DXF:
-sheet S-1, TYPICAL SECTION, the superstructure cut from the registered model
-normal to the stationing at mid-span 1 (Sta. 16+46.89), looking ahead station
-(SDM 2.8.B: sheet right is south, -X), at 1/2" = 1'-0" with the FDOT border; a
-review copy is [`output/B4_Typical_Section.png`](output/B4_Typical_Section.png).
-Rebuild with
+sheet S-1, TYPICAL SECTION, with two views cut from the registered model
+normal to the stationing, looking ahead station (SDM 2.8.B: sheet right is
+south, -X): the TYPICAL SECTION at mid-span 1 (Sta. 16+46.89) at 3/8" = 1'-0"
+and, under it, the SECTION AT PIER at the Span 1 bearing line (Sta. 16+99.69,
+10 1/2 in from the pier centreline) at 1/4" = 1'-0" (the 19'-2" cap with its
+callouts fits the sheet width at that scale only), each in its own viewport,
+with the FDOT border; a review copy is
+[`output/B4_Typical_Section.png`](output/B4_Typical_Section.png). Rebuild with
 
 ```
 .venv\Scripts\python.exe scripts\build_typical_section_dxf.py --extract --previews
@@ -435,23 +438,34 @@ Rebuild with
 [`freecad_typical_section_extract.py`](freecad_typical_section_extract.py)
 slices the finished superstructure components of Span 1 (the deck with its
 chamfers and drip grooves, the haunches, the two FIB-36 beams and the deck
-barriers) with the cut plane and writes the wires as (u, z) feet, u = -x, to
-[`data/typical_section_snapshot.json`](data/typical_section_snapshot.json);
+barriers) with both cut planes, and at the pier also the bearing pads, the
+pedestals, the pier cap and the pier wall (bars, ring plates and the piles are
+left out), and writes the wires as (u, z) feet, u = -x, to
+[`data/typical_section_snapshot.json`](data/typical_section_snapshot.json)
+(schema 2, one `sections` entry per cut);
 [`typical_section.py`](typical_section.py) draws the cut outlines on the
-superstructure levels (SupstrConc, BeamConc, TrafBarrierConc), measures the
-section on the model (out to out, clear width between the barriers, beam
-spacing and overhangs, slab thickness and PGL elevation at the crown, beam
-depth, barrier height, crossfall) and dimensions it in the FDOT style: the
-clear width and out-to-out rows above, the overhang / beam spacing / overhang
-row below with the beam centerlines, the barrier height and beam depth in a
-column at the right, the ℄ BRIDGE & PGL centerline stopped short of the
-symmetric dimension values it would cross (A1), every leader tip snapped onto
-the cut outline (A27; the checker now counts the superstructure levels as
-drawn lines), the crossfall arrows and the PGL elevation at the cut. The
-measured values are in the manifest (`section`) and the test compares them
-with the journal geometry (13'-7" out to out, 12'-0" clear, 8'-7" beams, 6"
-slab, 2% crossfall). The pedestrian fence enclosure and the handrails are not
-in the model, so they are not drawn and a MODEL CHECK note says so.
+superstructure levels (SupstrConc, BeamConc, TrafBarrierConc) and, at the
+pier, SubStrConc, SubStrConc2 and BearingPadMisc, measures each section on the
+model (typical: out to out, clear width between the barriers, beam spacing
+and overhangs, slab thickness and PGL elevation at the crown, beam depth,
+barrier height, crossfall; pier: cap length and depth, cap top and pedestal
+top elevations, pad thickness and width, wall length) and dimensions it in
+the FDOT style: on the typical section the clear width and out-to-out rows
+above, the overhang / beam spacing / overhang row below with the beam
+centerlines, the barrier height and beam depth in a column at the right, the
+℄ BRIDGE & PGL centerline stopped short of the symmetric dimension values it
+would cross (A1), the crossfall arrows and the PGL elevation at the cut; on
+the section at the pier the cap length under the wall stub (the wall broken
+0'-9 5/8" below the cap, D12/D15), the cap depth at the right, the PIER CAP,
+PIER WALL, pad-on-pedestal callouts and the cap top elevation. Every leader
+tip is snapped onto the cut outline (A27; the checker now counts the
+superstructure levels as drawn lines). The measured values are in the
+manifest (`section`, `section_at_pier`) and the test compares them with the
+journal geometry (13'-7" out to out, 12'-0" clear, 8'-7" beams, 6" slab, 2%
+crossfall, 19'-2" x 3'-0" cap, the D-065 level seats). The pedestrian fence
+enclosure and the handrails are not in the model, so they are not drawn and a
+MODEL CHECK note says so; the pier cheek walls, piles and ring plates lie
+beyond the pier cut and are referred to the pier sheets.
 `tests/test_typical_section_dxf.py` fails when the model, the snapshot or the
 generator output no longer match. The Bridge Development Report (`bdr/`)
 embeds the sheet as its typical section figure.

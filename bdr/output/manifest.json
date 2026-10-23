@@ -128,11 +128,11 @@
   },
   "DXF-MANIFEST": {
    "path": "substructure_drawings/output/manifest.json",
-   "sha256": "059042ab4218e12d90fd671a93d7c657c24bf269db0b6497cfcc9364bcb03c8b"
+   "sha256": "ab48d16a5545d1ba60ad1914475dfc42a5d01dae9917d53ba2af78e27ed5aa74"
   },
   "PLAN-MANIFEST": {
    "path": "substructure_drawings/output/model_plan_manifest.json",
-   "sha256": "a906f6507fa0a8df98cc50ae426151794b4b66511da826180c65ddf053c0ad35"
+   "sha256": "b4f2f2da37dc48467bf76903383413d3fbf3e85a940debb1f43e850e5d92b831"
   },
   "PLAN-PNG": {
    "path": "substructure_drawings/output/B4_Model_Plan.png",
@@ -144,11 +144,11 @@
   },
   "TYPSEC-MANIFEST": {
    "path": "substructure_drawings/output/typical_section_manifest.json",
-   "sha256": "e21c89cfd540ec890af3e8f685044305fbf9306d7ea84cbaf6acbff2648ac931"
+   "sha256": "914cef69910fe3913a1938c081c8018e322b8c99eda97afbfd44f2f6816718d8"
   },
   "TYPSEC-PNG": {
    "path": "substructure_drawings/output/B4_Typical_Section.png",
-   "sha256": "d437aa251743cdabde508f324be9cab530344b293d96c4d42936589bee40272e"
+   "sha256": "bda511da1b87f3e1225d86e7d08825e306fc3e77d44a5442be513c1fd1c5a2f6"
   },
   "FACTS": {
    "path": "bdr/data/facts.json",
@@ -156,8 +156,8 @@
   }
  },
  "outputs": {
-  "B4_Bridge_Development_Report.html": "8bcebd3d1c289aa2ce3c9c296c57e626b5425a9aa33c3a995f0dd6e289d89901",
-  "bdr_data.json": "42fce6c05e4200243d595c37547d4c4af94f2a9cfb0b3879311fc6740fae7820"
+  "B4_Bridge_Development_Report.html": "0197f12d9aabf9cbb0bbd243d24f9620cf19267ab38d8ba521876691caa6fcc3",
+  "bdr_data.json": "c86f8a568147fb8a9b3f36638147e593d291a350f2822b65394b503372ae5da2"
  },
  "open_items": 36,
  "pdf": "C:\\github\\D2MPDB\\bdr\\output\\B4_Bridge_Development_Report.pdf"
