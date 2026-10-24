@@ -1,0 +1,73 @@
+{
+  "task": "T042",
+  "base_sha256": "d8b814ad940258e321bb29b0af69424771a524bb359d4efd0952da33bea567b0",
+  "decision": "D-087",
+  "components": {
+    "C001WindLoadOnPedBridgeSuperstructure": {
+      "source": "wind_superstructure/bpad/journal/C001WindLoadOnPedBridgeSuperstructure.xml",
+      "fragment_sha256": "e195a3b322f8f19c115fc8ed1fa764a2c492f5e4dc712457df6591ad7ca0bad3",
+      "case_sha256": "53e431373c8afb3f337dbaee695664d47f7220f3d505f3057bee366bce5241b5",
+      "title": "C001 - Wind Load on Ped Bridge Superstructure",
+      "definitions": 44,
+      "formulas_and_caches_unchanged": true,
+      "definition_positions_changed": 35
+    },
+    "FenceWind": {
+      "source": "fence_wind/bpad/journal/FenceWind.xml",
+      "fragment_sha256": "9aaa2b40fb1abb782c8cd98cefe3405806f9242a014b46f962bb72afad6ffda2",
+      "case_sha256": "464fc5fd2dbac51aba685bd8acffa6d13dd4e2ce7781ae5089c6f9d78c2da3ba",
+      "title": "C002 - Fence Wind and Pier Node Loads",
+      "definitions": 75,
+      "formulas_and_caches_unchanged": true,
+      "definition_positions_changed": 60
+    },
+    "BridgeMovement": {
+      "source": "bridge_movement/bpad/journal/BridgeMovement.xml",
+      "fragment_sha256": "5e2796ab027566f24117cf451de929a591f72128c6e70c471873c26708da3952",
+      "case_sha256": "82bf12fdf18f734f54521713152937299349cd33341bd660540d00d396e1a8ee",
+      "title": "C003 - Bridge Temperature Movement",
+      "definitions": 26,
+      "formulas_and_caches_unchanged": true,
+      "definition_positions_changed": 11
+    },
+    "SuperstructureUplift": {
+      "source": "superstructure_uplift/bpad/journal/SuperstructureUplift.xml",
+      "fragment_sha256": "a9ede04268a1c6f0ae6382236178292be8a1ef4b20fe0fd60dce722a442215f7",
+      "case_sha256": "692349139c3832e937477d254d51b75f27f9b971ace83cd308937943836fc1d4",
+      "title": "C004 - Superstructure Uplift and Bearing Reactions",
+      "definitions": 122,
+      "formulas_and_caches_unchanged": true,
+      "definition_positions_changed": 107
+    },
+    "MSEWallExclusion": {
+      "source": "mse_wall_exclusion/bpad/journal/MSEWallExclusion.xml",
+      "fragment_sha256": "7354f4b3fb339703b3088d4c4efd38eb617a4fa77bc02161d49fe9bb51604c21",
+      "case_sha256": "ae9e7cf9d7763246f1144b754af484348c0155d5ecece4a15ff632fd80a277dd",
+      "title": "C015 - MSE Wall Exclusion - Both End Bents",
+      "definitions": 192,
+      "formulas_and_caches_unchanged": true,
+      "definition_positions_changed": 172
+    },
+    "BearingDesign": {
+      "source": "bearing_design/bpad/journal/BearingDesign.xml",
+      "fragment_sha256": "b467e611bb1d0080da05a7af6a9a4b4a82082c7c672dc711609399311feba334",
+      "case_sha256": "f33297a3c17719bf173817cf18ded0cd9ad2b45c5849650d8adead8b8a17fab3",
+      "title": "C016 - Bearings and Support Details",
+      "definitions": 144,
+      "formulas_and_caches_unchanged": true,
+      "definition_positions_changed": 122
+    },
+    "PedBridge": {
+      "source": "base.bpad + revision note"
+    },
+    "DecisionLog": {
+      "source": "base.bpad + decision entry"
+    }
+  },
+  "status": "PASS",
+  "reviews": {
+    "native_recalculation": false,
+    "native_visual_review": false,
+    "engineering_review": false
+  }
+}
