@@ -14,6 +14,7 @@ output is reproducible without FreeCAD.
 import argparse
 import hashlib
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -142,6 +143,13 @@ def preview_doc(dxf_path):
         st.discard_extended_font_data()
     if missing:
         plain_glyphs(doc)
+    # the sheet border cell's MTEXT font codes name an FDOT font by its face
+    # ("\fFDOT Bold|b1|..."), which the renderer does not resolve (it drew a
+    # serif stand-in): the text style's font, the same face, stands in
+    for blk in doc.blocks:
+        for e in blk.query("MTEXT"):
+            if "\\fFDOT" in e.text:
+                e.text = re.sub(r"\\fFDOT[^;]*;", "", e.text)
     layer_lt = {layer.dxf.name: layer.dxf.linetype for layer in doc.layers}
 
     def fix(entities):

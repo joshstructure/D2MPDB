@@ -1,12 +1,12 @@
 {
  "generator": "substructure_drawings.model_plan",
- "version": "1.1.0",
+ "version": "1.2.0",
  "variant": "plan",
  "hidden_lines": true,
  "dxf": "B4_Model_Plan.dxf",
- "dxf_sha256": "bb82da12be1a2b0ace6f0b257ff25f5b31b33047a5a5f8620581963d6caf6d7b",
+ "dxf_sha256": "4bda303552b1f7d61c93ca753077d16b98b318503106f3afef6763d6af11be4a",
  "dxf_flat": "B4_Model_Plan_flat.dxf",
- "dxf_flat_sha256": "7cca7a39bcb1b902cb2ceedf8febd544ed0b505d67625b96a203c037e17a069b",
+ "dxf_flat_sha256": "1eeaa1edcbbbc0a87d40d9dfcd75aeec5349ed1cb494970789186a968931b097",
  "dimensions_flattened": 0,
  "snapshot_sha256": "001f407ad10f509e5b2c63655f47a3cd1d79faeaa0b13e980f2a3ad1a506ef1a",
  "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
@@ -338,15 +338,25 @@
   "sha256": "3074d0027748686d38bababae898e1f9f1cf0b13d0fe241b2fb4cdbcf07de222",
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
+ "sheet_border": {
+  "template": "substructure_drawings/data/sheet_border_template.dxf",
+  "sha256": "c3fdcde592ec39fc7ea8e4d9cf03a754589f340106735572947cdc99f993603c",
+  "blocks": [
+   "11x17 Structures Sheet Border",
+   "Structures Sheet Number-Title"
+  ]
+ },
  "symbology_audit": {
-  "entities": 1217,
+  "entities": 1253,
   "not_on_fdot_level": [],
   "not_by_level": [],
   "documented_overrides": {
-   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 32
+   "BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)": 32,
+   "FDOT sheet border cell (levels, weights and text styles of the project's sheet model)": 95
   },
   "layers": [
    "0",
+   "ActivePts-ConstElements",
    "AppSlabConc",
    "AppSlabConc_h",
    "BaseLineSurveyPGL",
@@ -376,8 +386,10 @@
    "SupstrConc_h",
    "Symbols",
    "Tables",
+   "TextMisc",
    "TextStructShtNo",
    "TextStructures",
+   "TextStructuresLabel",
    "TrafBarrierConc",
    "WallConc",
    "WallConc_h",

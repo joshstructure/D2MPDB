@@ -10,7 +10,7 @@ import math
 from pathlib import Path
 
 from . import bars as barlib
-from . import cad, details, fdot, pier_wall, strap_loads
+from . import cad, details, fdot, pier_wall, sheets, strap_loads
 from .sheets import DRAW, MODEL_PITCH_FT, TITLE_TOP, Sheet
 from .support import STATION_FFBW_EB1, Support
 from .views import DELTA, Builder, z_on_edges
@@ -22,19 +22,17 @@ except ModuleNotFoundError as err:   # the annotation checker module is new; bui
         raise
     anno_check = None
 
-GENERATOR_VERSION = "2.9.0"
+GENERATOR_VERSION = "2.10.0"
 DXF_NAME = "B4_Substructure_EndBents_Pier.dxf"
 
+# (the project information - engineer of record, road, county, FPID,
+# project name, bridge number - is the sheet border cell's, sheets.BORDER_TEMPLATE)
+# The end bent and pier sheets follow B4-5 TYPICAL SECTION of the project's
+# sheet set (2026-10-24): they are numbered from B4-6.
 INFO = {
-    "project": "D2 I-95 PEDESTRIAN BRIDGE - B4",
-    "bridge_name": "B4 PEDESTRIAN BRIDGE",
-    "bridge_no": "",
-    "road": "",
-    "county": "",
-    "fpid": "",
     "status": "PRELIMINARY - NOT FOR CONSTRUCTION - GENERATED FROM THE CURRENT FREECAD MODEL",
-    "eor_lines": ["ENGINEER OF RECORD:", "", "", ""],
     "sheet_prefix": "B4-",
+    "first_sheet": 6,
 }
 
 # Values in the selected CAD-tables workbook (D-041) used as independent
@@ -175,11 +173,18 @@ def dimension_blocks_by_level(doc):
 def symbology_audit(doc):
     """ByLevel check of every entity in every block, layout and model space
     (CADD Manual 5.10.1.3): on an FDOT level (never 0 or Defpoints), color,
-    lineweight and linetype ByLayer, apart from LINETYPE_OVERRIDES."""
+    lineweight and linetype ByLayer, apart from LINETYPE_OVERRIDES and the
+    sheet border cell, which keeps the symbology of the project's sheet
+    model (sheets.BORDER_CELL_OVERRIDE)."""
     out = {"entities": 0, "not_on_fdot_level": [], "not_by_level": [], "documented_overrides": {}}
     for blk in doc.blocks:
+        cell = sheets.is_border_cell(blk.name)
         for e in blk:
             out["entities"] += 1
+            if cell:
+                key = sheets.BORDER_CELL_OVERRIDE
+                out["documented_overrides"][key] = out["documented_overrides"].get(key, 0) + 1
+                continue
             layer = e.dxf.get("layer", "0")
             tag = "%s %s %s" % (blk.name, e.dxftype(), layer)
             if layer not in fdot.LEVELS:
@@ -207,10 +212,9 @@ class Composer:
         self.doc = cad.new_document()
         self.sheets = []
         self.warnings = []
-        self.info["stamp"] = ["%s  (%s %s)" % (DXF_NAME, "substructure_drawings", GENERATOR_VERSION),
-                              "FREECAD MODEL SHA-256 %s" % snap["model_sha256"][:16].upper()]
+        self.info["file"] = DXF_NAME
         p = self.info["sheet_prefix"]
-        n = iter(range(1, 100))
+        n = iter(range(self.info["first_sheet"], 100))
         self.numbers = {k: [p + str(next(n)) for _ in range(c)] for k, c in SHEETS}
 
     # ---------------------------------------------------------------- utils
@@ -436,11 +440,13 @@ class Composer:
             # next sheet"); here only the reference to it
             notes.append("FOR THE SOIL REINFORCEMENT (%s) LEGEND, SEE SHEET %s." % (DELTA, nums[1]))
         elif s.cheeks:   # D-059: the cheek wall sheet
+            # (the cheek wall sheet's reference goes with the cheek wall note:
+            # with two-digit sheet numbers, from B4-6, the first note took a
+            # fifth line and the notes reached the end view)
             notes.append("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s. FOR PEDESTAL DETAILS, SEE SHEET %s. FOR "
-                         "VIEW E-E AND THE CHEEK WALL SECTIONS F-F AND G-G, SEE SHEET %s. FOR LOCATION OF VIEWS "
-                         "D-D AND E-E, SEE PLAN." % (nums[1], nums[2], nums[3]))
-            notes.append("THE CHEEK WALLS ARE SHOWN BROKEN IN THE ELEVATION AND WHOLE IN VIEW D-D AND ON SHEET %s."
-                         % nums[3])
+                         "LOCATION OF VIEWS D-D AND E-E, SEE PLAN." % (nums[1], nums[2]))
+            notes.append("THE CHEEK WALLS ARE SHOWN BROKEN IN THE ELEVATION AND WHOLE IN VIEW D-D. FOR VIEW E-E AND "
+                         "THE CHEEK WALL SECTIONS F-F AND G-G, SEE SHEET %s." % nums[3])
             notes.append(self.pier_wall_ref(s, nums))
         else:
             notes.append("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET %s. FOR PEDESTAL DETAILS, SEE SHEET %s. FOR "
@@ -1208,6 +1214,7 @@ def _write_outputs(snapshot_path, out_dir):
         "levels_used": dict(sorted(layers.items())),
         "level_source": fdot.LEVEL_TABLE,
         "cadd_manual": fdot.CADD_MANUAL,
+        "sheet_border": sheets.border_record(),
         "symbology_audit": symbology_audit(doc),
         "marks": {s.title: {m: {k: e[k] for k in ("size", "des", "description", "count", "lengths_in", "varies")}
                             for m, e in s.table.items()} for s in comp.sup.values()},

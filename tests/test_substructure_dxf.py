@@ -23,7 +23,7 @@ import ezdxf  # noqa: E402
 from ezdxf.lldxf.const import VALID_DXF_LINEWEIGHTS  # noqa: E402
 from fractions import Fraction  # noqa: E402
 
-from substructure_drawings import bars, build, cad, fdot, views  # noqa: E402
+from substructure_drawings import bars, build, cad, fdot, sheets, views  # noqa: E402
 
 PKG = ROOT / "substructure_drawings"
 SNAPSHOT = PKG / "data" / "model_snapshot.json"
@@ -150,11 +150,15 @@ class SubstructureDxfTests(unittest.TestCase):
     def test_only_fdot_levels_are_used(self):
         """CADD Manual 5.10.1.3: no user levels; layer 0 and Defpoints carry
         no entities (also inside blocks), and the file has no Defpoints layer
-        (ezdxf adds an empty one when reading)."""
+        (ezdxf adds an empty one when reading).  The sheet border cell brings
+        its own levels from the project's sheet model."""
         allowed = set(fdot.LEVELS)
-        used = {e.dxf.layer for blk in self.doc.blocks for e in blk}
+        used = {e.dxf.layer for blk in self.doc.blocks if not sheets.is_border_cell(blk.name) for e in blk}
         self.assertTrue(used <= allowed, sorted(used - allowed))
-        self.assertTrue({layer.dxf.name for layer in self.doc.layers} <= allowed | {"0", "Defpoints"})
+        cell = {e.dxf.layer for blk in self.doc.blocks if sheets.is_border_cell(blk.name) for e in blk}
+        self.assertEqual(cell - allowed, sheets.BORDER_CELL_LEVELS)
+        self.assertTrue({layer.dxf.name for layer in self.doc.layers} <=
+                        allowed | sheets.BORDER_CELL_LEVELS | {"0", "Defpoints"})
         self.assertNotIn(b"Defpoints", DXF.read_bytes())
         self.assertEqual(self.doc.layers.get("ClipBorder_dp").dxf.plot, 0)
         for name in allowed:
@@ -163,15 +167,19 @@ class SubstructureDxfTests(unittest.TestCase):
 
     def test_every_entity_is_by_level(self):
         """Color, lineweight and linetype ByLayer for every entity in model
-        space, the layouts and all blocks; the one documented exception is the
-        hidden linetype on BearingPadMisc (no hidden twin in the level table)."""
+        space, the layouts and all blocks; the documented exceptions are the
+        hidden linetype on BearingPadMisc (no hidden twin in the level table)
+        and the sheet border cell, which keeps the symbology of the project's
+        sheet model."""
         audit = build.symbology_audit(self.doc)
         self.assertEqual(audit["not_on_fdot_level"], [])
         self.assertEqual(audit["not_by_level"], [])
         # (2.7.0: no hidden pad edge is drawn any more, the pier end view
         # drops the pads behind the cheek wall; the override stays documented)
         self.assertTrue(set(audit["documented_overrides"]) <=
-                        {"BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)"})
+                        {"BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)",
+                         sheets.BORDER_CELL_OVERRIDE})
+        self.assertIn(sheets.BORDER_CELL_OVERRIDE, audit["documented_overrides"])
         self.assertEqual(self.manifest["symbology_audit"]["not_by_level"], [])
         self.assertEqual(self.manifest["symbology_audit"]["not_on_fdot_level"], [])
         self.assertNotIn("FDOT_CL_SYMBOL", self.doc.blocks)
@@ -210,6 +218,46 @@ class SubstructureDxfTests(unittest.TestCase):
             vps = [v for v in lay.viewports() if v.dxf.id > 1]
             self.assertGreaterEqual(len(vps), 1, lay.name)
         self.assertEqual(self.manifest["layout_warnings"], [])
+
+    def test_every_sheet_has_the_project_sheet_border(self):
+        """2026-10-24: every sheet carries the border cell of the project's
+        sheet model (data/sheet_border_template.dxf) unchanged, on FRAME: the
+        border block with the template's attribute values (project data,
+        BRIDGE NO.) and the sheet's own number / title block with its number,
+        title and file line."""
+        rec = self.manifest["sheet_border"]
+        self.assertEqual(rec, sheets.border_record())
+        src = sheets.border_template()
+
+        def get(e, key):
+            return e.dxf.get(key) if e.dxf.is_supported(key) else None
+
+        def body(name, doc):
+            return [(e.dxftype(), e.dxf.layer, e.dxf.get("lineweight"), get(e, "style"),
+                     e.text if e.dxftype() == "MTEXT" else get(e, "text"),
+                     tuple(round(v, 9) for v in (get(e, "insert") or get(e, "start") or (0, 0, 0))))
+                    for e in doc.blocks.get(name)]
+        self.assertEqual(body(sheets.BORDER_BLOCK, self.doc), body(sheets.BORDER_BLOCK, src))
+        values = {a.dxf.tag: a.dxf.text for a in sheets.template_insert(sheets.BORDER_BLOCK).attribs}
+        self.assertEqual(values["Bridge_Number"], " BRIDGE NO. 729022")
+        dx, dy = sheets.border_offset()
+        poly = src.blocks.get(sheets.BORDER_BLOCK).query("LWPOLYLINE").first
+        xs, ys = zip(*poly.get_points("xy"))
+        frame = [(min(xs) + dx) * 12, (min(ys) + dy) * 12, (max(xs) + dx) * 12, (max(ys) + dy) * 12]
+        for got, want in zip(frame, sheets.FRAME):
+            self.assertAlmostEqual(got, want, delta=0.002)
+        src_nt = body(sheets.NUMBER_TITLE_BLOCK, src)
+        for sh in self.manifest["sheets"]:
+            lay = self.doc.layouts.get(sh["layout"])
+            inserts = {e.dxf.name: e for e in lay.query("INSERT")}
+            own = "%s %s" % (sheets.NUMBER_TITLE_BLOCK, sh["number"])
+            self.assertEqual(set(inserts), {sheets.BORDER_BLOCK, own}, sh["number"])
+            self.assertEqual({a.dxf.tag: a.dxf.text for a in inserts[sheets.BORDER_BLOCK].attribs}, values)
+            texts = [t[4] for t in body(own, self.doc)]
+            self.assertIn(sh["number"], texts)
+            self.assertTrue(any(t.endswith(sh["title"]) for t in texts if t), sh["number"])
+            self.assertIn("%s : %s" % (build.DXF_NAME, sh["layout"]), texts)
+            self.assertEqual([t[:4] + t[5:] for t in body(own, self.doc)], [t[:4] + t[5:] for t in src_nt])
 
     def test_model_space_groups_one_labelled_box_per_sheet(self):
         """E9: every sheet with views has one group in model space, a box on
@@ -331,9 +379,10 @@ class SubstructureDxfTests(unittest.TestCase):
     def test_sheet_set_follows_the_fdot_sample(self):
         """Plan and elevation with the reinforcement for each support (no
         separate reinforcement sheets), its details (STYLE_GUIDE E1: three
-        details sheets per end bent), then the bar list."""
+        details sheets per end bent), then the bar list; numbered from B4-6,
+        after B4-5 TYPICAL SECTION of the project's sheet set (2026-10-24)."""
         sheets = self.manifest["sheets"]
-        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(1, 17)])
+        self.assertEqual([s["number"] for s in sheets], ["B4-%d" % i for i in range(6, 22)])
         self.assertEqual([s["title"] for s in sheets], [
             "END BENT 1", "END BENT 1 DETAILS (1 OF 3)", "END BENT 1 DETAILS (2 OF 3)",
             "END BENT 1 DETAILS (3 OF 3)",
@@ -371,30 +420,31 @@ class SubstructureDxfTests(unittest.TestCase):
             if lay.name != "Model":
                 texts[lay.name.split(" ")[0]] = [e.dxf.text if e.dxftype() == "TEXT" else e.text
                                                  for e in lay.query("TEXT MTEXT")]
-        for first, nums in (("B4-1", ("B4-2", "B4-3", "B4-4")), ("B4-12", ("B4-13", "B4-14", "B4-15"))):
+        for first, nums in (("B4-6", ("B4-7", "B4-8", "B4-9")), ("B4-17", ("B4-18", "B4-19", "B4-20"))):
             self.assertTrue(any(
                 "FOR SECTIONS A-A AND B-B AND DETAILS \"A\" AND \"B\", SEE SHEET %s. FOR SECTION C-C AND VIEWS D-D "
                 "AND E-E, SEE SHEET %s. FOR SECTIONS F-F AND G-G AND PEDESTAL DETAILS, SEE SHEET %s." % nums in t
                 for t in texts[first]), first)
-        self.assertTrue(any("SEE VIEW D-D, SHEET B4-3" in t for t in texts["B4-4"]))
-        self.assertTrue(any("SEE VIEW D-D, SHEET B4-14" in t for t in texts["B4-15"]))
+        self.assertTrue(any("SEE VIEW D-D, SHEET B4-8" in t for t in texts["B4-9"]))
+        self.assertTrue(any("SEE VIEW D-D, SHEET B4-19" in t for t in texts["B4-20"]))
         # the pier: sections on (1 OF 6), pedestal details on (2 OF 6), the
         # cheek wall view E-E and sections F-F and G-G on (3 OF 6) (D-059),
         # the pier wall on (4 OF 6) to (6 OF 6) (D-076 / D-079)
-        self.assertTrue(any("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET B4-6. FOR PEDESTAL DETAILS, SEE SHEET B4-7. "
-                            "FOR VIEW E-E AND THE CHEEK WALL SECTIONS F-F AND G-G, SEE SHEET B4-8. FOR LOCATION OF "
-                            "VIEWS D-D AND E-E, SEE PLAN." in t for t in texts["B4-5"]))
-        self.assertTrue(any("FOR THE PIER WALL REINFORCEMENT AND THE ANNULAR PILE RING PLATES, SEE SHEETS B4-9 TO B4-11."
-                            in t for t in texts["B4-5"]))
-        self.assertTrue(any("FOR PEDESTAL DETAILS, SEE SHEET B4-7." in t for t in texts["B4-6"]))
-        self.assertTrue(any("SEE SHEETS B4-9, B4-10 AND B4-11." in t for t in texts["B4-6"]))
-        self.assertTrue(any("SEE SHEET B4-6." in t for t in texts["B4-7"]))
-        self.assertTrue(any("FOR LOCATION OF VIEW E-E, SEE SHEET B4-5 (PLAN)." in t for t in texts["B4-8"]))
-        self.assertTrue(any("FOR SECTION J-J AND THE ANNULAR RING PLATE DETAILS, SEE SHEET B4-10; FOR SECTION H-H, "
-                            "SEE SHEET B4-11." in t for t in texts["B4-9"]))
-        self.assertTrue(any("SEE THE PIER WALL ELEVATION, SHEET B4-9." in t for t in texts["B4-10"]))
-        self.assertTrue(any("SEE THE PIER WALL ELEVATION, SHEET B4-9." in t for t in texts["B4-11"]))
-        self.assertFalse(any("PROVISIONAL" in t for t in texts["B4-5"] + texts["B4-6"]))
+        self.assertTrue(any("FOR SECTIONS A-A, B-B AND C-C, SEE SHEET B4-11. FOR PEDESTAL DETAILS, SEE SHEET B4-12. "
+                            "FOR LOCATION OF VIEWS D-D AND E-E, SEE PLAN." in t for t in texts["B4-10"]))
+        self.assertTrue(any("WHOLE IN VIEW D-D. FOR VIEW E-E AND THE CHEEK WALL SECTIONS F-F AND G-G, SEE SHEET B4-13."
+                            in t for t in texts["B4-10"]))
+        self.assertTrue(any("FOR THE PIER WALL REINFORCEMENT AND THE ANNULAR PILE RING PLATES, SEE SHEETS B4-14 TO B4-16."
+                            in t for t in texts["B4-10"]))
+        self.assertTrue(any("FOR PEDESTAL DETAILS, SEE SHEET B4-12." in t for t in texts["B4-11"]))
+        self.assertTrue(any("SEE SHEETS B4-14, B4-15 AND B4-16." in t for t in texts["B4-11"]))
+        self.assertTrue(any("SEE SHEET B4-11." in t for t in texts["B4-12"]))
+        self.assertTrue(any("FOR LOCATION OF VIEW E-E, SEE SHEET B4-10 (PLAN)." in t for t in texts["B4-13"]))
+        self.assertTrue(any("FOR SECTION J-J AND THE ANNULAR RING PLATE DETAILS, SEE SHEET B4-15; FOR SECTION H-H, "
+                            "SEE SHEET B4-16." in t for t in texts["B4-14"]))
+        self.assertTrue(any("SEE THE PIER WALL ELEVATION, SHEET B4-14." in t for t in texts["B4-15"]))
+        self.assertTrue(any("SEE THE PIER WALL ELEVATION, SHEET B4-14." in t for t in texts["B4-16"]))
+        self.assertFalse(any("PROVISIONAL" in t for t in texts["B4-10"] + texts["B4-11"]))
         # (the view titles are model-space text: one VIEW E-E, SECTION F-F
         # and SECTION G-G per support that has cheek walls, three each; the
         # pier wall views once)
@@ -403,21 +453,21 @@ class SubstructureDxfTests(unittest.TestCase):
             self.assertEqual(titles.count(name), 3, name)
         for name in ("PIER WALL ELEVATION", "SECTION H-H", "SECTION J-J", "SECTION K-K", "ANNULAR RING PLATE"):
             self.assertEqual(titles.count(name), 1, name)
-        # the LEGEND is on B4-2 and B4-13 only, once per bent
-        for number in ("B4-2", "B4-13"):
+        # the LEGEND is on B4-7 and B4-18 only, once per bent
+        for number in ("B4-7", "B4-18"):
             self.assertIn("LEGEND:", texts[number], number)
             self.assertTrue(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
         for number in sorted(texts):
-            if number not in ("B4-2", "B4-13"):
+            if number not in ("B4-7", "B4-18"):
                 self.assertNotIn("LEGEND:", texts[number], number)
                 self.assertFalse(any("PROPRIETARY WALL PROVIDER" in t for t in texts[number]), number)
                 self.assertFalse(any("SPECIALTY ENGINEER" in t for t in texts[number]), number)
         # the other sheets that show the strap refer to the legend sheet
         for number, legend_sheet, wording in (
-                ("B4-1", "B4-2", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
-                ("B4-12", "B4-13", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
-                ("B4-3", "B4-2", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s."),
-                ("B4-14", "B4-13", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s.")):
+                ("B4-6", "B4-7", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
+                ("B4-17", "B4-18", "FOR THE SOIL REINFORCEMENT (Δ) LEGEND, SEE SHEET %s."),
+                ("B4-8", "B4-7", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s."),
+                ("B4-19", "B4-18", "FOR THE Δ REINFORCING STRAP LEGEND, SEE SHEET %s.")):
             self.assertTrue(any(wording % legend_sheet in t for t in texts[number]), number)
 
     def test_pier_wall_sheets_follow_the_model(self):
@@ -459,12 +509,12 @@ class SubstructureDxfTests(unittest.TestCase):
             if lay.name != "Model":
                 texts[lay.name.split(" ")[0]] = " ".join(e.dxf.text if e.dxftype() == "TEXT" else e.text
                                                          for e in lay.query("TEXT MTEXT"))
-        self.assertIn("23\" O.D. x 20%s\" I.D." % fdot.frac(Fraction(1, 8)), texts["B4-9"])
-        self.assertIn("5G1 VERTICALS, 5G2 HORIZONTALS", texts["B4-9"])
-        self.assertIn("FAILED CHECK RING-GRID", texts["B4-9"])
-        self.assertIn("NO ANCHORAGE INTO THE CAP", texts["B4-9"])
-        self.assertIn("TWO CONTINUOUS %s\" FILLET WELDS" % fdot.frac(Fraction(5, 16)), texts["B4-10"])
-        self.assertIn("Fy = 50 KSI, Fu = 65 KSI", texts["B4-10"])
+        self.assertIn("23\" O.D. x 20%s\" I.D." % fdot.frac(Fraction(1, 8)), texts["B4-14"])
+        self.assertIn("5G1 VERTICALS, 5G2 HORIZONTALS", texts["B4-14"])
+        self.assertIn("FAILED CHECK RING-GRID", texts["B4-14"])
+        self.assertIn("NO ANCHORAGE INTO THE CAP", texts["B4-14"])
+        self.assertIn("TWO CONTINUOUS %s\" FILLET WELDS" % fdot.frac(Fraction(5, 16)), texts["B4-15"])
+        self.assertIn("Fy = 50 KSI, Fu = 65 KSI", texts["B4-15"])
         model = [e.dxf.text if e.dxftype() == "TEXT" else e.text for e in self.doc.modelspace().query("TEXT MTEXT")]
         self.assertTrue(any("ANNULAR RING" in t and "5 PER PILE" in t for t in model))
         self.assertTrue(any(t.startswith("4~5G1 EA. END") for t in model))
@@ -755,7 +805,9 @@ class SubstructureDxfTests(unittest.TestCase):
         FDOT Bold), no oblique (the fonts are slanted), width = width/height.
         Every text is in one of these styles at its height (model space: times
         a sheet scale factor), except the border-cell lettering in FDOT
-        Imprint; MTEXT has the three-quarter-height line gap (5.12.1.2)."""
+        Imprint; MTEXT has the three-quarter-height line gap (5.12.1.2).  The
+        sheet border cell keeps the text styles of the project's sheet model,
+        with the FDOT fonts named."""
         manual = {  # style: (font, height ft, width ft)
             "FDOT Structures": ("FDOT", 0.0063, 0.0063),
             "FDOT Structures Annotation": ("FDOT", 0.0063, 0.0063),
@@ -787,9 +839,16 @@ class SubstructureDxfTests(unittest.TestCase):
             self.assertEqual(st.dxf.oblique, 0.0, name)
             self.assertEqual(st.dxf.height, 0.0, name)
             self.assertAlmostEqual(st.dxf.width, w / h if h else 1.0, msg=name)
-        self.assertEqual(set(fdot.TEXT_STYLES), {s.dxf.name for s in self.doc.styles} - {"Standard"})
+        self.assertEqual(set(fdot.TEXT_STYLES) | sheets.BORDER_CELL_STYLES,
+                         {s.dxf.name for s in self.doc.styles} - {"Standard"})
+        for name, font in sheets.BORDER_CELL_FONTS.items():
+            file, family, bold = fonts[font]
+            st = self.doc.styles.get(name)
+            self.assertEqual((st.dxf.font, st.get_extended_font_data()), (file, (family, False, bold)), name)
         scales = set(fdot.SCALES.values())
         for blk in self.doc.blocks:
+            if sheets.is_border_cell(blk.name):
+                continue
             paper = blk.name.upper().startswith("*PAPER_SPACE")
             for e in blk.query("TEXT MTEXT"):
                 name = e.dxf.style

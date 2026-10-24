@@ -24,10 +24,10 @@ from collections import OrderedDict
 from pathlib import Path
 
 from . import build, cad, fdot
-from .sheets import DRAW, Sheet
+from .sheets import DRAW, Sheet, border_record
 from .support import STATION_FFBW_EB1
 
-GENERATOR_VERSION = "1.1.0"
+GENERATOR_VERSION = "1.2.0"
 DXF_NAME = "B4_Typical_Section.dxf"
 MANIFEST_NAME = "typical_section_manifest.json"
 SHEET_NUMBER = "S-1"
@@ -196,8 +196,7 @@ class SectionComposer:
         self.typ = Cut(snap, "typical")
         self.pier = Cut(snap, "pier")
         self.info = dict(info)
-        self.info["stamp"] = ["%s  (%s %s)" % (DXF_NAME, "substructure_drawings.typical_section", GENERATOR_VERSION),
-                              "FREECAD MODEL SHA-256 %s" % snap["model_sha256"][:16].upper()]
+        self.info["file"] = DXF_NAME
         self.doc = cad.new_document()
         self.warnings = []
         self.overlaps = []
@@ -442,6 +441,7 @@ def write_outputs(snapshot_path, out_dir):
             "levels_used": dict(sorted(layers.items())),
             "level_source": fdot.LEVEL_TABLE,
             "cadd_manual": fdot.CADD_MANUAL,
+            "sheet_border": border_record(),
             "symbology_audit": build.symbology_audit(doc),
             "layout_warnings": comp.warnings,
             "annotation_overlaps": comp.overlaps,

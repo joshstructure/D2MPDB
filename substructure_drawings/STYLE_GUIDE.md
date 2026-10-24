@@ -706,9 +706,11 @@ symbol at page scale.
   title block, so further notes go on the (2 OF 3) sheet.
 - **E2 Tables** stay inside the drawing window with a margin to the frame;
   notes are a single numbered column with hanging indents.  Notes and other
-  blocks at the lower right stop short of the BRIDGE NO. / bridge name
-  block above the title block (`Sheet.bridge_block`; the layout check
-  warns when a block runs into it).
+  blocks at the lower right stop short of the border cell's BRIDGE NO.
+  text above the title block (`Sheet.bridge_block`, read from the
+  template, `sheets.border_bridge_block`; the layout check warns when a
+  block runs into it).  The border and title block are the project's
+  sheet model cell, unchanged (2026-10-24, `sheets.BORDER_TEMPLATE`).
 - **E3 Notes** say what is representative, where sections are located, what
   is not shown and why, and carry the MODEL CHECK items (removed before
   issue).

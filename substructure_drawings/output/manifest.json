@@ -1,10 +1,10 @@
 {
  "generator": "substructure_drawings.build",
- "version": "2.9.0",
+ "version": "2.10.0",
  "dxf": "B4_Substructure_EndBents_Pier.dxf",
- "dxf_sha256": "3c7fce67ae209fa94eed3f1327c3378e410ed813adfaccda15d7fac91eb7ed9d",
+ "dxf_sha256": "4da5d2dc1a0a2efcbd6b024f937dc81e9d52980ccbab7fbcefff398e2769cc63",
  "dxf_flat": "B4_Substructure_EndBents_Pier_flat.dxf",
- "dxf_flat_sha256": "6671d1f0073dc54a6d5bcc64e87cfc402daed904bfa57497a9d169d173fb26e7",
+ "dxf_flat_sha256": "f45907124faa10b9f306e9158d76bfc69504c8d5e99153db8b66cd03a2739735",
  "dimensions_flattened": 479,
  "snapshot_sha256": "7f4657754bccfe1d74ea768e21b76c15e0a2a2ed681edaec022c67f5f4273daa",
  "model_sha256": "dd69374811827e982023297440d7025576c530395bd6bb7c37041fb44b17e280",
@@ -14,9 +14,9 @@
  },
  "sheets": [
   {
-   "number": "B4-1",
+   "number": "B4-6",
    "title": "END BENT 1",
-   "layout": "B4-1 END BENT 1",
+   "layout": "B4-6 END BENT 1",
    "scales": [
     "3/8\" = 1'-0\""
    ],
@@ -28,9 +28,9 @@
    ]
   },
   {
-   "number": "B4-2",
+   "number": "B4-7",
    "title": "END BENT 1 DETAILS (1 OF 3)",
-   "layout": "B4-2 END BENT 1 DETAILS (1 OF 3)",
+   "layout": "B4-7 END BENT 1 DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\"",
     "1\" = 1'-0\"",
@@ -44,9 +44,9 @@
    ]
   },
   {
-   "number": "B4-3",
+   "number": "B4-8",
    "title": "END BENT 1 DETAILS (2 OF 3)",
-   "layout": "B4-3 END BENT 1 DETAILS (2 OF 3)",
+   "layout": "B4-8 END BENT 1 DETAILS (2 OF 3)",
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
@@ -59,9 +59,9 @@
    ]
   },
   {
-   "number": "B4-4",
+   "number": "B4-9",
    "title": "END BENT 1 DETAILS (3 OF 3)",
-   "layout": "B4-4 END BENT 1 DETAILS (3 OF 3)",
+   "layout": "B4-9 END BENT 1 DETAILS (3 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -73,9 +73,9 @@
    ]
   },
   {
-   "number": "B4-5",
+   "number": "B4-10",
    "title": "PIER",
-   "layout": "B4-5 PIER",
+   "layout": "B4-10 PIER",
    "scales": [
     "3/8\" = 1'-0\""
    ],
@@ -87,9 +87,9 @@
    ]
   },
   {
-   "number": "B4-6",
+   "number": "B4-11",
    "title": "PIER DETAILS (1 OF 6)",
-   "layout": "B4-6 PIER DETAILS (1 OF 6)",
+   "layout": "B4-11 PIER DETAILS (1 OF 6)",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -101,9 +101,9 @@
    ]
   },
   {
-   "number": "B4-7",
+   "number": "B4-12",
    "title": "PIER DETAILS (2 OF 6)",
-   "layout": "B4-7 PIER DETAILS (2 OF 6)",
+   "layout": "B4-12 PIER DETAILS (2 OF 6)",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -115,9 +115,9 @@
    ]
   },
   {
-   "number": "B4-8",
+   "number": "B4-13",
    "title": "PIER DETAILS (3 OF 6)",
-   "layout": "B4-8 PIER DETAILS (3 OF 6)",
+   "layout": "B4-13 PIER DETAILS (3 OF 6)",
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
@@ -130,9 +130,9 @@
    ]
   },
   {
-   "number": "B4-9",
+   "number": "B4-14",
    "title": "PIER DETAILS (4 OF 6)",
-   "layout": "B4-9 PIER DETAILS (4 OF 6)",
+   "layout": "B4-14 PIER DETAILS (4 OF 6)",
    "scales": [
     "3/8\" = 1'-0\""
    ],
@@ -144,9 +144,9 @@
    ]
   },
   {
-   "number": "B4-10",
+   "number": "B4-15",
    "title": "PIER DETAILS (5 OF 6)",
-   "layout": "B4-10 PIER DETAILS (5 OF 6)",
+   "layout": "B4-15 PIER DETAILS (5 OF 6)",
    "scales": [
     "1/2\" = 1'-0\"",
     "1-1/2\" = 1'-0\"",
@@ -160,9 +160,9 @@
    ]
   },
   {
-   "number": "B4-11",
+   "number": "B4-16",
    "title": "PIER DETAILS (6 OF 6)",
-   "layout": "B4-11 PIER DETAILS (6 OF 6)",
+   "layout": "B4-16 PIER DETAILS (6 OF 6)",
    "scales": [
     "1/2\" = 1'-0\""
    ],
@@ -174,9 +174,9 @@
    ]
   },
   {
-   "number": "B4-12",
+   "number": "B4-17",
    "title": "END BENT 2",
-   "layout": "B4-12 END BENT 2",
+   "layout": "B4-17 END BENT 2",
    "scales": [
     "3/8\" = 1'-0\""
    ],
@@ -188,9 +188,9 @@
    ]
   },
   {
-   "number": "B4-13",
+   "number": "B4-18",
    "title": "END BENT 2 DETAILS (1 OF 3)",
-   "layout": "B4-13 END BENT 2 DETAILS (1 OF 3)",
+   "layout": "B4-18 END BENT 2 DETAILS (1 OF 3)",
    "scales": [
     "3/4\" = 1'-0\"",
     "1\" = 1'-0\"",
@@ -204,9 +204,9 @@
    ]
   },
   {
-   "number": "B4-14",
+   "number": "B4-19",
    "title": "END BENT 2 DETAILS (2 OF 3)",
-   "layout": "B4-14 END BENT 2 DETAILS (2 OF 3)",
+   "layout": "B4-19 END BENT 2 DETAILS (2 OF 3)",
    "scales": [
     "3/8\" = 1'-0\"",
     "3/4\" = 1'-0\""
@@ -219,9 +219,9 @@
    ]
   },
   {
-   "number": "B4-15",
+   "number": "B4-20",
    "title": "END BENT 2 DETAILS (3 OF 3)",
-   "layout": "B4-15 END BENT 2 DETAILS (3 OF 3)",
+   "layout": "B4-20 END BENT 2 DETAILS (3 OF 3)",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -233,9 +233,9 @@
    ]
   },
   {
-   "number": "B4-16",
+   "number": "B4-21",
    "title": "REINFORCING BAR LIST",
-   "layout": "B4-16 REINFORCING BAR LIST",
+   "layout": "B4-21 REINFORCING BAR LIST",
    "scales": [
     "3/4\" = 1'-0\""
    ],
@@ -278,13 +278,24 @@
   "sha256": "3074d0027748686d38bababae898e1f9f1cf0b13d0fe241b2fb4cdbcf07de222",
   "sections": "5.10 levels/layers and symbology (PDF pp. 46-50); 5.12 text (pp. 52-54); 7.11 prints (pp. 94-96)"
  },
+ "sheet_border": {
+  "template": "substructure_drawings/data/sheet_border_template.dxf",
+  "sha256": "c3fdcde592ec39fc7ea8e4d9cf03a754589f340106735572947cdc99f993603c",
+  "blocks": [
+   "11x17 Structures Sheet Border",
+   "Structures Sheet Number-Title"
+  ]
+ },
  "symbology_audit": {
-  "entities": 13322,
+  "entities": 12563,
   "not_on_fdot_level": [],
   "not_by_level": [],
-  "documented_overrides": {},
+  "documented_overrides": {
+   "FDOT sheet border cell (levels, weights and text styles of the project's sheet model)": 185
+  },
   "layers": [
    "0",
+   "ActivePts-ConstElements",
    "AppSlabConc",
    "AppSlabConc_h",
    "BaseLineSurveyPGL",
@@ -314,8 +325,10 @@
    "SupstrConc_h",
    "Symbols",
    "Tables",
+   "TextMisc",
    "TextStructShtNo",
    "TextStructures",
+   "TextStructuresLabel",
    "TrafBarrierConc",
    "WallConc",
    "WallConc_h",

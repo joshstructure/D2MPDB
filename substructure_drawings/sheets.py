@@ -1,15 +1,20 @@
 """Paper-space sheets: 11 x 17 border, title block, viewport and tables.
 
-The border follows the layout of the FDOT structures sheet border used in the
-sample plan set (revisions, engineer of record, initials, DOT, sheet title,
-project name, reference drawing and sheet number blocks; the 61G15-23.004
-statement along the right edge).  It is an approximation for review: replace
-it with the FDOT CADD structures border cell when the sheets are finalized in
-MicroStation.  Fields not established in the project sources are left blank.
+The border is the FDOT 11 x 17 structures sheet border cell of the project's
+MicroStation sheet model (2026-10-24, ``BORDER_TEMPLATE``), copied unchanged
+into every sheet: the border block with its project information (engineer of
+record, initials, road, county, financial project ID, project name, bridge
+number, the 61G15-23.004 statement) and its attributes, and the sheet number /
+title block, which gets the sheet's own number, title and file line.
 """
+import hashlib
 import math
+from pathlib import Path
 
+import ezdxf
+from ezdxf.addons.importer import Importer
 from ezdxf.enums import TextEntityAlignment
+from ezdxf.math import Vec3
 
 from . import fdot
 from .cad import ATTACH, text_extent
@@ -33,6 +38,74 @@ BOX_MARGIN_FT = 1.0                        # the group box beyond its zones
 # the zone notes the text style at their zone's scale: model-space text is
 # always an FDOT style height times an FDOT scale, as the symbology test
 # requires)
+
+# The sheet border cell (2026-10-24): the user's MicroStation sheet model
+# (SheetModelExample.dxf, the sheet "B4-5 TYPICAL SECTION", kept byte for
+# byte).  Its border block lies 0.25 in lower left of FRAME at the same
+# 15.4 x 10.4 in size and is moved onto FRAME (``border_offset``).  The cell
+# keeps its own levels, line weights and text styles, as the sheet model has
+# them: ``build.symbology_audit`` counts its entities as the documented
+# exception BORDER_CELL_OVERRIDE, and only the fonts of its text styles are
+# named (BORDER_CELL_FONTS; the export leaves them to MicroStation).
+BORDER_TEMPLATE = Path(__file__).resolve().parent / "data" / "sheet_border_template.dxf"
+BORDER_BLOCK = "11x17 Structures Sheet Border"
+NUMBER_TITLE_BLOCK = "Structures Sheet Number-Title"
+TEMPLATE_SHEET = ("B4-5", "TYPICAL SECTION")     # the template's own sheet number and title
+BORDER_CELL_LEVELS = {"TextStructuresLabel", "TextMisc", "ActivePts-ConstElements"}   # not in fdot.LEVELS
+BORDER_CELL_FONTS = {"Style-FDOT Bold": "FDOT Bold", "Style-FDOT Mono": "FDOT Mono",
+                     "Style-FDOT Imprint Bold": "FDOT Imprint Bold"}
+BORDER_CELL_STYLES = set(BORDER_CELL_FONTS) | {"Style-Arial"}
+BORDER_CELL_OVERRIDE = "FDOT sheet border cell (levels, weights and text styles of the project's sheet model)"
+_TEMPLATE = {}
+
+
+def border_template():
+    """The sheet border template document (read once)."""
+    if "doc" not in _TEMPLATE:
+        _TEMPLATE["doc"] = ezdxf.readfile(BORDER_TEMPLATE)
+    return _TEMPLATE["doc"]
+
+
+def border_record():
+    """The template file and its SHA-256, for the manifests."""
+    return {"template": "substructure_drawings/data/" + BORDER_TEMPLATE.name,
+            "sha256": hashlib.sha256(BORDER_TEMPLATE.read_bytes()).hexdigest(),
+            "blocks": [BORDER_BLOCK, NUMBER_TITLE_BLOCK]}
+
+
+def is_border_cell(block_name):
+    """True for the border block and the sheets' number / title blocks."""
+    return block_name in (BORDER_BLOCK, NUMBER_TITLE_BLOCK) or block_name.startswith(NUMBER_TITLE_BLOCK + " ")
+
+
+def template_insert(name):
+    """The template sheet's INSERT of block ``name``."""
+    src = border_template()
+    return next(e for lay in src.layouts if lay.name != "Model" for e in lay.query("INSERT") if e.dxf.name == name)
+
+
+def border_offset():
+    """(dx, dy) paper feet that move the template's border onto FRAME."""
+    poly = border_template().blocks.get(BORDER_BLOCK).query("LWPOLYLINE").first
+    xs, ys = zip(*poly.get_points("xy"))
+    return FRAME[0] / 12.0 - min(xs), FRAME[1] / 12.0 - min(ys)
+
+
+def border_bridge_block():
+    """The BRIDGE NO. text of the border cell over the title block, (x0, y0,
+    x1, y1) paper inches, which notes and views must keep clear."""
+    dx, dy = border_offset()
+    ins = template_insert(BORDER_BLOCK).dxf.insert
+    for e in border_template().blocks.get(BORDER_BLOCK).query("MTEXT"):
+        s = e.plain_text().strip()
+        if s.startswith("BRIDGE NO."):
+            h = e.dxf.char_height * 12.0
+            w = text_extent(s, h)
+            col, row = (e.dxf.attachment_point - 1) % 3, (e.dxf.attachment_point - 1) // 3
+            x = (e.dxf.insert.x + ins.x + dx) * 12.0 - w * col / 2.0
+            y = (e.dxf.insert.y + ins.y + dy) * 12.0 - h * (2 - row) / 2.0
+            return (x, y, x + w, y + h)
+    raise ValueError("no BRIDGE NO. text in %s" % BORDER_TEMPLATE.name)
 
 
 class Zone:
@@ -87,14 +160,9 @@ class Sheet:
         for vp in self.layout.viewports():  # the paper-space main viewport
             vp.dxf.layer = "ClipBorder_dp"
         self.psp = self.layout
-        # the BRIDGE NO. / bridge name block above the title block (paper
-        # inches), which notes and views at the lower right must keep clear
-        h = fdot.TITLE_IN
-        self.bridge_block = (FRAME[2] - 0.05 - max(text_extent(s, h) for s in self.bridge_lines()),
-                             TITLE_TOP + 0.08, FRAME[2] - 0.05, TITLE_TOP + 0.08 + 2.45 * h)
-
-    def bridge_lines(self):
-        return ["BRIDGE NO. %s" % (self.info.get("bridge_no") or "______"), self.info.get("bridge_name", "")]
+        # the border cell's BRIDGE NO. above the title block (paper inches),
+        # which notes and views at the lower right must keep clear
+        self.bridge_block = border_bridge_block()
 
     def zone(self, window, scale_key):
         z = Zone(self, len(self.zones), window, scale_key)
@@ -212,91 +280,76 @@ class Sheet:
 
     # ------------------------------------------------------------ border
     def border(self):
-        """Border cell: the cell lettering in FDOT Imprint (CADD Manual 5.12:
-        "used mainly within the FDOT sheet border") sized to its cell; the
-        fields in the FDOT_SHEET_* text styles."""
-        info = self.info
-        x0, y0, x1, y1 = FRAME
-        self.pline([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], closed=True, width=0.02)
-        t = TITLE_TOP
-        self.pline([(x0, t), (x1, t)], width=0.014)
-        # column boundaries (inches) after the sample border proportions
-        c_rev, c_eor, c_init, c_dot, c_title, c_no = 0.80, 6.60, 8.90, 9.50, 11.63, 15.58
-        for c in (c_eor, c_init, c_dot, c_title, c_no):
-            self.pline([(c, y0), (c, t)])
-        s = 0.055
-        cell = fdot.BORDER_STYLE
-
-        def label(p, txt, h_in=s, align="BOTTOM_LEFT"):
-            self.ptext(p, txt, h_in, align, style=cell)
-        # revisions
-        label(((c_rev + c_eor) / 2, t - 0.11), "REVISIONS", 0.07, "BOTTOM_CENTER")
-        self.pline([(c_rev, t - 0.13), (c_eor, t - 0.13)])
-        self.pline([(c_rev, t - 0.23), (c_eor, t - 0.23)])
-        half = (c_rev + c_eor) / 2
-        for base in (c_rev, half):
-            for off, lab in ((0.25, "DATE"), (0.62, "BY"), (1.75, "DESCRIPTION")):
-                label((base + off, t - 0.21), lab, s, "BOTTOM_CENTER")
-            for dx in (0.5, 0.75):
-                self.pline([(base + dx, y0), (base + dx, t - 0.13)])
-        self.pline([(half, y0), (half, t - 0.13)])
-        # engineer of record (61G15-23 block) - left blank for the EOR
-        eor = info.get("eor_lines") or ["ENGINEER OF RECORD:", "", "", ""]
-        for i, line in enumerate(eor):
-            self.ptext((c_eor + 0.06, t - 0.16 - i * 0.15), line, style=fdot.SMALL_STYLE)
-        # initials
-        labels = ["DRAWN BY:", "CHECKED BY:", "DESIGNED BY:", "CHECKED BY:"]
-        hh = (t - y0) / 4
-        for i, lab in enumerate(labels):
-            yy = t - i * hh
-            self.pline([(c_init, yy), (c_dot, yy)])
-            label(((c_init + c_dot) / 2, yy - 0.07), lab, 0.04, "BOTTOM_CENTER")
-        # DOT block
-        label(((c_dot + c_title) / 2, t - 0.20), "STATE OF FLORIDA", 0.065, "BOTTOM_CENTER")
-        label(((c_dot + c_title) / 2, t - 0.34), "DEPARTMENT OF TRANSPORTATION", 0.065, "BOTTOM_CENTER")
-        self.pline([(c_dot, t - 0.43), (c_title, t - 0.43)])
-        self.pline([(c_dot, t - 0.53), (c_title, t - 0.53)])
-        cols = [c_dot, c_dot + 0.55, c_dot + 1.25, c_title]
-        for c in cols[1:-1]:
-            self.pline([(c, y0), (c, t - 0.43)])
-        for (a, b), lab, val, st in zip(zip(cols, cols[1:]), ("ROAD NO.", "COUNTY", "FINANCIAL PROJECT ID"),
-                                        (info.get("road", ""), info.get("county", ""), info.get("fpid", "")),
-                                        ("FDOT_SHEET_SR", "FDOT_SHEET_COUNTY", "FDOT_SHEET_FPID")):
-            label(((a + b) / 2, t - 0.51), lab, 0.04, "BOTTOM_CENTER")
-            self.ptext(((a + b) / 2, y0 + 0.12), val, None, "BOTTOM_CENTER", style=st)
-        # sheet title / project name
-        mid = (y0 + t) / 2
-        self.pline([(c_title, mid), (c_no, mid)])
-        label((c_title + 0.04, t - 0.08), "SHEET TITLE:")
-        self.ptext(((c_title + c_no) / 2, mid + 0.10), self.title, None, "BOTTOM_CENTER", style=fdot.SHEET_TITLE_STYLE)
-        label((c_title + 0.04, mid - 0.08), "PROJECT NAME:")
-        self.ptext(((c_title + c_no) / 2, y0 + 0.10), info.get("project", ""), None, "BOTTOM_CENTER",
-                   style=fdot.HEADING_STYLE)
-        # ref dwg / sheet no
-        self.pline([(c_no, mid), (x1, mid)])
-        self.pline([(c_no, mid + 0.12), (x1, mid + 0.12)])
-        self.pline([(c_no, y0 + 0.17), (x1, y0 + 0.17)])
-        label(((c_no + x1) / 2, t - 0.08), "REF. DWG. NO.", 0.045, "BOTTOM_CENTER")
-        label(((c_no + x1) / 2, mid - 0.08), "SHEET NO.", 0.045, "BOTTOM_CENTER")
-        self.ptext(((c_no + x1) / 2, y0 + 0.04), self.number, None, "BOTTOM_CENTER", layer="TextStructShtNo",
-                   style=fdot.TABLE_TITLE_STYLE)
-        # bridge number and name above the title block (SDM 2.2.D), in the
-        # block ``bridge_block`` the layout checks keep clear
-        h = fdot.TITLE_IN
-        lines = self.bridge_lines()
-        self.ptext((x1 - 0.05, t + 0.08 + 1.45 * h), lines[0], None, "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
-        self.ptext((x1 - 0.05, t + 0.08), lines[1], None, "BOTTOM_RIGHT", style=fdot.TITLE_STYLE)
-        # 61G15-23.004 statement outside the right border
-        self.ptext((x1 + 0.22, (y0 + y1) / 2),
-                   "THE OFFICIAL RECORD OF THIS SHEET IS THE ELECTRONIC FILE DIGITALLY SIGNED AND SEALED UNDER RULE 61G15-23.004, F.A.C.",
-                   None, "MIDDLE_CENTER", rot=90.0, style=fdot.SMALL_STYLE)
-        # plot stamp outside the left border: file and source model (no clock
-        # time, so a rebuild from the same snapshot is byte-identical)
-        stamp = info.get("stamp") or []
-        for i, line in enumerate(stamp):
-            self.ptext((x0 - 0.12 - 0.11 * i, y0 + 0.05), line, None, "BOTTOM_LEFT", rot=90.0, style=fdot.STAMP_STYLE)
+        """The sheet border cell of the project's sheet model (see
+        BORDER_TEMPLATE) moved onto FRAME: the border block inserted with
+        the template's attribute values, and a copy of the sheet number /
+        title block named after this sheet with its number, title and file
+        line ("<dxf> : <layout>", in place of the template's DGN path; the
+        $USER$ $DATE$ $TIME$ fields stay as the template has them, so a
+        rebuild is byte-identical).  The draft status stands above the
+        frame."""
+        doc = self.doc
+        dx, dy = border_offset()
+        src = border_template()
+        imp = Importer(src, doc)
+        if BORDER_BLOCK not in doc.blocks:
+            # the cell's levels and styles first, in name order (``finalize``
+            # adds missing ones in set order, which changes the bytes from
+            # run to run); existing ones are kept
+            cell = [e for name in (BORDER_BLOCK, NUMBER_TITLE_BLOCK) for e in src.blocks.get(name)]
+            levels = sorted({e.dxf.layer for e in cell})
+            imp.import_table("layers", levels)
+            imp.import_table("styles", sorted({e.dxf.style for e in cell if e.dxf.is_supported("style")}))
+            # an imported level keeps the template's plot style and material
+            # handles, which point nowhere here: this file's, as the FDOT levels
+            ref = doc.layers.get("Border").dxf
+            for name in levels:
+                layer = doc.layers.get(name).dxf
+                for key in ("plotstyle_handle", "material_handle"):
+                    if ref.hasattr(key):
+                        layer.set(key, ref.get(key))
+                    else:
+                        layer.discard(key)
+            imp.import_block(BORDER_BLOCK, rename=False)
+        name = imp.import_block(NUMBER_TITLE_BLOCK, rename=True)
+        imp.finalize()
+        own = "%s %s" % (NUMBER_TITLE_BLOCK, self.number)
+        doc.blocks.rename_block(name, own)
+        # the template leaves its fonts to MicroStation: name the FDOT fonts
+        for style, font in BORDER_CELL_FONTS.items():
+            if style in doc.styles:
+                file, family, bold = fdot.FONTS[font]
+                st = doc.styles.get(style)
+                st.dxf.font = file
+                st.set_extended_font_data(family, italic=False, bold=bold)
+        # the border block with the template's attributes (project data)
+        t = template_insert(BORDER_BLOCK)
+        ins = self.psp.add_blockref(BORDER_BLOCK, Vec3(t.dxf.insert) + (dx, dy, 0), dxfattribs={"layer": t.dxf.layer})
+        for a in t.attribs:
+            attribs = a.dxfattribs(drop={"handle", "owner"})
+            for key in ("insert", "align_point"):
+                if key in attribs:
+                    attribs[key] = Vec3(attribs[key]) + (dx, dy, 0)
+            ins.add_attrib(attribs.pop("tag"), attribs.pop("text"), attribs.pop("insert"), dxfattribs=attribs)
+        # this sheet's number and title block
+        num, title = TEMPLATE_SHEET
+        done = set()
+        for e in doc.blocks.get(own).query("MTEXT"):
+            if e.text == num:
+                e.text = self.number
+                done.add("number")
+            elif e.text.endswith(title):
+                e.text = e.text[:-len(title)] + self.title
+                done.add("title")
+            elif ".dgn : " in e.text:
+                e.text = "%s : %s" % (self.info.get("file", ""), self.layout.name)
+                done.add("file")
+        if done != {"number", "title", "file"}:
+            raise ValueError("%s: the template's number / title block changed (found %s)" % (self.number, sorted(done)))
+        t = template_insert(NUMBER_TITLE_BLOCK)
+        self.psp.add_blockref(own, Vec3(t.dxf.insert) + (dx, dy, 0), dxfattribs={"layer": t.dxf.layer})
         # draft status (not for construction)
-        self.ptext((x0 + 0.05, y1 + 0.06), info.get("status", ""), None, "BOTTOM_LEFT")
+        self.ptext((FRAME[0] + 0.05, FRAME[3] + 0.06), self.info.get("status", ""), None, "BOTTOM_LEFT")
 
     # ------------------------------------------------------------ tables
     def _box(self, x0, y0, x1, y1, width=None):

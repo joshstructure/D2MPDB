@@ -549,7 +549,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-34B
+39D
   9
 $SURFTAB1
  70
@@ -1701,7 +1701,7 @@ LAYER
 100
 AcDbSymbolTable
  70
-37
+40
   0
 LAYER
   5
@@ -2809,6 +2809,86 @@ AcAecLayerStandard
 1000
 FDOT 105 CLIP Border
   0
+LAYER
+  5
+306
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+ActivePts-ConstElements
+ 70
+0
+ 62
+14
+  6
+Continuous
+290
+0
+370
+0
+390
+13
+347
+21
+348
+0
+  0
+LAYER
+  5
+307
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+TextMisc
+ 70
+0
+ 62
+7
+  6
+Continuous
+370
+13
+390
+13
+347
+21
+348
+0
+  0
+LAYER
+  5
+308
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+TextStructuresLabel
+ 70
+0
+ 62
+7
+  6
+Continuous
+370
+0
+390
+13
+347
+21
+348
+0
+  0
 ENDTAB
   0
 TABLE
@@ -2821,7 +2901,7 @@ STYLE
 100
 AcDbSymbolTable
  70
-18
+22
   0
 STYLE
   5
@@ -3429,6 +3509,136 @@ FDOT Imprint
 1071
 34
   0
+STYLE
+  5
+309
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+Style-Arial
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+0.007292
+  3
+arial.ttf
+  4
+
+  0
+STYLE
+  5
+30A
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+Style-FDOT Bold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+0.007292
+  3
+FDOTBold.ttf
+  4
+
+1001
+ACAD
+1000
+FDOT
+1071
+33554466
+  0
+STYLE
+  5
+30B
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+Style-FDOT Imprint Bold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+0.007292
+  3
+FDOTImprintBold.ttf
+  4
+
+1001
+ACAD
+1000
+FDOT Imprint Bold
+1071
+33554466
+  0
+STYLE
+  5
+30C
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+Style-FDOT Mono
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+0.007292
+  3
+FDOTMono.ttf
+  4
+
+1001
+ACAD
+1000
+FDOT Mono
+1071
+34
+  0
 ENDTAB
   0
 TABLE
@@ -3515,7 +3725,7 @@ AcAecLayerStandard
   0
 APPID
   5
-348
+39A
 330
 3
 100
@@ -3529,7 +3739,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-349
+39B
 330
 3
 100
@@ -4947,7 +5157,7 @@ BLOCK_RECORD
 100
 AcDbSymbolTable
  70
-2
+4
   0
 BLOCK_RECORD
   5
@@ -4962,6 +5172,46 @@ AcDbBlockTableRecord
 *Model_Space
 340
 1A
+ 70
+0
+280
+1
+281
+0
+  0
+BLOCK_RECORD
+  5
+30D
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+11x17 Structures Sheet Border
+340
+0
+ 70
+0
+280
+1
+281
+0
+  0
+BLOCK_RECORD
+  5
+369
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+Structures Sheet Number-Title P-2
+340
+0
  70
 0
 280
@@ -5028,6 +5278,3306 @@ ENDBLK
 19
 330
 17
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+30E
+330
+30D
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+11x17 Structures Sheet Border
+ 70
+2
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+11x17 Structures Sheet Border
+  1
+
+  0
+LINE
+  5
+310
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+0.770195
+ 20
+0.070862
+ 30
+0.0
+ 11
+0.770195
+ 21
+0.004198
+ 31
+0.0
+  0
+LINE
+  5
+311
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+0.720852
+ 20
+0.053848
+ 30
+0.0
+ 11
+0.770195
+ 21
+0.053848
+ 31
+0.0
+  0
+LINE
+  5
+312
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+0.720852
+ 20
+0.037466
+ 30
+0.0
+ 11
+0.770195
+ 21
+0.037466
+ 31
+0.0
+  0
+LINE
+  5
+313
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+0.720852
+ 20
+0.021083
+ 30
+0.0
+ 11
+0.770195
+ 21
+0.021083
+ 31
+0.0
+  0
+LINE
+  5
+314
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+30
+100
+AcDbLine
+ 10
+0.873836
+ 20
+0.040863
+ 30
+0.0
+ 11
+0.873836
+ 21
+0.004198
+ 31
+0.0
+  0
+LINE
+  5
+315
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+0.770195
+ 20
+0.030863
+ 30
+0.0
+ 11
+0.948855
+ 21
+0.030863
+ 31
+0.0
+  0
+LINE
+  5
+316
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+30
+100
+AcDbLine
+ 10
+0.085878
+ 20
+0.059196
+ 30
+0.0
+ 11
+0.085878
+ 21
+0.0043
+ 31
+0.0
+  0
+LINE
+  5
+317
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+30
+100
+AcDbLine
+ 10
+0.111928
+ 20
+0.059196
+ 30
+0.0
+ 11
+0.111928
+ 21
+0.003858
+ 31
+0.0
+  0
+LINE
+  5
+318
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+0.52586
+ 20
+0.059196
+ 30
+0.0
+ 11
+0.045879
+ 21
+0.059196
+ 31
+0.0
+  0
+LINE
+  5
+319
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+0.52586
+ 20
+0.050863
+ 30
+0.0
+ 11
+0.045879
+ 21
+0.050863
+ 31
+0.0
+  0
+LINE
+  5
+31A
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+0.28587
+ 20
+0.0043
+ 30
+0.0
+ 11
+0.28587
+ 21
+0.059196
+ 31
+0.0
+  0
+LINE
+  5
+31B
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+30
+100
+AcDbLine
+ 10
+0.325868
+ 20
+0.059196
+ 30
+0.0
+ 11
+0.325868
+ 21
+0.0043
+ 31
+0.0
+  0
+LINE
+  5
+31C
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+30
+100
+AcDbLine
+ 10
+0.349011
+ 20
+0.059196
+ 30
+0.0
+ 11
+0.349011
+ 21
+0.003858
+ 31
+0.0
+  0
+LINE
+  5
+31D
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+1.329161
+ 20
+0.03753
+ 30
+0.0
+ 11
+0.948855
+ 21
+0.03753
+ 31
+0.0
+  0
+LINE
+  5
+31E
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+0.770195
+ 20
+0.040863
+ 30
+0.0
+ 11
+0.948855
+ 21
+0.040863
+ 31
+0.0
+  0
+LINE
+  5
+31F
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+0.948855
+ 20
+0.004198
+ 30
+0.0
+ 11
+0.948855
+ 21
+0.070862
+ 31
+0.0
+  0
+LINE
+  5
+320
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+30
+100
+AcDbLine
+ 10
+0.810066
+ 20
+0.040863
+ 30
+0.0
+ 11
+0.810066
+ 21
+0.004198
+ 31
+0.0
+  0
+LINE
+  5
+321
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+1.329161
+ 20
+0.022295
+ 30
+0.0
+ 11
+1.284845
+ 21
+0.022295
+ 31
+0.0
+  0
+LINE
+  5
+322
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+1.284845
+ 20
+0.004198
+ 30
+0.0
+ 11
+1.284845
+ 21
+0.070862
+ 31
+0.0
+  0
+LINE
+  5
+323
+330
+30D
+100
+AcDbEntity
+  8
+Border
+370
+80
+100
+AcDbLine
+ 10
+1.329161
+ 20
+0.070862
+ 30
+0.0
+ 11
+0.045879
+ 21
+0.070862
+ 31
+0.0
+  0
+LINE
+  5
+324
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+0.52586
+ 20
+0.070862
+ 30
+0.0
+ 11
+0.52586
+ 21
+0.004198
+ 31
+0.0
+  0
+LINE
+  5
+325
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+53
+100
+AcDbLine
+ 10
+0.720852
+ 20
+0.070862
+ 30
+0.0
+ 11
+0.720852
+ 21
+0.004198
+ 31
+0.0
+  0
+LINE
+  5
+326
+330
+30D
+100
+AcDbEntity
+  8
+Border
+  6
+Continuous
+370
+13
+100
+AcDbLine
+ 10
+1.329161
+ 20
+0.056343
+ 30
+0.0
+ 11
+1.284845
+ 21
+0.056343
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+327
+330
+30D
+100
+AcDbEntity
+  8
+Border
+370
+80
+100
+AcDbPolyline
+ 90
+4
+ 70
+129
+ 10
+0.045879
+ 20
+0.87083
+ 10
+1.329161
+ 20
+0.87083
+ 10
+1.329161
+ 20
+0.004198
+ 10
+0.045879
+ 20
+0.004198
+  0
+TEXT
+  5
+328
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbText
+ 10
+1.290463
+ 20
+0.061727
+ 30
+0.0
+ 40
+0.00375
+  1
+REF. DWG. NO.
+  7
+Style-Arial
+ 41
+0.861083
+ 72
+1
+ 11
+1.307003
+ 21
+0.063602
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+329
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbText
+ 10
+1.294847
+ 20
+0.028037
+ 30
+0.0
+ 40
+0.00375
+  1
+SHEET NO.
+  7
+Style-Arial
+ 41
+0.861083
+ 72
+1
+ 11
+1.307003
+ 21
+0.029912
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+MTEXT
+  5
+32A
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbMText
+ 10
+0.951124
+ 20
+0.066366
+ 30
+0.0
+ 40
+0.002998
+ 41
+0.0
+ 46
+0.0
+ 71
+4
+  1
+SHEET TITLE:
+  7
+Style-Arial
+ 73
+2
+ 44
+1.475197
+  0
+MTEXT
+  5
+32B
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbMText
+ 10
+0.951124
+ 20
+0.033034
+ 30
+0.0
+ 40
+0.002998
+ 41
+0.0
+ 46
+0.0
+ 71
+4
+  1
+PROJECT NAME:\P
+  7
+Style-Arial
+ 73
+2
+ 44
+1.475197
+  0
+MTEXT
+  5
+32C
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.065471
+ 30
+0.0
+ 40
+0.003736
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.863416;DRAWN BY:
+  7
+Style-Arial
+ 73
+2
+ 44
+1.302295
+  0
+MTEXT
+  5
+32D
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.049089
+ 30
+0.0
+ 40
+0.003736
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.863416;CHECKED BY:
+  7
+Style-Arial
+ 73
+2
+ 44
+1.302295
+  0
+MTEXT
+  5
+32E
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.032707
+ 30
+0.0
+ 40
+0.003736
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.863416;DESIGNED BY:
+  7
+Style-Arial
+ 73
+2
+ 44
+1.302295
+  0
+MTEXT
+  5
+32F
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.015821
+ 30
+0.0
+ 40
+0.003736
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.863416;CHECKED BY:
+  7
+Style-Arial
+ 73
+2
+ 44
+1.302295
+  0
+TEXT
+  5
+330
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.780218
+ 20
+0.033995
+ 30
+0.0
+ 40
+0.003736
+  1
+ROAD NO.
+  7
+Style-Arial
+ 41
+0.862747
+ 72
+1
+ 11
+0.791352
+ 21
+0.035863
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+331
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.832087
+ 20
+0.033987
+ 30
+0.0
+ 40
+0.003753
+  1
+COUNTY
+  7
+Style-Arial
+ 41
+0.860866
+ 72
+1
+ 11
+0.841616
+ 21
+0.035863
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+332
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.885509
+ 20
+0.034397
+ 30
+0.0
+ 40
+0.003753
+  1
+FINANCIAL PROJECT ID
+  7
+Style-Arial
+ 41
+0.8602
+ 72
+1
+ 11
+0.91132
+ 21
+0.036273
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+333
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbText
+ 10
+0.250307
+ 20
+0.063152
+ 30
+0.0
+ 40
+0.003753
+  1
+REVISIONS
+  7
+Style-Arial
+ 41
+2.491007
+ 72
+1
+ 11
+0.28587
+ 21
+0.065029
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+334
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.059961
+ 20
+0.053174
+ 30
+0.0
+ 40
+0.003736
+  1
+DATE
+ 50
+359.869253
+  7
+Style-Arial
+ 41
+0.849615
+ 72
+1
+ 11
+0.065879
+ 21
+0.055029
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+335
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.095943
+ 20
+0.053153
+ 30
+0.0
+ 40
+0.003753
+  1
+BY
+  7
+Style-Arial
+ 41
+0.846461
+ 72
+1
+ 11
+0.098903
+ 21
+0.055029
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+336
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.183752
+ 20
+0.053153
+ 30
+0.0
+ 40
+0.003752
+  1
+DESCRIPTION
+ 50
+360.0
+  7
+Style-Arial
+ 41
+0.845673
+ 72
+1
+ 11
+0.198899
+ 21
+0.055029
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+337
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.299955
+ 20
+0.053161
+ 30
+0.0
+ 40
+0.003736
+  1
+DATE
+ 50
+360.0
+  7
+Style-Arial
+ 41
+0.849615
+ 72
+1
+ 11
+0.305869
+ 21
+0.055029
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+338
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.33448
+ 20
+0.053153
+ 30
+0.0
+ 40
+0.003753
+  1
+BY
+  7
+Style-Arial
+ 41
+0.846461
+ 72
+1
+ 11
+0.33744
+ 21
+0.055029
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+339
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+0
+100
+AcDbText
+ 10
+0.422289
+ 20
+0.053153
+ 30
+0.0
+ 40
+0.003752
+  1
+DESCRIPTION
+ 50
+360.0
+  7
+Style-Arial
+ 41
+0.845673
+ 72
+1
+ 11
+0.437436
+ 21
+0.055029
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+MTEXT
+  5
+33A
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.789996
+ 20
+0.016618
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.0574
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.864865;SR 9
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+33B
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.841951
+ 20
+0.016296
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.864865; \PDUVAL\P 
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.801269
+  0
+MTEXT
+  5
+33C
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.910454
+ 20
+0.016618
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.864865;432259-5-52-01
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+33D
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.859525
+ 20
+0.055042
+ 30
+0.0
+ 40
+0.004921
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+STATE OF FLORIDA\PDEPARTMENT OF TRANSPORTATION\P
+  7
+Style-FDOT Imprint Bold
+ 73
+2
+ 44
+1.197447
+  0
+MTEXT
+  5
+33E
+330
+30D
+100
+AcDbEntity
+  8
+TextStructuresLabel
+370
+30
+100
+AcDbMText
+ 10
+1.11685
+ 20
+0.019649
+ 30
+0.0
+ 40
+0.007292
+ 41
+0.23333
+ 46
+0.0
+ 71
+5
+  1
+\fFDOT Bold|b1|i0|c00|p7;\H1x;\W0.849998;I-95 CAPACITY IMPROVEMENTS FROM SOUTH OF SR 152 TO SOUTH OF SR 126
+  7
+Style-FDOT Bold
+ 73
+2
+ 44
+0.798592
+  0
+MTEXT
+  5
+33F
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.05702
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.864865;MH 07-26
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+340
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.040638
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.864865;JT 07-26
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+341
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.024256
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.864865;JT 07-26
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+342
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.745524
+ 20
+0.007371
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.864865;MIK 07-26
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+343
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+0.531613
+ 20
+0.036341
+ 30
+0.0
+ 40
+0.005781
+ 41
+0.185826
+ 46
+0.0
+ 71
+4
+  1
+\H1x;\W0.864865;MATTHEW IAN KOSAR\PLICENSE NUMBER: 77008\PPARSONS TRANSPORTATION GROUP, INC.\P1203 GOVERNORS SQUARE BLVD,SUITE 201\PTALLAHASSEE, FL 32301
+  7
+Style-FDOT Mono
+ 73
+2
+ 44
+0.801269
+  0
+MTEXT
+  5
+344
+330
+30D
+100
+AcDbEntity
+  8
+TextStructures
+370
+13
+100
+AcDbMText
+ 10
+1.316956
+ 20
+0.081523
+ 30
+0.0
+ 40
+0.008333
+ 41
+0.0
+ 46
+0.0
+ 71
+6
+  1
+ BRIDGE NO. 729022
+  7
+FDOT Bold (Medium)
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+345
+330
+30D
+100
+AcDbEntity
+  8
+TextMisc
+  6
+Continuous
+100
+AcDbMText
+ 10
+1.332633
+ 20
+0.004388
+ 30
+0.0
+ 40
+0.005833
+ 41
+0.0
+ 46
+0.0
+ 71
+1
+  1
+THE OFFICIAL RECORD OF THIS SHEET IS THE ELECTRONIC FILE DIGITALLY SIGNED AND SEALED UNDER RULE 61G15-23.004, F.A.C.
+  7
+FDOT (Small)
+ 11
+0.0
+ 21
+1.0
+ 31
+0.0
+ 73
+2
+ 44
+0.9
+  0
+MTEXT
+  5
+346
+330
+30D
+100
+AcDbEntity
+  8
+TextStructuresLabel
+370
+30
+100
+AcDbMText
+ 10
+1.11685
+ 20
+0.061314
+ 30
+0.0
+ 40
+0.007292
+ 41
+0.278381
+ 46
+0.0
+ 71
+5
+  1
+\fFDOT Bold|b1|i0|c00|p7;\H1x;\W0.849998; 
+  7
+Style-FDOT Bold
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+347
+330
+30D
+100
+AcDbEntity
+  8
+TextStructuresLabel
+370
+30
+100
+AcDbMText
+ 10
+1.11685
+ 20
+0.044648
+ 30
+0.0
+ 40
+0.007292
+ 41
+0.278381
+ 46
+0.0
+ 71
+5
+  1
+\fFDOT Bold|b1|i0|c00|p7;\H1x;\W0.849998; 
+  7
+Style-FDOT Bold
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+348
+330
+30D
+100
+AcDbEntity
+  8
+TextStructuresLabel
+370
+30
+100
+AcDbMText
+ 10
+1.11685
+ 20
+0.011316
+ 30
+0.0
+ 40
+0.007292
+ 41
+0.278381
+ 46
+0.0
+ 71
+5
+  1
+\fFDOT Bold|b1|i0|c00|p7;\H1x;\W0.849998; 
+  7
+Style-FDOT Bold
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+349
+330
+30D
+100
+AcDbEntity
+  8
+TextStructuresLabel
+370
+30
+100
+AcDbMText
+ 10
+1.11685
+ 20
+0.027982
+ 30
+0.0
+ 40
+0.007292
+ 41
+0.278381
+ 46
+0.0
+ 71
+5
+  1
+\fFDOT Bold|b1|i0|c00|p7;\H1x;\W0.849998; 
+  7
+Style-FDOT Bold
+ 73
+2
+ 44
+0.6
+  0
+ATTDEF
+  5
+34A
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+77008
+100
+AcDbAttributeDefinition
+  3
+
+  2
+License_Number
+ 70
+1
+  0
+ATTDEF
+  5
+34B
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+PARSONS TRANSPORTATION GROUP, INC.
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Company_Name
+ 70
+1
+  0
+ATTDEF
+  5
+34C
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+1203 GOVERNORS SQUARE BLVD,SUITE 201
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Company_Street
+ 70
+1
+  0
+ATTDEF
+  5
+34D
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+TALLAHASSEE
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Company_City
+ 70
+1
+  0
+ATTDEF
+  5
+34E
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+FL
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Company_State
+ 70
+1
+  0
+ATTDEF
+  5
+34F
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+32301
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Company_Zip
+ 70
+1
+  0
+ATTDEF
+  5
+350
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+Phone
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Company_Phone
+ 70
+1
+  0
+ATTDEF
+  5
+351
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+Fax
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Company_Fax
+ 70
+1
+  0
+ATTDEF
+  5
+352
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+THE OFFICIAL RECORD OF THIS SHEET IS THE ELECTRONIC FILE DIGITALLY SIGNED AND SEALED UNDER RULE 61G15-23.004, F.A.C.
+100
+AcDbAttributeDefinition
+  3
+
+  2
+FAC_Note
+ 70
+1
+  0
+ATTDEF
+  5
+353
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+MATTHEW IAN KOSAR
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Professional_Name
+ 70
+1
+  0
+ATTDEF
+  5
+354
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+Engineer of Record
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Professional_Type
+ 70
+1
+  0
+ATTDEF
+  5
+355
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+432259-5-52-01
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Financial_Project_Id
+ 70
+1
+  0
+ATTDEF
+  5
+356
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+SR 9
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Road_Number
+ 70
+1
+  0
+ATTDEF
+  5
+357
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttributeDefinition
+  3
+
+  2
+County_Top
+ 70
+1
+  0
+ATTDEF
+  5
+358
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+Duval
+100
+AcDbAttributeDefinition
+  3
+
+  2
+County_Middle
+ 70
+1
+  0
+ATTDEF
+  5
+359
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttributeDefinition
+  3
+
+  2
+County_Bottom
+ 70
+1
+  0
+ATTDEF
+  5
+35A
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+RoadwayID
+100
+AcDbAttributeDefinition
+  3
+
+  2
+RoadwayID
+ 70
+1
+  0
+ATTDEF
+  5
+35B
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+ BRIDGE NO. 729022
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Bridge_Number
+ 70
+1
+  0
+ATTDEF
+  5
+35C
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+MH
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Drawn_By
+ 70
+1
+  0
+ATTDEF
+  5
+35D
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+07-26
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Drawn_By_Date
+ 70
+1
+  0
+ATTDEF
+  5
+35E
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+JT
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Designed_By
+ 70
+1
+  0
+ATTDEF
+  5
+35F
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+07-26
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Designed_By_Date
+ 70
+1
+  0
+ATTDEF
+  5
+360
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+JT
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Drawing_Checked_By
+ 70
+1
+  0
+ATTDEF
+  5
+361
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+07-26
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Drawing_Checked_By_Date
+ 70
+1
+  0
+ATTDEF
+  5
+362
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+MIK
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Design_Checked_By
+ 70
+1
+  0
+ATTDEF
+  5
+363
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+07-26
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Design_Checked_By_Date
+ 70
+1
+  0
+ATTDEF
+  5
+364
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+I-95 CAPACITY IMPROVEMENTS FROM SOUTH OF SR 152 TO SOUTH OF SR 126
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Bridge_Project_Description
+ 70
+1
+  0
+ATTDEF
+  5
+365
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Bridge_Project_Description_Top
+ 70
+1
+  0
+ATTDEF
+  5
+366
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttributeDefinition
+  3
+
+  2
+Bridge_Project_Description_Bottom
+ 70
+1
+  0
+ATTDEF
+  5
+367
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttributeDefinition
+  3
+
+  2
+SheetTitle_Top
+ 70
+1
+  0
+ATTDEF
+  5
+368
+330
+30D
+100
+AcDbEntity
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttributeDefinition
+  3
+
+  2
+SheetTitle_Bottom
+ 70
+1
+  0
+ENDBLK
+  5
+30F
+330
+30D
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+36A
+330
+369
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+Structures Sheet Number-Title P-2
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+Structures Sheet Number-Title P-2
+  1
+
+  0
+MTEXT
+  5
+36C
+330
+369
+100
+AcDbEntity
+  8
+TextStructShtNo
+370
+30
+100
+AcDbMText
+ 10
+-0.022158
+ 20
+0.008076
+ 30
+0.0
+ 40
+0.005833
+ 41
+0.0
+ 46
+0.0
+ 71
+5
+  1
+P-2
+  7
+Style-FDOT Bold
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+36D
+330
+369
+100
+AcDbEntity
+  8
+TextStructures
+370
+30
+100
+AcDbMText
+ 10
+-0.212311
+ 20
+0.048783
+ 30
+0.0
+ 40
+0.007292
+ 41
+0.2776
+ 46
+0.0
+ 71
+5
+  1
+\H1x;\W0.849998;GENERAL PLAN - TOP VIEW
+  7
+Style-FDOT Bold
+ 73
+2
+ 44
+0.6
+  0
+MTEXT
+  5
+36E
+330
+369
+100
+AcDbEntity
+  8
+TextMisc
+100
+AcDbMText
+ 10
+-0.000217
+ 20
+-0.004396
+ 30
+0.0
+ 40
+0.004167
+ 41
+0.0
+ 46
+0.0
+ 71
+3
+  1
+B4_Model_Plan_Top.dxf : P-2 GENERAL PLAN - TOP VIEW
+  7
+FDOT (Small)
+ 73
+2
+ 44
+1.019993
+  0
+MTEXT
+  5
+36F
+330
+369
+100
+AcDbEntity
+  8
+TextMisc
+100
+AcDbMText
+ 10
+-0.000217
+ 20
+-0.011792
+ 30
+0.0
+ 40
+0.004167
+ 41
+0.0
+ 46
+0.0
+ 71
+3
+  1
+$TIME$
+  7
+FDOT (Small)
+ 73
+2
+ 44
+1.019993
+  0
+MTEXT
+  5
+370
+330
+369
+100
+AcDbEntity
+  8
+TextMisc
+100
+AcDbMText
+ 10
+-0.063384
+ 20
+-0.011792
+ 30
+0.0
+ 40
+0.004167
+ 41
+0.0
+ 46
+0.0
+ 71
+3
+  1
+$DATE$
+  7
+FDOT (Small)
+ 73
+2
+ 44
+1.019993
+  0
+MTEXT
+  5
+371
+330
+369
+100
+AcDbEntity
+  8
+TextMisc
+100
+AcDbMText
+ 10
+-0.126551
+ 20
+-0.011792
+ 30
+0.0
+ 40
+0.004167
+ 41
+0.0
+ 46
+0.0
+ 71
+3
+  1
+$USER$
+  7
+FDOT (Small)
+ 73
+2
+ 44
+1.019993
+  0
+ENDBLK
+  5
+36B
+330
+369
 100
 AcDbEntity
   8
@@ -20945,7 +24495,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-344
+396
 330
 17
 100
@@ -20977,7 +24527,7 @@ AcDbPolyline
   0
 TEXT
   5
-345
+397
 330
 17
 100
@@ -21011,7 +24561,7 @@ AcDbText
   0
 TEXT
   5
-346
+398
 330
 17
 100
@@ -21247,9 +24797,9 @@ FDOT Structures
  44
 1.05
   0
-LWPOLYLINE
+INSERT
   5
-306
+372
 330
 73
 100
@@ -21259,33 +24809,21 @@ AcDbEntity
   8
 Border
 100
-AcDbPolyline
- 90
-4
- 70
+AcDbBlockReference
+ 66
 1
- 43
-0.0016666666666666668
+  2
+11x17 Structures Sheet Border
  10
-0.06666666666666667
+0.020787666666666663
  20
-0.024999999999999998
- 10
-1.3499999999999999
- 20
-0.024999999999999998
- 10
-1.3499999999999999
- 20
-0.8916666666666666
- 10
-0.06666666666666667
- 20
-0.8916666666666666
+0.020801999999999998
+ 30
+0.0
   0
-LWPOLYLINE
+ATTRIB
   5
-307
+374
 330
 73
 100
@@ -21293,53 +24831,33 @@ AcDbEntity
  67
 1
   8
-Border
-100
-AcDbPolyline
- 90
-2
- 70
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 43
-0.0011666666666666668
- 10
-0.06666666666666667
- 20
-0.09166666666666667
- 10
-1.3499999999999999
- 20
-0.09166666666666667
-  0
-LWPOLYLINE
-  5
-308
-330
-73
 100
-AcDbEntity
- 67
-1
-  8
-Border
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+77008
 100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+License_Number
  70
-0
- 10
-0.5499999999999999
- 20
-0.024999999999999998
- 10
-0.5499999999999999
- 20
-0.09166666666666667
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-309
+375
 330
 73
 100
@@ -21347,25 +24865,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+PARSONS TRANSPORTATION GROUP, INC.
+100
+AcDbAttribute
+  2
+Company_Name
  70
-0
- 10
-0.7416666666666667
- 20
-0.024999999999999998
- 10
-0.7416666666666667
- 20
-0.09166666666666667
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-30A
+376
 330
 73
 100
@@ -21373,25 +24899,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+1203 GOVERNORS SQUARE BLVD,SUITE 201
+100
+AcDbAttribute
+  2
+Company_Street
  70
-0
- 10
-0.7916666666666666
- 20
-0.024999999999999998
- 10
-0.7916666666666666
- 20
-0.09166666666666667
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-30B
+377
 330
 73
 100
@@ -21399,25 +24933,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+TALLAHASSEE
+100
+AcDbAttribute
+  2
+Company_City
  70
-0
- 10
-0.9691666666666667
- 20
-0.024999999999999998
- 10
-0.9691666666666667
- 20
-0.09166666666666667
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-30C
+378
 330
 73
 100
@@ -21425,25 +24967,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+FL
+100
+AcDbAttribute
+  2
+Company_State
  70
-0
- 10
-1.2983333333333333
- 20
-0.024999999999999998
- 10
-1.2983333333333333
- 20
-0.09166666666666667
+1
   0
-TEXT
+ATTRIB
   5
-30D
+379
 330
 73
 100
@@ -21451,63 +25001,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
 AcDbText
  10
-0.3083333333333333
+0.020787666666666663
  20
-0.0825
+0.020801999999999998
  30
 0.0
  40
-0.005833333333333334
+0.007292
   1
-REVISIONS
-  7
-FDOT Imprint
- 72
-1
- 11
-0.3083333333333333
- 21
-0.0825
- 31
-0.0
+32301
 100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-30E
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+Company_Zip
  70
-0
- 10
-0.06666666666666667
- 20
-0.08083333333333334
- 10
-0.5499999999999999
- 20
-0.08083333333333334
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-30F
+37A
 330
 73
 100
@@ -21515,165 +25035,67 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+Phone
+100
+AcDbAttribute
+  2
+Company_Phone
  70
+1
+  0
+ATTRIB
+  5
+37B
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 10
-0.06666666666666667
- 20
-0.07250000000000001
- 10
-0.5499999999999999
- 20
-0.07250000000000001
-  0
-TEXT
-  5
-310
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
 100
 AcDbText
  10
-0.08750000000000001
+0.020787666666666663
  20
-0.07416666666666667
+0.020801999999999998
  30
 0.0
  40
-0.004583333333333333
+0.007292
   1
-DATE
-  7
-FDOT Imprint
- 72
-1
- 11
-0.08750000000000001
- 21
-0.07416666666666667
- 31
-0.0
+Fax
 100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-311
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.11833333333333333
- 20
-0.07416666666666667
- 30
-0.0
- 40
-0.004583333333333333
-  1
-BY
-  7
-FDOT Imprint
- 72
-1
- 11
-0.11833333333333333
- 21
-0.07416666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-312
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.2125
- 20
-0.07416666666666667
- 30
-0.0
- 40
-0.004583333333333333
-  1
-DESCRIPTION
-  7
-FDOT Imprint
- 72
-1
- 11
-0.2125
- 21
-0.07416666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-313
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+Company_Fax
  70
-0
- 10
-0.10833333333333334
- 20
-0.024999999999999998
- 10
-0.10833333333333334
- 20
-0.08083333333333334
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-314
+37C
 330
 73
 100
@@ -21681,165 +25103,67 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+THE OFFICIAL RECORD OF THIS SHEET IS THE ELECTRONIC FILE DIGITALLY SIGNED AND SEALED UNDER RULE 61G15-23.004, F.A.C.
+100
+AcDbAttribute
+  2
+FAC_Note
  70
+1
+  0
+ATTRIB
+  5
+37D
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 10
-0.12916666666666668
- 20
-0.024999999999999998
- 10
-0.12916666666666668
- 20
-0.08083333333333334
-  0
-TEXT
-  5
-315
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
 100
 AcDbText
  10
-0.32916666666666666
+0.020787666666666663
  20
-0.07416666666666667
+0.020801999999999998
  30
 0.0
  40
-0.004583333333333333
+0.007292
   1
-DATE
-  7
-FDOT Imprint
- 72
-1
- 11
-0.32916666666666666
- 21
-0.07416666666666667
- 31
-0.0
+MATTHEW IAN KOSAR
 100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-316
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.35999999999999993
- 20
-0.07416666666666667
- 30
-0.0
- 40
-0.004583333333333333
-  1
-BY
-  7
-FDOT Imprint
- 72
-1
- 11
-0.35999999999999993
- 21
-0.07416666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-317
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.4541666666666666
- 20
-0.07416666666666667
- 30
-0.0
- 40
-0.004583333333333333
-  1
-DESCRIPTION
-  7
-FDOT Imprint
- 72
-1
- 11
-0.4541666666666666
- 21
-0.07416666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-318
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+Professional_Name
  70
-0
- 10
-0.3499999999999999
- 20
-0.024999999999999998
- 10
-0.3499999999999999
- 20
-0.08083333333333334
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-319
+37E
 330
 73
 100
@@ -21847,25 +25171,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+Engineer of Record
+100
+AcDbAttribute
+  2
+Professional_Type
  70
-0
- 10
-0.3708333333333333
- 20
-0.024999999999999998
- 10
-0.3708333333333333
- 20
-0.08083333333333334
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-31A
+37F
 330
 73
 100
@@ -21873,195 +25205,67 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+432259-5-52-01
+100
+AcDbAttribute
+  2
+Financial_Project_Id
  70
+1
+  0
+ATTRIB
+  5
+380
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 10
-0.3083333333333333
- 20
-0.024999999999999998
- 10
-0.3083333333333333
- 20
-0.08083333333333334
-  0
-TEXT
-  5
-31B
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
 100
 AcDbText
  10
-0.5549999999999999
+0.020787666666666663
  20
-0.07833333333333334
+0.020801999999999998
  30
 0.0
  40
-0.0058330000000000005
+0.007292
   1
-ENGINEER OF RECORD:
-  7
-FDOT (Small)
- 11
-0.5549999999999999
- 21
-0.07833333333333334
- 31
-0.0
+SR 9
 100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-31C
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.5549999999999999
- 20
-0.06583333333333334
- 30
-0.0
- 40
-0.0058330000000000005
-  1
-
-  7
-FDOT (Small)
- 11
-0.5549999999999999
- 21
-0.06583333333333334
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-31D
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.5549999999999999
- 20
-0.053333333333333344
- 30
-0.0
- 40
-0.0058330000000000005
-  1
-
-  7
-FDOT (Small)
- 11
-0.5549999999999999
- 21
-0.053333333333333344
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-31E
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.5549999999999999
- 20
-0.04083333333333334
- 30
-0.0
- 40
-0.0058330000000000005
-  1
-
-  7
-FDOT (Small)
- 11
-0.5549999999999999
- 21
-0.04083333333333334
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-31F
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+Road_Number
  70
-0
- 10
-0.7416666666666667
- 20
-0.09166666666666667
- 10
-0.7916666666666666
- 20
-0.09166666666666667
+1
   0
-TEXT
+ATTRIB
   5
-320
+381
 330
 73
 100
@@ -22069,63 +25273,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
 AcDbText
  10
-0.7666666666666666
+0.020787666666666663
  20
-0.08583333333333333
+0.020801999999999998
  30
 0.0
  40
-0.0033333333333333335
+0.007292
   1
-DRAWN BY:
-  7
-FDOT Imprint
- 72
-1
- 11
-0.7666666666666666
- 21
-0.08583333333333333
- 31
-0.0
+ 
 100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-321
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+County_Top
  70
-0
- 10
-0.7416666666666667
- 20
-0.07500000000000001
- 10
-0.7916666666666666
- 20
-0.07500000000000001
+1
   0
-TEXT
+ATTRIB
   5
-322
+382
 330
 73
 100
@@ -22133,63 +25307,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
 AcDbText
  10
-0.7666666666666666
+0.020787666666666663
  20
-0.06916666666666667
+0.020801999999999998
  30
 0.0
  40
-0.0033333333333333335
+0.007292
   1
-CHECKED BY:
-  7
-FDOT Imprint
- 72
-1
- 11
-0.7666666666666666
- 21
-0.06916666666666667
- 31
-0.0
+Duval
 100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-323
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+County_Middle
  70
-0
- 10
-0.7416666666666667
- 20
-0.05833333333333334
- 10
-0.7916666666666666
- 20
-0.05833333333333334
+1
   0
-TEXT
+ATTRIB
   5
-324
+383
 330
 73
 100
@@ -22197,203 +25341,67 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
 AcDbText
  10
-0.7666666666666666
+0.020787666666666663
  20
-0.05250000000000001
+0.020801999999999998
  30
 0.0
  40
-0.0033333333333333335
+0.007292
   1
-DESIGNED BY:
-  7
-FDOT Imprint
- 72
-1
- 11
-0.7666666666666666
- 21
-0.05250000000000001
- 31
-0.0
+ 
 100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-325
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+County_Bottom
  70
+1
+  0
+ATTRIB
+  5
+384
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 10
-0.7416666666666667
- 20
-0.041666666666666664
- 10
-0.7916666666666666
- 20
-0.041666666666666664
-  0
-TEXT
-  5
-326
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
 100
 AcDbText
  10
-0.7666666666666666
+0.020787666666666663
  20
-0.035833333333333335
+0.020801999999999998
  30
 0.0
  40
-0.0033333333333333335
+0.007292
   1
-CHECKED BY:
-  7
-FDOT Imprint
- 72
-1
- 11
-0.7666666666666666
- 21
-0.035833333333333335
- 31
-0.0
+RoadwayID
 100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-327
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.8804166666666667
- 20
-0.07500000000000001
- 30
-0.0
- 40
-0.005416666666666667
-  1
-STATE OF FLORIDA
-  7
-FDOT Imprint
- 72
-1
- 11
-0.8804166666666667
- 21
-0.07500000000000001
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-328
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.8804166666666667
- 20
-0.06333333333333334
- 30
-0.0
- 40
-0.005416666666666667
-  1
-DEPARTMENT OF TRANSPORTATION
-  7
-FDOT Imprint
- 72
-1
- 11
-0.8804166666666667
- 21
-0.06333333333333334
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-329
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+RoadwayID
  70
-0
- 10
-0.7916666666666666
- 20
-0.055833333333333346
- 10
-0.9691666666666667
- 20
-0.055833333333333346
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-32A
+385
 330
 73
 100
@@ -22401,25 +25409,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+ BRIDGE NO. 729022
+100
+AcDbAttribute
+  2
+Bridge_Number
  70
-0
- 10
-0.7916666666666666
- 20
-0.04750000000000001
- 10
-0.9691666666666667
- 20
-0.04750000000000001
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-32B
+386
 330
 73
 100
@@ -22427,25 +25443,33 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+MH
+100
+AcDbAttribute
+  2
+Drawn_By
  70
-0
- 10
-0.8375
- 20
-0.024999999999999998
- 10
-0.8375
- 20
-0.055833333333333346
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-32C
+387
 330
 73
 100
@@ -22453,453 +25477,101 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
-AcDbPolyline
- 90
-2
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+07-26
+100
+AcDbAttribute
+  2
+Drawn_By_Date
  70
+1
+  0
+ATTRIB
+  5
+388
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 10
-0.8958333333333334
- 20
-0.024999999999999998
- 10
-0.8958333333333334
- 20
-0.055833333333333346
-  0
-TEXT
-  5
-32D
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
 100
 AcDbText
  10
-0.8145833333333333
+0.020787666666666663
  20
-0.04916666666666667
+0.020801999999999998
  30
 0.0
  40
-0.0033333333333333335
+0.007292
   1
-ROAD NO.
-  7
-FDOT Imprint
- 72
-1
- 11
-0.8145833333333333
- 21
-0.04916666666666667
- 31
-0.0
+JT
 100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-32E
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.8145833333333333
- 20
-0.034999999999999996
- 30
-0.0
- 40
-0.0058330000000000005
-  1
-
-  7
-FDOT_SHEET_SR
- 72
-1
- 11
-0.8145833333333333
- 21
-0.034999999999999996
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-32F
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.8666666666666667
- 20
-0.04916666666666667
- 30
-0.0
- 40
-0.0033333333333333335
-  1
-COUNTY
-  7
-FDOT Imprint
- 72
-1
- 11
-0.8666666666666667
- 21
-0.04916666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-330
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.8666666666666667
- 20
-0.034999999999999996
- 30
-0.0
- 40
-0.0058330000000000005
-  1
-
-  7
-FDOT_SHEET_COUNTY
- 72
-1
- 11
-0.8666666666666667
- 21
-0.034999999999999996
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-331
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.9325000000000001
- 20
-0.04916666666666667
- 30
-0.0
- 40
-0.0033333333333333335
-  1
-FINANCIAL PROJECT ID
-  7
-FDOT Imprint
- 72
-1
- 11
-0.9325000000000001
- 21
-0.04916666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-332
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.9325000000000001
- 20
-0.034999999999999996
- 30
-0.0
- 40
-0.0058330000000000005
-  1
-
-  7
-FDOT_SHEET_FPID
- 72
-1
- 11
-0.9325000000000001
- 21
-0.034999999999999996
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-333
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+Designed_By
  70
+1
+  0
+ATTRIB
+  5
+389
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 10
-0.9691666666666667
- 20
-0.05833333333333334
- 10
-1.2983333333333333
- 20
-0.05833333333333334
-  0
-TEXT
-  5
-334
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
 100
 AcDbText
  10
-0.9725
+0.020787666666666663
  20
-0.085
+0.020801999999999998
  30
 0.0
  40
-0.004583333333333333
+0.007292
   1
-SHEET TITLE:
-  7
-FDOT Imprint
- 11
-0.9725
- 21
-0.085
- 31
-0.0
+07-26
 100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-335
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-1.13375
- 20
-0.06666666666666667
- 30
-0.0
- 40
-0.010417000000000001
-  1
-GENERAL PLAN - TOP VIEW
-  7
-FDOT_SHEET_DESCRIPTION
- 72
-1
- 11
-1.13375
- 21
-0.06666666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-336
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.9725
- 20
-0.05166666666666667
- 30
-0.0
- 40
-0.004583333333333333
-  1
-PROJECT NAME:
-  7
-FDOT Imprint
- 11
-0.9725
- 21
-0.05166666666666667
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-337
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-1.13375
- 20
-0.03333333333333333
- 30
-0.0
- 40
-0.008333
-  1
-D2 I-95 PEDESTRIAN BRIDGE - B4
-  7
-FDOT (Medium)
- 72
-1
- 11
-1.13375
- 21
-0.03333333333333333
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-LWPOLYLINE
-  5
-338
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
+AcDbAttribute
+  2
+Designed_By_Date
  70
-0
- 10
-1.2983333333333333
- 20
-0.05833333333333334
- 10
-1.3499999999999999
- 20
-0.05833333333333334
+1
   0
-LWPOLYLINE
+ATTRIB
   5
-339
+38A
 330
 73
 100
@@ -22907,89 +25579,33 @@ AcDbEntity
  67
 1
   8
-Border
-100
-AcDbPolyline
- 90
-2
- 70
+ActivePts-ConstElements
+  6
+Continuous
+370
 0
- 10
-1.2983333333333333
- 20
-0.06833333333333334
- 10
-1.3499999999999999
- 20
-0.06833333333333334
-  0
-LWPOLYLINE
-  5
-33A
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbPolyline
- 90
-2
- 70
-0
- 10
-1.2983333333333333
- 20
-0.03916666666666666
- 10
-1.3499999999999999
- 20
-0.03916666666666666
-  0
-TEXT
-  5
-33B
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
 100
 AcDbText
  10
-1.3241666666666667
+0.020787666666666663
  20
-0.085
+0.020801999999999998
  30
 0.0
  40
-0.00375
+0.007292
   1
-REF. DWG. NO.
-  7
-FDOT Imprint
- 72
-1
- 11
-1.3241666666666667
- 21
-0.085
- 31
-0.0
+JT
 100
-AcDbText
- 73
+AcDbAttribute
+  2
+Drawing_Checked_By
+ 70
 1
   0
-TEXT
+ATTRIB
   5
-33C
+38B
 330
 73
 100
@@ -22997,37 +25613,283 @@ AcDbEntity
  67
 1
   8
-Border
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
 100
 AcDbText
  10
-1.3241666666666667
+0.020787666666666663
  20
-0.05166666666666667
+0.020801999999999998
  30
 0.0
  40
-0.00375
+0.007292
   1
-SHEET NO.
-  7
-FDOT Imprint
- 72
-1
- 11
-1.3241666666666667
- 21
-0.05166666666666667
- 31
-0.0
+07-26
 100
-AcDbText
- 73
+AcDbAttribute
+  2
+Drawing_Checked_By_Date
+ 70
 1
   0
-TEXT
+ATTRIB
   5
-33D
+38C
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+MIK
+100
+AcDbAttribute
+  2
+Design_Checked_By
+ 70
+1
+  0
+ATTRIB
+  5
+38D
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+07-26
+100
+AcDbAttribute
+  2
+Design_Checked_By_Date
+ 70
+1
+  0
+ATTRIB
+  5
+38E
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+I-95 CAPACITY IMPROVEMENTS FROM SOUTH OF SR 152 TO SOUTH OF SR 126
+100
+AcDbAttribute
+  2
+Bridge_Project_Description
+ 70
+1
+  0
+ATTRIB
+  5
+38F
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttribute
+  2
+Bridge_Project_Description_Top
+ 70
+1
+  0
+ATTRIB
+  5
+390
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttribute
+  2
+Bridge_Project_Description_Bottom
+ 70
+1
+  0
+ATTRIB
+  5
+391
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttribute
+  2
+SheetTitle_Top
+ 70
+1
+  0
+ATTRIB
+  5
+392
+330
+73
+100
+AcDbEntity
+ 67
+1
+  8
+ActivePts-ConstElements
+  6
+Continuous
+370
+0
+100
+AcDbText
+ 10
+0.020787666666666663
+ 20
+0.020801999999999998
+ 30
+0.0
+ 40
+0.007292
+  1
+ 
+100
+AcDbAttribute
+  2
+SheetTitle_Bottom
+ 70
+1
+  0
+SEQEND
+  5
+373
+330
+372
+100
+AcDbEntity
+ 67
+1
+  8
+Border
+  0
+INSERT
+  5
+393
 330
 73
 100
@@ -23037,227 +25899,19 @@ AcDbEntity
   8
 TextStructShtNo
 100
-AcDbText
+AcDbBlockReference
+  2
+Structures Sheet Number-Title P-2
  10
-1.3241666666666667
+1.3499486666666667
  20
-0.028333333333333332
+0.024999999999999998
  30
 0.0
- 40
-0.008333
-  1
-P-2
-  7
-FDOT Bold (Medium)
- 72
-1
- 11
-1.3241666666666667
- 21
-0.028333333333333332
- 31
-0.0
-100
-AcDbText
- 73
-1
   0
 TEXT
   5
-33E
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-1.3458333333333332
- 20
-0.11343798333333334
- 30
-0.0
- 40
-0.010417000000000001
-  1
-BRIDGE NO. ______
-  7
-FDOT Bold (Large)
- 72
-2
- 11
-1.3458333333333332
- 21
-0.11343798333333334
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-33F
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-1.3458333333333332
- 20
-0.09833333333333334
- 30
-0.0
- 40
-0.010417000000000001
-  1
-B4 PEDESTRIAN BRIDGE
-  7
-FDOT Bold (Large)
- 72
-2
- 11
-1.3458333333333332
- 21
-0.09833333333333334
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-340
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-1.3683333333333332
- 20
-0.4583333333333333
- 30
-0.0
- 40
-0.0058330000000000005
-  1
-THE OFFICIAL RECORD OF THIS SHEET IS THE ELECTRONIC FILE DIGITALLY SIGNED AND SEALED UNDER RULE 61G15-23.004, F.A.C.
- 50
-90.0
-  7
-FDOT (Small)
- 72
-1
- 11
-1.3683333333333332
- 21
-0.4583333333333333
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-341
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.05666666666666667
- 20
-0.029166666666666664
- 30
-0.0
- 40
-0.006000000000000001
-  1
-B4_Model_Plan_Top.dxf  (substructure_drawings.model_plan 1.1.0)
- 50
-90.0
-  7
-FDOT Mono (Small)
- 11
-0.05666666666666667
- 21
-0.029166666666666664
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-342
-330
-73
-100
-AcDbEntity
- 67
-1
-  8
-Border
-100
-AcDbText
- 10
-0.04750000000000001
- 20
-0.029166666666666664
- 30
-0.0
- 40
-0.006000000000000001
-  1
-FREECAD MODEL SHA-256 DD69374811827E98
- 50
-90.0
-  7
-FDOT Mono (Small)
- 11
-0.04750000000000001
- 21
-0.029166666666666664
- 31
-0.0
-100
-AcDbText
- 73
-1
-  0
-TEXT
-  5
-343
+395
 330
 73
 100
@@ -23293,7 +25947,7 @@ AcDbText
   0
 VIEWPORT
   5
-347
+399
 330
 73
 100
@@ -24261,7 +26915,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-34A
+39C
   0
 DICTIONARYVAR
   5
@@ -24405,7 +27059,7 @@ P-2 GENERAL PLAN - TOP VIEW
   0
 DICTIONARYVAR
   5
-34A
+39C
 330
 2D
 100

@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 
 import ezdxf  # noqa: E402
 
-from substructure_drawings import build, fdot, model_plan  # noqa: E402
+from substructure_drawings import build, fdot, model_plan, sheets  # noqa: E402
 
 PKG = ROOT / "substructure_drawings"
 SNAPSHOT = PKG / "data" / "model_plan_snapshot.json"
@@ -137,16 +137,20 @@ class ModelPlanDxfTests(unittest.TestCase):
 
     def test_symbology(self):
         """FDOT levels only, everything ByLevel apart from the documented
-        hidden pad edges; the plan draws visible and hidden edges."""
+        hidden pad edges and the sheet border cell of the project's sheet
+        model; the plan draws visible and hidden edges."""
         allowed = set(fdot.LEVELS)
-        used = {e.dxf.layer for blk in self.doc.blocks for e in blk}
+        used = {e.dxf.layer for blk in self.doc.blocks if not sheets.is_border_cell(blk.name) for e in blk}
         self.assertTrue(used <= allowed, sorted(used - allowed))
         self.assertNotIn(b"Defpoints", DXF.read_bytes())
         audit = build.symbology_audit(self.doc)
         self.assertEqual(audit["not_on_fdot_level"], [])
         self.assertEqual(audit["not_by_level"], [])
         self.assertTrue(set(audit["documented_overrides"]) <=
-                        {"BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)"})
+                        {"BearingPadMisc linetype DGN2 (hidden pad edges; no FDOT hidden level)",
+                         sheets.BORDER_CELL_OVERRIDE})
+        self.assertEqual(self.manifest["sheet_border"], sheets.border_record())
+        self.assertIn("%s %s" % (sheets.NUMBER_TITLE_BLOCK, self.manifest["sheet"]["number"]), self.doc.blocks)
         levels = self.manifest["levels_used"]
         for name in ("SupstrConc", "BeamConc_h", "WallMSEPanel", "WallConc", "TrafBarrierConc", "AppSlabConc",
                      "SubStrConc", "PileConc_h", "BaseLineSurveyPGL", "CL_Major"):

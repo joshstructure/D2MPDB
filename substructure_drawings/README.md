@@ -142,32 +142,45 @@ represent engineering acceptance.
 
 ## Sheets
 
+The sheets are numbered from B4-6, following B4-5 TYPICAL SECTION in the
+project's sheet set (2026-10-24, `build.INFO["first_sheet"]`).
+
 | Sheet | Content | Scale |
 |---|---|---|
-| B4-1 | End Bent 1 plan; elevation (looking back station) with the reinforcement; table of elevations, pile cutoff elevations, notes, footnote legend | 3/8" |
-| B4-2 | End Bent 1 details (1 of 3): sections A-A (between piles), B-B (at piles) with the keyed construction joint, reinforcing strap with its embedment, bar embedment, closure slab and coping; beside them detail "A" (construction joint) over detail "B" (backwall V-groove and geotextile fabric); strap legend and notes | 3/4", 1-1/2", 1" |
-| B4-3 | End Bent 1 details (2 of 3): section C-C (at CL beam); views D-D and E-E (cheek walls, WWR limits; D-D carries the flags of sections F-F and G-G); notes and the strap legend | 3/4", 3/8" |
-| B4-4 | End Bent 1 details (3 of 3): section F-F (vertical, through the cheek wall) and section G-G (horizontal, through the cheek wall and backwall, monolithic); pedestal plan and elevation; top of pedestal elevations; notes | 3/4" |
-| B4-5 | Pier plan with the cheek walls; broken elevation (looking ahead station) with the reinforcement, the cheek walls as 1 ft stubs with break lines; end view D-D (the cheek wall face with its recessed panel, cut under the cap); tables, notes | 3/8" |
-| B4-6 | Pier details (1 of 3): sections A-A, B-B, C-C on one row with a common top; notes | 3/4" |
-| B4-7 | Pier details (2 of 3): pedestal plan and elevation; top of pedestal elevations under the elevation; notes | 3/4" |
-| B4-8 | Pier details (3 of 6): view E-E (left cheek wall, the recessed panel and the bars; carries the flags of F-F and G-G), section F-F (vertical, through the panel, the cap stub under the wall with the 1'-0" embedment of the verticals, D-061) and section G-G (horizontal, through the panel); notes | 3/8", 3/4" |
-| B4-9 | Pier details (4 of 6): the pier wall elevation (D-076 / D-079) with the wall reinforcement, the hidden annular ring plates, the piles under the wall and the flags of sections H-H and J-J; notes | 3/8" |
-| B4-10 | Pier details (5 of 6): section J-J (through the wall at a pile, broken; the cut pile with its five plates, the horizontals end-on, the nearest verticals), the annular ring plate plan and section K-K (the plate on the pipe pile with its fillets); notes | 1/2", 1-1/2", 3" |
-| B4-11 | Pier details (6 of 6): section H-H (the horizontal cut through ring row 3: the cut wall, piles and plates, the verticals end-on, the horizontals and the end U returns in plane); notes | 1/2" |
-| B4-12 to B4-15 | End Bent 2, as End Bent 1 (looking ahead station; B4-13 and B4-14 are laid out as the mirror images of B4-2 and B4-3) | |
-| B4-16 | Reinforcing bar list on the FDOT bar list form | |
+| B4-6 | End Bent 1 plan; elevation (looking back station) with the reinforcement; table of elevations, pile cutoff elevations, notes, footnote legend | 3/8" |
+| B4-7 | End Bent 1 details (1 of 3): sections A-A (between piles), B-B (at piles) with the keyed construction joint, reinforcing strap with its embedment, bar embedment, closure slab and coping; beside them detail "A" (construction joint) over detail "B" (backwall V-groove and geotextile fabric); strap legend and notes | 3/4", 1-1/2", 1" |
+| B4-8 | End Bent 1 details (2 of 3): section C-C (at CL beam); views D-D and E-E (cheek walls, WWR limits; D-D carries the flags of sections F-F and G-G); notes and the strap legend | 3/4", 3/8" |
+| B4-9 | End Bent 1 details (3 of 3): section F-F (vertical, through the cheek wall) and section G-G (horizontal, through the cheek wall and backwall, monolithic); pedestal plan and elevation; top of pedestal elevations; notes | 3/4" |
+| B4-10 | Pier plan with the cheek walls; broken elevation (looking ahead station) with the reinforcement, the cheek walls as 1 ft stubs with break lines; end view D-D (the cheek wall face with its recessed panel, cut under the cap); tables, notes | 3/8" |
+| B4-11 | Pier details (1 of 3): sections A-A, B-B, C-C on one row with a common top; notes | 3/4" |
+| B4-12 | Pier details (2 of 3): pedestal plan and elevation; top of pedestal elevations under the elevation; notes | 3/4" |
+| B4-13 | Pier details (3 of 6): view E-E (left cheek wall, the recessed panel and the bars; carries the flags of F-F and G-G), section F-F (vertical, through the panel, the cap stub under the wall with the 1'-0" embedment of the verticals, D-061) and section G-G (horizontal, through the panel); notes | 3/8", 3/4" |
+| B4-14 | Pier details (4 of 6): the pier wall elevation (D-076 / D-079) with the wall reinforcement, the hidden annular ring plates, the piles under the wall and the flags of sections H-H and J-J; notes | 3/8" |
+| B4-15 | Pier details (5 of 6): section J-J (through the wall at a pile, broken; the cut pile with its five plates, the horizontals end-on, the nearest verticals), the annular ring plate plan and section K-K (the plate on the pipe pile with its fillets); notes | 1/2", 1-1/2", 3" |
+| B4-16 | Pier details (6 of 6): section H-H (the horizontal cut through ring row 3: the cut wall, piles and plates, the verticals end-on, the horizontals and the end U returns in plane); notes | 1/2" |
+| B4-17 to B4-20 | End Bent 2, as End Bent 1 (looking ahead station; B4-18 and B4-19 are laid out as the mirror images of B4-7 and B4-8) | |
+| B4-21 | Reinforcing bar list on the FDOT bar list form | |
 
 Model space holds every view at full size (1:1, international feet,
 `$INSUNITS = 2`), with annotation sized for the sheet scale. Each paper-space
-layout is an 11 x 17 sheet with an FDOT-style border and scaled viewports.
+layout is an 11 x 17 sheet with the FDOT border and scaled viewports.
 MicroStation imports the layouts as sheet models and model space as the
-drawing model. The border approximates the FDOT structures border cell (0.8"
-title band, the sample's column widths). Replace it with the FDOT CADD border
-when the sheets are finalized. Bridge number, FPID, county, road and EOR fields
-are blank because no project source gives them. The plot stamp outside the
-left border names the file, the generator version and the FreeCAD model hash.
-It has no clock time, so rebuilds stay byte-identical.
+drawing model. Since 2026-10-24 the border is the FDOT structures sheet border
+cell of the project's MicroStation sheet model, copied unchanged from
+`data/sheet_border_template.dxf` (the user's `SheetModelExample.dxf`, sheet
+B4-5 TYPICAL SECTION). The block `11x17 Structures Sheet Border` carries the
+project information as the template has it: engineer of record and firm,
+initials and dates, road SR 9, Duval County, FPID 432259-5-52-01, the I-95
+project name, BRIDGE NO. 729022 and the 61G15-23.004 statement, plus its 31
+attributes. Each sheet also gets its own copy of `Structures Sheet
+Number-Title` (`Structures Sheet Number-Title B4-6`, ...) with its number,
+title and the file line `<dxf> : <layout>`. The `$USER$ $DATE$ $TIME$` fields
+stay as the template has them, so rebuilds stay byte-identical. The cell keeps
+the template's levels (adding TextStructuresLabel, TextMisc and
+ActivePts-ConstElements), line weights and text styles; `symbology_audit`
+counts them as a documented exception. Only the template styles' FDOT fonts
+are named, because the export leaves them to MicroStation. To change the
+project data, replace the template file and rebuild.
 
 ## Conventions applied
 

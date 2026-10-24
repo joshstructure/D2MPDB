@@ -14,11 +14,11 @@ from collections import OrderedDict
 from pathlib import Path
 
 from . import build, cad, fdot
-from .sheets import DRAW, Sheet
+from .sheets import DRAW, Sheet, border_record
 from .support import STATION_FFBW_EB1
 from .views import _covered
 
-GENERATOR_VERSION = "1.1.0"
+GENERATOR_VERSION = "1.2.0"
 DXF_NAME = "B4_Model_Plan.dxf"
 MANIFEST_NAME = "model_plan_manifest.json"
 SHEET_SCALE = "1=40"
@@ -155,8 +155,7 @@ class PlanComposer:
         self.snap = snap
         self.var = VARIANTS[variant]
         self.info = dict(info)
-        self.info["stamp"] = ["%s  (%s %s)" % (self.var["dxf"], "substructure_drawings.model_plan", GENERATOR_VERSION),
-                              "FREECAD MODEL SHA-256 %s" % snap["model_sha256"][:16].upper()]
+        self.info["file"] = self.var["dxf"]
         self.doc = cad.new_document()
         self.warnings = []
         self.overlaps = []
@@ -349,6 +348,7 @@ def _write_outputs(snap, snapshot_path, out_dir, variant):
         "levels_used": dict(sorted(layers.items())),
         "level_source": fdot.LEVEL_TABLE,
         "cadd_manual": fdot.CADD_MANUAL,
+        "sheet_border": border_record(),
         "symbology_audit": build.symbology_audit(doc),
         "layout_warnings": comp.warnings,
         "annotation_overlaps": comp.overlaps,

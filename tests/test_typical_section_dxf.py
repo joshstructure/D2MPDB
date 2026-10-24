@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT))
 
 import ezdxf  # noqa: E402
 
-from substructure_drawings import build, fdot, typical_section  # noqa: E402
+from substructure_drawings import build, fdot, sheets, typical_section  # noqa: E402
 
 PKG = ROOT / "substructure_drawings"
 SNAPSHOT = PKG / "data" / "typical_section_snapshot.json"
@@ -130,13 +130,18 @@ class TypicalSectionDxfTests(unittest.TestCase):
         self.assertIn("THE PIER CHEEK WALLS, THE PILES AND THE ANNULAR RING PLATES LIE BEYOND THE PIER CUT", notes)
 
     def test_symbology(self):
+        """FDOT levels only, everything ByLevel apart from the sheet border
+        cell of the project's sheet model."""
         allowed = set(fdot.LEVELS)
-        used = {e.dxf.layer for blk in self.doc.blocks for e in blk}
+        used = {e.dxf.layer for blk in self.doc.blocks if not sheets.is_border_cell(blk.name) for e in blk}
         self.assertTrue(used <= allowed, sorted(used - allowed))
         self.assertNotIn(b"Defpoints", DXF.read_bytes())
         audit = build.symbology_audit(self.doc)
         self.assertEqual(audit["not_on_fdot_level"], [])
         self.assertEqual(audit["not_by_level"], [])
+        self.assertIn(sheets.BORDER_CELL_OVERRIDE, audit["documented_overrides"])
+        self.assertEqual(self.manifest["sheet_border"], sheets.border_record())
+        self.assertIn("%s %s" % (sheets.NUMBER_TITLE_BLOCK, self.manifest["sheet"]["number"]), self.doc.blocks)
         levels = self.manifest["levels_used"]
         for name in ("SupstrConc", "BeamConc", "TrafBarrierConc", "SubStrConc", "SubStrConc2", "BearingPadMisc",
                      "CL_Major", "CL_Minor", "Dimension", "Leader", "TextStructures", "Symbols"):
